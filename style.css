@@ -4,26 +4,27 @@
 }
 
 :root {
-  --light-blue: #29ABE2;
-  --darke-blue: #2A3647;
+  --light-blue: #29abe2;
+  --darke-blue: #2a3647;
   --hover-darke-blue: #091931;
 
-  --urgent: #FF3D00;
-  --medium: #FFA800;
-  --low: #7AE229;
+  --urgent: #ff3d00;
+  --medium: #ffa800;
+  --low: #7ae229;
 
-  --story: #0038FF;
-  --technical: #1FD7C1;
+  --story: #0038ff;
+  --technical: #1fd7c1;
 
-  --sidebar-color: #CDCDCD;
+  --sidebar-color: #cdcdcd;
 
-  --light-grey: #F6F7F8;
-  --medium-grey: #E7E7E7;
-  --dark-grey: #A8A8A8;
+  --light-grey: #f6f7f8;
+  --medium-grey: #e7e7e7;
+  --dark-grey: #a8a8a8;
 }
 
 * {
   margin: 0;
+  box-sizing: border-box;
 }
 
 a {
@@ -39,7 +40,6 @@ body {
   flex-direction: column;
   font-family: inter;
 }
-
 
 .d-flex {
   display: flex;
@@ -66,6 +66,7 @@ body {
   height: 80px;
   align-items: center;
   justify-content: space-between;
+  padding: 0px 16px;
 }
 
 .logo-mobile {
@@ -73,15 +74,14 @@ body {
   height: 39px;
 }
 
-.current-user-header{
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--light-blue);
-    width: 40px;
-    height: 40px;
-    border: solid 2px var(--hover-darke-blue);
-    border-radius: 50%;
-    
+.current-user-header {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--light-blue);
+  width: 40px;
+  height: 40px;
+  border: solid 2px var(--hover-darke-blue);
+  border-radius: 50%;
 }
 
 main {
@@ -100,7 +100,6 @@ main {
 .sidebar-mobile a {
   color: var(--light-grey);
 }
-
 
 .sidebar-mobile a img {
   width: 22px;
