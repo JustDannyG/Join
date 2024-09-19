@@ -1,6 +1,6 @@
 @font-face {
   font-family: inter;
-  src: url(assets/fonts/Inter-VariableFont_opsz_wght.ttf);
+  src: url(./assets/fonts/Inter/Inter-VariableFont_opsz_wght.ttf);
 }
 
 :root {
@@ -34,6 +34,7 @@ a {
 html,
 body {
   height: 100vh;
+  overflow: hidden;
 }
 
 body {
@@ -46,7 +47,7 @@ body {
 }
 
 .d-none {
-  display: none;
+  display: none !important;
 }
 
 .center {
@@ -87,6 +88,29 @@ body {
   height: 40px;
   border: solid 2px var(--hover-darke-blue);
   border-radius: 50%;
+  cursor: pointer;
+}
+
+.menu {
+  position: absolute;
+  top: 80px;
+  right: 16px;
+  transform: translateX(150px);
+  transition: transform 0.3s ease-in-out;
+  flex-wrap: wrap;
+  background-color: var(--darke-blue);
+  color: var(--light-grey);
+  border-radius: 16px 0px 16px 16px;
+  padding: 16px;
+  gap: 16px;
+}
+
+.menu-active {
+  transform: translateX(0);
+}
+
+.menu a {
+  color: var(--light-grey);
 }
 
 main {
@@ -95,11 +119,31 @@ main {
   background-color: var(--light-grey);
 }
 
+main::-webkit-scrollbar {
+  width: 6px;
+}
+
+main::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: var(--dark-grey);
+}
+main::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
 .content {
   padding: 48px 16px;
   text-wrap: wrap;
 }
 
+.headline {
+  justify-content: space-between;
+}
+
+.headline img {
+  width: 18pxpx;
+  height: 18px;
+}
 .sidebar-mobile {
   height: 80px;
   padding: 2px 16px;

@@ -1,3 +1,11 @@
-.legal-notice {
-  text-wrap: wrap;
+h2 {
+  margin-top: 24px;
+}
+
+h3 {
+  margin-top: 16px;
+}
+
+.legal-notice ul {
+  margin-top: 16px;
 }
