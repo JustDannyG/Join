@@ -93,8 +93,8 @@ body {
 
 .menu {
   position: absolute;
-  top: 80px;
-  right: 16px;
+  top: 60px;
+  right: 6px;
   transform: translateX(150px);
   transition: transform 0.3s ease-in-out;
   flex-wrap: wrap;
@@ -102,7 +102,7 @@ body {
   color: var(--light-grey);
   border-radius: 16px 0px 16px 16px;
   padding: 16px;
-  gap: 16px;
+  gap: 24px;
 }
 
 .menu-active {
