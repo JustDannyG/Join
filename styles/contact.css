@@ -1,6 +1,67 @@
 .add-contact {
+  position: absolute;
+  bottom: 96px;
+  right: 8px;
   width: min-content;
   padding: 8px;
   border-radius: 50%;
   background-color: var(--darke-blue);
+}
+.add-contact img {
+  width: 24px;
+}
+
+/* Add Contact  */
+section {
+  padding: 16px;
+}
+
+.dark-backround {
+  height: 45vh;
+  background-color: var(--darke-blue);
+  color: white;
+  justify-content: center;
+}
+
+.dark-backround h1 {
+  font-size: 40px;
+}
+.dark-backround p {
+  font-size: 20px;
+}
+
+.input-section {
+  height: 55vh;
+}
+form {
+  width: 100%;
+  gap: 8px;
+}
+.input-row {
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  border: solid 1px var(--dark-grey);
+  padding: 4px 8px;
+}
+form input {
+  border: unset;
+}
+.input-row img {
+  width: 24px;
+  height: 24px;
+}
+
+form button {
+  width: min-content;
+  text-wrap: nowrap;
+  padding: 4px 8px;
+  background-color: var(--darke-blue);
+  color: white;
+  border: unset;
+  border-radius: 8px;
+}
+form button img {
+  width: 12px;
+  margin-left: 4px;
 }

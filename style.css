@@ -31,6 +31,11 @@ a {
   text-decoration: none;
 }
 
+input {
+  border: solid 1px var(--dark-grey);
+  padding: 4px 8px;
+}
+
 html,
 body {
   height: 100vh;
