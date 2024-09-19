@@ -17,6 +17,7 @@ section {
 }
 
 .dark-backround {
+   position: relative;
   height: 45vh;
   background-color: var(--darke-blue);
   color: white;
@@ -24,6 +25,7 @@ section {
 }
 
 .dark-backround h1 {
+ 
   font-size: 40px;
 }
 .dark-backround p {
@@ -67,9 +69,12 @@ form button img {
   width: 12px;
   margin-left: 4px;
 }
+
 .current-user {
   position: absolute;
-  top: 41%;
+  bottom: -50px;
   left: 50%;
-  background-color: gray;
+  width: 100px;
+  height: 100px;
+  z-index: 2;
 }
