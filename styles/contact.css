@@ -43,7 +43,7 @@ form {
   justify-content: space-between;
   width: 100%;
   border-radius: 8px;
-  border: solid 1px var(--dark-grey);
+  border: solid 1.5px var(--dark-grey);
   padding: 4px 8px;
 }
 form input {
@@ -57,7 +57,7 @@ form input {
 form button {
   width: min-content;
   text-wrap: nowrap;
-  padding: 4px 8px;
+  padding: 8px;
   background-color: var(--darke-blue);
   color: white;
   border: unset;
@@ -66,4 +66,10 @@ form button {
 form button img {
   width: 12px;
   margin-left: 4px;
+}
+.current-user {
+  position: absolute;
+  top: 41%;
+  left: 50%;
+  background-color: gray;
 }
