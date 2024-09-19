@@ -1,0 +1,23 @@
+.help-content{
+
+}
+
+.text-blue{
+    color: var(--light-blue);
+}
+
+.help-headline {
+    display: flex;
+    justify-content: space-between;
+}
+
+.help-headline img {
+    height: 32px;
+    width: 32px;
+}
+
+.help-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
