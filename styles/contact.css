@@ -1,0 +1,6 @@
+.add-contact {
+  width: min-content;
+  padding: 8px;
+  border-radius: 50%;
+  background-color: var(--darke-blue);
+}
