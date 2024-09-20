@@ -1,12 +1,13 @@
 let ordertContacts = [];
 let indexArray = [];
 let firstNames = [];
+let groupedContacts = {};
 
 async function initContacts() {
   await getContacts();
   orderContacts();
-  displayContacts();
-  console.log(firstNames);
+  groupContactsByFirstLetter();
+  displayGroupedContacts();
 }
 
 async function getContacts() {
@@ -18,46 +19,69 @@ async function getContacts() {
     ordertContacts.push(contact);
   }
 }
-function testfunction() {
-  let;
-}
 
 function orderContacts() {
   ordertContacts.sort((a, b) => a.name.localeCompare(b.name));
 }
 
-function testMerge() {
-  let;
+function groupContactsByFirstLetter() {
+  for (let i = 0; i < ordertContacts.length; i++) {
+    const contact = ordertContacts[i];
+    const firstLetter = contact.name.charAt(0);
+
+    if (!groupedContacts[firstLetter]) {
+      groupedContacts[firstLetter] = [];
+    }
+    groupedContacts[firstLetter].push(contact);
+  }
 }
 
-function displayContacts() {
+function displayGroupedContacts() {
   const containerRef = document.getElementById("contacts-container");
   containerRef.innerHTML = "";
-  for (let i = 0; i < ordertContacts.length; i++) {
-    const contactName = ordertContacts[i].name;
-    const contactEmail = ordertContacts[i].email;
-    indexArray.push(i);
-    containerRef.innerHTML += `<div class="d-flex contact">
-  <div id="contact-circle${i}" class="contact-circle center"></div>
-  <span class="column"><span>${contactName}</span> <a href="mailto:${contactEmail}">${contactEmail}</a></span>
-</div>
-`;
+  let indexCircle = 0;
+
+  for (const letter in groupedContacts) {
+    if (groupedContacts.hasOwnProperty(letter)) {
+      containerRef.innerHTML += `<h3>${letter}</h3>`;
+      const contactsGroup = groupedContacts[letter];
+
+      for (let i = 0; i < contactsGroup.length; i++) {
+        const contact = contactsGroup[i];
+        const contactName = contact.name;
+        const contactEmail = contact.email;
+
+        indexArray.push(indexCircle);
+
+        containerRef.innerHTML += `
+          <div class="d-flex contact">
+            <div id="contact-circle${indexCircle}" class="contact-circle center"></div>
+            <span class="column">
+              <span>${contactName}</span> 
+              <a href="mailto:${contactEmail}">${contactEmail}</a>
+            </span>
+          </div>
+        `;
+
+        indexCircle++;
+      }
+      containerRef.innerHTML += `<div class="group-separator"></div>`;
+    }
   }
+
   getFirstLettersOfName();
 }
 
 function getFirstLettersOfName() {
   for (let i = 0; i < indexArray.length; i++) {
-    let contactCirleRef = document.getElementById(`contact-circle${i}`);
+    let contactCircleRef = document.getElementById(`contact-circle${i}`);
     const nameIndex = indexArray[i];
     let fullName = ordertContacts[nameIndex].name;
     let spliTName = fullName.split(" ");
     let fullNameLength = spliTName.length - 1;
-
     let firstName = spliTName[0].charAt(0);
-    let LastName = spliTName[fullNameLength].charAt(0);
-    console.log(firstName, LastName);
-    contactCirleRef.innerHTML = `${firstName + LastName}`;
-    firstNames.push(firstName);
+    let lastName = spliTName[fullNameLength].charAt(0);
+
+    contactCircleRef.innerHTML = `${firstName}${lastName}`;
   }
 }
