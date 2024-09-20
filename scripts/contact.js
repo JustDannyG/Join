@@ -1,10 +1,12 @@
 let ordertContacts = [];
 let indexArray = [];
+let firstNames = [];
 
 async function initContacts() {
   await getContacts();
   orderContacts();
   displayContacts();
+  console.log(firstNames);
 }
 
 async function getContacts() {
@@ -43,9 +45,12 @@ function getFirstLettersOfName() {
     const nameIndex = indexArray[i];
     let fullName = ordertContacts[nameIndex].name;
     let spliTName = fullName.split(" ");
+    let fullNameLength = spliTName.length - 1;
+
     let firstName = spliTName[0].charAt(0);
-    let LastName = spliTName[1].charAt(0);
+    let LastName = spliTName[fullNameLength].charAt(0);
     console.log(firstName, LastName);
     contactCirleRef.innerHTML = `${firstName + LastName}`;
+    firstNames.push(firstName);
   }
 }

@@ -123,7 +123,6 @@ form button img {
 
 /* Edit Contacts Overlay */
 
-
 .edit-contact-headline {
   display: flex;
   flex-direction: column;
@@ -138,12 +137,12 @@ form button img {
   background-color: var(--light-blue);
 }
 
-.edit-action-btns{
+.edit-action-btns {
   display: flex;
   gap: 20px;
 }
 
-.edit-initals{
+.edit-initals {
   font-size: 47px;
   color: white;
   background-color: orangered;
