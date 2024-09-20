@@ -106,6 +106,7 @@ form button {
   color: white;
   border: unset;
   border-radius: 8px;
+  cursor: pointer;
 }
 
 form button img {
@@ -123,22 +124,6 @@ form button img {
 
 /* Edit Contacts Overlay */
 
-.edit-contact-overlay {
-  display: flex;
-  flex-direction: column;
-  height: fit-content;
-  width: fit-content;
-  border: solid 1px;
-}
-
-.edit-contact-head {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 351px;
-  width: 396px;
-  background-color: var(--darke-blue);
-}
 
 .edit-contact-headline {
   display: flex;
@@ -154,7 +139,15 @@ form button img {
   background-color: var(--light-blue);
 }
 
-.edit-contact-form {
+.edit-action-btns{
   display: flex;
-  flex-direction: column;
+  gap: 20px;
+}
+
+.edit-initals{
+  font-size: 47px;
+  color: white;
+  background-color: orangered;
+  border-radius: 50%;
+  border: solid 3px white;
 }
