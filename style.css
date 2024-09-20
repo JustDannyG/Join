@@ -20,6 +20,8 @@
   --light-grey: #f6f7f8;
   --medium-grey: #e7e7e7;
   --dark-grey: #a8a8a8;
+
+  --white: #fff;
 }
 
 * {
@@ -170,4 +172,9 @@ main::-webkit-scrollbar-track {
 .nav-link-mobile img {
   width: 22px;
   height: 22px;
+}
+
+.border-none {
+  border: none;
+  outline: none;
 }
