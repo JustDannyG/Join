@@ -23,10 +23,6 @@ function orderContacts() {
   ordertContacts.sort((a, b) => a.name.localeCompare(b.name));
 }
 
-function testMerge() {
-  let;
-}
-
 function displayContacts() {
   const containerRef = document.getElementById("contacts-container");
   containerRef.innerHTML = "";
