@@ -1,0 +1,173 @@
+@font-face {
+  font-family: inter;
+  src: url(./assets/fonts/Inter-VariableFont_opsz_wght.ttf);
+}
+
+:root {
+  --light-blue: #29abe2;
+  --darke-blue: #2a3647;
+  --hover-darke-blue: #091931;
+
+  --urgent: #ff3d00;
+  --medium: #ffa800;
+  --low: #7ae229;
+
+  --story: #0038ff;
+  --technical: #1fd7c1;
+
+  --sidebar-color: #cdcdcd;
+
+  --light-grey: #f6f7f8;
+  --medium-grey: #e7e7e7;
+  --dark-grey: #a8a8a8;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+input {
+  border: solid 1px var(--dark-grey);
+  padding: 4px 8px;
+}
+
+html,
+body {
+  height: 100vh;
+  overflow: hidden;
+}
+
+body {
+  flex-direction: column;
+  font-family: inter;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.overflow-x-auto {
+  overflow-x: auto;
+}
+
+.header-mobile {
+  box-shadow: 0 1px 10px 2px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 80px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 16px;
+  z-index: 1;
+}
+
+.logo-mobile {
+  width: 32px;
+  height: 39px;
+}
+
+.current-user-header {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--light-blue);
+  width: 40px;
+  height: 40px;
+  border: solid 2px var(--hover-darke-blue);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.menu {
+  position: absolute;
+  top: 60px;
+  right: 6px;
+  transform: translateX(150px);
+  transition: transform 0.3s ease-in-out;
+  flex-wrap: wrap;
+  background-color: var(--darke-blue);
+  color: var(--light-grey);
+  border-radius: 16px 0px 16px 16px;
+  padding: 16px;
+  gap: 24px;
+}
+
+.menu-active {
+  transform: translateX(0);
+}
+
+.menu a {
+  color: var(--light-grey);
+}
+
+main {
+  flex: 1;
+  flex-direction: column;
+  background-color: var(--light-grey);
+}
+
+main::-webkit-scrollbar {
+  width: 6px;
+}
+
+main::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: var(--dark-grey);
+}
+main::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.content {
+  padding: 48px 16px;
+  text-wrap: wrap;
+}
+
+.headline {
+  justify-content: space-between;
+}
+
+.headline img {
+  width: 18pxpx;
+  height: 18px;
+}
+.sidebar-mobile {
+  height: 80px;
+  padding: 2px 16px;
+  justify-content: space-between;
+  background-color: var(--darke-blue);
+}
+
+.nav-link-mobile {
+  width: 80px;
+  color: var(--light-grey);
+  border-radius: 8px;
+}
+
+.nav-link-mobile:hover {
+  background-color: var(--hover-darke-blue);
+}
+
+.nav-link-mobile img {
+  width: 22px;
+  height: 22px;
+}
