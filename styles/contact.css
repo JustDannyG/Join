@@ -1,11 +1,10 @@
 /* Contacts overview */
 .contacts-container {
-  width: 80%;
   gap: 16px;
 }
 
 .contact {
-  justify-content: space-between;
+  gap: 114px;
 }
 
 .user-circle {
