@@ -18,6 +18,9 @@ async function getContacts() {
     ordertContacts.push(contact);
   }
 }
+function testfunction() {
+  let;
+}
 
 function orderContacts() {
   ordertContacts.sort((a, b) => a.name.localeCompare(b.name));
