@@ -18,6 +18,11 @@
 h3 {
   margin-left: 12px;
 }
+.group-separator {
+  height: 2px;
+  width: 100%;
+  background-color: var(--medium-grey);
+}
 /* Add Contacts Overlay  */
 
 .add-contact {

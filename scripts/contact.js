@@ -42,7 +42,6 @@ function displayGroupedContacts() {
   let indexCircle = 0;
 
   for (const letter in groupedContacts) {
-    // Die if-Abfrage wurde entfernt
     containerRef.innerHTML += `<h3>${letter}</h3>`;
     const contactsGroup = groupedContacts[letter];
 
