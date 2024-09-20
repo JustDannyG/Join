@@ -42,33 +42,31 @@ function displayGroupedContacts() {
   let indexCircle = 0;
 
   for (const letter in groupedContacts) {
-    if (groupedContacts.hasOwnProperty(letter)) {
-      containerRef.innerHTML += `<h3>${letter}</h3>`;
-      const contactsGroup = groupedContacts[letter];
+    // Die if-Abfrage wurde entfernt
+    containerRef.innerHTML += `<h3>${letter}</h3>`;
+    const contactsGroup = groupedContacts[letter];
 
-      for (let i = 0; i < contactsGroup.length; i++) {
-        const contact = contactsGroup[i];
-        const contactName = contact.name;
-        const contactEmail = contact.email;
+    for (let i = 0; i < contactsGroup.length; i++) {
+      const contact = contactsGroup[i];
+      const contactName = contact.name;
+      const contactEmail = contact.email;
 
-        indexArray.push(indexCircle);
+      indexArray.push(indexCircle);
 
-        containerRef.innerHTML += `
-          <div class="d-flex contact">
-            <div id="contact-circle${indexCircle}" class="contact-circle center"></div>
-            <span class="column">
-              <span>${contactName}</span> 
-              <a href="mailto:${contactEmail}">${contactEmail}</a>
-            </span>
-          </div>
-        `;
+      containerRef.innerHTML += `
+        <div class="d-flex contact">
+          <div id="contact-circle${indexCircle}" class="contact-circle center"></div>
+          <span class="column">
+            <span>${contactName}</span> 
+            <a href="mailto:${contactEmail}">${contactEmail}</a>
+          </span>
+        </div>
+      `;
 
-        indexCircle++;
-      }
-      containerRef.innerHTML += `<div class="group-separator"></div>`;
+      indexCircle++;
     }
+    containerRef.innerHTML += `<div class="group-separator"></div>`;
   }
-
   getFirstLettersOfName();
 }
 
