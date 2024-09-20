@@ -20,7 +20,11 @@ async function getContacts() {
 }
 
 function orderContacts() {
-  // ordertContacts.sort((a, b) => a.name.localeCompare(b.name));
+  ordertContacts.sort((a, b) => a.name.localeCompare(b.name));
+}
+
+function testMerge() {
+  let;
 }
 
 function displayContacts() {
