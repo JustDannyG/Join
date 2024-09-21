@@ -1,238 +1,254 @@
 /* Contacts overview */
+
 .contacts-container {
-  gap: 18px;
+    gap: 18px;
 }
 
 .contact {
-  gap: 114px;
-  cursor: pointer;
+    gap: 114px;
+    cursor: pointer;
 }
 
 .contact-circle {
-  width: 40px;
-  height: 40px;
-  color: white;
-  border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: white;
+    border-radius: 50%;
 }
 
 .letter {
-  margin-left: 12px;
+    margin-left: 12px;
 }
+
 .group-separator {
-  height: 2px;
-  width: 100%;
-  background-color: var(--medium-grey);
+    height: 2px;
+    width: 100%;
+    background-color: var(--medium-grey);
 }
+
 
 /* Add Contacts Overlay  */
 
 .add-contact,
 .edit-button {
-  position: absolute;
-  bottom: 96px;
-  right: 8px;
-  width: min-content;
-  padding: 8px;
-  border-radius: 50%;
-  background-color: var(--darke-blue);
+    position: absolute;
+    bottom: 96px;
+    right: 8px;
+    width: min-content;
+    padding: 8px;
+    border-radius: 50%;
+    background-color: var(--darke-blue);
 }
 
 .add-contact img {
-  width: 24px;
+    width: 24px;
 }
+
 
 /* Add Contact  */
 
 .overlayer-bg {
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    bottom: -100%;
+    width: 100%;
+    height: 100vh;
+    /* background-color: rgba(0, 0, 0, 0.1); */
+    transform: translateY(0);
+    transition: 250ms ease-in-out;
+}
+
+.active-overlay {
+    transform: translateY(-100%);
 }
 
 .overlayer {
-  padding: 80px 16px;
+    padding: 80px 16px;
 }
 
 section {
-  padding: 16px;
+    padding: 16px;
 }
 
 .dark-backround {
-  height: 40vh;
-  border-radius: 16px 16px 0 0;
-  position: relative;
-  background-color: var(--darke-blue);
-  color: white;
-  justify-content: center;
-  align-items: center;
+    height: 40vh;
+    border-radius: 16px 16px 0 0;
+    position: relative;
+    background-color: var(--darke-blue);
+    color: white;
+    justify-content: center;
+    align-items: center;
 }
 
 .dark-backround h1 {
-  align-self: flex-start;
-  font-size: 40px;
+    align-self: flex-start;
+    font-size: 40px;
 }
 
 .dark-backround p {
-  align-self: flex-start;
-  font-size: 20px;
+    align-self: flex-start;
+    font-size: 20px;
 }
 
 .input-section {
-  height: 40vh;
-  background-color: white;
-  border-radius: 0 0 16px 16px;
+    height: 40vh;
+    background-color: white;
+    border-radius: 0 0 16px 16px;
 }
 
 form {
-  width: 100%;
-  gap: 8px;
+    width: 100%;
+    gap: 8px;
 }
 
 .input-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  border-radius: 8px;
-  border: solid 1.5px var(--dark-grey);
-  padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border-radius: 8px;
+    border: solid 1.5px var(--dark-grey);
+    padding: 4px 8px;
 }
 
 form input {
-  border: unset;
+    border: unset;
 }
 
 .input-row img {
-  width: 24px;
-  height: 24px;
+    width: 24px;
+    height: 24px;
 }
 
 form button {
-  width: min-content;
-  text-wrap: nowrap;
-  padding: 8px;
-  background-color: var(--darke-blue);
-  color: white;
-  border: unset;
-  border-radius: 8px;
-  cursor: pointer;
+    width: min-content;
+    text-wrap: nowrap;
+    padding: 8px;
+    background-color: var(--darke-blue);
+    color: white;
+    border: unset;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
 form button img {
-  width: 12px;
-  margin-left: 4px;
+    width: 12px;
+    margin-left: 4px;
 }
 
 .current-user {
-  position: absolute;
-  bottom: -50px;
-  width: 100px;
-  height: 100px;
-  z-index: 2;
+    position: absolute;
+    bottom: -50px;
+    width: 100px;
+    height: 100px;
+    z-index: 2;
 }
+
 
 /* Edit Contacts Overlay */
 
 .edit-contact-headline {
-  display: flex;
-  flex-direction: column;
-  font-size: 47px;
-  font-weight: 700;
-  color: white;
+    display: flex;
+    flex-direction: column;
+    font-size: 47px;
+    font-weight: 700;
+    color: white;
 }
 
 .add-contact-underline {
-  width: 90px;
-  height: 3px;
-  background-color: var(--light-blue);
+    width: 90px;
+    height: 3px;
+    background-color: var(--light-blue);
 }
 
 .edit-action-btns {
-  display: flex;
-  gap: 20px;
+    display: flex;
+    gap: 20px;
 }
 
 .edit-initals {
-  font-size: 47px;
-  color: white;
-  background-color: orangered;
-  border-radius: 50%;
-  border: solid 3px white;
+    font-size: 47px;
+    color: white;
+    background-color: orangered;
+    border-radius: 50%;
+    border: solid 3px white;
 }
 
+
 /* Contact details*/
+
 .bg-lightgrey {
-  background-color: var(--light-grey);
+    background-color: var(--light-grey);
 }
 
 .subtitle-details {
-  font-size: 14px;
-  color: var(--subtitle);
+    font-size: 14px;
+    color: var(--subtitle);
 }
 
 .headline-text {
-  gap: 8px;
+    gap: 8px;
 }
 
 .current-contact {
-  gap: 18px;
-  margin-top: 32px;
-  align-items: center;
+    gap: 18px;
+    margin-top: 32px;
+    align-items: center;
 }
 
 .current-contact h2 {
-  font-size: 26px;
+    font-size: 26px;
 }
+
 .current-contact-circle {
-  width: 80px;
-  height: 80px;
-  background-color: #f35858;
-  color: white;
-  border-radius: 50%;
-  font-size: 26px;
-  font-weight: 200;
+    width: 80px;
+    height: 80px;
+    background-color: #f35858;
+    color: white;
+    border-radius: 50%;
+    font-size: 26px;
+    font-weight: 200;
 }
 
 .details {
-  margin-top: 16px;
-  gap: 12px;
+    margin-top: 16px;
+    gap: 12px;
 }
 
 .details h3 {
-  font-weight: 300;
-  font-size: 18px;
+    font-weight: 300;
+    font-size: 18px;
 }
 
 .details p {
-  font-size: 15px;
+    font-size: 15px;
 }
 
 .edit-container {
-  position: absolute;
-  bottom: 96px;
-  right: 6px;
-  width: 116px;
-  height: 100px;
-  padding: 10px;
-  justify-content: space-around;
-  border-radius: 16px 16px 0 16px;
-  box-shadow: 0px 6px 20px -4px rgba(0, 0, 0, 0.8);
-  background-color: white;
-  transform: translateX(150px);
-  transition: transform 0.3s ease-in-out;
+    position: absolute;
+    bottom: 96px;
+    right: 6px;
+    width: 116px;
+    height: 100px;
+    padding: 10px;
+    justify-content: space-around;
+    border-radius: 16px 16px 0 16px;
+    box-shadow: 0px 6px 20px -4px rgba(0, 0, 0, 0.8);
+    background-color: white;
+    transform: translateX(150px);
+    transition: transform 0.3s ease-in-out;
 }
 
 .edit-container img {
-  width: 24px;
-  height: 24px;
+    width: 24px;
+    height: 24px;
 }
 
 .edit-container div {
-  gap: 14px;
-  align-items: center;
-  width: 96px;
+    gap: 14px;
+    align-items: center;
+    width: 96px;
 }
 
 .bg-color-btn {
-  background-color: var(--light-blue) !important;
+    background-color: var(--light-blue) !important;
 }
