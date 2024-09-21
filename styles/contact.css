@@ -1,6 +1,7 @@
 /* Contacts overview */
 .contacts-container {
   gap: 16px;
+  padding: 0 30px;
 }
 
 .contact {
@@ -148,4 +149,35 @@ form button img {
   background-color: orangered;
   border-radius: 50%;
   border: solid 3px white;
+}
+
+
+/* contact list */
+
+.contact-list {
+  gap: 50px;
+  width: 100%;
+  height: 70px;
+  align-items: center;
+  padding: 0 30px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.contact-list:hover {
+  background-color: lightgray;
+}
+
+.contact-initials {
+  height: 50px;
+  width: 50px;
+  text-shadow: 0px 2px 11px black;
+  border-radius: 50%;
+  border: solid 1px;
+}
+
+.contacts-first-letter {
+  font-size: 20px;
+  font-weight: 700;
+  border-bottom: solid lightgray;
 }
