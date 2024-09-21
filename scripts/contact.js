@@ -85,11 +85,11 @@ function getFirstLettersOfName() {
 }
 function updateCircleColor(i) {
   const contactCircleRef = document.getElementById(`contact-circle${i}`);
-  const rgb = [255, 0, 0];
+  const rgb = [0, 0, 0];
 
-  rgb[0] = Math.round(Math.random() * 255);
-  rgb[1] = Math.round(Math.random() * 255);
-  rgb[2] = Math.round(Math.random() * 255);
+  rgb[0] = Math.round(Math.random() * 200);
+  rgb[1] = Math.round(Math.random() * 200);
+  rgb[2] = Math.round(Math.random() * 200);
 
   const brightness = Math.round((parseInt(rgb[0]) * 299 + parseInt(rgb[1]) * 587 + parseInt(rgb[2]) * 114) / 1000);
   const textColour = brightness > 125 ? "black" : "white";
@@ -98,8 +98,3 @@ function updateCircleColor(i) {
   contactCircleRef.style.backgroundColor = backgroundColour;
   contactCircleRef.style.color = textColour;
 }
-
-// function updateCircleColor(i) {
-//   const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-
-// }
