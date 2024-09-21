@@ -5,6 +5,15 @@ body {
     height: 100vh;
 }
 
+.site-logo {
+    position: absolute;
+    top: 37px;
+    left: 38px;
+    width: 64px;
+    height: 78px;
+
+}
+
 .sign-up-headline {
     display: flex;
     flex-direction: column;
@@ -30,7 +39,7 @@ body {
     padding: 32px 0;
     gap: 30px;
     border-radius: 30px;
-    border: solid 1px black;
+    box-shadow: 2px 2px 13px 5px rgba(0, 0, 0, 0.1);
 }
 
 .form-inputs-container {
@@ -63,4 +72,12 @@ body {
 
 .sign-up-form-inputs input:focus {
     outline: none;
+}
+
+.sign-up-btn {
+    font-size: 16px;
+    width: 180px;
+    height: 51px;
+    border-radius: 8px;
+    background-color: var(--darl-blue);
 }
