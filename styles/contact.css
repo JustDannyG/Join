@@ -1,8 +1,10 @@
 /* Contacts overview */
 
 .contacts-container {
-    gap: 18px;
+  gap: 16px;
+  padding: 0 30px;
 }
+
 
 .contact {
     gap: 114px;
