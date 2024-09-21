@@ -4,9 +4,21 @@ function toggleMenu(id, event) {
 }
 
 function closeAllMenus(event) {
-  document.getElementById("menu").classList.remove("menu-active");
-  document.getElementById("edit-contact").classList.remove("menu-active");
-  document.getElementById("edit-button").classList.remove("bg-color-btn");
+  const menu = document.getElementById("menu");
+  const editContact = document.getElementById("edit-contact");
+  const editButton = document.getElementById("edit-button");
+
+  if (menu) {
+    menu.classList.remove("menu-active");
+  }
+
+  if (editContact) {
+    editContact.classList.remove("menu-active");
+  }
+
+  if (editButton) {
+    editButton.classList.remove("bg-color-btn");
+  }
 
   event.stopPropagation();
 }

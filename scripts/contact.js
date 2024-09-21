@@ -51,9 +51,9 @@ function displayGroupedContacts() {
       const contactEmail = contact.email;
 
       indexArray.push(indexCircle);
-
+      onclick;
       containerRef.innerHTML += `
-        <div class="d-flex contact">
+        <div onclick="openContact(event)"  class="d-flex contact">
           <div id="contact-circle${indexCircle}" class="contact-circle center"></div>
           <span class="column">
             <span>${contactName}</span> 
@@ -101,4 +101,9 @@ function updateCircleColor(i) {
 
 function toggleBgColorBtn() {
   document.getElementById("edit-button").classList.toggle("bg-color-btn");
+}
+
+function openContact(event) {
+  event.stopPropagation();
+  window.location.href = "./contact-details.html";
 }
