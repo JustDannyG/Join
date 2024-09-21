@@ -36,7 +36,7 @@ function renderContacts() {
       containerRef.innerHTML += `<div class="contacts-first-letter">${firstLetter}</div>`;
     }
     containerRef.innerHTML += `
-    <div class="contact d-flex">
+    <div class="contact-list d-flex">
       <span class="contact-initials center">${createInititals(contact.name)}</span>
       <div>
         <p>${contact.name}</p>
