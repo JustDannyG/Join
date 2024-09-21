@@ -19,3 +19,7 @@ function closeAllMenus() {
         editButton.classList.remove("bg-color-btn");
     }
 }
+
+function stopEventBubbling(event) {
+    event.stopPropagation();
+}
