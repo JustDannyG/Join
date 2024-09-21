@@ -42,7 +42,7 @@ function displayGroupedContacts() {
   let indexCircle = 0;
 
   for (const letter in groupedContacts) {
-    containerRef.innerHTML += `<h3>${letter}</h3>`;
+    containerRef.innerHTML += `<span class="letter">${letter}</span>`;
     const contactsGroup = groupedContacts[letter];
 
     for (let i = 0; i < contactsGroup.length; i++) {

@@ -1,6 +1,6 @@
 /* Contacts overview */
 .contacts-container {
-  gap: 16px;
+  gap: 18px;
 }
 
 .contact {
@@ -14,7 +14,7 @@
   border-radius: 50%;
 }
 
-h3 {
+.letter {
   margin-left: 12px;
 }
 .group-separator {
