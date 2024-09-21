@@ -33,18 +33,26 @@ function renderContacts() {
     if (firstLetter !== contact.name.charAt(0).toUpperCase()) {
       firstLetter = contact.name.charAt(0).toUpperCase();
       console.log(firstLetter);
-      containerRef.innerHTML += `<div class="contacts-first-letter">${firstLetter}</div>`;
+      containerRef.innerHTML += firstLetterHtml(firstLetter);
     }
-    containerRef.innerHTML += `
-    <div class="contact-list d-flex">
+    containerRef.innerHTML += contactListHtml(contact);
+  });
+}
+
+
+function firstLetterHtml(firstLetter) {
+  return `<div class="contacts-first-letter">${firstLetter}</div>`;
+}
+
+
+function contactListHtml(contact) {
+  return ` <div class="contact-list d-flex">
       <span class="contact-initials center">${createInititals(contact.name)}</span>
       <div>
         <p>${contact.name}</p>
         <a href="#">${contact.email}</a>
       </div>
-    </div>
-    `
-  });
+    </div>`;
 }
 
 
@@ -52,17 +60,22 @@ function createInititals(selectName) {
   let firstsChar = selectName;
   parts = firstsChar.split(' ');
   if (parts.length == 1) {
-      neededPartOne = parts[0].slice(0, 1);
-      return neededPartOne;
+    neededPartOne = parts[0].slice(0, 1);
+    return neededPartOne;
   } else if (parts.length == 2) {
-      neededPartOne = parts[0].slice(0, 1);
-      neededPartTwo = parts[1].slice(0, 1);
-      return neededPartOne + neededPartTwo;
+    neededPartOne = parts[0].slice(0, 1);
+    neededPartTwo = parts[1].slice(0, 1);
+    return neededPartOne + neededPartTwo;
   } else if (parts.length == 3) {
-      neededPartOne = parts[0].slice(0, 1);
-      neededPartThree = parts[2].slice(0, 1);
-      return neededPartOne + neededPartThree;
+    neededPartOne = parts[0].slice(0, 1);
+    neededPartThree = parts[2].slice(0, 1);
+    return neededPartOne + neededPartThree;
   }
 }
 
 
+function randomColor() {
+  let random = Math.floor(Math.random() * 16777215).toString(16);
+  let hexCode = '#' + random;
+  return hexCode;
+}
