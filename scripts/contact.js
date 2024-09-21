@@ -1,8 +1,11 @@
+
 let contacts = [];
 
 async function initContacts() {
   await getContacts();
   renderContacts();
+
+
 }
 
 
@@ -23,6 +26,7 @@ function sortByAlphabet(arr) {
   arr.sort((a, b) => a.name.localeCompare(b.name));
   return arr;
 }
+
 
 
 function renderContacts() {
@@ -78,4 +82,5 @@ function randomColor() {
   let random = Math.floor(Math.random() * 16777215).toString(16);
   let hexCode = '#' + random;
   return hexCode;
+
 }
