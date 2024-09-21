@@ -1,0 +1,40 @@
+.logo-login {
+    height: 78px;
+    width: 64px;
+}
+
+.logo-login-container {
+    width: 100%;
+    justify-content: start;
+    display: flex;
+}
+
+.gap-login-logo-content {
+    gap: 68px;
+}
+
+.login-area {
+    gap: 32px;
+    background-color: var(--white);
+    border-radius: 30px;
+    padding: 32px 0px 32px 0px;
+}
+
+
+.login-img {
+    height: 72px;
+    width: 139px;
+}
+
+.input-data-container {
+    gap: 16px;
+}
+
+.input-data {
+    gap: 32px;
+}
+
+.login-remember-me {
+    gap: 16px;
+    padding: 0px 16px 0px 16px;
+}

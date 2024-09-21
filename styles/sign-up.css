@@ -1,0 +1,83 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.site-logo {
+    position: absolute;
+    top: 37px;
+    left: 38px;
+    width: 64px;
+    height: 78px;
+
+}
+
+.sign-up-headline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+    width: 173px;
+    font-size: 47px;
+}
+
+.blue-underline {
+    width: 88px;
+    border: solid 2px var(--light-blue);
+}
+
+
+.sign-up-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 595px;
+    width: 396px;
+    padding: 32px 0;
+    gap: 30px;
+    border-radius: 30px;
+    box-shadow: 2px 2px 13px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-inputs-container {
+    width: 364px;
+    height: 296px;
+}
+
+.sign-up-form-inputs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 364px;
+    height: 50px;
+    padding: 0 10px;
+    border: solid 1px lightgrey;
+    margin-bottom: 24px;
+    border-radius: 10px;
+}
+
+.sign-up-form-inputs img {
+    width: 24px;
+    height: 24px;
+}
+
+.sign-up-form-inputs input {
+    font-size: 20px;
+    flex: 1;
+    border: none;
+}
+
+.sign-up-form-inputs input:focus {
+    outline: none;
+}
+
+.sign-up-btn {
+    font-size: 16px;
+    width: 180px;
+    height: 51px;
+    border-radius: 8px;
+    background-color: var(--darl-blue);
+}
