@@ -1,12 +1,10 @@
 let contacts = [];
-let indexArray = [];
-let firstNames = [];
 
 async function initContacts() {
   await getContacts();
-  // displayContacts();
-  // console.log(firstNames);
+  renderContacts();
 }
+
 
 async function getContacts() {
   const contactsData = await getData("contacts");
@@ -20,11 +18,11 @@ async function getContacts() {
   sortByAlphabet(contacts);
 }
 
+
 function sortByAlphabet(arr) {
   arr.sort((a, b) => a.name.localeCompare(b.name));
   return arr;
 }
-
 
 
 function renderContacts() {
@@ -32,24 +30,20 @@ function renderContacts() {
   containerRef.innerHTML = '';
   let firstLetter = '';
   contacts.forEach(contact => {
-
     if (firstLetter !== contact.name.charAt(0).toUpperCase()) {
       firstLetter = contact.name.charAt(0).toUpperCase();
       console.log(firstLetter);
-      containerRef.innerHTML += `<div>${firstLetter}</div>`;
+      containerRef.innerHTML += `<div class="contacts-first-letter">${firstLetter}</div>`;
     }
-    console.log(contact.name);
-    console.log(contact.email);
     containerRef.innerHTML += `
-    <div>
-      <span class="initals">${createInititals(contact.name)}</span>
+    <div class="contact d-flex">
+      <span class="contact-initials center">${createInititals(contact.name)}</span>
       <div>
         <p>${contact.name}</p>
         <a href="#">${contact.email}</a>
       </div>
     </div>
     `
-
   });
 }
 
@@ -71,40 +65,4 @@ function createInititals(selectName) {
   }
 }
 
-
-
-
-
-
-
-// function renderContacts() {
-//   const containerRef = document.getElementById("contacts-container");
-//   containerRef.innerHTML = "";
-//   for (let i = 0; i < contacts.length; i++) {
-//     const contactName = contacts[i].name;
-//     const contactEmail = contacts[i].email;
-//     containerRef.innerHTML += `<div class="d-flex contact">
-//   <div id="contact-circle${i}" class="contact-circle center"></div>
-//   <span class="column"><span>${contactName}</span> <a href="mailto:${contactEmail}">${contactEmail}</a></span>
-// </div>
-// `;
-//   }
-//   getFirstLettersOfName();
-// }
-
-// function getFirstLettersOfName() {
-//   for (let i = 0; i < indexArray.length; i++) {
-//     let contactCirleRef = document.getElementById(`contact-circle${i}`);
-//     const nameIndex = indexArray[i];
-//     let fullName = ordertContacts[nameIndex].name;
-//     let spliTName = fullName.split(" ");
-//     let fullNameLength = spliTName.length - 1;
-
-//     let firstName = spliTName[0].charAt(0);
-//     let LastName = spliTName[fullNameLength].charAt(0);
-//     console.log(firstName, LastName);
-//     contactCirleRef.innerHTML = `${firstName + LastName}`;
-//     firstNames.push(firstName);
-//   }
-// }
 
