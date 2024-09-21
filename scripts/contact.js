@@ -98,3 +98,7 @@ function updateCircleColor(i) {
   contactCircleRef.style.backgroundColor = backgroundColour;
   contactCircleRef.style.color = textColour;
 }
+
+function toggleBgColorBtn() {
+  document.getElementById("edit-button").classList.toggle("bg-color-btn");
+}

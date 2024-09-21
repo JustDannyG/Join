@@ -20,6 +20,8 @@
   --light-grey: #f6f7f8;
   --medium-grey: #e7e7e7;
   --dark-grey: #a8a8a8;
+
+  --subtitle: #2a3647;
 }
 
 * {
@@ -47,6 +49,10 @@ body {
   font-family: inter;
 }
 
+button {
+  border: unset;
+}
+
 .d-flex {
   display: flex;
 }
@@ -71,6 +77,9 @@ body {
   overflow-x: auto;
 }
 
+.bold {
+  font-weight: bold;
+}
 .header-mobile {
   box-shadow: 0 1px 10px 2px rgba(0, 0, 0, 0.2);
   width: 100%;
@@ -112,7 +121,7 @@ body {
 }
 
 .menu-active {
-  transform: translateX(0);
+  transform: translateX(0) !important;
 }
 
 .menu a {
