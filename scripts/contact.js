@@ -85,6 +85,10 @@ function randomColor() {
 }
 
 
-function showOverlay() {
-    document.getElementById("dialog-add-contact").classList.add("active-overlay")
+function toggleOverlay() {
+    document.getElementById("dialog-add-contact").classList.toggle("active-overlay")
+}
+
+function stopEventBubbling(event) {
+    event.stopPropagation();
 }
