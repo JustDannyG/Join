@@ -52,6 +52,7 @@ body {
 button {
   background-color: unset;
   border: unset;
+  cursor: pointer;
 }
 
 .d-flex {
