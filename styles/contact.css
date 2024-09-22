@@ -85,9 +85,6 @@
     background-color: #050d1a;
 }
 
-section {
-    padding: 16px;
-}
 
 .dark-backround {
     flex: 1;
@@ -284,10 +281,34 @@ form button img {
     padding: 0 30px;
     border-radius: 20px;
     cursor: pointer;
+    transition: all ease-in-out 125ms;
+
 }
 
 .contact-list:hover {
     background-color: lightgray;
+
+    scale: 1.1;
+}
+
+.contact-list:active {
+    scale: 0.9;
+    background-color: lightblue;
+}
+
+.contact-initials {
+    height: 50px;
+    width: 50px;
+    color: white;
+    text-shadow: 0px 2px 11px black;
+    border-radius: 50%;
+    border: solid 1px;
+}
+
+.contacts-first-letter {
+    font-size: 20px;
+    border-bottom: solid lightgray;
+    padding: 25px 50px;
 }
 
 .contact-initials {

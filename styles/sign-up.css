@@ -31,6 +31,7 @@ body {
 
 
 .sign-up-form {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -74,10 +75,44 @@ body {
     outline: none;
 }
 
+.sign-up-form-inputs input::placeholder {
+    color: #D1D1D1;
+}
+
 .sign-up-btn {
+    color: white;
+    font-weight: 700;
     font-size: 16px;
     width: 180px;
     height: 51px;
     border-radius: 8px;
-    background-color: var(--darl-blue);
+    background-color: var(--darke-blue);
+    transition: all ease-in-out 125ms;
+}
+
+.sign-up-btn:hover {
+    background-color: var(--light-blue);
+    scale: 1.1;
+}
+
+.sign-up-btn:active{
+    scale: 0.9;
+}
+
+.back-btn {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    border-radius: 50%;
+    transition: all ease-in-out 125ms;
+}
+
+.back-btn:hover {
+    cursor: pointer;
+    background-color: var(--medium-grey);
+    scale: 1.1;
+}
+
+.back-btn:active {
+    scale: 0.9;
 }
