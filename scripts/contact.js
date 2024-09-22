@@ -1,109 +1,90 @@
-let ordertContacts = [];
-let indexArray = [];
-let firstNames = [];
-let groupedContacts = {};
+let contacts = [];
 
 async function initContacts() {
-  await getContacts();
-  orderContacts();
-  groupContactsByFirstLetter();
-  displayGroupedContacts();
+    await getContacts();
+    renderContacts();
+
+
 }
+
 
 async function getContacts() {
-  const contacts = await getData("contacts");
-  const keys = Object.keys(contacts);
-  for (let index = 0; index < keys.length; index++) {
-    const key = keys[index];
-    const contact = contacts[key];
-    ordertContacts.push(contact);
-  }
-}
-
-function orderContacts() {
-  ordertContacts.sort((a, b) => a.name.localeCompare(b.name));
-}
-
-function groupContactsByFirstLetter() {
-  for (let i = 0; i < ordertContacts.length; i++) {
-    const contact = ordertContacts[i];
-    const firstLetter = contact.name.charAt(0);
-
-    if (!groupedContacts[firstLetter]) {
-      groupedContacts[firstLetter] = [];
+    const contactsData = await getData("contacts");
+    const keys = Object.keys(contactsData);
+    for (let index = 0; index < keys.length; index++) {
+        const key = keys[index];
+        const contact = contactsData[key];
+        console.log(contact);
+        contacts.push(contact);
     }
-    groupedContacts[firstLetter].push(contact);
-  }
+    sortByAlphabet(contacts);
 }
 
-function displayGroupedContacts() {
-  const containerRef = document.getElementById("contacts-container");
-  containerRef.innerHTML = "";
-  let indexCircle = 0;
 
-  for (const letter in groupedContacts) {
-    containerRef.innerHTML += `<span class="letter">${letter}</span>`;
-    const contactsGroup = groupedContacts[letter];
+function sortByAlphabet(arr) {
+    arr.sort((a, b) => a.name.localeCompare(b.name));
+    return arr;
+}
 
-    for (let i = 0; i < contactsGroup.length; i++) {
-      const contact = contactsGroup[i];
-      const contactName = contact.name;
-      const contactEmail = contact.email;
 
-      indexArray.push(indexCircle);
-      onclick;
-      containerRef.innerHTML += `
-        <div onclick="openContact(event)"  class="d-flex contact">
-          <div id="contact-circle${indexCircle}" class="contact-circle center"></div>
-          <span class="column">
-            <span>${contactName}</span> 
-            <a href="mailto:${contactEmail}">${contactEmail}</a>
-          </span>
-        </div>
-      `;
 
-      indexCircle++;
+function renderContacts() {
+    let containerRef = document.getElementById("contacts-container");
+    containerRef.innerHTML = '';
+    let firstLetter = '';
+    contacts.forEach((contact, i) => {
+        if (firstLetter !== contact.name.charAt(0).toUpperCase()) {
+            firstLetter = contact.name.charAt(0).toUpperCase();
+            console.log(firstLetter);
+            containerRef.innerHTML += firstLetterHtml(firstLetter);
+        }
+        containerRef.innerHTML += contactListHtml(contact, i);
+    });
+}
+
+
+function firstLetterHtml(firstLetter) {
+    return `<div class="contacts-first-letter">${firstLetter}</div>`;
+}
+
+
+function contactListHtml(contact, i) {
+    return ` <div id="contact-list${i}" class="contact-list d-flex">
+      <span class="contact-initials center" style="background:${contact.color}">${createInititals(contact.name)}</span>
+      <div>
+        <p>${contact.name}</p>
+        <a href="#">${contact.email}</a>
+      </div>
+    </div>`;
+}
+
+
+function createInititals(selectName) {
+    let firstsChar = selectName;
+    parts = firstsChar.split(' ');
+    if (parts.length == 1) {
+        neededPartOne = parts[0].slice(0, 1);
+        return neededPartOne;
+    } else if (parts.length == 2) {
+        neededPartOne = parts[0].slice(0, 1);
+        neededPartTwo = parts[1].slice(0, 1);
+        return neededPartOne + neededPartTwo;
+    } else if (parts.length == 3) {
+        neededPartOne = parts[0].slice(0, 1);
+        neededPartThree = parts[2].slice(0, 1);
+        return neededPartOne + neededPartThree;
     }
-    containerRef.innerHTML += `<div class="group-separator"></div>`;
-  }
-  getFirstLettersOfName();
 }
 
-function getFirstLettersOfName() {
-  for (let i = 0; i < indexArray.length; i++) {
-    let contactCircleRef = document.getElementById(`contact-circle${i}`);
-    const nameIndex = indexArray[i];
-    let fullName = ordertContacts[nameIndex].name;
-    let spliTName = fullName.split(" ");
-    let fullNameLength = spliTName.length - 1;
-    let firstName = spliTName[0].charAt(0);
-    let lastName = spliTName[fullNameLength].charAt(0);
 
-    contactCircleRef.innerHTML = `${firstName}${lastName}`;
-    updateCircleColor(i);
-  }
-}
-function updateCircleColor(i) {
-  const contactCircleRef = document.getElementById(`contact-circle${i}`);
-  const rgb = [0, 0, 0];
+function randomColor() {
+    let random = Math.floor(Math.random() * 16777215).toString(16);
+    let hexCode = '#' + random;
+    return hexCode;
 
-  rgb[0] = Math.round(Math.random() * 200);
-  rgb[1] = Math.round(Math.random() * 200);
-  rgb[2] = Math.round(Math.random() * 200);
-
-  const brightness = Math.round((parseInt(rgb[0]) * 299 + parseInt(rgb[1]) * 587 + parseInt(rgb[2]) * 114) / 1000);
-  const textColour = brightness > 125 ? "black" : "white";
-  const backgroundColour = "rgb(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + ")";
-
-  contactCircleRef.style.backgroundColor = backgroundColour;
-  contactCircleRef.style.color = textColour;
 }
 
-function toggleBgColorBtn() {
-  document.getElementById("edit-button").classList.toggle("bg-color-btn");
-}
 
-function openContact(event) {
-  event.stopPropagation();
-  window.location.href = "./contact-details.html";
+function toggleOverlay() {
+    document.getElementById("dialog-add-contact").classList.toggle("active-overlay")
 }

@@ -21,7 +21,10 @@
   --medium-grey: #e7e7e7;
   --dark-grey: #a8a8a8;
 
+  --white: #fff;
+
   --subtitle: #2a3647;
+
 }
 
 * {
@@ -181,4 +184,9 @@ main::-webkit-scrollbar-track {
 .nav-link-mobile img {
   width: 22px;
   height: 22px;
+}
+
+.border-none {
+  border: none;
+  outline: none;
 }
