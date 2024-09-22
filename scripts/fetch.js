@@ -3,7 +3,7 @@ const BASE_URL = "https://join--projekt-default-rtdb.europe-west1.firebasedataba
 async function getData(path = "") {
     let response = await fetch(BASE_URL + path + '.json');
     let responseAsJson = await response.json();
-    return responseAsJson
+    return responseAsJson;
 }
 
 

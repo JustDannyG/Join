@@ -1,4 +1,9 @@
-const excludedIds = [
+let data = {
+    email: "test@test.de",
+    password: "1234",
+};
+
+let excludedIds = [
     "legalNoticeLink",
     "privacyPolicyLink",
     "myCheckbox",
@@ -20,13 +25,7 @@ function highlightAll(event) {
                 let overlay = document.createElement('div');
                 overlay.classList.add('overlay');
                 let { top, left, width, height } = element.getBoundingClientRect();
-                overlay.style.cssText = `
-                    position: absolute;
-                    top: ${top}px;
-                    left: ${left}px;
-                    width: ${width}px;
-                    height: ${height}px;
-                `;
+                overlayStyle(overlay, top, left, width, height);
                 document.body.appendChild(overlay);
                 setTimeout(() => {
                     overlay.remove();
@@ -34,4 +33,33 @@ function highlightAll(event) {
             }
         }
     }
+}
+
+function overlayStyle(overlay, top, left, width, height) {
+    overlay.style.cssText = `
+                    position: absolute;
+                    top: ${top}px;
+                    left: ${left}px;
+                    width: ${width}px;
+                    height: ${height}px;
+                `;
+    return;
+}
+
+function goSignUp() {
+    window.location.href = "sign-up.html";
+}
+
+async function enterData() {
+    let userData = await getData("users");
+    let firstUserKey = Object.keys(userData)[0]; // Holt den ersten Benutzer
+    let user = userData[firstUserKey]; // Holt die Daten des ersten Benutzers
+    let emailInput = document.getElementById("email");
+    let passwordInput = document.getElementById("password");
+    emailInput.value = user.email;
+    passwordInput.value = user.password;
+}
+
+function rememberMe() {
+
 }

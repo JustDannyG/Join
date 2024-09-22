@@ -136,7 +136,7 @@ button {
     background-color: var(--light-blue-light);
     border: 2px solid var(--light-blue);
     z-index: 999;
-    animation: fadeOut 2s forwards; /* Animation für das Verblassen */
+    animation: fadeOut 2s forwards;
 }
 
 @keyframes fadeOut {
