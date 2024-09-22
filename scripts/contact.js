@@ -1,5 +1,6 @@
 let contacts = [];
 
+
 async function initContacts() {
     await getContacts();
     renderContacts();
@@ -85,27 +86,24 @@ function randomColor() {
 }
 
 
-function toggleOverlay() {
-    document.getElementById("dialog-add-contact").classList.toggle("active-overlay")
-}
 
 function addContact() {
-    nameRef = document.getElementById("edit-name-input")
-    emailRef = document.getElementById("edit-mail-input")
-    phoneNumRef = document.getElementById("edit-phone-input")
+    const nameRef = document.getElementById("edit-name-input")
+    const emailRef = document.getElementById("edit-mail-input")
+    const phoneNumRef = document.getElementById("edit-phone-input")
+
     let name = nameRef.value
     let email = emailRef.value
     let phone = phoneNumRef.value
     let color = randomColor()
 
-    nameRef.value = ""
-    emailRef.value = ""
-    phoneNumRef.value = ""
+    clearInput(nameRef)
+    clearInput(emailRef)
+    clearInput(phoneNumRef)
 
     postData(path = "contacts", data = { "name": `${name}`, "email": `${email}`, "phone": `${phone}`, "color": `${color}` });
 
     toogleDialog('dialog-add-succes')
-    return false;
 }
 
 function toogleDialog(id) {
