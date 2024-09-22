@@ -5,7 +5,6 @@
     padding: 0 30px;
 }
 
-
 .contact {
     gap: 114px;
     cursor: pointer;
@@ -108,7 +107,7 @@
 }
 
 .input-section {
-    flex: 1;
+    flex: 1.15;
     background-color: white;
     border-radius: 0 0 16px 16px;
 }
@@ -156,9 +155,8 @@ form button img {
 
 .current-user {
     position: absolute;
-    bottom: -50px;
-    width: 100px;
-    height: 100px;
+    bottom: -45px;
+    width: 90px;
     z-index: 2;
 }
 
@@ -273,7 +271,6 @@ form button img {
 }
 
 
-
 /* contact list */
 
 .contact-list {
@@ -285,10 +282,12 @@ form button img {
     border-radius: 20px;
     cursor: pointer;
     transition: all ease-in-out 125ms;
+
 }
 
 .contact-list:hover {
     background-color: lightgray;
+
     scale: 1.1;
 }
 
@@ -310,4 +309,18 @@ form button img {
     font-size: 20px;
     border-bottom: solid lightgray;
     padding: 25px 50px;
+}
+
+.contact-initials {
+    height: 50px;
+    width: 50px;
+    text-shadow: 0px 2px 11px black;
+    border-radius: 50%;
+    border: solid 1px;
+}
+
+.contacts-first-letter {
+    font-size: 20px;
+    font-weight: 700;
+    border-bottom: solid lightgray;
 }
