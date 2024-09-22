@@ -1,5 +1,7 @@
 let contacts = [];
 
+let currentContactDetails = localStorage.getItem("currentDetails");
+
 async function initContacts() {
     await getContacts();
     renderContacts();
@@ -49,7 +51,7 @@ function firstLetterHtml(firstLetter) {
 
 
 function contactListHtml(contact, i) {
-    return ` <div id="contact-list${i}" class="contact-list d-flex">
+    return ` <div onclick="openContact(${i})" class="contact-list d-flex">
       <span class="contact-initials center" style="background:${contact.color}">${createInititals(contact.name)}</span>
       <div>
         <p>${contact.name}</p>
@@ -87,4 +89,25 @@ function randomColor() {
 
 function toggleOverlay() {
     document.getElementById("dialog-add-contact").classList.toggle("active-overlay")
+}
+
+
+function openContact(index) {
+    currentContactDetails = index;
+    // localStorage.setItem('currentDetails', currentContactDetails);
+    saveToLocalStorage('currentDetails', currentContactDetails)
+    saveToLocalStorage('contacts', contacts)
+    window.location.href = "contact-details.html";
+}
+
+function saveToLocalStorage(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+}
+
+function getFromLocalStorage(key) {
+    let myArr = JSON.parse(localStorage.getItem(key));
+    if (myArr !== null) {
+        myData = myArr
+    }
+    return myData;
 }
