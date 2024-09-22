@@ -1,12 +1,35 @@
+main {
+    height: 100vh;
+    width: 100vw;
+}
+
+h1 {
+    font-size: 47px;
+}
+
+input {
+    cursor: pointer;
+    flex: 200;
+}
+
+button {
+    cursor: pointer;
+    flex: 200;
+}
+
 .logo-login {
     height: 78px;
     width: 64px;
 }
 
 .logo-login-container {
-    width: 100%;
+    width: 396px;
     justify-content: start;
     display: flex;
+}
+
+.login-logo-container {
+    gap: 16px;
 }
 
 .gap-login-logo-content {
@@ -20,14 +43,16 @@
     padding: 32px 0px 32px 0px;
 }
 
-
-.login-img {
-    height: 72px;
-    width: 139px;
+.login-underline {
+    width: 88px;
+    border: 2px solid;
+    border-color: var(--light-blue);
+    border-radius: 16px;
 }
 
 .input-data-container {
     gap: 16px;
+    padding: 0px 16px 0px 16px;
 }
 
 .input-data {
@@ -37,4 +62,88 @@
 .login-remember-me {
     gap: 16px;
     padding: 0px 16px 0px 16px;
+}
+
+.login-input-area {
+    width: 364px;
+    height: 48px;
+    gap: 8px;
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 12px 21px 12px 21px;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+button {
+    border-radius: 8px;
+}
+
+.login-buttons {
+    width: 180px;
+    height: 123px;
+    gap: 21px;
+}
+
+.login-button {
+    width: 180px;
+    height: 51px;
+    padding: 4px 0px 4px 0px;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: var();
+}
+
+.login-button-top {
+    background-color: var(--darke-blue);
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.login-button-bottom {
+    background-color: var(--white);
+}
+
+.signup-button {
+    width: 104px;
+    height: 49px;
+}
+
+.font-size-20 {
+    font-size: 20px;
+    gap: 35px;
+}
+
+.footer-container {
+    width: 246px;
+    height: 35px;
+    font-size: 16px;
+    justify-content: space-between;
+}
+
+.footer-links {
+    padding: 8px;
+    gap: 8px;
+}
+
+#myCheckbox {
+    cursor: pointer;
+}
+
+.overlay {
+    position: absolute;
+    background-color: var(--light-blue-light);
+    border: 2px solid var(--light-blue);
+    z-index: 999;
+    animation: fadeOut 2s forwards; /* Animation für das Verblassen */
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }
