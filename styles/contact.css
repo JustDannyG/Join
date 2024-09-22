@@ -138,6 +138,7 @@ form input {
 form button {
     width: min-content;
     text-wrap: nowrap;
+    font-weight: 500;
     padding: 8px;
     background-color: var(--darke-blue);
     color: white;
