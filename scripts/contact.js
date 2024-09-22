@@ -1,5 +1,6 @@
 let contacts = [];
 
+
 async function initContacts() {
     await getContacts();
     renderContacts();
@@ -85,6 +86,31 @@ function randomColor() {
 }
 
 
-function toggleOverlay() {
-    document.getElementById("dialog-add-contact").classList.toggle("active-overlay")
+
+function addContact() {
+    const nameRef = document.getElementById("edit-name-input")
+    const emailRef = document.getElementById("edit-mail-input")
+    const phoneNumRef = document.getElementById("edit-phone-input")
+
+    let name = nameRef.value
+    let email = emailRef.value
+    let phone = phoneNumRef.value
+    let color = randomColor()
+
+    clearInput(nameRef)
+    clearInput(emailRef)
+    clearInput(phoneNumRef)
+
+    postData(path = "contacts", data = { "name": `${name}`, "email": `${email}`, "phone": `${phone}`, "color": `${color}` });
+
+    toogleDialog('dialog-add-succes')
+}
+
+function toogleDialog(id) {
+    document.getElementById(id).classList.add("dialog-active");
+
+    setTimeout(function() {
+        document.getElementById(id).classList.remove("dialog-active")
+        window.location.href = 'contact-details.html';;
+    }, 2000);
 }

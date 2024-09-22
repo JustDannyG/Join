@@ -70,21 +70,18 @@
 
 .close-btn {
     position: absolute;
-    top: 100px;
-    right: 40px;
+    top: 16px;
+    right: 16px;
     color: white;
-    z-index: 1;
-    background-color: unset;
     font-size: 16px;
     border-radius: 50%;
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
 }
 
 .close-btn:hover {
     background-color: #050d1a;
 }
-
 
 .dark-backround {
     flex: 1;
@@ -113,6 +110,7 @@
 }
 
 form {
+    padding: 0 8px;
     width: 100%;
     gap: 8px;
 }
@@ -140,6 +138,7 @@ form input {
 form button {
     width: min-content;
     text-wrap: nowrap;
+    font-weight: 500;
     padding: 8px;
     background-color: var(--darke-blue);
     color: white;
@@ -158,6 +157,28 @@ form button img {
     bottom: -45px;
     width: 90px;
     z-index: 2;
+}
+
+
+/* Add Contact Dialog*/
+
+.dialog {
+    position: absolute;
+    align-self: center;
+    bottom: -40px;
+    transition: 125ms ease-in-out;
+    transform: translateY(0);
+    background-color: var(--darke-blue);
+    color: var(--white);
+    padding: 16px;
+    font-size: 14px;
+    width: min-content;
+    text-wrap: nowrap;
+    border-radius: 12px;
+}
+
+.dialog-active {
+    transform: translateY(-128px);
 }
 
 
@@ -282,12 +303,10 @@ form button img {
     border-radius: 20px;
     cursor: pointer;
     transition: all ease-in-out 125ms;
-
 }
 
 .contact-list:hover {
     background-color: lightgray;
-
     scale: 1.1;
 }
 

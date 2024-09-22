@@ -1,5 +1,5 @@
-function toggleMenu(id) {
-    document.getElementById(id).classList.toggle("menu-active");
+function toggleOverlay(id, className) {
+    document.getElementById(id).classList.toggle(className)
 }
 
 function closeAllMenus() {
@@ -22,4 +22,8 @@ function closeAllMenus() {
 
 function stopEventBubbling(event) {
     event.stopPropagation();
+}
+
+function clearInput(input) {
+    input.value = ""
 }
