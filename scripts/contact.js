@@ -104,6 +104,15 @@ function addContact() {
 
     postData(path = "contacts", data = { "name": `${name}`, "email": `${email}`, "phone": `${phone}`, "color": `${color}` });
 
-    console.log("geht");
+    toogleDialog('dialog-add-succes')
+    return false;
+}
 
+function toogleDialog(id) {
+    document.getElementById(id).classList.add("dialog-active");
+
+    setTimeout(function() {
+        document.getElementById(id).classList.remove("dialog-active")
+        window.location.href = 'contact-details.html';;
+    }, 2000);
 }

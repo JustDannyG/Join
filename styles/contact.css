@@ -161,6 +161,28 @@ form button img {
 }
 
 
+/* Add Contact Dialog*/
+
+.dialog {
+    position: absolute;
+    align-self: center;
+    bottom: -40px;
+    transition: 125ms ease-in-out;
+    transform: translateY(0);
+    background-color: var(--darke-blue);
+    color: var(--white);
+    padding: 16px;
+    font-size: 14px;
+    width: min-content;
+    text-wrap: nowrap;
+    border-radius: 12px;
+}
+
+.dialog-active {
+    transform: translateY(-128px);
+}
+
+
 /* Edit Contacts Overlay */
 
 .edit-contact-headline {
