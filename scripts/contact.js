@@ -88,3 +88,22 @@ function randomColor() {
 function toggleOverlay() {
     document.getElementById("dialog-add-contact").classList.toggle("active-overlay")
 }
+
+function addContact() {
+    nameRef = document.getElementById("edit-name-input")
+    emailRef = document.getElementById("edit-mail-input")
+    phoneNumRef = document.getElementById("edit-phone-input")
+    let name = nameRef.value
+    let email = emailRef.value
+    let phone = phoneNumRef.value
+    let color = randomColor()
+
+    nameRef.value = ""
+    emailRef.value = ""
+    phoneNumRef.value = ""
+
+    postData(path = "contacts", data = { "name": `${name}`, "email": `${email}`, "phone": `${phone}`, "color": `${color}` });
+
+    console.log("geht");
+
+}

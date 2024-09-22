@@ -85,7 +85,6 @@
     background-color: #050d1a;
 }
 
-
 .dark-backround {
     flex: 1;
     border-radius: 16px 16px 0 0;
@@ -113,6 +112,7 @@
 }
 
 form {
+    padding: 0 8px;
     width: 100%;
     gap: 8px;
 }
@@ -282,12 +282,10 @@ form button img {
     border-radius: 20px;
     cursor: pointer;
     transition: all ease-in-out 125ms;
-
 }
 
 .contact-list:hover {
     background-color: lightgray;
-
     scale: 1.1;
 }
 
