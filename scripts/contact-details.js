@@ -1,7 +1,4 @@
 
-
-
-
 function showContact() {
     let currentContact = document.getElementById('current-contact');
     let detailsContainer = document.getElementById('details');
