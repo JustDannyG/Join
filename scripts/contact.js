@@ -32,13 +32,13 @@ function renderContacts() {
     let containerRef = document.getElementById("contacts-container");
     containerRef.innerHTML = '';
     let firstLetter = '';
-    contacts.forEach(contact => {
+    contacts.forEach((contact, i) => {
         if (firstLetter !== contact.name.charAt(0).toUpperCase()) {
             firstLetter = contact.name.charAt(0).toUpperCase();
             console.log(firstLetter);
             containerRef.innerHTML += firstLetterHtml(firstLetter);
         }
-        containerRef.innerHTML += contactListHtml(contact);
+        containerRef.innerHTML += contactListHtml(contact, i);
     });
 }
 
@@ -48,8 +48,8 @@ function firstLetterHtml(firstLetter) {
 }
 
 
-function contactListHtml(contact) {
-    return ` <div class="contact-list d-flex">
+function contactListHtml(contact, i) {
+    return ` <div id="contact-list${i}" class="contact-list d-flex">
       <span class="contact-initials center" style="background:${contact.color}">${createInititals(contact.name)}</span>
       <div>
         <p>${contact.name}</p>
