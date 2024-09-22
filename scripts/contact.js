@@ -50,7 +50,7 @@ function firstLetterHtml(firstLetter) {
 
 function contactListHtml(contact) {
     return ` <div class="contact-list d-flex">
-      <span class="contact-initials center">${createInititals(contact.name)}</span>
+      <span class="contact-initials center" style="background:${contact.color}">${createInititals(contact.name)}</span>
       <div>
         <p>${contact.name}</p>
         <a href="#">${contact.email}</a>

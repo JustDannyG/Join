@@ -86,9 +86,6 @@
     background-color: #050d1a;
 }
 
-section {
-    padding: 16px;
-}
 
 .dark-backround {
     flex: 1;
@@ -296,6 +293,7 @@ form button img {
 .contact-initials {
   height: 50px;
   width: 50px;
+  color: white;
   text-shadow: 0px 2px 11px black;
   border-radius: 50%;
   border: solid 1px;
@@ -303,9 +301,8 @@ form button img {
 
 .contacts-first-letter {
   font-size: 20px;
-  font-weight: 700;
   border-bottom: solid lightgray;
-  
+  padding: 25px 50px;
 }
 
 
