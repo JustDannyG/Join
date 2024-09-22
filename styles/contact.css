@@ -267,7 +267,6 @@ form button img {
     right: 6px;
     width: 116px;
     height: 100px;
-    padding: 10px;
     justify-content: space-around;
     border-radius: 16px 16px 0 16px;
     box-shadow: 0px 6px 20px -4px rgba(0, 0, 0, 0.8);
@@ -283,8 +282,16 @@ form button img {
 
 .edit-container div {
     gap: 14px;
+    height: 100%;
     align-items: center;
-    width: 96px;
+    width: 100%;
+    border-radius: 16px;
+    padding: 0 10px;
+}
+
+.edit-container div:hover {
+    background-color: var(--medium-grey);
+    cursor: pointer;
 }
 
 .bg-color-btn {
