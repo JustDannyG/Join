@@ -27,3 +27,7 @@ function stopEventBubbling(event) {
 function clearInput(input) {
     input.value = ""
 }
+
+function backwards() {
+  window.location.href = "summary.html";
+}

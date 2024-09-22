@@ -5,6 +5,7 @@
 
 :root {
   --light-blue: #29abe2;
+  --light-blue-light: rgba(95, 192, 233, 0.5); /*benötigt für overlay container beim daneben klicken im login bereich + rgba wegen der transparenz */
   --darke-blue: #2a3647;
   --hover-darke-blue: #091931;
 
@@ -147,6 +148,7 @@ main::-webkit-scrollbar-thumb {
   border-radius: 4px;
   background: var(--dark-grey);
 }
+
 main::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
@@ -164,6 +166,7 @@ main::-webkit-scrollbar-track {
   width: 18pxpx;
   height: 18px;
 }
+
 .sidebar-mobile {
   height: 80px;
   padding: 2px 16px;
@@ -188,5 +191,5 @@ main::-webkit-scrollbar-track {
 
 .border-none {
   border: none;
-  outline: none;
+    outline: none;
 }
