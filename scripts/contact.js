@@ -87,11 +87,6 @@ function randomColor() {
 }
 
 
-function toggleOverlay() {
-    document.getElementById("dialog-add-contact").classList.toggle("active-overlay")
-}
-
-
 function openContact(index) {
     currentContactDetails = index;
     // localStorage.setItem('currentDetails', currentContactDetails);
