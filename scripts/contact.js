@@ -110,22 +110,23 @@ async function addContact() {
     const emailRef = document.getElementById("edit-mail-input")
     const phoneNumRef = document.getElementById("edit-phone-input")
 
-    let name = nameRef.value
-    let email = emailRef.value
-    let phone = phoneNumRef.value
-    let color = randomColor()
+    const inputs = getInputs(nameRef, emailRef, phoneNumRef)
 
     clearInput(nameRef)
     clearInput(emailRef)
     clearInput(phoneNumRef)
 
-    await postData(path = "contacts", data = { "name": `${name}`, "email": `${email}`, "phone": `${phone}`, "color": `${color}` });
-
-    await getContacts()
-
-    let index = findContact(name)
+    await postData(path = "contacts", data = { "name": `${inputs.name}`, "email": `${inputs.email}`, "phone": `${inputs.phone}`, "color": `${inputs.color}` });
+    const index = await findContact(inputs.name, inputs.email, inputs.phone)
     toogleDialog('dialog-add-succes', index)
+}
 
+function getInputs(nameRef, emailRef, phoneNumRef) {
+    const name = nameRef.value
+    const email = emailRef.value
+    const phone = phoneNumRef.value
+    const color = randomColor()
+    return { name, email, phone, color }
 }
 
 function toogleDialog(id, index) {
@@ -133,15 +134,14 @@ function toogleDialog(id, index) {
 
     setTimeout(function() {
         document.getElementById(id).classList.remove("dialog-active");
-
-        setTimeout(() => {
-            openContact(index);
-        }, 1000);
+        openContact(index);
     }, 2000);
 }
 
-async function findContact(nameOfContact) {
-    let indexOfContactToOpen = contacts.findIndex(element => element.name == nameOfContact);
-    return indexOfContactToOpen
+async function findContact(name, email, phone) {
+    contacts = []
+    await getContacts()
+    return contacts.findIndex(e => e.name == name && e.email == email && e.phone == phone);
+
 
 }
