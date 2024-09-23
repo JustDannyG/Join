@@ -26,4 +26,12 @@ function getCurrentContactDetail() {
 function toggleOverlayDisplay(){
   let overlay = document.getElementById('edit-overlay-bg');
   overlay.classList.toggle('hide-overlay');
+  editDetails()
+}
+
+function editDetails() {
+  let currentDetail = getCurrentContactDetail();
+  document.getElementById('edit-name').value = currentDetail.name;
+  document.getElementById('edit-email').value = currentDetail.email;
+  document.getElementById('edit-email').value = currentDetail.phone;
 }
