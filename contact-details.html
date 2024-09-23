@@ -9,10 +9,12 @@
   <link rel="stylesheet" href="./style.css" />
   <link rel="stylesheet" href="./styles/contact.css" />
   <link rel="stylesheet" href="styles/contact-details.css">
+  <link rel="stylesheet" href="./styles/edit-contact-overlay.css">
 
   <script src="./script.js"></script>
   <script src="./scripts/fetch.js"></script>
   <script src="./scripts/contact.js"></script>
+  <script src="scripts/contact-details.js"></script>
 </head>
 
 <body onclick="closeAllMenus(), stopEventBubbling(event)" onload="showContact()" class="column">
@@ -58,8 +60,12 @@
       <img src="./assets/icons/more_vert.png " alt="edit-contact " />
     </button>
   </main>
+
   <div id="edit-contact" class="edit-container column center ">
-    <div class="edit-contact d-flex " onclick="toggleOverlay('dialog-edit-contact', 'active-overlay')"><img src="./assets/icons/edit.png " alt="Edit Button " />Edit</div>
+
+    <div class="edit-contact d-flex " onclick="toggleOverlayDisplay()">
+      <img src="./assets/icons/edit.png " alt="Edit Button " />Edit
+    </div>
     <div class="edit-contact d-flex "><img src="./assets/icons/delete.png " alt="Delete Button " />Delete</div>
   </div>
 
@@ -76,38 +82,42 @@
 
   <!-- Start overlay -->
 
+  <Section id="edit-overlay-bg" class="edit-overlay-bg hide-overlay">
+    <form class="edit-overlay-form" onsubmit="return false">
 
-  <div class="overlayer-bg d-flex" id="dialog-edit-contact">
-    <div class="overlayer column">
-      <section class="dark-backround d-flex column">
-        <div class="edit-contact-headline">
-          <h1>Edit contact</h1>
-          <div class="add-contact-underline"></div>
+      <img class="close-edit" src="./assets/icons/close.png" alt="" onclick="toggleOverlayDisplay()">
+
+      <div class="overlay-header">
+        <h2 class="edit-headline">Edit contact
+          <span class="blue-underline"></span>
+        </h2>
+        <span class="edit-initals">AM</span>
+      </div>
+
+      <div class="edit-form-inputs">
+        <div class="edit-input">
+          <input type="text">
+          <img src="./assets/icons/person.png" />
         </div>
-        <div class="current-user center edit-initals">TE</div>
-      </section>
-      <section class="center input-section">
-        <form class="column center" onsubmit="return false">
-          <div class="input-row">
-            <input id="edit-name-input" required type="text" placeholder="Name " />
-            <img src="./assets/icons/person.png" />
-          </div>
-          <div class="input-row">
-            <input id="edit-email-input" required type="text" placeholder="Email " />
-            <img src="./assets/icons/mail.png" />
-          </div>
-          <div class="input-row">
-            <input id="edit-phone-input" required type="text" placeholder="Phone " />
-            <img src="./assets/icons/phone.png" />
-          </div>
-          <div class="edit-action-btns">
-            <button type="submit">Delete</button>
-            <button type="submit">Save<img src="./assets/icons/check.png" alt="" /></button>
-          </div>
-        </form>
-      </section>
-    </div>
-  </div>
+
+        <div class="edit-input">
+          <input type="text">
+          <img src="./assets/icons/mail.png" />
+        </div>
+
+        <div class="edit-input">
+          <input type="text">
+          <img src="./assets/icons/phone.png" />
+        </div>
+      </div>
+
+      <div class="edit-action-btns">
+        <button class="edit-delete-btn">Delete</button>
+        <button class="edit-save-btn">Save <img src="./assets/icons/check.png" alt=""></button>
+      </div>
+
+    </form>
+  </Section>
 
   <!-- End overlay -->
 

@@ -22,3 +22,8 @@ function getCurrentContactDetail() {
     let contactsArray = getFromLocalStorage('contacts');
     return contactsArray[currentContactDetails];
 }
+
+function toggleOverlayDisplay(){
+  let overlay = document.getElementById('edit-overlay-bg');
+  overlay.classList.toggle('hide-overlay');
+}

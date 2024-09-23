@@ -109,11 +109,11 @@
     border-radius: 0 0 16px 16px;
 }
 
-form {
+/* form {
     padding: 0 8px;
     width: 100%;
     gap: 8px;
-}
+} */
 
 .input-row {
     display: flex;
