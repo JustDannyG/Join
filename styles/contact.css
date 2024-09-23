@@ -156,6 +156,7 @@ form button img {
     position: absolute;
     bottom: -45px;
     width: 90px;
+    height: 90px;
     z-index: 2;
 }
 
