@@ -117,8 +117,8 @@ async function addContact() {
     clearInput(phoneNumRef)
 
     await postData(path = "contacts", data = { "name": `${inputs.name}`, "email": `${inputs.email}`, "phone": `${inputs.phone}`, "color": `${inputs.color}` });
-    const index = await findContact(inputs.name, inputs.email, inputs.phone)
-    toogleDialog('dialog-add-succes', index)
+    const contact = await findContact(inputs.name, inputs.email, inputs.phone)
+    toogleDialog('dialog-add-succes', contact)
 }
 
 function getInputs(nameRef, emailRef, phoneNumRef) {
