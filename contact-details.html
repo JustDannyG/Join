@@ -2,71 +2,126 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Join - Contact Details</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join - Contact Details</title>
 
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="./styles/contact.css" />
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./styles/contact.css" />
+  <link rel="stylesheet" href="styles/contact-details.css">
+  <link rel="stylesheet" href="./styles/edit-contact-overlay.css">
 
-    <script src="./script.js"></script>
-    <script src="./scripts/fetch.js"></script>
-    <script src="./scripts/contact.js"></script>
-    <script src="./scripts/contact-details.js"></script>
+  <script src="./script.js"></script>
+  <script src="./scripts/fetch.js"></script>
+  <script src="./scripts/contact.js"></script>
+  <script src="scripts/contact-details.js"></script>
 </head>
 
 <body onclick="closeAllMenus(), stopEventBubbling(event)" onload="showContact()" class="column">
-    <header class="d-flex header-mobile">
-        <img class="logo-mobile" src="./assets/icons/logo-dark.svg" alt="Join Logo" />
-        <div onclick="toggleOverlay('menu', 'menu-active'), stopEventBubbling(event)" id="current-user-header" class="current-user-header center">T</div>
-        <div id="menu" class="column menu">
-            <a href="./help.html">Help</a>
-            <a href="./legal-notice.html">Legal Notice</a>
-            <a href="./privacy-policy.html">Privacy Policy</a>
-            <a href="#">Log out</a>
-        </div>
-    </header>
+  <header class="d-flex header-mobile">
+    <img class="logo-mobile" src="./assets/icons/logo-dark.svg" alt="Join Logo" />
+    <div onclick="toggleOverlay('menu', 'menu-active'), stopEventBubbling(event)" id="current-user-header"
+      class="current-user-header center">T</div>
+    <div id="menu" class="column menu">
+      <a href="./help.html">Help</a>
+      <a href="./legal-notice.html">Legal Notice</a>
+      <a href="./privacy-policy.html">Privacy Policy</a>
+      <a href="#">Log out</a>
+    </div>
+  </header>
 
-    <main class="d-flex content overflow-x-auto bg-lightgrey">
-        <div>
-            <div class="headline d-flex">
-                <div class="headline-text column">
-                    <h1>Contacts</h1>
-                    <span class="subtitle-details">Better with a team</span>
-                    <div class="add-contact-underline"></div>
-                </div>
-                <a href="contact.html"><img src="./assets/icons/left-arrow.png" alt="Back Link" /></a>
-            </div>
+  <main class="d-flex content overflow-x-auto bg-lightgrey">
+    <div>
+      <div class="headline d-flex">
+        <div class="headline-text column">
+          <h1>Contacts</h1>
+          <span class="subtitle-details">Better with a team</span>
+          <div class="add-contact-underline"></div>
         </div>
-
-        <div class="current-contact d-flex" id="current-contact">
-            <div id="current-contact-circle" class="current-contact-circle center">AM</div>
-            <h2 id="current-contact-name">Anton Mayer</h2>
-        </div>
-
-        <div class="details column" id="details">
-            <h3>Contact Information</h3>
-            <p class="bold">Email</p>
-            <a href="mailto:test@test.de">test@test.de</a>
-            <p class="bold">Phone</p>
-            <a href="tel:+49 111 111 111 111">+49 111 111 111 111</a>
-        </div>
-
-        <button onclick="toggleOverlay('edit-contact', 'menu-active'), stopEventBubbling(event)" id="edit-button " class="edit-button center ">
-      <img src="./assets/icons/more_vert.png " alt="edit-contact " />
-    </button>
-    </main>
-    <div id="edit-contact" class="edit-container column center ">
-        <div class="d-flex "><img src="./assets/icons/edit.png " alt="Edit Button " /><span>Edit </span></div>
-        <div class="d-flex "><img src="./assets/icons/delete.png " alt="Delete Button " /><span>Delete</span></div>
+        <a href="contact.html"><img src="./assets/icons/left-arrow.png" alt="Back Link" /></a>
+      </div>
     </div>
 
-    <aside class="d-flex sidebar-mobile ">
-        <a class="center column nav-link-mobile " href="./summary.html "><img src="./assets/icons/summary-icon.png " alt="Summary " />Summary</a>
-        <a class="center column nav-link-mobile " href="./board.html "><img src="./assets/icons/board-icon.png " alt="Board " />Board</a>
-        <a class="center column nav-link-mobile " href="./add-task.html "><img src="./assets/icons/add-task-icon.png " alt="Add Task " />Add Task</a>
-        <a class="center column nav-link-mobile " href="./contact.html "><img src="./assets/icons/contacts-icon.png " alt="Contacts " />Contacts</a>
-    </aside>
+    <div class="current-contact d-flex" id="current-contact">
+      <div id="current-contact-circle" class="current-contact-circle center">AM</div>
+      <h2 id="current-contact-name">Anton Mayer</h2>
+    </div>
+
+    <div class="details column" id="details">
+      <h3>Contact Information</h3>
+      <p class="bold">Email</p>
+      <a href="mailto:test@test.de">test@test.de</a>
+      <p class="bold">Phone</p>
+      <a href="tel:+49 111 111 111 111">+49 111 111 111 111</a>
+    </div>
+
+    <button onclick="toggleOverlay('edit-contact', 'menu-active'), stopEventBubbling(event)" id="edit-button "
+      class="edit-button center ">
+      <img src="./assets/icons/more_vert.png " alt="edit-contact " />
+    </button>
+  </main>
+
+  <div id="edit-contact" class="edit-container column center ">
+
+    <div class="edit-contact d-flex " onclick="toggleOverlayDisplay()">
+      <img src="./assets/icons/edit.png " alt="Edit Button " />Edit
+    </div>
+    <div class="edit-contact d-flex "><img src="./assets/icons/delete.png " alt="Delete Button " />Delete</div>
+  </div>
+
+  <aside class="d-flex sidebar-mobile ">
+    <a class="center column nav-link-mobile " href="./summary.html "><img src="./assets/icons/summary-icon.png "
+        alt="Summary " />Summary</a>
+    <a class="center column nav-link-mobile " href="./board.html "><img src="./assets/icons/board-icon.png "
+        alt="Board " />Board</a>
+    <a class="center column nav-link-mobile " href="./add-task.html "><img src="./assets/icons/add-task-icon.png "
+        alt="Add Task " />Add Task</a>
+    <a class="center column nav-link-mobile " href="./contact.html "><img src="./assets/icons/contacts-icon.png "
+        alt="Contacts " />Contacts</a>
+  </aside>
+
+  <!-- Start overlay -->
+
+  <Section id="edit-overlay-bg" class="edit-overlay-bg hide-overlay">
+    <form class="edit-overlay-form" onsubmit="return false">
+
+      <img class="close-edit" src="./assets/icons/close.png" alt="" onclick="toggleOverlayDisplay()">
+
+      <div class="overlay-header">
+        <h2 class="edit-headline">Edit contact
+          <span class="blue-underline"></span>
+        </h2>
+        <span class="edit-initals">AM</span>
+      </div>
+
+      <div class="edit-form-inputs">
+        <div class="edit-input">
+          <input type="text">
+          <img src="./assets/icons/person.png" />
+        </div>
+
+        <div class="edit-input">
+          <input type="text">
+          <img src="./assets/icons/mail.png" />
+        </div>
+
+        <div class="edit-input">
+          <input type="text">
+          <img src="./assets/icons/phone.png" />
+        </div>
+      </div>
+
+      <div class="edit-action-btns">
+        <button class="edit-delete-btn">Delete</button>
+        <button class="edit-save-btn">Save <img src="./assets/icons/check.png" alt=""></button>
+      </div>
+
+    </form>
+  </Section>
+
+  <!-- End overlay -->
+
+
 </body>
 
 </html>
