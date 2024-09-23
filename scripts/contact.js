@@ -30,7 +30,6 @@ function sortByAlphabet(arr) {
 }
 
 
-
 function renderContacts() {
     let containerRef = document.getElementById("contacts-container");
     containerRef.innerHTML = '';
