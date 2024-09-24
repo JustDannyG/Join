@@ -49,7 +49,7 @@ body {
 
 .sign-up-form-inputs {
     display: flex;
-    /* justify-content: space-between; */
+    justify-content: space-between;
     align-items: center;
     width: 364px;
     height: 50px;
