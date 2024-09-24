@@ -55,21 +55,5 @@ async function signUp() {
 }
 
 function checkPasswordMatch() {
-    // Zugriff auf die beiden Input-Felder
-    const password = document.getElementById('user-pwd').value;
-    const confirmPassword = document.getElementById('user-conf-pwd').value;
     
-    // Zugriff auf das Span-Element für die Fehlermeldung
-    const errorMessage = document.getElementById('error-message');
-    
-    // Vergleich der beiden Passwortfelder
-    if (password !== confirmPassword) {
-        // Wenn die Passwörter nicht übereinstimmen
-        document.getElementById('user-conf-pwd').setCustomValidity("Passwords do not match");
-        errorMessage.style.display = 'inline';  // Zeige die Fehlermeldung an
-    } else {
-        // Wenn die Passwörter übereinstimmen
-        document.getElementById('user-conf-pwd').setCustomValidity(""); // Entfernt die 'required'-Warnung
-        errorMessage.style.display = 'none';  // Verstecke die Fehlermeldung
-    }
 }
