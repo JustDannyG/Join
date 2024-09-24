@@ -17,6 +17,10 @@ button {
     flex: 200;
 }
 
+#myCheckbox {
+    border-width: 2px;
+}
+
 .logo-login {
     height: 78px;
     width: 64px;
@@ -41,6 +45,7 @@ button {
     background-color: var(--white);
     border-radius: 30px;
     padding: 32px 0px 32px 0px;
+    box-shadow: 0px 1px 13px 6px rgba(0, 0, 0, 0.15);
 }
 
 .login-underline {
@@ -65,6 +70,7 @@ button {
 }
 
 .login-input-area {
+    flex: 10;
     width: 364px;
     height: 48px;
     gap: 8px;
@@ -73,6 +79,16 @@ button {
     padding: 12px 21px 12px 21px;
     justify-content: space-between;
     cursor: pointer;
+}
+
+.login-input-area img {
+    width: 16px;
+    height: 21px;
+    object-fit: cover;
+}
+
+.login-input-area input {
+    flex: 100;
 }
 
 button {
@@ -103,6 +119,9 @@ button {
 
 .login-button-bottom {
     background-color: var(--white);
+    color: var(--darke-blue);
+    font-size: 16px;
+    font-weight: 700;
 }
 
 .signup-button {
@@ -137,6 +156,7 @@ button {
     border: 2px solid var(--light-blue);
     z-index: 999;
     animation: fadeOut 2s forwards;
+    flex: 1;
 }
 
 @keyframes fadeOut {

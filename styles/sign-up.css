@@ -5,6 +5,15 @@ body {
     height: 100vh;
 }
 
+main {
+    height: 926px;
+    width: 428px;
+}
+
+h1 {
+    font-size: 47px;
+}
+
 .site-logo {
     position: absolute;
     top: 37px;
@@ -19,14 +28,15 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    height: 72px;
     width: 173px;
     font-size: 47px;
+    gap: 16px;
 }
 
 .blue-underline {
     width: 88px;
     border: solid 2px var(--light-blue);
+    border-radius: 3px;
 }
 
 
@@ -38,14 +48,27 @@ body {
     height: 595px;
     width: 396px;
     padding: 32px 0;
-    gap: 30px;
+    gap: 16px;
     border-radius: 30px;
     box-shadow: 2px 2px 13px 5px rgba(0, 0, 0, 0.1);
+    background-color: var(--white);
+}
+
+.sign-up-container {
+    gap: 24px;
+}
+
+.sign-up-container img {
+    object-fit: cover;
+    width: 16px;
+    height: 21px;
 }
 
 .form-inputs-container {
     width: 364px;
     height: 296px;
+    gap: 24px;
+    align-items: center;
 }
 
 .sign-up-form-inputs {
@@ -54,19 +77,23 @@ body {
     align-items: center;
     width: 364px;
     height: 50px;
-    padding: 0 10px;
     border: solid 1px lightgrey;
-    margin-bottom: 24px;
     border-radius: 10px;
+    gap: 18px;
+    padding: 13px 21px;
 }
 
 .sign-up-form-inputs img {
-    width: 24px;
-    height: 24px;
+    width: 16px;
+    height: 21px;
+    object-fit: cover;
 }
 
 .sign-up-form-inputs input {
     font-size: 20px;
+    font-weight: 400;
+    width: 56px;
+    height: 24px;
     flex: 1;
     border: none;
 }
@@ -83,6 +110,7 @@ body {
     color: white;
     font-weight: 700;
     font-size: 16px;
+    padding: 4px 0px;
     width: 180px;
     height: 51px;
     border-radius: 8px;
@@ -101,7 +129,7 @@ body {
 
 .back-btn {
     position: absolute;
-    top: 50px;
+    top: 64px;
     left: 50px;
     border-radius: 50%;
     transition: all ease-in-out 125ms;
@@ -115,4 +143,45 @@ body {
 
 .back-btn:active {
     scale: 0.9;
+}
+
+.gap-signup-logo-content {
+    gap: 68px;
+}
+
+.logo-login {
+    height: 78px;
+    width: 64px;
+}
+
+.logo-signup-container {
+    width: 396px;
+    justify-content: start;
+    display: flex;
+}
+
+.checkbox-privacy-policy {
+    width: 231px;
+    height: 24px;
+}
+
+.font-size-16 {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.footer-container {
+    width: 246px;
+    height: 35px;
+    font-size: 16px;
+    justify-content: space-between;
+}
+
+.overlay {
+    position: absolute;
+    background-color: var(--light-blue-light);
+    border: 2px solid var(--light-blue);
+    z-index: 999;
+    animation: fadeOut 2s forwards;
+    flex: 1;
 }
