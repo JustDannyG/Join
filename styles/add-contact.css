@@ -35,13 +35,11 @@
 }
 
 .dark-backround {
+    position: relative;
     flex: 1;
     border-radius: 16px 16px 0 0;
-    position: relative;
     background-color: var(--darke-blue);
     color: white;
-    justify-content: center;
-    align-items: center;
 }
 
 .dark-backround h1 {

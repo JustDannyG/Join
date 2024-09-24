@@ -11,7 +11,6 @@ body {
     left: 38px;
     width: 64px;
     height: 78px;
-
 }
 
 .sign-up-headline {
@@ -19,8 +18,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    height: 72px;
-    width: 173px;
+    /* height: 72px;
+    width: 173px; */
     font-size: 47px;
 }
 
@@ -29,7 +28,6 @@ body {
     border: solid 2px var(--light-blue);
 }
 
-
 .sign-up-form {
     position: relative;
     display: flex;
@@ -37,16 +35,17 @@ body {
     align-items: center;
     height: 595px;
     width: 396px;
-    padding: 32px 0;
+    /* padding: 32px 0; */
     gap: 30px;
     border-radius: 30px;
     box-shadow: 2px 2px 13px 5px rgba(0, 0, 0, 0.1);
 }
 
-.form-inputs-container {
+
+/* .form-inputs-container {
     width: 364px;
     height: 296px;
-}
+} */
 
 .sign-up-form-inputs {
     display: flex;
@@ -67,7 +66,7 @@ body {
 
 .sign-up-form-inputs input {
     font-size: 20px;
-    flex: 1;
+    /* flex: 1; */
     border: none;
 }
 
@@ -95,7 +94,7 @@ body {
     scale: 1.1;
 }
 
-.sign-up-btn:active{
+.sign-up-btn:active {
     scale: 0.9;
 }
 
