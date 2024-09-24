@@ -7,15 +7,17 @@ h1 {
     font-size: 47px;
 }
 
-input {
-    cursor: pointer;
-    flex: 200;
-}
 
-button {
+/* input {
     cursor: pointer;
     flex: 200;
-}
+} */
+
+
+/* button {
+    cursor: pointer;
+    flex: 200;
+} */
 
 .logo-login {
     height: 78px;
