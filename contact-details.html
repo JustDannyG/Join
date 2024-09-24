@@ -48,7 +48,7 @@
         <div class="details column" id="details">
         </div>
 
-        <button onclick="toggleOverlay('edit-contact', 'menu-active'), stopEventBubbling(event)" id="edit-button " class="edit-button center ">
+        <button onclick="toggleOverlay('edit-contact', 'menu-active'), toggleBgColor(), stopEventBubbling(event)" id="edit-button " class="edit-button center ">
       <img src="./assets/icons/more_vert.png " alt="edit-contact " />
     </button>
     </main>
@@ -57,7 +57,7 @@
 
 
         <div class="edit-contact d-flex " onclick="toggleOverlayDisplay()">
-            <img src="./assets/icons/edit.png " alt="Edit Button " />Edit
+            <img src="./assets/icons/edit.png " alt="Edit Button" />Edit
         </div>
         <div class="edit-contact d-flex "><img src="./assets/icons/delete.png " alt="Delete Button " />Delete</div>
     </div>
@@ -74,7 +74,7 @@
     <Section id="edit-overlay-bg" class="edit-overlay-bg hide-overlay">
         <form class="edit-overlay-form" onsubmit="getCurrentKey(); return false">
 
-            <img class="close-edit" src="./assets/icons/close.png" alt="" onclick="toggleOverlayDisplay()">
+            <img class="close-edit" src="./assets/icons/close.png" alt="" onclick="toggleOverlayDisplay(), toggleBgColor()">
 
             <div class="overlay-header">
                 <h2 class="edit-headline">Edit contact
