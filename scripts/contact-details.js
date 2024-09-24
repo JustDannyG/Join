@@ -20,16 +20,19 @@ function showContact() {
     `
 }
 
+
 function getCurrentContactDetail() {
   let contactsArray = getFromLocalStorage('contacts');
   return contactsArray[currentContactDetails];
 }
+
 
 function toggleOverlayDisplay() {
   let overlay = document.getElementById('edit-overlay-bg');
   overlay.classList.toggle('hide-overlay');
   editDetails()
 }
+
 
 function editDetails() {
   let currentDetail = getCurrentContactDetail();
@@ -39,29 +42,18 @@ function editDetails() {
 }
 
 
-
 async function getCurrentKey() {
   let allContacts = await getData(path = "/contacts");
-  console.log(allContacts);
-
   let contactKeys = Object.keys(allContacts)
-
-  console.log(contactKeys);
   contactKeys.forEach((key, i) => {
-
-    console.log(key);
-    console.log(allContacts[key].name);
     currentSortKeys.push({
       'name': allContacts[key].name,
       'key': key
     })
   });
   sortByAlphabet(currentSortKeys);
-  console.log(currentSortKeys);
   editContact()
 }
-
-
 
 
 function editContact() {
@@ -71,11 +63,14 @@ function editContact() {
   let phone = document.getElementById('edit-phone').value;
   let contactsArray = getFromLocalStorage('contacts');
   putData(path = `/contacts/${key}`, data = {
-
     'color': contactsArray[currentContactDetails].color,
     'name': name,
     'email': email,
     'phone': phone
-
   })
+}
+
+function deleteContact() {
+  let key = currentSortKeys[currentContactDetails].key;
+  deleteData(path=`/contacts/${key}`, data={})
 }
