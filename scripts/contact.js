@@ -17,7 +17,6 @@ async function getContacts() {
     for (let index = 0; index < keys.length; index++) {
         const key = keys[index];
         const contact = contactsData[key];
-        console.log(contact);
         contacts.push(contact);
     }
     sortByAlphabet(contacts);
@@ -37,7 +36,6 @@ function renderContacts() {
     contacts.forEach((contact, i) => {
         if (firstLetter !== contact.name.charAt(0).toUpperCase()) {
             firstLetter = contact.name.charAt(0).toUpperCase();
-            console.log(firstLetter);
             containerRef.innerHTML += firstLetterHtml(firstLetter);
         }
         containerRef.innerHTML += contactListHtml(contact, i);
@@ -107,30 +105,43 @@ function getFromLocalStorage(key) {
     return myData;
 }
 
-function addContact() {
+async function addContact() {
     const nameRef = document.getElementById("edit-name-input")
     const emailRef = document.getElementById("edit-mail-input")
     const phoneNumRef = document.getElementById("edit-phone-input")
 
-    let name = nameRef.value
-    let email = emailRef.value
-    let phone = phoneNumRef.value
-    let color = randomColor()
+    const inputs = getInputs(nameRef, emailRef, phoneNumRef)
 
     clearInput(nameRef)
     clearInput(emailRef)
     clearInput(phoneNumRef)
 
-    postData(path = "contacts", data = { "name": `${name}`, "email": `${email}`, "phone": `${phone}`, "color": `${color}` });
-
-    toogleDialog('dialog-add-succes')
+    await postData(path = "contacts", data = { "name": `${inputs.name}`, "email": `${inputs.email}`, "phone": `${inputs.phone}`, "color": `${inputs.color}` });
+    const contact = await findContact(inputs.name, inputs.email, inputs.phone)
+    toogleDialog('dialog-add-succes', contact)
 }
 
-function toogleDialog(id) {
+function getInputs(nameRef, emailRef, phoneNumRef) {
+    const name = nameRef.value
+    const email = emailRef.value
+    const phone = phoneNumRef.value
+    const color = randomColor()
+    return { name, email, phone, color }
+}
+
+function toogleDialog(id, index) {
     document.getElementById(id).classList.add("dialog-active");
 
     setTimeout(function() {
-        document.getElementById(id).classList.remove("dialog-active")
-        window.location.href = 'contact-details.html';;
+        document.getElementById(id).classList.remove("dialog-active");
+        openContact(index);
     }, 2000);
+}
+
+async function findContact(name, email, phone) {
+    contacts = []
+    await getContacts()
+    return contacts.findIndex(e => e.name == name && e.email == email && e.phone == phone);
+
+
 }

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join - Board</title>
     <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./styles/board.css" />
     <script src="./script.js"></script>
 </head>
 
@@ -22,11 +23,83 @@
     </header>
 
     <main class="d-flex content overflow-x-auto">
-        <div class="#">
-            <h1>Privacy-Police</h1>
-            <h2>Subtitle</h2>
-            <h2>Subtitle</h2>
+        <div class="headline d-flex">
+            <h1>Board</h1>
+            <button><img src="./assets/icons/add-icon-light.png" alt=""></button>
         </div>
+        <div class="d-flex input-row"> <input placeholder="Find Task" type="text">
+            <img src="./assets/icons/search-icon.png" alt="">
+        </div>
+
+
+
+        <section id="to-do-container" class="to-do-content column">
+            <div class="subtitle d-flex">
+                <h2>To do</h2>
+                <button class="center"><img src="./assets/icons/add-icon.png" alt=""></button>
+            </div>
+            <div class="no-task"> No task To do</div>
+        </section>
+
+
+        <section id="in-progress-container">
+            <div class="subtitle d-flex">
+                <h2>In progress</h2>
+                <button class="center"><img src="./assets/icons/add-icon.png" alt=""></button>
+            </div>
+            <div class="task">
+                <div class="task-category">User Story</div>
+                <h4 class="task-title">Kochwelt Page & Recipe Recommender</h4>
+                <div class="task-description">Build start page with recipe recommendation and more</div>
+                <div class="d-flex task-amount-container">
+                    <div class="progress-bar">
+                        <div class="progress"></div>
+                    </div>
+                    <div class="task-amount">1/2 Subtask</div>
+                </div>
+                <div class="d-flex task-footer">
+                    <div class="d-flex contatcs-container">
+                        <div class="c1 contact center">am</div>
+                        <div class="c2 contact center">em</div>
+                        <div class="c3 contact center">mb</div>
+                    </div>
+                    <button><img class="prio-icon" src="./assets/icons/prio-medium-icon.png" alt=""></button>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section id="await-feedback-container">
+            <div class="subtitle d-flex">
+                <h2>Await feedback</h2>
+                <button class="center"><img src="./assets/icons/add-icon.png" alt=""></button>
+            </div>
+            <div class="no-task"> No task To do</div>
+        </section>
+
+
+
+        <section id="done-container">
+            <div class="subtitle d-flex">
+                <h2>Done</h2>
+            </div>
+            <div class="no-task"> No task To do</div>
+        </section>
+
+        <section>
+            <div class="subtitle d-flex">
+                <h2>Done</h2>
+            </div>
+            <div class="no-task"> No task To do</div>
+        </section>
+
+        <section>
+            <div class="subtitle d-flex">
+                <h2>Done</h2>
+            </div>
+            <div class="no-task"> No task To do</div>
+        </section>
     </main>
 
     <aside class="d-flex sidebar-mobile">
