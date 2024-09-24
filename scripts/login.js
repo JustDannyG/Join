@@ -1,9 +1,4 @@
-let data = {
-    email: "test@test.de",
-    password: "1234",
-};
-
-let excludedIds = [
+let containerOverlayIds = [
     "legalNoticeLink",
     "privacyPolicyLink",
     "myCheckbox",
@@ -11,15 +6,15 @@ let excludedIds = [
     "guestLoginButton",
     "loginButton",
     "myInput"
-];
-
-function highlightAll(event) {
+  ];
+  
+  function highlightAll(event) {
     let target = event.target;
-    let isExcluded = excludedIds.some(id => target.id === id || target.closest(`#${id}`));
-
+    let isExcluded = containerOverlayIds.some(id => target.id === id || target.closest(`#${id}`));
+  
     if (!isExcluded) {
-        for (let i = 0; i < excludedIds.length; i++) {
-            let id = excludedIds[i];
+        for (let i = 0; i < containerOverlayIds.length; i++) {
+            let id = containerOverlayIds[i];
             let element = document.getElementById(id);
             if (element) {
                 let overlay = document.createElement('div');
@@ -33,9 +28,9 @@ function highlightAll(event) {
             }
         }
     }
-}
-
-function overlayStyle(overlay, top, left, width, height) {
+  }
+  
+  function overlayStyle(overlay, top, left, width, height) {
     overlay.style.cssText = `
                     position: absolute;
                     top: ${top}px;
@@ -44,7 +39,7 @@ function overlayStyle(overlay, top, left, width, height) {
                     height: ${height}px;
                 `;
     return;
-}
+  }
 
 function goSignUp() {
     window.location.href = "sign-up.html";
