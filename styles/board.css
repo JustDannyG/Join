@@ -1,0 +1,135 @@
+.headline button {
+    background-color: var(--darke-blue);
+    border-radius: 8px;
+    height: 40px;
+    width: 40px;
+}
+
+.input-row {
+    margin-top: 20px;
+    border: 2px solid var(--dark-grey);
+    border-radius: 8px;
+    padding: 4px 8px;
+    background-color: var(--white);
+}
+
+.input-row input {
+    border: unset;
+    border-right: 2px solid var(--medium-grey);
+    width: 100%;
+}
+
+.input-row input::placeholder {
+    font-size: 16px;
+}
+
+.subtitle {
+    margin-top: 24px;
+    justify-content: space-between;
+}
+
+.subtitle button {
+    border: solid 2px var(--darke-blue);
+    border-radius: 8px;
+    height: 30px;
+    width: 30px;
+}
+
+.to-do-content {
+    margin-top: 16px;
+    text-align: center;
+    padding: 8px;
+    background-color: var(--medium-grey);
+    color: var(--dark-grey);
+    border: 2px dotted var(--dark-grey);
+    border-radius: 8px;
+}
+
+.task {
+    margin-top: 16px;
+    background-color: var(--white);
+    padding: 16px;
+    border-radius: 24px;
+    width: 260px;
+}
+
+.task-category {
+    background-color: var(--story);
+    color: var(--light-grey);
+    padding: 4px 16px;
+    width: min-content;
+    text-wrap: nowrap;
+    border-radius: 8px;
+}
+
+.task-title {
+    margin-top: 16px;
+}
+
+.task-description {
+    margin-top: 8px;
+    color: var(--dark-grey);
+}
+
+.task-amount-container {
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: var(--medium-grey);
+    border-radius: 8px;
+}
+
+.progress {
+    background-color: var(--light-blue);
+    width: 50%;
+    height: 8px;
+    border-radius: 8px;
+}
+
+.task-amount {
+    font-size: 14px;
+    text-wrap: nowrap;
+    margin-left: 16px;
+}
+
+.task-footer {
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.contatcs-container {
+    position: relative;
+    width: 100px;
+    height: 50px;
+}
+
+.contact {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.c1 {
+    position: absolute;
+    left: 0;
+    background-color: aqua;
+}
+
+.c2 {
+    position: absolute;
+    left: 40px;
+    background-color: blueviolet;
+}
+
+.c3 {
+    position: absolute;
+    left: 80px;
+    background-color: burlywood;
+}
