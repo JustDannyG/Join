@@ -44,6 +44,10 @@
     background-color: var(--darke-blue);
 }
 
+.toogle-bg-color {
+    background-color: var(--light-blue) !important;
+}
+
 .add-contact img {
     width: 24px;
 }

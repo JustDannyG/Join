@@ -28,7 +28,7 @@
 
     <main class="d-flex content overflow-y-auto">
         <div id="contacts-container" class="column contacts-container"></div>
-        <button onclick="toggleOverlay('dialog-add-contact', 'active-overlay')" id="add-contact" class="add-contact center"><img src="./assets/icons/add-contact-icon.png" alt="add Contact" /></button>
+        <button onclick="toggleOverlay('dialog-add-contact', 'active-overlay'), toggleBgColor('add-contact'), stopEventBubbling(event)" id="add-contact" class="add-contact center"><img src="./assets/icons/add-contact-icon.png" alt="add Contact" /></button>
     </main>
 
     <aside class="d-flex sidebar-mobile">
@@ -43,7 +43,7 @@
     <div onclick="stopEventBubbling(event)" id="dialog-add-contact" class="overlayer-bg d-flex">
         <div class="overlayer column">
             <section class="dark-backround column center">
-                <button onclick="toggleOverlay('dialog-add-contact', 'active-overlay'), stopEventBubbling(event)" class="close-btn center"><img class="close-edit" src="./assets/icons/close.png" alt=""></button>
+                <button onclick="toggleOverlay('dialog-add-contact', 'active-overlay'), toggleBgColor('add-contact'), stopEventBubbling(event)" class="close-btn center"><img class="close-edit" src="./assets/icons/close.png" alt=""></button>
                 <div class="edit-contact-headline ">
                     <h1>Add contcact</h1>
                     <p class="subtitle ">Task are better with a team!</p>
