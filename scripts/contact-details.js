@@ -32,37 +32,56 @@ function toggleOverlayDisplay() {
 }
 
 function editDetails() {
-    let currentDetail = getCurrentContactDetail();
-    document.getElementById('edit-name').value = currentDetail.name;
-    document.getElementById('edit-email').value = currentDetail.email;
-    document.getElementById('edit-phone').value = currentDetail.phone;
+
+  let currentDetail = getCurrentContactDetail();
+  document.getElementById('edit-name').value = currentDetail.name;
+  document.getElementById('edit-email').value = currentDetail.email;
+  document.getElementById('edit-phone').value = currentDetail.phone;
+
 }
 
 
 
 async function getCurrentKey() {
-    let currentKeys = []
-    let allContacts = await getData(path = "/contacts");
-    console.log(allContacts);
+
+  let allContacts = await getData(path = "/contacts");
+  console.log(allContacts);
+
 
     let contactKeys = Object.keys(allContacts)
 
     console.log(contactKeys);
     contactKeys.forEach((key, i) => {
 
-        console.log(key);
-        console.log(allContacts[key].name);
-        currentKeys.push(allContacts[key].name + '/' + key)
-        currentSortKeys.push(allContacts[key].name + '/' + key)
-    });
-    console.log(currentKeys);
 
-    console.log(currentSortKeys);
-
-
-
+    console.log(key);
+    console.log(allContacts[key].name);
+    currentSortKeys.push({
+      'name': allContacts[key].name,
+      'key': key
+    })
+  });
+  sortByAlphabet(currentSortKeys);
+  console.log(currentSortKeys);
+  editContact()
 }
 
-function editContact() {
 
+
+
+
+function editContact() {
+  let key = currentSortKeys[currentContactDetails].key;
+  let name = document.getElementById('edit-name').value;
+  let email = document.getElementById('edit-email').value;
+  let phone = document.getElementById('edit-phone').value;
+  let contactsArray = getFromLocalStorage('contacts');
+  putData(path = `/contacts/${key}`, data = {
+
+    'color': contactsArray[currentContactDetails].color,
+    'name': name,
+    'email': email,
+    'phone': phone
+
+  })
 }
