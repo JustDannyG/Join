@@ -87,58 +87,28 @@
                 <div class="edit-input">
                     <input type="text" id="edit-name">
                     <img src="./assets/icons/person.png" />
-
                 </div>
-                <div class="edit-contact d-flex "><img src="./assets/icons/delete.png " alt="Delete Button " />Delete</div>
+
+                <div class="edit-input">
+                    <input type="text" id="edit-email">
+                    <img src="./assets/icons/mail.png" />
+                </div>
+
+                <div class="edit-input">
+                    <input type="text" id="edit-phone">
+                    <img src="./assets/icons/phone.png" />
+                </div>
             </div>
 
-            <aside class="d-flex sidebar-mobile ">
-                <a class="center column nav-link-mobile " href="./summary.html "><img src="./assets/icons/summary-icon.png " alt="Summary " />Summary</a>
-                <a class="center column nav-link-mobile " href="./board.html "><img src="./assets/icons/board-icon.png " alt="Board " />Board</a>
-                <a class="center column nav-link-mobile " href="./add-task.html "><img src="./assets/icons/add-task-icon.png " alt="Add Task " />Add Task</a>
-                <a class="center column nav-link-mobile " href="./contact.html "><img src="./assets/icons/contacts-icon.png " alt="Contacts " />Contacts</a>
-            </aside>
+            <div class="edit-action-btns">
+                <button class="edit-delete-btn">Delete</button>
+                <button class="edit-save-btn">Save <img src="./assets/icons/check.png" alt=""></button>
+            </div>
 
-            <!-- Start overlay -->
+        </form>
+    </Section>
 
-            <Section id="edit-overlay-bg" class="edit-overlay-bg hide-overlay">
-                <form class="edit-overlay-form" onsubmit="editContact(); return false">
-
-                    <img class="close-edit" src="./assets/icons/close.png" alt="" onclick="toggleOverlayDisplay()">
-
-                    <div class="overlay-header">
-                        <h2 class="edit-headline">Edit contact
-                            <span class="blue-underline"></span>
-                        </h2>
-                        <span class="edit-initals">AM</span>
-                    </div>
-
-                    <div class="edit-form-inputs">
-                        <div class="edit-input">
-                            <input type="text" id="edit-name">
-                            <img src="./assets/icons/person.png" />
-                        </div>
-
-                        <div class="edit-input">
-                            <input type="text" id="edit-email">
-                            <img src="./assets/icons/mail.png" />
-                        </div>
-
-                        <div class="edit-input">
-                            <input type="text" id="edit-phone">
-                            <img src="./assets/icons/phone.png" />
-                        </div>
-                    </div>
-
-                    <div class="edit-action-btns">
-                        <button class="edit-delete-btn">Delete</button>
-                        <button class="edit-save-btn">Save <img src="./assets/icons/check.png" alt=""></button>
-                    </div>
-
-                </form>
-            </Section>
-
-            <!-- End overlay -->
+    <!-- End overlay -->
 
 
 </body>
