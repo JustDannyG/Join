@@ -26,9 +26,8 @@
         </div>
     </header>
 
-    <main class="d-flex content overflow-x-auto">
-        <div id="contacts-container" class="column contacts-container"></div>
-
+    <main class="d-flex content overflow-y-auto">
+        <div id="contacts-container" class="column"></div>
         <button onclick="toggleOverlay('dialog-add-contact', 'active-overlay')" id="add-contact" class="add-contact center"><img src="./assets/icons/add-contact-icon.png" alt="add Contact" /></button>
     </main>
 
@@ -43,7 +42,7 @@
 
     <div onclick="stopEventBubbling(event)" id="dialog-add-contact" class="overlayer-bg d-flex">
         <div class="overlayer column">
-            <section class="dark-backround d-flex column ">
+            <section class="dark-backround column center">
                 <button onclick="toggleOverlay('dialog-add-contact', 'active-overlay'), stopEventBubbling(event)" class="close-btn center"><img class="close-edit" src="./assets/icons/close.png" alt=""></button>
                 <div class="edit-contact-headline ">
                     <h1>Add contcact</h1>

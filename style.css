@@ -47,6 +47,10 @@ body {
     font-family: inter;
 }
 
+main {
+    overflow-x: hidden;
+}
+
 button {
     background-color: unset;
     border: unset;
@@ -75,6 +79,10 @@ button {
 
 .overflow-x-auto {
     overflow-x: auto;
+}
+
+.overflow-y-auto {
+    overflow-y: auto;
 }
 
 .bold {
