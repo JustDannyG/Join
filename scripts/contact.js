@@ -134,7 +134,7 @@ function toogleDialog(id, index) {
 
     setTimeout(function() {
         document.getElementById(id).classList.remove("dialog-active");
-        openContact(index);
+        // openContact(index);
     }, 2000);
 }
 

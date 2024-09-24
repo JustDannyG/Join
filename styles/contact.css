@@ -51,16 +51,16 @@
 .overlayer-bg {
     position: absolute;
     justify-content: center;
-    bottom: -100%;
+    bottom: 0;
     width: 100%;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.1);
-    transform: translateY(0);
+    transform: translateY(100vh);
     transition: 250ms ease-in-out;
 }
 
 .active-overlay {
-    transform: translateY(-100%);
+    transform: translateY(0);
 }
 
 .overlayer {
@@ -167,9 +167,9 @@ form button img {
 .dialog {
     position: absolute;
     align-self: center;
-    bottom: -40px;
+    bottom: 0;
     transition: 125ms ease-in-out;
-    transform: translateY(0);
+    transform: translateY(80px);
     background-color: var(--darke-blue);
     color: var(--white);
     padding: 16px;
@@ -180,7 +180,7 @@ form button img {
 }
 
 .dialog-active {
-    transform: translateY(-128px);
+    transform: translateY(-120px);
 }
 
 
