@@ -6,7 +6,6 @@ async function getData(path = "") {
     return responseAsJson;
 }
 
-
 async function postData(path="", data={}) {
     let response = await fetch(BASE_URL + path + '.json', {
         method: "POST",

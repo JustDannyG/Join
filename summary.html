@@ -1,45 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join - Summary</title>
     <link rel="stylesheet" href="./style.css" />
     <script src="./script.js"></script>
-  </head>
-  <body class="column">
+</head>
+
+<body onclick="closeAllMenus(event)" class="column">
     <header class="d-flex header-mobile">
-      <img class="logo-mobile" src="./assets/icons/logo-dark.svg" alt="Join Logo" />
-      <div onclick="toggleMenu()" id="current-user-header" class="current-user-header center">T</div>
-      <div id="menu" class="column menu">
-        <a href="./help.html">Help</a>
-        <a href="./legal-notice.html">Legal Notice</a>
-        <a href="./privacy-policy.html">Privacy Policy</a>
-        <a href="#">Log out</a>
-      </div>
+        <img class="logo-mobile" src="./assets/icons/logo-dark.svg" alt="Join Logo" />
+        <div onclick="toggleOverlay('menu', 'menu-active'), stopEventBubbling(event)" id="current-user-header" class="current-user-header center">T</div>
+        <div id="menu" class="column menu">
+            <a href="./help.html">Help</a>
+            <a href="./legal-notice.html">Legal Notice</a>
+            <a href="./privacy-policy.html">Privacy Policy</a>
+            <a href="#">Log out</a>
+        </div>
     </header>
 
     <main class="d-flex content overflow-x-auto">
-      <div class="#">
-        <h1>Privacy-Police</h1>
-        <h2>Subtitle</h2>
-        <h2>Subtitle</h2>
-      </div>
+        <div class="#">
+            <h1>Privacy-Police</h1>
+            <h2>Subtitle</h2>
+            <h2>Subtitle</h2>
+        </div>
     </main>
 
     <aside class="d-flex sidebar-mobile">
-      <a class="center column nav-link-mobile" href="./summary.html"
-        ><img src="./assets/icons/summary-icon.png" alt="Summary" />Summary</a
-      >
-      <a class="center column nav-link-mobile" href="./board.html"
-        ><img src="./assets/icons/board-icon.png" alt="Board" />Board</a
-      >
-      <a class="center column nav-link-mobile" href="./add-task.html"
-        ><img src="./assets/icons/add-task-icon.png" alt="Add Task" />Add Task</a
-      >
-      <a class="center column nav-link-mobile" href="./contact.html"
-        ><img src="./assets/icons/contacts-icon.png" alt="Contacts" />Contacts</a
-      >
+        <a class="center column nav-link-mobile" href="./summary.html"><img src="./assets/icons/summary-icon.png" alt="Summary" />Summary</a>
+        <a class="center column nav-link-mobile" href="./board.html"><img src="./assets/icons/board-icon.png" alt="Board" />Board</a>
+        <a class="center column nav-link-mobile" href="./add-task.html"><img src="./assets/icons/add-task-icon.png" alt="Add Task" />Add Task</a>
+        <a class="center column nav-link-mobile" href="./contact.html"><img src="./assets/icons/contacts-icon.png" alt="Contacts" />Contacts</a>
     </aside>
-  </body>
+</body>
+
 </html>
