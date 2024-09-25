@@ -10,42 +10,54 @@
 
     <script src="scripts/fetch.js"></script>
     <script src="scripts/sign-up.js"></script>
+    <script src="script.js"></script>
 </head>
 
 <body>
-
-    <img class="site-logo" src="./assets/icons/logo-dark.svg" alt="">
-
-    <form class="sign-up-form" onsubmit="signUp(); return false;">
-        <a href="index.html"><img class="back-btn" src="./assets/icons/back.png" alt=""></a>
-        <h1 class="sign-up-headline">
-            Sign up
-            <span class="blue-underline"></span>
-        </h1>
-        <div class="form-inputs-container">
-            <div class="sign-up-form-inputs">
-                <input id="name-input" type="text" placeholder="Name" required>
-                <img src="./assets/icons/person.png" alt="">
+    <main onclick="highlightAll(event)" class="d-flex content center gap-signup-logo-content">
+        <div class="logo-signup-container">
+            <img class="logo-login" src="/assets/icons/logo-dark.svg" alt="">
+        </div>
+        <div class="sign-up-form" onsubmit="signUp(); return false;">
+            <a href="index.html"><img id="backBtn" class="back-btn" src="./assets/icons/left-arrow.png" alt=""></a>
+            <div class="sign-up-container d-flex center column">
+                <div class="sign-up-headline">
+                    <h1 class="#">Sign up</h1>
+                    <div class="blue-underline"></div>
+                </div>
+                <div id="formInputsContainer" class="form-inputs-container d-flex column">
+                    <div class="sign-up-form-inputs">
+                        <input id="name-input" type="text" placeholder="Name" required>
+                        <img src="./assets/icons/person.png" alt="">
+                    </div>
+                    <div class="sign-up-form-inputs">
+                        <input id="email-input" type="email" placeholder="Email" required>
+                        <img src="./assets/icons/mail.png" alt="">
+                    </div>
+                    <div class="sign-up-form-inputs">
+                        <input id="user-pwd" type="password" placeholder="Password" oninput="checkPasswordMatch()">
+                        <img src="./assets/icons/lock.png" alt="">
+                    </div>
+                    <div class="sign-up-form-inputs">
+                        <input id="user-conf-pwd" type="password" placeholder="Confirm Password" required oninput="checkPasswordMatch()">
+                        <img src="./assets/icons/lock.png" alt="">
+                    </div>
+                </div>
             </div>
-            <div class="sign-up-form-inputs">
-                <input id="email-input" type="email" placeholder="Email" required>
-                <img src="./assets/icons/mail.png" alt="">
+            <div class="checkbox-privacy-policy">
+                <input id="myCheckbox" type="checkbox">
+                <label class="font-size-16" for="privacy-policy">I accept the <a id="linkPricacyPolicyCheckbox" href="./privacy-policy.html">Privacy
+                        policy</a></label>
             </div>
-            <div class="sign-up-form-inputs">
-                <input id="user-pwd" type="password" placeholder="Password" required>
-                <img src="./assets/icons/lock.png" alt="">
-            </div>
-            <div class="sign-up-form-inputs">
-                <input id="user-conf-pwd" type="password" placeholder="Confirm Password" required>
-                <img src="./assets/icons/lock.png" alt="">
+            <div id="signupButton">
+                <button class="sign-up-btn">Sign up</button>
             </div>
         </div>
-        <div>
-            <input id="privacy-policy" type="checkbox">
-            <label for="privacy-policy">I accept the <a href="#">Privacy policy</a></label>
-        </div>
-        <button class="sign-up-btn">Sign up</button>
-    </form>
+        <div class="footer-container d-flex">
+            <a id="privacyPolicyLink" class="footer-links d-flex center" href="/privacy-policy.html">Privacy Policy</a>
+            <a id="legalNoticeLink" class="footer-links d-flex center" href="/legal-notice.html">Legal notice</a>
+          </div>
+    </main>
 
 </body>
 
