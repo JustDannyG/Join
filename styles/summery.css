@@ -1,6 +1,7 @@
 .summary-content {
     position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;
@@ -12,9 +13,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    position: absolute;
     align-self: start;
+    position: absolute;
     left: 0;
+    top: 0;
     width: 223px;
     height: 104px;
 
@@ -35,16 +37,23 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 396px;
-    height: 384px;
-    margin-top: 50px;
+    max-width: 396px;
+    width: 100%;
+    max-height: 384px;
+    height: 100%;
+    margin-top: 130px;
+    gap: 8px;
+
 }
 
 .summerys-box {
     display: flex;
     justify-content: space-between;
-    width: 396px;
-    height: 110px;
+    max-width: 396px;
+    width: 100%;
+    max-height: 110px;
+    height: 100%;
+    gap: 8px;
 }
 
 .summary-todo-btn {
@@ -53,7 +62,8 @@
     gap: 10px;
     justify-content: center;
     align-items: center;
-    width: 186px;
+    max-width: 186px;
+    width: 100%;
     height: 110px;
     border-radius: 20px;
     cursor: pointer;
