@@ -5,9 +5,9 @@ body {
     height: 100vh;
 }
 
-main {
-    height: 926px;
-    width: 428px;
+form {
+    height: 100vh;
+    width: 100vw;
 }
 
 h1 {
@@ -28,8 +28,6 @@ h1 {
     align-items: center;
     justify-content: space-between;
     width: 173px;
-    /* height: 72px;
-    width: 173px; */
     font-size: 47px;
     gap: 16px;
 }
@@ -49,7 +47,6 @@ h1 {
     width: 396px;
     padding: 32px 0;
     gap: 16px;
-    /* padding: 32px 0; */
     gap: 30px;
     border-radius: 30px;
     box-shadow: 2px 2px 13px 5px rgba(0, 0, 0, 0.1);
@@ -62,18 +59,9 @@ h1 {
 
 .sign-up-container img {
     object-fit: cover;
-    width: 16px;
+    width: 20px;
     height: 21px;
 }
-
-
-/* .form-inputs-container {
-    width: 364px;
-    height: 296px;
-    gap: 24px;
-    align-items: center;
-}
-} */
 
 .sign-up-form-inputs {
     display: flex;
@@ -99,7 +87,6 @@ h1 {
     width: 56px;
     height: 24px;
     flex: 1;
-    /* flex: 1; */
     border: none;
 }
 
@@ -189,4 +176,68 @@ h1 {
     z-index: 999;
     animation: fadeOut 2s forwards;
     flex: 1;
+}
+
+.d-flex {
+    gap: 24px;
+}
+
+.error-message-name {
+    color: red;
+    font-size: 12px;
+    position: absolute;
+    top: 36%;
+    right: 0;
+    left: 0;
+    display: none;
+}
+
+.error-message-name.visible {
+    display: block;
+}
+
+.error-message-email {
+    color: red;
+    font-size: 12px;
+    position: absolute;
+    top: 48%;
+    right: 0;
+    left: 0;
+    display: none;
+}
+
+.error-message-email.visible {
+    display: block;
+}
+
+.error-message-password {
+    color: red;
+    font-size: 12px;
+    position: absolute;
+    top: 60.5%;
+    right: 0;
+    left: 0;
+    display: none;
+}
+
+.error-message-password.visible {
+    display: block;
+}
+
+.error-message-conf-password {
+    color: red;
+    font-size: 12px;
+    position: absolute;
+    top: 73.5%;
+    right: 0;
+    left: 0;
+    display: none;
+}
+
+.error-message-conf-password.visible {
+    display: block;
+}
+
+.red-border {
+    border: 2px solid red;
 }
