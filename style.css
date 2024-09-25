@@ -157,7 +157,7 @@ main::-webkit-scrollbar-track {
 }
 
 .content {
-    padding: 48px 16px;
+    padding: 25px 16px 48px 16px;
     text-wrap: wrap;
 }
 
