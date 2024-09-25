@@ -25,10 +25,6 @@ function closeAllMenus() {
     }
 }
 
-function toggleBgColor(id) {
-    document.getElementById(id).classList.toggle("toogle-bg-color")
-}
-
 function stopEventBubbling(event) {
     event.stopPropagation();
 }
