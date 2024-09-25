@@ -11,6 +11,9 @@
         display: none;
         width: 100%;
     }
+    .seperator {
+        display: none;
+    }
 }
 
 @media(min-width: 546px) {
@@ -19,5 +22,35 @@
     }
     .sidebar-mobile {
         display: none;
+    }
+    form {
+        padding-top: 80px;
+        flex-direction: row !important;
+    }
+    main {
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media(max-width: 993px) {
+    form {
+        flex-wrap: wrap;
+    }
+    /* .seperator {
+        display: none;
+    } */
+}
+
+@media(max-width: 973px) {
+    .seperator {
+        display: none;
+    }
+}
+
+@media(max-width: 855px) {
+    .left,
+    .right {
+        width: 100%;
     }
 }

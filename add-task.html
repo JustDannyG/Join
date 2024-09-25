@@ -36,80 +36,86 @@
 
         <main class="d-flex content overflow-x-auto">
             <form id="add-task" onsubmit="addTask(); return false;" class="column">
-                <div class="headline">
-                    <h1>Add Task</h1>
-                </div>
+                <div class="left">
+                    <div class="headline">
+                        <h1>Add Task</h1>
+                    </div>
 
-                <div class="column mt-16">
-                    <label for="task">Title<span class="required">*</span></label>
-                    <input required id="title" type="text" placeholder="Enter a title">
-                </div>
+                    <div class="column mt-16">
+                        <label for="task">Title<span class="required">*</span></label>
+                        <input required id="title" type="text" placeholder="Enter a title">
+                    </div>
 
-                <div class="column mt-16">
-                    <label for="description">Description</label>
-                    <textarea name="description" id="description" placeholder="Enter a Description"></textarea>
-                </div>
+                    <div class="column mt-16">
+                        <label for="description">Description</label>
+                        <textarea name="description" id="description" placeholder="Enter a Description"></textarea>
+                    </div>
 
-                <div class="column mt-16">
-                    <label for="assign-to-dropdown">Assigned to</label>
-                    <div class="drop-down" onclick="toggleDropdown('assign-to-dropdown-contacts'), stopEventBubbling(event)">
-                        <div id="assign-to-dropdown" class="select-placeholder">
-                            <span> Select contacts to assign</span>
-                            <img id="drop-down-icon" src="./assets/icons/arrow-drop-down.png">
-                        </div>
-                        <ul id="assign-to-dropdown-contacts" class="dropdown-options">
-                            <li onclick="selectContact('name1'); stopEventBubbling(event)">
-                                <div class="d-flex contact-row">
-                                    <div class="center gap">
-                                        <div class="contact center">n1</div>
-                                        <span>Name1</span>
-                                    </div>
-                                    <label class="container">
+                    <div class="column mt-16">
+                        <label for="assign-to-dropdown">Assigned to</label>
+                        <div class="drop-down" onclick="toggleDropdown('assign-to-dropdown-contacts'), stopEventBubbling(event)">
+                            <div id="assign-to-dropdown" class="select-placeholder">
+                                <span> Select contacts to assign</span>
+                                <img id="drop-down-icon" src="./assets/icons/arrow-drop-down.png">
+                            </div>
+                            <ul id="assign-to-dropdown-contacts" class="dropdown-options">
+                                <li onclick="selectContact('name1'); stopEventBubbling(event)">
+                                    <div class="d-flex contact-row">
+                                        <div class="center gap">
+                                            <div class="contact center">n1</div>
+                                            <span>Name1</span>
+                                        </div>
+                                        <label class="container">
                                     <input type="checkbox" id="checkbox" checked="false" onclick="selectContact('name1')" >
                                     <span class="checkmark"></span>
                                   </label>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div id="selectet-contacts-container" class="d-flex selectet-contacts-container"></div>
-                </div>
-
-                <div class="column mt-16">
-                    <label for="date ">Due date<span class="required">*</span></label>
-                    <input required id="date" type="date">
-                </div>
-
-                <div class="prio mt-16">
-                    <span>Prio</span>
-                    <div class="d-flex row">
-                        <button type="button" onclick="addPrioColorToUrgent(), stopEventBubbling(event)" id="urgent-btn" class="prio-btn">Urgent<img id="prio-icon-urgent" src="./assets/icons/prio-urgent-icon.png"></button>
-                        <button type="button" onclick="addPrioColorToMedium()" id="medium-btn" class="prio-btn">Medium<img id="prio-icon-medium" src="./assets/icons/prio-medium-icon.png"></button>
-                        <button type="button" onclick="addPrioColorToLow()" id="low-btn" class="prio-btn">Low<img id="prio-icon-low" src="./assets/icons/prio-low-icon.png"></button>
-                    </div>
-                </div>
-
-                <div class="column mt-16">
-                    <label for="category">Category<span class="required">*</span></label>
-                    <div class="drop-down" onclick="toggleDropdown( 'category-dropdown'), stopEventBubbling(event) ">
-                        <div id="selected-category" class="select-placeholder">
-                            <span id="drop-down-text"> Select task category</span>
-                            <img id="drop-down-icon" src="./assets/icons/arrow-drop-down.png">
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
-                        <ul id="category-dropdown" class="dropdown-options">
-                            <li onclick="selectCategory( 'Technical Task'), closeDropdown(), stopEventBubbling(event)">Technical Task</li>
-                            <li onclick="selectCategory( 'User Story'), closeDropdown(), stopEventBubbling(event)">User Story</li>
-                        </ul>
+                        <div id="selectet-contacts-container" class="d-flex selectet-contacts-container"></div>
                     </div>
                 </div>
 
+                <div class="seperator h-100"></div>
+
+                <div class="right">
+                    <div class="column mt-16">
+                        <label for="date ">Due date<span class="required">*</span></label>
+                        <input required id="date" type="date">
+                    </div>
+
+                    <div class="prio mt-16">
+                        <span>Prio</span>
+                        <div class="d-flex row">
+                            <button type="button" onclick="addPrioColorToUrgent(), stopEventBubbling(event)" id="urgent-btn" class="prio-btn">Urgent<img id="prio-icon-urgent" src="./assets/icons/prio-urgent-icon.png"></button>
+                            <button type="button" onclick="addPrioColorToMedium()" id="medium-btn" class="prio-btn">Medium<img id="prio-icon-medium" src="./assets/icons/prio-medium-icon.png"></button>
+                            <button type="button" onclick="addPrioColorToLow()" id="low-btn" class="prio-btn">Low<img id="prio-icon-low" src="./assets/icons/prio-low-icon.png"></button>
+                        </div>
+                    </div>
+
+                    <div class="column mt-16">
+                        <label for="category">Category<span class="required">*</span></label>
+                        <div class="drop-down" onclick="toggleDropdown( 'category-dropdown'), stopEventBubbling(event) ">
+                            <div id="selected-category" class="select-placeholder">
+                                <span id="drop-down-text"> Select task category</span>
+                                <img id="drop-down-icon" src="./assets/icons/arrow-drop-down.png">
+                            </div>
+                            <ul id="category-dropdown" class="dropdown-options">
+                                <li onclick="selectCategory( 'Technical Task'), closeDropdown(), stopEventBubbling(event)">Technical Task</li>
+                                <li onclick="selectCategory( 'User Story'), closeDropdown(), stopEventBubbling(event)">User Story</li>
+                            </ul>
+                        </div>
+                    </div>
 
 
 
 
-                <div class="column mt-16 ">
-                    <label for="subtask ">Subtask</label>
-                    <input id="subtask " type="text " placeholder="Add new subtask ">
+
+                    <div class="column mt-16 ">
+                        <label for="subtask ">Subtask</label>
+                        <input id="subtask " type="text " placeholder="Add new subtask ">
+                    </div>
                 </div>
             </form>
 

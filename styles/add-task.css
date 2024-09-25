@@ -265,3 +265,14 @@ button {
     align-items: center;
     gap: 8px;
 }
+
+.seperator {
+    min-width: 2px;
+    background-color: var(--medium-grey);
+    margin: 0 16px;
+}
+
+.left,
+.right {
+    width: 360px;
+}
