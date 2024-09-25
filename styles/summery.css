@@ -92,6 +92,14 @@
 
 .summary-todo-btn:hover {
     scale: 1.1;
+    color: white;
+    background-color: var(--darke-blue);
+}
+
+.summary-todo-btn:active{
+    scale: 0.9;
+    color: white;
+    background-color: var(--light-blue);
 }
 
 .summary-counter {
@@ -125,6 +133,14 @@
 
 .summary-urgent-btn:hover {
     scale: 1.1;
+    color: white;
+    background-color: var(--darke-blue);
+}
+
+.summary-urgent-btn:active {
+    scale: 0.9;
+    color: white;
+    background-color: var(--light-blue);
 }
 
 .urgent-count-box {
@@ -172,8 +188,15 @@
 
 .summary-task-btn:hover {
     scale: 1.1;
+    color: white;
+    background-color: var(--darke-blue);
 }
 
+.summary-task-btn:active {
+    scale: 0.9;
+    color: white;
+    background-color: var(--light-blue);
+}
 
 @keyframes summary-1 {
     from {
