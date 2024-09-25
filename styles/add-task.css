@@ -10,13 +10,12 @@ textarea {
 }
 
 form {
-    max-width: 540px;
+    max-width: 428px;
     position: relative;
     display: flex;
     justify-content: space-around;
     flex-direction: column;
-    height: 100%;
-    margin-bottom: 80px;
+    margin-bottom: 64px;
     width: 100%;
 }
 
