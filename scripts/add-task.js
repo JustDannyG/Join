@@ -63,6 +63,7 @@ function selectContact(name) {
 
     if (checkboxRef.checked) {
         selectecdContacts.push(name);
+
     } else {
         const index = selectecdContacts.indexOf(name);
         if (index > -1) {
