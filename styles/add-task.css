@@ -18,7 +18,6 @@ textarea {
 }
 
 form {
-    /* max-width: 428px; */
     width: 1000px;
     position: relative;
     display: flex;
@@ -274,6 +273,10 @@ button {
     width: 80px;
 }
 
+.text-desktop {
+    font-size: 12px;
+}
+
 .aside-desktop {
     background-color: var(--darke-blue);
     width: 232px;
@@ -293,7 +296,7 @@ button {
 
 .left,
 .right {
-    width: 360px;
+    /* width: 360px; */
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -305,6 +308,7 @@ button {
 
 .inputs {
     display: flex;
+    justify-content: space-around;
     width: 100%;
     flex-wrap: wrap;
     gap: 40px;
