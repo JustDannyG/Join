@@ -54,6 +54,8 @@ async function editContact() {
         'email': email,
         'phone': phone
     })
+    await getContacts();
+    saveToLocalStorage('contacts', contacts);
     window.location.href = "contact-details.html";
 }
 
