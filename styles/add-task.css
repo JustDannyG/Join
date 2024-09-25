@@ -1,0 +1,171 @@
+ input,
+ textarea {
+     border-radius: 8px;
+     padding: 8px 16px;
+     font-size: 14px;
+ }
+ 
+ form {
+     position: relative;
+     display: flex;
+     justify-content: space-around;
+     flex-direction: column;
+     height: 100%;
+     margin-bottom: 80px;
+ }
+ 
+ .row {
+     justify-content: space-between;
+     align-items: center;
+ }
+ 
+ .prio,
+ label,
+ .row,
+ input,
+ textarea,
+ .drop-down {
+     margin-top: 8px;
+     font-size: 14px;
+ }
+ 
+ .mt-16 {
+     margin-top: 16px;
+ }
+ 
+ textarea::placeholder,
+ input::placeholder,
+ #date {
+     font-family: inter;
+     color: var(--placeholder-grey);
+ }
+ 
+ textarea {
+     border: 1px solid var(--dark-grey);
+     height: 64px;
+     resize: none;
+ }
+ 
+ button {
+     padding: 16px;
+     border-radius: 8px;
+     color: black;
+     display: flex;
+     gap: 8px;
+     align-items: center;
+     justify-content: center;
+ }
+ 
+ .contact-row {
+     justify-content: space-between;
+     align-items: center;
+ }
+ 
+ .contact-row input {
+     margin: 0px;
+ }
+ 
+ .selectet-contacts-container {
+     margin-top: 4px;
+     gap: 4px;
+ }
+ 
+ .contact {
+     height: 40px;
+     width: 40px;
+     background-color: blue;
+     color: var(--white);
+     border: 2px solid var(--white);
+     border-radius: 50%;
+     font-size: 12px;
+ }
+ 
+ .gap {
+     gap: 12px;
+ }
+ 
+ .prio-btn {
+     background-color: var(--white);
+     width: 108px;
+     font-size: 16px;
+     padding: 8px 16px;
+     box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.2)
+ }
+ 
+ .prio-btn img {
+     max-width: 20px;
+     max-height: 14px;
+ }
+ 
+ .submit-row {
+     background-color: var(--light-grey);
+     justify-content: space-between;
+     align-items: center;
+     padding: 16px;
+ }
+ 
+ .submit {
+     text-wrap: nowrap;
+     background-color: var(--darke-blue);
+     color: var(--white);
+     font-size: 16px;
+ }
+ 
+ .required {
+     color: var(--required);
+ }
+ /* Dropdown */
+ 
+ .select-placeholder {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     border: 1px solid #ccc;
+     border-radius: 8px;
+     padding: 8px;
+     cursor: pointer;
+     background-color: var(--white);
+ }
+ 
+ .select-placeholder img {
+     transition: transform 125ms ease-in;
+     transform: rotate(0);
+ }
+ 
+ .dropdown-options {
+     display: none;
+     list-style-type: none;
+     margin: 0;
+     padding: 0;
+ }
+ 
+ .dropdown-options li {
+     padding: 12px;
+     cursor: pointer;
+     border-radius: 8px;
+     background-color: var(--white);
+ }
+ 
+ .dropdown-options li:hover {
+     background-color: var(--darke-blue);
+     color: var(--white);
+ }
+ 
+ .show-dropdown {
+     display: block;
+ }
+ 
+ .low {
+     background-color: var(--low);
+     color: var(--white);
+ }
+ 
+ .medium {
+     background-color: var(--medium);
+     color: var(--white);
+ }
+ 
+ .urgent {
+     background-color: var(--urgent);
+     color: var(--white);
+ }
