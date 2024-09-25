@@ -46,7 +46,7 @@
 
 }
 
-.summerys-box {
+.summerys-box1{
     display: flex;
     justify-content: space-between;
     max-width: 396px;
@@ -54,6 +54,22 @@
     max-height: 110px;
     height: 100%;
     gap: 8px;
+
+    animation-name: summary-2;
+    animation-duration: 300ms;
+}
+
+.summerys-box2 {
+    display: flex;
+    justify-content: space-between;
+    max-width: 396px;
+    width: 100%;
+    max-height: 110px;
+    height: 100%;
+    gap: 8px;
+
+    animation-name: summary-1;
+    animation-duration: 300ms;
 }
 
 .summary-todo-btn {
@@ -71,8 +87,7 @@
     background-color: white;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
-    animation-name: summary-2;
-    animation-duration: 300ms;
+   
 }
 
 .summary-todo-btn:hover {
@@ -106,8 +121,6 @@
     background-color: white;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
-    animation-name: summary-1;
-    animation-duration: 300ms;
 }
 
 .summary-urgent-btn:hover {
@@ -155,14 +168,11 @@
     background-color: white;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
-    animation-name: summary-2;
-    animation-duration: 300ms;
 }
 
 .summary-task-btn:hover {
     scale: 1.1;
 }
-
 
 
 @keyframes summary-1 {
@@ -185,3 +195,8 @@
         transform: translateX();
     }
 }
+
+
+
+
+
