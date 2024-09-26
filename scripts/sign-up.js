@@ -9,7 +9,7 @@ async function signUp() {
     passwordInputErrorStyle(userPwd);
     passwordConfInputErrorStyle(userConfPwd);
     checkIfConfPwd(userPwd, userConfPwd);
-    // checkIfAllInputsFilled(userName, userEmail, userPwd, userConfPwd);
+    checkIfAllInputsFilled(userName, userEmail, userPwd, userConfPwd);
 }
 
 function userInputErrorStyle(userName) {
@@ -87,7 +87,7 @@ async function checkIfAllInputsFilled(userName, userEmail, userPwd, userConfPwd)
         passwordInputErrorStyle(userPwd);
         passwordConfInputErrorStyle(userConfPwd);
     } else {
-        await postData("/users", {
+        await postData(path = "/users", data = {
             'name': userName,
             'email': userEmail,
             'password': userPwd

@@ -194,6 +194,10 @@ main::-webkit-scrollbar-track {
     height: 22px;
 }
 
+.current-link{
+    background-color: var(--hover-darke-blue);
+}
+
 .border-none {
     border: none;
     outline: none;
