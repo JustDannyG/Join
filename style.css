@@ -159,7 +159,7 @@ main::-webkit-scrollbar-track {
 }
 
 .content {
-    padding: 48px 16px;
+    padding: 25px 16px 48px 16px;
     text-wrap: wrap;
 }
 
@@ -192,6 +192,10 @@ main::-webkit-scrollbar-track {
 .nav-link-mobile img {
     width: 22px;
     height: 22px;
+}
+
+.current-link{
+    background-color: var(--hover-darke-blue);
 }
 
 .border-none {

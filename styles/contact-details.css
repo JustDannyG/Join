@@ -22,8 +22,8 @@
 }
 
 .current-contact-circle {
-    width: 80px;
-    height: 80px;
+    min-width: 80px;
+    min-height: 80px;
     background-color: #f35858;
     color: white;
     border-radius: 50%;
