@@ -1,0 +1,15 @@
+@media(max-width: 428px) {
+    .contacts-container {
+        padding: 0 15px;
+    }
+
+    .contact-list {
+        gap: 20px;
+        padding: 0 8px;
+    }
+
+    .contact-initials {
+        min-height: 45px;
+        min-width: 45px;
+    }
+}

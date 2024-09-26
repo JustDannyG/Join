@@ -57,8 +57,8 @@
 
 
 .contact-initials {
-    height: 50px;
-    width: 50px;
+    min-height: 50px;
+    min-width: 50px;
     color: white;
     text-shadow: 0px 2px 11px black;
     border-radius: 50%;
