@@ -1,59 +1,7 @@
-    @media(max-width: 392px) {
-        .prio-btn {
-            padding: 8px 8px;
-            width: 88px;
-            gap: 4px;
-        }
+@media(max-width: 392px) {
+    .prio-btn {
+        padding: 8px 8px;
+        width: 88px;
+        gap: 4px;
     }
-    
-    @media(max-width: 545px) {
-        .aside-desktop {
-            display: none;
-            width: 100%;
-        }
-        .seperator {
-            display: none;
-        }
-        .headline {
-            justify-self: start !important;
-        }
-        .clear {
-            display: none;
-        }
-    }
-    
-    @media(min-width: 546px) {
-        body {
-            flex-direction: row !important;
-        }
-        .sidebar-mobile {
-            display: none;
-        }
-        form {
-            display: block;
-            padding-top: 80px;
-        }
-        main {
-            align-items: center;
-            justify-content: center;
-        }
-    }
-    
-    @media(max-width: 855px) {
-        .left,
-        .right {
-            width: 100%;
-        }
-    }
-    
-    @media(max-width: 979px) {
-        form {
-            display: grid;
-        }
-        .headline {
-            justify-self: center;
-        }
-        .inputs {
-            justify-content: center;
-        }
-    }
+}
