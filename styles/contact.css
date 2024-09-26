@@ -71,5 +71,6 @@
     font-weight: 700;
     border-bottom: solid lightgray;
     padding: 25px 50px;
+    transition: all ease-in-out 125ms;
 }
 
