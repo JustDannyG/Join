@@ -1,112 +1,29 @@
-.overlayer-bg {
-    position: absolute;
-    justify-content: center;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.1);
-    transform: translateY(100vh);
-    transition: 250ms ease-in-out;
-}
-
-.active-overlay {
-    transform: translateY(0);
-}
-
-.overlayer {
-    width: 100%;
-    max-width: 400px;
-    margin: 88px 16px;
-}
-
-.close-btn {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    color: white;
-    font-size: 16px;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-}
-
-.close-btn:hover {
-    background-color: #050d1a;
-}
-
-.dark-backround {
-    position: relative;
-    flex: 1;
-    border-radius: 16px 16px 0 0;
-    background-color: var(--darke-blue);
-    color: white;
-}
-
-.dark-backround h1 {
-    align-self: flex-start;
-    font-size: 40px;
-}
-
-.dark-backround p {
-    align-self: flex-start;
+.subtitle {
     font-size: 20px;
+    color: var(--white);
+    align-self: start;
+    margin-top: 6px;
+    font-weight: 200;
 }
 
-.input-section {
-    flex: 1.15;
-    background-color: white;
-    border-radius: 0 0 16px 16px;
+.blue-underline {
+    align-self: start;
+    margin-top: 12px;
 }
 
-.input-form {
-    padding: 0 8px;
-    width: 100%;
-    gap: 8px;
-}
-
-.input-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    border-radius: 8px;
-    border: solid 1.5px var(--dark-grey);
-    padding: 4px 8px;
-}
-
-form input {
-    border: unset;
-    width: 100%;
-}
-
-.input-row img {
-    width: 24px;
-    height: 24px;
-}
-
-form button {
-    width: min-content;
-    text-wrap: nowrap;
-    font-weight: 500;
-    padding: 8px;
-    background-color: var(--darke-blue);
+.submit-btn {
+    font-size: 20px;
     color: white;
-    border: unset;
-    border-radius: 8px;
-    cursor: pointer;
+    padding: 16px 8px;
+    border: solid 1px;
+    border-radius: 10px;
+    gap: 4px;
+    background-color: var(--darke-blue);
 }
 
-form button img {
-    width: 12px;
+.submit-btn img {
+    width: 20px;
     margin-left: 4px;
-}
-
-.current-user {
-    position: absolute;
-    bottom: -45px;
-    width: 90px;
-    height: 90px;
-    z-index: 2;
 }
 
 
