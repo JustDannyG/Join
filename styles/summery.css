@@ -19,6 +19,7 @@
     top: 0;
     width: 223px;
     height: 104px;
+    transition: all ease-in-out 125ms;
 
     animation-name: summary-1;
     animation-duration: 300ms;

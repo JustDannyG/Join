@@ -25,6 +25,13 @@ function editDetails() {
     document.getElementById('edit-name').value = currentDetail.name;
     document.getElementById('edit-email').value = currentDetail.email;
     document.getElementById('edit-phone').value = currentDetail.phone;
+
+    document.getElementById('edit-initals-container').innerHTML = `
+    <span style="background-color:${currentDetail.color}" class="edit-initals center">${createInititals(currentDetail.name)}
+                        <input id="edit-color" type="color" value="${currentDetail.color}">
+                    </span>
+    `;
+
 }
 
 
@@ -47,9 +54,10 @@ async function editContact() {
     let name = document.getElementById('edit-name').value;
     let email = document.getElementById('edit-email').value;
     let phone = document.getElementById('edit-phone').value;
-    let contactsArray = getFromLocalStorage('contacts');
+    let color = document.getElementById('edit-color').value;
+    // let contactsArray = getFromLocalStorage('contacts');
     await putData(path = `/contacts/${key}`, data = {
-        'color': contactsArray[currentContactDetails].color,
+        'color': color,
         'name': name,
         'email': email,
         'phone': phone
