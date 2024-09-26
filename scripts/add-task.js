@@ -26,9 +26,9 @@ function addPrioColorToLow() {
 }
 
 
-function toggleDropdown(id) {
+function toggleDropdown(id, iconId) {
     const dropdown = document.getElementById(id);
-    const dropdownIcon = document.getElementById("drop-down-icon");
+    const dropdownIcon = document.getElementById(iconId);
     dropdown.classList.toggle("show-dropdown");
 
     if (dropdown.classList.contains("show-dropdown")) {
@@ -54,28 +54,64 @@ function closeDropdown() {
 
 
 
-function selectContact(name) {
-    let selectecdContacts = [];
-    const containerRef = document.getElementById("selectet-contacts-container");
-    const checkboxRef = document.getElementById("checkbox");
+const contacts = ['John Doe', 'Jane Smith', 'Emily Johnson'];
+const selectedContacts = [];
 
-    checkboxRef.checked = !checkboxRef.checked;
+function init() {
+    renderContacts();
+}
 
-    if (checkboxRef.checked) {
-        selectecdContacts.push(name);
+function renderContacts() {
+    const dropDownRef = document.getElementById("assign-to-dropdown-contacts");
+    dropDownRef.innerHTML = '';
 
+    for (let i = 0; i < contacts.length; i++) {
+        const contact = contacts[i];
+        let initials = createInititals(contact)
+
+        dropDownRef.innerHTML += `
+            <li onclick="selectContact('${contact}',${i}); stopEventBubbling(event)">
+                <div class="d-flex contact-row">
+                    <div class="center gap">
+                        <div class="contact center">${initials}</div>
+                        <span>${contact}</span>
+                    </div>
+                    <div class="container">
+                        <input type="checkbox" id="checkbox${i}" onclick="selectContact('${contact}'); stopEventBubbling(event)">
+                        <span class="checkmark"></span>
+                    </div>
+                </div>
+            </li>`;
+    }
+}
+
+function selectContact(name, i) {
+    const index = selectedContacts.indexOf(name);
+    const containerRef = document.getElementById("selected-contacts-container");
+    let checkboxRef = document.getElementById("checkbox" + i)
+
+
+    checkboxRef.checked = !checkboxRef.checked
+
+
+    if (index === -1) {
+        selectedContacts.push(name);
     } else {
-        const index = selectecdContacts.indexOf(name);
-        if (index > -1) {
-            selectecdContacts.splice(index, 1);
-        }
+        selectedContacts.splice(index, 1);
     }
-    containerRef.innerHTML = '';
 
-    for (let i = 0; i < selectecdContacts.length; i++) {
-        const contact = selectecdContacts[i];
+    containerRef.innerHTML = '';
+    for (let contact of selectedContacts) {
+        let initials = createInititals(contact)
         containerRef.innerHTML += `
-        <div class="contact center">${contact}</div>
-        `;
+            <div class="contact center">${initials}</div>`;
     }
+}
+
+
+
+function filter(id) {
+    let inputRef = document.getElementById(id)
+    inputRef.value = ""
+
 }
