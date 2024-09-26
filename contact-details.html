@@ -4,12 +4,14 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="./assets/icons/join-logo-light.png">
     <title>Join - Contact Details</title>
 
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./styles/contact.css" />
     <link rel="stylesheet" href="./styles/contact-details.css">
     <link rel="stylesheet" href="./styles/edit-contact-overlay.css">
+    <link rel="stylesheet" href="./styles/contact-details-responsive.css">
 
     <script src="./script.js"></script>
     <script src="./scripts/fetch.js"></script>
@@ -39,7 +41,8 @@
                     <span class="subtitle-details">Better with a team</span>
                     <div class="add-contact-underline"></div>
                 </div>
-                <a onclick="backwards()" href="contact.html"><img src="./assets/icons/left-arrow.png" alt="Back Link" /></a>
+                <a onclick="backwards()" href="contact.html"><img src="./assets/icons/left-arrow.png"
+                        alt="Back Link" /></a>
             </div>
         </div>
 
@@ -75,8 +78,8 @@
                 alt="Board " />Board</a>
         <a class="center column nav-link-mobile " href="./add-task.html "><img src="./assets/icons/add-task-icon.png "
                 alt="Add Task " />Add Task</a>
-        <a class="center column nav-link-mobile " href="./contact.html "><img src="./assets/icons/contacts-icon.png "
-                alt="Contacts " />Contacts</a>
+        <a class="center column nav-link-mobile current-link" href="./contact.html "><img
+                src="./assets/icons/contacts-icon.png " alt="Contacts " />Contacts</a>
     </aside>
 
     <!-- Start overlay -->
@@ -91,7 +94,11 @@
                 <h2 class="edit-headline">Edit contact
                     <span class="blue-underline"></span>
                 </h2>
-                <span class="edit-initals">AM</span>
+                <div id="edit-initals-container" class="edit-initals-container">
+                    <!-- <span  class="edit-initals">AM
+                        <input type="color">
+                    </span> -->
+                </div>
             </div>
 
             <div class="edit-form-inputs">
@@ -112,8 +119,8 @@
             </div>
 
             <div class="edit-action-btns">
-                <button class="edit-delete-btn" onclick="deleteContact(); return false">Delete</button>
-                <button class="edit-save-btn">Save <img src="./assets/icons/check.png" alt=""></button>
+                <button class="edit-delete-btn center" onclick="deleteContact(); return false">Delete</button>
+                <button class="edit-save-btn center">Save <img src="./assets/icons/check.png" alt=""></button>
             </div>
 
         </form>

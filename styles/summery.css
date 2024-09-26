@@ -19,6 +19,7 @@
     top: 0;
     width: 223px;
     height: 104px;
+    transition: all ease-in-out 125ms;
 
     animation-name: summary-1;
     animation-duration: 300ms;
@@ -46,7 +47,7 @@
 
 }
 
-.summerys-box {
+.summerys-box1{
     display: flex;
     justify-content: space-between;
     max-width: 396px;
@@ -54,6 +55,22 @@
     max-height: 110px;
     height: 100%;
     gap: 8px;
+
+    animation-name: summary-2;
+    animation-duration: 300ms;
+}
+
+.summerys-box2 {
+    display: flex;
+    justify-content: space-between;
+    max-width: 396px;
+    width: 100%;
+    max-height: 110px;
+    height: 100%;
+    gap: 8px;
+
+    animation-name: summary-1;
+    animation-duration: 300ms;
 }
 
 .summary-todo-btn {
@@ -71,12 +88,19 @@
     background-color: white;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
-    animation-name: summary-2;
-    animation-duration: 300ms;
+   
 }
 
 .summary-todo-btn:hover {
     scale: 1.1;
+    color: white;
+    background-color: var(--darke-blue);
+}
+
+.summary-todo-btn:active{
+    scale: 0.9;
+    color: white;
+    background-color: var(--light-blue);
 }
 
 .summary-counter {
@@ -106,12 +130,18 @@
     background-color: white;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
-    animation-name: summary-1;
-    animation-duration: 300ms;
 }
 
 .summary-urgent-btn:hover {
     scale: 1.1;
+    color: white;
+    background-color: var(--darke-blue);
+}
+
+.summary-urgent-btn:active {
+    scale: 0.9;
+    color: white;
+    background-color: var(--light-blue);
 }
 
 .urgent-count-box {
@@ -155,15 +185,19 @@
     background-color: white;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
-    animation-name: summary-2;
-    animation-duration: 300ms;
 }
 
 .summary-task-btn:hover {
     scale: 1.1;
+    color: white;
+    background-color: var(--darke-blue);
 }
 
-
+.summary-task-btn:active {
+    scale: 0.9;
+    color: white;
+    background-color: var(--light-blue);
+}
 
 @keyframes summary-1 {
     from {
@@ -185,3 +219,8 @@
         transform: translateX();
     }
 }
+
+
+
+
+
