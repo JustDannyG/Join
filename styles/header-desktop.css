@@ -8,10 +8,10 @@
     border: solid 1px black;
 }
 
-.header-title{
+.header-title {
     font-size: 20px;
     font-weight: 400;
-    margin: 0 300px;
+    margin-left: 300px;
 }
 
 .help-icon {
@@ -45,11 +45,11 @@
     background-color: #0C2E621F;
 }
 
-.header-actions{
+.header-actions {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 104px;
     height: 56px;
-    margin: 0 30px;
+    margin-right: 30px;
 }
