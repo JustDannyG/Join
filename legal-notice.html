@@ -16,72 +16,50 @@
 
 </head>
 
-<body onclick="closeAllMenus(event)" class="column">
+<body>
+  <div class="body-content">
 
-  <section id="join-header" class="join-header">
+    <section id="join-header" class="join-header">
+    </section>
 
-    <header class="d-flex header-mobile">
-      <img class="logo-mobile" src="./assets/icons/logo-dark.svg" alt="Join Logo" />
-      <div onclick="toggleMenu('menu', event)" id="current-user-header" class="current-user-header center">T</div>
-      <div id="menu" class="column menu">
-        <a href="./help.html">Help</a>
-        <a href="./legal-notice.html">Legal Notice</a>
-        <a href="./privacy-policy.html">Privacy Policy</a>
-        <a href="#">Log out</a>
+
+    <main class="d-flex content overflow-x-auto">
+      <div class="legal-notice">
+        <div class="headline d-flex">
+          <h1>Legal Notice</h1>
+          <a href="summary.html"><img src="./assets/icons/left-arrow.png" alt="Back Link" /></a>
+        </div>
+        <h2>Imprint</h2>
+        <ul>
+          <li>Student Names List]</li>
+          <li>Address of the JOIN operator - e.g. one of the students</li>
+          <li>Postcode and city</li>
+        </ul>
+        <h3>Exploring the Board</h3>
+        <p>Email: mail@mail.de</p>
+        <h3>Acceptance of terms</h3>
+        <p>
+          By accessing and using Join (Product), you acknowledge and agree to the following terms and conditions, and
+          any policies, guidelines, or amendments thereto that may be presented to you from time to time. We, the listed
+          students, may update or change the terms and conditions from time to time without notice.
+        </p>
+        <h3>Scope and ownership of the product</h3>
+        <p>
+          Join has been developed as part of a student group project in a web development bootcamp at the Developer
+          Akademie GmbH. It has an educational purpose and is not intended for extensive personal & business usage. As
+          such, we cannot guarantee consistent availability, reliability, accuracy, or any other aspect of quality
+          regarding this Product. The design of Join is owned by the Developer Akademie GmbH. Unauthorized use,
+          reproduction, modification, distribution, or replication of the design is strictly prohibited.
+        </p>
+        <h3>Proprietary rights</h3>
+        <p>Aside from the design owned by Developer</p>
       </div>
-    </header>
+    </main>
 
-  </section>
+    <section id="join-sidebar">
+    </section>
 
-
-  <main class="d-flex content overflow-x-auto">
-    <div class="legal-notice">
-      <div class="headline d-flex">
-        <h1>Legal Notice</h1>
-        <a href="summary.html"><img src="./assets/icons/left-arrow.png" alt="Back Link" /></a>
-      </div>
-      <h2>Imprint</h2>
-      <ul>
-        <li>Student Names List]</li>
-        <li>Address of the JOIN operator - e.g. one of the students</li>
-        <li>Postcode and city</li>
-      </ul>
-      <h3>Exploring the Board</h3>
-      <p>Email: mail@mail.de</p>
-      <h3>Acceptance of terms</h3>
-      <p>
-        By accessing and using Join (Product), you acknowledge and agree to the following terms and conditions, and
-        any policies, guidelines, or amendments thereto that may be presented to you from time to time. We, the listed
-        students, may update or change the terms and conditions from time to time without notice.
-      </p>
-      <h3>Scope and ownership of the product</h3>
-      <p>
-        Join has been developed as part of a student group project in a web development bootcamp at the Developer
-        Akademie GmbH. It has an educational purpose and is not intended for extensive personal & business usage. As
-        such, we cannot guarantee consistent availability, reliability, accuracy, or any other aspect of quality
-        regarding this Product. The design of Join is owned by the Developer Akademie GmbH. Unauthorized use,
-        reproduction, modification, distribution, or replication of the design is strictly prohibited.
-      </p>
-      <h3>Proprietary rights</h3>
-      <p>Aside from the design owned by Developer</p>
-    </div>
-  </main>
-
-  <section id="join-sidebar">
-
-    <aside class="d-flex sidebar-mobile">
-      <a class="center column nav-link-mobile" href="./summary.html"><img src="./assets/icons/summary-icon.png"
-          alt="Summary" />Summary</a>
-      <a class="center column nav-link-mobile" href="./board.html"><img src="./assets/icons/board-icon.png"
-          alt="Board" />Board</a>
-      <a class="center column nav-link-mobile" href="./add-task.html"><img src="./assets/icons/add-task-icon.png"
-          alt="Add Task" />Add Task</a>
-      <a class="center column nav-link-mobile" href="./contact.html"><img src="./assets/icons/contacts-icon.png"
-          alt="Contacts" />Contacts</a>
-    </aside>
-
-  </section>
-
+  </div>
 </body>
 
 </html>

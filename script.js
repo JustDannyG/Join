@@ -176,10 +176,10 @@ function desktopSidebar() {
     return `<aside class="sidebar-desktop">
         <img class="sidebar-logo-desktop" src="./assets/icons/join-logo-light.png" alt="">
         <nav class="sidebar-nav">
-            <a class="nav-link-desktop" href="#"><img src="./assets/icons/summary-icon.png" alt=""> Summary</a>
-            <a class="nav-link-desktop" href="#"><img src="./assets/icons/add-task-icon.png" alt=""> Add Task</a>
-            <a class="nav-link-desktop" href="#"><img src="./assets/icons/board-icon.png" alt=""> Board</a>
-            <a class="nav-link-desktop" href="#"><img src="./assets/icons/contacts-icon.png" alt=""> Contacts</a>
+            <a class="nav-link-desktop" href="summary.html"><img src="./assets/icons/summary-icon.png" alt=""> Summary</a>
+            <a class="nav-link-desktop" href="add-task.html"><img src="./assets/icons/add-task-icon.png" alt=""> Add Task</a>
+            <a class="nav-link-desktop" href="board.html"><img src="./assets/icons/board-icon.png" alt=""> Board</a>
+            <a class="nav-link-desktop" href="contact.html"><img src="./assets/icons/contacts-icon.png" alt=""> Contacts</a>
         </nav>
         <div class="sidebar-info">
             <a href="privacy-policy.html">Privacy Policy</a>
