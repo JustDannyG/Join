@@ -33,13 +33,44 @@ function stopEventBubbling(event) {
 }
 
 function clearInput(input) {
-    input.value = ""
+    input.value = "";
 }
 
 function backwards() {
     window.location.href = "summary.html";
 }
 
+
+
+function createInititals(selectName) {
+    let firstsChar = selectName;
+    parts = firstsChar.split(' ');
+    if (parts.length == 1) {
+        neededPartOne = parts[0].slice(0, 1);
+        return neededPartOne;
+    } else if (parts.length == 2) {
+        neededPartOne = parts[0].slice(0, 1);
+        neededPartTwo = parts[1].slice(0, 1);
+        return neededPartOne + neededPartTwo;
+    } else if (parts.length == 3) {
+        neededPartOne = parts[0].slice(0, 1);
+        neededPartThree = parts[2].slice(0, 1);
+        return neededPartOne + neededPartThree;
+    }
+}
+
+
+function randomColor() {
+    let random = Math.floor(Math.random() * 16777215).toString(16);
+    let hexCode = '#' + random;
+    return hexCode;
+
+}
+
+function sortByAlphabet(arr) {
+    arr.sort((a, b) => a.name.localeCompare(b.name));
+    return arr;
+}
 
 
 
@@ -126,6 +157,7 @@ function desktopSidebar() {
 }
 
 
+
 function greetingTime() {
 
 }
@@ -134,3 +166,4 @@ function greetingUser() {
     let greetUser = document.getElementById('greeting-name');
     greetUser.innerHTML = user;
 }
+
