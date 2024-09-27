@@ -1,7 +1,7 @@
 .summary-content {
     position: relative;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
     height: 100%;
@@ -47,7 +47,7 @@
 
 }
 
-.summerys-box1{
+.summerys-box1 {
     display: flex;
     justify-content: space-between;
     max-width: 396px;
@@ -88,7 +88,7 @@
     background-color: white;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
-   
+
 }
 
 .summary-todo-btn:hover {
@@ -97,7 +97,7 @@
     background-color: var(--darke-blue);
 }
 
-.summary-todo-btn:active{
+.summary-todo-btn:active {
     scale: 0.9;
     color: white;
     background-color: var(--light-blue);
@@ -199,6 +199,27 @@
     background-color: var(--light-blue);
 }
 
+.summary-greeting-container {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    width: 385px;
+    height: 136px;
+    margin-top: 130px;
+    margin-left: 80px;
+}
+
+.greeting-time {
+    font-size: 47px;
+    font-weight: 500;
+}
+
+.greeting-name {
+    color: var(--light-blue);
+    font-size: 64px;
+    font-weight: 700;
+}
+
 @keyframes summary-1 {
     from {
         transform: translateX(100vw);
@@ -219,8 +240,3 @@
         transform: translateX();
     }
 }
-
-
-
-
-
