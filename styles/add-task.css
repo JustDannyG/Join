@@ -183,6 +183,11 @@ button {
     transform: rotate(0);
 }
 
+.not-found-container {
+    font-size: 12px;
+    margin: 4px;
+}
+
 
 /*Drop-Down Menü*/
 
