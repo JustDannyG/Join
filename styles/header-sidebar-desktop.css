@@ -1,6 +1,3 @@
-
-
-
 /* Header Desktop */
 
 .header-desktop {
@@ -75,6 +72,7 @@
     width: 232px;
     height: 100vh;
     background-color: var(--darke-blue);
+    transition: all ease-in-out 125ms;
 }
 
 .sidebar-logo-desktop {
@@ -87,7 +85,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 232px;
+    /* width: 232px; */
+    width: 100%;
     height: 229px;
     gap: 15px;
 }
@@ -97,7 +96,8 @@
     display: flex;
     align-items: center;
     padding-left: 56px;
-    width: 232px;
+    /* width: 232px; */
+    width: 100%;
     height: 46px;
     gap: 8px;
 }
@@ -129,7 +129,7 @@
     transition: all ease-in-out 125ms;
 }
 
-.sidebar-info a:hover{
+.sidebar-info a:hover {
     color: var(--light-blue);
     font-weight: bold;
 }

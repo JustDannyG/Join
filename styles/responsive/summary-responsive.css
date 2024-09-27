@@ -29,23 +29,60 @@
         gap: 14px;
     }
 
-    
+
 }
 
 
 
 
 
-@media(min-width: 1440px){
+@media(min-width: 1024px) {
+
+    .summary-headline-container {
+        left: 40px;
+    }
+
+    .summary-greeting-container {
+        display: flex;
+        margin-left: 30px;
+    }
+
+    .summary-content {
+        justify-content: space-around;
+    }
+
+    .greeting-name {
+        font-size: 58px;
+    }
+
+    .greeting-time {
+        font-size: 41px;
+    }
+}
+
+
+@media(min-width: 1440px) {
+
+    .summary-content {
+        justify-content: space-around;
+    }
+
     .summary-headline-container {
         left: 100px;
     }
 
     .summary-greeting-container {
         display: flex;
+        margin-left: 80px;
     }
 
-    .summary-content {
-        justify-content: space-around;
+    .greeting-name {
+        font-size: 64px;
     }
+
+    .greeting-time {
+        font-size: 47px;
+    }
+
+
 }
