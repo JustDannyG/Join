@@ -34,11 +34,11 @@
     width: 30px;
 }
 
-section {
+/* section {
     margin-top: 24px;
     min-height: min-content;
     max-height: 400px;
-}
+} */
 
 .no-task {
     margin-top: 16px;
