@@ -72,7 +72,24 @@ function sortByAlphabet(arr) {
     return arr;
 }
 
+function clearContent(e) {
+    e.innerHTML = "";
+}
 
+function isCheckBoxChecked(e) {
+    return e.checked
+}
+
+function checkLengthGreater(e, n) {
+    return e.length > n
+}
+
+function checkLengthSmaller(e, n) {
+    return e.length > n
+}
+
+
+//Mobile / Desktop //
 
 function checkScreenWidth() {
     let header = document.getElementById('join-header');
@@ -166,4 +183,3 @@ function greetingUser() {
     let greetUser = document.getElementById('greeting-name');
     greetUser.innerHTML = user;
 }
-
