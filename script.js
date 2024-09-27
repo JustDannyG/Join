@@ -1,3 +1,6 @@
+let user = 'Guest';
+
+
 function toggleOverlay(id, className) {
     document.getElementById(id).classList.toggle(className)
 }
@@ -123,7 +126,7 @@ function desktopHeader() {
 }
 
 
-function mobileSidebar(){
+function mobileSidebar() {
     return `<aside class="d-flex sidebar-mobile">
       <a class="center column nav-link-mobile" href="./summary.html"><img src="./assets/icons/summary-icon.png"
           alt="Summary" />Summary</a>
@@ -147,9 +150,20 @@ function desktopSidebar() {
             <a class="nav-link-desktop" href="#"><img src="./assets/icons/contacts-icon.png" alt=""> Contacts</a>
         </nav>
         <div class="sidebar-info">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Legal notice</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="legal-notice.html">Legal notice</a>
         </div>
     </aside>`;
+}
+
+
+
+function greetingTime() {
+
+}
+
+function greetingUser() {
+    let greetUser = document.getElementById('greeting-name');
+    greetUser.innerHTML = user;
 }
 
