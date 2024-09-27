@@ -1,3 +1,6 @@
+let user = 'Guest';
+
+
 function toggleOverlay(id, className) {
     document.getElementById(id).classList.toggle(className)
 }
@@ -92,7 +95,7 @@ function desktopHeader() {
 }
 
 
-function mobileSidebar(){
+function mobileSidebar() {
     return `<aside class="d-flex sidebar-mobile">
       <a class="center column nav-link-mobile" href="./summary.html"><img src="./assets/icons/summary-icon.png"
           alt="Summary" />Summary</a>
@@ -120,4 +123,14 @@ function desktopSidebar() {
             <a href="legal-notice.html">Legal notice</a>
         </div>
     </aside>`;
+}
+
+
+function greetingTime() {
+
+}
+
+function greetingUser() {
+    let greetUser = document.getElementById('greeting-name');
+    greetUser.innerHTML = user;
 }
