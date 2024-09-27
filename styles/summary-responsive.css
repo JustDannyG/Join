@@ -28,4 +28,24 @@
     .summary-urgent-btn {
         gap: 14px;
     }
+
+    
+}
+
+
+
+
+
+@media(min-width: 1440px){
+    .summary-headline-container {
+        left: 100px;
+    }
+
+    .summary-greeting-container {
+        display: flex;
+    }
+
+    .summary-content {
+        justify-content: space-around;
+    }
 }

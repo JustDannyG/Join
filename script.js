@@ -116,8 +116,8 @@ function desktopSidebar() {
             <a class="nav-link-desktop" href="#"><img src="./assets/icons/contacts-icon.png" alt=""> Contacts</a>
         </nav>
         <div class="sidebar-info">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Legal notice</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="legal-notice.html">Legal notice</a>
         </div>
     </aside>`;
 }
