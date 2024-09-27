@@ -141,36 +141,53 @@ button {
     background-color: var(--light-blue);
 }
 
-.clear:hover {
-    border: 2px solid var(--light-blue);
-    color: var(--light-blue);
-}
-
-.clear:hover img {
-    filter: brightness(0) saturate(100%) invert(68%) sepia(40%) saturate(3094%) hue-rotate(166deg) brightness(88%) contrast(101%);
-}
-
 .required {
     color: var(--required);
+}
+
+.drop-down input {
+    position: relative;
+    width: 100%;
+    margin: 0;
+}
+
+.drop-down img {
+    position: absolute;
+    right: 12px;
+    top: 50%;
 }
 
 
 /* Dropdown */
 
 .select-placeholder {
+    position: relative;
+    height: 34px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border: 1px solid #ccc;
-    border-radius: 8px;
     padding: 8px;
+    border-radius: 8px;
     cursor: pointer;
     background-color: var(--white);
 }
 
+
+/* .select-placeholder::before {
+    border: 1px solid var(--light-blue);
+} */
+
 .select-placeholder img {
-    transition: transform 125ms ease-in;
+    transition: all 125ms ease-in;
     transform: rotate(0);
+}
+
+
+/*Drop-Down Menü*/
+
+.drop-down {
+    position: relative;
 }
 
 .dropdown-options {
@@ -192,9 +209,17 @@ button {
     color: var(--white);
 }
 
+.contact-active {
+    background-color: var(--darke-blue)!important;
+    color: var(--white);
+}
+
 .show-dropdown {
     display: block;
 }
+
+
+/*Priority Buttons*/
 
 .low {
     background-color: var(--low);
@@ -268,21 +293,6 @@ button {
     transform: rotate(45deg);
 } */
 
-.logo-desktop {
-    margin-top: 40px;
-    width: 80px;
-}
-
-.text-desktop {
-    font-size: 12px;
-}
-
-.aside-desktop {
-    background-color: var(--darke-blue);
-    width: 232px;
-    align-items: center;
-}
-
 .links {
     margin-top: 72px;
     gap: 40px;
@@ -292,24 +302,4 @@ button {
     color: var(--white);
     align-items: center;
     gap: 8px;
-}
-
-.left,
-.right {
-    /* width: 360px; */
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-}
-
-.h-18 {
-    height: 34px;
-}
-
-.inputs {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    flex-wrap: wrap;
-    gap: 40px;
 }

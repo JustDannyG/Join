@@ -12,7 +12,7 @@
     <script src="./scripts/add-task.js"></script>
 </head>
 
-<body onclick="closeAllMenus(event), closeDropdown()" class="column">
+<body onload="init()" onclick="closeAllMenus(event), closeDropdown()" class="column">
     <header class="d-flex header-mobile">
         <img class="logo-mobile" src="./assets/icons/logo-dark.svg" alt="Join Logo" />
         <div onclick="toggleOverlay('menu', 'menu-active'), stopEventBubbling(event)" id="current-user-header" class="current-user-header center">T</div>
@@ -31,7 +31,7 @@
                 <h1>Add Task</h1>
             </div>
             <div class="column mt-16">
-                <label for="task">Title<span class="required">*</span></label>
+                <label for="title">Title<span class="required">*</span></label>
                 <input required id="title" type="text" placeholder="Enter a title">
             </div>
 
@@ -42,31 +42,20 @@
 
             <div class="column mt-16">
                 <label for="assign-to-dropdown">Assigned to</label>
-                <div class="drop-down" onclick="toggleDropdown('assign-to-dropdown-contacts'), stopEventBubbling(event)">
-                    <div id="assign-to-dropdown" class="select-placeholder">
-                        <span> Select contacts to assign</span>
-                        <img id="drop-down-icon" src="./assets/icons/arrow-drop-down.png">
-                    </div>
-                    <ul id="assign-to-dropdown-contacts" class="dropdown-options">
-                        <li onclick="selectContact('name1'); stopEventBubbling(event)">
-                            <div class="d-flex contact-row">
-                                <div class="center gap">
-                                    <div class="contact center">n1</div>
-                                    <span>Name1</span>
-                                </div>
-                                <label class="container">
-                                    <input type="checkbox" id="checkbox" checked="false" onclick="selectContact('name1')" >
-                                    <span class="checkmark"></span>
-                                  </label>
-                            </div>
-                        </li>
-                    </ul>
+                <div class="drop-down d-flex">
+                    <input id="assign-to-dropdown" onkeyup="filter('assign-to-dropdown')" onclick="handleInputClick(event)" value="Select contacts to assign" class="select-placeholder">
+
+                    <img id="drop-down-icon1" src="./assets/icons/arrow-drop-down.png">
                 </div>
-                <div id="selectet-contacts-container" class="d-flex selectet-contacts-container"></div>
+                <ul id="assign-to-dropdown-contacts" class="dropdown-options">
+                    <!-- Kontakte -->
+                </ul>
+            </div>
+            <div id="selected-contacts-container" class="d-flex selectet-contacts-container"></div>
             </div>
 
             <div class="column mt-16">
-                <label for="date ">Due date<span class="required">*</span></label>
+                <label for="date">Due date<span class="required">*</span></label>
                 <input required id="date" type="date">
             </div>
 
@@ -80,15 +69,15 @@
             </div>
 
             <div class="column mt-16">
-                <label for="category">Category<span class="required">*</span></label>
-                <div class="drop-down" onclick="toggleDropdown( 'category-dropdown'), stopEventBubbling(event) ">
+                <span>Category<span class="required">*</span></span>
+                <div id="test" class="drop-down" onclick="toggleDropdown('category-dropdown','drop-down-icon2'), stopEventBubbling(event) ">
                     <div id="selected-category" class="select-placeholder">
                         <span id="drop-down-text"> Select task category</span>
-                        <img id="drop-down-icon" src="./assets/icons/arrow-drop-down.png">
+                        <img id="drop-down-icon2" src="./assets/icons/arrow-drop-down.png">
                     </div>
                     <ul id="category-dropdown" class="dropdown-options">
-                        <li onclick="selectCategory( 'Technical Task'), closeDropdown(), stopEventBubbling(event)">Technical Task</li>
-                        <li onclick="selectCategory( 'User Story'), closeDropdown(), stopEventBubbling(event)">User Story</li>
+                        <li onclick="selectCategory('Technical Task'), closeDropdown(), stopEventBubbling(event)">Technical Task</li>
+                        <li onclick="selectCategory('User Story'), closeDropdown(), stopEventBubbling(event)">User Story</li>
                     </ul>
                 </div>
             </div>
