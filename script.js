@@ -30,7 +30,7 @@ function stopEventBubbling(event) {
 }
 
 function clearInput(input) {
-    input.value = ""
+    input.value = "";
 }
 
 function backwards() {

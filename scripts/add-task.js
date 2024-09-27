@@ -29,7 +29,7 @@ function addPrioColorToLow() {
 function toggleDropdown(id, iconId) {
     const dropdown = document.getElementById(id);
     const dropdownIcon = document.getElementById(iconId);
-    dropdown.classList.toggle("show-dropdown");
+    dropdown.classList.add("show-dropdown");
 
     if (dropdown.classList.contains("show-dropdown")) {
         dropdownIcon.style.transform = 'rotate(180deg)';
@@ -44,74 +44,130 @@ function selectCategory(category) {
 }
 
 function closeDropdown() {
-    const dropdownCategory = document.getElementById('category-dropdown');
-    const dropdownContacts = document.getElementById('assign-to-dropdown-contacts');
-    const dropdownIcon = document.getElementById("drop-down-icon");
 
-    dropdownCategory.classList.remove("show-dropdown") || dropdownContacts.classList.remove("show-dropdown");
-    dropdownIcon.style.transform = 'rotate(0deg)';
 }
 
 
-
-const contacts = ['John Doe', 'Jane Smith', 'Emily Johnson'];
+const contacts = [{ name: 'John Doe' }, { name: 'Jane Smith' }, { name: 'Emily Johnson' }];
 const selectedContacts = [];
+// const unselectedContacts = [];
+
 
 function init() {
-    renderContacts();
+    renderContacts(contacts);
 }
 
-function renderContacts() {
+function renderContacts(arr) {
     const dropDownRef = document.getElementById("assign-to-dropdown-contacts");
     dropDownRef.innerHTML = '';
 
-    for (let i = 0; i < contacts.length; i++) {
-        const contact = contacts[i];
-        let initials = createInititals(contact)
+
+
+    for (let i = 0; i < arr.length; i++) {
+        const contact = arr[i];
+        let initials = createInititals(contact.name)
+
 
         dropDownRef.innerHTML += `
-            <li onclick="selectContact('${contact}',${i}); stopEventBubbling(event)">
+            <li id="contact${i}" onclick="selectContact('${contact.name}',${i}); stopEventBubbling(event)">
                 <div class="d-flex contact-row">
                     <div class="center gap">
                         <div class="contact center">${initials}</div>
-                        <span>${contact}</span>
+                        <span>${contact.name}</span>
                     </div>
                     <div class="container">
-                        <input type="checkbox" id="checkbox${i}" onclick="selectContact('${contact}'); stopEventBubbling(event)">
+                        <input type="checkbox" id="checkbox${i}" onclick="selectContact('${contact.name}'); stopEventBubbling(event)">
                         <span class="checkmark"></span>
                     </div>
                 </div>
             </li>`;
+
+        if (contact.checked) {
+            let contactContainerRef = document.getElementById("contact" + i);
+            let checkboxRef = document.getElementById("checkbox" + i);
+            checkboxRef.checked = true;
+            contactContainerRef.classList.add("contact-active");
+            console.log(checkboxRef);
+
+        } else if (!contact.checked) {
+            let contactContainerRef = document.getElementById("contact" + i);
+            let checkboxRef = document.getElementById("checkbox" + i);
+            checkboxRef.checked = false;
+            contactContainerRef.classList.remove("contact-active");
+            console.log(checkboxRef);
+
+        }
     }
 }
 
+
+
+
+
 function selectContact(name, i) {
-    const index = selectedContacts.indexOf(name);
-    const containerRef = document.getElementById("selected-contacts-container");
-    let checkboxRef = document.getElementById("checkbox" + i)
+    const index = selectedContacts.findIndex(contact => contact.name === name);
+    const indexContacts = contacts.findIndex(contact => contact.name === name);
+    let checkboxRef = document.getElementById("checkbox" + i);
+    let contactContainerRef = document.getElementById("contact" + i);
 
-
-    checkboxRef.checked = !checkboxRef.checked
-
+    checkboxRef.checked = !checkboxRef.checked;
 
     if (index === -1) {
-        selectedContacts.push(name);
-    } else {
-        selectedContacts.splice(index, 1);
-    }
+        if (indexContacts !== -1) {
+            contacts.splice(indexContacts, 1);
+        }
+        selectedContacts.push({ "name": name, "checked": checkboxRef.checked });
+        contacts.push({ "name": name, "checked": checkboxRef.checked });
+        contactContainerRef.classList.add("contact-active");
 
+    } else if (index >= 0) {
+        selectedContacts.splice(index, 1);
+        if (indexContacts !== -1) {
+            contacts.splice(indexContacts, 1);
+        }
+        contacts.push({ "name": name, "checked": checkboxRef.checked });
+        contactContainerRef.classList.remove("contact-active");
+    }
+    console.log(checkboxRef);
+    renderSelectetContacts();
+}
+
+function renderSelectetContacts() {
+    const containerRef = document.getElementById("selected-contacts-container");
     containerRef.innerHTML = '';
     for (let contact of selectedContacts) {
-        let initials = createInititals(contact)
+
+        let initials = createInititals(contact.name);
         containerRef.innerHTML += `
             <div class="contact center">${initials}</div>`;
     }
+
+}
+
+function handleInputClick(event) {
+    clearInput(event.target);
+    toggleDropdown('assign-to-dropdown-contacts', 'drop-down-icon1');
+    stopEventBubbling(event);
 }
 
 
 
 function filter(id) {
-    let inputRef = document.getElementById(id)
-    inputRef.value = ""
+
+    let inputRef = document.getElementById(id);
+    let input = inputRef.value.toLowerCase();
+
+    if (input.length > 2) {
+        const result = contacts.filter(contact => {
+            if (contact.checked !== true || contact.checked === undefined) {
+                return contact.name.toLowerCase().includes(input);
+            }
+            return false;
+        });
+        renderContacts(result)
+    } else {
+        renderContacts(contacts)
+    }
+
 
 }

@@ -31,7 +31,7 @@
                 <h1>Add Task</h1>
             </div>
             <div class="column mt-16">
-                <label for="task">Title<span class="required">*</span></label>
+                <label for="title">Title<span class="required">*</span></label>
                 <input required id="title" type="text" placeholder="Enter a title">
             </div>
 
@@ -41,9 +41,10 @@
             </div>
 
             <div class="column mt-16">
-                <label>Assigned to</label>
+                <label for="assign-to-dropdown">Assigned to</label>
                 <div class="drop-down d-flex">
-                    <input onclick="toggleDropdown('assign-to-dropdown-contacts','drop-down-icon1'), filter('assign-to-dropdown') ,stopEventBubbling(event)" value="Select contacts to assign" id="assign-to-dropdown" class="select-placeholder">
+                    <input id="assign-to-dropdown" onkeyup="filter('assign-to-dropdown')" onclick="handleInputClick(event)" value="Select contacts to assign" class="select-placeholder">
+
                     <img id="drop-down-icon1" src="./assets/icons/arrow-drop-down.png">
                 </div>
                 <ul id="assign-to-dropdown-contacts" class="dropdown-options">
@@ -54,7 +55,7 @@
             </div>
 
             <div class="column mt-16">
-                <label for="date ">Due date<span class="required">*</span></label>
+                <label for="date">Due date<span class="required">*</span></label>
                 <input required id="date" type="date">
             </div>
 
@@ -68,8 +69,8 @@
             </div>
 
             <div class="column mt-16">
-                <label for="category">Category<span class="required">*</span></label>
-                <div class="drop-down" onclick="toggleDropdown('category-dropdown','drop-down-icon2'), stopEventBubbling(event) ">
+                <span>Category<span class="required">*</span></span>
+                <div id="test" class="drop-down" onclick="toggleDropdown('category-dropdown','drop-down-icon2'), stopEventBubbling(event) ">
                     <div id="selected-category" class="select-placeholder">
                         <span id="drop-down-text"> Select task category</span>
                         <img id="drop-down-icon2" src="./assets/icons/arrow-drop-down.png">
