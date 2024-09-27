@@ -49,18 +49,20 @@
 
             <div class="column mt-16">
                 <label for="assign-to-dropdown">Assigned to</label>
-                <div class="drop-down d-flex">
-                    <input id="assign-to-dropdown" onkeyup="filter('assign-to-dropdown')"
-                        onclick="handleInputClick(event)" value="Select contacts to assign" class="select-placeholder">
-                    <img id="drop-down-icon1" src="./assets/icons/arrow-drop-down.png">
+
+                <div id="dropdown" class="drop-down d-flex">
+                    <input id="assign-to-dropdown" onkeyup="filter('assign-to-dropdown')" onclick="handleInputClick(event)" value="Select contacts to assign">
+                    <button onclick="handleDropdownButtonClick(event)" type="button" class="dropdown-btn">
+                        <img id="drop-down-icon1" src="./assets/icons/arrow-drop-down.png">
+                    </button>
+
                 </div>
                 <ul id="assign-to-dropdown-contacts" class="dropdown-options">
-                    <!-- Kontakte -->
+                    <!-- Contacts -->
                 </ul>
             </div>
             <div id="not-found-container" class="not-found-container"></div>
             <div id="selected-contacts-container" class="d-flex selectet-contacts-container"></div>
-            </div>
 
             <div class="column mt-16">
                 <label for="date">Due date<span class="required">*</span></label>
@@ -82,11 +84,14 @@
 
             <div class="column mt-16">
                 <span>Category<span class="required">*</span></span>
-                <div id="test" class="drop-down"
-                    onclick="toggleDropdown('category-dropdown','drop-down-icon2'), stopEventBubbling(event) ">
+
+                <div id="dropdown2" class="drop-down" onclick="toggleDropdown('category-dropdown','drop-down-icon2'), stopEventBubbling(event) ">
+
                     <div id="selected-category" class="select-placeholder">
                         <span id="drop-down-text"> Select task category</span>
-                        <img id="drop-down-icon2" src="./assets/icons/arrow-drop-down.png">
+                        <button type="button" class="dropdown-btn">
+                            <img id="drop-down-icon2" src="./assets/icons/arrow-drop-down.png">
+                      
                     </div>
                     <ul id="category-dropdown" class="dropdown-options">
                         <li onclick="selectCategory('Technical Task'), closeDropdown(), stopEventBubbling(event)">
@@ -123,6 +128,7 @@
     <div class="d-flex submit-row">
         <div><span class="required ">*</span>This field is required</div>
         <button class="submit" type="submit" form="add-task">Create Task <img src="./assets/icons/check.png"></button>
+
     </div>
 
     <aside class="d-flex sidebar-mobile ">
@@ -135,6 +141,7 @@
         <a class="center column nav-link-mobile " href="./contact.html "><img src="./assets/icons/contacts-icon.png "
                 alt="Contacts " />Contacts</a>
     </aside>
+
 </body>
 
 </html>
