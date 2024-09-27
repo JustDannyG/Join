@@ -32,9 +32,7 @@ function stopEventBubbling(event) {
     event.stopPropagation();
 }
 
-function clearInput(input) {
-    input.value = "";
-}
+
 
 function backwards() {
     window.location.href = "summary.html";
@@ -76,6 +74,11 @@ function clearContent(e) {
     e.innerHTML = "";
 }
 
+function clearInput(input) {
+    input.value = "";
+
+}
+
 function isCheckBoxChecked(e) {
     return e.checked
 }
@@ -88,6 +91,18 @@ function checkLengthSmaller(e, n) {
     return e.length > n
 }
 
+
+function toogleClass(id, className) {
+    document.getElementById(id).classList.toggle(className);
+}
+
+function removeClass(id, className) {
+    document.getElementById(id).classList.remove(className)
+}
+
+function addClass(id, className) {
+    document.getElementById(id).classList.add(className)
+}
 
 //Mobile / Desktop //
 

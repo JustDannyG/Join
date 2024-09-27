@@ -1,3 +1,5 @@
+let isDropdownOpen = false;
+
 function addPrioColorToUrgent() {
     document.getElementById("urgent-btn").classList.add("urgent")
     document.getElementById("medium-btn").classList.remove("medium")
@@ -29,12 +31,15 @@ function addPrioColorToLow() {
 function toggleDropdown(id, iconId) {
     const dropdown = document.getElementById(id);
     const dropdownIcon = document.getElementById(iconId);
-    dropdown.classList.add("show-dropdown");
+    dropdown.classList.toggle("show-dropdown");
 
     if (dropdown.classList.contains("show-dropdown")) {
         dropdownIcon.style.transform = 'rotate(180deg)';
+
+
     } else {
         dropdownIcon.style.transform = 'rotate(0deg)';
+        removeClass('dropdown', 'input-active');
     }
 }
 
@@ -43,7 +48,8 @@ function openDropdown(id, iconId) {
     const dropdownIcon = document.getElementById(iconId);
     dropdown.classList.add("show-dropdown");
     dropdownIcon.style.transform = 'rotate(180deg)';
-
+    isDropdownOpen = true;
+    addClass('dropdown', 'input-active');
 }
 
 function closeDropdown(id, iconId) {
@@ -52,6 +58,32 @@ function closeDropdown(id, iconId) {
 
     dropdown.classList.remove("show-dropdown");
     dropdownIcon.style.transform = 'rotate(0deg)';
+    isDropdownOpen = false;
+    resetInputText()
+    removeClass('dropdown', 'input-active');
+}
+
+
+function handleDropdownButtonClick(event) {
+    const input = document.getElementById('assign-to-dropdown');
+    stopEventBubbling(event);
+    resetInputText();
+    toggleDropdown('assign-to-dropdown-contacts', 'drop-down-icon1');
+    removeClass('dropdown', 'input-active');
+
+    isDropdownOpen = !isDropdownOpen;
+    if (isDropdownOpen) {
+        clearInput(input);
+        renderContacts(contacts);
+        addClass('dropdown', 'input-active');
+    }
+}
+
+
+function resetInputText() {
+    let inputRef = document.getElementById("assign-to-dropdown")
+    inputRef.value = 'Select contacts to assign'
+
 }
 
 function selectCategory(category) {
@@ -111,21 +143,22 @@ function selectContact(name, i) {
     let contactContainerRef = document.getElementById("contact" + i);
 
     checkboxRef.checked = !checkboxRef.checked;
+    handleContactSelection(index, indexContacts, name, checkboxRef.checked, contactContainerRef);
+    renderSelectetContacts();
+}
 
+function handleContactSelection(index, indexContacts, name, checked, contactContainerRef) {
     if (index === -1) {
         removeFromContactsList(contacts, indexContacts);
-        updateContactsList(selectedContacts, name, checkboxRef.checked);
-        updateContactsList(contacts, name, checkboxRef.checked);
-
+        updateContactsList(selectedContacts, name, checked);
+        updateContactsList(contacts, name, checked);
         contactContainerRef.classList.add("contact-active");
-    } else if (index >= 0) {
+    } else {
         selectedContacts.splice(index, 1);
         removeFromContactsList(contacts, indexContacts);
-        updateContactsList(contacts, name, checkboxRef.checked);
-
+        updateContactsList(contacts, name, checked);
         contactContainerRef.classList.remove("contact-active");
     }
-    renderSelectetContacts();
 }
 
 function updateContactsList(contactArray, name, checked) {
@@ -163,20 +196,28 @@ function filter(id) {
         const result = findInput(input);
         if (result.length === 0) {
             displayNoContactFoundMessage();
+        } else {
+            renderContacts(result);
         }
-        renderContacts(result);
     } else {
         renderContacts(contacts);
     }
 }
 
 function displayNoContactFoundMessage() {
-    const containerRef = document.getElementById("not-found-container");
-    containerRef.innerHTML = 'No Contact found!';
+    const dropdownRef = document.getElementById("assign-to-dropdown-contacts");
+    dropdownRef.innerHTML = '<li class="not-found">Nicht gefunden</li>';
 }
+
+
+// function findInput(input) {
+//     let result = contacts.filter(contact =>
+//         !contact.checked && contact.name.toLowerCase().includes(input))
+//     return result
+// }
 
 function findInput(input) {
     let result = contacts.filter(contact =>
-        !contact.checked && contact.name.toLowerCase().includes(input))
+        contact.name.toLowerCase().includes(input))
     return result
 }
