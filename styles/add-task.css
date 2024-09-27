@@ -215,7 +215,7 @@ button {
 }
 
 .contact-active {
-    background-color: var(--darke-blue)!important;
+    background-color: var(--darke-blue) !important;
     color: var(--white);
 }
 
@@ -308,3 +308,114 @@ button {
     align-items: center;
     gap: 8px;
 }
+
+
+
+/* Subtasks */
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 20px;
+  }
+
+  .add-task-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 48px;
+    width: 440px;
+    border: solid 1px #d1d1d1;
+    border-radius: 10px;
+    padding: 12px 21px;
+    box-sizing: border-box;
+    background-color: white;
+  }
+
+  .add-subtask-btn {
+    cursor: pointer;
+  }
+
+  .subtask {
+    display: flex;
+    height: 30px;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all ease-in-out 125ms;
+  }
+  
+  .subtask img {
+    margin: 0 5px;
+    display: none;
+  }
+  
+  .subtask:hover img {
+    display: block;
+  }
+  
+  .subtask img:hover {
+    scale: 1.1;
+  }
+  
+  .subtask span {
+    display: none;
+  }
+  
+  .subtask:hover span {
+    display: block;
+    background-color: black;
+  }
+  
+  .subtask:hover {
+    background-color: #d1d1d1;
+  }
+  
+  .subtask p:before {
+    content: '• ';
+  }
+  
+  .subtask-text {
+    display: flex;
+    width: 100%;
+  }
+  
+  .subtask-text p {
+    width: 100%;
+  }
+  
+  .word-item {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    height: 30px;
+  }
+  
+  .word-item input {
+    font-size: 16px;
+    width: 100%;
+    border: none;
+    border-bottom: solid 1px #29abe2;
+  }
+  
+  .word-item input:focus {
+    outline: none;
+  }
+  
+  .word-item svg {
+    margin: 0 10px;
+    cursor: pointer;
+  }
+  
+  .word-item button {
+    background-color: unset;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .word-item button img {
+    width: 15px;
+    margin: 5px;
+  }
