@@ -38,20 +38,30 @@ function toggleDropdown(id, iconId) {
     }
 }
 
+function openDropdown(id, iconId) {
+    const dropdown = document.getElementById(id);
+    const dropdownIcon = document.getElementById(iconId);
+    dropdown.classList.add("show-dropdown");
+    dropdownIcon.style.transform = 'rotate(180deg)';
+
+}
+
+function closeDropdown(id, iconId) {
+    const dropdown = document.getElementById(id);
+    const dropdownIcon = document.getElementById(iconId);
+
+    dropdown.classList.remove("show-dropdown");
+    dropdownIcon.style.transform = 'rotate(0deg)';
+}
+
 function selectCategory(category) {
     const selectedCategory = document.getElementById("drop-down-text");
     selectedCategory.innerHTML = category;
 }
 
-function closeDropdown() {
-
-}
-
 
 const contacts = [{ name: 'John Doe' }, { name: 'Jane Smith' }, { name: 'Emily Johnson' }];
 const selectedContacts = [];
-// const unselectedContacts = [];
-
 
 function init() {
     renderContacts(contacts);
@@ -59,49 +69,39 @@ function init() {
 
 function renderContacts(arr) {
     const dropDownRef = document.getElementById("assign-to-dropdown-contacts");
-    dropDownRef.innerHTML = '';
+    clearContent(dropDownRef)
+    sortByAlphabet(arr)
+    getContactOfContacts(arr, dropDownRef)
 
 
+}
 
+function getContactOfContacts(arr, ref) {
     for (let i = 0; i < arr.length; i++) {
         const contact = arr[i];
         let initials = createInititals(contact.name)
+        ref.innerHTML += contactInDropDownHTML(i, contact, initials);
 
+        if (isCheckBoxChecked(contact)) {
+            setSelectedDesign(i);
 
-        dropDownRef.innerHTML += `
-            <li id="contact${i}" onclick="selectContact('${contact.name}',${i}); stopEventBubbling(event)">
-                <div class="d-flex contact-row">
-                    <div class="center gap">
-                        <div class="contact center">${initials}</div>
-                        <span>${contact.name}</span>
-                    </div>
-                    <div class="container">
-                        <input type="checkbox" id="checkbox${i}" onclick="selectContact('${contact.name}'); stopEventBubbling(event)">
-                        <span class="checkmark"></span>
-                    </div>
-                </div>
-            </li>`;
-
-        if (contact.checked) {
-            let contactContainerRef = document.getElementById("contact" + i);
-            let checkboxRef = document.getElementById("checkbox" + i);
-            checkboxRef.checked = true;
-            contactContainerRef.classList.add("contact-active");
-            console.log(checkboxRef);
-
-        } else if (!contact.checked) {
-            let contactContainerRef = document.getElementById("contact" + i);
-            let checkboxRef = document.getElementById("checkbox" + i);
-            checkboxRef.checked = false;
-            contactContainerRef.classList.remove("contact-active");
-            console.log(checkboxRef);
-
+        } else if (!isCheckBoxChecked(contact)) {
+            setUnSeletedDesign(i);
         }
     }
 }
 
+function setSelectedDesign(i) {
+    let contactContainerRef = document.getElementById("contact" + i);
+    let checkboxRef = document.getElementById("checkbox" + i);
+    contactContainerRef.classList.add("contact-active");
+    checkboxRef.setAttribute("checked", "true")
+}
 
-
+function setUnSeletedDesign(i) {
+    let contactContainerRef = document.getElementById("contact" + i);
+    contactContainerRef.classList.remove("contact-active");
+}
 
 
 function selectContact(name, i) {
@@ -113,61 +113,70 @@ function selectContact(name, i) {
     checkboxRef.checked = !checkboxRef.checked;
 
     if (index === -1) {
-        if (indexContacts !== -1) {
-            contacts.splice(indexContacts, 1);
-        }
-        selectedContacts.push({ "name": name, "checked": checkboxRef.checked });
-        contacts.push({ "name": name, "checked": checkboxRef.checked });
-        contactContainerRef.classList.add("contact-active");
+        removeFromContactsList(contacts, indexContacts);
+        updateContactsList(selectedContacts, name, checkboxRef.checked);
+        updateContactsList(contacts, name, checkboxRef.checked);
 
+        contactContainerRef.classList.add("contact-active");
     } else if (index >= 0) {
         selectedContacts.splice(index, 1);
-        if (indexContacts !== -1) {
-            contacts.splice(indexContacts, 1);
-        }
-        contacts.push({ "name": name, "checked": checkboxRef.checked });
+        removeFromContactsList(contacts, indexContacts);
+        updateContactsList(contacts, name, checkboxRef.checked);
+
         contactContainerRef.classList.remove("contact-active");
     }
-    console.log(checkboxRef);
     renderSelectetContacts();
+}
+
+function updateContactsList(contactArray, name, checked) {
+    contactArray.push({ "name": name, "checked": checked });
+}
+
+function removeFromContactsList(contactArray, index) {
+    if (index !== -1) {
+        contactArray.splice(index, 1);
+    }
 }
 
 function renderSelectetContacts() {
     const containerRef = document.getElementById("selected-contacts-container");
     containerRef.innerHTML = '';
     for (let contact of selectedContacts) {
-
         let initials = createInititals(contact.name);
-        containerRef.innerHTML += `
-            <div class="contact center">${initials}</div>`;
+        containerRef.innerHTML += contactSelectionCircleHTML(initials);
     }
-
 }
 
 function handleInputClick(event) {
     clearInput(event.target);
-    toggleDropdown('assign-to-dropdown-contacts', 'drop-down-icon1');
+    openDropdown('assign-to-dropdown-contacts', 'drop-down-icon1');
     stopEventBubbling(event);
 }
 
 
 
 function filter(id) {
+    const inputRef = document.getElementById(id);
+    const input = inputRef.value.toLowerCase();
 
-    let inputRef = document.getElementById(id);
-    let input = inputRef.value.toLowerCase();
-
-    if (input.length > 2) {
-        const result = contacts.filter(contact => {
-            if (contact.checked !== true || contact.checked === undefined) {
-                return contact.name.toLowerCase().includes(input);
-            }
-            return false;
-        });
-        renderContacts(result)
+    if (checkLengthGreater(input, 2)) {
+        const result = findInput(input);
+        if (result.length === 0) {
+            displayNoContactFoundMessage();
+        }
+        renderContacts(result);
     } else {
-        renderContacts(contacts)
+        renderContacts(contacts);
     }
+}
 
+function displayNoContactFoundMessage() {
+    const containerRef = document.getElementById("not-found-container");
+    containerRef.innerHTML = 'No Contact found!';
+}
 
+function findInput(input) {
+    let result = contacts.filter(contact =>
+        !contact.checked && contact.name.toLowerCase().includes(input))
+    return result
 }
