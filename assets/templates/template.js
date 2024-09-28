@@ -37,10 +37,10 @@ function contactListHtml(contact, i) {
 
 function contactInDropDownHTML(i, contact, initials) {
     return `
-            <li id="contact${i}" onclick="selectContact('${contact.name}',${i}); stopEventBubbling(event)">
+            <li id="contact${i}" onclick="selectContact(${i},'${contact.name}'); stopEventBubbling(event)">
                 <div class="d-flex contact-row">
                     <div class="center gap">
-                        <div class="contact center">${initials}</div>
+                        <div class="contact center" style="background-color:${contact.color}">${initials}</div>
                         <span>${contact.name}</span>
                     </div>
                     <div class="container">
@@ -51,7 +51,7 @@ function contactInDropDownHTML(i, contact, initials) {
             </li>`
 }
 
-function contactSelectionCircleHTML(initials) {
-    return `  <div class="contact center">${initials}</div>`
+function contactSelectionCircleHTML(contact, initials) {
+    return `  <div class="contact center " style="background-color:${contact.color}">${initials}</div>`
 
 }

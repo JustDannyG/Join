@@ -1,4 +1,18 @@
 let user = 'Guest';
+let contacts = [];
+
+
+async function getContacts() {
+    const contactsData = await getData("contacts");
+    const keys = Object.keys(contactsData);
+    for (let index = 0; index < keys.length; index++) {
+        const key = keys[index];
+        const contact = contactsData[key];
+        contacts.push(contact);
+    }
+    sortByAlphabet(contacts);
+}
+
 
 
 function toggleOverlay(id, className) {

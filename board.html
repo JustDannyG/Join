@@ -9,6 +9,8 @@
     <title>Join - Board</title>
 
     <script src="./script.js" defer></script>
+    <script src="./scripts/board.js"></script>
+    <script src="./scripts/fetch.js"></script>
 
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./styles/board.css" />
@@ -17,89 +19,72 @@
 
 </head>
 
-<body onclick="closeAllMenus(event)" class="column">
+<body onload="init()" onclick="closeAllMenus(event)" class="column">
 
     <section id="join-header" class="join-header">
     </section>
 
-    <main class="d-flex content overflow-x-auto">
-        <div class="headline d-flex">
-            <h1>Board</h1>
-            <button><img src="./assets/icons/add-icon-light.png" alt=""></button>
+    <main class="board-main d-flex content overflow-x-auto">
+
+        <div>
+            <div class="headline d-flex">
+                <h1>Board</h1>
+                <button><img src="./assets/icons/add-icon-light.png" alt=""></button>
+            </div>
+            <div class="d-flex input-row"> <input placeholder="Find Task" type="text">
+                <img src="./assets/icons/search-icon.png" alt="">
+            </div>
         </div>
-        <div class="d-flex input-row"> <input placeholder="Find Task" type="text">
-            <img src="./assets/icons/search-icon.png" alt="">
-        </div>
 
 
 
-        <section id="to-do-container" class="to-do-content column">
+        <section class="board-section">
             <div class="subtitle d-flex">
                 <h2>To do</h2>
                 <button class="center"><img src="./assets/icons/add-icon.png" alt=""></button>
             </div>
-            <div class="no-task"> No task To do</div>
+            <div id="to-do-container" class="task-container">
+
+            </div>
+
         </section>
 
 
-        <section id="in-progress-container">
+        <section class="board-section">
             <div class="subtitle d-flex">
                 <h2>In progress</h2>
                 <button class="center"><img src="./assets/icons/add-icon.png" alt=""></button>
             </div>
-            <div class="task">
-                <div class="task-category">User Story</div>
-                <h4 class="task-title">Kochwelt Page & Recipe Recommender</h4>
-                <div class="task-description">Build start page with recipe recommendation and more</div>
-                <div class="d-flex task-amount-container">
-                    <div class="progress-bar">
-                        <div class="progress"></div>
-                    </div>
-                    <div class="task-amount">1/2 Subtask</div>
-                </div>
-                <div class="d-flex task-footer">
-                    <div class="d-flex contatcs-container">
-                        <div class="c1 contact center">am</div>
-                        <div class="c2 contact center">em</div>
-                        <div class="c3 contact center">mb</div>
-                    </div>
-                    <button><img class="prio-icon" src="./assets/icons/prio-medium-icon.png" alt=""></button>
-                </div>
+            <div id="in-progress-container" class="task-container">
+
             </div>
+
         </section>
 
 
 
-        <section id="await-feedback-container">
+        <section class="board-section">
             <div class="subtitle d-flex">
                 <h2>Await feedback</h2>
                 <button class="center"><img src="./assets/icons/add-icon.png" alt=""></button>
             </div>
-            <div class="no-task"> No task To do</div>
+            <div id="await-feedback-container" class="task-container"></div>
+
+            </div>
+
         </section>
 
 
 
-        <section id="done-container">
+        <section class="board-section">
             <div class="subtitle d-flex">
                 <h2>Done</h2>
             </div>
-            <div class="no-task"> No task To do</div>
+            <div id="done-container" class="task-container"></div>
+            </div>
         </section>
 
-        <section>
-            <div class="subtitle d-flex">
-                <h2>Done</h2>
-            </div>
-            <div class="no-task"> No task To do</div>
-        </section>
 
-        <section>
-            <div class="subtitle d-flex">
-                <h2>Done</h2>
-            </div>
-            <div class="no-task"> No task To do</div>
-        </section>
     </main>
 
     <section id="join-sidebar">
