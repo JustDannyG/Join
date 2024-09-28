@@ -33,6 +33,6 @@ function clearInput(input) {
     input.value = ""
 }
 
-function backwards() {
+function goSummery() {
     window.location.href = "summary.html";
 }
