@@ -3,13 +3,19 @@ async function signUp() {
     let userEmail = document.getElementById('email-input').value;
     let userPwd = document.getElementById('user-pwd').value;
     let userConfPwd = document.getElementById('user-conf-pwd').value;
-
+    ceckIfUserAllreadyExists();
     userInputErrorStyle(userName);
     emailInputErrorStyle(userEmail);
     passwordInputErrorStyle(userPwd);
     passwordConfInputErrorStyle(userConfPwd);
     checkIfConfPwd(userPwd, userConfPwd);
     checkIfAllInputsFilled(userName, userEmail, userPwd, userConfPwd);
+}
+// todo
+// überprüfen ob der user bereits existiert
+
+function checkIfAllInputsFilled() {
+    
 }
 
 function userInputErrorStyle(userName) {
@@ -86,7 +92,8 @@ async function checkIfAllInputsFilled(userName, userEmail, userPwd, userConfPwd)
         emailInputErrorStyle(userEmail);
         passwordInputErrorStyle(userPwd);
         passwordConfInputErrorStyle(userConfPwd);
-    } else {
+        checkIfConfPwd(userPwd, userConfPwd);
+    } else if (!userName !== "" && userEmail !== "" && userPwd !== "" && userConfPwd !== "" &&  userPwd == userConfPwd) {
         await postData(path = "/users", data = {
             'name': userName,
             'email': userEmail,
