@@ -144,9 +144,8 @@ function renderContacts(arr) {
         updateDesign(i)
     }
 }
-
+ 
 function updateDesign(i) {
-     let name = find(e => e.name == contact.name)
     if (selectedContacts[i].checked) {
         let contactContainerRef = document.getElementById("contact" + i);
         let checkboxRef = document.getElementById("checkbox" + i);

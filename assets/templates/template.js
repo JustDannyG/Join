@@ -37,7 +37,7 @@ function contactListHtml(contact, i) {
 
 function contactInDropDownHTML(i, contact, initials) {
     return `
-            <li id="contact${i}" onclick="selectContact(${i},'${contact.name}'); stopEventBubbling(event)">
+            <li id="contact${i}" onclick="selectContact(${i}); stopEventBubbling(event)">
                 <div class="d-flex contact-row">
                     <div class="center gap">
                         <div class="contact center" style="background-color:${contact.color}">${initials}</div>
