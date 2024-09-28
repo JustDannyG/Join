@@ -69,12 +69,12 @@
             <div class="prio mt-16">
                 <span>Prio</span>
                 <div class="d-flex row">
-                    <button type="button" onclick="addPrioColorToUrgent(), stopEventBubbling(event)" id="urgent-btn"
+                    <button type="button" onclick="addPrio('urgent'), stopEventBubbling(event)" id="urgent-btn"
                         class="prio-btn">Urgent<img id="prio-icon-urgent"
                             src="./assets/icons/prio-urgent-icon.png"></button>
-                    <button type="button" onclick="addPrioColorToMedium()" id="medium-btn" class="prio-btn">Medium<img
+                    <button type="button" onclick="addPrio('medium')" id="medium-btn" class="prio-btn">Medium<img
                             id="prio-icon-medium" src="./assets/icons/prio-medium-icon.png"></button>
-                    <button type="button" onclick="addPrioColorToLow()" id="low-btn" class="prio-btn">Low<img
+                    <button type="button" onclick="addPrio('low')" id="low-btn" class="prio-btn">Low<img
                             id="prio-icon-low" src="./assets/icons/prio-low-icon.png"></button>
                 </div>
             </div>

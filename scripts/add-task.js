@@ -1,42 +1,42 @@
-
 let isDropdownOpen = false;
-
+let prio = "medium";
 let currentSubtasks = [];
 
 
 const selectedContacts = [];
 
-
-
-
-
-
-
-function addPrioColorToUrgent() {
-    document.getElementById("urgent-btn").classList.add("urgent")
-    document.getElementById("medium-btn").classList.remove("medium")
-    document.getElementById("low-btn").classList.remove("low")
-    document.getElementById("prio-icon-urgent").src = "./assets/icons/prio-urgent-icon-active.png"
-    document.getElementById("prio-icon-medium").src = "./assets/icons/prio-medium-icon.png"
-    document.getElementById("prio-icon-low").src = "./assets/icons/prio-low-icon.png"
+async function init() {
+    updateBtnColor()
+    await getContacts()
+    getSelectedContacts()
+    renderContacts(selectedContacts);
 }
 
-function addPrioColorToMedium() {
-    document.getElementById("medium-btn").classList.add("medium")
-    document.getElementById("urgent-btn").classList.remove("urgent")
-    document.getElementById("low-btn").classList.remove("low")
-    document.getElementById("prio-icon-urgent").src = "./assets/icons/prio-urgent-icon.png"
-    document.getElementById("prio-icon-medium").src = "./assets/icons/prio-medium-icon-active.png"
-    document.getElementById("prio-icon-low").src = "./assets/icons/prio-low-icon.png"
+
+function addPrio(prioInput){
+    if (prioInput == prio) {
+        prio = undefined;
+    } 
+    else 
+    {prio = prioInput}
+updateBtnColor()
 }
 
-function addPrioColorToLow() {
-    document.getElementById("low-btn").classList.add("low")
+function updateBtnColor() {
     document.getElementById("urgent-btn").classList.remove("urgent")
     document.getElementById("medium-btn").classList.remove("medium")
+    document.getElementById("low-btn").classList.remove("low")
+
     document.getElementById("prio-icon-urgent").src = "./assets/icons/prio-urgent-icon.png"
     document.getElementById("prio-icon-medium").src = "./assets/icons/prio-medium-icon.png"
-    document.getElementById("prio-icon-low").src = "./assets/icons/prio-low-icon-active.png"
+    document.getElementById("prio-icon-low").src = "./assets/icons/prio-low-icon.png"
+
+
+    if(prio){
+    document.getElementById(`prio-icon-${prio}`).src = `./assets/icons/prio-${prio}-icon-active.png`
+    document.getElementById(`${prio}-btn`).classList.add(prio)}
+    else return 
+    
 }
 
 
@@ -112,11 +112,6 @@ function selectCategory(category) {
 
 
 
-async function init() {
-    await getContacts()
-    getSelectedContacts()
-    renderContacts(selectedContacts);
-}
 
 
 function getSelectedContacts() {
