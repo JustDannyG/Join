@@ -215,91 +215,18 @@ function displayNoContactFoundMessage() {
     dropdownRef.innerHTML = '<li class="not-found">Nicht gefunden</li>';
 }
 
-
-// function renderContacts(arr) {
-//     const dropDownRef = document.getElementById("assign-to-dropdown-contacts");
-//     clearContent(dropDownRef)
-//     sortByAlphabet(arr)
-//     getContactOfContacts(arr, dropDownRef)
-// }
-
-// function getContactOfContacts(arr, ref) {
-//     for (let i = 0; i < arr.length; i++) {
-//         const contact = arr[i];
-//         let initials = createInititals(contact.name)
-//         ref.innerHTML += contactInDropDownHTML(i, contact, initials);
-
-//         if (isCheckBoxChecked(contact)) {
-//             setSelectedDesign(i);
-
-//         } else if (!isCheckBoxChecked(contact)) {
-//             setUnSeletedDesign(i);
-//         }
-//     }
-// }
-
-
-
-
-
-
-// //Wird beim Klicken auf den Namen ausgeführt//
-// function selectContact(name, i) {
-//     const index = selectedContacts.findIndex(contact => contact.name === name);
-//     const indexContacts = contacts.findIndex(contact => contact.name === name);
-//     let checkboxRef = document.getElementById("checkbox" + i);
-//     let contactContainerRef = document.getElementById("contact" + i);
-
-//     checkboxRef.checked = !checkboxRef.checked;
-//     handleContactSelection(index, indexContacts, name, checkboxRef.checked, contactContainerRef, i);
-//     renderSelectetContacts();
-// }
-
-// function handleContactSelection(index, indexContacts, name, checked, contactContainerRef,i) {
-//     if (index === -1) {
-//         removeFromContactsList(contacts, indexContacts);
-//         updateContactsList(selectedContacts, name, checked,i);
-//         updateContactsList(contacts, name, checked,i);
-//         contactContainerRef.classList.add("contact-active");
-//     } else {
-//         selectedContacts.splice(index, 1);
-//         removeFromContactsList(contacts, indexContacts);
-//         updateContactsList(contacts, name, checked,i);
-//         contactContainerRef.classList.remove("contact-active");
-//     }
-// }
-
-
-
-// function updateContactsList(arr, name, boolean, i) {
-//     console.log(contacts.color);
-//     arr.push({ "name": name, "checked": boolean, 'color': contacts[i].color });
-// }
-
-// function removeFromContactsList(contactArray, index) {
-//     if (index !== -1) {
-//         contactArray.splice(index, 1);
-//     }
-// }
-
-
-
-
-
-
-
-
+function findInput(input) {
+    let result = contacts.filter(contact =>
+        contact.name.toLowerCase().includes(input))
+    return result
+}
 // function findInput(input) {
 //     let result = contacts.filter(contact =>
 //         !contact.checked && contact.name.toLowerCase().includes(input))
 //     return result
 // }
 
-function findInput(input) {
-    let result = contacts.filter(contact =>
-        contact.name.toLowerCase().includes(input))
-    return result
-}
+
 
 ///////////////////
 // Subtasks
