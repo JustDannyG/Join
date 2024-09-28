@@ -4,126 +4,102 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="./assets/icons/join-logo-light.png">
     <title>Join - Summary</title>
 
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./styles/summery.css">
-    <link rel="stylesheet" href="./styles/summary-responsive.css">
+    <link rel="stylesheet" href="./styles/responsive/summary-responsive.css">
+    <link rel="stylesheet" href="./styles/header-sidebar-desktop.css">
+    <link rel="stylesheet" href="./styles/responsive/responsive.css">
 
-    <script src="./script.js"></script>
+    <script src="./script.js" defer></script>
 </head>
 
-<body onclick="closeAllMenus(event)" class="column">
-    <header class="d-flex header-mobile">
-        <img class="logo-mobile" src="./assets/icons/logo-dark.svg" alt="Join Logo" />
-        <div onclick="toggleOverlay('menu', 'menu-active'), stopEventBubbling(event)" id="current-user-header"
-            class="current-user-header center">T</div>
-        <div id="menu" class="column menu">
-            <a href="./help.html">Help</a>
-            <a href="./legal-notice.html">Legal Notice</a>
-            <a href="./privacy-policy.html">Privacy Policy</a>
-            <a href="#">Log out</a>
-        </div>
-    </header>
+<body >
+    <div class="body-content" onclick="closeAllMenus(event)" >
+        <section id="join-header">
+        </section>
 
-    <main class="d-flex content">
-        <div class="summary-content">
-
-            <div class="summary-headline-container">
-                <h1 class="headline">Join 360</h1>
-                Key Metrics at a Glance
-                <span class="underline"></span>
-            </div>
-
-            <div class="summary-container">
-
-                <div class="summerys-box1">
-                    <a href="board.html" class="summary-todo-btn">
-
-                        <img class="summary-icon" src="./assets/icons/summary-todo.png" alt="">
-
-                        <div class="summary-counter">
-                            <span class="task-count" id="#">1</span>
-                            To-do
-                        </div>
-
-                    </a>
-
-                    <a href="board.html" class="summary-todo-btn">
-
-                        <img class="summary-icon" src="./assets/icons/summary-done.png" alt="">
-
-                        <div class="summary-counter">
-                            <span class="task-count" id="#">1</span>
-                            Done
-                        </div>
-
-                    </a>
-
+        <main class="d-flex content">
+            <div class="summary-content">
+                <div class="summary-headline-container">
+                    <h1 class="headline">Join 360</h1>
+                    Key Metrics at a Glance
+                    <span class="underline"></span>
                 </div>
 
-
-                <div class="summerys-box2">
-
-                    <a href="board.html" class="summary-urgent-btn">
-                        <div class="urgent-count-box">
-                            <img class="summary-icon" src="./assets/icons/summary-urgent.png" alt="">
+                <div class="summary-container">
+                    <div class="summerys-box1">
+                        <a href="board.html" class="summary-todo-btn">
+                            <img class="summary-icon" src="./assets/icons/summary-todo.png" alt="">
+                            <div class="summary-counter">
+                                <span class="task-count" id="#">1</span>
+                                To-do
+                            </div>
+                        </a>
+                        <a href="board.html" class="summary-todo-btn">
+                            <img class="summary-icon" src="./assets/icons/summary-done.png" alt="">
                             <div class="summary-counter">
                                 <span class="task-count" id="#">1</span>
                                 Done
                             </div>
-                        </div>
+                        </a>
+                    </div>
 
-                        <span class="breakline"></span>
+                    <div class="summerys-box2">
+                        <a href="board.html" class="summary-urgent-btn">
+                            <div class="urgent-count-box">
+                                <img class="summary-icon" src="./assets/icons/summary-urgent.png" alt="">
+                                <div class="summary-counter">
+                                    <span class="task-count" id="#">1</span>
+                                    Done
+                                </div>
+                            </div>
+                            <span class="breakline"></span>
+                            <p class="deadline">
+                                <span class="urgent-date" id="#">October 16, 2022</span>
+                                Upcoming Deadline
+                            </p>
+                        </a>
+                    </div>
 
-                        <p class="deadline">
-                            <span class="urgent-date" id="#">October 16, 2022</span>
-                            Upcoming Deadline
-                        </p>
 
-                    </a>
-
+                    <div class="summerys-box1">
+                        <a href="board.html" class="summary-task-btn">
+                            <div class="summary-counter">
+                                <span class="task-count" id="#">5</span>
+                                Tasks in <br> Board
+                            </div>
+                        </a>
+                        <a href="board.html" class="summary-task-btn">
+                            <div class="summary-counter">
+                                <span class="task-count" id="#">2</span>
+                                Tasks In <br> Progress
+                            </div>
+                        </a>
+                        <a href="board.html" class="summary-task-btn">
+                            <div class="summary-counter">
+                                <span class="task-count" id="#">2</span>
+                                Awaiting <br> feedback
+                            </div>
+                        </a>
+                    </div>
                 </div>
 
 
-                <div class="summerys-box1">
-
-                    <a href="board.html" class="summary-task-btn">
-                        <div class="summary-counter">
-                            <span class="task-count" id="#">5</span>
-                            Tasks in <br> Board
-                        </div>
-                    </a>
-
-                    <a href="board.html" class="summary-task-btn">
-                        <div class="summary-counter">
-                            <span class="task-count" id="#">2</span>
-                            Tasks In <br> Progress
-                        </div>
-                    </a>
-
-                    <a href="board.html" class="summary-task-btn">
-                        <div class="summary-counter">
-                            <span class="task-count" id="#">2</span>
-                            Awaiting <br> feedback
-                        </div>
-                    </a>
+                <div class="summary-greeting-container">
+                    <span class="greeting-time" id="greeting-time">Good morming,</span>
+                    <span class="greeting-name" id="greeting-name">Sofia Müller</span>
                 </div>
 
             </div>
-        </div>
-    </main>
+        </main>
 
-    <aside class="d-flex sidebar-mobile">
-        <a class="center column nav-link-mobile current-link" href="./summary.html"><img src="./assets/icons/summary-icon.png"
-                alt="Summary" />Summary</a>
-        <a class="center column nav-link-mobile" href="./board.html"><img src="./assets/icons/board-icon.png"
-                alt="Board" />Board</a>
-        <a class="center column nav-link-mobile" href="./add-task.html"><img src="./assets/icons/add-task-icon.png"
-                alt="Add Task" />Add Task</a>
-        <a class="center column nav-link-mobile" href="./contact.html"><img src="./assets/icons/contacts-icon.png"
-                alt="Contacts" />Contacts</a>
-    </aside>
+
+        <section id="join-sidebar">
+        </section>
+    </div>
 </body>
 
 </html>

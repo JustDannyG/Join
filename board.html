@@ -4,23 +4,23 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="./assets/icons/join-logo-light.png">
+
     <title>Join - Board</title>
+
+    <script src="./script.js" defer></script>
+
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./styles/board.css" />
-    <script src="./script.js"></script>
+    <link rel="stylesheet" href="./styles/header-sidebar-desktop.css">
+    <link rel="stylesheet" href="./styles/responsive/responsive.css">
+
 </head>
 
 <body onclick="closeAllMenus(event)" class="column">
-    <header class="d-flex header-mobile">
-        <img class="logo-mobile" src="./assets/icons/logo-dark.svg" alt="Join Logo" />
-        <div onclick="toggleOverlay('menu', 'menu-active'), stopEventBubbling(event)" id="current-user-header" class="current-user-header center">T</div>
-        <div id="menu" class="column menu">
-            <a href="./help.html">Help</a>
-            <a href="./legal-notice.html">Legal Notice</a>
-            <a href="./privacy-policy.html">Privacy Policy</a>
-            <a href="#">Log out</a>
-        </div>
-    </header>
+
+    <section id="join-header" class="join-header">
+    </section>
 
     <main class="d-flex content overflow-x-auto">
         <div class="headline d-flex">
@@ -102,12 +102,9 @@
         </section>
     </main>
 
-    <aside class="d-flex sidebar-mobile">
-        <a class="center column nav-link-mobile" href="./summary.html"><img src="./assets/icons/summary-icon.png" alt="Summary" />Summary</a>
-        <a class="center column nav-link-mobile current-link" href="./board.html"><img src="./assets/icons/board-icon.png" alt="Board" />Board</a>
-        <a class="center column nav-link-mobile" href="./add-task.html"><img src="./assets/icons/add-task-icon.png" alt="Add Task" />Add Task</a>
-        <a class="center column nav-link-mobile" href="./contact.html"><img src="./assets/icons/contacts-icon.png" alt="Contacts" />Contacts</a>
-    </aside>
+    <section id="join-sidebar">
+    </section>
+
 </body>
 
 </html>

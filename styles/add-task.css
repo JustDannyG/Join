@@ -40,6 +40,7 @@ textarea,
 .drop-down {
     margin-top: 8px;
     font-size: 14px;
+    width: 100%;
 }
 
 .mt-16 {
@@ -141,15 +142,6 @@ button {
     background-color: var(--light-blue);
 }
 
-.clear:hover {
-    border: 2px solid var(--light-blue);
-    color: var(--light-blue);
-}
-
-.clear:hover img {
-    filter: brightness(0) saturate(100%) invert(68%) sepia(40%) saturate(3094%) hue-rotate(166deg) brightness(88%) contrast(101%);
-}
-
 .required {
     color: var(--required);
 }
@@ -157,20 +149,59 @@ button {
 
 /* Dropdown */
 
+.drop-down input {
+    margin: 0;
+    border: unset;
+}
+
+.drop-down {
+    background-color: var(--white);
+    -webkit-transition: 0.125s;
+    transition: 0.125s;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid var(--dark-grey);
+}
+
+.drop-down button {
+    padding: 0px 16px;
+}
+
 .select-placeholder {
+    height: 34px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 8px;
-    cursor: pointer;
-    background-color: var(--white);
 }
 
-.select-placeholder img {
-    transition: transform 125ms ease-in;
-    transform: rotate(0);
+.select-placeholder span {
+    padding: 8px;
+}
+
+.input-active {
+    border: 1px solid var(--light-blue);
+}
+
+input:focus,
+textarea:focus {
+    outline: unset;
+    border: 1px solid var(--light-blue);
+}
+
+#assign-to-dropdown:focus {
+    border: unset;
+}
+
+.not-found {
+    font-size: 12px;
+}
+
+
+/*Drop-Down Menü*/
+
+.drop-down {
+    justify-content: space-between;
+    width: 100%;
 }
 
 .dropdown-options {
@@ -192,9 +223,21 @@ button {
     color: var(--white);
 }
 
+.contact-active {
+    background-color: var(--darke-blue) !important;
+    color: var(--white);
+}
+
 .show-dropdown {
     display: block;
 }
+
+.dropdown-btn {
+    padding: 0px 16px;
+}
+
+
+/*Priority Buttons*/
 
 .low {
     background-color: var(--low);
@@ -268,21 +311,6 @@ button {
     transform: rotate(45deg);
 } */
 
-.logo-desktop {
-    margin-top: 40px;
-    width: 80px;
-}
-
-.text-desktop {
-    font-size: 12px;
-}
-
-.aside-desktop {
-    background-color: var(--darke-blue);
-    width: 232px;
-    align-items: center;
-}
-
 .links {
     margin-top: 72px;
     gap: 40px;
@@ -294,22 +322,113 @@ button {
     gap: 8px;
 }
 
-.left,
-.right {
-    /* width: 360px; */
+
+
+/* Subtasks */
+
+.form-field {
     display: flex;
     flex-direction: column;
-    justify-content: start;
-}
+    gap: 8px;
+    font-size: 20px;
+  }
 
-.h-18 {
-    height: 34px;
-}
-
-.inputs {
+  .add-task-input {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
+    height: 48px;
+    width: 440px;
+    border: solid 1px #d1d1d1;
+    border-radius: 10px;
+    padding: 12px 21px;
+    box-sizing: border-box;
+    background-color: white;
+  }
+
+  .add-subtask-btn {
+    cursor: pointer;
+  }
+
+  .subtask {
+    display: flex;
+    height: 30px;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all ease-in-out 125ms;
+  }
+  
+  .subtask img {
+    margin: 0 5px;
+    display: none;
+  }
+  
+  .subtask:hover img {
+    display: block;
+  }
+  
+  .subtask img:hover {
+    scale: 1.1;
+  }
+  
+  .subtask span {
+    display: none;
+  }
+  
+  .subtask:hover span {
+    display: block;
+    background-color: black;
+  }
+  
+  .subtask:hover {
+    background-color: #d1d1d1;
+  }
+  
+  .subtask p:before {
+    content: '• ';
+  }
+  
+  .subtask-text {
+    display: flex;
     width: 100%;
-    flex-wrap: wrap;
-    gap: 40px;
-}
+  }
+  
+  .subtask-text p {
+    width: 100%;
+  }
+  
+  .word-item {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    height: 30px;
+  }
+  
+  .word-item input {
+    font-size: 16px;
+    width: 100%;
+    border: none;
+    border-bottom: solid 1px #29abe2;
+  }
+  
+  .word-item input:focus {
+    outline: none;
+  }
+  
+  .word-item svg {
+    margin: 0 10px;
+    cursor: pointer;
+  }
+  
+  .word-item button {
+    background-color: unset;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .word-item button img {
+    width: 15px;
+    margin: 5px;
+  }

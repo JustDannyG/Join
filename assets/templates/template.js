@@ -32,3 +32,26 @@ function contactListHtml(contact, i) {
       </div>
     </div>`;
 }
+
+//Templates for Add Task
+
+function contactInDropDownHTML(i, contact, initials) {
+    return `
+            <li id="contact${i}" onclick="selectContact('${contact.name}',${i}); stopEventBubbling(event)">
+                <div class="d-flex contact-row">
+                    <div class="center gap">
+                        <div class="contact center">${initials}</div>
+                        <span>${contact.name}</span>
+                    </div>
+                    <div class="container">
+                        <input type="checkbox" id="checkbox${i}" onclick="selectContact('${contact.name}'); stopEventBubbling(event)">
+                        <span class="checkmark"></span>
+                    </div>
+                </div>
+            </li>`
+}
+
+function contactSelectionCircleHTML(initials) {
+    return `  <div class="contact center">${initials}</div>`
+
+}
