@@ -1,14 +1,14 @@
 //Templates for Contact-Details
 
 function contactCirleHTML(detail) {
-    return `
+  return `
     <div class="current-contact-circle center" style="background:${detail.color}">${createInititals(detail.name)}</div>
       <h2>${detail.name}</h2>
     `
 }
 
 function contactInformationsHTML(detail) {
-    return `
+  return `
     <h3>Contact Information</h3>
       <p class="bold">Email</p>
       <a href="mailto:${detail.email}">${detail.email}</a>
@@ -20,11 +20,11 @@ function contactInformationsHTML(detail) {
 //Templates for Contact List
 
 function firstLetterHtml(firstLetter) {
-    return `<div class="contacts-first-letter">${firstLetter}</div>`;
+  return `<div class="contacts-first-letter">${firstLetter}</div>`;
 }
 
 function contactListHtml(contact, i) {
-    return ` <div onclick="openContact(${i})" class="contact-list d-flex">
+  return ` <div onclick="openContact(${i})" class="contact-list d-flex">
       <span class="contact-initials center" style="background:${contact.color}">${createInititals(contact.name)}</span>
       <div>
         <p>${contact.name}</p>
@@ -37,10 +37,10 @@ function contactListHtml(contact, i) {
 
 function contactInDropDownHTML(i, contact, initials) {
     return `
-            <li id="contact${i}" onclick="selectContact('${contact.name}',${i}); stopEventBubbling(event)">
+            <li id="contact${i}" onclick="selectContact(${i}); stopEventBubbling(event)">
                 <div class="d-flex contact-row">
                     <div class="center gap">
-                        <div class="contact center">${initials}</div>
+                        <div class="contact center" style="background-color:${contact.color}">${initials}</div>
                         <span>${contact.name}</span>
                     </div>
                     <div class="container">
@@ -51,7 +51,7 @@ function contactInDropDownHTML(i, contact, initials) {
             </li>`
 }
 
-function contactSelectionCircleHTML(initials) {
-    return `  <div class="contact center">${initials}</div>`
+function contactSelectionCircleHTML(contact, initials) {
+    return `  <div class="contact center " style="background-color:${contact.color}">${initials}</div>`
 
 }

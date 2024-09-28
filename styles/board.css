@@ -1,3 +1,8 @@
+
+.board-main{
+    gap: 32px;
+}
+
 .headline button {
     background-color: var(--darke-blue);
     border-radius: 8px;
@@ -52,7 +57,6 @@
 
 .task {
     position: relative;
-    margin-top: 16px;
     background-color: var(--white);
     padding: 16px;
     border-radius: 24px;
@@ -141,4 +145,15 @@
     position: absolute;
     left: 80px;
     background-color: burlywood;
+}
+
+
+.task-container{
+    height: 252px;
+    background-color: lightgray;
+    border: solid 1px;
+    overflow-x: hidden;
+    display: flex;
+    gap: 16px;
+    align-items: center;
 }

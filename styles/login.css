@@ -7,18 +7,6 @@ h1 {
     font-size: 47px;
 }
 
-
-/* input {
-    cursor: pointer;
-    flex: 200;
-} */
-
-
-/* button {
-    cursor: pointer;
-    flex: 200;
-} */
-
 #myCheckbox {
     border-width: 2px;
 }
@@ -84,7 +72,7 @@ h1 {
 }
 
 .login-input-area img {
-    width: 16px;
+    width: 19px;
     height: 21px;
     object-fit: cover;
 }
@@ -117,6 +105,17 @@ button {
     color: var(--white);
     font-size: 16px;
     font-weight: 700;
+    background-color: var(--darke-blue);
+    transition: all ease-in-out 125ms;
+}
+
+.login-button-top:hover {
+    background-color: var(--light-blue);
+    scale: 1.1;
+}
+
+.login-button-top:active {
+    scale: 0.9;
 }
 
 .login-button-bottom {
@@ -124,6 +123,18 @@ button {
     color: var(--darke-blue);
     font-size: 16px;
     font-weight: 700;
+    border: solid 1.5px;
+    border-color: var(--darke-blue);
+    transition: all ease-in-out 125ms;
+}
+
+.login-button-bottom:hover {
+    background-color: var(--light-blue);
+    scale: 1.1;
+}
+
+.login-button-bottom:active {
+    scale: 0.9;
 }
 
 .signup-button {
@@ -152,6 +163,38 @@ button {
     cursor: pointer;
 }
 
+.red-border {
+    border: 2px solid red;
+}
+
+.error-message-email {
+    color: red;
+    font-size: 12px;
+    position: absolute;
+    top: 42%;
+    right: 0;
+    left: 0;
+    display: none;
+}
+
+.error-message-email.visible {
+    display: block;
+}
+
+.error-message-password {
+    color: red;
+    font-size: 12px;
+    position: absolute;
+    top: 49%;
+    right: 0;
+    left: 0;
+    display: none;
+}
+
+.error-message-password.visible {
+    display: block;
+}
+
 .overlay {
     position: absolute;
     background-color: var(--light-blue-light);
@@ -159,6 +202,28 @@ button {
     z-index: 999;
     animation: fadeOut 2s forwards;
     flex: 1;
+}
+
+.welcomeMessage {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 2s ease-out, visibility 2s ease-out;
+}
+
+/* Klasse zum Anzeigen der Nachricht */
+.show {
+    opacity: 1;
+    visibility: visible;
 }
 
 @keyframes fadeOut {
