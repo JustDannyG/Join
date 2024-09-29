@@ -111,3 +111,8 @@ function highlight(id) {
 function removeHighlight(id) {
     document.getElementById(id).classList.remove('drag-area-highlight');
 }
+
+
+function animationOndrag(id){
+document.getElementById(id).classList.add('animation-ondrag')
+}

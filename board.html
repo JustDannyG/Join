@@ -27,8 +27,8 @@
             <div class="headline d-flex">
                 <h1>Board</h1>
                 <button>
-            <img src="./assets/icons/add-icon-light.png" alt="" />
-          </button>
+                    <img src="./assets/icons/add-icon-light.png" alt="" />
+                </button>
             </div>
             <div class="d-flex input-row">
                 <input placeholder="Find Task" type="text" />
@@ -40,11 +40,14 @@
             <div class="subtitle d-flex">
                 <h2>To do</h2>
                 <button class="center">
-            <img src="./assets/icons/add-icon.png" alt="" />
-          </button>
+                    <img src="./assets/icons/add-icon.png" alt="" />
+                </button>
             </div>
 
-            <div id="to-do-container" class="task-container" ondrop="moveTo('todo')" ondragover="allowDrop(event)">
+            <div id="to-do-container" class="task-container" 
+                ondrop="moveTo('todo');removeHighlight('to-do-container')"
+                ondragover="allowDrop(event);highlight('to-do-container')"
+                ondragleave="removeHighlight('to-do-container')">
 
             </div>
         </section>
@@ -53,11 +56,13 @@
             <div class="subtitle d-flex">
                 <h2>In progress</h2>
                 <button class="center">
-            <img src="./assets/icons/add-icon.png" alt="" />
-          </button>
+                    <img src="./assets/icons/add-icon.png" alt="" />
+                </button>
             </div>
-            <div id="in-progress-container" class="task-container" ondrop="moveTo('progress')" ondragover="allowDrop(event)">
-
+            <div id="in-progress-container" class="task-container"
+                ondrop="moveTo('progress');removeHighlight('in-progress-container')"
+                ondragover="allowDrop(event);highlight('in-progress-container')"
+                ondragleave="removeHighlight('in-progress-container')">
             </div>
         </section>
 
@@ -65,10 +70,13 @@
             <div class="subtitle d-flex">
                 <h2>Await feedback</h2>
                 <button class="center">
-            <img src="./assets/icons/add-icon.png" alt="" />
-          </button>
+                    <img src="./assets/icons/add-icon.png" alt="" />
+                </button>
             </div>
-            <div id="await-feedback-container" class="task-container" ondrop="moveTo('feedback')" ondragover="allowDrop(event)">
+            <div id="await-feedback-container" class="task-container"
+                ondrop="moveTo('feedback'); removeHighlight('await-feedback-container')"
+                ondragover="allowDrop(event);highlight('await-feedback-container')"
+                ondragleave="removeHighlight('await-feedback-container')">
 
             </div>
         </section>
@@ -77,8 +85,9 @@
             <div class="subtitle d-flex">
                 <h2>Done</h2>
             </div>
-            <div id="done-container" class="task-container" ondrop="moveTo('done')" ondragover="allowDrop(event)">
-
+            <div id="done-container" class="task-container" ondrop="moveTo('done'); removeHighlight('done-container')"
+                ondragover="allowDrop(event);highlight('done-container')"
+                ondragleave="removeHighlight('done-container')">
             </div>
         </section>
     </main>
