@@ -5,8 +5,6 @@
 
 :root {
     --light-blue: #29abe2;
-    --light-blue-light: rgba(95, 192, 233, 0.5);
-    /*benötigt für overlay container beim daneben klicken im login bereich + rgba wegen der transparenz */
     --darke-blue: #2a3647;
     --hover-darke-blue: #091931;
     --urgent: #ff3d00;

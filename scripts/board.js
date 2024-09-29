@@ -1,35 +1,10 @@
 let currentDraggedElement;
-
-let tasksArray = [
-    // {
-    //     'title': 'Einkaufen',
-    //     'category': 'todo',
-    //     'id': 0
-    // },
-    // {
-    //     'title': 'Auto waschen',
-    //     'category': 'feedback',
-    //     'id': 2
-    // },
-    // {
-    //     'title': 'Wäsche waschen',
-    //     'category': 'done',
-    //     'id': 3
-    // },
-    // {
-    //     'title': 'Training',
-    //     'category': 'todo',
-    //     'id': 4
-    // }
-];
-
+let tasksArray = [];
 
 async function init() {
-    await getContacts()
+    await getContacts();
     await getTasks();
     updateHtml();
-    console.log(contacts);
-    
 }
 
 async function getTasks() {
@@ -44,10 +19,12 @@ async function getTasks() {
             'id': index,
             'date': task.date,
             'assignedTo': task.assignedTo,
-            'category' : task.category
+            'category': task.category,
+            'prio': task.prio,
+            'categoryText': task.categoryText,
+            'subtask': task.subtask
         });
     }
-    console.log(tasksArray);
 }
 
 
@@ -67,43 +44,93 @@ function filterTasks(task) {
     return tasksArray.filter(t => t['category'] == task);
 }
 
-
 function renderTasks(tasks, getById) {
+    getById.innerHTML = "";
     if (tasks.length == 0) {
         getById.innerHTML += generateNoTaskHTML();
     } else {
         for (let index = 0; index < tasks.length; index++) {
             const task = tasks[index];
-            getById.innerHTML += generateTaskHTML(task);
+            let className = task.categoryText.replace(" ", "-").toLowerCase()
+            getById.innerHTML += generateTaskHTML(task, index, className);
+            renderAssignedToContacts(task, index);
+            renderPrio(task, index);
+            renderSubtask(task, index);
         }
     }
 }
 
 
 
+function renderSubtask(task, index) {
+    let taskAmount = document.getElementById(`${task.category}-amount${index}`)
+    let progress =  document.getElementById(`${task.category}-progress${index}`)
+    let amount = task.subtask.filter(c => c.checked == true).length;
+    let total = 0
+    task.subtask.forEach((sub, i) => {
+        total = i + 1
+    });
+    taskAmount.innerHTML = `${amount}/${total} Subtasks`;
+    let result=  Math.round((100 / total) * amount) + '%';
+    progress.style.width = result
+ 
+}
 
-function generateTaskHTML(task) {
-    return `<div class="task">
-                <div class="task-category">User Story</div>
-                <h4 class="task-title">${task.title}</h4>
-                <div class="task-description">${task.description}</div>
-                <div class="d-flex task-amount-container">
-                    <div class="progress-bar">
-                        <div class="progress"></div>
-                    </div>
-                    <div class="task-amount">1/2 Subtask</div>
-                </div>
-                <div class="d-flex task-footer">
-                    <div class="d-flex contatcs-container">
-                        <div class="c1 contact center">am</div>
-                        <div class="c2 contact center">em</div>
-                        <div class="c3 contact center">mb</div>
-                    </div>
-                    <button><img class="prio-icon" src="./assets/icons/prio-medium-icon.png" alt=""></button>
-                </div> `;
+function renderAssignedToContacts(task, index) {
+    const assignedToContainer = document.getElementById(`${task.category}contatcs-container${index}`);
+    const numContainer = document.getElementById(`${task.category}contatcs-container${index}num`);
+    task.assignedTo.forEach((c, i) => {
+
+        if (i < 3) {
+            assignedToContainer.innerHTML += `
+        <div class="c${i} contact center" style="background-color:${c.color}">${createInititals(c.name)}</div>`;
+        } else {
+            numContainer.innerHTML = `<div class="task-contact-length center">+${i - 2}</div>`
+        }
+    });
+}
+
+function renderPrio(task, index) {
+    const imgRef = document.getElementById(`${task.category}prio-icon${index}`)
+    if (task.prio) {
+        imgRef.src = `./assets/icons/prio-${task.prio}-icon.png`;
+    }
+}
+
+function moveTo(category) {
+    tasksArray[currentDraggedElement]["category"] = category;
+    moveToUpdateDatabase();
+    updateHtml();
 }
 
 
-function generateNoTaskHTML() {
-    return `<div class="no-task"> No task To do</div> `;
+function startDragging(id) {
+    currentDraggedElement = id;
+}
+
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+
+async function moveToUpdateDatabase() {
+    let getTasks = await getData("/tasks");
+    let taskKey = Object.keys(getTasks);
+    await putData(`/tasks/${taskKey[currentDraggedElement]}`, tasksArray[currentDraggedElement]);
+}
+
+
+
+function highlight(id) {
+    document.getElementById(id).classList.add('drag-area-highlight');
+}
+
+function removeHighlight(id) {
+    document.getElementById(id).classList.remove('drag-area-highlight');
+}
+
+
+function animationOndrag(id) {
+    document.getElementById(id).classList.add('animation-ondrag')
 }
