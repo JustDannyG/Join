@@ -65,14 +65,14 @@ function renderTasks(tasks, getById) {
 function renderSubtask(task, index) {
     let taskAmount = document.getElementById(`${task.category}-amount${index}`)
     let progress =  document.getElementById(`${task.category}-progress${index}`)
-    let result = task.subtask.filter(c => c.checked == true).length;
+    let amount = task.subtask.filter(c => c.checked == true).length;
     let total = 0
     task.subtask.forEach((sub, i) => {
         total = i + 1
     });
-    taskAmount.innerHTML = `${result}/${total} Subtasks`;
-    let percent=  Math.round((100 / total) * result) + '%';
-    progress.style.width = percent
+    taskAmount.innerHTML = `${amount}/${total} Subtasks`;
+    let result=  Math.round((100 / total) * amount) + '%';
+    progress.style.width = result
  
 }
 
