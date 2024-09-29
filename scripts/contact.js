@@ -1,4 +1,4 @@
-let contacts = [];
+
 
 let currentContactDetails = localStorage.getItem("currentDetails");
 
@@ -6,23 +6,7 @@ let currentContactDetails = localStorage.getItem("currentDetails");
 async function initContacts() {
     await getContacts();
     renderContacts();
-
-
 }
-
-
-async function getContacts() {
-    const contactsData = await getData("contacts");
-    const keys = Object.keys(contactsData);
-    for (let index = 0; index < keys.length; index++) {
-        const key = keys[index];
-        const contact = contactsData[key];
-        contacts.push(contact);
-    }
-    sortByAlphabet(contacts);
-}
-
-
 
 function renderContacts() {
     let containerRef = document.getElementById("contacts-container");

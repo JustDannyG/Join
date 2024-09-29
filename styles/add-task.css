@@ -88,7 +88,7 @@ button {
 .contact {
     height: 40px;
     width: 40px;
-    background-color: blue;
+    /* background-color: blue; */
     color: var(--white);
     border: 2px solid var(--white);
     border-radius: 50%;
