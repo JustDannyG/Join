@@ -1,8 +1,6 @@
 let isDropdownOpen = false;
 let prio = "medium";
 let currentSubtasks = [];
-
-
 const selectedContacts = [];
 
 async function init() {

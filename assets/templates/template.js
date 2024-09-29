@@ -60,9 +60,9 @@ function contactSelectionCircleHTML(contact, initials) {
 
 //Templates for Tasks
 
-function generateTaskHTML(task, index) {
+function generateTaskHTML(task, index, className) {
     return `<div draggable="true" ondragstart="startDragging(${task.id})" class="task">
-              <div class="task-category">User Story</div>
+              <div class="task-category ${className}">${task.categoryText}</div>
               <h4 class="task-title">${task.title}</h4>
               <div class="task-description">${task.description}</div>
               <div class="d-flex task-amount-container">
@@ -73,7 +73,8 @@ function generateTaskHTML(task, index) {
               </div>
               <div class="d-flex task-footer">
                   <div id="${task.category}contatcs-container${index}" class="d-flex contatcs-container"></div>
-                  <img id="${task.category}prio-icon" class="prio-icon" src="" alt="">
+                  <div id="${task.category}contatcs-container${index}num" class="d-flex contatcs-container"></div>
+                  <img id="${task.category}prio-icon${index}" class="prio-icon" src="" alt="">
               </div> `;
 }
 

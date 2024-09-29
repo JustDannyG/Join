@@ -15,7 +15,7 @@ function getInputs() {
     let descriptionInput = document.getElementById("description");
     let dateInput = document.getElementById("date");
     let assignedTo = filterCheckedAssignedTo();
-
+    let categoryText = document.getElementById("drop-down-text").innerHTML
 
     // console.log(titleInput.value);
     // console.log(descriptionInput.value);
@@ -27,6 +27,7 @@ function getInputs() {
         'description': descriptionInput.value,
         'date': dateInput.value,
         'assignedTo': assignedTo,
+        'categoryText': categoryText
     }
     postTask(task);
 }
@@ -45,6 +46,7 @@ async function postTask(task) {
         'date': task.date,
         'assignedTo': task.assignedTo,
         'category': curretCategory,
-        'prio': prio
+        'prio': prio,
+        'categoryText': task.categoryText
     })
 }

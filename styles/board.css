@@ -64,7 +64,6 @@
 }
 
 .task-category {
-    background-color: var(--story);
     color: var(--light-grey);
     padding: 4px 16px;
     width: min-content;
@@ -132,25 +131,21 @@
 .c0 {
     position: absolute;
     left: 0;
-    background-color: aqua;
 }
 
 .c1 {
     position: absolute;
     left: 40px;
-    background-color: blueviolet;
 }
 
 .c2 {
     position: absolute;
     left: 80px;
-    background-color: burlywood;
 }
 
 .c3 {
     position: absolute;
     left: 120px;
-    background-color: burlywood;
 }
 
 .task-container{
@@ -161,4 +156,18 @@
     display: flex;
     gap: 16px;
     align-items: center;
+}
+
+.user-story{
+background-color: var(--story);
+}
+
+.technical-task{
+    background-color: var(--technical);
+}
+
+
+.task-contact-length{
+    margin-left: 30px;
+    font-size: 18px;
 }

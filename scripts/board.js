@@ -20,7 +20,8 @@ async function getTasks() {
             'date': task.date,
             'assignedTo': task.assignedTo,
             'category': task.category,
-            'prio': task.prio
+            'prio': task.prio,
+            'categoryText': task.categoryText
         });
     }
 }
@@ -43,33 +44,36 @@ function filterTasks(task) {
 }
 
 function renderTasks(tasks, getById) {
-
-
     getById.innerHTML = "";
     if (tasks.length == 0) {
         getById.innerHTML += generateNoTaskHTML();
     } else {
         for (let index = 0; index < tasks.length; index++) {
             const task = tasks[index];
-
-            getById.innerHTML += generateTaskHTML(task, index);
+            let className = task.categoryText.replace(" ", "-").toLowerCase()
+            getById.innerHTML += generateTaskHTML(task, index, className);
             renderAssignedToContacts(task, index);
-            renderPrio(task)
+            renderPrio(task, index);
         }
     }
 }
 
-
 function renderAssignedToContacts(task, index) {
     const assignedToContainer = document.getElementById(`${task.category}contatcs-container${index}`);
+    const numContainer = document.getElementById(`${task.category}contatcs-container${index}num`);
     task.assignedTo.forEach((c, i) => {
-        assignedToContainer.innerHTML += `
-    <div class="c${i} contact center" style="background-color:${c.color}">${createInititals(c.name)}</div>`;
+
+        if (i < 3) {
+            assignedToContainer.innerHTML += `
+        <div class="c${i} contact center" style="background-color:${c.color}">${createInititals(c.name)}</div>`;
+        } else {
+            numContainer.innerHTML = `<div class="task-contact-length center">+${i - 2}</div>`
+        }
     });
 }
 
-function renderPrio(task) {
-    const imgRef = document.getElementById(`${task.category}prio-icon`)
+function renderPrio(task, index) {
+    const imgRef = document.getElementById(`${task.category}prio-icon${index}`)
     if (task.prio) {
         imgRef.src = `./assets/icons/prio-${task.prio}-icon.png`;
     }
@@ -98,3 +102,12 @@ async function moveToUpdateDatabase() {
     await putData(`/tasks/${taskKey[currentDraggedElement]}`, tasksArray[currentDraggedElement]);
 }
 
+
+
+function highlight(id) {
+    document.getElementById(id).classList.add('drag-area-highlight');
+}
+
+function removeHighlight(id) {
+    document.getElementById(id).classList.remove('drag-area-highlight');
+}
