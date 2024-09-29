@@ -172,7 +172,7 @@ function selectContact(i) {
 function renderSelectedContacts() {
     const containerRef = document.getElementById("selected-contacts-container");
     containerRef.innerHTML = '';
-    let assignedToContacts = selectedContacts.filter(c => c.checked == true)
+    let assignedToContacts = selectedContacts.filter(c => c.checked == true);
 
 
     for (let contact of assignedToContacts) {
@@ -265,7 +265,12 @@ function clearSubtask() {
 
 function addSubtask() {
     let subtaskInput = document.getElementById('subtasks-input');
-    currentSubtasks.push(subtaskInput.value);
+    currentSubtasks.push(
+        {
+            'sub': subtaskInput.value,
+            'checked': false
+        }
+    );
     renderSubtask();
     subtaskInput.value = '';
     subtaskInputBtn();
@@ -279,7 +284,7 @@ function renderSubtask() {
         subtaskContainer.innerHTML += `
         <div id="subtask${i}" class="subtask">
            <div class="subtask-text" onclick="editWord(${i})">
-             <p>${subtask}</p> 
+             <p>${subtask.sub}</p> 
              <img src="./assets/icons/edit.png" alt="">
              
            </div>

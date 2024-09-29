@@ -47,6 +47,7 @@ async function postTask(task) {
         'assignedTo': task.assignedTo,
         'category': curretCategory,
         'prio': prio,
-        'categoryText': task.categoryText
+        'categoryText': task.categoryText,
+        'subtask': currentSubtasks
     })
 }

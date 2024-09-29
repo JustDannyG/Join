@@ -21,7 +21,8 @@ async function getTasks() {
             'assignedTo': task.assignedTo,
             'category': task.category,
             'prio': task.prio,
-            'categoryText': task.categoryText
+            'categoryText': task.categoryText,
+            'subtask': task.subtask
         });
     }
 }
@@ -54,8 +55,25 @@ function renderTasks(tasks, getById) {
             getById.innerHTML += generateTaskHTML(task, index, className);
             renderAssignedToContacts(task, index);
             renderPrio(task, index);
+            renderSubtask(task, index);
         }
     }
+}
+
+
+
+function renderSubtask(task, index) {
+    let taskAmount = document.getElementById(`${task.category}-amount${index}`)
+    let progress =  document.getElementById(`${task.category}-progress${index}`)
+    let result = task.subtask.filter(c => c.checked == true).length;
+    let total = 0
+    task.subtask.forEach((sub, i) => {
+        total = i + 1
+    });
+    taskAmount.innerHTML = `${result}/${total} Subtasks`;
+    let percent=  Math.round((100 / total) * result) + '%';
+    progress.style.width = percent
+ 
 }
 
 function renderAssignedToContacts(task, index) {
@@ -113,6 +131,6 @@ function removeHighlight(id) {
 }
 
 
-function animationOndrag(id){
-document.getElementById(id).classList.add('animation-ondrag')
+function animationOndrag(id) {
+    document.getElementById(id).classList.add('animation-ondrag')
 }
