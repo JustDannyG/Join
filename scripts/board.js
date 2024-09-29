@@ -1,13 +1,10 @@
 let currentDraggedElement;
 let tasksArray = [];
 
-
 async function init() {
-    await getContacts()
+    await getContacts();
     await getTasks();
     updateHtml();
-    console.log(contacts);
-
 }
 
 async function getTasks() {
@@ -22,11 +19,12 @@ async function getTasks() {
             'id': index,
             'date': task.date,
             'assignedTo': task.assignedTo,
-            'category': task.category
+            'category': task.category,
+            'prio': task.prio
         });
     }
-    console.log(tasksArray);
 }
+
 
 function updateHtml() {
     let todoById = document.getElementById('to-do-container');
@@ -45,25 +43,58 @@ function filterTasks(task) {
 }
 
 function renderTasks(tasks, getById) {
+
+
+    getById.innerHTML = "";
     if (tasks.length == 0) {
         getById.innerHTML += generateNoTaskHTML();
     } else {
         for (let index = 0; index < tasks.length; index++) {
             const task = tasks[index];
-            getById.innerHTML += generateTaskHTML(task);
+
+            getById.innerHTML += generateTaskHTML(task, index);
+            renderAssignedToContacts(task, index);
+            renderPrio(task)
         }
     }
 }
 
-function moveTo(category) {
-    tasksArray[currentDraggedElement]["category"] = category
-    updateHtml()
+
+function renderAssignedToContacts(task, index) {
+    const assignedToContainer = document.getElementById(`${task.category}contatcs-container${index}`);
+    task.assignedTo.forEach((c, i) => {
+        assignedToContainer.innerHTML += `
+    <div class="c${i} contact center" style="background-color:${c.color}">${createInititals(c.name)}</div>`;
+    });
 }
+
+function renderPrio(task) {
+    const imgRef = document.getElementById(`${task.category}prio-icon`)
+    if (task.prio) {
+        imgRef.src = `./assets/icons/prio-${task.prio}-icon.png`;
+    }
+}
+
+function moveTo(category) {
+    tasksArray[currentDraggedElement]["category"] = category;
+    moveToUpdateDatabase();
+    updateHtml();
+}
+
 
 function startDragging(id) {
     currentDraggedElement = id;
 }
 
+
 function allowDrop(ev) {
-    ev.preventDefault()
+    ev.preventDefault();
 }
+
+
+async function moveToUpdateDatabase() {
+    let getTasks = await getData("/tasks");
+    let taskKey = Object.keys(getTasks);
+    await putData(`/tasks/${taskKey[currentDraggedElement]}`, tasksArray[currentDraggedElement]);
+}
+

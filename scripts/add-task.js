@@ -15,7 +15,7 @@ async function init() {
 
 function addPrio(prioInput) {
     if (prioInput == prio) {
-        prio = undefined;
+        prio = null;
     } else { prio = prioInput }
     updateBtnColor()
 }

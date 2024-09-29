@@ -2,9 +2,9 @@
 
 function contactCirleHTML(detail) {
     return /*html*/ `
-    <div class="current-contact-circle center" style="background:${
-      detail.color
-    }">${createInititals(detail.name)}</div>
+    <div class="current-contact-circle center" style="background:${detail.color}">
+        ${createInititals(detail.name)}
+    </div>
       <h2>${detail.name}</h2>
     `;
 }
@@ -27,9 +27,8 @@ function firstLetterHtml(firstLetter) {
 
 function contactListHtml(contact, i) {
     return /*html*/ `<div onclick="openContact(${i})" class="contact-list d-flex">
-      <span class="contact-initials center" style="background:${
-        contact.color
-      }">${createInititals(contact.name)}</span>
+      <span class="contact-initials center" style="background:${contact.color
+        }">${createInititals(contact.name)}</span>
       <div>
         <p>${contact.name}</p>
         <a href="#">${contact.email}</a>
@@ -40,7 +39,7 @@ function contactListHtml(contact, i) {
 //Templates for Add Task
 
 function contactInDropDownHTML(i, contact, initials) {
-    return /*html*/ `
+    return /*html*/`
             <li id="contact${i}" onclick="selectContact(${i}); stopEventBubbling(event)">
                 <div class="d-flex contact-row">
                     <div class="center gap">
@@ -61,8 +60,8 @@ function contactSelectionCircleHTML(contact, initials) {
 
 //Templates for Tasks
 
-function generateTaskHTML(task) {
-    return /*hmt*/ `<div draggable="true"  ondragstart="startDragging${task['id']}" class="task">
+function generateTaskHTML(task, index) {
+    return `<div draggable="true" ondragstart="startDragging(${task.id})" class="task">
               <div class="task-category">User Story</div>
               <h4 class="task-title">${task.title}</h4>
               <div class="task-description">${task.description}</div>
@@ -73,12 +72,8 @@ function generateTaskHTML(task) {
                   <div class="task-amount">1/2 Subtask</div>
               </div>
               <div class="d-flex task-footer">
-                  <div class="d-flex contatcs-container">
-                      <div class="c1 contact center">am</div>
-                      <div class="c2 contact center">em</div>
-                      <div class="c3 contact center">mb</div>
-                  </div>
-                  <button><img class="prio-icon" src="./assets/icons/prio-medium-icon.png" alt=""></button>
+                  <div id="${task.category}contatcs-container${index}" class="d-flex contatcs-container"></div>
+                  <img id="${task.category}prio-icon" class="prio-icon" src="" alt="">
               </div> `;
 }
 

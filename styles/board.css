@@ -129,24 +129,29 @@
     color: var(--white);
 }
 
-.c1 {
+.c0 {
     position: absolute;
     left: 0;
     background-color: aqua;
 }
 
-.c2 {
+.c1 {
     position: absolute;
     left: 40px;
     background-color: blueviolet;
 }
 
-.c3 {
+.c2 {
     position: absolute;
     left: 80px;
     background-color: burlywood;
 }
 
+.c3 {
+    position: absolute;
+    left: 120px;
+    background-color: burlywood;
+}
 
 .task-container{
     height: 252px;
