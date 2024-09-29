@@ -13,13 +13,11 @@ async function init() {
 }
 
 
-function addPrio(prioInput){
+function addPrio(prioInput) {
     if (prioInput == prio) {
         prio = undefined;
-    } 
-    else 
-    {prio = prioInput}
-updateBtnColor()
+    } else { prio = prioInput }
+    updateBtnColor()
 }
 
 function updateBtnColor() {
@@ -32,11 +30,11 @@ function updateBtnColor() {
     document.getElementById("prio-icon-low").src = "./assets/icons/prio-low-icon.png"
 
 
-    if(prio){
-    document.getElementById(`prio-icon-${prio}`).src = `./assets/icons/prio-${prio}-icon-active.png`
-    document.getElementById(`${prio}-btn`).classList.add(prio)}
-    else return 
-    
+    if (prio) {
+        document.getElementById(`prio-icon-${prio}`).src = `./assets/icons/prio-${prio}-icon-active.png`
+        document.getElementById(`${prio}-btn`).classList.add(prio)
+    } else return
+
 }
 
 
@@ -116,13 +114,11 @@ function selectCategory(category) {
 
 function getSelectedContacts() {
     contacts.forEach(contact => {
-        selectedContacts.push(
-            {
-                'name': contact.name,
-                'color': contact.color,
-                'checked': false,
-            }
-        )
+        selectedContacts.push({
+            'name': contact.name,
+            'color': contact.color,
+            'checked': false,
+        })
     });
     sortByAlphabet(selectedContacts)
     console.log(selectedContacts);
@@ -139,7 +135,7 @@ function renderContacts(arr) {
         updateDesign(i)
     }
 }
- 
+
 function updateDesign(i) {
     if (selectedContacts[i].checked) {
         let contactContainerRef = document.getElementById("contact" + i);
@@ -167,7 +163,7 @@ function selectContact(i) {
 // function selectContact(i, name) {
 //     let nameIndex = selectedContacts.findIndex((n) => n.name == name)
 //     console.log(nameIndex);
-    
+
 //     let currentContact = selectedContacts[nameIndex]
 //     currentContact.checked = !currentContact.checked;
 //     updateDesign(nameIndex)
@@ -183,9 +179,9 @@ function renderSelectedContacts() {
 
     for (let contact of assignedToContacts) {
         let initials = createInititals(contact.name);
-        containerRef.innerHTML += contactSelectionCircleHTML(contact,initials);
+        containerRef.innerHTML += contactSelectionCircleHTML(contact, initials);
         console.log(contact);
-        
+
     }
 }
 
@@ -333,4 +329,3 @@ function deleteSubtask(i) {
     currentSubtasks.splice(i, 1);
     renderSubtask();
 }
-

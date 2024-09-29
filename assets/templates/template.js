@@ -1,31 +1,35 @@
 //Templates for Contact-Details
 
 function contactCirleHTML(detail) {
-  return `
-    <div class="current-contact-circle center" style="background:${detail.color}">${createInititals(detail.name)}</div>
+    return /*html*/ `
+    <div class="current-contact-circle center" style="background:${
+      detail.color
+    }">${createInititals(detail.name)}</div>
       <h2>${detail.name}</h2>
-    `
+    `;
 }
 
 function contactInformationsHTML(detail) {
-  return `
+    return /*html*/ `
     <h3>Contact Information</h3>
       <p class="bold">Email</p>
       <a href="mailto:${detail.email}">${detail.email}</a>
       <p class="bold">Phone</p>
       <a href="tel:${detail.phone}">${detail.phone}</a>
-    `
+    `;
 }
 
 //Templates for Contact List
 
 function firstLetterHtml(firstLetter) {
-  return `<div class="contacts-first-letter">${firstLetter}</div>`;
+    return /*html*/ `<div class="contacts-first-letter">${firstLetter}</div>`;
 }
 
 function contactListHtml(contact, i) {
-  return ` <div onclick="openContact(${i})" class="contact-list d-flex">
-      <span class="contact-initials center" style="background:${contact.color}">${createInititals(contact.name)}</span>
+    return /*html*/ `<div onclick="openContact(${i})" class="contact-list d-flex">
+      <span class="contact-initials center" style="background:${
+        contact.color
+      }">${createInititals(contact.name)}</span>
       <div>
         <p>${contact.name}</p>
         <a href="#">${contact.email}</a>
@@ -36,7 +40,7 @@ function contactListHtml(contact, i) {
 //Templates for Add Task
 
 function contactInDropDownHTML(i, contact, initials) {
-    return `
+    return /*html*/ `
             <li id="contact${i}" onclick="selectContact(${i}); stopEventBubbling(event)">
                 <div class="d-flex contact-row">
                     <div class="center gap">
@@ -48,10 +52,36 @@ function contactInDropDownHTML(i, contact, initials) {
                         <span class="checkmark"></span>
                     </div>
                 </div>
-            </li>`
+            </li>`;
 }
 
 function contactSelectionCircleHTML(contact, initials) {
-    return `  <div class="contact center " style="background-color:${contact.color}">${initials}</div>`
+    return /*html*/ `<div class="contact center " style="background-color:${contact.color}">${initials}</div>`;
+}
 
+//Templates for Tasks
+
+function generateTaskHTML(task) {
+    return /*hmt*/ `<div draggable="true"  ondragstart="startDragging${task['id']}" class="task">
+              <div class="task-category">User Story</div>
+              <h4 class="task-title">${task.title}</h4>
+              <div class="task-description">${task.description}</div>
+              <div class="d-flex task-amount-container">
+                  <div class="progress-bar">
+                      <div class="progress"></div>
+                  </div>
+                  <div class="task-amount">1/2 Subtask</div>
+              </div>
+              <div class="d-flex task-footer">
+                  <div class="d-flex contatcs-container">
+                      <div class="c1 contact center">am</div>
+                      <div class="c2 contact center">em</div>
+                      <div class="c3 contact center">mb</div>
+                  </div>
+                  <button><img class="prio-icon" src="./assets/icons/prio-medium-icon.png" alt=""></button>
+              </div> `;
+}
+
+function generateNoTaskHTML() {
+    return /*html*/ `<div class="no-task"> No task To do</div> `;
 }

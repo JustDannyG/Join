@@ -14,10 +14,6 @@ async function signUp() {
 // todo
 // überprüfen ob der user bereits existiert
 
-function checkIfAllInputsFilled() {
-    
-}
-
 function userInputErrorStyle(userName) {
     if (userName === "") {
         let userNameError = document.getElementById('name-error');
@@ -66,8 +62,7 @@ function passwordConfInputErrorStyle(userConfPwd) {
         userConfPwdError.textContent = "Please confirm your Password!";
         userConfPwdError.classList.add('visible');
         userConfPwdContainer.classList.add('red-border');
-    }
-    else {
+    } else {
         document.getElementById('conf-pwd-error').classList.remove('visible');
         document.getElementById('conf-pwd-input-container').classList.remove('red-border');
     }
@@ -93,7 +88,7 @@ async function checkIfAllInputsFilled(userName, userEmail, userPwd, userConfPwd)
         passwordInputErrorStyle(userPwd);
         passwordConfInputErrorStyle(userConfPwd);
         checkIfConfPwd(userPwd, userConfPwd);
-    } else if (!userName !== "" && userEmail !== "" && userPwd !== "" && userConfPwd !== "" &&  userPwd == userConfPwd) {
+    } else if (!userName !== "" && userEmail !== "" && userPwd !== "" && userConfPwd !== "" && userPwd == userConfPwd) {
         await postData(path = "/users", data = {
             'name': userName,
             'email': userEmail,

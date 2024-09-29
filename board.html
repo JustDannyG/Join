@@ -4,92 +4,86 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="./assets/icons/join-logo-light.png">
+    <link rel="icon" type="image/x-icon" href="./assets/icons/join-logo-light.png" />
 
     <title>Join - Board</title>
 
     <script src="./script.js" defer></script>
     <script src="./scripts/board.js"></script>
     <script src="./scripts/fetch.js"></script>
+    <script src="./assets/templates/template.js"></script>
 
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./styles/board.css" />
-    <link rel="stylesheet" href="./styles/header-sidebar-desktop.css">
-    <link rel="stylesheet" href="./styles/responsive/responsive.css">
-
+    <link rel="stylesheet" href="./styles/header-sidebar-desktop.css" />
+    <link rel="stylesheet" href="./styles/responsive/responsive.css" />
 </head>
 
 <body onload="init()" onclick="closeAllMenus(event)" class="column">
-
-    <section id="join-header" class="join-header">
-    </section>
+    <section id="join-header" class="join-header"></section>
 
     <main class="board-main d-flex content overflow-x-auto">
-
         <div>
             <div class="headline d-flex">
                 <h1>Board</h1>
-                <button><img src="./assets/icons/add-icon-light.png" alt=""></button>
+                <button>
+            <img src="./assets/icons/add-icon-light.png" alt="" />
+          </button>
             </div>
-            <div class="d-flex input-row"> <input placeholder="Find Task" type="text">
-                <img src="./assets/icons/search-icon.png" alt="">
+            <div class="d-flex input-row">
+                <input placeholder="Find Task" type="text" />
+                <img src="./assets/icons/search-icon.png" alt="" />
             </div>
         </div>
-
-
 
         <section class="board-section">
             <div class="subtitle d-flex">
                 <h2>To do</h2>
-                <button class="center"><img src="./assets/icons/add-icon.png" alt=""></button>
+                <button class="center">
+            <img src="./assets/icons/add-icon.png" alt="" />
+          </button>
             </div>
-            <div id="to-do-container" class="task-container">
+
+            <div id="to-do-container" class="task-container" ondrop="moveTo('todo')" ondragover="allowDrop(event)">
 
             </div>
-
         </section>
-
 
         <section class="board-section">
             <div class="subtitle d-flex">
                 <h2>In progress</h2>
-                <button class="center"><img src="./assets/icons/add-icon.png" alt=""></button>
+                <button class="center">
+            <img src="./assets/icons/add-icon.png" alt="" />
+          </button>
             </div>
-            <div id="in-progress-container" class="task-container">
+            <div id="in-progress-container" class="task-container" ondrop="moveTo('progress')" ondragover="allowDrop(event)">
 
             </div>
-
         </section>
-
-
 
         <section class="board-section">
             <div class="subtitle d-flex">
                 <h2>Await feedback</h2>
-                <button class="center"><img src="./assets/icons/add-icon.png" alt=""></button>
+                <button class="center">
+            <img src="./assets/icons/add-icon.png" alt="" />
+          </button>
             </div>
-            <div id="await-feedback-container" class="task-container"></div>
+            <div id="await-feedback-container" class="task-container" ondrop="moveTo('feedback')" ondragover="allowDrop(event)">
 
             </div>
-
         </section>
-
-
 
         <section class="board-section">
             <div class="subtitle d-flex">
                 <h2>Done</h2>
             </div>
-            <div id="done-container" class="task-container"></div>
+            <div id="done-container" class="task-container" ondrop="moveTo('done')" ondragover="allowDrop(event)">
+
             </div>
         </section>
-
-
     </main>
 
-    <section id="join-sidebar">
-    </section>
-
+    <section id="join-sidebar"></section>
 </body>
 
 </html>

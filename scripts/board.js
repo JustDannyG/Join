@@ -1,27 +1,5 @@
 let currentDraggedElement;
-
-let tasksArray = [
-    // {
-    //     'title': 'Einkaufen',
-    //     'category': 'todo',
-    //     'id': 0
-    // },
-    // {
-    //     'title': 'Auto waschen',
-    //     'category': 'feedback',
-    //     'id': 2
-    // },
-    // {
-    //     'title': 'Wäsche waschen',
-    //     'category': 'done',
-    //     'id': 3
-    // },
-    // {
-    //     'title': 'Training',
-    //     'category': 'todo',
-    //     'id': 4
-    // }
-];
+let tasksArray = [];
 
 
 async function init() {
@@ -29,7 +7,7 @@ async function init() {
     await getTasks();
     updateHtml();
     console.log(contacts);
-    
+
 }
 
 async function getTasks() {
@@ -44,12 +22,11 @@ async function getTasks() {
             'id': index,
             'date': task.date,
             'assignedTo': task.assignedTo,
-            'category' : task.category
+            'category': task.category
         });
     }
     console.log(tasksArray);
 }
-
 
 function updateHtml() {
     let todoById = document.getElementById('to-do-container');
@@ -67,7 +44,6 @@ function filterTasks(task) {
     return tasksArray.filter(t => t['category'] == task);
 }
 
-
 function renderTasks(tasks, getById) {
     if (tasks.length == 0) {
         getById.innerHTML += generateNoTaskHTML();
@@ -79,31 +55,15 @@ function renderTasks(tasks, getById) {
     }
 }
 
-
-
-
-function generateTaskHTML(task) {
-    return `<div class="task">
-                <div class="task-category">User Story</div>
-                <h4 class="task-title">${task.title}</h4>
-                <div class="task-description">${task.description}</div>
-                <div class="d-flex task-amount-container">
-                    <div class="progress-bar">
-                        <div class="progress"></div>
-                    </div>
-                    <div class="task-amount">1/2 Subtask</div>
-                </div>
-                <div class="d-flex task-footer">
-                    <div class="d-flex contatcs-container">
-                        <div class="c1 contact center">am</div>
-                        <div class="c2 contact center">em</div>
-                        <div class="c3 contact center">mb</div>
-                    </div>
-                    <button><img class="prio-icon" src="./assets/icons/prio-medium-icon.png" alt=""></button>
-                </div> `;
+function moveTo(category) {
+    tasksArray[currentDraggedElement]["category"] = category
+    updateHtml()
 }
 
+function startDragging(id) {
+    currentDraggedElement = id;
+}
 
-function generateNoTaskHTML() {
-    return `<div class="no-task"> No task To do</div> `;
+function allowDrop(ev) {
+    ev.preventDefault()
 }

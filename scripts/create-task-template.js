@@ -1,4 +1,4 @@
-let prio;
+// let prio;
 let subtaskArray = [];
 let categoryInput;
 
