@@ -1,7 +1,6 @@
 let isDropdownOpen = false;
 let prio = "medium";
 let currentSubtasks = [];
-let categorySelected = false
 const selectedContacts = [];
 
 async function init() {
@@ -99,17 +98,15 @@ function resetInputText() {
 
 }
 
-function selectCategory(category) {
-    const selectedCategory = document.getElementById("drop-down-text");
-    selectedCategory.innerHTML = category;
+// function selectCategory(category) {
+//     const selectedCategory = document.getElementById("drop-down-text");
+//     selectedCategory.innerHTML = category;
+//     categoryText = category
+//     if (selectedCategory.innerHTML == category) {
+//         categorySelected = true
+//     } else return false
 
-    if (selectedCategory.innerHTML == category) {
-        categorySelected = true
-    } else return categorySelected = false
-    console.log((selectedCategory));
-
-
-}
+// }
 
 
 
@@ -125,7 +122,6 @@ function getSelectedContacts() {
         })
     });
     sortByAlphabet(selectedContacts)
-    console.log(selectedContacts);
 }
 
 
@@ -160,7 +156,6 @@ function selectContact(i) {
     let currentContact = selectedContacts[i]
     currentContact.checked = !currentContact.checked;
     updateDesign(i)
-    console.log(selectedContacts);
     renderSelectedContacts()
 }
 
@@ -336,3 +331,36 @@ function deleteSubtask(i) {
     currentSubtasks.splice(i, 1);
     renderSubtask();
 }
+
+
+$('select').each(function() {
+    var $this = $(this);
+    $this.addClass('s-hidden').wrap('<div class="select"></div>');
+    var $styledSelect = $('<div class="styledSelect"></div>').text($this.children('option').eq(0).text()).insertAfter($this);
+    var $list = $('<ul />', { class: 'options' }).insertAfter($styledSelect);
+
+    $this.children('option').each(function() {
+        $('<li />', {
+            text: $(this).text(),
+            rel: $(this).val()
+        }).appendTo($list);
+    });
+
+    $styledSelect.on('click', function(e) {
+        e.stopPropagation();
+        $('div.styledSelect.active').not(this).removeClass('active').next('ul.options').hide();
+        $(this).toggleClass('active').next('ul.options').toggle();
+    });
+
+    $list.on('click', 'li', function(e) {
+        e.stopPropagation();
+        $styledSelect.text($(this).text()).removeClass('active');
+        $this.val($(this).attr('rel'));
+        $list.hide();
+    });
+
+    $(document).on('click', function() {
+        $styledSelect.removeClass('active');
+        $list.hide();
+    });
+});
