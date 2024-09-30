@@ -13,46 +13,13 @@ async function getContacts() {
     sortByAlphabet(contacts);
 }
 
-
-
-function toggleOverlay(id, className) {
-    document.getElementById(id).classList.toggle(className)
-}
-
-// function closeAllMenus() {
-//     const menu = document.getElementById("menu");
-//     const editContact = document.getElementById("edit-contact");
-//     const editButton = document.getElementById("edit-button");
-//     const addButton = document.getElementById("add-contact");
-
-//     if (menu) {
-//         menu.classList.remove("menu-active");
-//     }
-
-//     if (editContact) {
-//         editContact.classList.remove("menu-active");
-//     }
-
-//     if (editButton) {
-//         editButton.classList.remove("bg-color-btn");
-//     }
-
-//     if (addButton) {
-//         addButton.classList.remove("toogle-bg-color")
-//     }
-// }
-
 function stopEventBubbling(event) {
     event.stopPropagation();
 }
 
-
-
 function goSummery() {
     window.location.href = "summary.html";
 }
-
-
 
 function createInititals(selectName) {
     let firstsChar = selectName;
@@ -70,7 +37,6 @@ function createInititals(selectName) {
         return neededPartOne + neededPartThree;
     }
 }
-
 
 function randomColor() {
     let random = Math.floor(Math.random() * 16777215).toString(16);
@@ -106,18 +72,15 @@ function checkLengthSmaller(e, n) {
 }
 
 
-function toogleClass(id, className) {
-    document.getElementById(id).classList.toggle(className);
+function classChangeAction(id, className, action) {
+    if (action == 'toggle') {
+        document.getElementById(id).classList.toggle(className);
+    } else if (action == 'add') {
+        document.getElementById(id).classList.add(className);
+    } else if (action == 'remove') {
+        document.getElementById(id).classList.remove(className)
+    }
 }
-
-function removeClass(id, className) {
-    document.getElementById(id).classList.remove(className)
-}
-
-function addClass(id, className) {
-    document.getElementById(id).classList.add(className)
-}
-
 //Mobile / Desktop //
 
 function checkScreenWidth() {
@@ -164,7 +127,7 @@ function desktopHeader() {
         <p class="header-title">Kanban Project Management Tool</p>
         <div class="header-actions">
             <a href="help.html"> <img class="help-icon" src="./assets/icons/help-icon.png" alt="Help"></a>
-            <div onclick="userMenu('x'); stopEventBubbling(event)" id="header-initials" class="header-initials-btn">
+            <div onclick="classChangeAction('user-menu', 'd-none', 'toggle'); stopEventBubbling(event)" id="header-initials" class="header-initials-btn">
                 SM
             </div>
         </div>
@@ -221,10 +184,3 @@ function greetingUser() {
 }
 
 
-function userMenu(closeBtn) {
-    if (closeBtn) {
-        document.getElementById('user-menu').classList.toggle('d-none');
-    } else {
-        document.getElementById('user-menu').classList.add('d-none');
-    }
-}
