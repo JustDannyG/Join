@@ -37,20 +37,22 @@ input {
     padding: 4px 8px;
 }
 
+html,
 body {
-    height: 100vh;
+    height: 100%;
+}
+
+body {
     overflow: hidden;
     position: relative;
     background-color: rgb(42, 55, 71, 0.5);
 }
 
-.body-content {
-    height: 100%;
-}
-
 main {
+    flex: 1;
     overflow-x: hidden;
-    height: 100%;
+    flex-direction: column;
+    background-color: var(--light-grey);
 }
 
 button {
@@ -139,12 +141,6 @@ button {
 
 .menu a {
     color: var(--light-grey);
-}
-
-main {
-    flex: 1;
-    flex-direction: column;
-    background-color: var(--light-grey);
 }
 
 main::-webkit-scrollbar {
