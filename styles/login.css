@@ -219,18 +219,3 @@ button {
     visibility: hidden;
     transition: opacity 2s ease-out, visibility 2s ease-out;
 }
-
-/* Klasse zum Anzeigen der Nachricht */
-.show {
-    opacity: 1;
-    visibility: visible;
-}
-
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
-    }
-}
