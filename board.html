@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="./styles/responsive/responsive.css" />
 </head>
 
-<body onload="init()" onclick="closeAllMenus(event)" class="column">
+<body onload="init()" onclick="removeClass('menu', 'menu-active'); stopEventBubbling(event)" class="column">
     <section id="join-header" class="join-header"></section>
 
     <main class="board-main d-flex content overflow-x-auto">
@@ -44,10 +44,7 @@
                 </button>
             </div>
 
-            <div id="to-do-container" class="task-container" 
-                ondrop="moveTo('todo');removeHighlight('to-do-container')"
-                ondragover="allowDrop(event);highlight('to-do-container')"
-                ondragleave="removeHighlight('to-do-container')">
+            <div id="to-do-container" class="task-container" ondrop="moveTo('todo');removeHighlight('to-do-container')" ondragover="allowDrop(event);highlight('to-do-container')" ondragleave="removeHighlight('to-do-container')">
 
             </div>
         </section>
@@ -59,10 +56,7 @@
                     <img src="./assets/icons/add-icon.png" alt="" />
                 </button>
             </div>
-            <div id="in-progress-container" class="task-container"
-                ondrop="moveTo('progress');removeHighlight('in-progress-container')"
-                ondragover="allowDrop(event);highlight('in-progress-container')"
-                ondragleave="removeHighlight('in-progress-container')">
+            <div id="in-progress-container" class="task-container" ondrop="moveTo('progress');removeHighlight('in-progress-container')" ondragover="allowDrop(event);highlight('in-progress-container')" ondragleave="removeHighlight('in-progress-container')">
             </div>
         </section>
 
@@ -73,10 +67,7 @@
                     <img src="./assets/icons/add-icon.png" alt="" />
                 </button>
             </div>
-            <div id="await-feedback-container" class="task-container"
-                ondrop="moveTo('feedback'); removeHighlight('await-feedback-container')"
-                ondragover="allowDrop(event);highlight('await-feedback-container')"
-                ondragleave="removeHighlight('await-feedback-container')">
+            <div id="await-feedback-container" class="task-container" ondrop="moveTo('feedback'); removeHighlight('await-feedback-container')" ondragover="allowDrop(event);highlight('await-feedback-container')" ondragleave="removeHighlight('await-feedback-container')">
 
             </div>
         </section>
@@ -85,9 +76,7 @@
             <div class="subtitle d-flex">
                 <h2>Done</h2>
             </div>
-            <div id="done-container" class="task-container" ondrop="moveTo('done'); removeHighlight('done-container')"
-                ondragover="allowDrop(event);highlight('done-container')"
-                ondragleave="removeHighlight('done-container')">
+            <div id="done-container" class="task-container" ondrop="moveTo('done'); removeHighlight('done-container')" ondragover="allowDrop(event);highlight('done-container')" ondragleave="removeHighlight('done-container')">
             </div>
         </section>
     </main>
