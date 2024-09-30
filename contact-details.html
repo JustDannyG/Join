@@ -23,7 +23,7 @@
 </head>
 
 
-<body onclick="classChangeAction('user-menu', 'd-none', 'add'); classChangeAction('menu', 'menu-active', 'remove'); stopEventBubbling(event);" onload="showContact()" class="column">
+<body onclick="classChangeAction('user-menu', 'd-none', 'add'); classChangeAction('menu', 'menu-active', 'remove'); classChangeAction('edit-contact', 'menu-active', 'remove'), stopEventBubbling(event);" onload="showContact()" class="column">
     <header class="d-flex header-mobile">
         <img class="logo-mobile" src="./assets/icons/logo-dark.svg" alt="Join Logo" />
         <div onclick="classChangeAction('menu', 'menu-active', 'toggle'), stopEventBubbling(event)" id="current-user-header" class="current-user-header center">T</div>
@@ -53,7 +53,7 @@
         <div class="details column" id="details">
         </div>
 
-        <button onclick="toggleOverlay('edit-contact', 'menu-active'), stopEventBubbling(event)" id="edit-button " class="edit-button center ">
+        <button onclick="classChangeAction('edit-contact', 'menu-active', 'toggle'); stopEventBubbling(event)" id="edit-button" class="edit-button center ">
             <img src="./assets/icons/more_vert.png " alt="edit-contact " />
         </button>
     </main>
