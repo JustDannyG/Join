@@ -1,4 +1,4 @@
-let prio;
+// let prio;
 let subtaskArray = [];
 let categoryInput;
 
@@ -14,7 +14,8 @@ function getInputs() {
     let titleInput = document.getElementById("title");
     let descriptionInput = document.getElementById("description");
     let dateInput = document.getElementById("date");
-    let assignedTo = selectedContacts;
+    let assignedTo = filterCheckedAssignedTo();
+    let categoryText = document.getElementById("drop-down-text").innerHTML
 
     // console.log(titleInput.value);
     // console.log(descriptionInput.value);
@@ -25,11 +26,18 @@ function getInputs() {
         'title': titleInput.value,
         'description': descriptionInput.value,
         'date': dateInput.value,
-        'assignedTo': assignedTo
-
+        'assignedTo': assignedTo,
+        'categoryText': categoryText
     }
     postTask(task);
 }
+
+function filterCheckedAssignedTo() {
+    let filtertContacts = selectedContacts.filter(contact => contact.checked == true)
+    return filtertContacts;
+}
+
+
 
 async function postTask(task) {
     await postData(path = "/tasks", data = {
@@ -37,6 +45,9 @@ async function postTask(task) {
         'description': task.description,
         'date': task.date,
         'assignedTo': task.assignedTo,
-        'category': curretCategory
+        'category': curretCategory,
+        'prio': prio,
+        'categoryText': task.categoryText,
+        'subtask': currentSubtasks
     })
 }
