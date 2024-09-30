@@ -73,14 +73,18 @@ function checkLengthSmaller(e, n) {
 
 
 function classChangeAction(id, className, action) {
-    if (action == 'toggle') {
-        document.getElementById(id).classList.toggle(className);
-    } else if (action == 'add') {
-        document.getElementById(id).classList.add(className);
-    } else if (action == 'remove') {
-        document.getElementById(id).classList.remove(className)
-    }
+    const element = document.getElementById(id);
+    if (element) {
+        if (action === 'toggle') {
+            element.classList.toggle(className);
+        } else if (action === 'add') {
+            element.classList.add(className);
+        } else if (action === 'remove') {
+            element.classList.remove(className);
+        }
+    } else return
 }
+
 //Mobile / Desktop //
 
 function checkScreenWidth() {
@@ -110,7 +114,7 @@ window.addEventListener('resize', checkScreenWidth);
 function mobileHeader() {
     return `<header class="d-flex header-mobile">
       <img class="logo-mobile" src="./assets/icons/logo-dark.svg" alt="Join Logo" />
-      <div onclick="toogleClass('menu','menu-active'); stopEventBubbling(event)" id="current-user-header" class="current-user-header center">T</div>
+      <div onclick="classChangeAction('menu', 'menu-active', 'toggle'), stopEventBubbling(event)" id="current-user-header" class="current-user-header center">T</div>
       <div id="menu" class="column menu">
         <a href="./help.html">Help</a>
         <a href="./legal-notice.html">Legal Notice</a>
@@ -182,5 +186,3 @@ function greetingUser() {
     let greetUser = document.getElementById('greeting-name');
     greetUser.innerHTML = user;
 }
-
-

@@ -20,9 +20,7 @@
     <script src="./scripts/fetch.js"></script>
 </head>
 
-<body onload="init()"
-    onclick="classChangeAction('user-menu', 'd-none', 'add'),closeDropdown('assign-to-dropdown-contacts', 'drop-down-icon1') ,stopEventBubbling(event)"
-    class="column">
+<body onload="init()" onclick="classChangeAction('user-menu', 'd-none', 'add'); classChangeAction('menu', 'menu-active', 'remove'); closeDropdown(); stopEventBubbling(event);" class="column">
 
 
     <section id="join-header" class="join-header">
@@ -82,8 +80,8 @@
                 <label for="selected-category">Category<span class="required">*</span></label>
                 <select required id="selected-category" class="select-category">
                          <option value="">Select task category:</option>
-                         <option  value="Technical Task"><span class="option">Technical Task</span></option>
-                        <option value="User Story"><span class="option">User Story</span></option>
+                         <option  value="Technical Task">Technical Task</option>
+                        <option value="User Story">>User Story</option>
                 </select>
 
 
