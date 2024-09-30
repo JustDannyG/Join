@@ -194,10 +194,6 @@
     .not-found {
         font-size: 12px;
     }
-    
-    select option[value=""] {
-        display: none;
-    }
     /*Drop-Down Menü*/
     
     .drop-down {
@@ -212,14 +208,16 @@
         padding: 0;
     }
     
-    .dropdown-options li {
+    .dropdown-options li,
+    .options li {
         padding: 12px;
         cursor: pointer;
         border-radius: 8px;
         background-color: var(--white);
     }
     
-    .dropdown-options li:hover {
+    .dropdown-options li:hover,
+    .options li:hover {
         background-color: var(--darke-blue);
         color: var(--white);
     }
@@ -371,6 +369,7 @@
         width: 15px;
         margin: 5px;
     }
+    /* Selectet*/
     
     .s-hidden {
         visibility: hidden;
@@ -379,65 +378,54 @@
     
     .select {
         cursor: pointer;
-        display: inline-block;
         position: relative;
-        font: normal 11px/22px Arial, Sans-Serif;
         color: black;
-        border: 1px solid #ccc;
+        margin-top: 12px;
+        height: 32px;
+        border: 1px solid var(--dark-grey);
+        border-radius: 8px;
     }
-    /* Selectet*/
+    
+    select option[value=""] {
+        display: none;
+    }
     
     .styledSelect {
+        display: flex;
+        align-items: center;
         position: absolute;
         top: 0;
         right: 0;
         bottom: 0;
         left: 0;
         background-color: white;
-        padding: 0 10px;
-        font-weight: bold;
+        border-radius: 8px;
+        padding: 4px 10px;
+        font-size: 14px;
     }
     
     .styledSelect:after {
         content: "";
-        width: 0;
-        height: 0;
         border: 5px solid transparent;
         border-color: black transparent transparent transparent;
         position: absolute;
-        top: 9px;
-        right: 6px;
+        top: 12px;
+        right: 8px;
+        transition: all;
     }
     
-    .styledSelect:active,
-    .styledSelect.active {
-        background-color: #eee;
+    .styledSelect.active:after {
+        transform: rotate(180deg);
+        top: 5px;
     }
     
     .options {
         display: none;
         position: absolute;
-        top: 100%;
-        right: 0;
-        left: 0;
-        z-index: 999;
-        margin: 0;
+        background-color: unset;
+        border-radius: 8px;
+        top: 102%;
+        width: 100%;
         padding: 0;
         list-style: none;
-        border: 1px solid #ccc;
-        background-color: white;
-        -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-        -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    }
-    
-    .options li {
-        padding: 0 6px;
-        margin: 0 0;
-        padding: 0 10px;
-    }
-    
-    .options li:hover {
-        background-color: rgb(15, 31, 46);
-        color: white;
     }
