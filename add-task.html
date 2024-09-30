@@ -20,9 +20,7 @@
     <script src="./scripts/fetch.js"></script>
 </head>
 
-<body onload="init()"
-    onclick="closeAllMenus(event), closeDropdown('assign-to-dropdown-contacts', 'drop-down-icon1'),closeDropdown('category-dropdown', 'drop-down-icon2') ,stopEventBubbling(event)"
-    class="column">
+<body onload="init()" onclick="removeClass('menu', 'menu-active'); closeDropdown('assign-to-dropdown-contacts', 'drop-down-icon1'); closeDropdown('category-dropdown', 'drop-down-icon2'); stopEventBubbling(event)" class="column">
 
     <section id="join-header" class="join-header">
     </section>
@@ -47,8 +45,7 @@
                 <label for="assign-to-dropdown">Assigned to</label>
 
                 <div id="dropdown" class="drop-down d-flex">
-                    <input id="assign-to-dropdown" onkeyup="filter('assign-to-dropdown')"
-                        onclick="handleInputClick(event)" value="Select contacts to assign">
+                    <input id="assign-to-dropdown" onkeyup="filter('assign-to-dropdown')" onclick="handleInputClick(event)" value="Select contacts to assign">
                     <button onclick="handleDropdownButtonClick(event)" type="button" class="dropdown-btn">
                         <img id="drop-down-icon1" src="./assets/icons/arrow-drop-down.png">
                     </button>
@@ -58,7 +55,7 @@
                     <!-- Contacts -->
                 </ul>
             </div>
-            <div id="not-found-container" class="not-found-container"></div>
+            <!-- <div id="not-found-container" class="not-found-container"></div> -->
             <div id="selected-contacts-container" class="d-flex selectet-contacts-container"></div>
 
             <div class="column mt-16">
@@ -69,8 +66,7 @@
             <div class="prio mt-16">
                 <span>Prio</span>
                 <div class="d-flex row">
-                    <button type="button" onclick="addPrio('urgent'), stopEventBubbling(event)" id="urgent-btn"
-                        class="prio-btn">Urgent<img id="prio-icon-urgent"
+                    <button type="button" onclick="addPrio('urgent'), stopEventBubbling(event)" id="urgent-btn" class="prio-btn">Urgent<img id="prio-icon-urgent"
                             src="./assets/icons/prio-urgent-icon.png"></button>
                     <button type="button" onclick="addPrio('medium')" id="medium-btn" class="prio-btn">Medium<img
                             id="prio-icon-medium" src="./assets/icons/prio-medium-icon.png"></button>
@@ -82,8 +78,7 @@
             <div class="column mt-16">
                 <span>Category<span class="required">*</span></span>
 
-                <div id="dropdown2" class="drop-down"
-                    onclick="toggleDropdown('category-dropdown','drop-down-icon2'), stopEventBubbling(event) ">
+                <div id="dropdown2" class="drop-down" onclick="toggleDropdown('category-dropdown','drop-down-icon2'), stopEventBubbling(event) ">
 
                     <div id="selected-category" class="select-placeholder">
                         <span id="drop-down-text"> Select task category</span>
@@ -126,10 +121,10 @@
         <div><span class="required ">*</span>This field is required</div>
         <button class="submit" type="submit" form="add-task">Create Task <img src="./assets/icons/check.png"></button>
 
-    </div>
+                    </div>
 
-    <section id="join-sidebar">
-    </section>
+                    <section id="join-sidebar">
+                    </section>
 
 </body>
 

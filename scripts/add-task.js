@@ -1,6 +1,7 @@
 let isDropdownOpen = false;
 let prio = "medium";
 let currentSubtasks = [];
+let categorySelected = false
 const selectedContacts = [];
 
 async function init() {
@@ -41,10 +42,8 @@ function toggleDropdown(id, iconId) {
     const dropdownIcon = document.getElementById(iconId);
     dropdown.classList.toggle("show-dropdown");
 
-    if (dropdown.classList.contains("show-dropdown")) {
+    if (isDropdownOpen) {
         dropdownIcon.style.transform = 'rotate(180deg)';
-
-
     } else {
         dropdownIcon.style.transform = 'rotate(0deg)';
         removeClass('dropdown', 'input-active');
@@ -103,6 +102,13 @@ function resetInputText() {
 function selectCategory(category) {
     const selectedCategory = document.getElementById("drop-down-text");
     selectedCategory.innerHTML = category;
+
+    if (selectedCategory.innerHTML == category) {
+        categorySelected = true
+    } else return categorySelected = false
+    console.log((selectedCategory));
+
+
 }
 
 
@@ -265,12 +271,10 @@ function clearSubtask() {
 
 function addSubtask() {
     let subtaskInput = document.getElementById('subtasks-input');
-    currentSubtasks.push(
-        {
-            'sub': subtaskInput.value,
-            'checked': false
-        }
-    );
+    currentSubtasks.push({
+        'sub': subtaskInput.value,
+        'checked': false
+    });
     renderSubtask();
     subtaskInput.value = '';
     subtaskInputBtn();

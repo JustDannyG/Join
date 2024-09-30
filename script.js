@@ -19,28 +19,28 @@ function toggleOverlay(id, className) {
     document.getElementById(id).classList.toggle(className)
 }
 
-function closeAllMenus() {
-    const menu = document.getElementById("menu");
-    const editContact = document.getElementById("edit-contact");
-    const editButton = document.getElementById("edit-button");
-    const addButton = document.getElementById("add-contact");
+// function closeAllMenus() {
+//     const menu = document.getElementById("menu");
+//     const editContact = document.getElementById("edit-contact");
+//     const editButton = document.getElementById("edit-button");
+//     const addButton = document.getElementById("add-contact");
 
-    if (menu) {
-        menu.classList.remove("menu-active");
-    }
+//     if (menu) {
+//         menu.classList.remove("menu-active");
+//     }
 
-    if (editContact) {
-        editContact.classList.remove("menu-active");
-    }
+//     if (editContact) {
+//         editContact.classList.remove("menu-active");
+//     }
 
-    if (editButton) {
-        editButton.classList.remove("bg-color-btn");
-    }
+//     if (editButton) {
+//         editButton.classList.remove("bg-color-btn");
+//     }
 
-    if (addButton) {
-        addButton.classList.remove("toogle-bg-color")
-    }
-}
+//     if (addButton) {
+//         addButton.classList.remove("toogle-bg-color")
+//     }
+// }
 
 function stopEventBubbling(event) {
     event.stopPropagation();
@@ -147,7 +147,7 @@ window.addEventListener('resize', checkScreenWidth);
 function mobileHeader() {
     return `<header class="d-flex header-mobile">
       <img class="logo-mobile" src="./assets/icons/logo-dark.svg" alt="Join Logo" />
-      <div onclick="toggleMenu('menu', event)" id="current-user-header" class="current-user-header center">T</div>
+      <div onclick="toogleClass('menu','menu-active'); stopEventBubbling(event)" id="current-user-header" class="current-user-header center">T</div>
       <div id="menu" class="column menu">
         <a href="./help.html">Help</a>
         <a href="./legal-notice.html">Legal Notice</a>

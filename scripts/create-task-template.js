@@ -40,14 +40,18 @@ function filterCheckedAssignedTo() {
 
 
 async function postTask(task) {
-    await postData(path = "/tasks", data = {
-        'title': task.title,
-        'description': task.description,
-        'date': task.date,
-        'assignedTo': task.assignedTo,
-        'category': curretCategory,
-        'prio': prio,
-        'categoryText': task.categoryText,
-        'subtask': currentSubtasks
-    })
+    if (categorySelected == true) {
+        await postData(path = "/tasks", data = {
+            'title': task.title,
+            'description': task.description,
+            'date': task.date,
+            'assignedTo': task.assignedTo,
+            'category': curretCategory,
+            'prio': prio,
+            'categoryText': task.categoryText,
+            'subtask': currentSubtasks
+        })
+    } else
+        return console.log(("Bitte Subtask angeben"));
+
 }
