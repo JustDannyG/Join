@@ -60,7 +60,7 @@ function clearInput(input) {
 }
 
 function isCheckBoxChecked(e) {
-    return e.checked
+    return e.checked;
 }
 
 function checkLengthGreater(e, n) {
@@ -78,20 +78,20 @@ function classChangeAction(id, className, action) {
     } else if (action == 'add') {
         document.getElementById(id).classList.add(className);
     } else if (action == 'remove') {
-        document.getElementById(id).classList.remove(className)
+        document.getElementById(id).classList.remove(className);
     }
 }
 //Mobile / Desktop //
 
 function checkScreenWidth() {
     let header = document.getElementById('join-header');
-    let sidebar = document.getElementById('join-sidebar')
-    let currentHeader = ''
-    let currentSidebar = ''
+    let sidebar = document.getElementById('join-sidebar');
+    let currentHeader = '';
+    let currentSidebar = '';
     if (window.innerWidth <= 1024) {
         console.log("Mobile Ansicht");
         currentHeader = mobileHeader();
-        currentSidebar = mobileSidebar()
+        currentSidebar = mobileSidebar();
     } else {
         console.log("Desktop Ansicht");
         currentHeader = desktopHeader();
