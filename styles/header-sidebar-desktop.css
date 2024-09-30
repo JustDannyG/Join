@@ -58,6 +58,40 @@
     margin-right: 30px;
 }
 
+.user-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    width: 150px;
+    height: 158px;
+    bottom: -160px;
+    right: 10px;
+    z-index: 2;
+    border: solid 1px;
+    border-radius: 20px 0 20px 20px;
+    background-color: var(--darke-blue);
+}
+
+.user-menu a {
+    color: var(--sidebar-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    width: 130px;
+    height: 46px;
+    transition: all ease-in-out 125ms;
+}
+
+.user-menu a:hover {
+    background-color: #3b4d66;
+    scale: 1.1;
+    color: white;
+}
+
+
 
 /* Sidebar Desktop */
 

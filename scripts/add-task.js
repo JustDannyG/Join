@@ -1,35 +1,38 @@
-
 let isDropdownOpen = false;
-
+let prio = "medium";
 let currentSubtasks = [];
+const selectedContacts = [];
 
-
-
-function addPrioColorToUrgent() {
-    document.getElementById("urgent-btn").classList.add("urgent")
-    document.getElementById("medium-btn").classList.remove("medium")
-    document.getElementById("low-btn").classList.remove("low")
-    document.getElementById("prio-icon-urgent").src = "./assets/icons/prio-urgent-icon-active.png"
-    document.getElementById("prio-icon-medium").src = "./assets/icons/prio-medium-icon.png"
-    document.getElementById("prio-icon-low").src = "./assets/icons/prio-low-icon.png"
+async function init() {
+    updateBtnColor()
+    await getContacts()
+    getSelectedContacts()
+    renderContacts(selectedContacts);
 }
 
-function addPrioColorToMedium() {
-    document.getElementById("medium-btn").classList.add("medium")
-    document.getElementById("urgent-btn").classList.remove("urgent")
-    document.getElementById("low-btn").classList.remove("low")
-    document.getElementById("prio-icon-urgent").src = "./assets/icons/prio-urgent-icon.png"
-    document.getElementById("prio-icon-medium").src = "./assets/icons/prio-medium-icon-active.png"
-    document.getElementById("prio-icon-low").src = "./assets/icons/prio-low-icon.png"
+
+function addPrio(prioInput) {
+    if (prioInput == prio) {
+        prio = null;
+    } else { prio = prioInput }
+    updateBtnColor()
 }
 
-function addPrioColorToLow() {
-    document.getElementById("low-btn").classList.add("low")
+function updateBtnColor() {
     document.getElementById("urgent-btn").classList.remove("urgent")
     document.getElementById("medium-btn").classList.remove("medium")
+    document.getElementById("low-btn").classList.remove("low")
+
     document.getElementById("prio-icon-urgent").src = "./assets/icons/prio-urgent-icon.png"
     document.getElementById("prio-icon-medium").src = "./assets/icons/prio-medium-icon.png"
-    document.getElementById("prio-icon-low").src = "./assets/icons/prio-low-icon-active.png"
+    document.getElementById("prio-icon-low").src = "./assets/icons/prio-low-icon.png"
+
+
+    if (prio) {
+        document.getElementById(`prio-icon-${prio}`).src = `./assets/icons/prio-${prio}-icon-active.png`
+        document.getElementById(`${prio}-btn`).classList.add(prio)
+    } else return
+
 }
 
 
@@ -38,10 +41,8 @@ function toggleDropdown(id, iconId) {
     const dropdownIcon = document.getElementById(iconId);
     dropdown.classList.toggle("show-dropdown");
 
-    if (dropdown.classList.contains("show-dropdown")) {
+    if (isDropdownOpen) {
         dropdownIcon.style.transform = 'rotate(180deg)';
-
-
     } else {
         dropdownIcon.style.transform = 'rotate(0deg)';
         removeClass('dropdown', 'input-active');
@@ -68,6 +69,13 @@ function closeDropdown(id, iconId) {
     removeClass('dropdown', 'input-active');
 }
 
+function handleInputClick(event) {
+    clearInput(event.target);
+    openDropdown('assign-to-dropdown-contacts', 'drop-down-icon1');
+    stopEventBubbling(event);
+
+}
+
 
 function handleDropdownButtonClick(event) {
     const input = document.getElementById('assign-to-dropdown');
@@ -79,7 +87,6 @@ function handleDropdownButtonClick(event) {
     isDropdownOpen = !isDropdownOpen;
     if (isDropdownOpen) {
         clearInput(input);
-        renderContacts(contacts);
         addClass('dropdown', 'input-active');
     }
 }
@@ -91,107 +98,91 @@ function resetInputText() {
 
 }
 
-function selectCategory(category) {
-    const selectedCategory = document.getElementById("drop-down-text");
-    selectedCategory.innerHTML = category;
+// function selectCategory(category) {
+//     const selectedCategory = document.getElementById("drop-down-text");
+//     selectedCategory.innerHTML = category;
+//     categoryText = category
+//     if (selectedCategory.innerHTML == category) {
+//         categorySelected = true
+//     } else return false
+
+// }
+
+
+
+
+
+
+function getSelectedContacts() {
+    contacts.forEach(contact => {
+        selectedContacts.push({
+            'name': contact.name,
+            'color': contact.color,
+            'checked': false,
+        })
+    });
+    sortByAlphabet(selectedContacts)
 }
 
-
-const contacts = [{ name: 'John Doe' }, { name: 'Jane Smith' }, { name: 'Emily Johnson' }];
-const selectedContacts = [];
-
-function init() {
-    renderContacts(contacts);
-}
 
 function renderContacts(arr) {
-    const dropDownRef = document.getElementById("assign-to-dropdown-contacts");
-    clearContent(dropDownRef)
-    sortByAlphabet(arr)
-    getContactOfContacts(arr, dropDownRef)
-
-
-}
-
-function getContactOfContacts(arr, ref) {
+    let dropDownRef = document.getElementById("assign-to-dropdown-contacts");
+    dropDownRef.innerHTML = ''
     for (let i = 0; i < arr.length; i++) {
         const contact = arr[i];
         let initials = createInititals(contact.name)
-        ref.innerHTML += contactInDropDownHTML(i, contact, initials);
-
-        if (isCheckBoxChecked(contact)) {
-            setSelectedDesign(i);
-
-        } else if (!isCheckBoxChecked(contact)) {
-            setUnSeletedDesign(i);
-        }
+        dropDownRef.innerHTML += contactInDropDownHTML(i, contact, initials);
+        updateDesign(i)
     }
 }
 
-function setSelectedDesign(i) {
-    let contactContainerRef = document.getElementById("contact" + i);
-    let checkboxRef = document.getElementById("checkbox" + i);
-    contactContainerRef.classList.add("contact-active");
-    checkboxRef.setAttribute("checked", "true")
-}
-
-function setUnSeletedDesign(i) {
-    let contactContainerRef = document.getElementById("contact" + i);
-    contactContainerRef.classList.remove("contact-active");
-}
-
-
-function selectContact(name, i) {
-    const index = selectedContacts.findIndex(contact => contact.name === name);
-    const indexContacts = contacts.findIndex(contact => contact.name === name);
-    let checkboxRef = document.getElementById("checkbox" + i);
-    let contactContainerRef = document.getElementById("contact" + i);
-
-    checkboxRef.checked = !checkboxRef.checked;
-    handleContactSelection(index, indexContacts, name, checkboxRef.checked, contactContainerRef);
-    renderSelectetContacts();
-}
-
-function handleContactSelection(index, indexContacts, name, checked, contactContainerRef) {
-    if (index === -1) {
-        removeFromContactsList(contacts, indexContacts);
-        updateContactsList(selectedContacts, name, checked);
-        updateContactsList(contacts, name, checked);
+function updateDesign(i) {
+    if (selectedContacts[i].checked) {
+        let contactContainerRef = document.getElementById("contact" + i);
+        let checkboxRef = document.getElementById("checkbox" + i);
         contactContainerRef.classList.add("contact-active");
-    } else {
-        selectedContacts.splice(index, 1);
-        removeFromContactsList(contacts, indexContacts);
-        updateContactsList(contacts, name, checked);
+        checkboxRef.setAttribute("checked", true)
+
+    } else if (!selectedContacts[i].checked) {
+        let contactContainerRef = document.getElementById("contact" + i);
+        let checkboxRef = document.getElementById("checkbox" + i);
         contactContainerRef.classList.remove("contact-active");
+        checkboxRef.removeAttribute("checked")
     }
 }
 
-function updateContactsList(contactArray, name, checked) {
-    contactArray.push({ "name": name, "checked": checked });
+
+function selectContact(i) {
+    let currentContact = selectedContacts[i]
+    currentContact.checked = !currentContact.checked;
+    updateDesign(i)
+    renderSelectedContacts()
 }
 
-function removeFromContactsList(contactArray, index) {
-    if (index !== -1) {
-        contactArray.splice(index, 1);
-    }
-}
+// function selectContact(i, name) {
+//     let nameIndex = selectedContacts.findIndex((n) => n.name == name)
+//     console.log(nameIndex);
 
-function renderSelectetContacts() {
+//     let currentContact = selectedContacts[nameIndex]
+//     currentContact.checked = !currentContact.checked;
+//     updateDesign(nameIndex)
+//     console.log(selectedContacts);
+//     renderSelectedContacts()
+// }
+
+function renderSelectedContacts() {
     const containerRef = document.getElementById("selected-contacts-container");
     containerRef.innerHTML = '';
-    for (let contact of selectedContacts) {
+    let assignedToContacts = selectedContacts.filter(c => c.checked == true);
+
+
+    for (let contact of assignedToContacts) {
         let initials = createInititals(contact.name);
-        containerRef.innerHTML += contactSelectionCircleHTML(initials);
+        containerRef.innerHTML += contactSelectionCircleHTML(contact, initials);
+        console.log(contact);
+
     }
 }
-
-function handleInputClick(event) {
-    clearInput(event.target);
-    openDropdown('assign-to-dropdown-contacts', 'drop-down-icon1');
-    stopEventBubbling(event);
-}
-
-
 
 function filter(id) {
     const inputRef = document.getElementById(id);
@@ -214,18 +205,18 @@ function displayNoContactFoundMessage() {
     dropdownRef.innerHTML = '<li class="not-found">Nicht gefunden</li>';
 }
 
-
+function findInput(input) {
+    let result = contacts.filter(contact =>
+        contact.name.toLowerCase().includes(input))
+    return result
+}
 // function findInput(input) {
 //     let result = contacts.filter(contact =>
 //         !contact.checked && contact.name.toLowerCase().includes(input))
 //     return result
 // }
 
-function findInput(input) {
-    let result = contacts.filter(contact =>
-        contact.name.toLowerCase().includes(input))
-    return result
-}
+
 
 ///////////////////
 // Subtasks
@@ -275,7 +266,10 @@ function clearSubtask() {
 
 function addSubtask() {
     let subtaskInput = document.getElementById('subtasks-input');
-    currentSubtasks.push(subtaskInput.value);
+    currentSubtasks.push({
+        'sub': subtaskInput.value,
+        'checked': false
+    });
     renderSubtask();
     subtaskInput.value = '';
     subtaskInputBtn();
@@ -289,7 +283,7 @@ function renderSubtask() {
         subtaskContainer.innerHTML += `
         <div id="subtask${i}" class="subtask">
            <div class="subtask-text" onclick="editWord(${i})">
-             <p>${subtask}</p> 
+             <p>${subtask.sub}</p> 
              <img src="./assets/icons/edit.png" alt="">
              
            </div>
@@ -338,3 +332,35 @@ function deleteSubtask(i) {
     renderSubtask();
 }
 
+
+$('select').each(function() {
+    var $this = $(this);
+    $this.addClass('s-hidden').wrap('<div class="select"></div>');
+    var $styledSelect = $('<div class="styledSelect"></div>').text($this.children('option').eq(0).text()).insertAfter($this);
+    var $list = $('<ul />', { class: 'options' }).insertAfter($styledSelect);
+
+    $this.children('option').each(function() {
+        $('<li />', {
+            text: $(this).text(),
+            rel: $(this).val()
+        }).appendTo($list);
+    });
+
+    $styledSelect.on('click', function(e) {
+        e.stopPropagation();
+        $('div.styledSelect.active').not(this).removeClass('active').next('ul.options').hide();
+        $(this).toggleClass('active').next('ul.options').toggle();
+    });
+
+    $list.on('click', 'li', function(e) {
+        e.stopPropagation();
+        $styledSelect.text($(this).text()).removeClass('active');
+        $this.val($(this).attr('rel'));
+        $list.hide();
+    });
+
+    $(document).on('click', function() {
+        $styledSelect.removeClass('active');
+        $list.hide();
+    });
+});

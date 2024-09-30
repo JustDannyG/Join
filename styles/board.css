@@ -1,3 +1,7 @@
+.board-main {
+    gap: 32px;
+}
+
 .headline button {
     background-color: var(--darke-blue);
     border-radius: 8px;
@@ -50,17 +54,8 @@
     border-radius: 8px;
 }
 
-.task {
-    position: relative;
-    margin-top: 16px;
-    background-color: var(--white);
-    padding: 16px;
-    border-radius: 24px;
-    width: 260px;
-}
 
 .task-category {
-    background-color: var(--story);
     color: var(--light-grey);
     padding: 4px 16px;
     width: min-content;
@@ -93,7 +88,7 @@
 
 .progress {
     background-color: var(--light-blue);
-    width: 50%;
+    /* width: 50%; */
     height: 8px;
     border-radius: 8px;
 }
@@ -125,20 +120,94 @@
     color: var(--white);
 }
 
-.c1 {
+.c0 {
     position: absolute;
     left: 0;
-    background-color: aqua;
+}
+
+.c1 {
+    position: absolute;
+    left: 40px;
 }
 
 .c2 {
     position: absolute;
-    left: 40px;
-    background-color: blueviolet;
+    left: 80px;
 }
 
 .c3 {
     position: absolute;
-    left: 80px;
-    background-color: burlywood;
+    left: 120px;
+}
+
+.task-container {
+    height: 252px;
+    background-color: lightgray;
+    border: solid 1px;
+    overflow-x: hidden;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.user-story {
+    background-color: var(--story);
+}
+
+.technical-task {
+    background-color: var(--technical);
+}
+
+
+.task-contact-length {
+    margin-left: 30px;
+    font-size: 18px;
+}
+
+.drag-area-highlight {
+    background-color: lightblue;
+}
+
+.task {
+    position: relative;
+    background-color: var(--white);
+    padding: 16px;
+    border-radius: 24px;
+    width: 260px;
+}
+
+.task:hover {
+    cursor: pointer;
+    animation-name: task-drag;
+    animation-duration: 800ms;
+}
+
+.animation-ondrag {
+    transform: rotate(0.05turn);
+}
+
+@keyframes task-drag {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    10% {
+        transform: rotate(-8deg)
+    }
+
+    30% {
+        transform: rotate(6deg)
+    }
+
+    55% {
+        transform: rotate(-3deg)
+    }
+
+    80% {
+        transform: rotate(1deg)
+    }
+
+    100% {
+        transform: rotate(-1deg)
+    }
 }

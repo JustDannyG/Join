@@ -1,44 +1,25 @@
 let user = 'Guest';
+let contacts = [];
 
 
-function toggleOverlay(id, className) {
-    document.getElementById(id).classList.toggle(className)
-}
-
-function closeAllMenus() {
-    const menu = document.getElementById("menu");
-    const editContact = document.getElementById("edit-contact");
-    const editButton = document.getElementById("edit-button");
-    const addButton = document.getElementById("add-contact");
-
-    if (menu) {
-        menu.classList.remove("menu-active");
+async function getContacts() {
+    const contactsData = await getData("contacts");
+    const keys = Object.keys(contactsData);
+    for (let index = 0; index < keys.length; index++) {
+        const key = keys[index];
+        const contact = contactsData[key];
+        contacts.push(contact);
     }
-
-    if (editContact) {
-        editContact.classList.remove("menu-active");
-    }
-
-    if (editButton) {
-        editButton.classList.remove("bg-color-btn");
-    }
-
-    if (addButton) {
-        addButton.classList.remove("toogle-bg-color")
-    }
+    sortByAlphabet(contacts);
 }
 
 function stopEventBubbling(event) {
     event.stopPropagation();
 }
 
-
-
 function goSummery() {
     window.location.href = "summary.html";
 }
-
-
 
 function createInititals(selectName) {
     let firstsChar = selectName;
@@ -56,7 +37,6 @@ function createInititals(selectName) {
         return neededPartOne + neededPartThree;
     }
 }
-
 
 function randomColor() {
     let random = Math.floor(Math.random() * 16777215).toString(16);
@@ -92,18 +72,15 @@ function checkLengthSmaller(e, n) {
 }
 
 
-function toogleClass(id, className) {
-    document.getElementById(id).classList.toggle(className);
+function classChangeAction(id, className, action) {
+    if (action == 'toggle') {
+        document.getElementById(id).classList.toggle(className);
+    } else if (action == 'add') {
+        document.getElementById(id).classList.add(className);
+    } else if (action == 'remove') {
+        document.getElementById(id).classList.remove(className)
+    }
 }
-
-function removeClass(id, className) {
-    document.getElementById(id).classList.remove(className)
-}
-
-function addClass(id, className) {
-    document.getElementById(id).classList.add(className)
-}
-
 //Mobile / Desktop //
 
 function checkScreenWidth() {
@@ -133,7 +110,7 @@ window.addEventListener('resize', checkScreenWidth);
 function mobileHeader() {
     return `<header class="d-flex header-mobile">
       <img class="logo-mobile" src="./assets/icons/logo-dark.svg" alt="Join Logo" />
-      <div onclick="toggleMenu('menu', event)" id="current-user-header" class="current-user-header center">T</div>
+      <div onclick="toogleClass('menu','menu-active'); stopEventBubbling(event)" id="current-user-header" class="current-user-header center">T</div>
       <div id="menu" class="column menu">
         <a href="./help.html">Help</a>
         <a href="./legal-notice.html">Legal Notice</a>
@@ -149,11 +126,18 @@ function desktopHeader() {
         <header class="header-desktop">
         <p class="header-title">Kanban Project Management Tool</p>
         <div class="header-actions">
-            <a href="#"> <img class="help-icon" src="./assets/icons/help-icon.png" alt="Help"></a>
-            <div id="header-initials" class="header-initials-btn">
+            <a href="help.html"> <img class="help-icon" src="./assets/icons/help-icon.png" alt="Help"></a>
+            <div onclick="classChangeAction('user-menu', 'd-none', 'toggle'); stopEventBubbling(event)" id="header-initials" class="header-initials-btn">
                 SM
             </div>
         </div>
+        
+       <nav id="user-menu" class="user-menu d-none">
+        <a href="legal-notice.html">Legal Notice</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="#">Log out</a>
+       </nav>
+
     </header>`;
 }
 
@@ -198,3 +182,5 @@ function greetingUser() {
     let greetUser = document.getElementById('greeting-name');
     greetUser.innerHTML = user;
 }
+
+

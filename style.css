@@ -5,8 +5,6 @@
 
 :root {
     --light-blue: #29abe2;
-    --light-blue-light: rgba(95, 192, 233, 0.5);
-    /*benötigt für overlay container beim daneben klicken im login bereich + rgba wegen der transparenz */
     --darke-blue: #2a3647;
     --hover-darke-blue: #091931;
     --urgent: #ff3d00;
@@ -46,7 +44,7 @@ body {
     background-color: rgb(42, 55, 71, 0.5);
 }
 
-.body-content{
+.body-content {
     height: 100%;
 }
 
@@ -125,17 +123,18 @@ button {
     top: 60px;
     right: 6px;
     transform: translateX(150px);
-    transition: transform 0.3s ease-in-out;
+    transition: all 0.25s ease-in-out;
     flex-wrap: wrap;
     background-color: var(--darke-blue);
     color: var(--light-grey);
     border-radius: 16px 0px 16px 16px;
     padding: 16px;
     gap: 24px;
+    z-index: 10;
 }
 
 .menu-active {
-    transform: translateX(0) !important;
+    transform: translateX(0);
 }
 
 .menu a {
