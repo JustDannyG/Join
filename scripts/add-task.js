@@ -41,11 +41,11 @@ function toggleDropdown(id, iconId) {
     const dropdownIcon = document.getElementById(iconId);
     dropdown.classList.toggle("show-dropdown");
 
-    if (isDropdownOpen) {
+    if (!isDropdownOpen) {
         dropdownIcon.style.transform = 'rotate(180deg)';
     } else {
         dropdownIcon.style.transform = 'rotate(0deg)';
-        removeClass('dropdown', 'input-active');
+        classChangeAction('dropdown', 'input-active', 'remove');
     }
 }
 
@@ -55,18 +55,18 @@ function openDropdown(id, iconId) {
     dropdown.classList.add("show-dropdown");
     dropdownIcon.style.transform = 'rotate(180deg)';
     isDropdownOpen = true;
-    addClass('dropdown', 'input-active');
+    classChangeAction('dropdown', 'input-active', 'add')
 }
 
-function closeDropdown(id, iconId) {
-    const dropdown = document.getElementById(id);
-    const dropdownIcon = document.getElementById(iconId);
+function closeDropdown() {
+    const dropdown = document.getElementById('assign-to-dropdown-contacts');
+    const dropdownIcon = document.getElementById('drop-down-icon1');
 
     dropdown.classList.remove("show-dropdown");
     dropdownIcon.style.transform = 'rotate(0deg)';
     isDropdownOpen = false;
     resetInputText()
-    removeClass('dropdown', 'input-active');
+    classChangeAction('dropdown', 'input-active', 'remove')
 }
 
 function handleInputClick(event) {
@@ -82,12 +82,12 @@ function handleDropdownButtonClick(event) {
     stopEventBubbling(event);
     resetInputText();
     toggleDropdown('assign-to-dropdown-contacts', 'drop-down-icon1');
-    removeClass('dropdown', 'input-active');
+    classChangeAction('dropdown', 'input-active', 'remove');
 
     isDropdownOpen = !isDropdownOpen;
     if (isDropdownOpen) {
         clearInput(input);
-        addClass('dropdown', 'input-active');
+        classChangeAction('dropdown', 'input-active', 'add');
     }
 }
 

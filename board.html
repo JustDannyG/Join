@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="./styles/responsive/responsive.css" />
 </head>
 
-<body onload="init()" onclick="classChangeAction('user-menu', 'd-none', 'add'); removeClass('menu', 'menu-active'); stopEventBubbling(event)" class="column">
+<body onload="init()" onclick="classChangeAction('user-menu', 'd-none', 'add'); classChangeAction('menu', 'menu-active', 'remove'); stopEventBubbling(event);" class="column">
     <section id="join-header" class="join-header"></section>
 
     <main class="board-main d-flex content overflow-x-auto">
