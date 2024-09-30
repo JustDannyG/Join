@@ -339,28 +339,43 @@ $('select').each(function() {
     var $styledSelect = $('<div class="styledSelect"></div>').text($this.children('option').eq(0).text()).insertAfter($this);
     var $list = $('<ul />', { class: 'options' }).insertAfter($styledSelect);
 
-    $this.children('option').each(function() {
-        $('<li />', {
+    $this.children('option').each(function(index) {
+        var $li = $('<li />', {
             text: $(this).text(),
             rel: $(this).val()
-        }).appendTo($list);
+        });
+
+        // Füge eine Klasse hinzu, um die erste Option zu verstecken
+        if (index === 0) {
+            $li.addClass('hide-first'); // Klasse zum Verstecken
+        }
+
+        $li.appendTo($list);
     });
 
     $styledSelect.on('click', function(e) {
         e.stopPropagation();
         $('div.styledSelect.active').not(this).removeClass('active').next('ul.options').hide();
         $(this).toggleClass('active').next('ul.options').toggle();
+
+        // Wenn das Menü geöffnet wird, die erste Option verstecken
+        if ($(this).hasClass('active')) {
+            $list.children('li.hide-first').hide();
+        }
     });
 
     $list.on('click', 'li', function(e) {
         e.stopPropagation();
+        // Option auswählen
         $styledSelect.text($(this).text()).removeClass('active');
         $this.val($(this).attr('rel'));
         $list.hide();
     });
+    $list.on('click', body, function(e) {
+        e.stopPropagation();
 
-    $(document).on('click', function() {
-        $styledSelect.removeClass('active');
         $list.hide();
     });
+
+
 });
