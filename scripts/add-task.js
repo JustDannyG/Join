@@ -345,9 +345,8 @@ $('select').each(function() {
             rel: $(this).val()
         });
 
-        // Füge eine Klasse hinzu, um die erste Option zu verstecken
         if (index === 0) {
-            $li.addClass('hide-first'); // Klasse zum Verstecken
+            $li.addClass('hide-first');
         }
 
         $li.appendTo($list);
@@ -357,8 +356,6 @@ $('select').each(function() {
         e.stopPropagation();
         $('div.styledSelect.active').not(this).removeClass('active').next('ul.options').hide();
         $(this).toggleClass('active').next('ul.options').toggle();
-
-        // Wenn das Menü geöffnet wird, die erste Option verstecken
         if ($(this).hasClass('active')) {
             $list.children('li.hide-first').hide();
         }
@@ -366,16 +363,8 @@ $('select').each(function() {
 
     $list.on('click', 'li', function(e) {
         e.stopPropagation();
-        // Option auswählen
         $styledSelect.text($(this).text()).removeClass('active');
         $this.val($(this).attr('rel'));
         $list.hide();
     });
-    $list.on('click', body, function(e) {
-        e.stopPropagation();
-
-        $list.hide();
-    });
-
-
 });
