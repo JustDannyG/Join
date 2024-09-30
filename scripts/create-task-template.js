@@ -1,7 +1,6 @@
 // let prio;
 let subtaskArray = [];
 let categoryInput;
-
 let curretCategory = 'todo';
 
 // let taskId;
@@ -15,7 +14,8 @@ function getInputs() {
     let descriptionInput = document.getElementById("description");
     let dateInput = document.getElementById("date");
     let assignedTo = filterCheckedAssignedTo();
-    let categoryText = document.getElementById("drop-down-text").innerHTML
+    let categoryText = document.getElementById('selected-category')
+        // let categoryText = document.getElementById("drop-down-text").innerHTML
 
     // console.log(titleInput.value);
     // console.log(descriptionInput.value);
@@ -27,7 +27,7 @@ function getInputs() {
         'description': descriptionInput.value,
         'date': dateInput.value,
         'assignedTo': assignedTo,
-        'categoryText': categoryText
+        'categoryText': categoryText.value
     }
     postTask(task);
 }

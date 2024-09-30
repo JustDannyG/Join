@@ -41,13 +41,11 @@ function toggleDropdown(id, iconId) {
     const dropdownIcon = document.getElementById(iconId);
     dropdown.classList.toggle("show-dropdown");
 
-    if (dropdown.classList.contains("show-dropdown")) {
+    if (!isDropdownOpen) {
         dropdownIcon.style.transform = 'rotate(180deg)';
-
-
     } else {
         dropdownIcon.style.transform = 'rotate(0deg)';
-        removeClass('dropdown', 'input-active');
+        classChangeAction('dropdown', 'input-active', 'remove');
     }
 }
 
@@ -57,18 +55,18 @@ function openDropdown(id, iconId) {
     dropdown.classList.add("show-dropdown");
     dropdownIcon.style.transform = 'rotate(180deg)';
     isDropdownOpen = true;
-    addClass('dropdown', 'input-active');
+    classChangeAction('dropdown', 'input-active', 'add')
 }
 
-function closeDropdown(id, iconId) {
-    const dropdown = document.getElementById(id);
-    const dropdownIcon = document.getElementById(iconId);
+function closeDropdown() {
+    const dropdown = document.getElementById('assign-to-dropdown-contacts');
+    const dropdownIcon = document.getElementById('drop-down-icon1');
 
     dropdown.classList.remove("show-dropdown");
     dropdownIcon.style.transform = 'rotate(0deg)';
     isDropdownOpen = false;
     resetInputText()
-    removeClass('dropdown', 'input-active');
+    classChangeAction('dropdown', 'input-active', 'remove')
 }
 
 function handleInputClick(event) {
@@ -84,12 +82,12 @@ function handleDropdownButtonClick(event) {
     stopEventBubbling(event);
     resetInputText();
     toggleDropdown('assign-to-dropdown-contacts', 'drop-down-icon1');
-    removeClass('dropdown', 'input-active');
+    classChangeAction('dropdown', 'input-active', 'remove');
 
     isDropdownOpen = !isDropdownOpen;
     if (isDropdownOpen) {
         clearInput(input);
-        addClass('dropdown', 'input-active');
+        classChangeAction('dropdown', 'input-active', 'add');
     }
 }
 
@@ -100,10 +98,15 @@ function resetInputText() {
 
 }
 
-function selectCategory(category) {
-    const selectedCategory = document.getElementById("drop-down-text");
-    selectedCategory.innerHTML = category;
-}
+// function selectCategory(category) {
+//     const selectedCategory = document.getElementById("drop-down-text");
+//     selectedCategory.innerHTML = category;
+//     categoryText = category
+//     if (selectedCategory.innerHTML == category) {
+//         categorySelected = true
+//     } else return false
+
+// }
 
 
 
@@ -119,7 +122,6 @@ function getSelectedContacts() {
         })
     });
     sortByAlphabet(selectedContacts)
-    console.log(selectedContacts);
 }
 
 
@@ -154,7 +156,6 @@ function selectContact(i) {
     let currentContact = selectedContacts[i]
     currentContact.checked = !currentContact.checked;
     updateDesign(i)
-    console.log(selectedContacts);
     renderSelectedContacts()
 }
 
@@ -265,12 +266,10 @@ function clearSubtask() {
 
 function addSubtask() {
     let subtaskInput = document.getElementById('subtasks-input');
-    currentSubtasks.push(
-        {
-            'sub': subtaskInput.value,
-            'checked': false
-        }
-    );
+    currentSubtasks.push({
+        'sub': subtaskInput.value,
+        'checked': false
+    });
     renderSubtask();
     subtaskInput.value = '';
     subtaskInputBtn();
@@ -332,3 +331,36 @@ function deleteSubtask(i) {
     currentSubtasks.splice(i, 1);
     renderSubtask();
 }
+
+
+$('select').each(function() {
+    var $this = $(this);
+    $this.addClass('s-hidden').wrap('<div class="select"></div>');
+    var $styledSelect = $('<div class="styledSelect"></div>').text($this.children('option').eq(0).text()).insertAfter($this);
+    var $list = $('<ul />', { class: 'options' }).insertAfter($styledSelect);
+
+    $this.children('option').each(function() {
+        $('<li />', {
+            text: $(this).text(),
+            rel: $(this).val()
+        }).appendTo($list);
+    });
+
+    $styledSelect.on('click', function(e) {
+        e.stopPropagation();
+        $('div.styledSelect.active').not(this).removeClass('active').next('ul.options').hide();
+        $(this).toggleClass('active').next('ul.options').toggle();
+    });
+
+    $list.on('click', 'li', function(e) {
+        e.stopPropagation();
+        $styledSelect.text($(this).text()).removeClass('active');
+        $this.val($(this).attr('rel'));
+        $list.hide();
+    });
+
+    $(document).on('click', function() {
+        $styledSelect.removeClass('active');
+        $list.hide();
+    });
+});

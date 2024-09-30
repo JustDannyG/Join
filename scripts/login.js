@@ -16,15 +16,14 @@ function searchUserInDatabase(emailInput, passwordInput, users, userIds, userFou
         let user = users[userId];
         if (user.email === emailInput && user.password === passwordInput) {
             userFound = true;
-            welcomeMessage(user);
-            window.location.href = "summary.html"; 
-            break;  // Schleife abbrechen
+            window.location.href = "summary.html";
+            break;
         }
     }
+    // todo error if false password input
 
-    if (userFound == false) {
-        console.log("Falsche E-Mail oder Passwort");
-        document.getElementById('email-error').innerText = "Ungültige E-Mail oder Passwort";
+    if (!userFound) {
+        document.getElementById('email-error').innerText = "Please enter your Email!";
     }
 }
 
@@ -35,7 +34,6 @@ function emailInputErrorStyle(emailInput) {
         userEmailError.textContent = "Please enter your Email!";
         userEmailError.classList.add('visible');
         userEmailContainer.classList.add('red-border');
-
     } else {
         document.getElementById('email-error').classList.remove('visible');
         document.getElementById('email-input-container').classList.remove('red-border');
@@ -46,10 +44,9 @@ function passwordInputErrorStyle(passwordInput) {
     if (passwordInput === "") {
         let userPwdError = document.getElementById('password-error');
         let userPwdContainer = document.getElementById('pwd-input-container');
-        userPwdError.textContent = "Please enter any Password!";
+        userPwdError.textContent = "Please enter your Password!";
         userPwdError.classList.add('visible');
         userPwdContainer.classList.add('red-border');
-
     } else {
         document.getElementById('password-error').classList.remove('visible');
         document.getElementById('pwd-input-container').classList.remove('red-border');

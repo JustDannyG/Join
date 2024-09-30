@@ -44,7 +44,7 @@ body {
     background-color: rgb(42, 55, 71, 0.5);
 }
 
-.body-content{
+.body-content {
     height: 100%;
 }
 
@@ -123,17 +123,18 @@ button {
     top: 60px;
     right: 6px;
     transform: translateX(150px);
-    transition: transform 0.3s ease-in-out;
+    transition: all 0.25s ease-in-out;
     flex-wrap: wrap;
     background-color: var(--darke-blue);
     color: var(--light-grey);
     border-radius: 16px 0px 16px 16px;
     padding: 16px;
     gap: 24px;
+    z-index: 10;
 }
 
 .menu-active {
-    transform: translateX(0) !important;
+    transform: translateX(0)!important;
 }
 
 .menu a {

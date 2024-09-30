@@ -13,46 +13,13 @@ async function getContacts() {
     sortByAlphabet(contacts);
 }
 
-
-
-function toggleOverlay(id, className) {
-    document.getElementById(id).classList.toggle(className)
-}
-
-function closeAllMenus() {
-    const menu = document.getElementById("menu");
-    const editContact = document.getElementById("edit-contact");
-    const editButton = document.getElementById("edit-button");
-    const addButton = document.getElementById("add-contact");
-
-    if (menu) {
-        menu.classList.remove("menu-active");
-    }
-
-    if (editContact) {
-        editContact.classList.remove("menu-active");
-    }
-
-    if (editButton) {
-        editButton.classList.remove("bg-color-btn");
-    }
-
-    if (addButton) {
-        addButton.classList.remove("toogle-bg-color")
-    }
-}
-
 function stopEventBubbling(event) {
     event.stopPropagation();
 }
 
-
-
 function goSummery() {
     window.location.href = "summary.html";
 }
-
-
 
 function createInititals(selectName) {
     let firstsChar = selectName;
@@ -70,7 +37,6 @@ function createInititals(selectName) {
         return neededPartOne + neededPartThree;
     }
 }
-
 
 function randomColor() {
     let random = Math.floor(Math.random() * 16777215).toString(16);
@@ -94,7 +60,7 @@ function clearInput(input) {
 }
 
 function isCheckBoxChecked(e) {
-    return e.checked
+    return e.checked;
 }
 
 function checkLengthGreater(e, n) {
@@ -106,29 +72,30 @@ function checkLengthSmaller(e, n) {
 }
 
 
-function toogleClass(id, className) {
-    document.getElementById(id).classList.toggle(className);
-}
-
-function removeClass(id, className) {
-    document.getElementById(id).classList.remove(className)
-}
-
-function addClass(id, className) {
-    document.getElementById(id).classList.add(className)
+function classChangeAction(id, className, action) {
+    const element = document.getElementById(id);
+    if (element) {
+        if (action === 'toggle') {
+            element.classList.toggle(className);
+        } else if (action === 'add') {
+            element.classList.add(className);
+        } else if (action === 'remove') {
+            element.classList.remove(className);
+        }
+    } else return
 }
 
 //Mobile / Desktop //
 
 function checkScreenWidth() {
     let header = document.getElementById('join-header');
-    let sidebar = document.getElementById('join-sidebar')
-    let currentHeader = ''
-    let currentSidebar = ''
+    let sidebar = document.getElementById('join-sidebar');
+    let currentHeader = '';
+    let currentSidebar = '';
     if (window.innerWidth <= 1024) {
         console.log("Mobile Ansicht");
         currentHeader = mobileHeader();
-        currentSidebar = mobileSidebar()
+        currentSidebar = mobileSidebar();
     } else {
         console.log("Desktop Ansicht");
         currentHeader = desktopHeader();
@@ -147,7 +114,7 @@ window.addEventListener('resize', checkScreenWidth);
 function mobileHeader() {
     return `<header class="d-flex header-mobile">
       <img class="logo-mobile" src="./assets/icons/logo-dark.svg" alt="Join Logo" />
-      <div onclick="toggleMenu('menu', event)" id="current-user-header" class="current-user-header center">T</div>
+      <div onclick="classChangeAction('menu', 'menu-active', 'toggle'), stopEventBubbling(event)" id="current-user-header" class="current-user-header center">T</div>
       <div id="menu" class="column menu">
         <a href="./help.html">Help</a>
         <a href="./legal-notice.html">Legal Notice</a>
@@ -164,7 +131,7 @@ function desktopHeader() {
         <p class="header-title">Kanban Project Management Tool</p>
         <div class="header-actions">
             <a href="help.html"> <img class="help-icon" src="./assets/icons/help-icon.png" alt="Help"></a>
-            <div onclick="userMenu('x'); stopEventBubbling(event)" id="header-initials" class="header-initials-btn">
+            <div onclick="classChangeAction('user-menu', 'd-none', 'toggle'); stopEventBubbling(event)" id="header-initials" class="header-initials-btn">
                 SM
             </div>
         </div>
@@ -218,13 +185,4 @@ function greetingTime() {
 function greetingUser() {
     let greetUser = document.getElementById('greeting-name');
     greetUser.innerHTML = user;
-}
-
-
-function userMenu(closeBtn) {
-    if (closeBtn) {
-        document.getElementById('user-menu').classList.toggle('d-none');
-    } else {
-        document.getElementById('user-menu').classList.add('d-none');
-    }
 }
