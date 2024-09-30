@@ -1,22 +1,22 @@
     main {
         align-items: center;
     }
-    
+
     .h-100 {
         height: 100%;
     }
-    
+
     .w-100 {
         width: 100%;
     }
-    
-    input,
-    textarea {
+
+    .input,
+    .textarea {
         border-radius: 8px;
         padding: 8px 16px;
         font-size: 14px;
     }
-    
+
     form {
         width: 1000px;
         position: relative;
@@ -26,41 +26,41 @@
         margin-bottom: 64px;
         width: 100%;
     }
-    
+
     .row {
         justify-content: space-between;
         align-items: center;
     }
-    
+
     .prio,
-    label,
+    .label,
     .row,
-    input,
-    textarea,
+    .input,
+    .textarea,
     .drop-down {
         margin-top: 8px;
         font-size: 14px;
         width: 100%;
     }
-    
+
     .mt-16 {
         margin-top: 16px;
         width: 100%;
     }
-    
+
     textarea::placeholder,
     input::placeholder,
     #date {
         font-family: inter;
         color: var(--placeholder-grey);
     }
-    
+
     textarea {
         border: 1px solid var(--dark-grey);
         height: 64px;
         resize: none;
     }
-    
+
     button {
         padding: 16px;
         border-radius: 8px;
@@ -70,21 +70,21 @@
         align-items: center;
         justify-content: center;
     }
-    
+
     .contact-row {
         justify-content: space-between;
         align-items: center;
     }
-    
+
     .contact-row input {
         margin: 0px;
     }
-    
+
     .selectet-contacts-container {
         margin-top: 4px;
         gap: 4px;
     }
-    
+
     .contact {
         height: 40px;
         width: 40px;
@@ -94,11 +94,11 @@
         border-radius: 50%;
         font-size: 12px;
     }
-    
+
     .gap {
         gap: 12px;
     }
-    
+
     .prio-btn {
         background-color: var(--white);
         width: 108px;
@@ -106,52 +106,53 @@
         padding: 8px 16px;
         box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.2)
     }
-    
+
     .prio-btn img {
         max-width: 20px;
         max-height: 14px;
     }
-    
+
     .submit-row {
         background-color: var(--light-grey);
         justify-content: space-between;
         align-items: center;
         padding: 16px;
     }
-    
+
     .buttons {
         display: flex;
         gap: 8px;
     }
-    
+
     .clear {
         background-color: var(--white);
         color: black;
         font-size: 16px;
         border: 2px solid var(--dark-grey);
     }
-    
+
     .submit {
         text-wrap: nowrap;
         background-color: var(--darke-blue);
         color: var(--white);
         font-size: 16px;
     }
-    
+
     .submit:hover {
         background-color: var(--light-blue);
     }
-    
+
     .required {
         color: var(--required);
     }
+
     /* Dropdown */
-    
+
     .drop-down input {
         margin: 0;
         border: unset;
     }
-    
+
     .drop-down {
         background-color: var(--white);
         -webkit-transition: 0.125s;
@@ -160,54 +161,55 @@
         cursor: pointer;
         border: 1px solid var(--dark-grey);
     }
-    
+
     .drop-down button {
         padding: 0px 16px;
     }
-    
+
     .select-placeholder {
         height: 34px;
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
-    
+
     .select-placeholder span {
         padding: 8px;
     }
-    
+
     .input-active {
         border: 1px solid var(--light-blue);
     }
-    
+
     input:focus,
     textarea:focus,
     select:focus {
         outline: unset;
         border: 1px solid var(--light-blue);
     }
-    
+
     #assign-to-dropdown:focus {
         border: unset;
     }
-    
+
     .not-found {
         font-size: 12px;
     }
+
     /*Drop-Down Menü*/
-    
+
     .drop-down {
         justify-content: space-between;
         width: 100%;
     }
-    
+
     .dropdown-options {
         display: none;
         list-style-type: none;
         margin: 0;
         padding: 0;
     }
-    
+
     .dropdown-options li,
     .options li {
         padding: 12px;
@@ -215,78 +217,90 @@
         border-radius: 8px;
         background-color: var(--white);
     }
-    
+
     .dropdown-options li:hover,
     .options li:hover {
         background-color: var(--darke-blue);
         color: var(--white);
     }
-    
+
     .contact-active {
         background-color: var(--darke-blue) !important;
         color: var(--white);
     }
-    
+
     .show-dropdown {
         display: block;
     }
-    
+
     .dropdown-btn {
         padding: 0px 16px;
     }
+
     /*Priority Buttons*/
-    
+
     .low {
         background-color: var(--low);
         color: var(--white);
     }
-    
+
     .medium {
         background-color: var(--medium);
         color: var(--white);
     }
-    
+
     .urgent {
         background-color: var(--urgent);
         color: var(--white);
     }
-    
+
     .links {
         margin-top: 72px;
         gap: 40px;
     }
-    
+
     .nav-link {
         color: var(--white);
         align-items: center;
         gap: 8px;
     }
+
     /* Subtasks */
-    
+
     .form-field {
         display: flex;
         flex-direction: column;
         gap: 8px;
         font-size: 20px;
     }
-    
+
     .add-task-input {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        height: 48px;
-        width: 440px;
+        height: 38px;
         border: solid 1px #d1d1d1;
         border-radius: 10px;
         padding: 12px 21px;
         box-sizing: border-box;
         background-color: white;
     }
-    
+
+    .add-task-input input {
+        border: none;
+        flex: 1;
+    }
+
     .add-subtask-btn {
+        padding: 5px;
         cursor: pointer;
     }
-    
+
+    .subtasks-btns {
+        display: flex;
+        gap: 5px;
+    }
+
     .subtask {
         display: flex;
         height: 30px;
@@ -295,46 +309,46 @@
         border-radius: 10px;
         transition: all ease-in-out 125ms;
     }
-    
+
     .subtask img {
         margin: 0 5px;
         display: none;
     }
-    
+
     .subtask:hover img {
         display: block;
     }
-    
+
     .subtask img:hover {
         scale: 1.1;
     }
-    
+
     .subtask span {
         display: none;
     }
-    
+
     .subtask:hover span {
         display: block;
         background-color: black;
     }
-    
+
     .subtask:hover {
         background-color: #d1d1d1;
     }
-    
+
     .subtask p:before {
         content: '• ';
     }
-    
+
     .subtask-text {
         display: flex;
         width: 100%;
     }
-    
+
     .subtask-text p {
         width: 100%;
     }
-    
+
     .word-item {
         font-size: 16px;
         display: flex;
@@ -342,40 +356,41 @@
         padding: 0 15px;
         height: 30px;
     }
-    
+
     .word-item input {
         font-size: 16px;
         width: 100%;
         border: none;
         border-bottom: solid 1px #29abe2;
     }
-    
+
     .word-item input:focus {
         outline: none;
     }
-    
+
     .word-item svg {
         margin: 0 10px;
         cursor: pointer;
     }
-    
+
     .word-item button {
         background-color: unset;
         border: none;
         cursor: pointer;
     }
-    
+
     .word-item button img {
         width: 15px;
         margin: 5px;
     }
+
     /* Selectet*/
-    
+
     .s-hidden {
         visibility: hidden;
         padding-right: 10px;
     }
-    
+
     .select {
         cursor: pointer;
         position: relative;
@@ -385,11 +400,11 @@
         border: 1px solid var(--dark-grey);
         border-radius: 8px;
     }
-    
+
     select option[value=""] {
         display: none;
     }
-    
+
     .styledSelect {
         display: flex;
         align-items: center;
@@ -403,7 +418,7 @@
         padding: 4px 10px;
         font-size: 14px;
     }
-    
+
     .styledSelect:after {
         content: "";
         border: 5px solid transparent;
@@ -413,12 +428,12 @@
         right: 8px;
         transition: all;
     }
-    
+
     .styledSelect.active:after {
         transform: rotate(180deg);
         top: 5px;
     }
-    
+
     .options {
         display: none;
         position: absolute;
