@@ -20,7 +20,10 @@
     <script src="./scripts/fetch.js"></script>
 </head>
 
-<body onload="init()" onclick="removeClass('menu', 'menu-active'); closeDropdown('assign-to-dropdown-contacts', 'drop-down-icon1'); stopEventBubbling(event)" class="column">
+<body onload="init()"
+    onclick="userMenu(),closeDropdown('assign-to-dropdown-contacts', 'drop-down-icon1') ,stopEventBubbling(event)"
+    class="column">
+
 
     <section id="join-header" class="join-header">
     </section>

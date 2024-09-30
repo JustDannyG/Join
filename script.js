@@ -163,11 +163,18 @@ function desktopHeader() {
         <header class="header-desktop">
         <p class="header-title">Kanban Project Management Tool</p>
         <div class="header-actions">
-            <a href="#"> <img class="help-icon" src="./assets/icons/help-icon.png" alt="Help"></a>
-            <div id="header-initials" class="header-initials-btn">
+            <a href="help.html"> <img class="help-icon" src="./assets/icons/help-icon.png" alt="Help"></a>
+            <div onclick="userMenu('x'); stopEventBubbling(event)" id="header-initials" class="header-initials-btn">
                 SM
             </div>
         </div>
+        
+       <nav id="user-menu" class="user-menu d-none">
+        <a href="legal-notice.html">Legal Notice</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="#">Log out</a>
+       </nav>
+
     </header>`;
 }
 
@@ -211,4 +218,13 @@ function greetingTime() {
 function greetingUser() {
     let greetUser = document.getElementById('greeting-name');
     greetUser.innerHTML = user;
+}
+
+
+function userMenu(closeBtn) {
+    if (closeBtn) {
+        document.getElementById('user-menu').classList.toggle('d-none');
+    } else {
+        document.getElementById('user-menu').classList.add('d-none');
+    }
 }
