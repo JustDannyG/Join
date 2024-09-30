@@ -14,8 +14,7 @@
     <script src="scripts/backwards.js"></script>
 </head>
 
-<body onclick="classChangeAction('user-menu', 'd-none', 'add');removeClass('menu', 'menu-active')" class="column">
-
+<body onload="init()" onclick="classChangeAction('user-menu', 'd-none', 'add'); classChangeAction('menu', 'menu-active', 'remove'); stopEventBubbling(event);">
     <section id="join-header" class="join-header">
     </section>
 
