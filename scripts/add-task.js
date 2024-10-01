@@ -1,10 +1,14 @@
-let isDropdownOpen = false;
-let prio = "medium";
-let currentSubtasks = [];
-const selectedContacts = [];
-let subtaskArray = [];
 let categoryInput;
+
+let prio = "medium";
 let curretCategory = 'todo';
+
+let subtaskArray = [];
+let currentSubtasks = [];
+let selectedContacts = [];
+
+let isDropdownOpen = false;
+
 
 async function init() {
     updateBtnColor()

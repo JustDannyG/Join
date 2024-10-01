@@ -88,6 +88,7 @@ function classChangeAction(id, className, action) {
 //Mobile / Desktop //
 
 function checkScreenWidth() {
+
     let header = document.getElementById('join-header');
     let sidebar = document.getElementById('join-sidebar');
     let currentHeader = '';
