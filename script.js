@@ -96,10 +96,12 @@ function checkScreenWidth() {
         console.log("Mobile Ansicht");
         currentHeader = mobileHeader();
         currentSidebar = mobileSidebar();
+        screenMode = 'mobile';
     } else {
         console.log("Desktop Ansicht");
         currentHeader = desktopHeader();
         currentSidebar = desktopSidebar();
+        screenMode = 'desktop';
     }
     header.innerHTML = currentHeader;
     sidebar.innerHTML = currentSidebar;
