@@ -9,46 +9,69 @@
 
     <title>Join - Contact</title>
 
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="./styles/contact.css" />
-    <link rel="stylesheet" href="./styles/add-contact.css" />
-    <link rel="stylesheet" href="./styles/edit-contact-overlay.css">
-
-    <script src="./script.js"></script>
+    <script defer src="./script.js"></script>
     <script src="./scripts/fetch.js"></script>
     <script src="./scripts/contact.js"></script>
     <script src="./assets/templates/template.js"></script>
+
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./styles/contact.css" />
+    <link rel="stylesheet" href="./styles/header-sidebar.css">
+
+    <link rel="stylesheet" href="./styles/responsive/responsive.css">
+    <link rel="stylesheet" href="./styles/responsive/contact-responsive.css">
 </head>
 
-<body onclick="classChangeAction('user-menu', 'd-none', 'add'); classChangeAction('menu', 'menu-active', 'remove'); stopEventBubbling(event);" onload="initContacts()" class="column">
-    <header class="d-flex header-mobile">
-        <img class="logo-mobile" src="./assets/icons/logo-dark.svg" alt="Join Logo" />
-        <div onclick="classChangeAction('menu', 'menu-active', 'toogle'), stopEventBubbling(event)" id="current-user-header" class="current-user-header center">T</div>
-        <div id="menu" class="column menu">
-            <a href="./help.html">Help</a>
-            <a href="./legal-notice.html">Legal Notice</a>
-            <a href="./privacy-policy.html">Privacy Policy</a>
-            <a href="#">Log out</a>
-        </div>
-    </header>
 
-    <main class="d-flex content overflow-y-auto">
-        <div id="contacts-container" class="column contacts-container"></div>
-        <button onclick="classChangeAction('dialog-add-contact', 'hide-overlay', 'remove'), stopEventBubbling(event)" id="add-contact" class="add-contact center"><img src="./assets/icons/add-contact-icon.png" alt="add Contact" /></button>
+<body class="column" onclick="classChangeAction('menu', 'menu-active', 'remove'); stopEventBubbling(event)"
+    onload="initContacts()">
+
+    <section id="join-header" class="join-header"></section>
+
+    <main class="contact-content">
+
+        <div class="contacts-mobile-container overflow-y-auto">
+            <div id="contacts-container" class="column contacts-container"></div>
+            <button
+                onclick="classChangeAction('dialog-add-contact', 'hide-overlay', 'remove'), stopEventBubbling(event)"
+                id="add-contact" class="add-contact center"><img src="./assets/icons/add-contact-icon.png"
+                    alt="add Contact" /></button>
+        </div>
+
+        <div id="contacts-details-desktop-container" class="contacts-details-desktop-container">
+            <div>
+                <div class="headline d-flex">
+                    <div class="headline-text column">
+                        <h1>Contacts</h1>
+                        <span class="subtitle-details">Better with a team</span>
+                        <div class="add-contact-underline"></div>
+                    </div>
+                    <a onclick="goSummery()" href="contact.html"><img src="./assets/icons/left-arrow.png"
+                            alt="Back Link" /></a>
+                </div>
+            </div>
+
+            <div class="current-contact d-flex" id="current-contact"></div>
+
+            <div class="details column" id="details"></div>
+
+            <button onclick="classChangeAction('edit-contact', 'menu-active', 'toggle'); stopEventBubbling(event)"
+                id="edit-button" class="edit-button center ">
+                <img src="./assets/icons/more_vert.png " alt="edit-contact " />
+            </button>
+        </div>
+
     </main>
 
-    <aside class="d-flex sidebar-mobile">
-        <a class="center column nav-link-mobile" href="./summary.html"><img src="./assets/icons/summary-icon.png" alt="Summary" />Summary</a>
-        <a class="center column nav-link-mobile" href="./board.html"><img src="./assets/icons/board-icon.png" alt="Board" />Board</a>
-        <a class="center column nav-link-mobile" href="./add-task.html"><img src="./assets/icons/add-task-icon.png" alt="Add Task" />Add Task</a>
-        <a class="center column nav-link-mobile current-link" href="./contact.html"><img src="./assets/icons/contacts-icon.png" alt="Contacts" />Contacts</a>
-    </aside>
+    <section id="join-sidebar"></section>
 
     <!-- start overlay -->
 
     <Section id="dialog-add-contact" class="edit-overlay-bg hide-overlay">
         <form class="edit-overlay-form" onsubmit="addContact(); return false;">
-            <img class="close-edit" src="./assets/icons/close.png" onclick="classChangeAction('dialog-add-contact', 'hide-overlay', 'add')">
+
+            <img class="close-edit" src="./assets/icons/close.png"
+                onclick="classChangeAction('dialog-add-contact', 'hide-overlay', 'add')">
 
             <div class="overlay-header">
                 <h2 class="edit-headline">Add contcact</h2>
@@ -76,21 +99,15 @@
                 </div>
             </div>
 
-
-            <button class="submit-btn" type="submit">Create contact <img src="./assets/icons/check.png"/></button>
-
+            <button class="submit-btn" type="submit">Create contact <img src="./assets/icons/check.png" /></button>
 
         </form>
     </Section>
 
-    <!-- end overlay -->
-
-    <!-- start dialog -->
-    <div id="dialog-add-succes" class="dialog">
+    <section id="dialog-add-succes" class="dialog">
         Contact successfully created
-    </div>
+    </section>
 
-    <!-- end dialog -->
 </body>
 
 </html>

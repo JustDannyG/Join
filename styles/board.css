@@ -1,5 +1,18 @@
-.board-main {
+.board-main-content{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: var(--light-grey);
+    padding: 25px 16px 48px 16px;
+    text-wrap: wrap;
+    max-width: 1920px;
     gap: 32px;
+}
+
+.headline {
+    justify-content: space-between;
 }
 
 .headline button {
@@ -38,13 +51,8 @@
     width: 30px;
 }
 
-/* section {
-    margin-top: 24px;
-    min-height: min-content;
-    max-height: 400px;
-} */
-
 .no-task {
+    width: 100%;
     margin-top: 16px;
     text-align: center;
     padding: 8px;
@@ -53,7 +61,6 @@
     border: 2px dotted var(--dark-grey);
     border-radius: 8px;
 }
-
 
 .task-category {
     color: var(--light-grey);
@@ -88,7 +95,6 @@
 
 .progress {
     background-color: var(--light-blue);
-    /* width: 50%; */
     height: 8px;
     border-radius: 8px;
 }
@@ -141,10 +147,11 @@
 }
 
 .task-container {
-    height: 252px;
-    background-color: lightgray;
-    border: solid 1px;
-    overflow-x: hidden;
+    /* height: 252px; */
+    /* background-color: lightgray; */
+    /* border: solid 1px; */
+    padding: 16px 0px;
+    overflow-x: auto;
     display: flex;
     gap: 16px;
     align-items: center;
@@ -157,7 +164,6 @@
 .technical-task {
     background-color: var(--technical);
 }
-
 
 .task-contact-length {
     margin-left: 30px;
@@ -174,6 +180,7 @@
     padding: 16px;
     border-radius: 24px;
     width: 260px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .task:hover {
@@ -190,24 +197,139 @@
     0% {
         transform: rotate(0deg)
     }
-
     10% {
         transform: rotate(-8deg)
     }
-
     30% {
         transform: rotate(6deg)
     }
-
     55% {
         transform: rotate(-3deg)
     }
-
     80% {
         transform: rotate(1deg)
     }
-
     100% {
         transform: rotate(-1deg)
     }
+}
+
+
+/*Task Overlay*/
+
+.task-details-container li {
+    list-style: none;
+}
+
+.overlay-bg {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 40px;
+}
+
+.overlay-task {
+    text-align: start;
+    padding: 16px;
+    height: 100%;
+    background-color: var(--white);
+    border-radius: 16px;
+    max-height: 660px;
+}
+
+.task-header {
+    justify-content: space-between;
+}
+
+.task-header span {
+    background-color: var(--technical);
+    color: var(--white);
+    border-radius: 8px;
+    padding: 4px 16px;
+}
+
+.task-title {
+    font-size: 38px;
+    font-weight: 600;
+}
+
+.discription {
+    margin-top: 12px;
+}
+
+.task-details-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 12px;
+    overflow-y: auto;
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 60%;
+}
+
+.info-title {
+    width: 100px;
+    margin-right: 20px;
+}
+
+.info-value {
+    width: 88px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.prio-icon {
+    width: 18px;
+    height: 16px;
+}
+
+.assigned-to-container ul {
+    height: 180px;
+    overflow-y: auto;
+    padding: 8px 0 8px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.initials-circle {
+    background-color: aquamarine;
+    color: var(--white);
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.assigned-to-contact {
+    align-items: center;
+    gap: 16px;
+}
+
+.edit-task-container {
+    align-self: flex-end;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.subtask ul {
+    height: 60px;
+    overflow-y: auto;
+    padding: 8px 0 8px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn-container {
+    display: flex;
+    align-items: center;
 }

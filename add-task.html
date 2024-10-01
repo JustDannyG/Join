@@ -7,67 +7,65 @@
     <link rel="icon" type="image/x-icon" href="./assets/icons/join-logo-light.png">
     <title>Join - Add Task</title>
 
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="./styles/add-task.css" />
-    <link rel="stylesheet" href="./styles/add-task-responsive.css" />
-    <link rel="stylesheet" href="./styles/header-sidebar-desktop.css">
-    <link rel="stylesheet" href="./styles/responsive/responsive.css">
-
     <script src="./script.js" defer></script>
     <script defer src="./scripts/add-task.js"></script>
     <script src="./assets/templates/template.js"></script>
-    <script src="./scripts/create-task-template.js"></script>
     <script src="./scripts/fetch.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./styles/add-task.css" />
+    <link rel="stylesheet" href="./styles/header-sidebar.css">
+
+    <link rel="stylesheet" href="./styles/responsive/add-task-responsive.css" />
+    <link rel="stylesheet" href="./styles/responsive/responsive.css">
 </head>
 
-<body onload="init()" onclick="classChangeAction('user-menu', 'd-none', 'add'); classChangeAction('menu', 'menu-active', 'remove'); closeDropdown(); stopEventBubbling(event);" class="column">
+<body class="column" onload="init()" onclick="classChangeAction('user-menu', 'd-none', 'add'); classChangeAction('menu', 'menu-active', 'remove'); closeDropdown(); stopEventBubbling(event);">
 
+    <section id="join-header" class="join-header"></section>
 
-    <section id="join-header" class="join-header">
-    </section>
-
-    <main class="d-flex content overflow-x-auto">
-        <form id="add-task" onsubmit="createTask(); return false;" class="column">
+    <main class="add-task-main-content">
+        <form id="add-task" class="column" onsubmit="createTask(); return false;">
 
             <div class="headline">
                 <h1>Add Task</h1>
             </div>
             <div class="column mt-16">
                 <label for="title">Title<span class="required">*</span></label>
-                <input required id="title" type="text" placeholder="Enter a title">
+                <input class="input" required id="title" type="text" placeholder="Enter a title">
             </div>
 
             <div class="column mt-16">
                 <label for="description">Description</label>
-                <textarea name="description" id="description" placeholder="Enter a Description"></textarea>
+                <textarea class="textarea" name="description" id="description"
+                    placeholder="Enter a Description"></textarea>
             </div>
 
             <div class="column mt-16">
                 <label for="assign-to-dropdown">Assigned to</label>
-
                 <div id="dropdown" class="drop-down d-flex">
-                    <input id="assign-to-dropdown" onkeyup="filter('assign-to-dropdown')" onclick="handleInputClick(event)" value="Select contacts to assign">
+                    <input class="input" id="assign-to-dropdown" onkeyup="filter('assign-to-dropdown')"
+                        onclick="handleInputClick(event)" value="Select contacts to assign">
                     <button onclick="handleDropdownButtonClick(event)" type="button" class="dropdown-btn">
                         <img id="drop-down-icon1" src="./assets/icons/arrow-drop-down.png">
                     </button>
-
                 </div>
-                <ul id="assign-to-dropdown-contacts" class="dropdown-options">
-                    <!-- Contacts -->
-                </ul>
+                <ul id="assign-to-dropdown-contacts" class="dropdown-options"></ul>
             </div>
-            <!-- <div id="not-found-container" class="not-found-container"></div> -->
+
             <div id="selected-contacts-container" class="d-flex selectet-contacts-container"></div>
 
             <div class="column mt-16">
                 <label for="date">Due date<span class="required">*</span></label>
-                <input required id="date" type="date">
+                <input class="input" required id="date" type="date">
             </div>
 
             <div class="prio mt-16">
                 <span>Prio</span>
                 <div class="d-flex row">
-                    <button type="button" onclick="addPrio('urgent'), stopEventBubbling(event)" id="urgent-btn" class="prio-btn">Urgent<img id="prio-icon-urgent"
+                    <button type="button" onclick="addPrio('urgent'), stopEventBubbling(event)" id="urgent-btn"
+                        class="prio-btn">Urgent<img id="prio-icon-urgent"
                             src="./assets/icons/prio-urgent-icon.png"></button>
                     <button type="button" onclick="addPrio('medium')" id="medium-btn" class="prio-btn">Medium<img
                             id="prio-icon-medium" src="./assets/icons/prio-medium-icon.png"></button>
@@ -79,42 +77,17 @@
             <div class="column mt-16">
                 <label for="selected-category">Category<span class="required">*</span></label>
                 <select required id="selected-category" class="select-category">
-                         <option value="">Select task category:</option>
-                         <option  value="Technical Task">Technical Task</option>
-                        <option value="User Story">>User Story</option>
+                    <option value="">Select task category:</option>
+                    <option value="Technical Task">Technical Task</option>
+                    <option value="User Story">User Story</option>
                 </select>
-
-
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-
-                <!-- <span>Category<span class="required">*</span></span>
-
-                <div id="dropdown2" class="drop-down" onclick="toggleDropdown('category-dropdown','drop-down-icon2'), stopEventBubbling(event) ">
-
-                    <div id="selected-category" class="select-placeholder">
-                        <span id="drop-down-text"> Select task category</span>
-                        <button type="button" class="dropdown-btn">
-                            <img id="drop-down-icon2" src="./assets/icons/arrow-drop-down.png">
-                    </div>
-                    <ul id="category-dropdown" class="dropdown-options">
-                        <li onclick="selectCategory('Technical Task'), closeDropdown(), stopEventBubbling(event)">
-                            Technical Task</li>
-                        <li onclick="selectCategory('User Story'), closeDropdown(), stopEventBubbling(event)">User Story
-                        </li>
-                    </ul>
-                </div> -->
             </div>
 
-            <!-- <div class="column mt-16 ">
-                <label for="subtask ">Subtask</label>
-                <input id="subtask " type="text " placeholder="Add new subtask ">
-            </div> -->
-
-            <div class="form-field">
-                <label for="subtasks">Subtasks</label>
+            <div class="form-field column mt-16">
+                <label for="subtasks-input">Subtasks</label>
                 <div class="add-task-input">
-                    <input type="subtasks" name="subtasks" onkeyup="subtaskInputBtn()" id="subtasks-input" placeholder="Add new subtask" />
+                    <input type="subtasks" name="subtasks" onkeyup="subtaskInputBtn()" id="subtasks-input"
+                        placeholder="Add new subtask" />
                     <div class="add-subtask-btn" id="add-subtask-btn">
                         <img src="./assets/icons/add -subtasks.png" alt="" onclick="setInputFocus()" />
                     </div>
@@ -122,20 +95,17 @@
             </div>
 
             <div id="subtasks-container" class="subtasks-container"></div>
-            </div>
 
         </form>
 
-
     </main>
+
     <div class="d-flex submit-row">
         <div><span class="required ">*</span>This field is required</div>
         <button class="submit" type="submit" form="add-task">Create Task <img src="./assets/icons/check.png"></button>
-
     </div>
 
-    <section id="join-sidebar">
-    </section>
+    <section id="join-sidebar"></section>
 
 </body>
 
