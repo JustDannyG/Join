@@ -25,11 +25,13 @@
 }
 
 .contacts-details-desktop-container {
+    padding: 70px 16px 48px 50px;
     flex: 1;
 }
 
 .contacts-mobile-container {
     background-color: white;
+    height: 100vh;
 }
 
 
@@ -100,9 +102,13 @@
 
 /* Contact Details */
 
-.bg-lightgrey {
-    background-color: var(--light-grey);
+
+.contact-details-headline{
+font-size: 61px;
+font-weight: 700;
+
 }
+
 
 .subtitle-details {
     font-size: 14px;
