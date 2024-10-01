@@ -1,6 +1,5 @@
 /* Contacts overview */
 
-
 .contact-content {
     display: flex;
     height: 100vh;
@@ -8,8 +7,7 @@
     background-color: var(--light-grey);
 }
 
-
-.contact-details-main-content{
+.contact-details-main-content {
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -46,13 +44,13 @@
     padding: 8px;
     border-radius: 50%;
     background-color: var(--darke-blue);
+    border: unset;
+    outline: unset;
 }
-
 
 .toogle-bg-color {
     background-color: var(--light-blue) !important;
 }
-
 
 .add-contact img {
     width: 24px;
@@ -72,18 +70,15 @@
     transition: all ease-in-out 125ms;
 }
 
-
 .contact-list:hover {
     background-color: lightgray;
     scale: 1.1;
 }
 
-
 .contact-list:active {
     scale: 0.9;
     background-color: lightblue;
 }
-
 
 .contact-initials {
     min-height: 50px;
@@ -94,7 +89,6 @@
     border: solid 1px;
 }
 
-
 .contacts-first-letter {
     font-size: 20px;
     font-weight: 700;
@@ -104,9 +98,7 @@
 }
 
 
-
 /* Contact Details */
-
 
 .bg-lightgrey {
     background-color: var(--light-grey);
@@ -190,7 +182,6 @@
 
 
 /* Edit Contact Overlay */
-
 
 .edit-overlay-bg {
     position: absolute;
