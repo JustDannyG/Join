@@ -16,83 +16,83 @@
     <script src="./script.js" defer></script>
 </head>
 
-<body onclick="classChangeAction('user-menu', 'd-none', 'add'); classChangeAction('menu', 'menu-active', 'remove'); stopEventBubbling(event);">
-    <div class="body-content">
-        <section id="join-header">
-        </section>
+<body onclick="classChangeAction('user-menu', 'd-none', 'add'); classChangeAction('menu', 'menu-active', 'remove'); stopEventBubbling(event);" class="column">
+    <!-- <div class="body-content"> -->
+    <section id="join-header">
+    </section>
 
-        <main class="d-flex content">
-            <div class="summary-content">
-                <div class="summary-headline-container">
-                    <h1 class="headline">Join 360</h1>
-                    Key Metrics at a Glance
-                    <span class="underline"></span>
+    <main class="d-flex content">
+        <div class="summary-content">
+            <div class="summary-headline-container">
+                <h1 class="headline">Join 360</h1>
+                Key Metrics at a Glance
+                <span class="underline"></span>
+            </div>
+
+            <div class="summary-container">
+                <div class="summerys-box1">
+                    <a href="board.html" class="summary-todo-btn">
+                        <img class="summary-icon" src="./assets/icons/summary-todo.png" alt="">
+                        <div class="summary-counter">
+                            <span class="task-count" id="#">1</span> To-do
+                        </div>
+                    </a>
+                    <a href="board.html" class="summary-todo-btn">
+                        <img class="summary-icon" src="./assets/icons/summary-done.png" alt="">
+                        <div class="summary-counter">
+                            <span class="task-count" id="#">1</span> Done
+                        </div>
+                    </a>
                 </div>
 
-                <div class="summary-container">
-                    <div class="summerys-box1">
-                        <a href="board.html" class="summary-todo-btn">
-                            <img class="summary-icon" src="./assets/icons/summary-todo.png" alt="">
-                            <div class="summary-counter">
-                                <span class="task-count" id="#">1</span> To-do
-                            </div>
-                        </a>
-                        <a href="board.html" class="summary-todo-btn">
-                            <img class="summary-icon" src="./assets/icons/summary-done.png" alt="">
+                <div class="summerys-box2">
+                    <a href="board.html" class="summary-urgent-btn">
+                        <div class="urgent-count-box">
+                            <img class="summary-icon" src="./assets/icons/summary-urgent.png" alt="">
                             <div class="summary-counter">
                                 <span class="task-count" id="#">1</span> Done
                             </div>
-                        </a>
-                    </div>
-
-                    <div class="summerys-box2">
-                        <a href="board.html" class="summary-urgent-btn">
-                            <div class="urgent-count-box">
-                                <img class="summary-icon" src="./assets/icons/summary-urgent.png" alt="">
-                                <div class="summary-counter">
-                                    <span class="task-count" id="#">1</span> Done
-                                </div>
-                            </div>
-                            <span class="breakline"></span>
-                            <p class="deadline">
-                                <span class="urgent-date" id="#">October 16, 2022</span> Upcoming Deadline
-                            </p>
-                        </a>
-                    </div>
-
-
-                    <div class="summerys-box1">
-                        <a href="board.html" class="summary-task-btn">
-                            <div class="summary-counter">
-                                <span class="task-count" id="#">5</span> Tasks in <br> Board
-                            </div>
-                        </a>
-                        <a href="board.html" class="summary-task-btn">
-                            <div class="summary-counter">
-                                <span class="task-count" id="#">2</span> Tasks In <br> Progress
-                            </div>
-                        </a>
-                        <a href="board.html" class="summary-task-btn">
-                            <div class="summary-counter">
-                                <span class="task-count" id="#">2</span> Awaiting <br> feedback
-                            </div>
-                        </a>
-                    </div>
+                        </div>
+                        <span class="breakline"></span>
+                        <p class="deadline">
+                            <span class="urgent-date" id="#">October 16, 2022</span> Upcoming Deadline
+                        </p>
+                    </a>
                 </div>
 
 
-                <div class="summary-greeting-container">
-                    <span class="greeting-time" id="greeting-time">Good morming,</span>
-                    <span class="greeting-name" id="greeting-name">Sofia Müller</span>
+                <div class="summerys-box1">
+                    <a href="board.html" class="summary-task-btn">
+                        <div class="summary-counter">
+                            <span class="task-count" id="#">5</span> Tasks in <br> Board
+                        </div>
+                    </a>
+                    <a href="board.html" class="summary-task-btn">
+                        <div class="summary-counter">
+                            <span class="task-count" id="#">2</span> Tasks In <br> Progress
+                        </div>
+                    </a>
+                    <a href="board.html" class="summary-task-btn">
+                        <div class="summary-counter">
+                            <span class="task-count" id="#">2</span> Awaiting <br> feedback
+                        </div>
+                    </a>
                 </div>
-
             </div>
-        </main>
 
 
-        <section id="join-sidebar">
-        </section>
-    </div>
+            <div class="summary-greeting-container">
+                <span class="greeting-time" id="greeting-time">Good morming,</span>
+                <span class="greeting-name" id="greeting-name">Sofia Müller</span>
+            </div>
+
+        </div>
+    </main>
+
+
+    <section id="join-sidebar">
+    </section>
+    <!-- </div> -->
 </body>
 
 </html>
