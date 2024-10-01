@@ -1,6 +1,15 @@
-    main {
+    .add-task-main-content {
+        display: flex;
+        flex: 1;
+        overflow-x: hidden;
+        overflow-y: auto;
+        background-color: var(--light-grey);
+        padding: 25px 16px 48px 16px;
+        text-wrap: wrap;
+        max-width: 1920px;
         align-items: center;
     }
+
 
     .h-100 {
         height: 100%;

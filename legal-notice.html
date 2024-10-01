@@ -10,24 +10,22 @@
     <script src="./script.js" defer></script>
 
     <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="/styles/legal-notice.css" />
-    <link rel="stylesheet" href="./styles/header-sidebar-desktop.css">
+    <link rel="stylesheet" href="./styles/header-sidebar.css">
+    <link rel="stylesheet" href="./styles/legal.css">
+    
     <link rel="stylesheet" href="./styles/responsive/responsive.css">
 
 </head>
 
 <body onload="init()" onclick="classChangeAction('user-menu', 'd-none', 'add'); classChangeAction('menu', 'menu-active', 'remove'); stopEventBubbling(event);" class="column">
-    <!-- <div class="body-content"> -->
 
-    <section id="join-header" class="join-header">
-    </section>
-
+    <section id="join-header" class="join-header"></section>
 
     <main class="d-flex main content overflow-x-auto">
         <div class="legal-notice">
             <div class="headline d-flex">
                 <h1>Legal Notice</h1>
-                <a href="#" onclick="goSummery()"><img src="./assets/icons/left-arrow.png" alt="Back Link" /></a>
+                <img onclick="history.back()" src="./assets/icons/left-arrow.png" alt="Back Link" />
             </div>
             <h2>Imprint</h2>
             <ul>
@@ -53,10 +51,8 @@
         </div>
     </main>
 
-    <section id="join-sidebar">
-    </section>
+    <section id="join-sidebar"></section>
 
-    <!-- </div> -->
 </body>
 
 </html>
