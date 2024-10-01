@@ -255,7 +255,6 @@ function renderSubtask() {
 
 function editWord(index) {
     let wordListHTML = '';
-
     for (let i = 0; i < currentSubtasks.length; i++) {
         if (i === index) {
             wordListHTML += editIconsHTML(i);
@@ -271,7 +270,7 @@ function editWord(index) {
 
 function saveWord(index) {
     const newValue = document.getElementById(`editInput${index}`).value;
-    currentSubtasks[index] = newValue;
+    currentSubtasks[index].sub = newValue;
     renderSubtask();
     return false;
 }
@@ -328,6 +327,8 @@ async function postTask(task) {
         'subtask': currentSubtasks
     })
 }
+
+
 
 
 ///////////////////
