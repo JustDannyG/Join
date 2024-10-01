@@ -3,6 +3,8 @@ let contactIndex = getFromLocalStorage('currentDetails');
 let contactsArray = getFromLocalStorage('contacts');
 let currentContactDetails = localStorage.getItem("currentDetails");
 
+let screenMode;
+
 
 async function initContacts() {
     await getContacts();
@@ -29,7 +31,12 @@ function openContact(index) {
     // localStorage.setItem('currentDetails', currentContactDetails);
     saveToLocalStorage('currentDetails', currentContactDetails)
     saveToLocalStorage('contacts', contacts)
-    window.location.href = "contact-details.html";
+    if (screenMode == 'mobile') {
+
+        window.location.href = "contact-details.html";
+    } else if (screenMode == 'desktop') {
+
+    }
     showContact()
 }
 
@@ -74,7 +81,7 @@ function getInputs(nameRef, emailRef, phoneNumRef) {
 function toogleDialog(id, index) {
     document.getElementById(id).classList.add("dialog-active");
 
-    setTimeout(function() {
+    setTimeout(function () {
         document.getElementById(id).classList.remove("dialog-active");
         openContact(index);
     }, 2000);
@@ -86,7 +93,6 @@ async function findContact(name, email, phone) {
     await getContacts()
     return contacts.findIndex(e => e.name == name && e.email == email && e.phone == phone);
 }
-
 
 
 ///////////////////
