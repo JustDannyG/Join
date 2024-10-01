@@ -40,9 +40,11 @@ function updateHtml() {
     renderTasks(filterTasks('done'), doneById);
 }
 
+
 function filterTasks(task) {
     return tasksArray.filter(t => t['category'] == task);
 }
+
 
 function renderTasks(tasks, getById) {
     getById.innerHTML = "";
@@ -61,7 +63,6 @@ function renderTasks(tasks, getById) {
 }
 
 
-
 function renderSubtask(task, index) {
     let taskAmount = document.getElementById(`${task.category}-amount${index}`)
     let progress =  document.getElementById(`${task.category}-progress${index}`)
@@ -75,6 +76,7 @@ function renderSubtask(task, index) {
     progress.style.width = result
  
 }
+
 
 function renderAssignedToContacts(task, index) {
     const assignedToContainer = document.getElementById(`${task.category}contatcs-container${index}`);
@@ -90,12 +92,14 @@ function renderAssignedToContacts(task, index) {
     });
 }
 
+
 function renderPrio(task, index) {
     const imgRef = document.getElementById(`${task.category}prio-icon${index}`)
     if (task.prio) {
         imgRef.src = `./assets/icons/prio-${task.prio}-icon.png`;
     }
 }
+
 
 function moveTo(category) {
     tasksArray[currentDraggedElement]["category"] = category;
@@ -119,7 +123,6 @@ async function moveToUpdateDatabase() {
     let taskKey = Object.keys(getTasks);
     await putData(`/tasks/${taskKey[currentDraggedElement]}`, tasksArray[currentDraggedElement]);
 }
-
 
 
 function highlight(id) {

@@ -16,6 +16,11 @@
     .contacts-first-letter {
         padding: 25px 20px;
     }
+
+    .current-contact-circle {
+        min-width: 75px;
+        min-height: 75px;
+    }
 }
 
 
