@@ -1,4 +1,4 @@
-.board-main-content{
+.board-main-content {
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -9,6 +9,7 @@
     text-wrap: wrap;
     max-width: 1920px;
     gap: 32px;
+    margin-left: 210px;
 }
 
 .headline {
@@ -227,15 +228,23 @@
     position: absolute;
     background-color: rgba(0, 0, 0, 0.2);
     padding: 40px;
+    transition: all 125ms ease-in-out;
+    transform: translateY(100%);
+}
+
+.overlaver-active {
+    transform: translateY(0);
 }
 
 .overlay-task {
     text-align: start;
-    padding: 16px;
-    height: 100%;
-    background-color: var(--white);
+    padding: 34px;
+    max-width: 424px;
+    height: min-content;
     border-radius: 16px;
-    max-height: 660px;
+    background-color: var(--white);
+    max-height: 100%;
+    box-shadow: rgba(99, 99, 99, 0.8) 0px 2px 8px 0px;
 }
 
 .task-header {
@@ -270,7 +279,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 60%;
+    width: 200px
 }
 
 .info-title {
@@ -292,12 +301,14 @@
 }
 
 .assigned-to-container ul {
-    height: 180px;
+    min-height: 160px;
+    max-height: 240px;
     overflow-y: auto;
     padding: 8px 0 8px 20px;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    margin-top: 4px;
 }
 
 .initials-circle {
@@ -318,18 +329,42 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
+    margin-top: 16px;
 }
 
 .subtask ul {
-    height: 60px;
+    min-height: 80px;
+    max-height: 112px;
     overflow-y: auto;
     padding: 8px 0 8px 20px;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    margin-top: 4px;
 }
 
-.btn-container {
+.btn {
     display: flex;
     align-items: center;
+    gap: 4px;
+    font-size: 18px;
+    border: unset;
+    outline: unset;
+    background: unset;
+}
+
+.divider {
+    height: 20px;
+    width: 1px;
+    margin: 0 2px;
+    background-color: var(--dark-grey);
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+}
+
+button {
+    padding: 0;
 }

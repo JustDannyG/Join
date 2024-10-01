@@ -3,7 +3,8 @@ async function signUp() {
     let userEmailInput = document.getElementById('email-input').value;
     let userPwd = document.getElementById('user-pwd').value;
     let userConfPwd = document.getElementById('user-conf-pwd').value;
-    ceckIfUserAllreadyExists(userNameInput, userEmailInput, userPwd, userConfPwd);
+    checkbox = document.getElementById('myCheckbox');
+    ceckIfUserAllreadyExists(userNameInput, userEmailInput, userPwd, userConfPwd, checkbox);
     userInputErrorStyle(userNameInput);
     emailInputErrorStyle(userEmailInput);
     passwordInputErrorStyle(userPwd);
@@ -120,19 +121,19 @@ function errorStyles(userNameInput, userEmailInput, userPwd, userConfPwd) {
     checkboxError();
 }
 
-async function ceckIfUserAllreadyExists(userNameInput, userEmailInput, userPwd, userConfPwd) {
+async function ceckIfUserAllreadyExists(userNameInput, userEmailInput, userPwd, userConfPwd, checkbox) {
     let users = await getData('users');
     let userIds = Object.keys(users);
     let user;
     for (let i = 0; i < userIds.length; i++) {
         let userId = userIds[i];
         user = users[userId];
-        if (user.email === userEmailInput && user.name === userNameInput) {
+        if (user.email === userEmailInput && user.name === userNameInput  && checkbox.checked && userConfPwd !== "") {
             userAllreadyExists();
             break;
         } 
     }
-    if (user.email !== userEmailInput) {
+    if (user.email !== userEmailInput && checkbox.checked && userNameInput !== "" && userEmailInput !== "" && userPwd !== "") {
         postSignUpData(userNameInput, userEmailInput, userPwd);
     }
 }
