@@ -351,6 +351,7 @@
     border: unset;
     outline: unset;
     background: unset;
+    color: black;
 }
 
 .divider {
@@ -367,4 +368,8 @@
 
 button {
     padding: 0;
+}
+
+.checkbox {
+    margin-right: 8px;
 }
