@@ -2,7 +2,6 @@ let isDropdownOpen = false;
 let prio = "medium";
 let currentSubtasks = [];
 const selectedContacts = [];
-
 let subtaskArray = [];
 let categoryInput;
 let curretCategory = 'todo';
@@ -260,7 +259,7 @@ function editWord(index) {
             wordListHTML += editIconsHTML(i);
         } else {
             wordListHTML += `<div class="word-item">
-                <span onclick="editWord(${i})">${currentSubtasks[i]}</span>
+                <span onclick="editWord(${i})">${currentSubtasks[i].sub}</span>
             </div>`;
         }
     }
