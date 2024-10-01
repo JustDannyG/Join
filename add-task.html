@@ -26,7 +26,7 @@
     <section id="join-header" class="join-header">
     </section>
 
-    <main class="d-flex content overflow-x-auto">
+    <main class="main d-flex content overflow-x-auto">
         <form id="add-task" onsubmit="createTask(); return false;" class="column">
 
             <div class="headline">
@@ -34,19 +34,19 @@
             </div>
             <div class="column mt-16">
                 <label for="title">Title<span class="required">*</span></label>
-                <input required id="title" type="text" placeholder="Enter a title">
+                <input class="input" required id="title" type="text" placeholder="Enter a title">
             </div>
 
             <div class="column mt-16">
                 <label for="description">Description</label>
-                <textarea name="description" id="description" placeholder="Enter a Description"></textarea>
+                <textarea class="textarea" name="description" id="description" placeholder="Enter a Description"></textarea>
             </div>
 
             <div class="column mt-16">
                 <label for="assign-to-dropdown">Assigned to</label>
 
                 <div id="dropdown" class="drop-down d-flex">
-                    <input id="assign-to-dropdown" onkeyup="filter('assign-to-dropdown')" onclick="handleInputClick(event)" value="Select contacts to assign">
+                    <input class="input" id="assign-to-dropdown" onkeyup="filter('assign-to-dropdown')" onclick="handleInputClick(event)" value="Select contacts to assign">
                     <button onclick="handleDropdownButtonClick(event)" type="button" class="dropdown-btn">
                         <img id="drop-down-icon1" src="./assets/icons/arrow-drop-down.png">
                     </button>
@@ -61,7 +61,7 @@
 
             <div class="column mt-16">
                 <label for="date">Due date<span class="required">*</span></label>
-                <input required id="date" type="date">
+                <input class="input" required id="date" type="date">
             </div>
 
             <div class="prio mt-16">
@@ -111,7 +111,7 @@
                 <input id="subtask " type="text " placeholder="Add new subtask ">
             </div> -->
 
-            <div class="form-field">
+            <div class="form-field column mt-16">
                 <label for="subtasks-input">Subtasks</label>
                 <div class="add-task-input">
                     <input type="subtasks" name="subtasks" onkeyup="subtaskInputBtn()" id="subtasks-input" placeholder="Add new subtask" />

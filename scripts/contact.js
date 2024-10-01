@@ -29,7 +29,8 @@ function openContact(index) {
     // localStorage.setItem('currentDetails', currentContactDetails);
     saveToLocalStorage('currentDetails', currentContactDetails)
     saveToLocalStorage('contacts', contacts)
-    window.location.href = "contact-details.html";
+    // window.location.href = "contact-details.html";
+    showContact()
 }
 
 function saveToLocalStorage(key, value) {
