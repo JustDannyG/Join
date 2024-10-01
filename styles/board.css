@@ -200,3 +200,123 @@
         transform: rotate(-1deg)
     }
 }
+
+
+/*Task Overlay*/
+
+.task-details-container li {
+    list-style: none;
+}
+
+.overlay-bg {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 40px;
+}
+
+.overlay-task {
+    text-align: start;
+    padding: 16px;
+    height: 100%;
+    background-color: var(--white);
+    border-radius: 16px;
+    max-height: 660px;
+}
+
+.task-header {
+    justify-content: space-between;
+}
+
+.task-header span {
+    background-color: var(--technical);
+    color: var(--white);
+    border-radius: 8px;
+    padding: 4px 16px;
+}
+
+.task-title {
+    font-size: 38px;
+    font-weight: 600;
+}
+
+.discription {
+    margin-top: 12px;
+}
+
+.task-details-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 12px;
+    overflow-y: auto;
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 60%;
+}
+
+.info-title {
+    width: 100px;
+    margin-right: 20px;
+}
+
+.info-value {
+    width: 88px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.prio-icon {
+    width: 18px;
+    height: 16px;
+}
+
+.assigned-to-container ul {
+    height: 180px;
+    overflow-y: auto;
+    padding: 8px 0 8px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.initials-circle {
+    background-color: aquamarine;
+    color: var(--white);
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.assigned-to-contact {
+    align-items: center;
+    gap: 16px;
+}
+
+.edit-task-container {
+    align-self: flex-end;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.subtask ul {
+    height: 60px;
+    overflow-y: auto;
+    padding: 8px 0 8px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn-container {
+    display: flex;
+    align-items: center;
+}
