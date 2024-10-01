@@ -39,7 +39,7 @@ function contactListHtml(contact, i) {
 //Templates for Add Task
 
 function contactInDropDownHTML(i, contact, initials) {
-    return /*html*/`
+    return /*html*/ `
             <li id="contact${i}" onclick="selectContact(${i}); stopEventBubbling(event)">
                 <div class="d-flex contact-row">
                     <div class="center gap">
@@ -61,7 +61,7 @@ function contactSelectionCircleHTML(contact, initials) {
 //Templates for Tasks
 
 function generateTaskHTML(task, index, className) {
-    return `<div id="${task.id}" draggable="true" dragleave="animationOndrag(${task.id})" ondragstart="startDragging(${task.id})" class="task">
+    return `<div id="${task.id}" draggable="true" dragleave="animationOndrag(${task.id})" ondragstart="startDragging(${task.id})"  onclick="classChangeAction('overlaver','overlaver-active','add')" class="task">
               <div class="task-category ${className}">${task.categoryText}</div>
               <h4 class="task-title">${task.title}</h4>
               <div class="task-description">${task.description}</div>
@@ -81,11 +81,11 @@ function generateTaskHTML(task, index, className) {
 function generateNoTaskHTML() {
     return /*html*/ `<div class="no-task"> No task To do</div> `;
 }
- 
+
 
 //Subtask
 
-function subtaskBtnHTML(){
+function subtaskBtnHTML() {
     return `
         <div class="subtasks-btns">
 
@@ -123,7 +123,7 @@ function subtaskTaskHTML(subtask, i) {
 }
 
 
-function editIconsHTML(i){
+function editIconsHTML(i) {
     return `<div class="word-item">
                 <input type="text" id="editInput${i}" value="${currentSubtasks[i]}">
                 <button onclick="deleteSubtask(${i})"><img src="./assets/icons/delete.png" alt=""></button>
