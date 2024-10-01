@@ -1,5 +1,6 @@
     .add-task-main-content {
         display: flex;
+        flex-direction: column;
         flex: 1;
         overflow-x: hidden;
         overflow-y: auto;
@@ -24,6 +25,31 @@
         border-radius: 8px;
         padding: 8px 16px;
         font-size: 14px;
+        outline: unset;
+        border: 1px solid var(--dark-grey);
+    }
+    
+    .textarea {
+        height: 64px;
+        resize: none;
+    }
+    
+    textarea::placeholder,
+    input::placeholder,
+    #date {
+        font-family: inter;
+        color: var(--placeholder-grey);
+    }
+    
+    .prio,
+    .label,
+    .row,
+    .input,
+    .textarea,
+    .drop-down {
+        margin-top: 8px;
+        font-size: 14px;
+        width: 100%;
     }
     
     form {
@@ -41,36 +67,12 @@
         align-items: center;
     }
     
-    .prio,
-    .label,
-    .row,
-    .input,
-    .textarea,
-    .drop-down {
-        margin-top: 8px;
-        font-size: 14px;
-        width: 100%;
-    }
-    
     .mt-16 {
         margin-top: 16px;
         width: 100%;
     }
     
-    textarea::placeholder,
-    input::placeholder,
-    #date {
-        font-family: inter;
-        color: var(--placeholder-grey);
-    }
-    
-    textarea {
-        border: 1px solid var(--dark-grey);
-        height: 64px;
-        resize: none;
-    }
-    
-    button {
+    .btn {
         padding: 16px;
         border-radius: 8px;
         color: black;
@@ -78,6 +80,8 @@
         gap: 8px;
         align-items: center;
         justify-content: center;
+        outline: unset;
+        border: unset;
     }
     
     .contact-row {
@@ -242,6 +246,7 @@
     
     .dropdown-btn {
         padding: 0px 16px;
+        background-color: unset;
     }
     /*Priority Buttons*/
     
