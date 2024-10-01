@@ -40,11 +40,11 @@ input {
 html,
 body {
     height: 100%;
+    overflow: hidden;
+    position: relative;
 }
 
 body {
-    overflow: hidden;
-    position: relative;
     background-color: rgb(42, 55, 71, 0.5);
 }
 

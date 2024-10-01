@@ -38,13 +38,8 @@
     width: 30px;
 }
 
-/* section {
-    margin-top: 24px;
-    min-height: min-content;
-    max-height: 400px;
-} */
-
 .no-task {
+    width: 100%;
     margin-top: 16px;
     text-align: center;
     padding: 8px;
@@ -53,7 +48,6 @@
     border: 2px dotted var(--dark-grey);
     border-radius: 8px;
 }
-
 
 .task-category {
     color: var(--light-grey);
@@ -88,7 +82,6 @@
 
 .progress {
     background-color: var(--light-blue);
-    /* width: 50%; */
     height: 8px;
     border-radius: 8px;
 }
@@ -141,10 +134,11 @@
 }
 
 .task-container {
-    height: 252px;
-    background-color: lightgray;
-    border: solid 1px;
-    overflow-x: hidden;
+    /* height: 252px; */
+    /* background-color: lightgray; */
+    /* border: solid 1px; */
+    padding: 16px 0px;
+    overflow-x: auto;
     display: flex;
     gap: 16px;
     align-items: center;
@@ -157,7 +151,6 @@
 .technical-task {
     background-color: var(--technical);
 }
-
 
 .task-contact-length {
     margin-left: 30px;
@@ -174,6 +167,7 @@
     padding: 16px;
     border-radius: 24px;
     width: 260px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .task:hover {
@@ -190,23 +184,18 @@
     0% {
         transform: rotate(0deg)
     }
-
     10% {
         transform: rotate(-8deg)
     }
-
     30% {
         transform: rotate(6deg)
     }
-
     55% {
         transform: rotate(-3deg)
     }
-
     80% {
         transform: rotate(1deg)
     }
-
     100% {
         transform: rotate(-1deg)
     }
