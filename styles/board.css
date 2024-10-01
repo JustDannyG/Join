@@ -1,5 +1,18 @@
-.board-main {
+.board-main-content{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: var(--light-grey);
+    padding: 25px 16px 48px 16px;
+    text-wrap: wrap;
+    max-width: 1920px;
     gap: 32px;
+}
+
+.headline {
+    justify-content: space-between;
 }
 
 .headline button {

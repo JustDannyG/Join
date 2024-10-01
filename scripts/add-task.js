@@ -3,6 +3,10 @@ let prio = "medium";
 let currentSubtasks = [];
 const selectedContacts = [];
 
+let subtaskArray = [];
+let categoryInput;
+let curretCategory = 'todo';
+
 async function init() {
     updateBtnColor()
     await getContacts()
@@ -17,6 +21,7 @@ function addPrio(prioInput) {
     } else { prio = prioInput }
     updateBtnColor()
 }
+
 
 function updateBtnColor() {
     document.getElementById("urgent-btn").classList.remove("urgent")
@@ -49,6 +54,7 @@ function toggleDropdown(id, iconId) {
     }
 }
 
+
 function openDropdown(id, iconId) {
     const dropdown = document.getElementById(id);
     const dropdownIcon = document.getElementById(iconId);
@@ -57,6 +63,7 @@ function openDropdown(id, iconId) {
     isDropdownOpen = true;
     classChangeAction('dropdown', 'input-active', 'add')
 }
+
 
 function closeDropdown() {
     const dropdown = document.getElementById('assign-to-dropdown-contacts');
@@ -68,6 +75,7 @@ function closeDropdown() {
     resetInputText()
     classChangeAction('dropdown', 'input-active', 'remove')
 }
+
 
 function handleInputClick(event) {
     clearInput(event.target);
@@ -98,20 +106,6 @@ function resetInputText() {
 
 }
 
-// function selectCategory(category) {
-//     const selectedCategory = document.getElementById("drop-down-text");
-//     selectedCategory.innerHTML = category;
-//     categoryText = category
-//     if (selectedCategory.innerHTML == category) {
-//         categorySelected = true
-//     } else return false
-
-// }
-
-
-
-
-
 
 function getSelectedContacts() {
     contacts.forEach(contact => {
@@ -136,6 +130,7 @@ function renderContacts(arr) {
     }
 }
 
+
 function updateDesign(i) {
     if (selectedContacts[i].checked) {
         let contactContainerRef = document.getElementById("contact" + i);
@@ -159,16 +154,6 @@ function selectContact(i) {
     renderSelectedContacts()
 }
 
-// function selectContact(i, name) {
-//     let nameIndex = selectedContacts.findIndex((n) => n.name == name)
-//     console.log(nameIndex);
-
-//     let currentContact = selectedContacts[nameIndex]
-//     currentContact.checked = !currentContact.checked;
-//     updateDesign(nameIndex)
-//     console.log(selectedContacts);
-//     renderSelectedContacts()
-// }
 
 function renderSelectedContacts() {
     const containerRef = document.getElementById("selected-contacts-container");
@@ -184,10 +169,10 @@ function renderSelectedContacts() {
     }
 }
 
+
 function filter(id) {
     const inputRef = document.getElementById(id);
     const input = inputRef.value.toLowerCase();
-
     if (checkLengthGreater(input, 2)) {
         const result = findInput(input);
         if (result.length === 0) {
@@ -200,6 +185,7 @@ function filter(id) {
     }
 }
 
+
 function displayNoContactFoundMessage() {
     const dropdownRef = document.getElementById("assign-to-dropdown-contacts");
     dropdownRef.innerHTML = '<li class="not-found">Nicht gefunden</li>';
@@ -210,6 +196,7 @@ function findInput(input) {
         contact.name.toLowerCase().includes(input))
     return result
 }
+
 // function findInput(input) {
 //     let result = contacts.filter(contact =>
 //         !contact.checked && contact.name.toLowerCase().includes(input))
@@ -217,40 +204,21 @@ function findInput(input) {
 // }
 
 
-
 ///////////////////
 // Subtasks
 ////////////////////
-
 
 function subtaskInputBtn() {
     let subtaskInput = document.getElementById('subtasks-input');
     let subtaskButtons = document.getElementById('add-subtask-btn');
 
     if (subtaskInput.value.length > 0) {
-        subtaskButtons.innerHTML = `
-        <div class="subtasks-btns">
-
-         <div class="svg-btn" onclick="clearSubtask()"> 
-            <svg width="13" height="14" viewBox="0 0 13 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-             <path d="M6.24959 6.99984L11.4926 12.2428M1.00659 12.2428L6.24959 6.99984L1.00659 12.2428ZM11.4926 1.75684L6.24859 6.99984L11.4926 1.75684ZM6.24859 6.99984L1.00659 1.75684L6.24859 6.99984Z" stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-           </svg>
-        </div>
-
-           <span class="break-line"></span>
-
-           <div class="svg-btn" onclick="addSubtask()">
-            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-             <path d="M5.79923 9.15L14.2742 0.675C14.4742 0.475 14.7117 0.375 14.9867 0.375C15.2617 0.375 15.4992 0.475 15.6992 0.675C15.8992 0.875 15.9992 1.1125 15.9992 1.3875C15.9992 1.6625 15.8992 1.9 15.6992 2.1L6.49923 11.3C6.29923 11.5 6.0659 11.6 5.79923 11.6C5.53256 11.6 5.29923 11.5 5.09923 11.3L0.79923 7C0.59923 6.8 0.503397 6.5625 0.51173 6.2875C0.520064 6.0125 0.62423 5.775 0.82423 5.575C1.02423 5.375 1.26173 5.275 1.53673 5.275C1.81173 5.275 2.04923 5.375 2.24923 5.575L5.79923 9.15Z" fill="black"/>
-           </svg>
-        </div>
-          
-        </div>
-`
+        subtaskButtons.innerHTML = subtaskBtnHTML();
     } else {
         subtaskButtons.innerHTML = `<img src="./assets/icons/add -subtasks.png" alt=""></img>`;
     }
 }
+
 
 function setInputFocus() {
     document.getElementById("subtasks-input").focus();
@@ -280,17 +248,7 @@ function renderSubtask() {
     subtaskContainer.innerHTML = '';
     for (let i = 0; i < currentSubtasks.length; i++) {
         const subtask = currentSubtasks[i];
-        subtaskContainer.innerHTML += `
-        <div id="subtask${i}" class="subtask">
-           <div class="subtask-text" onclick="editWord(${i})">
-             <p>${subtask.sub}</p> 
-             <img src="./assets/icons/edit.png" alt="">
-             
-           </div>
-           <span class="break-line"></span>
-            <img class="" src="./assets/icons/delete.png" alt="" onclick="deleteSubtask(${i})">
-        </div>
-        `;
+        subtaskContainer.innerHTML += subtaskTaskHTML(subtask, i);
     }
 }
 
@@ -300,24 +258,16 @@ function editWord(index) {
 
     for (let i = 0; i < currentSubtasks.length; i++) {
         if (i === index) {
-            wordListHTML += `<div class="word-item">
-                <input type="text" id="editInput${i}" value="${currentSubtasks[i]}">
-                <button onclick="deleteSubtask(${i})"><img src="./assets/icons/delete.png" alt=""></button>
-                <span class="break-line"></span>
-                <svg onclick="saveWord(${i})" width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5.79911 9.15L14.2741 0.675C14.4741 0.475 14.7116 0.375 14.9866 0.375C15.2616 0.375 15.4991 0.475 15.6991 0.675C15.8991 0.875 15.9991 1.1125 15.9991 1.3875C15.9991 1.6625 15.8991 1.9 15.6991 2.1L6.49911 11.3C6.29911 11.5 6.06578 11.6 5.79911 11.6C5.53245 11.6 5.29911 11.5 5.09911 11.3L0.799113 7C0.599113 6.8 0.50328 6.5625 0.511613 6.2875C0.519946 6.0125 0.624113 5.775 0.824113 5.575C1.02411 5.375 1.26161 5.275 1.53661 5.275C1.81161 5.275 2.04911 5.375 2.24911 5.575L5.79911 9.15Z" fill="black"/>
-                 </svg>
-                
-            </div>`;
+            wordListHTML += editIconsHTML(i);
         } else {
             wordListHTML += `<div class="word-item">
                 <span onclick="editWord(${i})">${currentSubtasks[i]}</span>
             </div>`;
         }
     }
-
     document.getElementById('subtasks-container').innerHTML = wordListHTML;
 }
+
 
 function saveWord(index) {
     const newValue = document.getElementById(`editInput${index}`).value;
@@ -333,13 +283,65 @@ function deleteSubtask(i) {
 }
 
 
-$('select').each(function() {
+
+///////////////////
+// Create Task
+////////////////////
+
+async function createTask() {
+    getInputs();
+}
+
+function getInputs() {
+    let titleInput = document.getElementById("title");
+    let descriptionInput = document.getElementById("description");
+    let dateInput = document.getElementById("date");
+    let assignedTo = filterCheckedAssignedTo();
+    let categoryText = document.getElementById('selected-category');
+
+    task = {
+        'title': titleInput.value,
+        'description': descriptionInput.value,
+        'date': dateInput.value,
+        'assignedTo': assignedTo,
+        'categoryText': categoryText.value
+    }
+    postTask(task);
+}
+
+function filterCheckedAssignedTo() {
+    let filtertContacts = selectedContacts.filter(contact => contact.checked == true)
+    return filtertContacts;
+}
+
+
+
+async function postTask(task) {
+    await postData(path = "/tasks", data = {
+        'title': task.title,
+        'description': task.description,
+        'date': task.date,
+        'assignedTo': task.assignedTo,
+        'category': curretCategory,
+        'prio': prio,
+        'categoryText': task.categoryText,
+        'subtask': currentSubtasks
+    })
+}
+
+
+///////////////////
+// Select Function
+////////////////////
+
+
+$('select').each(function () {
     var $this = $(this);
     $this.addClass('s-hidden').wrap('<div class="select"></div>');
     var $styledSelect = $('<div class="styledSelect"></div>').text($this.children('option').eq(0).text()).insertAfter($this);
     var $list = $('<ul />', { class: 'options' }).insertAfter($styledSelect);
 
-    $this.children('option').each(function(index) {
+    $this.children('option').each(function (index) {
         var $li = $('<li />', {
             text: $(this).text(),
             rel: $(this).val()
@@ -352,7 +354,7 @@ $('select').each(function() {
         $li.appendTo($list);
     });
 
-    $styledSelect.on('click', function(e) {
+    $styledSelect.on('click', function (e) {
         e.stopPropagation();
         $('div.styledSelect.active').not(this).removeClass('active').next('ul.options').hide();
         $(this).toggleClass('active').next('ul.options').toggle();
@@ -361,7 +363,7 @@ $('select').each(function() {
         }
     });
 
-    $list.on('click', 'li', function(e) {
+    $list.on('click', 'li', function (e) {
         e.stopPropagation();
         $styledSelect.text($(this).text()).removeClass('active');
         $this.val($(this).attr('rel'));

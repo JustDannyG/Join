@@ -13,30 +13,22 @@
     <script src="./scripts/fetch.js"></script>
     <script src="./scripts/contact.js"></script>
     <script src="./assets/templates/template.js"></script>
-    <script src="./scripts/contact-details.js"></script>
 
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./styles/contact.css" />
-    <link rel="stylesheet" href="./styles/add-contact.css" />
-    <link rel="stylesheet" href="./styles/edit-contact-overlay.css">
-    <link rel="stylesheet" href="./styles/contact-details.css">
-
-    <link rel="stylesheet" href="./styles/header-sidebar-desktop.css">
+    <link rel="stylesheet" href="./styles/header-sidebar.css">
 
     <link rel="stylesheet" href="./styles/responsive/responsive.css">
-    <link rel="stylesheet" href="./styles/responsive/contanct-responsive.css">
-
-
+    <link rel="stylesheet" href="./styles/responsive/contact-responsive.css">
 </head>
 
 
-<body onclick="classChangeAction('menu', 'menu-active', 'remove'); stopEventBubbling(event)" onload="initContacts()"
-    class="column">
+<body class="column" onclick="classChangeAction('menu', 'menu-active', 'remove'); stopEventBubbling(event)"
+    onload="initContacts()">
 
-    <section id="join-header" class="join-header">
-    </section>
+    <section id="join-header" class="join-header"></section>
 
-    <main class="contact-content  d-flex">
+    <main class="contact-content">
 
         <div class="contacts-mobile-container overflow-y-auto">
             <div id="contacts-container" class="column contacts-container"></div>
@@ -58,25 +50,26 @@
                             alt="Back Link" /></a>
                 </div>
             </div>
-            <div class="current-contact d-flex" id="current-contact">
-            </div>
-            <div class="details column" id="details">
-            </div>
+
+            <div class="current-contact d-flex" id="current-contact"></div>
+
+            <div class="details column" id="details"></div>
+
             <button onclick="classChangeAction('edit-contact', 'menu-active', 'toggle'); stopEventBubbling(event)"
                 id="edit-button" class="edit-button center ">
                 <img src="./assets/icons/more_vert.png " alt="edit-contact " />
             </button>
         </div>
 
-
     </main>
 
-    <section id="join-sidebar">
-    </section>
+    <section id="join-sidebar"></section>
+
     <!-- start overlay -->
 
     <Section id="dialog-add-contact" class="edit-overlay-bg hide-overlay">
         <form class="edit-overlay-form" onsubmit="addContact(); return false;">
+
             <img class="close-edit" src="./assets/icons/close.png"
                 onclick="classChangeAction('dialog-add-contact', 'hide-overlay', 'add')">
 
@@ -106,21 +99,15 @@
                 </div>
             </div>
 
-
             <button class="submit-btn" type="submit">Create contact <img src="./assets/icons/check.png" /></button>
-
 
         </form>
     </Section>
 
-    <!-- end overlay -->
-
-    <!-- start dialog -->
-    <div id="dialog-add-succes" class="dialog">
+    <section id="dialog-add-succes" class="dialog">
         Contact successfully created
-    </div>
+    </section>
 
-    <!-- end dialog -->
 </body>
 
 </html>

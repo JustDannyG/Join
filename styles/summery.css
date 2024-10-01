@@ -1,12 +1,17 @@
-.summary-content {
-    position: relative;
+.summary-main-content {
     display: flex;
-    /* flex-direction: column; */
+    flex: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: var(--light-grey);
+    padding: 25px 16px 48px 16px;
+    text-wrap: wrap;
+    max-width: 1920px;
+    position: relative;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    background-color: #F6F7F8;
 }
+
 
 .summary-headline-container {
     font-size: 20px;
@@ -207,7 +212,7 @@
     height: 136px;
     margin-top: 130px;
     margin-left: 80px;
-    
+
 }
 
 .greeting-time {

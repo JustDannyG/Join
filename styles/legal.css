@@ -1,7 +1,12 @@
+.content {
+    padding: 25px 16px 48px 16px;
+    text-wrap: wrap;
+    max-width: 1920px;
+}
 
 /* Help */
 
-.text-blue{
+.text-blue {
     color: var(--light-blue);
 }
 
@@ -35,13 +40,13 @@
 /* privacy police */
 
 
-.privacy-police-content{
+.privacy-police-content {
     display: flex;
     flex-direction: column;
     gap: 35px;
 }
 
-.subtitle-container{
+.subtitle-container {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -63,22 +68,21 @@
 
 h2 {
     margin-top: 24px;
-  }
-  
-  h3 {
+}
+
+h3 {
     margin-top: 16px;
-  }
-  
-  .legal-notice ul {
+}
+
+.legal-notice ul {
     margin-top: 16px;
-  }
-  
-  .headline {
+}
+
+.headline {
     justify-content: space-between;
-  }
-  
-  .headline img {
+}
+
+.headline img {
     width: 18px;
     height: 18px;
-  }
-  
+}

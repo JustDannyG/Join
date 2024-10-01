@@ -6,23 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="./assets/icons/join-logo-light.png">
     <title>Join - Help</title>
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="./styles/help.css">
-    <link rel="stylesheet" href="./styles/header-sidebar-desktop.css">
-    <link rel="stylesheet" href="./styles/responsive/responsive.css">
+
     <script src="./script.js" defer></script>
-    <script src="scripts/backwards.js"></script>
+
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./styles/header-sidebar.css">
+    <link rel="stylesheet" href="./styles/legal.css">
+
+    <link rel="stylesheet" href="./styles/responsive/responsive.css">
+
 </head>
 
-<body onload="init()" onclick="classChangeAction('user-menu', 'd-none', 'add'); classChangeAction('menu', 'menu-active', 'remove'); stopEventBubbling(event);" class="column">
-    <section id="join-header" class="join-header">
-    </section>
+<body class="column"
+    onclick="classChangeAction('user-menu', 'd-none', 'add'); classChangeAction('menu', 'menu-active', 'remove'); stopEventBubbling(event);">
+
+    <section id="join-header" class="join-header"></section>
 
     <main class="d-flex content overflow-x-auto">
         <div class="help-content">
             <div class="d-flex headline">
                 <h1>Help</h1>
-                <a onclick="backwards()" href="#"><img src="./assets/icons/left-arrow.png" alt="Back Link" /></a>
+                <img onclick="history.back()" src="./assets/icons/left-arrow.png" alt="Back Link" />
             </div>
             </header>
 
@@ -90,8 +94,7 @@
         </div>
     </main>
 
-    <section id="join-sidebar">
-    </section>
+    <section id="join-sidebar"></section>
 
 </body>
 
