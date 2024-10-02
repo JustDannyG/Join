@@ -1,11 +1,17 @@
 let currentDraggedElement;
 let tasksArray = [];
 
+
 async function init() {
     await getContacts();
     await getTasks();
     updateHtml();
 }
+
+// document.addEventListener('touchstart', e => {
+//     alert('touch')
+    
+// })
 
 async function getTasks() {
     let response = await getData(path = "/tasks");
@@ -65,16 +71,16 @@ function renderTasks(tasks, getById) {
 
 function renderSubtask(task, index) {
     let taskAmount = document.getElementById(`${task.category}-amount${index}`)
-    let progress =  document.getElementById(`${task.category}-progress${index}`)
+    let progress = document.getElementById(`${task.category}-progress${index}`)
     let amount = task.subtask.filter(c => c.checked == true).length;
     let total = 0
     task.subtask.forEach((sub, i) => {
         total = i + 1
     });
     taskAmount.innerHTML = `${amount}/${total} Subtasks`;
-    let result=  Math.round((100 / total) * amount) + '%';
+    let result = Math.round((100 / total) * amount) + '%';
     progress.style.width = result
- 
+
 }
 
 
@@ -136,4 +142,47 @@ function removeHighlight(id) {
 
 function animationOndrag(id) {
     document.getElementById(id).classList.add('animation-ondrag')
+}
+
+
+function openTask(id) {
+    let currentTask = tasksArray[id];
+    console.log(currentTask);
+
+    let category = document.getElementById('task-category-overlay')
+    let title = document.getElementById('task-title-overlay')
+    let description = document.getElementById('task-discription-overlay')
+    let letDateRef = document.getElementById('task-date-overlay')
+    let prioTextRef = document.getElementById('task-prio-overlay')
+    let prioIconRef = document.getElementById('prio-icon-overlay')
+
+    category.innerHTML = currentTask.categoryText;
+    category.style.backgroundColor = "var(--category)";
+    title.innerHTML = currentTask.title;
+    description.innerHTML = currentTask.description;
+    letDateRef.innerHTML = currentTask.date;
+    prioTextRef.innerHTML = currentTask.prio.charAt(0).toUpperCase() + currentTask.prio.slice(1);
+    prioIconRef.src = `./assets/icons/prio-${currentTask.prio}-icon.png`;
+    renderTasksArrays(currentTask)
+}
+
+
+function renderTasksArrays(currentTask) {
+    let assignedToRef = document.getElementById('assigned-to-list');
+    let subtaskRef = document.getElementById("subtask-overlay");
+    assignedToRef.innerHTML ="";
+     subtaskRef.innerHTML = "";
+    currentTask.assignedTo.forEach((a, i) => {
+        assignedToRef.innerHTML += generateAssignedToOerlayLiHTML(a, i)
+    });
+   
+
+    currentTask.subtask.forEach(s => {
+      
+        if(s.checked === true)
+            {subtaskRef.innerHTML += `<li><input class="checkbox" checked type="checkbox" name="" id="">${s.sub}</li>`
+        } else {
+             subtaskRef.innerHTML += `<li><input class="checkbox" type="checkbox" name="" id="">${s.sub}</li>`
+    }}
+    )
 }
