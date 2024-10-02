@@ -21,8 +21,18 @@
         min-width: 75px;
         min-height: 75px;
     }
+
+    .contact-content {
+        height: calc(100vh - (70px + 70px));
+    }
+
 }
 
+@media screen and (max-width: 1024px) and (min-width: 428px) {
+    .contact-content {
+        height: calc(100vh - (80px + 80px));
+    }
+}
 
 @media screen and (max-width: 1024px) and (min-width: 600px) {
     .contact-list {
@@ -43,9 +53,10 @@
 
     .contact-content {
         flex-direction: column;
-
     }
 }
+
+
 
 @media(min-width: 1024px) {
     .contact-content {
