@@ -1,13 +1,18 @@
-/* @media(max-width: 1024px) {
-    .content {
-        height: calc(100vh - (80px + 80px));
+@media(max-width: 428px) {
+    .header-mobile {
+        height: 70px;
     }
-} */
+
+    .sidebar-mobile {
+        height: 70px;
+    }
+}
 
 @media(min-width: 1024px) {
     .content {
         padding: 25px 16px 48px calc(232px + 16px);
     }
+
     .sidebar-desktop {
         width: 210px;
     }

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0 , maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
 
     <link rel="icon" type="image/x-icon" href="./assets/icons/join-logo-light.png">
 
@@ -42,14 +42,11 @@
         </div>
 
         <div id="contacts-details-desktop-container" class="contacts-details-desktop-container">
-            <div>
-                <div class="headline d-flex">
-                    <div class="contact-details-headline">
-                        Contacts
-                        <span class="contact-details-breakline"></span>
-                        <p class="headline-span">Better with a team</p>
-                    </div>
-
+            <div class="headline d-flex">
+                <div class="contact-details-headline">
+                    Contacts
+                    <span class="contact-details-breakline"></span>
+                    <p class="headline-span">Better with a team</p>
                 </div>
             </div>
 
@@ -57,10 +54,6 @@
 
             <div class="details column" id="details"></div>
 
-            <!-- <button onclick="classChangeAction('edit-contact', 'menu-active', 'toggle'); stopEventBubbling(event)"
-                id="edit-button" class="edit-button center ">
-                <img src="./assets/icons/more_vert.png " alt="edit-contact " />
-            </button> -->
         </div>
 
     </main>
@@ -71,7 +64,6 @@
 
     <Section id="dialog-add-contact" class="edit-overlay-bg hide-overlay">
         <form class="edit-overlay-form" onsubmit="addContact(); return false;">
-
             <img class="close-edit" src="./assets/icons/close.png"
                 onclick="classChangeAction('dialog-add-contact', 'hide-overlay', 'add')">
 
@@ -83,26 +75,21 @@
                 <img class="edit-initals-container" src="./assets/icons/default-user-icon.png" />
             </div>
 
-
             <div class="edit-form-inputs">
                 <div class="edit-input">
                     <input id="edit-name-input" required type="text" placeholder="Name" />
                     <img src="./assets/icons/person.png" />
                 </div>
-
                 <div class="edit-input">
                     <input id="edit-mail-input" required type="email" placeholder="Email" />
                     <img src="./assets/icons/mail.png" />
                 </div>
-
                 <div class="edit-input">
                     <input id="edit-phone-input" required type="number" placeholder="Phone" />
                     <img src="./assets/icons/phone.png" />
                 </div>
             </div>
-
             <button class="submit-btn" type="submit">Create contact <img src="./assets/icons/check.png" /></button>
-
         </form>
     </Section>
 
