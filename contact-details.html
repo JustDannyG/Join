@@ -22,27 +22,29 @@
 </head>
 
 
-<body class="column" onload="showContact()" onclick="classChangeAction('user-menu', 'd-none', 'add'); classChangeAction('menu', 'menu-active', 'remove'); classChangeAction('edit-contact', 'menu-active', 'remove'), stopEventBubbling(event);">
+<body class="column" onload="showContact()"
+    onclick="classChangeAction('user-menu', 'd-none', 'add'); classChangeAction('menu', 'menu-active', 'remove'); classChangeAction('edit-contact', 'menu-active', 'remove'), stopEventBubbling(event);">
 
     <section id="join-header" class="join-header"></section>
 
     <main class="contact-details-main-content">
-        <div>
-            <div class="headline d-flex">
-                <div class="headline-text column">
-                    <h1>Contacts</h1>
-                    <span class="subtitle-details">Better with a team</span>
-                    <div class="add-contact-underline"></div>
-                </div>
-                <a onclick="history.back()" href="contact.html"><img src="./assets/icons/left-arrow.png" alt="Back Link" /></a>
+
+        <div class="details-headline">
+            <div class="headline-text column">
+                <h1>Contacts</h1>
+                <span class="subtitle-details">Better with a team</span>
+                <div class="add-contact-underline"></div>
             </div>
+            <a onclick="history.back()" href="contact.html"><img src="./assets/icons/left-arrow.png"
+                    alt="Back Link" /></a>
         </div>
 
         <div id="current-contact" class="current-contact d-flex"></div>
 
         <div id="details" class="details column"></div>
 
-        <button id="edit-button" class="edit-button center" onclick="classChangeAction('edit-contact', 'menu-active', 'toggle'); stopEventBubbling(event)">
+        <button id="edit-button" class="edit-button center"
+            onclick="classChangeAction('edit-contact', 'menu-active', 'toggle'); stopEventBubbling(event)">
             <img src="./assets/icons/more_vert.png " alt="edit-contact " />
         </button>
     </main>
