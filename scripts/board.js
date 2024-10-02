@@ -10,7 +10,7 @@ async function init() {
 
 // document.addEventListener('touchstart', e => {
 //     alert('touch')
-    
+
 // })
 
 async function getTasks() {
@@ -147,42 +147,48 @@ function animationOndrag(id) {
 
 function openTask(id) {
     let currentTask = tasksArray[id];
-    console.log(currentTask);
-
-    let category = document.getElementById('task-category-overlay')
-    let title = document.getElementById('task-title-overlay')
-    let description = document.getElementById('task-discription-overlay')
-    let letDateRef = document.getElementById('task-date-overlay')
-    let prioTextRef = document.getElementById('task-prio-overlay')
-    let prioIconRef = document.getElementById('prio-icon-overlay')
-
-    category.innerHTML = currentTask.categoryText;
-    category.style.backgroundColor = "var(--category)";
-    title.innerHTML = currentTask.title;
-    description.innerHTML = currentTask.description;
-    letDateRef.innerHTML = currentTask.date;
-    prioTextRef.innerHTML = currentTask.prio.charAt(0).toUpperCase() + currentTask.prio.slice(1);
-    prioIconRef.src = `./assets/icons/prio-${currentTask.prio}-icon.png`;
+    let infosRef = {
+        'category': document.getElementById('task-category-overlay'),
+        'title': document.getElementById('task-title-overlay'),
+        'description': document.getElementById('task-discription-overlay'),
+        'letDateRef': document.getElementById('task-date-overlay'),
+        'prioTextRef': document.getElementById('task-prio-overlay'),
+        'prioIconRef': document.getElementById('prio-icon-overlay')
+    }
+    renderTaskInfos(currentTask, infosRef)
     renderTasksArrays(currentTask)
+}
+
+function renderTaskInfos(currentTask, infosRef) {
+    infosRef.category.innerHTML = currentTask.categoryText;
+    infosRef.category.style.backgroundColor = "var(--category)";
+    infosRef.title.innerHTML = currentTask.title;
+    infosRef.description.innerHTML = currentTask.description;
+    infosRef.letDateRef.innerHTML = currentTask.date.replace(/-/g, "/");
+    infosRef.prioTextRef.innerHTML = currentTask.prio.charAt(0).toUpperCase() + currentTask.prio.slice(1);
+    infosRef.prioIconRef.src = `./assets/icons/prio-${currentTask.prio}-icon.png`;
 }
 
 
 function renderTasksArrays(currentTask) {
     let assignedToRef = document.getElementById('assigned-to-list');
     let subtaskRef = document.getElementById("subtask-overlay");
-    assignedToRef.innerHTML ="";
-     subtaskRef.innerHTML = "";
+    assignedToRef.innerHTML = "";
+    subtaskRef.innerHTML = "";
+
     currentTask.assignedTo.forEach((a, i) => {
         assignedToRef.innerHTML += generateAssignedToOerlayLiHTML(a, i)
     });
-   
 
     currentTask.subtask.forEach(s => {
-      
-        if(s.checked === true)
-            {subtaskRef.innerHTML += `<li><input class="checkbox" checked type="checkbox" name="" id="">${s.sub}</li>`
-        } else {
-             subtaskRef.innerHTML += `<li><input class="checkbox" type="checkbox" name="" id="">${s.sub}</li>`
-    }}
-    )
+        renderCheckboxStatus(s, subtaskRef)
+    })
+}
+
+function renderCheckboxStatus(s, subtaskRef) {
+    if (s.checked === true) {
+        subtaskRef.innerHTML += `<li><input class="checkbox" checked type="checkbox" name="" id="">${s.sub}</li>`
+    } else {
+        subtaskRef.innerHTML += `<li><input class="checkbox" type="checkbox" name="" id="">${s.sub}</li>`
+    }
 }

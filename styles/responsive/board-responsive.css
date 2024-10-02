@@ -1,6 +1,11 @@
+/* Mobile Design Adjustment */
+
 @media (max-width: 1024px) {
     .board-main-content {
         margin-left: 0;
+    }
+    .desktop-section-search-add {
+        display: none;
     }
     .overlay-task {
         padding: 24px;
@@ -18,4 +23,27 @@
         min-height: 72px;
         max-height: 112px;
     }
+    .task-content {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
+/* Desktop Design Adjustment */
+
+@media (min-width: 1024px) {
+    .board-main-content {
+        flex-direction: column;
+    }
+    .mobile-section-search-add {
+        display: none;
+    }
+    .headline {
+        font-size: 47px;
+    }
+    /* .board-main-content {
+        overflow-y: hidden;
+        overflow-x: auto;
+    } */
 }

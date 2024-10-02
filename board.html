@@ -27,7 +27,7 @@
 
     <main class="board-main-content">
 
-        <section>
+        <section class="mobile-section-search-add">
             <div class="headline d-flex">
                 <h1>Board</h1>
                 <button>
@@ -40,47 +40,62 @@
             </div>
         </section>
 
-        <section class="board-section">
-            <div class="subtitle d-flex">
-                <h2>To do</h2>
-                <button class="center">
+        <section class="desktop-section-search-add">
+            <h1 class="headline">Board</h1>
+            <div class="search-row d-flex">
+                <div class="d-flex search">
+                    <input class="input" placeholder="Find Task" type="text" />
+                    <img src="./assets/icons/search-icon.png" alt="" />
+                </div>
+                <button class="btn add-task-btn">
+                    Add Task
+                <img src="./assets/icons/add-icon-light.png" alt="" />
+            </button>
+            </div>
+        </section>
+
+        <div class="task-content">
+            <section class="board-section">
+                <div class="subtitle d-flex">
+                    <h2>To do</h2>
+                    <button class="center">
                     <img src="./assets/icons/add-icon.png" alt="" />
                 </button>
-            </div>
-            <div id="to-do-container" class="task-container" ondrop="moveTo('todo');removeHighlight('to-do-container')" ondragover="allowDrop(event);highlight('to-do-container')" ondragleave="removeHighlight('to-do-container')">
-            </div>
-        </section>
+                </div>
+                <div id="to-do-container" class="task-container" ondrop="moveTo('todo');removeHighlight('to-do-container')" ondragover="allowDrop(event);highlight('to-do-container')" ondragleave="removeHighlight('to-do-container')">
+                </div>
+            </section>
 
-        <section class="board-section">
-            <div class="subtitle d-flex">
-                <h2>In progress</h2>
-                <button class="center">
+            <section class="board-section">
+                <div class="subtitle d-flex">
+                    <h2>In progress</h2>
+                    <button class="center">
                     <img src="./assets/icons/add-icon.png" alt="" />
                 </button>
-            </div>
-            <div id="in-progress-container" class="task-container" ondrop="moveTo('progress');removeHighlight('in-progress-container')" ondragover="allowDrop(event);highlight('in-progress-container')" ondragleave="removeHighlight('in-progress-container')">
-            </div>
-        </section>
+                </div>
+                <div id="in-progress-container" class="task-container" ondrop="moveTo('progress');removeHighlight('in-progress-container')" ondragover="allowDrop(event);highlight('in-progress-container')" ondragleave="removeHighlight('in-progress-container')">
+                </div>
+            </section>
 
-        <section class="board-section">
-            <div class="subtitle d-flex">
-                <h2>Await feedback</h2>
-                <button class="center">
+            <section class="board-section">
+                <div class="subtitle d-flex">
+                    <h2>Await feedback</h2>
+                    <button class="center">
                     <img src="./assets/icons/add-icon.png" alt="" />
                 </button>
-            </div>
-            <div id="await-feedback-container" class="task-container" ondrop="moveTo('feedback'); removeHighlight('await-feedback-container')" ondragover="allowDrop(event);highlight('await-feedback-container')" ondragleave="removeHighlight('await-feedback-container')">
-            </div>
-        </section>
+                </div>
+                <div id="await-feedback-container" class="task-container" ondrop="moveTo('feedback'); removeHighlight('await-feedback-container')" ondragover="allowDrop(event);highlight('await-feedback-container')" ondragleave="removeHighlight('await-feedback-container')">
+                </div>
+            </section>
 
-        <section class="board-section">
-            <div class="subtitle d-flex">
-                <h2>Done</h2>
-            </div>
-            <div id="done-container" class="task-container" ondrop="moveTo('done'); removeHighlight('done-container')" ondragover="allowDrop(event);highlight('done-container')" ondragleave="removeHighlight('done-container')">
-            </div>
-        </section>
-
+            <section class="board-section">
+                <div class="subtitle d-flex">
+                    <h2>Done</h2>
+                </div>
+                <div id="done-container" class="task-container" ondrop="moveTo('done'); removeHighlight('done-container')" ondragover="allowDrop(event);highlight('done-container')" ondragleave="removeHighlight('done-container')">
+                </div>
+            </section>
+        </div>
 
     </main>
 
@@ -120,7 +135,7 @@
                 </div>
                 <div class="subtask">Subtask
                     <ul id="subtask-overlay">
-                      
+
                     </ul>
                 </div>
             </div>
