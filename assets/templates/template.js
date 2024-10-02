@@ -66,10 +66,10 @@ function generateTaskHTML(task, index, className) {
               <h4 class="task-title">${task.title}</h4>
               <div class="task-description">${task.description}</div>
               <div class="d-flex task-amount-container">
-                  <div class="progress-bar">
+                  <div id="${task.category}progress-bar${index}" class="progress-bar d-none">
                       <div class="progress" id="${task.category}-progress${index}"></div>
                   </div>
-                  <div id="${task.category}-amount${index}" class="task-amount">1/2 Subtask</div>
+                  <div id="${task.category}-amount${index}" class="task-amount"></div>
               </div>
               <div class="d-flex task-footer">
                   <div id="${task.category}contatcs-container${index}" class="d-flex contatcs-container"></div>
