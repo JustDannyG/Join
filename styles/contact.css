@@ -93,7 +93,7 @@
 
 .contacts-first-letter {
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 400;
     border-bottom: solid lightgray;
     padding: 25px 50px;
     transition: all ease-in-out 125ms;
@@ -103,12 +103,24 @@
 /* Contact Details */
 
 
-.contact-details-headline{
-font-size: 61px;
-font-weight: 700;
-
+.contact-details-headline {
+    font-size: 61px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 30px;
 }
 
+.contact-details-breakline {
+    height: 59px;
+    background-color: var(--light-blue);
+    width: 3px;
+}
+
+.headline-span {
+    font-size: 27px;
+    font-weight: 400;
+}
 
 .subtitle-details {
     font-size: 14px;

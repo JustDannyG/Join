@@ -1,11 +1,17 @@
 let currentDraggedElement;
 let tasksArray = [];
 
+
 async function init() {
     await getContacts();
     await getTasks();
     updateHtml();
 }
+
+// document.addEventListener('touchstart', e => {
+//     alert('touch')
+    
+// })
 
 async function getTasks() {
     let response = await getData(path = "/tasks");

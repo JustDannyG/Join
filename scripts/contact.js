@@ -28,14 +28,13 @@ function renderContacts() {
 
 function openContact(index) {
     currentContactDetails = index;
-    // localStorage.setItem('currentDetails', currentContactDetails);
+
     saveToLocalStorage('currentDetails', currentContactDetails)
     saveToLocalStorage('contacts', contacts)
     if (screenMode == 'mobile') {
-
         window.location.href = "contact-details.html";
     } else if (screenMode == 'desktop') {
-
+        contactIndex = index;
     }
     showContact()
 }

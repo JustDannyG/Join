@@ -24,6 +24,7 @@
     width: 223px;
     height: 104px;
     transition: all ease-in-out 125ms;
+
     animation-name: summary-1;
     animation-duration: 300ms;
 }
@@ -203,6 +204,9 @@
     height: 136px;
     margin-top: 130px;
     margin-left: 80px;
+
+    animation-name: summary-3;
+    animation-duration: 300ms;
 }
 
 .greeting-time {
@@ -222,6 +226,7 @@
     from {
         transform: translateX(100vw);
     }
+
     to {
         transform: translateX();
     }
@@ -231,7 +236,18 @@
     from {
         transform: translateX(-100vw);
     }
+
     to {
         transform: translateX();
+    }
+}
+
+@keyframes summary-3 {
+    from {
+        scale: 0.1;
+    }
+
+    to {
+        scale: 1;
     }
 }

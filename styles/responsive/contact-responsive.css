@@ -14,7 +14,7 @@
     }
 
     .contacts-first-letter {
-        padding: 25px 20px;
+        padding: 25px 24px;
     }
 
     .current-contact-circle {
@@ -26,7 +26,12 @@
 
 @media screen and (max-width: 1024px) and (min-width: 600px) {
     .contact-list {
-        padding: 0 120px;
+        margin-left: 10%;
+        width: 80%;
+    }
+
+    .contacts-first-letter {
+        margin-left: 10%;
     }
 }
 
@@ -52,7 +57,7 @@
         box-shadow: 0 1px 10px 2px rgba(0, 0, 0, 0.2);
     }
 
-    .add-contact{
+    .add-contact {
         display: none;
     }
 }

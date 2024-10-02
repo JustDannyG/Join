@@ -61,7 +61,7 @@ function contactSelectionCircleHTML(contact, initials) {
 //Templates for Tasks
 
 function generateTaskHTML(task, index, className) {
-    return `<div id="${task.id}" draggable="true" dragleave="animationOndrag(${task.id})" ondragstart="startDragging(${task.id})"  onclick="classChangeAction('overlaver','overlaver-active','add'); openTask(${task.id})" class="task">
+    return `<div id="${task.id}" draggable="true" dragleave="animationOndrag(${task.id})"  ondragstart="startDragging(${task.id})"  onclick="classChangeAction('overlaver','overlaver-active','add'); openTask(${task.id})" class="task">
               <div class="task-category ${className}">${task.categoryText}</div>
               <h4 class="task-title">${task.title}</h4>
               <div class="task-description">${task.description}</div>

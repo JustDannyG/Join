@@ -1,11 +1,14 @@
-let isDropdownOpen = false;
+let categoryInput;
+
 let prio = "medium";
-let currentSubtasks = [];
-const selectedContacts = [];
+let curretCategory = 'todo';
 
 let subtaskArray = [];
-let categoryInput;
-let curretCategory = 'todo';
+let currentSubtasks = [];
+let selectedContacts = [];
+
+let isDropdownOpen = false;
+
 
 async function init() {
     updateBtnColor()
@@ -260,7 +263,7 @@ function editWord(index) {
             wordListHTML += editIconsHTML(i);
         } else {
             wordListHTML += `<div class="word-item">
-                <span onclick="editWord(${i})">${currentSubtasks[i]}</span>
+                <span onclick="editWord(${i})">${currentSubtasks[i].sub}</span>
             </div>`;
         }
     }
