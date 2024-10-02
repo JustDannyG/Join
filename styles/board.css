@@ -31,7 +31,8 @@
     background-color: var(--white);
 }
 
-.input-row input {
+.input-row input,
+.input {
     border: unset;
     border-right: 2px solid var(--medium-grey);
     width: 100%;
@@ -198,23 +199,18 @@
     0% {
         transform: rotate(0deg)
     }
-
     10% {
         transform: rotate(-8deg)
     }
-
     30% {
         transform: rotate(6deg)
     }
-
     55% {
         transform: rotate(-3deg)
     }
-
     80% {
         transform: rotate(1deg)
     }
-
     100% {
         transform: rotate(-1deg)
     }
@@ -378,4 +374,25 @@ button {
 
 .checkbox {
     margin-right: 8px;
+}
+
+
+/*Desktop*/
+
+.desktop-section-search-add {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search {
+    border: 2px solid var(--dark-grey);
+    border-radius: 8px;
+    padding: 4px 8px;
+    background-color: var(--white);
+}
+
+.task-content {
+    display: flex;
+    gap: 32px;
 }
