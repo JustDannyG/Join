@@ -109,11 +109,12 @@ function resetInputText() {
 
 
 function getSelectedContacts() {
-    contacts.forEach(contact => {
+    contacts.forEach((contact, i) => {
         selectedContacts.push({
             'name': contact.name,
             'color': contact.color,
             'checked': false,
+            'id': i
         })
     });
     sortByAlphabet(selectedContacts)
@@ -126,32 +127,32 @@ function renderContacts(arr) {
     for (let i = 0; i < arr.length; i++) {
         const contact = arr[i];
         let initials = createInititals(contact.name)
-        dropDownRef.innerHTML += contactInDropDownHTML(i, contact, initials);
-        updateDesign(i)
+        dropDownRef.innerHTML += contactInDropDownHTML(contact, initials);
+        updateDesign(contact.id)
     }
 }
 
 
-function updateDesign(i) {
-    if (selectedContacts[i].checked) {
-        let contactContainerRef = document.getElementById("contact" + i);
-        let checkboxRef = document.getElementById("checkbox" + i);
+function updateDesign(id) {
+    if (selectedContacts[id].checked) {
+        let contactContainerRef = document.getElementById("contact" + id);
+        let checkboxRef = document.getElementById("checkbox" + id);
         contactContainerRef.classList.add("contact-active");
         checkboxRef.setAttribute("checked", true)
 
-    } else if (!selectedContacts[i].checked) {
-        let contactContainerRef = document.getElementById("contact" + i);
-        let checkboxRef = document.getElementById("checkbox" + i);
+    } else if (!selectedContacts[id].checked) {
+        let contactContainerRef = document.getElementById("contact" + id);
+        let checkboxRef = document.getElementById("checkbox" + id);
         contactContainerRef.classList.remove("contact-active");
         checkboxRef.removeAttribute("checked")
     }
 }
 
 
-function selectContact(i) {
-    let currentContact = selectedContacts[i]
+function selectContact(id) {
+    let currentContact = selectedContacts[id]
     currentContact.checked = !currentContact.checked;
-    updateDesign(i)
+    updateDesign(id)
     renderSelectedContacts()
 }
 
@@ -182,7 +183,7 @@ function filter(id) {
             renderContacts(result);
         }
     } else {
-        renderContacts(contacts);
+        renderContacts(selectedContacts);
     }
 }
 
@@ -193,7 +194,7 @@ function displayNoContactFoundMessage() {
 }
 
 function findInput(input) {
-    let result = contacts.filter(contact =>
+    let result = selectedContacts.filter(contact =>
         contact.name.toLowerCase().includes(input))
     return result
 }

@@ -140,38 +140,40 @@ function openAddTask(taskStatus) {
 ////////////////////
 
 
-$('select').each(function() {
-    var $this = $(this);
-    $this.addClass('s-hidden').wrap('<div class="select"></div>');
-    var $styledSelect = $('<div class="styledSelect"></div>').text($this.children('option').eq(0).text()).insertAfter($this);
-    var $list = $('<ul />', { class: 'options' }).insertAfter($styledSelect);
 
-    $this.children('option').each(function(index) {
-        var $li = $('<li />', {
-            text: $(this).text(),
-            rel: $(this).val()
-        });
 
-        if (index === 0) {
-            $li.addClass('hide-first');
-        }
+// $('select').each(function() {
+//     var $this = $(this);
+//     $this.addClass('s-hidden').wrap('<div class="select"></div>');
+//     var $styledSelect = $('<div class="styledSelect"></div>').text($this.children('option').eq(0).text()).insertAfter($this);
+//     var $list = $('<ul />', { class: 'options' }).insertAfter($styledSelect);
 
-        $li.appendTo($list);
-    });
+//     $this.children('option').each(function(index) {
+//         var $li = $('<li />', {
+//             text: $(this).text(),
+//             rel: $(this).val()
+//         });
 
-    $styledSelect.on('click', function(e) {
-        e.stopPropagation();
-        $('div.styledSelect.active').not(this).removeClass('active').next('ul.options').hide();
-        $(this).toggleClass('active').next('ul.options').toggle();
-        if ($(this).hasClass('active')) {
-            $list.children('li.hide-first').hide();
-        }
-    });
+//         if (index === 0) {
+//             $li.addClass('hide-first');
+//         }
 
-    $list.on('click', 'li', function(e) {
-        e.stopPropagation();
-        $styledSelect.text($(this).text()).removeClass('active');
-        $this.val($(this).attr('rel'));
-        $list.hide();
-    });
-});
+//         $li.appendTo($list);
+//     });
+
+//     $styledSelect.on('click', function(e) {
+//         e.stopPropagation();
+//         $('div.styledSelect.active').not(this).removeClass('active').next('ul.options').hide();
+//         $(this).toggleClass('active').next('ul.options').toggle();
+//         if ($(this).hasClass('active')) {
+//             $list.children('li.hide-first').hide();
+//         }
+//     });
+
+//     $list.on('click', 'li', function(e) {
+//         e.stopPropagation();
+//         $styledSelect.text($(this).text()).removeClass('active');
+//         $this.val($(this).attr('rel'));
+//         $list.hide();
+//     });
+// });
