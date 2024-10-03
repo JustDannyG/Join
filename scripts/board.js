@@ -429,6 +429,10 @@ function renderInputs(inputRef, id) {
     inputRef.description.value = currentTask.description
     inputRef.date.value = currentTask.date
 
+    console.log(currentTask.categoryText);
+
+
+
     if (currentTask.assignedTo) {
         findCheckedContacts(currentTask)
         renderContacts(selectedContacts)
@@ -629,12 +633,12 @@ function saveWord(index) {
     const newValue = document.getElementById(`editInput${index}`).value;
     currentSubtasks[index].sub = newValue;
     // renderSubtask();
-    renderSubtaskEdit(currentTask.subtask)
+    // renderSubtaskEdit(currentTask.subtask)
     return false;
 }
 
 function deleteSubtask(i) {
     currentSubtasks.splice(i, 1);
-    renderSubtaskEdit(currentTask.subtask)
-        // renderSubtask();
+    // renderSubtaskEdit(currentTask.subtask)
+    // renderSubtask();
 }
