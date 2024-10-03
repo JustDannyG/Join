@@ -1,11 +1,14 @@
-let isDropdownOpen = false;
+let categoryInput;
+
 let prio = "medium";
-let currentSubtasks = [];
-const selectedContacts = [];
+let curretCategory = 'todo';
 
 let subtaskArray = [];
-let categoryInput;
-let curretCategory = 'todo';
+let currentSubtasks = [];
+let selectedContacts = [];
+
+let isDropdownOpen = false;
+
 
 async function init() {
     updateBtnColor()
@@ -255,13 +258,12 @@ function renderSubtask() {
 
 function editWord(index) {
     let wordListHTML = '';
-
     for (let i = 0; i < currentSubtasks.length; i++) {
         if (i === index) {
             wordListHTML += editIconsHTML(i);
         } else {
             wordListHTML += `<div class="word-item">
-                <span onclick="editWord(${i})">${currentSubtasks[i]}</span>
+                <span onclick="editWord(${i})">${currentSubtasks[i].sub}</span>
             </div>`;
         }
     }
@@ -271,7 +273,7 @@ function editWord(index) {
 
 function saveWord(index) {
     const newValue = document.getElementById(`editInput${index}`).value;
-    currentSubtasks[index] = newValue;
+    currentSubtasks[index].sub = newValue;
     renderSubtask();
     return false;
 }
@@ -328,6 +330,8 @@ async function postTask(task) {
         'subtask': currentSubtasks
     })
 }
+
+
 
 
 ///////////////////

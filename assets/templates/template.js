@@ -39,7 +39,7 @@ function contactListHtml(contact, i) {
 //Templates for Add Task
 
 function contactInDropDownHTML(i, contact, initials) {
-    return /*html*/`
+    return /*html*/ `
             <li id="contact${i}" onclick="selectContact(${i}); stopEventBubbling(event)">
                 <div class="d-flex contact-row">
                     <div class="center gap">
@@ -61,15 +61,15 @@ function contactSelectionCircleHTML(contact, initials) {
 //Templates for Tasks
 
 function generateTaskHTML(task, index, className) {
-    return `<div id="${task.id}" draggable="true" dragleave="animationOndrag(${task.id})" ondragstart="startDragging(${task.id})" class="task">
+    return `<div id="${task.id}" draggable="true" dragleave="animationOndrag(${task.id})"  ondragstart="startDragging(${task.id})"  onclick="classChangeAction('overlaver','overlaver-active','add'); openTask(${task.id})" class="task">
               <div class="task-category ${className}">${task.categoryText}</div>
               <h4 class="task-title">${task.title}</h4>
               <div class="task-description">${task.description}</div>
               <div class="d-flex task-amount-container">
-                  <div class="progress-bar">
+                  <div id="${task.category}progress-bar${index}" class="progress-bar d-none">
                       <div class="progress" id="${task.category}-progress${index}"></div>
                   </div>
-                  <div id="${task.category}-amount${index}" class="task-amount">1/2 Subtask</div>
+                  <div id="${task.category}-amount${index}" class="task-amount"></div>
               </div>
               <div class="d-flex task-footer">
                   <div id="${task.category}contatcs-container${index}" class="d-flex contatcs-container"></div>
@@ -81,11 +81,11 @@ function generateTaskHTML(task, index, className) {
 function generateNoTaskHTML() {
     return /*html*/ `<div class="no-task"> No task To do</div> `;
 }
- 
+
 
 //Subtask
 
-function subtaskBtnHTML(){
+function subtaskBtnHTML() {
     return `
         <div class="subtasks-btns">
 
@@ -123,9 +123,9 @@ function subtaskTaskHTML(subtask, i) {
 }
 
 
-function editIconsHTML(i){
+function editIconsHTML(i) {
     return `<div class="word-item">
-                <input type="text" id="editInput${i}" value="${currentSubtasks[i]}">
+                <input type="text" id="editInput${i}" value="${currentSubtasks[i].sub}">
                 <button onclick="deleteSubtask(${i})"><img src="./assets/icons/delete.png" alt=""></button>
                 <span class="break-line"></span>
                 <svg onclick="saveWord(${i})" width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -133,4 +133,84 @@ function editIconsHTML(i){
                  </svg>
                 
             </div>`;
+}
+
+
+function generateAssignedToOerlayLiHTML(a,i){
+    return `
+                        <li>
+                            <div class="assigned-to-contact d-flex">
+                                <div title="${a.name}" class="initials-circle center" style="background-color:${a.color}">${createInititals(a.name)}</div>
+                                <span class="name">${a.name}</span>
+                            </div>
+                        </li>`
+}
+
+//////////////////////////////////////////////////
+///// mobile and desktop header and sidebar //////
+//////////////////////////////////////////////////
+
+function mobileHeader() {
+    return `<header class="d-flex header-mobile">
+      <img class="logo-mobile" src="./assets/icons/logo-dark.svg" alt="Join Logo" />
+      <div onclick="classChangeAction('menu', 'menu-active', 'toggle'), stopEventBubbling(event)" id="current-user-header" class="current-user-header center">T</div>
+      <div id="menu" class="column menu">
+        <a href="./help.html">Help</a>
+        <a href="./legal-notice.html">Legal Notice</a>
+        <a href="./privacy-policy.html">Privacy Policy</a>
+        <a href="#">Log out</a>
+      </div>
+    </header>`;
+}
+
+
+function desktopHeader() {
+    return `
+        <header class="header-desktop">
+        <p class="header-title">Kanban Project Management Tool</p>
+        <div class="header-actions">
+            <a href="help.html"> <img class="help-icon" src="./assets/icons/help-icon.png" alt="Help"></a>
+            <div onclick="classChangeAction('user-menu', 'd-none', 'toggle'); stopEventBubbling(event)" id="header-initials" class="header-initials-btn">
+                SM
+            </div>
+        </div>
+        
+       <nav id="user-menu" class="user-menu d-none">
+        <a href="legal-notice.html">Legal Notice</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="#">Log out</a>
+       </nav>
+
+    </header>`;
+}
+
+
+function mobileSidebar() {
+    return `<aside class="d-flex sidebar-mobile">
+      <a class="center column nav-link-mobile" href="./summary.html"><img src="./assets/icons/summary-icon.png"
+          alt="Summary" />Summary</a>
+      <a class="center column nav-link-mobile" href="./board.html"><img src="./assets/icons/board-icon.png"
+          alt="Board" />Board</a>
+      <a class="center column nav-link-mobile" href="./add-task.html"><img src="./assets/icons/add-task-icon.png"
+          alt="Add Task" />Add Task</a>
+      <a class="center column nav-link-mobile" href="./contact.html"><img src="./assets/icons/contacts-icon.png"
+          alt="Contacts" />Contacts</a>
+    </aside>`;
+}
+
+
+function desktopSidebar() {
+    return `<aside class="sidebar-desktop">
+        <img class="sidebar-logo-desktop" src="./assets/icons/join-logo-light.png" alt="">
+        <nav class="sidebar-nav">
+            <a class="nav-link-desktop" href="summary.html"><img src="./assets/icons/summary-icon.png" alt=""> Summary</a>
+            <a class="nav-link-desktop" href="add-task.html"><img src="./assets/icons/add-task-icon.png" alt=""> Add Task</a>
+            <a class="nav-link-desktop" href="board.html"><img src="./assets/icons/board-icon.png" alt=""> Board</a>
+            <a class="nav-link-desktop" href="contact.html"><img src="./assets/icons/contacts-icon.png" alt=""> Contacts</a>
+        </nav>
+        <div class="sidebar-info">
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="legal-notice.html">Legal notice</a>
+        </div>
+    </aside>`;
 }

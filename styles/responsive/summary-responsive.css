@@ -6,6 +6,8 @@
     .summary-headline-container {
         font-size: 16px;
         padding-bottom: 10px;
+        left: 20px;
+        top: 10px;
     }
 
     .underline {
@@ -28,18 +30,36 @@
     .summary-urgent-btn {
         gap: 14px;
     }
-
-
 }
 
 
 
+@media screen and (max-width: 600px) and (min-width: 428px) {
+    .summary-headline-container {
+        left: 30px;
+        top: 30px;
+
+    }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 600px) {
+    .summary-headline-container {
+        left: 30px;
+        top: 30px;
+
+    }
+}
+
 
 
 @media(min-width: 1024px) {
+    .summary-main-content {
+        margin-left: 210px;
+    }
 
     .summary-headline-container {
         left: 40px;
+        top: 40px;
     }
 
     .summary-greeting-container {
@@ -60,9 +80,7 @@
     }
 }
 
-
 @media(min-width: 1440px) {
-
     .summary-content {
         justify-content: space-around;
     }
@@ -83,6 +101,4 @@
     .greeting-time {
         font-size: 47px;
     }
-
-
 }

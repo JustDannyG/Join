@@ -12,7 +12,6 @@
     align-items: center;
 }
 
-
 .summary-headline-container {
     font-size: 20px;
     display: flex;
@@ -59,7 +58,6 @@
     max-height: 110px;
     height: 100%;
     gap: 8px;
-
     animation-name: summary-2;
     animation-duration: 300ms;
 }
@@ -72,7 +70,6 @@
     max-height: 110px;
     height: 100%;
     gap: 8px;
-
     animation-name: summary-1;
     animation-duration: 300ms;
 }
@@ -91,8 +88,6 @@
     transition: all ease-in-out 125ms;
     background-color: white;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-
-
 }
 
 .summary-todo-btn:hover {
@@ -133,7 +128,6 @@
     cursor: pointer;
     background-color: white;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-
 }
 
 .summary-urgent-btn:hover {
@@ -188,7 +182,6 @@
     cursor: pointer;
     background-color: white;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-
 }
 
 .summary-task-btn:hover {
@@ -212,6 +205,8 @@
     margin-top: 130px;
     margin-left: 80px;
 
+    animation-name: summary-3;
+    animation-duration: 300ms;
 }
 
 .greeting-time {
@@ -237,7 +232,6 @@
     }
 }
 
-
 @keyframes summary-2 {
     from {
         transform: translateX(-100vw);
@@ -245,5 +239,15 @@
 
     to {
         transform: translateX();
+    }
+}
+
+@keyframes summary-3 {
+    from {
+        scale: 0.1;
+    }
+
+    to {
+        scale: 1;
     }
 }

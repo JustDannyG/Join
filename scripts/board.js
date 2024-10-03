@@ -1,11 +1,17 @@
 let currentDraggedElement;
 let tasksArray = [];
 
+
 async function init() {
     await getContacts();
     await getTasks();
     updateHtml();
 }
+
+// document.addEventListener('touchstart', e => {
+//     alert('touch')
+
+// })
 
 async function getTasks() {
     let response = await getData(path = "/tasks");
@@ -55,9 +61,15 @@ function renderTasks(tasks, getById) {
             const task = tasks[index];
             let className = task.categoryText.replace(" ", "-").toLowerCase()
             getById.innerHTML += generateTaskHTML(task, index, className);
-            renderAssignedToContacts(task, index);
-            renderPrio(task, index);
-            renderSubtask(task, index);
+            if (task.assignedTo) {
+                renderAssignedToContacts(task, index);
+           }
+           if (task.subtask) {
+                 renderSubtask(task, index);
+           }
+           if (task.prio) {
+               renderPrio(task, index);
+           }
         }
     }
 }
@@ -65,16 +77,18 @@ function renderTasks(tasks, getById) {
 
 function renderSubtask(task, index) {
     let taskAmount = document.getElementById(`${task.category}-amount${index}`)
-    let progress =  document.getElementById(`${task.category}-progress${index}`)
+    let progressBar = document.getElementById(`${task.category}progress-bar${index}`)
+    let progress = document.getElementById(`${task.category}-progress${index}`)
     let amount = task.subtask.filter(c => c.checked == true).length;
     let total = 0
     task.subtask.forEach((sub, i) => {
         total = i + 1
     });
     taskAmount.innerHTML = `${amount}/${total} Subtasks`;
-    let result=  Math.round((100 / total) * amount) + '%';
+    let result = Math.round((100 / total) * amount) + '%';
+    progressBar.classList.remove('d-none')
     progress.style.width = result
- 
+
 }
 
 
@@ -136,4 +150,57 @@ function removeHighlight(id) {
 
 function animationOndrag(id) {
     document.getElementById(id).classList.add('animation-ondrag')
+}
+
+
+function openTask(id) {
+    let currentTask = tasksArray[id];
+    let infosRef = {
+        'category': document.getElementById('task-category-overlay'),
+        'title': document.getElementById('task-title-overlay'),
+        'description': document.getElementById('task-discription-overlay'),
+        'letDateRef': document.getElementById('task-date-overlay'),
+        'prioTextRef': document.getElementById('task-prio-overlay'),
+        'prioIconRef': document.getElementById('prio-icon-overlay')
+    }
+    renderTaskInfos(currentTask, infosRef)
+    renderTasksArrays(currentTask)
+}
+
+function renderTaskInfos(currentTask, infosRef) {
+    infosRef.category.innerHTML = currentTask.categoryText;
+    infosRef.category.style.backgroundColor = "var(--category)";
+    infosRef.title.innerHTML = currentTask.title;
+    infosRef.description.innerHTML = currentTask.description;
+    infosRef.letDateRef.innerHTML = currentTask.date.replace(/-/g, "/");
+    if (currentTask.prio) {
+        infosRef.prioTextRef.innerHTML = currentTask.prio.charAt(0).toUpperCase() + currentTask.prio.slice(1);
+    infosRef.prioIconRef.src = `./assets/icons/prio-${currentTask.prio}-icon.png`;
+}
+}
+
+function renderTasksArrays(currentTask) {
+    let assignedToRef = document.getElementById('assigned-to-list');
+    let subtaskRef = document.getElementById("subtask-overlay");
+    assignedToRef.innerHTML = "";
+    subtaskRef.innerHTML = "";
+
+    if (currentTask.assignedTo) {
+        currentTask.assignedTo.forEach((a, i) => {
+            assignedToRef.innerHTML += generateAssignedToOerlayLiHTML(a, i)
+        });
+    }
+    if (currentTask.subtask) {
+        currentTask.subtask.forEach(s => {
+            renderCheckboxStatus(s, subtaskRef)
+        }) 
+    }
+}
+
+function renderCheckboxStatus(s, subtaskRef) {
+    if (s.checked === true) {
+        subtaskRef.innerHTML += `<li><input class="checkbox" checked type="checkbox" name="" id="">${s.sub}</li>`
+    } else {
+        subtaskRef.innerHTML += `<li><input class="checkbox" type="checkbox" name="" id="">${s.sub}</li>`
+    }
 }
