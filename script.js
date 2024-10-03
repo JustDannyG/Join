@@ -141,39 +141,52 @@ function openAddTask(taskStatus) {
 
 
 
+function styleSelecet(params) {
 
-// $('select').each(function() {
-//     var $this = $(this);
-//     $this.addClass('s-hidden').wrap('<div class="select"></div>');
-//     var $styledSelect = $('<div class="styledSelect"></div>').text($this.children('option').eq(0).text()).insertAfter($this);
-//     var $list = $('<ul />', { class: 'options' }).insertAfter($styledSelect);
+    document.querySelectorAll('select').forEach(function(select) {
+        select.classList.add('s-hidden');
+        var styledSelect = document.createElement('div');
+        styledSelect.classList.add('styledSelect');
+        styledSelect.textContent = select.options[0].text;
+        select.parentNode.insertBefore(styledSelect, select.nextSibling);
+        var list = document.createElement('ul');
+        list.classList.add('options');
+        select.parentNode.insertBefore(list, styledSelect.nextSibling);
+        Array.from(select.options).forEach(function(option, index) {
+            var li = document.createElement('li');
+            li.textContent = option.text;
+            li.setAttribute('rel', option.value);
+            if (index === 0) {
+                li.classList.add('hide-first');
+            }
+            list.appendChild(li);
+        });
+        styledSelect.addEventListener('click', function(e) {
+            e.stopPropagation();
+            document.querySelectorAll('div.styledSelect.active').forEach(function(activeSelect) {
+                if (activeSelect !== styledSelect) {
+                    activeSelect.classList.remove('active');
+                    activeSelect.nextElementSibling.style.display = 'none';
+                }
+            });
+            styledSelect.classList.toggle('active');
+            list.style.display = styledSelect.classList.contains('active') ? 'block' : 'none';
 
-//     $this.children('option').each(function(index) {
-//         var $li = $('<li />', {
-//             text: $(this).text(),
-//             rel: $(this).val()
-//         });
-
-//         if (index === 0) {
-//             $li.addClass('hide-first');
-//         }
-
-//         $li.appendTo($list);
-//     });
-
-//     $styledSelect.on('click', function(e) {
-//         e.stopPropagation();
-//         $('div.styledSelect.active').not(this).removeClass('active').next('ul.options').hide();
-//         $(this).toggleClass('active').next('ul.options').toggle();
-//         if ($(this).hasClass('active')) {
-//             $list.children('li.hide-first').hide();
-//         }
-//     });
-
-//     $list.on('click', 'li', function(e) {
-//         e.stopPropagation();
-//         $styledSelect.text($(this).text()).removeClass('active');
-//         $this.val($(this).attr('rel'));
-//         $list.hide();
-//     });
-// });
+            if (styledSelect.classList.contains('active')) {
+                list.querySelector('li.hide-first').style.display = 'none';
+            }
+        });
+        list.addEventListener('click', function(e) {
+            if (e.target.tagName === 'LI') {
+                styledSelect.textContent = e.target.textContent;
+                styledSelect.classList.remove('active');
+                select.value = e.target.getAttribute('rel');
+                list.style.display = 'none';
+            }
+        });
+        document.addEventListener('click', function() {
+            styledSelect.classList.remove('active');
+            list.style.display = 'none';
+        });
+    });
+}

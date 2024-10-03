@@ -349,7 +349,8 @@ function animationOndrag(id) {
 
 function openTask(id) {
     let overlayerRef = document.getElementById('overlaver');
-    overlayerRef.innerHTML = taskBoardOverlay(id);
+    overlayerRef.innerHTML = taskBoardOverlay(id); // Template einfügen
+
     let currentTask = tasksArray[id];
     let infosRef = {
         'category': document.getElementById('task-category-overlay'),
@@ -359,8 +360,8 @@ function openTask(id) {
         'prioTextRef': document.getElementById('task-prio-overlay'),
         'prioIconRef': document.getElementById('prio-icon-overlay')
     }
-    renderTaskInfos(currentTask, infosRef)
-    renderTasksArrays(currentTask)
+    renderTaskInfos(currentTask, infosRef);
+    renderTasksArrays(currentTask);
 }
 
 function renderTaskInfos(currentTask, infosRef) {
@@ -419,6 +420,7 @@ function editTask(id) {
     getSelectedContacts()
     renderContacts(selectedContacts)
     renderInputs(inputRef, id)
+    styleSelecet()
 }
 
 
