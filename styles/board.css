@@ -163,7 +163,11 @@
     gap: 16px;
     align-items: center;
     transition: all ease-in-out 125ms;
-    background-color: burlywood;
+    /* background-color: burlywood; */
+
+    animation-name: task;
+    animation-duration: 800ms;
+    animation-iteration-count: 1;
 }
 
 .user-story {
@@ -417,4 +421,15 @@ button {
     flex-direction: column;
     background-color: wheat;
     overflow: scroll;
+    padding: 0 10px;
+}
+
+@keyframes task {
+    from {
+        scale: 0.1;
+    }
+
+    to {
+        scale: 1;
+    }
 }
