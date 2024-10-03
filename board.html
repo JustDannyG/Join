@@ -9,10 +9,10 @@
     <title>Join - Board</title>
 
     <script src="./script.js" defer></script>
-    <script src="./scripts/board.js"></script>
+    <script  src="./scripts/board.js"></script>
     <script src="./scripts/fetch.js"></script>
     <script src="./assets/templates/template.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
 
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./styles/board.css" />
@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="./styles/responsive/board-responsive.css">
 </head>
 
-<body class="column" onload="init()" onclick="classChangeAction('user-menu', 'd-none', 'add'); classChangeAction('menu', 'menu-active', 'remove'); closeDropdown(); stopEventBubbling(event);">
+<body class="column" onload="init()" onclick="classChangeAction('user-menu', 'd-none', 'add'); classChangeAction('menu', 'menu-active', 'remove'); stopEventBubbling(event);">
 
     <section id="join-header" class="join-header"></section>
 
@@ -107,8 +107,8 @@
 
     <!-- Overlayer Task Details  Start-->
 
-    <div id="overlaver" class="overlay-bg center">
-        <div class="overlay-task column">
+    <div id="overlaver" class="overlay-bg center" onclick="classChangeAction('overlaver', 'overlaver-active', 'remove'); stopEventBubbling(event);">
+        <!-- <div class="overlay-task column">
             <div class="task-header d-flex">
                 <span id="task-category-overlay">User Story</span>
                 <button class="btn" onclick="classChangeAction('overlaver','overlaver-active','remove')">
@@ -148,17 +148,17 @@
                 <button class="btn">
                     <img class="icon" src="./assets/icons/delete.png" alt="">Delete</button>
                 <div class="divider"></div>
-                <button onclick="editTask(); classChangeAction('overlay-edit-task', 'overlaver-active', 'add');classChangeAction('overlaver','overlaver-active','remove'); stopEventBubbling(event);" class="btn">
+                <button onclick="editTask(); stopEventBubbling(event);" class="btn">
                     <img class="icon" src="./assets/icons/edit.png" alt="">Edit</button>
             </div>
-        </div>
-    </div>
+        </div> -->
+    <!-- </div> -->
 
     <!-- Overlayer Task Details  End-->
 
     <!-- Overlayer Task Details  Edit Start-->
 
-    <div id="overlay-edit-task" class="overlaver-edit-task-bg center">
+    <!-- <div id="overlay-edit-task" class="overlaver-edit-task-bg center">
         <div class="overlay-edit-task column">
             <button class="btn close-btn" onclick="classChangeAction('overlay-edit-task', 'overlaver-active', 'remove'); stopEventBubbling(event);"><img src="./assets/icons/close-icon-dark.png" alt=""></button>
             <div class="column mt-16">
@@ -221,7 +221,7 @@
             </div>
 
         </div>
-    </div>
+    </div> -->
     <!-- Overlayer Task Details  Edit End-->
 
 

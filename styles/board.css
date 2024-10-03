@@ -186,6 +186,7 @@
 }
 
 .task {
+
     max-height: 244px;
     min-height: 164px;
     width: 220px;
@@ -241,11 +242,11 @@
     background-color: rgba(0, 0, 0, 0.2);
     padding: 40px;
     transition: all 125ms ease-in-out;
-    transform: translateY(100%);
+    transform: translateX(100%);
 }
 
 .overlaver-active {
-    transform: translateY(0) !important;
+    transform: translateX(0) !important;
 }
 
 .overlay-task {
@@ -428,16 +429,6 @@ button {
 
 /*Edit Task Overlayer*/
 
-.overlaver-edit-task-bg {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.2);
-    padding: 40px;
-    transition: all 125ms ease-in-out;
-    transform: translateY(100%);
-}
-
 .overlay-edit-task {
     overflow-y: auto;
     position: relative;
@@ -460,4 +451,13 @@ button {
     position: absolute;
     top: 16px;
     right: 16px;
+}
+
+.dot{
+    position: absolute;
+    background-color: red;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
 }
