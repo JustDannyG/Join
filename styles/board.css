@@ -121,10 +121,11 @@
 }
 
 .contact {
-    height: 50px;
-    width: 50px;
+    font-size: 12px;
+    height: 32px;
+    width: 32px;
     border-radius: 50%;
-    border: 1px solid var(--white);
+    border: 2px solid var(--white);
     color: var(--white);
 }
 
@@ -135,20 +136,21 @@
 
 .c1 {
     position: absolute;
-    left: 40px;
+    left: 26px;
 }
 
 .c2 {
     position: absolute;
-    left: 80px;
+    left: 52px;
 }
 
 .c3 {
     position: absolute;
-    left: 120px;
+    left: 78px;
 }
 
 .task-container {
+  
     /* height: 252px; */
     /* background-color: lightgray; */
     /* border: solid 1px; */
@@ -177,11 +179,13 @@
 }
 
 .task {
+    max-height: 244px;
+    min-height: 164px;
+    width: 220px;
     position: relative;
     background-color: var(--white);
     padding: 16px;
     border-radius: 24px;
-    width: 260px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
