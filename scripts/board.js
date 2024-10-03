@@ -407,7 +407,6 @@ function renderCheckboxStatus(s, subtaskRef) {
 function editTask(id) {
     let overlayerRef = document.getElementById('overlaver');
     overlayerRef.innerHTML = editBoardTaskHTML();
-
     let inputRef = {
         'title': document.getElementById('title'),
         'description': document.getElementById('description'),
@@ -435,11 +434,9 @@ function renderInputs(inputRef, id) {
         findCheckedContacts(currentTask)
         renderContacts(selectedContacts)
     }
-
     if (currentTask.subtask) {
 
     }
-
     if (currentTask.prio) {
         prio = currentTask.prio
     }
@@ -525,7 +522,6 @@ function handleInputClick(event) {
     clearInput(event.target);
     openDropdown('assign-to-dropdown-contacts', 'drop-down-icon1');
     stopEventBubbling(event);
-
 }
 
 
@@ -553,25 +549,20 @@ function resetInputText() {
 function renderContacts(arr) {
     let dropDownRef = document.getElementById("assign-to-dropdown-contacts");
     dropDownRef.innerHTML = ''
-    for (let i = 0; i < arr.length; i++) {
-        const contact = arr[i];
-        let initials = createInititals(contact.name)
-        dropDownRef.innerHTML += contactInDropDownHTML(contact, initials);
+    arr.forEach(contact => {
+        dropDownRef.innerHTML += contactInDropDownHTML(contact, createInititals(contact.name));
         updateDesign(contact.id)
-    }
+    });
 }
 
 
 function updateDesign(id) {
+    let contactContainerRef = document.getElementById("contact" + id);
+    let checkboxRef = document.getElementById("checkbox" + id);
     if (selectedContacts[id].checked) {
-        let contactContainerRef = document.getElementById("contact" + id);
-        let checkboxRef = document.getElementById("checkbox" + id);
         contactContainerRef.classList.add("contact-active");
         checkboxRef.setAttribute("checked", true)
-
     } else if (!selectedContacts[id].checked) {
-        let contactContainerRef = document.getElementById("contact" + id);
-        let checkboxRef = document.getElementById("checkbox" + id);
         contactContainerRef.classList.remove("contact-active");
         checkboxRef.removeAttribute("checked")
     }
@@ -592,10 +583,8 @@ function renderSelectedContacts() {
     containerRef.innerHTML = '';
     let assignedToContacts = selectedContacts.filter(c => c.checked == true);
 
-
     for (let contact of assignedToContacts) {
-        let initials = createInititals(contact.name);
-        containerRef.innerHTML += contactSelectionCircleHTML(contact, initials);
+        containerRef.innerHTML += contactSelectionCircleHTML(contact, createInititals(contact.name));
     }
 }
 

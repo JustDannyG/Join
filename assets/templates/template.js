@@ -218,8 +218,13 @@ function desktopSidebar() {
 
 function editBoardTaskHTML() {
     return ` <div class="overlay-edit-task column" onclick="closeDropdown(); stopEventBubbling(event)">
-            <button class="btn close-btn" onclick="classChangeAction('overlaver', 'overlaver-active', 'remove'); stopEventBubbling(event);"><img class="icon" src="./assets/icons/close-icon-dark.png" alt=""></button>
-            <div class="column mt-16">
+    <div class="button-row">
+             <button class="btn close-btn" onclick="classChangeAction('overlaver', 'overlaver-active', 'remove'); stopEventBubbling(event);"><img class="icon" src="./assets/icons/close-icon-dark.png" alt=""></button>
+    </div>
+   
+            <form id="edit-task-form" class="column edit-form" onsubmit="submitEdit(); return false;">
+
+            <div class="column">
                 <label for="title">Title</label>
                 <input class="input" id="title" type="text" placeholder="Enter a title">
             </div>
@@ -261,7 +266,7 @@ function editBoardTaskHTML() {
 
             <div class="column mt-16">
                 <label for="selected-category">Category</label>
-                <select required id="selected-category" class="select-category">
+                <select id="selected-category" class="select-category">
                             <option value="">Select task category:</option>
                             <option value="Technical Task">Technical Task</option>
                             <option value="User Story">User Story</option>
@@ -277,7 +282,13 @@ function editBoardTaskHTML() {
                     </div>
                 </div>
             </div>
-            <button>Add Task</button>
+
+           <div id="subtasks-container" class="subtasks-container"></div>
+
+        </form>
+
+        <button class="btn submit submit-btn" type="submit" form="edit-task-form">Ok <img src="./assets/icons/check.png"></button>
+    
         </div>`
 }
 
