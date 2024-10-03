@@ -210,18 +210,23 @@
     0% {
         transform: rotate(0deg)
     }
+
     10% {
         transform: rotate(-8deg)
     }
+
     30% {
         transform: rotate(6deg)
     }
+
     55% {
         transform: rotate(-3deg)
     }
+
     80% {
         transform: rotate(1deg)
     }
+
     100% {
         transform: rotate(-1deg)
     }
@@ -405,7 +410,7 @@ button {
 
 .task-content {
     display: flex;
-    gap: 32px;
+    gap: 30px;
 }
 
 .board-section {
@@ -414,12 +419,14 @@ button {
     background-color: wheat;
     overflow: scroll;
     padding: 0 10px;
+    transition: all ease-in-out 125ms;
 }
 
 @keyframes task {
     from {
         scale: 0.1;
     }
+
     to {
         scale: 1;
     }
@@ -453,7 +460,7 @@ button {
 }
 
 .close-btn {
-    padding: 0!important;
+    padding: 0 !important;
     position: absolute;
     top: 0;
     right: 0;
