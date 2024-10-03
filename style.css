@@ -33,6 +33,7 @@ body {
     height: 100%;
     overflow: hidden;
     position: relative;
+    background-color: rgba(42, 55, 71, 0.4);
 }
 
 .main {

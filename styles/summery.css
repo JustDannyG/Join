@@ -6,7 +6,7 @@
     background-color: var(--light-grey);
     padding: 25px 16px 48px 16px;
     text-wrap: wrap;
-    max-width: 1920px;
+    max-width: calc(1920px - 232px);
     position: relative;
     justify-content: center;
     align-items: center;

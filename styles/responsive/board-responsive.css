@@ -96,4 +96,8 @@
         min-width: 220px;
         width: 80%;
     }
+
+    .task-content {
+        gap: 35px;
+    }
 }
