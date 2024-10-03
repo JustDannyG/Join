@@ -442,12 +442,12 @@ function renderInputs(inputRef, id) {
     updateBtnColor()
 }
 
-// function filterCheckedContacts() {
-//     selectedContacts.forEach(s => {s.name
+function filterCheckedContacts() {
+    selectedContacts.forEach(s => {s.name
    
-// });
+});
  
-// }
+}
 
 
 
