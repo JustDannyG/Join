@@ -2,6 +2,7 @@ let currentDraggedElement;
 let tasksArray = [];
 let prio;
 let selectedContacts = [];
+let currentSubtasks = [];
 
 async function init() {
     await getContacts();
@@ -422,20 +423,24 @@ function editTask(id) {
     styleSelecet()
 }
 
-
-
 function renderInputs(inputRef, id) {
     let currentTask = tasksArray[id]
     inputRef.title.value = currentTask.title
     inputRef.description.value = currentTask.description
     inputRef.date.value = currentTask.date
 
+    console.log(currentTask.categoryText);
+
+
+
     if (currentTask.assignedTo) {
         findCheckedContacts(currentTask)
         renderContacts(selectedContacts)
     }
     if (currentTask.subtask) {
-
+        renderSubtaskEdit(currentTask.subtask)
+        currentSubtasks = []
+        currentSubtasks.push(...currentTask.subtask)
     }
     if (currentTask.prio) {
         prio = currentTask.prio
@@ -456,7 +461,12 @@ function findCheckedContacts(currentTask) {
     }
 };
 
-
+function renderSubtaskEdit(subtasks) {
+    let subTaskRef = document.getElementById("subtasks-container")
+    subtasks.forEach((subtask, i) => {
+        subTaskRef.innerHTML += subtaskTaskHTML(subtask, i)
+    });
+}
 
 function getSelectedContacts() {
     contacts.forEach((contact, i) => {
@@ -470,14 +480,12 @@ function getSelectedContacts() {
     sortByAlphabet(selectedContacts)
 }
 
-
 function addPrio(prioInput) {
     if (prioInput == prio) {
         prio = null;
     } else { prio = prioInput }
     updateBtnColor()
 }
-
 
 function updateBtnColor() {
     document.getElementById("urgent-btn").classList.remove("urgent")
@@ -496,49 +504,6 @@ function updateBtnColor() {
 
 }
 
-function openDropdown(id, iconId) {
-    const dropdown = document.getElementById(id);
-    const dropdownIcon = document.getElementById(iconId);
-    dropdown.classList.add("show-dropdown");
-    dropdownIcon.style.transform = 'rotate(180deg)';
-    isDropdownOpen = true;
-    classChangeAction('dropdown', 'input-active', 'add')
-}
-
-
-function closeDropdown() {
-    const dropdown = document.getElementById('assign-to-dropdown-contacts');
-    const dropdownIcon = document.getElementById('drop-down-icon1');
-
-    dropdown.classList.remove("show-dropdown");
-    dropdownIcon.style.transform = 'rotate(0deg)';
-    isDropdownOpen = false;
-    resetInputText()
-    classChangeAction('dropdown', 'input-active', 'remove')
-}
-
-
-function handleInputClick(event) {
-    clearInput(event.target);
-    openDropdown('assign-to-dropdown-contacts', 'drop-down-icon1');
-    stopEventBubbling(event);
-}
-
-
-function handleDropdownButtonClick(event) {
-    const input = document.getElementById('assign-to-dropdown');
-    stopEventBubbling(event);
-    resetInputText();
-    toggleDropdown('assign-to-dropdown-contacts', 'drop-down-icon1');
-    classChangeAction('dropdown', 'input-active', 'remove');
-
-    isDropdownOpen = !isDropdownOpen;
-    if (isDropdownOpen) {
-        clearInput(input);
-        classChangeAction('dropdown', 'input-active', 'add');
-    }
-}
-
 
 function resetInputText() {
     let inputRef = document.getElementById("assign-to-dropdown")
@@ -555,7 +520,6 @@ function renderContacts(arr) {
     });
 }
 
-
 function updateDesign(id) {
     let contactContainerRef = document.getElementById("contact" + id);
     let checkboxRef = document.getElementById("checkbox" + id);
@@ -568,15 +532,12 @@ function updateDesign(id) {
     }
 }
 
-
-
 function selectContact(id) {
     let currentContact = selectedContacts[id]
     currentContact.checked = !currentContact.checked;
     updateDesign(id)
     renderSelectedContacts()
 }
-
 
 function renderSelectedContacts() {
     const containerRef = document.getElementById("selected-contacts-container");
@@ -587,7 +548,6 @@ function renderSelectedContacts() {
         containerRef.innerHTML += contactSelectionCircleHTML(contact, createInititals(contact.name));
     }
 }
-
 
 function filter(id) {
     const inputRef = document.getElementById(id);
@@ -604,7 +564,6 @@ function filter(id) {
     }
 }
 
-
 function displayNoContactFoundMessage() {
     const dropdownRef = document.getElementById("assign-to-dropdown-contacts");
     dropdownRef.innerHTML = '<li class="not-found">Nicht gefunden</li>';
@@ -614,4 +573,72 @@ function findInput(input) {
     let result = selectedContacts.filter(contact =>
         contact.name.toLowerCase().includes(input))
     return result
+}
+
+function openDropdown(id, iconId) {
+    const dropdown = document.getElementById(id);
+    const dropdownIcon = document.getElementById(iconId);
+    dropdown.classList.add("show-dropdown");
+    dropdownIcon.style.transform = 'rotate(180deg)';
+    isDropdownOpen = true;
+    classChangeAction('dropdown', 'input-active', 'add')
+}
+
+function closeDropdown() {
+    const dropdown = document.getElementById('assign-to-dropdown-contacts');
+    const dropdownIcon = document.getElementById('drop-down-icon1');
+
+    dropdown.classList.remove("show-dropdown");
+    dropdownIcon.style.transform = 'rotate(0deg)';
+    isDropdownOpen = false;
+    resetInputText()
+    classChangeAction('dropdown', 'input-active', 'remove')
+}
+
+function handleInputClick(event) {
+    clearInput(event.target);
+    openDropdown('assign-to-dropdown-contacts', 'drop-down-icon1');
+    stopEventBubbling(event);
+}
+
+function handleDropdownButtonClick(event) {
+    const input = document.getElementById('assign-to-dropdown');
+    stopEventBubbling(event);
+    resetInputText();
+    toggleDropdown('assign-to-dropdown-contacts', 'drop-down-icon1');
+    classChangeAction('dropdown', 'input-active', 'remove');
+
+    isDropdownOpen = !isDropdownOpen;
+    if (isDropdownOpen) {
+        clearInput(input);
+        classChangeAction('dropdown', 'input-active', 'add');
+    }
+}
+
+function editWord(index) {
+    let wordListHTML = '';
+    for (let i = 0; i < currentSubtasks.length; i++) {
+        if (i === index) {
+            wordListHTML += editIconsHTML(i);
+        } else {
+            wordListHTML += `<div class="word-item">
+                <span onclick="editWord(${i})">${currentSubtasks[i].sub}</span>
+            </div>`;
+        }
+    }
+    document.getElementById('subtasks-container').innerHTML = wordListHTML;
+}
+
+function saveWord(index) {
+    const newValue = document.getElementById(`editInput${index}`).value;
+    currentSubtasks[index].sub = newValue;
+    // renderSubtask();
+    // renderSubtaskEdit(currentTask.subtask)
+    return false;
+}
+
+function deleteSubtask(i) {
+    currentSubtasks.splice(i, 1);
+    // renderSubtaskEdit(currentTask.subtask)
+    // renderSubtask();
 }
