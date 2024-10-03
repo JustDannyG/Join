@@ -1,6 +1,6 @@
 let currentDraggedElement;
 let tasksArray = [];
-
+let prio = "medium";
 
 async function init() {
     await getContacts();
@@ -63,13 +63,13 @@ function renderTasks(tasks, getById) {
             getById.innerHTML += generateTaskHTML(task, index, className);
             if (task.assignedTo) {
                 renderAssignedToContacts(task, index);
-           }
-           if (task.subtask) {
-                 renderSubtask(task, index);
-           }
-           if (task.prio) {
-               renderPrio(task, index);
-           }
+            }
+            if (task.subtask) {
+                renderSubtask(task, index);
+            }
+            if (task.prio) {
+                renderPrio(task, index);
+            }
         }
     }
 }
@@ -175,8 +175,8 @@ function renderTaskInfos(currentTask, infosRef) {
     infosRef.letDateRef.innerHTML = currentTask.date.replace(/-/g, "/");
     if (currentTask.prio) {
         infosRef.prioTextRef.innerHTML = currentTask.prio.charAt(0).toUpperCase() + currentTask.prio.slice(1);
-    infosRef.prioIconRef.src = `./assets/icons/prio-${currentTask.prio}-icon.png`;
-}
+        infosRef.prioIconRef.src = `./assets/icons/prio-${currentTask.prio}-icon.png`;
+    }
 }
 
 function renderTasksArrays(currentTask) {
@@ -193,7 +193,7 @@ function renderTasksArrays(currentTask) {
     if (currentTask.subtask) {
         currentTask.subtask.forEach(s => {
             renderCheckboxStatus(s, subtaskRef)
-        }) 
+        })
     }
 }
 
@@ -203,4 +203,159 @@ function renderCheckboxStatus(s, subtaskRef) {
     } else {
         subtaskRef.innerHTML += `<li><input class="checkbox" type="checkbox" name="" id="">${s.sub}</li>`
     }
+}
+// Edit Overlayer
+
+function addPrio(prioInput) {
+    if (prioInput == prio) {
+        prio = null;
+    } else { prio = prioInput }
+    updateBtnColor()
+}
+
+
+function updateBtnColor() {
+    document.getElementById("urgent-btn").classList.remove("urgent")
+    document.getElementById("medium-btn").classList.remove("medium")
+    document.getElementById("low-btn").classList.remove("low")
+
+    document.getElementById("prio-icon-urgent").src = "./assets/icons/prio-urgent-icon.png"
+    document.getElementById("prio-icon-medium").src = "./assets/icons/prio-medium-icon.png"
+    document.getElementById("prio-icon-low").src = "./assets/icons/prio-low-icon.png"
+
+
+    if (prio) {
+        document.getElementById(`prio-icon-${prio}`).src = `./assets/icons/prio-${prio}-icon-active.png`
+        document.getElementById(`${prio}-btn`).classList.add(prio)
+    } else return
+
+}
+
+function openDropdown(id, iconId) {
+    const dropdown = document.getElementById(id);
+    const dropdownIcon = document.getElementById(iconId);
+    dropdown.classList.add("show-dropdown");
+    dropdownIcon.style.transform = 'rotate(180deg)';
+    isDropdownOpen = true;
+    classChangeAction('dropdown', 'input-active', 'add')
+}
+
+
+function closeDropdown() {
+    const dropdown = document.getElementById('assign-to-dropdown-contacts');
+    const dropdownIcon = document.getElementById('drop-down-icon1');
+
+    dropdown.classList.remove("show-dropdown");
+    dropdownIcon.style.transform = 'rotate(0deg)';
+    isDropdownOpen = false;
+    resetInputText()
+    classChangeAction('dropdown', 'input-active', 'remove')
+}
+
+
+function handleInputClick(event) {
+    clearInput(event.target);
+    openDropdown('assign-to-dropdown-contacts', 'drop-down-icon1');
+    stopEventBubbling(event);
+
+}
+
+
+function handleDropdownButtonClick(event) {
+    const input = document.getElementById('assign-to-dropdown');
+    stopEventBubbling(event);
+    resetInputText();
+    toggleDropdown('assign-to-dropdown-contacts', 'drop-down-icon1');
+    classChangeAction('dropdown', 'input-active', 'remove');
+
+    isDropdownOpen = !isDropdownOpen;
+    if (isDropdownOpen) {
+        clearInput(input);
+        classChangeAction('dropdown', 'input-active', 'add');
+    }
+}
+
+
+function resetInputText() {
+    let inputRef = document.getElementById("assign-to-dropdown")
+    inputRef.value = 'Select contacts to assign'
+
+}
+
+function renderContacts(arr) {
+    let dropDownRef = document.getElementById("assign-to-dropdown-contacts");
+    dropDownRef.innerHTML = ''
+    for (let i = 0; i < arr.length; i++) {
+        const contact = arr[i];
+        let initials = createInititals(contact.name)
+        dropDownRef.innerHTML += contactInDropDownHTML(i, contact, initials);
+        updateDesign(i)
+    }
+}
+
+
+function updateDesign(i) {
+    if (selectedContacts[i].checked) {
+        let contactContainerRef = document.getElementById("contact" + i);
+        let checkboxRef = document.getElementById("checkbox" + i);
+        contactContainerRef.classList.add("contact-active");
+        checkboxRef.setAttribute("checked", true)
+
+    } else if (!selectedContacts[i].checked) {
+        let contactContainerRef = document.getElementById("contact" + i);
+        let checkboxRef = document.getElementById("checkbox" + i);
+        contactContainerRef.classList.remove("contact-active");
+        checkboxRef.removeAttribute("checked")
+    }
+}
+
+
+function selectContact(i) {
+    let currentContact = selectedContacts[i]
+    currentContact.checked = !currentContact.checked;
+    updateDesign(i)
+    renderSelectedContacts()
+}
+
+
+function renderSelectedContacts() {
+    const containerRef = document.getElementById("selected-contacts-container");
+    containerRef.innerHTML = '';
+    let assignedToContacts = selectedContacts.filter(c => c.checked == true);
+
+
+    for (let contact of assignedToContacts) {
+        let initials = createInititals(contact.name);
+        containerRef.innerHTML += contactSelectionCircleHTML(contact, initials);
+        console.log(contact);
+
+    }
+}
+
+
+function filter(id) {
+    const inputRef = document.getElementById(id);
+    const input = inputRef.value.toLowerCase();
+    if (checkLengthGreater(input, 2)) {
+        const result = findInput(input);
+        if (result.length === 0) {
+            displayNoContactFoundMessage();
+        } else {
+            renderContacts(result);
+        }
+    } else {
+        renderContacts(contacts);
+    }
+}
+
+
+function displayNoContactFoundMessage() {
+    const dropdownRef = document.getElementById("assign-to-dropdown-contacts");
+    dropdownRef.innerHTML = '<li class="not-found">Nicht gefunden</li>';
+}
+
+function findInput(input) {
+    let result = contacts.filter(contact =>
+        contact.name.toLowerCase().includes(input))
+    return result
 }
