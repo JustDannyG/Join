@@ -38,16 +38,16 @@ function contactListHtml(contact, i) {
 
 //Templates for Add Task
 
-function contactInDropDownHTML(i, contact, initials) {
+function contactInDropDownHTML(contact, initials) {
     return /*html*/ `
-            <li id="contact${i}" onclick="selectContact(${i}); stopEventBubbling(event)">
+            <li id="contact${contact.id}" onclick="selectContact(${contact.id}); stopEventBubbling(event)">
                 <div class="d-flex contact-row">
                     <div class="center gap">
                         <div class="contact center" style="background-color:${contact.color}">${initials}</div>
                         <span>${contact.name}</span>
                     </div>
                     <div class="container">
-                        <input type="checkbox" id="checkbox${i}" onclick="selectContact('${contact.name}'); stopEventBubbling(event)">
+                        <input type="checkbox" id="checkbox${contact.id}" onclick="selectContact('${contact.name}'); stopEventBubbling(event)">
                         <span class="checkmark"></span>
                     </div>
                 </div>
@@ -136,7 +136,7 @@ function editIconsHTML(i) {
 }
 
 
-function generateAssignedToOerlayLiHTML(a,i){
+function generateAssignedToOerlayLiHTML(a, i) {
     return `
                         <li>
                             <div class="assigned-to-contact d-flex">
@@ -216,8 +216,8 @@ function desktopSidebar() {
 }
 
 
-function editBoardTaskHTML(){
-    return ` <div class="overlay-edit-task column" onclick="stopEventBubbling(event)">
+function editBoardTaskHTML() {
+    return ` <div class="overlay-edit-task column" onclick="closeDropdown(); stopEventBubbling(event)">
             <button class="btn close-btn" onclick="classChangeAction('overlaver', 'overlaver-active', 'remove'); stopEventBubbling(event);"><img class="icon" src="./assets/icons/close-icon-dark.png" alt=""></button>
             <div class="column mt-16">
                 <label for="title">Title</label>

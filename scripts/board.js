@@ -5,7 +5,6 @@ let selectedContacts = [];
 
 async function init() {
     await getContacts();
-    getSelectedContacts()
     await getTasks();
     updateHtml();
 }
@@ -205,7 +204,7 @@ async function init() {
 // })
 
 
-document.getElementById(`${currentDraggedElement}`).addEventListener('touchstart', mouseDown, true);
+// document.getElementById(`${currentDraggedElement}`).addEventListener('touchstart', mouseDown, true);
 
 
 async function getTasks() {
@@ -416,6 +415,8 @@ function editTask(id) {
         'selected-category': document.getElementById('selected-category'),
         'subtasks': document.getElementById('subtasks-input'),
     }
+    selectedContacts = [] //Required, to clear the Array from the Edit-Task before
+    getSelectedContacts()
     renderContacts(selectedContacts)
     renderInputs(inputRef, id)
 }
@@ -429,11 +430,12 @@ function renderInputs(inputRef, id) {
     inputRef.date.value = currentTask.date
 
     if (currentTask.assignedTo) {
-        console.log("Kontake");
+        findCheckedContacts(currentTask)
+        renderContacts(selectedContacts)
     }
 
     if (currentTask.subtask) {
-        console.log("Subtask");
+
     }
 
     if (currentTask.prio) {
@@ -442,21 +444,28 @@ function renderInputs(inputRef, id) {
     updateBtnColor()
 }
 
-function filterCheckedContacts() {
-    selectedContacts.forEach(s => {s.name
-   
-});
- 
-}
+function findCheckedContacts(currentTask) {
+    for (let i = 0; i < selectedContacts.length; i++) {
+        let selectedName = selectedContacts[i].name;
+
+        for (let j = 0; j < currentTask.assignedTo.length; j++) {
+            let assignedName = currentTask.assignedTo[j].name;
+            if (assignedName == selectedName) {
+                selectedContacts[i].checked = true;
+            }
+        }
+    }
+};
 
 
 
 function getSelectedContacts() {
-    contacts.forEach(contact => {
+    contacts.forEach((contact, i) => {
         selectedContacts.push({
             'name': contact.name,
             'color': contact.color,
             'checked': false,
+            'id': i
         })
     });
     sortByAlphabet(selectedContacts)
@@ -464,159 +473,154 @@ function getSelectedContacts() {
 
 
 function addPrio(prioInput) {
-            if (prioInput == prio) {
-                prio = null;
-            } else { prio = prioInput }
-            updateBtnColor()
-        }
+    if (prioInput == prio) {
+        prio = null;
+    } else { prio = prioInput }
+    updateBtnColor()
+}
 
 
 function updateBtnColor() {
-            document.getElementById("urgent-btn").classList.remove("urgent")
-            document.getElementById("medium-btn").classList.remove("medium")
-            document.getElementById("low-btn").classList.remove("low")
+    document.getElementById("urgent-btn").classList.remove("urgent")
+    document.getElementById("medium-btn").classList.remove("medium")
+    document.getElementById("low-btn").classList.remove("low")
 
-            document.getElementById("prio-icon-urgent").src = "./assets/icons/prio-urgent-icon.png"
-            document.getElementById("prio-icon-medium").src = "./assets/icons/prio-medium-icon.png"
-            document.getElementById("prio-icon-low").src = "./assets/icons/prio-low-icon.png"
+    document.getElementById("prio-icon-urgent").src = "./assets/icons/prio-urgent-icon.png"
+    document.getElementById("prio-icon-medium").src = "./assets/icons/prio-medium-icon.png"
+    document.getElementById("prio-icon-low").src = "./assets/icons/prio-low-icon.png"
 
 
-            if (prio) {
-                document.getElementById(`prio-icon-${prio}`).src = `./assets/icons/prio-${prio}-icon-active.png`
-                document.getElementById(`${prio}-btn`).classList.add(prio)
-            } else return
+    if (prio) {
+        document.getElementById(`prio-icon-${prio}`).src = `./assets/icons/prio-${prio}-icon-active.png`
+        document.getElementById(`${prio}-btn`).classList.add(prio)
+    } else return
 
-        }
+}
 
 function openDropdown(id, iconId) {
-            const dropdown = document.getElementById(id);
-            const dropdownIcon = document.getElementById(iconId);
-            dropdown.classList.add("show-dropdown");
-            dropdownIcon.style.transform = 'rotate(180deg)';
-            isDropdownOpen = true;
-            classChangeAction('dropdown', 'input-active', 'add')
-        }
+    const dropdown = document.getElementById(id);
+    const dropdownIcon = document.getElementById(iconId);
+    dropdown.classList.add("show-dropdown");
+    dropdownIcon.style.transform = 'rotate(180deg)';
+    isDropdownOpen = true;
+    classChangeAction('dropdown', 'input-active', 'add')
+}
 
 
 function closeDropdown() {
-            const dropdown = document.getElementById('assign-to-dropdown-contacts');
-            const dropdownIcon = document.getElementById('drop-down-icon1');
+    const dropdown = document.getElementById('assign-to-dropdown-contacts');
+    const dropdownIcon = document.getElementById('drop-down-icon1');
 
-            dropdown.classList.remove("show-dropdown");
-            dropdownIcon.style.transform = 'rotate(0deg)';
-            isDropdownOpen = false;
-            resetInputText()
-            classChangeAction('dropdown', 'input-active', 'remove')
-        }
+    dropdown.classList.remove("show-dropdown");
+    dropdownIcon.style.transform = 'rotate(0deg)';
+    isDropdownOpen = false;
+    resetInputText()
+    classChangeAction('dropdown', 'input-active', 'remove')
+}
 
 
 function handleInputClick(event) {
-            clearInput(event.target);
-            openDropdown('assign-to-dropdown-contacts', 'drop-down-icon1');
-            stopEventBubbling(event);
+    clearInput(event.target);
+    openDropdown('assign-to-dropdown-contacts', 'drop-down-icon1');
+    stopEventBubbling(event);
 
-        }
+}
 
 
 function handleDropdownButtonClick(event) {
-            const input = document.getElementById('assign-to-dropdown');
-            stopEventBubbling(event);
-            resetInputText();
-            toggleDropdown('assign-to-dropdown-contacts', 'drop-down-icon1');
-            classChangeAction('dropdown', 'input-active', 'remove');
+    const input = document.getElementById('assign-to-dropdown');
+    stopEventBubbling(event);
+    resetInputText();
+    toggleDropdown('assign-to-dropdown-contacts', 'drop-down-icon1');
+    classChangeAction('dropdown', 'input-active', 'remove');
 
-            isDropdownOpen = !isDropdownOpen;
-            if (isDropdownOpen) {
-                clearInput(input);
-                classChangeAction('dropdown', 'input-active', 'add');
-            }
-        }
+    isDropdownOpen = !isDropdownOpen;
+    if (isDropdownOpen) {
+        clearInput(input);
+        classChangeAction('dropdown', 'input-active', 'add');
+    }
+}
 
 
 function resetInputText() {
-            let inputRef = document.getElementById("assign-to-dropdown")
-            inputRef.value = 'Select contacts to assign'
+    let inputRef = document.getElementById("assign-to-dropdown")
+    inputRef.value = 'Select contacts to assign'
 
-        }
+}
 
 function renderContacts(arr) {
-            let dropDownRef = document.getElementById("assign-to-dropdown-contacts");
-            dropDownRef.innerHTML = ''
-            for (let i = 0; i < arr.length; i++) {
-                const contact = arr[i];
-                let initials = createInititals(contact.name)
-                dropDownRef.innerHTML += contactInDropDownHTML(i, contact, initials);
-                updateDesign(i)
-            }
-        }
+    let dropDownRef = document.getElementById("assign-to-dropdown-contacts");
+    dropDownRef.innerHTML = ''
+    for (let i = 0; i < arr.length; i++) {
+        const contact = arr[i];
+        let initials = createInititals(contact.name)
+        dropDownRef.innerHTML += contactInDropDownHTML(contact, initials);
+        updateDesign(contact.id)
+    }
+}
 
 
-function updateDesign(i) {
-            if (selectedContacts[i].checked) {
-                let contactContainerRef = document.getElementById("contact" + i);
-                let checkboxRef = document.getElementById("checkbox" + i);
-                contactContainerRef.classList.add("contact-active");
-                checkboxRef.setAttribute("checked", true)
+function updateDesign(id) {
+    if (selectedContacts[id].checked) {
+        let contactContainerRef = document.getElementById("contact" + id);
+        let checkboxRef = document.getElementById("checkbox" + id);
+        contactContainerRef.classList.add("contact-active");
+        checkboxRef.setAttribute("checked", true)
 
-            } else if (!selectedContacts[i].checked) {
-                let contactContainerRef = document.getElementById("contact" + i);
-                let checkboxRef = document.getElementById("checkbox" + i);
-                contactContainerRef.classList.remove("contact-active");
-                checkboxRef.removeAttribute("checked")
-            }
-        }
+    } else if (!selectedContacts[id].checked) {
+        let contactContainerRef = document.getElementById("contact" + id);
+        let checkboxRef = document.getElementById("checkbox" + id);
+        contactContainerRef.classList.remove("contact-active");
+        checkboxRef.removeAttribute("checked")
+    }
+}
 
 
-function selectContact(i) {
-            let currentContact = selectedContacts[i]
-            currentContact.checked = !currentContact.checked;
-            updateDesign(i)
-            renderSelectedContacts()
-        }
+
+function selectContact(id) {
+    let currentContact = selectedContacts[id]
+    currentContact.checked = !currentContact.checked;
+    updateDesign(id)
+    renderSelectedContacts()
+}
 
 
 function renderSelectedContacts() {
-            const containerRef = document.getElementById("selected-contacts-container");
-            containerRef.innerHTML = '';
-            let assignedToContacts = selectedContacts.filter(c => c.checked == true);
+    const containerRef = document.getElementById("selected-contacts-container");
+    containerRef.innerHTML = '';
+    let assignedToContacts = selectedContacts.filter(c => c.checked == true);
 
 
-            for (let contact of assignedToContacts) {
-                let initials = createInititals(contact.name);
-                containerRef.innerHTML += contactSelectionCircleHTML(contact, initials);
-                console.log(contact);
-
-            }
-        }
+    for (let contact of assignedToContacts) {
+        let initials = createInititals(contact.name);
+        containerRef.innerHTML += contactSelectionCircleHTML(contact, initials);
+    }
+}
 
 
 function filter(id) {
-            const inputRef = document.getElementById(id);
-            const input = inputRef.value.toLowerCase();
-            if (checkLengthGreater(input, 2)) {
-                const result = findInput(input);
-                if (result.length === 0) {
-                    displayNoContactFoundMessage();
-                } else {
-                    renderContacts(result);
-                }
-            } else {
-                renderContacts(contacts);
-            }
+    const inputRef = document.getElementById(id);
+    const input = inputRef.value.toLowerCase();
+    if (checkLengthGreater(input, 2)) {
+        const result = findInput(input);
+        if (result.length === 0) {
+            displayNoContactFoundMessage();
+        } else {
+            renderContacts(result);
         }
+    } else {
+        renderContacts(selectedContacts);
+    }
+}
 
 
 function displayNoContactFoundMessage() {
-            const dropdownRef = document.getElementById("assign-to-dropdown-contacts");
-            dropdownRef.innerHTML = '<li class="not-found">Nicht gefunden</li>';
-        }
+    const dropdownRef = document.getElementById("assign-to-dropdown-contacts");
+    dropdownRef.innerHTML = '<li class="not-found">Nicht gefunden</li>';
+}
 
 function findInput(input) {
-            let result = contacts.filter(contact =>
-                contact.name.toLowerCase().includes(input))
-            return result
-        }
-
-
-
-
+    let result = selectedContacts.filter(contact =>
+        contact.name.toLowerCase().includes(input))
+    return result
+}
