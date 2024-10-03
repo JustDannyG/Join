@@ -1,9 +1,11 @@
 let currentDraggedElement;
 let tasksArray = [];
 let prio = "medium";
+let selectedContacts = [];
 
 async function init() {
     await getContacts();
+    getSelectedContacts()
     await getTasks();
     updateHtml();
 }
@@ -205,6 +207,21 @@ function renderCheckboxStatus(s, subtaskRef) {
     }
 }
 // Edit Overlayer
+
+function getSelectedContacts() {
+    contacts.forEach(contact => {
+        selectedContacts.push({
+            'name': contact.name,
+            'color': contact.color,
+            'checked': false,
+        })
+    });
+    sortByAlphabet(selectedContacts)
+}
+
+function editTask() {
+    renderContacts(selectedContacts)
+}
 
 function addPrio(prioInput) {
     if (prioInput == prio) {

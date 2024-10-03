@@ -2,11 +2,9 @@ let categoryInput;
 let prio = "medium";
 
 let curretCategory = 'todo';
-
+let selectedContacts = [];
 let subtaskArray = [];
 let currentSubtasks = [];
-let selectedContacts = [];
-
 let isDropdownOpen = false;
 
 

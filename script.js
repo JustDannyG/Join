@@ -2,6 +2,7 @@ let user = 'Guest';
 let contacts = [];
 
 
+
 async function getContacts() {
     const contactsData = await getData("contacts");
     const keys = Object.keys(contactsData);
