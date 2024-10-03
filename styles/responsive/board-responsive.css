@@ -4,25 +4,28 @@
     .board-main-content {
         margin-left: 0;
     }
+
     .desktop-section-search-add {
         display: none;
     }
+
     .overlay-task {
         padding: 24px;
         font-size: 16px;
     }
-    .task-title {
-        font-size: 20px;
-    }
+
+
     .task-details-container {
         margin-top: 8px;
         gap: 8px;
     }
+
     .assigned-to-container ul,
     .subtask ul {
         min-height: 72px;
         max-height: 112px;
     }
+
     .task-content {
         display: flex;
         flex-direction: column;
@@ -36,14 +39,33 @@
     .board-main-content {
         flex-direction: column;
     }
+
     .mobile-section-search-add {
         display: none;
     }
+
     .headline {
         font-size: 47px;
     }
-    /* .board-main-content {
-        overflow-y: hidden;
-        overflow-x: auto;
-    } */
+
+    .task-container {
+        flex-direction: column;
+    }
+
+    .board-section {
+        min-width: 220px;
+        height: 100%;
+        padding: 0 20px;
+    }
+
+    .task-content {
+        justify-content: space-around;
+        height: 100%;
+    }
+
+    .task-container {
+        height: 100%;
+        padding: 0;
+    }
+
 }

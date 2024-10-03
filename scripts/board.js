@@ -61,9 +61,15 @@ function renderTasks(tasks, getById) {
             const task = tasks[index];
             let className = task.categoryText.replace(" ", "-").toLowerCase()
             getById.innerHTML += generateTaskHTML(task, index, className);
-            renderAssignedToContacts(task, index);
-            renderPrio(task, index);
-            renderSubtask(task, index);
+            if (task.assignedTo) {
+                renderAssignedToContacts(task, index);
+           }
+           if (task.subtask) {
+                 renderSubtask(task, index);
+           }
+           if (task.prio) {
+               renderPrio(task, index);
+           }
         }
     }
 }
@@ -71,6 +77,7 @@ function renderTasks(tasks, getById) {
 
 function renderSubtask(task, index) {
     let taskAmount = document.getElementById(`${task.category}-amount${index}`)
+    let progressBar = document.getElementById(`${task.category}progress-bar${index}`)
     let progress = document.getElementById(`${task.category}-progress${index}`)
     let amount = task.subtask.filter(c => c.checked == true).length;
     let total = 0
@@ -79,6 +86,7 @@ function renderSubtask(task, index) {
     });
     taskAmount.innerHTML = `${amount}/${total} Subtasks`;
     let result = Math.round((100 / total) * amount) + '%';
+    progressBar.classList.remove('d-none')
     progress.style.width = result
 
 }
@@ -165,10 +173,11 @@ function renderTaskInfos(currentTask, infosRef) {
     infosRef.title.innerHTML = currentTask.title;
     infosRef.description.innerHTML = currentTask.description;
     infosRef.letDateRef.innerHTML = currentTask.date.replace(/-/g, "/");
-    infosRef.prioTextRef.innerHTML = currentTask.prio.charAt(0).toUpperCase() + currentTask.prio.slice(1);
+    if (currentTask.prio) {
+        infosRef.prioTextRef.innerHTML = currentTask.prio.charAt(0).toUpperCase() + currentTask.prio.slice(1);
     infosRef.prioIconRef.src = `./assets/icons/prio-${currentTask.prio}-icon.png`;
 }
-
+}
 
 function renderTasksArrays(currentTask) {
     let assignedToRef = document.getElementById('assigned-to-list');
@@ -176,13 +185,16 @@ function renderTasksArrays(currentTask) {
     assignedToRef.innerHTML = "";
     subtaskRef.innerHTML = "";
 
-    currentTask.assignedTo.forEach((a, i) => {
-        assignedToRef.innerHTML += generateAssignedToOerlayLiHTML(a, i)
-    });
-
-    currentTask.subtask.forEach(s => {
-        renderCheckboxStatus(s, subtaskRef)
-    })
+    if (currentTask.assignedTo) {
+        currentTask.assignedTo.forEach((a, i) => {
+            assignedToRef.innerHTML += generateAssignedToOerlayLiHTML(a, i)
+        });
+    }
+    if (currentTask.subtask) {
+        currentTask.subtask.forEach(s => {
+            renderCheckboxStatus(s, subtaskRef)
+        }) 
+    }
 }
 
 function renderCheckboxStatus(s, subtaskRef) {

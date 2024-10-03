@@ -121,3 +121,13 @@ function greetingUser() {
     let greetUser = document.getElementById('greeting-name');
     greetUser.innerHTML = user;
 }
+
+function openAddTask(taskStatus) {
+    if (screenMode == 'mobile') {
+        window.location.href = "add-task.html";
+        taskStatus
+    }
+    if (screenMode == 'desktop') {
+        alert('Here Add Task Overlay')
+    }
+}
