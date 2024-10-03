@@ -141,7 +141,7 @@ function openAddTask(taskStatus) {
 
 
 
-function styleSelecet(params) {
+function styleSelecet() {
 
     document.querySelectorAll('select').forEach(function(select) {
         select.classList.add('s-hidden');
