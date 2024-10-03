@@ -13,6 +13,7 @@ async function init() {
     await getContacts()
     getSelectedContacts()
     renderContacts(selectedContacts);
+    styleSelecet()
 }
 
 

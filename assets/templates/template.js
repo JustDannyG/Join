@@ -277,7 +277,7 @@ function editBoardTaskHTML() {
                     </div>
                 </div>
             </div>
-
+            <button>Add Task</button>
         </div>`
 }
 
