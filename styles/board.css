@@ -48,7 +48,7 @@
     position: sticky;
     top: 0;
     left: 0;
-    z-index: 1;
+    /* z-index: 1; */
 }
 
 .subtitle button {
@@ -68,7 +68,6 @@
     border: 2px dotted var(--dark-grey);
     border-radius: 8px;
 }
-
 
 .task-category {
     color: var(--light-grey);
@@ -164,7 +163,6 @@
     align-items: center;
     transition: all ease-in-out 125ms;
     /* background-color: burlywood; */
-
     animation-name: task;
     animation-duration: 800ms;
     animation-iteration-count: 1;
@@ -212,23 +210,18 @@
     0% {
         transform: rotate(0deg)
     }
-
     10% {
         transform: rotate(-8deg)
     }
-
     30% {
         transform: rotate(6deg)
     }
-
     55% {
         transform: rotate(-3deg)
     }
-
     80% {
         transform: rotate(1deg)
     }
-
     100% {
         transform: rotate(-1deg)
     }
@@ -252,7 +245,7 @@
 }
 
 .overlaver-active {
-    transform: translateY(0);
+    transform: translateY(0) !important;
 }
 
 .overlay-task {
@@ -415,7 +408,6 @@ button {
     gap: 32px;
 }
 
-
 .board-section {
     display: flex;
     flex-direction: column;
@@ -428,8 +420,44 @@ button {
     from {
         scale: 0.1;
     }
-
     to {
         scale: 1;
     }
+}
+
+
+/*Edit Task Overlayer*/
+
+.overlaver-edit-task-bg {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    transition: all 125ms ease-in-out;
+    transform: translateY(100%);
+}
+
+.overlay-edit-task {
+    overflow-y: auto;
+    position: relative;
+    text-align: start;
+    padding: 34px;
+    width: 100%;
+    max-width: 424px;
+    height: min-content;
+    border-radius: 16px;
+    background-color: var(--white);
+    max-height: 80%;
+    box-shadow: rgba(99, 99, 99, 0.8) 0px 2px 8px 0px;
+}
+
+.mt16 {
+    margin-top: 16px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
 }
