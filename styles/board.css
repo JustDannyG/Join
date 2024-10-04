@@ -10,6 +10,7 @@
     max-width: calc(1920px - 232px);
     gap: 32px;
     margin-left: 210px;
+    z-index: 1;
 }
 
 .headline {
@@ -210,18 +211,23 @@
     0% {
         transform: rotate(0deg)
     }
+
     10% {
         transform: rotate(-8deg)
     }
+
     30% {
         transform: rotate(6deg)
     }
+
     55% {
         transform: rotate(-3deg)
     }
+
     80% {
         transform: rotate(1deg)
     }
+
     100% {
         transform: rotate(-1deg)
     }
@@ -425,9 +431,10 @@ button {
 .board-section {
     display: flex;
     flex-direction: column;
-    background-color: wheat;
+    background-color: rgba(245, 222, 179, 0.5);
     overflow: scroll;
-    padding: 0 10px;
+    padding: 10px;
+    border-radius: 10px;
     transition: all ease-in-out 125ms;
 }
 
@@ -435,6 +442,7 @@ button {
     from {
         scale: 0.1;
     }
+
     to {
         scale: 1;
     }
@@ -490,4 +498,30 @@ button {
 .edit-form {
     overflow-y: auto;
     margin: 0;
+}
+
+
+.add-task-overlay-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    transform: translateX(100vw);
+}
+
+
+.add-task-overlay {
+    border: solid 1px;
+    width: 1100px;
+    height: 800px;
+    border-radius: 30px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    position: relative;
 }

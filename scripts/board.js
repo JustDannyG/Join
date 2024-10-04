@@ -10,203 +10,6 @@ async function init() {
     updateHtml();
 }
 
-// let moving = null;
-
-// function pickup(event) {
-//     event.preventDefault(); // Verhindert ungewollte Scrolls oder andere Standardaktionen.
-//     moving = event.target;
-
-//     // Stelle sicher, dass das Element die richtige Größe beibehält
-//     moving.style.height = moving.clientHeight + 'px';
-//     moving.style.width = moving.clientWidth + 'px';
-//     moving.style.position = 'absolute';
-//     moving.style.zIndex = '1000';
-// }
-
-// function move(event) {
-//     if (moving) {
-//         event.preventDefault(); // Verhindert andere Standardaktionen, insbesondere bei Touch-Events.
-
-//         let x, y;
-//         if (event.touches) {
-//             // Touchbewegung - assuming a single touchpoint
-//             x = event.touches[0].clientX;
-//             y = event.touches[0].clientY;
-//         } else {
-//             // Mausbewegung
-//             x = event.clientX;
-//             y = event.clientY;
-//         }
-
-//         moving.style.left = (x - moving.clientWidth / 2) + 'px';
-//         moving.style.top = (y - moving.clientHeight / 2) + 'px';
-//     }
-// }
-
-// function drop(event) {
-//     if (moving) {
-//         event.preventDefault();
-
-//         // Bestimme das Drop-Ziel
-//         const target = document.elementFromPoint(event.changedTouches ? event.changedTouches[0].clientX : event.clientX,
-//                                                  event.changedTouches ? event.changedTouches[0].clientY : event.clientY);
-
-//         if (target && target.classList.contains('task-container')) {
-//             target.appendChild(moving);
-//         }
-
-//         // Element zurücksetzen
-//         moving.style.left = '';
-//         moving.style.top = '';
-//         moving.style.height = '';
-//         moving.style.width = '';
-//         moving.style.position = '';
-//         moving.style.zIndex = '';
-
-//         moving = null;
-//     }
-// }
-
-// // Touchstart für das Bewegen
-// document.addEventListener('touchstart', (e) => {
-//     const element = e.target.closest('.task');
-//     if (element) {
-//         pickup(e);
-//     }
-// });
-
-// // Mouse-Drag Event Listener
-// document.addEventListener('mousedown', (e) => {
-//     const element = e.target.closest('.task');
-//     if (element) {
-//         pickup(e);
-//     }
-// });
-
-// // Bewegungslistener für Touch und Maus
-// document.addEventListener('touchmove', move);
-// document.addEventListener('mousemove', move);
-
-// // Drop-Listener für Touch und Maus
-// document.addEventListener('touchend', drop);
-// document.addEventListener('mouseup', drop);
-
-// // Verhindere, dass Drop-Zonen ihre Standardaktionen ausführen (z.B. Scrollen)
-// document.querySelectorAll('.task-container').forEach(container => {
-//     container.addEventListener('dragover', (e) => e.preventDefault());
-//     container.addEventListener('touchmove', (e) => e.preventDefault());
-// });
-
-
-// const todo = document.getElementById('0')
-// todo.addEventListener("touchstart", e => {
-//     ;[...e.changedTouches].forEach(touch => {
-//         const dot = document.createElement("div");
-//         dot.classList.add("dot")
-//         dot.style.top = `${touch.pageY}px`
-//         dot.style.left = `${touch.pageX}px`
-//         dot.id = touch.identifier
-//         document.body.append(dot)
-
-//     })
-// })
-
-// function pickup(event) {
-//     console.log(event);
-//     moving = event.target
-
-// }
-
-
-// function pickup(event) {
-//     moving = event.target;
-
-//     moving.style.height = moving.clientHeight;
-//     moving.style.width = moving.clientWidth;
-//     moving.style.position = 'fixed';
-// }
-
-
-// function move(event) {
-//     if (moving) {
-//         if (event.clientX) {
-//             // mousemove
-//             moving.style.left = event.clientX - moving.clientWidth/2;
-//             moving.style.top = event.clientY - moving.clientHeight/2;
-//         } else {
-//             // touchmove - assuming a single touchpoint
-//             moving.style.left = event.changedTouches[0].clientX - moving.clientWidth/2;
-//             moving.style.top = event.changedTouches[0].clientY - moving.clientHeight/2;
-//         }
-//     }
-// }
-
-
-// function drop(event) {
-//     if (moving) {
-//         // reset our element
-//         moving.style.left = '';
-//         moving.style.top = '';
-//         moving.style.height = '';
-//         moving.style.width = '';
-//         moving.style.position = '';
-
-//         moving = null;
-//     }
-// }
-
-
-// function drop(event) {
-//     if (moving) {
-//         if (event.currentTarget.tagName !== 'HTML') {
-//             event.currentTarget.appendChild(moving);
-//         }
-
-//         // reset our element
-//         moving.style.left = '';
-//         moving.style.top = '';
-//         moving.style.height = '';
-//         moving.style.width = '';
-//         moving.style.position = '';
-//         moving.style.zIndex = '';
-
-//         moving = null;
-//     }
-// }
-
-
-// document.addEventListener('touchstart', e => {
-//     ;[...e.changedTouches].forEach(touch => {
-//         const dot = document.createElement("div");
-//         dot.classList.add("dot")
-//         dot.style.top = `${touch.pageY}px`
-//         dot.style.left = `${touch.pageX}px`
-//         dot.id = touch.identifier
-//         document.body.append(dot)
-
-//     })
-// })
-
-
-// document.addEventListener('touchmove', e => {
-//     ;[...e.changedTouches].forEach(touch => {
-//         const dot = document.getElementById(touch.identifier);
-//         dot.style.top = `${touch.pageY}px`
-//         dot.style.left = `${touch.pageX}px`
-//     })
-// })
-
-
-// document.addEventListener("touchend", e => {
-//     ;[...e.changedTouches].forEach(touch => {
-//         const dot = document.getElementById(touch.identifier);
-//         dot.remove();
-//     })
-// })
-
-
-// document.getElementById(`${currentDraggedElement}`).addEventListener('touchstart', mouseDown, true);
-
 
 async function getTasks() {
     let response = await getData(path = "/tasks");
@@ -235,10 +38,10 @@ function updateHtml() {
     let feedbackById = document.getElementById('await-feedback-container');
     let doneById = document.getElementById('done-container');
 
-    renderTasks(filterTasks('todo'), todoById);
-    renderTasks(filterTasks('progress'), progressById);
-    renderTasks(filterTasks('feedback'), feedbackById);
-    renderTasks(filterTasks('done'), doneById);
+    renderTasks(filterTasks('todo'), todoById, 'To do');
+    renderTasks(filterTasks('progress'), progressById, 'Progress');
+    renderTasks(filterTasks('feedback'), feedbackById, 'Feedback');
+    renderTasks(filterTasks('done'), doneById, 'Done');
 }
 
 
@@ -247,10 +50,10 @@ function filterTasks(task) {
 }
 
 
-function renderTasks(tasks, getById) {
+function renderTasks(tasks, getById, noTask) {
     getById.innerHTML = "";
     if (tasks.length == 0) {
-        getById.innerHTML += generateNoTaskHTML();
+        getById.innerHTML += generateNoTaskHTML(noTask);
     } else {
         for (let index = 0; index < tasks.length; index++) {
             const task = tasks[index];

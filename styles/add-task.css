@@ -12,6 +12,8 @@
         margin-left: 210px;
     }
 
+
+
     .h-100 {
         height: 100%;
     }
@@ -52,14 +54,29 @@
         width: 100%;
     }
 
-    form {
+    .add-task-form {
         width: 1000px;
-        position: relative;
         display: flex;
         justify-content: space-around;
         flex-direction: column;
         margin-bottom: 64px;
         width: 100%;
+    }
+
+    .task-details {
+        display: flex;
+        flex-direction: column;
+
+        animation-name: field2;
+        animation-duration: 300ms;
+    }
+
+    .task-settings {
+        display: flex;
+        flex-direction: column;
+
+        animation-name: field1;
+        animation-duration: 300ms;
     }
 
     .row {
@@ -456,4 +473,25 @@
         width: 100%;
         padding: 0;
         list-style: none;
+    }
+
+
+    @keyframes field1 {
+        from {
+            transform: translateX(100vw);
+        }
+
+        to {
+            transform: translateX();
+        }
+    }
+
+    @keyframes field2 {
+        from {
+            transform: translateX(-100vw);
+        }
+
+        to {
+            transform: translateX();
+        }
     }

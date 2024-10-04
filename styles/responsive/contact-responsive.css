@@ -54,6 +54,10 @@
     .contact-content {
         flex-direction: column;
     }
+
+    .add-new-contact-desktop-sticky{
+        display: none;
+    }
 }
 
 
@@ -71,6 +75,8 @@
     .add-contact {
         display: none;
     }
+
+    
 }
 
 @media(min-width: 1440px) {
