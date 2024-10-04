@@ -254,6 +254,7 @@
     padding: 10px;
     background-color: rgba(0, 0, 0, 0.3);
     transition: all ease-in-out 125ms;
+    z-index: 1;
 }
 
 .edit-overlay-form {
