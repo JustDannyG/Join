@@ -339,7 +339,7 @@ function taskBoardOverlay(id) {
                 <button class="btn">
                     <img class="icon" src="./assets/icons/delete.png" alt="">Delete</button>
                 <div class="divider"></div>
-                <button onclick="editTask(${id}); stopEventBubbling(event);" class="btn">
+                <button onclick="showEditTaskValues(); stopEventBubbling(event);" class="btn">
                     <img class="icon" src="./assets/icons/edit.png" alt="">Edit</button>
             </div>
         </div>`;
