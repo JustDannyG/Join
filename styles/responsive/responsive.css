@@ -6,6 +6,11 @@
     .sidebar-mobile {
         height: 70px;
     }
+
+    .nav-link-mobile {
+        scale: 0.9;
+    }
+
 }
 
 @media(min-width: 1024px) {
