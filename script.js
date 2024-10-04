@@ -142,16 +142,20 @@ function openAddTask(taskStatus) {
 
 
 function styleSelecet() {
-
     document.querySelectorAll('select').forEach(function(select) {
         select.classList.add('s-hidden');
         var styledSelect = document.createElement('div');
         styledSelect.classList.add('styledSelect');
-        styledSelect.textContent = select.options[0].text;
+
+        styledSelect.textContent = select.options[select.selectedIndex].text;
+
+
         select.parentNode.insertBefore(styledSelect, select.nextSibling);
+
         var list = document.createElement('ul');
         list.classList.add('options');
         select.parentNode.insertBefore(list, styledSelect.nextSibling);
+
         Array.from(select.options).forEach(function(option, index) {
             var li = document.createElement('li');
             li.textContent = option.text;
@@ -161,6 +165,7 @@ function styleSelecet() {
             }
             list.appendChild(li);
         });
+
         styledSelect.addEventListener('click', function(e) {
             e.stopPropagation();
             document.querySelectorAll('div.styledSelect.active').forEach(function(activeSelect) {
@@ -176,6 +181,7 @@ function styleSelecet() {
                 list.querySelector('li.hide-first').style.display = 'none';
             }
         });
+
         list.addEventListener('click', function(e) {
             if (e.target.tagName === 'LI') {
                 styledSelect.textContent = e.target.textContent;
@@ -184,6 +190,7 @@ function styleSelecet() {
                 list.style.display = 'none';
             }
         });
+
         document.addEventListener('click', function() {
             styledSelect.classList.remove('active');
             list.style.display = 'none';
