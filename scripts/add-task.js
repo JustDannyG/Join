@@ -1,12 +1,10 @@
 let categoryInput;
-
 let prio = "medium";
-let curretCategory = 'todo';
 
+let curretCategory = 'todo';
+let selectedContacts = [];
 let subtaskArray = [];
 let currentSubtasks = [];
-let selectedContacts = [];
-
 let isDropdownOpen = false;
 
 
@@ -15,6 +13,7 @@ async function init() {
     await getContacts()
     getSelectedContacts()
     renderContacts(selectedContacts);
+    styleSelecet()
 }
 
 
@@ -111,11 +110,12 @@ function resetInputText() {
 
 
 function getSelectedContacts() {
-    contacts.forEach(contact => {
+    contacts.forEach((contact, i) => {
         selectedContacts.push({
             'name': contact.name,
             'color': contact.color,
             'checked': false,
+            'id': i
         })
     });
     sortByAlphabet(selectedContacts)
@@ -128,32 +128,32 @@ function renderContacts(arr) {
     for (let i = 0; i < arr.length; i++) {
         const contact = arr[i];
         let initials = createInititals(contact.name)
-        dropDownRef.innerHTML += contactInDropDownHTML(i, contact, initials);
-        updateDesign(i)
+        dropDownRef.innerHTML += contactInDropDownHTML(contact, initials);
+        updateDesign(contact.id)
     }
 }
 
 
-function updateDesign(i) {
-    if (selectedContacts[i].checked) {
-        let contactContainerRef = document.getElementById("contact" + i);
-        let checkboxRef = document.getElementById("checkbox" + i);
+function updateDesign(id) {
+    if (selectedContacts[id].checked) {
+        let contactContainerRef = document.getElementById("contact" + id);
+        let checkboxRef = document.getElementById("checkbox" + id);
         contactContainerRef.classList.add("contact-active");
         checkboxRef.setAttribute("checked", true)
 
-    } else if (!selectedContacts[i].checked) {
-        let contactContainerRef = document.getElementById("contact" + i);
-        let checkboxRef = document.getElementById("checkbox" + i);
+    } else if (!selectedContacts[id].checked) {
+        let contactContainerRef = document.getElementById("contact" + id);
+        let checkboxRef = document.getElementById("checkbox" + id);
         contactContainerRef.classList.remove("contact-active");
         checkboxRef.removeAttribute("checked")
     }
 }
 
 
-function selectContact(i) {
-    let currentContact = selectedContacts[i]
+function selectContact(id) {
+    let currentContact = selectedContacts[id]
     currentContact.checked = !currentContact.checked;
-    updateDesign(i)
+    updateDesign(id)
     renderSelectedContacts()
 }
 
@@ -184,7 +184,7 @@ function filter(id) {
             renderContacts(result);
         }
     } else {
-        renderContacts(contacts);
+        renderContacts(selectedContacts);
     }
 }
 
@@ -195,7 +195,7 @@ function displayNoContactFoundMessage() {
 }
 
 function findInput(input) {
-    let result = contacts.filter(contact =>
+    let result = selectedContacts.filter(contact =>
         contact.name.toLowerCase().includes(input))
     return result
 }
@@ -330,47 +330,3 @@ async function postTask(task) {
         'subtask': currentSubtasks
     })
 }
-
-
-
-
-///////////////////
-// Select Function
-////////////////////
-
-
-$('select').each(function () {
-    var $this = $(this);
-    $this.addClass('s-hidden').wrap('<div class="select"></div>');
-    var $styledSelect = $('<div class="styledSelect"></div>').text($this.children('option').eq(0).text()).insertAfter($this);
-    var $list = $('<ul />', { class: 'options' }).insertAfter($styledSelect);
-
-    $this.children('option').each(function (index) {
-        var $li = $('<li />', {
-            text: $(this).text(),
-            rel: $(this).val()
-        });
-
-        if (index === 0) {
-            $li.addClass('hide-first');
-        }
-
-        $li.appendTo($list);
-    });
-
-    $styledSelect.on('click', function (e) {
-        e.stopPropagation();
-        $('div.styledSelect.active').not(this).removeClass('active').next('ul.options').hide();
-        $(this).toggleClass('active').next('ul.options').toggle();
-        if ($(this).hasClass('active')) {
-            $list.children('li.hide-first').hide();
-        }
-    });
-
-    $list.on('click', 'li', function (e) {
-        e.stopPropagation();
-        $styledSelect.text($(this).text()).removeClass('active');
-        $this.val($(this).attr('rel'));
-        $list.hide();
-    });
-});

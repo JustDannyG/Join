@@ -76,10 +76,11 @@
 @media(min-width: 1440px) {
     .contact-content {
         padding-left: 232px;
-
+        max-width: 1920px;
     }
 
     .contacts-mobile-container {
         width: 456px;
     }
+
 }

@@ -101,4 +101,8 @@
     .greeting-time {
         font-size: 47px;
     }
+
+    .summary-main-content {
+        margin-left: 232px;
+    }
 }

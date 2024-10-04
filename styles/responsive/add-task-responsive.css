@@ -11,3 +11,21 @@
         margin-left: 0;
     }
 }
+
+@media(min-width: 1024px) {
+    .submit-row {
+        margin-left: 210px;
+    }
+}
+
+
+
+@media (min-width: 1440px) {
+    .add-task-main-content {
+        margin-left: 232px;
+    }
+
+    .submit-row {
+        margin-left: 232px;
+    }
+}
