@@ -128,7 +128,7 @@
     <!-- Add Task Overlay  -->
 
     <div id="add-task-overlay" class="add-task-overlay-bg d-none" onclick="classChangeAction('add-task-overlay', 'd-none', 'toggle')">
-        <div class="add-task-overlay">
+        <div class="add-task-overlay" onclick="stopEventBubbling(event)">
 
             <form id="add-task" class="add-task-form" onsubmit="createTask(); return false;">
 
