@@ -32,11 +32,19 @@
 
     <main class="contact-content">
 
-        <div class="contacts-mobile-container overflow-y-auto">
+        <div class="contacts-mobile-container">
+
+            <div class="add-new-contact-desktop-sticky">
+                <button class="add-new-contact-desktop-btn">
+                    Add new contact
+                    <img src="./assets/icons/person_add.png" alt="">
+                </button>
+            </div>
+
             <div id="contacts-container" class="column contacts-container"></div>
             <button
                 onclick="classChangeAction('dialog-add-contact', 'hide-overlay', 'remove'), stopEventBubbling(event)"
-                id="add-contact" class="add-contact center"><img src="./assets/icons/add-contact-icon.png"
+                id="add-contact" class="add-contact d-none center"><img src="./assets/icons/add-contact-icon.png"
                     alt="add Contact" />
             </button>
         </div>
