@@ -1,0 +1,92 @@
+@media(max-width: 428px) {
+    .contacts-container {
+        padding: 0 20px;
+    }
+
+    .contact-list {
+        gap: 20px;
+        padding: 0 8px;
+    }
+
+    .contact-initials {
+        min-height: 45px;
+        min-width: 45px;
+    }
+
+    .contacts-first-letter {
+        padding: 25px 24px;
+    }
+
+    .current-contact-circle {
+        min-width: 75px;
+        min-height: 75px;
+    }
+
+    .contact-content {
+        height: calc(100vh - (70px + 70px));
+    }
+
+}
+
+@media screen and (max-width: 1024px) and (min-width: 428px) {
+    .contact-content {
+        height: calc(100vh - (80px + 80px));
+    }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 600px) {
+    .contact-list {
+        margin-left: 10%;
+        width: 80%;
+    }
+
+    .contacts-first-letter {
+        margin-left: 10%;
+    }
+}
+
+
+@media(max-width: 1024px) {
+    .contacts-details-desktop-container {
+        display: none;
+    }
+
+    .contact-content {
+        flex-direction: column;
+    }
+
+    .add-new-contact-desktop-sticky{
+        display: none;
+    }
+}
+
+
+
+@media(min-width: 1024px) {
+    .contact-content {
+        padding-left: 210px;
+
+    }
+
+    .contacts-mobile-container {
+        box-shadow: 0 1px 10px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .add-contact {
+        display: none;
+    }
+
+    
+}
+
+@media(min-width: 1440px) {
+    .contact-content {
+        padding-left: 232px;
+        max-width: 1920px;
+    }
+
+    .contacts-mobile-container {
+        width: 456px;
+    }
+
+}

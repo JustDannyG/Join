@@ -1,0 +1,103 @@
+/* Mobile Design Adjustment */
+
+@media (max-width: 1024px) {
+    .board-main-content {
+        margin-left: 0;
+    }
+
+    .desktop-section-search-add {
+        display: none;
+    }
+
+    .overlay-task {
+        padding: 24px;
+        font-size: 16px;
+    }
+
+
+    .task-details-container {
+        margin-top: 8px;
+        gap: 8px;
+    }
+
+    .assigned-to-container ul,
+    .subtask ul {
+        min-height: 72px;
+        max-height: 112px;
+    }
+
+    .task-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+
+}
+
+
+/* Desktop Design Adjustment */
+
+@media (min-width: 1024px) {
+    .board-main-content {
+        flex-direction: column;
+    }
+
+    .mobile-section-search-add {
+        display: none;
+    }
+
+    .headline {
+        font-size: 47px;
+    }
+
+    .task-container {
+        flex-direction: column;
+    }
+
+    .board-section {
+        min-width: 240px;
+        height: 100%;
+    }
+
+    .task-content {
+        justify-content: space-around;
+        height: 100%;
+    }
+
+    .task-container {
+        height: 100%;
+        padding: 0;
+    }
+
+
+
+
+}
+
+
+@media screen and (max-width: 1440px) and (min-width: 1230px) {
+
+    .task-content {
+        gap: 10px;
+    }
+}
+
+
+@media (min-width: 1440px) {
+    .board-main-content {
+        margin-left: 232px;
+    }
+
+    .board-section {
+        flex: 1;
+    }
+
+    .task {
+        min-width: 220px;
+        width: 80%;
+    }
+
+    .task-content {
+        gap: 35px;
+    }
+}

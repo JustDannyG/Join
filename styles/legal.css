@@ -1,0 +1,88 @@
+.content {
+    padding: 25px 16px 48px 16px;
+    text-wrap: wrap;
+    max-width: 1920px;
+}
+
+/* Help */
+
+.text-blue {
+    color: var(--light-blue);
+}
+
+.help-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.how-to-use {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.solo-column::marker {
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.headline {
+    justify-content: space-between;
+}
+
+.headline img {
+    width: 18px;
+    height: 18px;
+}
+
+
+/* privacy police */
+
+
+.privacy-police-content {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.subtitle-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.headline {
+    justify-content: space-between;
+}
+
+.headline img {
+    width: 18px;
+    height: 18px;
+}
+
+
+/* Legal Notice */
+
+
+
+h2 {
+    margin-top: 24px;
+}
+
+h3 {
+    margin-top: 16px;
+}
+
+.legal-notice ul {
+    margin-top: 16px;
+}
+
+.headline {
+    justify-content: space-between;
+}
+
+.headline img {
+    width: 18px;
+    height: 18px;
+}

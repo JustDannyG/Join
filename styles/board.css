@@ -1,3 +1,22 @@
+.board-main-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: var(--light-grey);
+    padding: 25px 16px 48px 16px;
+    text-wrap: wrap;
+    max-width: calc(1920px - 232px);
+    gap: 32px;
+    margin-left: 210px;
+    z-index: 1;
+}
+
+.headline {
+    justify-content: space-between;
+}
+
 .headline button {
     background-color: var(--darke-blue);
     border-radius: 8px;
@@ -13,7 +32,8 @@
     background-color: var(--white);
 }
 
-.input-row input {
+.input-row input,
+.input {
     border: unset;
     border-right: 2px solid var(--medium-grey);
     width: 100%;
@@ -25,6 +45,11 @@
 
 .subtitle {
     justify-content: space-between;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    left: 0;
+    /* z-index: 1; */
 }
 
 .subtitle button {
@@ -34,13 +59,8 @@
     width: 30px;
 }
 
-section {
-    margin-top: 24px;
-    min-height: min-content;
-    max-height: 400px;
-}
-
 .no-task {
+    width: 100%;
     margin-top: 16px;
     text-align: center;
     padding: 8px;
@@ -50,17 +70,7 @@ section {
     border-radius: 8px;
 }
 
-.task {
-    position: relative;
-    margin-top: 16px;
-    background-color: var(--white);
-    padding: 16px;
-    border-radius: 24px;
-    width: 260px;
-}
-
 .task-category {
-    background-color: var(--story);
     color: var(--light-grey);
     padding: 4px 16px;
     width: min-content;
@@ -73,7 +83,8 @@ section {
 }
 
 .task-description {
-    margin-top: 8px;
+    font-size: 16px;
+    font-weight: 400;
     color: var(--dark-grey);
 }
 
@@ -93,7 +104,6 @@ section {
 
 .progress {
     background-color: var(--light-blue);
-    width: 50%;
     height: 8px;
     border-radius: 8px;
 }
@@ -118,27 +128,400 @@ section {
 }
 
 .contact {
-    height: 50px;
-    width: 50px;
+    font-size: 12px;
+    height: 32px;
+    width: 32px;
     border-radius: 50%;
-    border: 1px solid var(--white);
+    border: 2px solid var(--white);
     color: var(--white);
+}
+
+.c0 {
+    position: absolute;
+    left: 0;
 }
 
 .c1 {
     position: absolute;
-    left: 0;
-    background-color: aqua;
+    left: 26px;
 }
 
 .c2 {
     position: absolute;
-    left: 40px;
-    background-color: blueviolet;
+    left: 52px;
 }
 
 .c3 {
     position: absolute;
-    left: 80px;
-    background-color: burlywood;
+    left: 78px;
+}
+
+.task-container {
+    height: fit-content;
+    padding: 16px 0px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    transition: all ease-in-out 125ms;
+    /* background-color: burlywood; */
+    animation-name: task;
+    animation-duration: 800ms;
+    animation-iteration-count: 1;
+}
+
+.user-story {
+    background-color: var(--story);
+}
+
+.technical-task {
+    background-color: var(--technical);
+}
+
+.task-contact-length {
+    margin-left: 30px;
+    font-size: 18px;
+}
+
+.drag-area-highlight {
+    background-color: lightblue;
+}
+
+.task {
+    max-height: 244px;
+    min-height: 164px;
+    width: 220px;
+    position: relative;
+    background-color: var(--white);
+    padding: 16px;
+    border-radius: 24px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.task:hover {
+    cursor: pointer;
+    animation-name: task-drag;
+    animation-duration: 800ms;
+}
+
+.animation-ondrag {
+    transform: rotate(0.05turn);
+}
+
+@keyframes task-drag {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    10% {
+        transform: rotate(-8deg)
+    }
+
+    30% {
+        transform: rotate(6deg)
+    }
+
+    55% {
+        transform: rotate(-3deg)
+    }
+
+    80% {
+        transform: rotate(1deg)
+    }
+
+    100% {
+        transform: rotate(-1deg)
+    }
+}
+
+
+/*Task Overlay*/
+
+.task-details-container li {
+    list-style: none;
+}
+
+.overlay-bg {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    transition: all 125ms ease-in-out;
+    transform: translateX(100%);
+}
+
+.overlaver-active {
+    transform: translateX(0) !important;
+}
+
+.overlay-task {
+    text-align: start;
+    padding: 34px;
+    width: 100%;
+    max-width: 424px;
+    height: min-content;
+    border-radius: 16px;
+    background-color: var(--white);
+    max-height: 100%;
+    box-shadow: rgba(99, 99, 99, 0.8) 0px 2px 8px 0px;
+}
+
+.task-header {
+    justify-content: space-between;
+}
+
+.task-header span {
+    background-color: var(--technical);
+    color: var(--white);
+    border-radius: 8px;
+    padding: 4px 16px;
+}
+
+.task-title {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.discription {
+    margin-top: 12px;
+}
+
+.task-details-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 12px;
+    overflow-y: auto;
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 200px
+}
+
+.info-title {
+    width: 100px;
+    margin-right: 20px;
+}
+
+.info-value {
+    width: 88px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.prio-icon {
+    width: 18px;
+    height: 16px;
+}
+
+.assigned-to-container ul {
+    min-height: 160px;
+    max-height: 240px;
+    overflow-y: auto;
+    padding: 8px 0 8px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 4px;
+}
+
+.initials-circle {
+    background-color: aquamarine;
+    color: var(--white);
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.assigned-to-contact {
+    align-items: center;
+    gap: 16px;
+}
+
+.edit-task-container {
+    align-self: flex-end;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.subtask ul {
+    min-height: 80px;
+    max-height: 112px;
+    overflow-y: auto;
+    padding: 8px 0 8px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 4px;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 18px;
+    border: unset;
+    outline: unset;
+    background: unset;
+    color: black;
+}
+
+.add-task-btn {
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+    width: 160px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    background-color: #2A3647;
+    border-radius: 10px;
+}
+
+.divider {
+    height: 20px;
+    width: 1px;
+    margin: 0 2px;
+    background-color: var(--dark-grey);
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+}
+
+button {
+    padding: 0;
+}
+
+.checkbox {
+    margin-right: 8px;
+}
+
+
+/*Desktop*/
+
+.desktop-section-search-add {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search {
+    border: 2px solid var(--dark-grey);
+    border-radius: 8px;
+    padding: 4px 8px;
+    background-color: var(--white);
+}
+
+.task-content {
+    display: flex;
+    gap: 30px;
+}
+
+.board-section {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(245, 222, 179, 0.5);
+    overflow: scroll;
+    padding: 10px;
+    border-radius: 10px;
+    transition: all ease-in-out 125ms;
+}
+
+@keyframes task {
+    from {
+        scale: 0.1;
+    }
+
+    to {
+        scale: 1;
+    }
+}
+
+
+/*Edit Task Overlayer*/
+
+.overlay-edit-task {
+    position: relative;
+    text-align: start;
+    padding: 34px;
+    width: 100%;
+    max-width: 424px;
+    height: min-content;
+    border-radius: 16px;
+    background-color: var(--white);
+    max-height: 80%;
+    box-shadow: rgba(99, 99, 99, 0.8) 0px 2px 8px 0px;
+}
+
+.mt16 {
+    margin-top: 16px;
+}
+
+.button-row {
+    width: 100%;
+    background-color: var(--white);
+    position: relative;
+    height: 22px;
+}
+
+.close-btn {
+    padding: 0 !important;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.dot {
+    position: absolute;
+    background-color: red;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.submit-btn {
+    margin-top: 16px;
+}
+
+.edit-form {
+    overflow-y: auto;
+    margin: 0;
+}
+
+
+.add-task-overlay-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    transform: translateX(100vw);
+}
+
+
+.add-task-overlay {
+    border: solid 1px;
+    width: 1100px;
+    height: 800px;
+    border-radius: 30px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    position: relative;
 }
