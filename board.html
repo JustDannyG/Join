@@ -14,9 +14,10 @@
     <script src="./assets/templates/template.js"></script>
 
     <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./styles/add-task.css" />
     <link rel="stylesheet" href="./styles/board.css" />
     <link rel="stylesheet" href="./styles/header-sidebar.css" />
-    <link rel="stylesheet" href="./styles/add-task.css" />
+
 
     <link rel="stylesheet" href="./styles/responsive/add-task-responsive.css">
     <link rel="stylesheet" href="./styles/responsive/responsive.css" />
@@ -50,7 +51,8 @@
                     <input class="input" placeholder="Find Task" type="text" />
                     <img src="./assets/icons/search-icon.png" alt="" />
                 </div>
-                <button class="add-task-btn" onclick="classChangeAction('add-task-overlay', 'overlaver-active', 'toggle')">
+                <button class="add-task-btn"
+                    onclick="classChangeAction('add-task-overlay', 'overlaver-active', 'toggle')">
                     Add Task
                     <img src="./assets/icons/add.png" alt="" />
                 </button>
@@ -127,25 +129,26 @@
 
     <!-- Add Task Overlay  -->
 
-    <div id="add-task-overlay" class="add-task-overlay-bg" onclick="classChangeAction('add-task-overlay', 'overlaver-active', 'toggle')">
+    <div id="add-task-overlay" class="add-task-overlay-bg"
+        onclick="classChangeAction('add-task-overlay', 'overlaver-active', 'toggle')">
         <div class="add-task-overlay" onclick="stopEventBubbling(event)">
 
             <form id="add-task" class="add-task-form" onsubmit="createTask(); return false;">
 
                 <div class="task-details">
-                        <h1 class="add-task-headline">Add Task</h1>
-            
+                    <h1 class="add-task-headline">Add Task</h1>
+
                     <div class="column mt-16">
                         <label for="title">Title<span class="required">*</span></label>
                         <input class="input" required id="title" type="text" placeholder="Enter a title">
                     </div>
-    
+
                     <div class="column mt-16">
                         <label for="description">Description</label>
                         <textarea id="description" class="textarea" name="description"
                             placeholder="Enter a Description"></textarea>
                     </div>
-    
+
                     <div class="column mt-16">
                         <label for="assign-to-dropdown">Assigned to</label>
                         <div id="dropdown" class="drop-down d-flex">
@@ -157,16 +160,16 @@
                         </div>
                         <ul id="assign-to-dropdown-contacts" class="dropdown-options"></ul>
                     </div>
-    
+
                     <div id="selected-contacts-container" class="d-flex selectet-contacts-container"></div>
                 </div>
-    
+
                 <div class="task-settings">
                     <div class="column mt-16">
                         <label for="date">Due date<span class="required">*</span></label>
                         <input id="date" class="input" required type="date">
                     </div>
-    
+
                     <div class="prio mt-16">
                         <span>Prio</span>
                         <div class="d-flex row">
@@ -180,7 +183,7 @@
                                     id="prio-icon-low" src="./assets/icons/prio-low-icon.png"></button>
                         </div>
                     </div>
-    
+
                     <div class="column mt-16">
                         <label for="selected-category">Category<span class="required">*</span></label>
                         <select required id="selected-category" class="select-category">
@@ -189,7 +192,7 @@
                             <option value="User Story">User Story</option>
                         </select>
                     </div>
-    
+
                     <div class="form-field column mt-16">
                         <label for="subtasks-input">Subtasks</label>
                         <div class="add-task-input">
@@ -200,10 +203,10 @@
                             </div>
                         </div>
                     </div>
-    
+
                     <div id="subtasks-container" class="subtasks-container"></div>
                 </div>
-    
+
             </form>
 
 
