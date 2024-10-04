@@ -10,6 +10,7 @@
     background-color: white;
     box-shadow: 0 1px 10px 2px rgba(0, 0, 0, 0.2);
     position: relative;
+    z-index: 1;
 }
 
 .header-title {
@@ -107,6 +108,8 @@
     height: 100vh;
     background-color: var(--darke-blue);
     transition: all ease-in-out 125ms;
+    z-index: 1;
+
 }
 
 .sidebar-logo-desktop {

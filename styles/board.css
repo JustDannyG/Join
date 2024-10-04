@@ -10,6 +10,7 @@
     max-width: calc(1920px - 232px);
     gap: 32px;
     margin-left: 210px;
+    z-index: 1;
 }
 
 .headline {
