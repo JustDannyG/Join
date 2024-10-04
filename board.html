@@ -50,7 +50,7 @@
                     <input class="input" placeholder="Find Task" type="text" />
                     <img src="./assets/icons/search-icon.png" alt="" />
                 </div>
-                <button class="add-task-btn" onclick="classChangeAction('add-task-overlay', 'd-none', 'toggle')">
+                <button class="add-task-btn" onclick="classChangeAction('add-task-overlay', 'hide-right', 'toggle')">
                     Add Task
                     <img src="./assets/icons/add.png" alt="" />
                 </button>
@@ -127,15 +127,14 @@
 
     <!-- Add Task Overlay  -->
 
-    <div id="add-task-overlay" class="add-task-overlay-bg d-none" onclick="classChangeAction('add-task-overlay', 'd-none', 'toggle')">
+    <div id="add-task-overlay" class="add-task-overlay-bg hide-right" onclick="classChangeAction('add-task-overlay', 'hide-right', 'toggle')">
         <div class="add-task-overlay" onclick="stopEventBubbling(event)">
 
             <form id="add-task" class="add-task-form" onsubmit="createTask(); return false;">
 
                 <div class="task-details">
-                    <div class="headline">
-                        <h1>Add Task</h1>
-                    </div>
+                        <h1 class="add-task-headline">Add Task</h1>
+            
                     <div class="column mt-16">
                         <label for="title">Title<span class="required">*</span></label>
                         <input class="input" required id="title" type="text" placeholder="Enter a title">

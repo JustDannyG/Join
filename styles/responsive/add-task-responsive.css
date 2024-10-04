@@ -33,6 +33,14 @@
 
     .add-task-main-content {
         flex-direction: row;
+        position: relative;
+    }
+
+    .add-task-headline {
+        position: absolute;
+        top: 110px;
+        left: 110px;
+        font-size: 61px;
     }
 }
 

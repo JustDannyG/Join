@@ -89,3 +89,7 @@ button {
     display: flex;
     flex-direction: column;
 }
+
+.hide-right{
+    transform: translateX(100vw);
+}
