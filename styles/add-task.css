@@ -52,7 +52,7 @@
         width: 100%;
     }
 
-    form {
+    .add-task-form {
         width: 1000px;
         position: relative;
         display: flex;
@@ -60,6 +60,16 @@
         flex-direction: column;
         margin-bottom: 64px;
         width: 100%;
+    }
+
+    .task-details {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .task-settings {
+        display: flex;
+        flex-direction: column;
     }
 
     .row {
