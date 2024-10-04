@@ -30,6 +30,8 @@
         display: flex;
         flex-direction: column;
     }
+
+
 }
 
 
@@ -53,7 +55,7 @@
     }
 
     .board-section {
-        min-width: 220px;
+        min-width: 240px;
         height: 100%;
     }
 
@@ -67,4 +69,35 @@
         padding: 0;
     }
 
+
+
+
+}
+
+
+@media screen and (max-width: 1440px) and (min-width: 1230px) {
+
+    .task-content {
+        gap: 10px;
+    }
+}
+
+
+@media (min-width: 1440px) {
+    .board-main-content {
+        margin-left: 232px;
+    }
+
+    .board-section {
+        flex: 1;
+    }
+
+    .task {
+        min-width: 220px;
+        width: 80%;
+    }
+
+    .task-content {
+        gap: 35px;
+    }
 }

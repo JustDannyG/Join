@@ -7,7 +7,7 @@
     background-color: var(--light-grey);
     padding: 25px 16px 48px 16px;
     text-wrap: wrap;
-    max-width: 1920px;
+    max-width: calc(1920px - 232px);
     gap: 32px;
     margin-left: 210px;
 }
@@ -367,6 +367,20 @@
     color: black;
 }
 
+.add-task-btn {
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+    width: 160px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    background-color: #2A3647;
+    border-radius: 10px;
+}
+
 .divider {
     height: 20px;
     width: 1px;
@@ -405,7 +419,7 @@ button {
 
 .task-content {
     display: flex;
-    gap: 32px;
+    gap: 30px;
 }
 
 .board-section {
@@ -414,6 +428,7 @@ button {
     background-color: wheat;
     overflow: scroll;
     padding: 0 10px;
+    transition: all ease-in-out 125ms;
 }
 
 @keyframes task {
@@ -453,7 +468,7 @@ button {
 }
 
 .close-btn {
-    padding: 0!important;
+    padding: 0 !important;
     position: absolute;
     top: 0;
     right: 0;
