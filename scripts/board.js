@@ -218,6 +218,7 @@ function editTask(id) {
         'assignedTo': document.getElementById('assign-to-dropdown-contacts'),
         'selected-category': document.getElementById('selected-category'),
         'subtasks': document.getElementById('subtasks-input'),
+        'categoryText': document.getElementById('selected-category')
     }
     selectedContacts = [] //Required, to clear the Array from the Edit-Task before
     getSelectedContacts()
@@ -227,14 +228,17 @@ function editTask(id) {
 }
 
 function renderInputs(inputRef, id) {
-    let currentTask = tasksArray[id]
-    inputRef.title.value = currentTask.title
-    inputRef.description.value = currentTask.description
-    inputRef.date.value = currentTask.date
+    let currentTask = tasksArray[id];
+    inputRef.title.value = currentTask.title;
+    inputRef.description.value = currentTask.description;
+    inputRef.date.value = currentTask.date;
+    inputRef.categoryText.value = currentTask.categoryText;
+    let styledSelect = inputRef.categoryText.nextElementSibling;
 
-    console.log(currentTask.categoryText);
 
-
+    if (styledSelect && styledSelect.classList.contains('styledSelect')) {
+        styledSelect.textContent = currentTask.categoryText;
+    }
 
     if (currentTask.assignedTo) {
         findCheckedContacts(currentTask)
@@ -436,12 +440,12 @@ function saveWord(index) {
     const newValue = document.getElementById(`editInput${index}`).value;
     currentSubtasks[index].sub = newValue;
     // renderSubtask();
-    // renderSubtaskEdit(currentTask.subtask)
-    return false;
+    renderSubtaskEdit(currentSubtasks)
 }
 
 function deleteSubtask(i) {
     currentSubtasks.splice(i, 1);
-    // renderSubtaskEdit(currentTask.subtask)
-    // renderSubtask();
+    renderSubtaskEdit(currentSubtasks)
+        // renderSubtaskEdit(currentTask.subtask)
+        // renderSubtask();
 }
