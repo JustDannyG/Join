@@ -58,7 +58,10 @@ function contactSelectionCircleHTML(contact, initials) {
     return /*html*/ `<div class="contact center " style="background-color:${contact.color}">${initials}</div>`;
 }
 
-//Templates for Tasks
+
+////////////////////////////////////////////
+/////  Board  -  Tasks  Templates     //////
+///////////////////////////////////////////
 
 function generateTaskHTML(task, index, className) {
     return `<div id="${task.id}" draggable="true" dragleave="animationOndrag(${task.id})"  ondragstart="startDragging(${task.id})"  onclick="classChangeAction('overlaver','overlaver-active','add'); openTask(${task.id})" class="task">
@@ -78,12 +81,15 @@ function generateTaskHTML(task, index, className) {
               </div> `;
 }
 
-function generateNoTaskHTML() {
-    return /*html*/ `<div class="no-task"> No task To do</div> `;
+
+function generateNoTaskHTML(noTask) {
+    return /*html*/ `<div class="no-task"> No task in ${noTask}</div> `;
 }
 
 
-//Subtask
+////////////////////////////////////////////////////
+/////     Add-Task - Subtask     Templates    /////
+//////////////////////////////////////////////////
 
 function subtaskBtnHTML() {
     return `

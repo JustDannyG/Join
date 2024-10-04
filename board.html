@@ -50,7 +50,7 @@
                     <input class="input" placeholder="Find Task" type="text" />
                     <img src="./assets/icons/search-icon.png" alt="" />
                 </div>
-                <button class="add-task-btn" onclick="classChangeAction('add-task-overlay', 'hide-right', 'toggle')">
+                <button class="add-task-btn" onclick="classChangeAction('add-task-overlay', 'overlaver-active', 'toggle')">
                     Add Task
                     <img src="./assets/icons/add.png" alt="" />
                 </button>
@@ -127,7 +127,7 @@
 
     <!-- Add Task Overlay  -->
 
-    <div id="add-task-overlay" class="add-task-overlay-bg hide-right" onclick="classChangeAction('add-task-overlay', 'hide-right', 'toggle')">
+    <div id="add-task-overlay" class="add-task-overlay-bg" onclick="classChangeAction('add-task-overlay', 'overlaver-active', 'toggle')">
         <div class="add-task-overlay" onclick="stopEventBubbling(event)">
 
             <form id="add-task" class="add-task-form" onsubmit="createTask(); return false;">

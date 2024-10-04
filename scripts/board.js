@@ -38,10 +38,10 @@ function updateHtml() {
     let feedbackById = document.getElementById('await-feedback-container');
     let doneById = document.getElementById('done-container');
 
-    renderTasks(filterTasks('todo'), todoById);
-    renderTasks(filterTasks('progress'), progressById);
-    renderTasks(filterTasks('feedback'), feedbackById);
-    renderTasks(filterTasks('done'), doneById);
+    renderTasks(filterTasks('todo'), todoById, 'To do');
+    renderTasks(filterTasks('progress'), progressById, 'Progress');
+    renderTasks(filterTasks('feedback'), feedbackById, 'Feedback');
+    renderTasks(filterTasks('done'), doneById, 'Done');
 }
 
 
@@ -50,10 +50,10 @@ function filterTasks(task) {
 }
 
 
-function renderTasks(tasks, getById) {
+function renderTasks(tasks, getById, noTask) {
     getById.innerHTML = "";
     if (tasks.length == 0) {
-        getById.innerHTML += generateNoTaskHTML();
+        getById.innerHTML += generateNoTaskHTML(noTask);
     } else {
         for (let index = 0; index < tasks.length; index++) {
             const task = tasks[index];
