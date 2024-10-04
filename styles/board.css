@@ -210,23 +210,18 @@
     0% {
         transform: rotate(0deg)
     }
-
     10% {
         transform: rotate(-8deg)
     }
-
     30% {
         transform: rotate(6deg)
     }
-
     55% {
         transform: rotate(-3deg)
     }
-
     80% {
         transform: rotate(1deg)
     }
-
     100% {
         transform: rotate(-1deg)
     }
@@ -361,7 +356,7 @@
     margin-top: 4px;
 }
 
-/* .btn {
+.btn {
     display: flex;
     align-items: center;
     gap: 4px;
@@ -370,8 +365,7 @@
     outline: unset;
     background: unset;
     color: black;
-} */
-
+}
 
 .add-task-btn {
     color: white;
@@ -441,7 +435,6 @@ button {
     from {
         scale: 0.1;
     }
-
     to {
         scale: 1;
     }
