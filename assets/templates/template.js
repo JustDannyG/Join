@@ -229,25 +229,29 @@ function taskBoardOverlay(currentTask) {
             <h1 class="task-overlay-title">
             ${currentTask.title}
             </h1>
-            <p class="task-overlay-description">${currentTask.description}</p>
-            <table class="task-overlay-prio-date-table">
-                <tr>
-                    <td>Due date:</td>
-                    <td>${currentTask.date}</td>
-                </tr>
-                <tr>
-                    <td>Priority:</td>
-                    <td>${currentTask.prio}</td>
-                </tr>
-            </table>
-            <div class="task-overlay-assigned">
-                Assigned To:
-                <ul class="task-overlay-assigned-to-list" id="assigned-to-list"></ul>
+
+            <div class="task-overlay-scroll-container">
+              <p class="task-overlay-description">${currentTask.description}</p>
+             <table class="task-overlay-prio-date-table">
+                  <tr>
+                      <td>Due date:</td>
+                      <td>${currentTask.date}</td>
+                  </tr>
+                  <tr>
+                      <td>Priority:</td>
+                      <td>${currentTask.prio}</td>
+                  </tr>
+              </table>
+              <div class="task-overlay-assigned">
+                  Assigned To:
+                  <ul class="task-overlay-assigned-to-list" id="assigned-to-list"></ul>
+              </div>
+              <div class="task-overlay-subtasks-container">
+                  Subtasks
+                  <div id="subtask-overlay"></div>
+              </div>
             </div>
-            <div class="task-overlay-subtasks-container">
-                Subtasks
-                <div id="subtask-overlay"></div>
-            </div>
+
             <div class="task-overlay-edit-btns">
                 <button class="task-overlay-btn"><img src="./assets/icons/delete.png" alt="Delete">Delete</button>
                 <span class="btn-breakline"></span>

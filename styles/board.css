@@ -284,6 +284,11 @@
     padding: 48px 40px;
     box-sizing: border-box;
     gap: 10px;
+    
+}
+
+.task-overlay-scroll-container{
+    overflow-y: scroll;
 }
 
 .task-overlay-category-container {
