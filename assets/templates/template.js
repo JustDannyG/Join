@@ -433,12 +433,7 @@ function editBoardTaskHTML() {
                 <div id="subtasks-container" class="subtasks-container"></div>
             </div>
 
-            <div class="task-overlay-edit-btns">
-                <button class="task-overlay-btn"><img src="./assets/icons/delete.png" alt="Delete">Delete</button>
-                <span class="btn-breakline"></span>
-                <button class="task-overlay-btn" onclick="showEditTaskValues()"><img src="./assets/icons/edit.png"
-                        alt="Edit">Edit</button>
-            </div>
+            <button class="btn submit submit-btn" type="submit" form="edit-task-form">Ok <img src="./assets/icons/check.png"></button>
             
         </div>
     </div>`

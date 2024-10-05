@@ -17,15 +17,26 @@
     <div class="task-overlay-bg">
         <div class="task-overlay" onclick="stopEventBubbling(event)">
             <div class="task-overlay-category-container">
-                <span
-                    class="task-overlay-category ${currentTask.categoryText.replace(' ', '-').toLowerCase()}" style="background-color:powderblue;">User Stoty</span>
+               
+                    
+
+                    <details>
+                        <summary> <span
+                            class="task-overlay-category" style="background-color:powderblue;">User Stoty</span></summary>
+                            <label for="user-story">User Story</label>
+                        <input id="user-story" type="checkbox">
+                        <label for="technical-task">Technical Task</label>
+                        <input id="technical-task" type="checkbox">
+                      </details>
+
+
                 <img class="task-overlay-close-icon" src="./assets/icons/close-icon-dark.png" alt=""
                     onclick="classChangeAction('overlaver','overlaver-active','remove')">
             </div>
 
             <div>
                 <label for="title">Title</label>
-                <input class="input" type="text" value="Test Task long">
+                <input class="input" id="title" type="text" value="Test Task long">
             </div>
             <div class="task-overlay-scroll-container">
 
