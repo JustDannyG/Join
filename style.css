@@ -91,9 +91,9 @@ button {
 }
 
 
-  /*Priority Buttons*/
+/*Priority Buttons*/
 
-  .low {
+.low {
     background-color: var(--low);
     color: var(--white);
 }
@@ -106,4 +106,16 @@ button {
 .urgent {
     background-color: var(--urgent);
     color: var(--white);
+}
+
+/* =========================
+     Categorys Colors
+   ========================= */
+
+.user-stoty {
+    background-color: #0038FF;
+}
+
+.technical-task {
+    background-color: #20D7C1;
 }
