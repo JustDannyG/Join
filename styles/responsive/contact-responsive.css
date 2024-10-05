@@ -14,7 +14,7 @@
     }
 
     .contacts-first-letter {
-        padding: 25px 24px;
+        padding: 25px 35px;
     }
 
     .current-contact-circle {
@@ -26,6 +26,14 @@
         height: calc(100vh - (70px + 70px));
     }
 
+    .contact-list {
+        scale: 0.9;
+    }
+
+    .contact-list:hover {
+        scale: 1.0;
+    }
+
 }
 
 @media screen and (max-width: 1024px) and (min-width: 428px) {
@@ -35,14 +43,23 @@
 }
 
 @media screen and (max-width: 1024px) and (min-width: 600px) {
-    .contact-list {
-        margin-left: 10%;
+    .contacts-container {
         width: 80%;
     }
 
-    .contacts-first-letter {
-        margin-left: 10%;
+    .contact-list {
+        gap: 40px;
+        scale: 1.1;
     }
+
+    .contact-list:hover {
+        scale: 1.2;
+    }
+
+    .contacts-first-letter {
+        scale: 1.1;
+    }
+
 }
 
 
@@ -55,7 +72,7 @@
         flex-direction: column;
     }
 
-    .add-new-contact-desktop-sticky{
+    .add-new-contact-desktop-sticky {
         display: none;
     }
 }
@@ -76,7 +93,7 @@
         display: none;
     }
 
-    
+
 }
 
 @media(min-width: 1440px) {
