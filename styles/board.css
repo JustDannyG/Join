@@ -277,7 +277,7 @@
 .task-overlay {
     display: flex;
     flex-direction: column;
-    max-height: 931px;
+    max-height: 870px;
     width: 525px;
     border-radius: 30px;
     background-color: white;
@@ -288,7 +288,7 @@
     transition: all ease-in-out 125ms;
 }
 
-.task-overlay-scroll-container{
+.task-overlay-scroll-container {
     overflow-y: scroll;
 }
 
@@ -331,31 +331,31 @@
 
 }
 
-.task-overlay-prio-date-table{
+.task-overlay-prio-date-table {
     display: flex;
     font-size: 20px;
     gap: 24px;
 }
 
-.task-overlay-prio-date-table td{
-   padding: 10px 10px 10px 0;
+.task-overlay-prio-date-table td {
+    padding: 10px 10px 10px 0;
 }
 
 .task-overlay-assigned {
     font-size: 20px;
 }
 
-.task-overlay-assigned-to-list{
+.task-overlay-assigned-to-list {
     display: flex;
     flex-direction: column;
     padding: 10px 0 0 0;
 }
 
 .assigned-to-contact {
-   display: flex;
-   padding: 7px 16px;
-   align-items: center;
-   gap: 10px;
+    display: flex;
+    padding: 7px 16px;
+    align-items: center;
+    gap: 10px;
 }
 
 .initials-circle {
@@ -371,7 +371,7 @@
 }
 
 
-.task-overlay-subtask{
+.task-overlay-subtask {
     display: flex;
     align-items: center;
     gap: 16px;
@@ -381,7 +381,7 @@
     transition: all ease-in-out 100ms;
 }
 
-.task-overlay-subtask:hover{
+.task-overlay-subtask:hover {
     background-color: lightgray;
 }
 
