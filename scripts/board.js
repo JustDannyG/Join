@@ -16,6 +16,7 @@ async function boardInit() {
 }
 
 
+
 ////////////////////////
 // Show Board Tasks
 ///////////////////////
@@ -23,6 +24,8 @@ async function boardInit() {
 async function getTasks() {
     let response = await getData(path = "/tasks");
     let taskKeys = Object.keys(response);
+    console.log(taskKeys);
+
     for (let index = 0; index < taskKeys.length; index++) {
         const key = taskKeys[index];
         let task = response[key];
@@ -35,7 +38,8 @@ async function getTasks() {
             'category': task.category,
             'prio': task.prio,
             'categoryText': task.categoryText,
-            'subtask': task.subtask
+            'subtask': task.subtask,
+            'taskKey': taskKeys[index]
         });
     }
 }
@@ -122,10 +126,10 @@ function renderPrio(task, index) {
 }
 
 
+
 ///////////////////////////
 // Drag and Drop Fuktionen
 //////////////////////////
-
 
 function moveTo(category) {
     tasksArray[currentDraggedElement]["category"] = category;
@@ -198,22 +202,48 @@ function openTask(id) {
 
 function renderTasksArrays() {
     let assignedToRef = document.getElementById('assigned-to-list');
-    let subtaskRef = document.getElementById("subtask-overlay");
-    subtaskRef.innerHTML = "";
+
     assignedToRef.innerHTML = "";
     if (currentTask.assignedTo) {
         currentTask.assignedTo.forEach((contact) => {
             assignedToRef.innerHTML += generateAssignedToOerlayLiHTML(contact);
         });
     }
+    setCheck()
+}
+
+
+function setCheck() {
+    let subtaskRef = document.getElementById("subtask-overlay");
+    subtaskRef.innerHTML = "";
     if (currentTask.subtask) {    // Verwende Array um daten zu edit ......
-        currentTask.subtask.forEach(s => {
+        currentTask.subtask.forEach((s, i) => {
             subtaskRef.innerHTML += `
-        <div class="task-overlay-subtask"><img src="./assets/icons/${s.checked}.png" alt=""> ${s.sub}</div>
-        `
+    <div class="task-overlay-subtask" onclick="checkAndPushToFirebase(${i})"><img src="./assets/icons/${s.checked}.png" alt=""> ${s.sub}</div>
+    `
         })
     }
 }
+
+
+async function checkAndPushToFirebase(subIndex) {
+    console.log(currentTask.subtask[subIndex].checked);
+    let value = currentTask.subtask[subIndex].checked;
+    console.log(value);
+    value = !value
+    console.log(value);
+    console.log(currentTask.taskKey);
+    await putData(path = `/tasks/${currentTask.taskKey}/subtask/${subIndex}`,
+        data = {
+            'checked': value,
+            'sub': currentTask.subtask[subIndex].sub
+        }
+    );
+    await getTasks();
+    updateHtml();
+    setCheck()
+}
+
 
 // function checkboxStatus(s) {
 //     let subtaskRef = document.getElementById("subtask-overlay");
@@ -226,6 +256,8 @@ function renderTasksArrays() {
 //         subtaskRef.innerHTML += `<div><img src="./assets/icons/true.png" alt=""></div>`
 //     }
 // }
+
+
 
 ////////////////////////////
 // Edit Task Funktionen
@@ -325,7 +357,6 @@ function renderSubtaskEdit(subtasks) {
 ///////////////////////////////
 ///   Subtasks Bearbeitung  ///
 ///////////////////////////////
-
 
 //Ändern.........
 function saveWord(index) {
