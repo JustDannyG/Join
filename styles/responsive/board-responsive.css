@@ -1,5 +1,15 @@
 /* Mobile Design Adjustment */
 
+
+@media(max-width: 392px) {
+
+    .task-overlay {
+        padding: 33px 25px;
+        max-height: 700px;
+        scale: 0.9;
+    }
+}
+
 @media (max-width: 1024px) {
     .board-main-content {
         margin-left: 0;
