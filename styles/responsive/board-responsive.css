@@ -10,6 +10,12 @@
     }
 }
 
+@media (max-width: 600px){
+    .task-overlay {
+        scale: 0.9;
+    }
+}
+
 @media (max-width: 1024px) {
     .board-main-content {
         margin-left: 0;
