@@ -10,6 +10,12 @@
     }
 }
 
+@media(max-width: 428px) {
+    .task-overlay-title {
+        font-size: 51px;
+    }
+}
+
 @media (max-width: 600px){
     .task-overlay {
         scale: 0.9;
