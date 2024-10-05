@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./styles/board.css">
+    <link rel="stylesheet" href="styles/add-task.css">
+
+    <script src=""></script>
+
+</head>
+
+<body>
+    <div class="task-overlay-bg">
+        <div class="task-overlay" onclick="stopEventBubbling(event)">
+            <div class="task-overlay-category-container">
+               
+                    
+
+                    <details>
+                        <summary> <span
+                            class="task-overlay-category" style="background-color:powderblue;">User Stoty</span></summary>
+                            <label for="user-story">User Story</label>
+                        <input id="user-story" type="checkbox">
+                        <label for="technical-task">Technical Task</label>
+                        <input id="technical-task" type="checkbox">
+                      </details>
+
+
+                <img class="task-overlay-close-icon" src="./assets/icons/close-icon-dark.png" alt=""
+                    onclick="classChangeAction('overlaver','overlaver-active','remove')">
+            </div>
+
+            <div>
+                <label for="title">Title</label>
+                <input class="input" id="title" type="text" value="Test Task long">
+            </div>
+            <div class="task-overlay-scroll-container">
+
+                <div>
+                    <label for="description">Description</label>
+                    <textarea id="description" class="textarea" name="description"
+                        placeholder="Enter a Description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+                </div>
+
+                <table class="task-overlay-prio-date-table">
+                    <tr>
+                        <td>Due date:</td>
+                        <td><input value="2024-10-05" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>Priority:</td>
+                        <td>medium</td>
+                    </tr>
+                </table>
+
+                <div class="d-flex row">
+                    <button id="urgent-btn" class=" btn prio-btn" type="button"
+                        onclick="addPrio('urgent'), stopEventBubbling(event)">Urgent<img id="prio-icon-urgent"
+                            src="./assets/icons/prio-urgent-icon.png"></button>
+                    <button id="medium-btn" class="btn prio-btn" type="button" onclick="addPrio('medium')">Medium<img
+                            id="prio-icon-medium" src="./assets/icons/prio-medium-icon.png"></button>
+                    <button id="low-btn" class="btn prio-btn" type="button" onclick="addPrio('low')">Low<img
+                            id="prio-icon-low" src="./assets/icons/prio-low-icon.png"></button>
+                </div>
+
+                <div class="task-overlay-assigned">
+                    Assigned To:
+                    <div id="dropdown" class="drop-down d-flex">
+                        <input id="assign-to-dropdown" class="input" onkeyup="filter('assign-to-dropdown')"
+                            onclick="handleInputClick(event)" value="Select contacts to assign">
+                        <button class="btn dropdown-btn" onclick="handleDropdownButtonClick(event)" type="button">
+                            <img id="drop-down-icon1" src="./assets/icons/arrow-drop-down.png">
+                        </button>
+                    </div>
+                    <ul id="assign-to-dropdown-contacts" class="dropdown-options"></ul>
+                    <div id="selected-contacts-container" class="d-flex selectet-contacts-container"></div>
+                </div>
+
+                <div class="task-overlay-subtasks-container">
+                    Subtasks
+                    <div class="add-task-input">
+                        <input id="subtasks-input" type="subtasks" name="subtasks" onkeyup="subtaskInputBtn()"
+                            placeholder="Add new subtask" />
+                        <div class="add-subtask-btn" id="add-subtask-btn">
+                            <img src="./assets/icons/add -subtasks.png" alt="" onclick="setInputFocus()" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="task-overlay-edit-btns">
+                <button class="task-overlay-btn"><img src="./assets/icons/delete.png" alt="Delete">Delete</button>
+                <span class="btn-breakline"></span>
+                <button class="task-overlay-btn" onclick="showEditTaskValues()"><img src="./assets/icons/edit.png"
+                        alt="Edit">Edit</button>
+            </div>
+            <div id="subtasks-container" class="subtasks-container"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>
