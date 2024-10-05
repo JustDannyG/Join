@@ -1,17 +1,24 @@
 let currentDraggedElement;
 let tasksArray = [];
+let currentTask;
+// let infosRef;
 
 
-async function init() {
+
+////////////////////////
+//   Start
+///////////////////////
+
+async function boardInit() {
     await getContacts();
     await getTasks();
     updateHtml();
 }
 
-// document.addEventListener('touchstart', e => {
-//     alert('touch')
 
-// })
+////////////////////////
+// Show Board Tasks
+///////////////////////
 
 async function getTasks() {
     let response = await getData(path = "/tasks");
@@ -40,10 +47,10 @@ function updateHtml() {
     let feedbackById = document.getElementById('await-feedback-container');
     let doneById = document.getElementById('done-container');
 
-    renderTasks(filterTasks('todo'), todoById);
-    renderTasks(filterTasks('progress'), progressById);
-    renderTasks(filterTasks('feedback'), feedbackById);
-    renderTasks(filterTasks('done'), doneById);
+    renderTasks(filterTasks('todo'), todoById, 'To do');
+    renderTasks(filterTasks('progress'), progressById, 'Progress');
+    renderTasks(filterTasks('feedback'), feedbackById, 'Feedback');
+    renderTasks(filterTasks('done'), doneById, 'Done');
 }
 
 
@@ -52,10 +59,10 @@ function filterTasks(task) {
 }
 
 
-function renderTasks(tasks, getById) {
+function renderTasks(tasks, getById, noTask) {
     getById.innerHTML = "";
     if (tasks.length == 0) {
-        getById.innerHTML += generateNoTaskHTML();
+        getById.innerHTML += generateNoTaskHTML(noTask);
     } else {
         for (let index = 0; index < tasks.length; index++) {
             const task = tasks[index];
@@ -63,13 +70,13 @@ function renderTasks(tasks, getById) {
             getById.innerHTML += generateTaskHTML(task, index, className);
             if (task.assignedTo) {
                 renderAssignedToContacts(task, index);
-           }
-           if (task.subtask) {
-                 renderSubtask(task, index);
-           }
-           if (task.prio) {
-               renderPrio(task, index);
-           }
+            }
+            if (task.subtask) {
+                renderSubtask(task, index);
+            }
+            if (task.prio) {
+                renderPrio(task, index);
+            }
         }
     }
 }
@@ -111,8 +118,13 @@ function renderPrio(task, index) {
     const imgRef = document.getElementById(`${task.category}prio-icon${index}`)
     if (task.prio) {
         imgRef.src = `./assets/icons/prio-${task.prio}-icon.png`;
-    }
+    }// Else Statment bei keiner Prio mit d-none
 }
+
+
+///////////////////////////
+// Drag and Drop Fuktionen
+//////////////////////////
 
 
 function moveTo(category) {
@@ -153,33 +165,36 @@ function animationOndrag(id) {
 }
 
 
+
+////////////////////////
+// Show Task Funktionen
+///////////////////////
+
 function openTask(id) {
-    let currentTask = tasksArray[id];
-    let infosRef = {
-        'category': document.getElementById('task-category-overlay'),
-        'title': document.getElementById('task-title-overlay'),
-        'description': document.getElementById('task-discription-overlay'),
-        'letDateRef': document.getElementById('task-date-overlay'),
-        'prioTextRef': document.getElementById('task-prio-overlay'),
-        'prioIconRef': document.getElementById('prio-icon-overlay')
-    }
-    renderTaskInfos(currentTask, infosRef)
-    renderTasksArrays(currentTask)
+    currentTask = tasksArray[id]
+    document.getElementById('overlaver').innerHTML = taskBoardOverlay(id);
+    showTaskInfos();
+    renderTasksArrays();
 }
 
-function renderTaskInfos(currentTask, infosRef) {
-    infosRef.category.innerHTML = currentTask.categoryText;
-    infosRef.category.style.backgroundColor = "var(--category)";
-    infosRef.title.innerHTML = currentTask.title;
-    infosRef.description.innerHTML = currentTask.description;
-    infosRef.letDateRef.innerHTML = currentTask.date.replace(/-/g, "/");
+function showTaskInfos() {
+    document.getElementById('task-category-overlay').innerHTML = currentTask.categoryText;
+    let test =  document.getElementById('task-category-overlay');
+    // console.log(currentTask.categoryText.toLowerCase().replace(" ", "-"));
+    // let textCategory = currentTask.categoryText.toLowerCase().split(" ")
+    
+    // test.style.backgroundColor = `var(--${textCategory[1]}`
+    // document.getElementById('task-category-overlay').style.backgroundColor = `var(--${currentTask.categoryText})`;
+    document.getElementById('task-title-overlay').innerHTML = currentTask.title;
+    document.getElementById('task-discription-overlay').innerHTML = currentTask.description;
+    document.getElementById('task-date-overlay').innerHTML = currentTask.date.replace(/-/g, "/");
     if (currentTask.prio) {
-        infosRef.prioTextRef.innerHTML = currentTask.prio.charAt(0).toUpperCase() + currentTask.prio.slice(1);
-    infosRef.prioIconRef.src = `./assets/icons/prio-${currentTask.prio}-icon.png`;
-}
+        document.getElementById('task-prio-overlay').innerHTML = currentTask.prio.charAt(0).toUpperCase() + currentTask.prio.slice(1);
+        document.getElementById('prio-icon-overlay').src = `./assets/icons/prio-${currentTask.prio}-icon.png`;
+    }
 }
 
-function renderTasksArrays(currentTask) {
+function renderTasksArrays() {
     let assignedToRef = document.getElementById('assigned-to-list');
     let subtaskRef = document.getElementById("subtask-overlay");
     assignedToRef.innerHTML = "";
@@ -187,13 +202,13 @@ function renderTasksArrays(currentTask) {
 
     if (currentTask.assignedTo) {
         currentTask.assignedTo.forEach((a, i) => {
-            assignedToRef.innerHTML += generateAssignedToOerlayLiHTML(a, i)
+            assignedToRef.innerHTML += generateAssignedToOerlayLiHTML(a, i)// Verwende Array um daten zu edit ......Die aus der Globalen currentTask
         });
     }
-    if (currentTask.subtask) {
+    if (currentTask.subtask) {    // Verwende Array um daten zu edit ......
         currentTask.subtask.forEach(s => {
             renderCheckboxStatus(s, subtaskRef)
-        }) 
+        })
     }
 }
 
@@ -203,4 +218,120 @@ function renderCheckboxStatus(s, subtaskRef) {
     } else {
         subtaskRef.innerHTML += `<li><input class="checkbox" type="checkbox" name="" id="">${s.sub}</li>`
     }
+}
+
+////////////////////////////
+// Edit Task Funktionen
+////////////////////////////
+
+function showEditTaskValues() {
+    document.getElementById('overlaver').innerHTML = editBoardTaskHTML();
+    selectedContacts = [] //Required, to clear the Array from the Edit-Task before
+    getSelectedContacts()
+    renderContacts(selectedContacts)
+    renderInputs()
+    styleSelecet()
+}
+
+function renderInputs() {
+    document.getElementById('title').value = currentTask.title;
+    document.getElementById('description').value = currentTask.description;
+    document.getElementById('date').value = currentTask.date;
+    document.getElementById('selected-category').value = currentTask.categoryText;
+    let styledSelect = document.getElementById('selected-category').nextElementSibling;
+
+    if (styledSelect && styledSelect.classList.contains('styledSelect')) {
+        styledSelect.textContent = currentTask.categoryText;
+    }
+    if (currentTask.assignedTo) {
+        findCheckedContacts(currentTask)
+        renderContacts(selectedContacts)
+    }
+    if (currentTask.subtask) {
+        renderSubtaskEdit(currentTask.subtask)
+        currentSubtasks = []
+        currentSubtasks.push(...currentTask.subtask)
+    }
+    if (currentTask.prio) {
+        currentPrio()
+    }
+}
+
+
+// function currentPrio() {
+//     document.getElementById("urgent-btn").classList.remove("urgent");
+//     document.getElementById("medium-btn").classList.remove("medium");
+//     document.getElementById("low-btn").classList.remove("low");
+// }
+
+
+function currentPrio() {
+    document.getElementById("urgent-btn").classList.remove("urgent")
+    document.getElementById("medium-btn").classList.remove("medium")
+    document.getElementById("low-btn").classList.remove("low")
+    document.getElementById("prio-icon-urgent").src = "./assets/icons/prio-urgent-icon.png"
+    document.getElementById("prio-icon-medium").src = "./assets/icons/prio-medium-icon.png"
+    document.getElementById("prio-icon-low").src = "./assets/icons/prio-low-icon.png"
+   
+    if (currentTask.prio) {
+        console.log(currentPrio.prio);
+        
+        document.getElementById(`prio-icon-${currentTask.prio}`).src = `./assets/icons/prio-${currentTask.prio}-icon-active.png`
+        document.getElementById(`${currentTask.prio}-btn`).style.backgroundColor = "var(--currentTask.prio)";
+    } else return
+    
+
+}
+
+
+
+
+function findCheckedContacts(currentTask) {
+    for (let i = 0; i < selectedContacts.length; i++) {
+        let selectedName = selectedContacts[i].name;
+
+        for (let j = 0; j < currentTask.assignedTo.length; j++) {
+            let assignedName = currentTask.assignedTo[j].name;
+            if (assignedName == selectedName) {
+                selectedContacts[i].checked = true;
+            }
+        }
+    }
+};
+
+function renderSubtaskEdit(subtasks) {
+    let subTaskRef = document.getElementById("subtasks-container")
+    subtasks.forEach((subtask, i) => {
+        subTaskRef.innerHTML += subtaskTaskHTML(subtask, i)
+    });
+}
+
+// Änderung für Task
+// function addPrio(prioInput) {
+//     if (prioInput == prio) {
+//         prio = null;
+//     } else { prio = prioInput }
+//     updateBtnColor()
+// }
+
+
+////////////////////////
+// Subtasks Bearbeitung
+///////////////////////
+
+
+//Ändern.........
+function saveWord(index) {
+    const newValue = document.getElementById(`editInput${index}`).value;
+    currentSubtasks[index].sub = newValue;
+    // renderSubtask();
+    renderSubtaskEdit(currentSubtasks)
+}
+
+//Ändern............
+function deleteSubtask(i) {
+    currentSubtasks.splice(i, 1);
+    renderSubtaskEdit(currentSubtasks)
+    // renderSubtaskEdit(currentTask.subtask)
+    // renderSubtask();
 }

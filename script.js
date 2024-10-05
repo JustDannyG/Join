@@ -2,6 +2,7 @@ let user = 'Guest';
 let contacts = [];
 
 
+
 async function getContacts() {
     const contactsData = await getData("contacts");
     const keys = Object.keys(contactsData);
@@ -130,4 +131,69 @@ function openAddTask(taskStatus) {
     if (screenMode == 'desktop') {
         alert('Here Add Task Overlay')
     }
+}
+
+
+
+///////////////////
+// Select Function
+////////////////////
+
+
+
+function styleSelecet() {
+    document.querySelectorAll('select').forEach(function(select) {
+        select.classList.add('s-hidden');
+        var styledSelect = document.createElement('div');
+        styledSelect.classList.add('styledSelect');
+
+        styledSelect.textContent = select.options[select.selectedIndex].text;
+
+
+        select.parentNode.insertBefore(styledSelect, select.nextSibling);
+
+        var list = document.createElement('ul');
+        list.classList.add('options');
+        select.parentNode.insertBefore(list, styledSelect.nextSibling);
+
+        Array.from(select.options).forEach(function(option, index) {
+            var li = document.createElement('li');
+            li.textContent = option.text;
+            li.setAttribute('rel', option.value);
+            if (index === 0) {
+                li.classList.add('hide-first');
+            }
+            list.appendChild(li);
+        });
+
+        styledSelect.addEventListener('click', function(e) {
+            e.stopPropagation();
+            document.querySelectorAll('div.styledSelect.active').forEach(function(activeSelect) {
+                if (activeSelect !== styledSelect) {
+                    activeSelect.classList.remove('active');
+                    activeSelect.nextElementSibling.style.display = 'none';
+                }
+            });
+            styledSelect.classList.toggle('active');
+            list.style.display = styledSelect.classList.contains('active') ? 'block' : 'none';
+
+            if (styledSelect.classList.contains('active')) {
+                list.querySelector('li.hide-first').style.display = 'none';
+            }
+        });
+
+        list.addEventListener('click', function(e) {
+            if (e.target.tagName === 'LI') {
+                styledSelect.textContent = e.target.textContent;
+                styledSelect.classList.remove('active');
+                select.value = e.target.getAttribute('rel');
+                list.style.display = 'none';
+            }
+        });
+
+        document.addEventListener('click', function() {
+            styledSelect.classList.remove('active');
+            list.style.display = 'none';
+        });
+    });
 }

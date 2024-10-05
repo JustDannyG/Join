@@ -38,16 +38,16 @@ function contactListHtml(contact, i) {
 
 //Templates for Add Task
 
-function contactInDropDownHTML(i, contact, initials) {
+function contactInDropDownHTML(contact, initials) {
     return /*html*/ `
-            <li id="contact${i}" onclick="selectContact(${i}); stopEventBubbling(event)">
+            <li id="contact${contact.id}" onclick="selectContact(${contact.id}); stopEventBubbling(event)">
                 <div class="d-flex contact-row">
                     <div class="center gap">
                         <div class="contact center" style="background-color:${contact.color}">${initials}</div>
                         <span>${contact.name}</span>
                     </div>
                     <div class="container">
-                        <input type="checkbox" id="checkbox${i}" onclick="selectContact('${contact.name}'); stopEventBubbling(event)">
+                        <input type="checkbox" id="checkbox${contact.id}" onclick="selectContact('${contact.name}'); stopEventBubbling(event)">
                         <span class="checkmark"></span>
                     </div>
                 </div>
@@ -58,7 +58,10 @@ function contactSelectionCircleHTML(contact, initials) {
     return /*html*/ `<div class="contact center " style="background-color:${contact.color}">${initials}</div>`;
 }
 
-//Templates for Tasks
+
+////////////////////////////////////////////
+/////  Board  -  Tasks  Templates     //////
+///////////////////////////////////////////
 
 function generateTaskHTML(task, index, className) {
     return `<div id="${task.id}" draggable="true" dragleave="animationOndrag(${task.id})"  ondragstart="startDragging(${task.id})"  onclick="classChangeAction('overlaver','overlaver-active','add'); openTask(${task.id})" class="task">
@@ -78,12 +81,15 @@ function generateTaskHTML(task, index, className) {
               </div> `;
 }
 
-function generateNoTaskHTML() {
-    return /*html*/ `<div class="no-task"> No task To do</div> `;
+
+function generateNoTaskHTML(noTask) {
+    return /*html*/ `<div class="no-task"> No task in ${noTask}</div> `;
 }
 
 
-//Subtask
+////////////////////////////////////////////////////
+/////     Add-Task - Subtask     Templates    /////
+//////////////////////////////////////////////////
 
 function subtaskBtnHTML() {
     return `
@@ -136,7 +142,7 @@ function editIconsHTML(i) {
 }
 
 
-function generateAssignedToOerlayLiHTML(a,i){
+function generateAssignedToOerlayLiHTML(a, i) {
     return `
                         <li>
                             <div class="assigned-to-contact d-flex">
@@ -213,4 +219,128 @@ function desktopSidebar() {
             <a href="legal-notice.html">Legal notice</a>
         </div>
     </aside>`;
+}
+
+
+function editBoardTaskHTML() {
+    return ` <div class="overlay-edit-task column" onclick="closeDropdown(); stopEventBubbling(event)">
+    <div class="button-row">
+             <button class="btn close-btn" onclick="classChangeAction('overlaver', 'overlaver-active', 'remove'); stopEventBubbling(event);"><img class="icon" src="./assets/icons/close-icon-dark.png" alt=""></button>
+    </div>
+   
+            <form id="edit-task-form" class="column edit-form" onsubmit="submitEdit(); return false;">
+
+            <div class="column">
+                <label for="title">Title</label>
+                <input class="input" id="title" type="text" placeholder="Enter a title">
+            </div>
+
+            <div class="column mt-16">
+                <label for="description">Description</label>
+                <textarea id="description" class="textarea" name="description" placeholder="Enter a Description"></textarea>
+            </div>
+
+            <div class="column mt-16">
+                <label for="assign-to-dropdown">Assigned to</label>
+                <div id="dropdown" class="drop-down d-flex">
+                    <input id="assign-to-dropdown" class="input" onkeyup="filter('assign-to-dropdown')" onclick="handleInputClick(event)" value="Select contacts to assign">
+                    <button class="btn dropdown-btn" onclick="handleDropdownButtonClick(event)" type="button">
+                                <img id="drop-down-icon1" src="./assets/icons/arrow-drop-down.png">
+                            </button>
+                </div>
+                <ul id="assign-to-dropdown-contacts" class="dropdown-options"></ul>
+            </div>
+
+            <div id="selected-contacts-container" class="d-flex selectet-contacts-container"></div>
+
+            <div class="column mt-16">
+                <label for="date">Due date</label>
+                <input id="date" class="input" required type="date">
+            </div>
+
+            <div class="prio mt-16">
+                <span>Prio</span>
+                <div class="d-flex row">
+                    <button id="urgent-btn" class=" btn prio-btn" type="button" onclick="addPrio('urgent'), stopEventBubbling(event)">Urgent<img id="prio-icon-urgent"
+                                    src="./assets/icons/prio-urgent-icon.png"></button>
+                    <button id="medium-btn" class="btn prio-btn" type="button" onclick="addPrio('medium')">Medium<img
+                                    id="prio-icon-medium" src="./assets/icons/prio-medium-icon.png"></button>
+                    <button id="low-btn" class="btn prio-btn" type="button" onclick="addPrio('low')">Low<img
+                                    id="prio-icon-low" src="./assets/icons/prio-low-icon.png"></button>
+                </div>
+            </div>
+
+            <div class="column mt-16">
+                <label for="selected-category">Category</label>
+                <select id="selected-category" class="select-category">
+                            <option value="">Select task category:</option>
+                            <option value="Technical Task">Technical Task</option>
+                            <option value="User Story">User Story</option>
+                        </select>
+            </div>
+
+            <div class="form-field column mt-16">
+                <label for="subtasks-input">Subtasks</label>
+                <div class="add-task-input">
+                    <input id="subtasks-input" type="subtasks" name="subtasks" onkeyup="subtaskInputBtn()" placeholder="Add new subtask" />
+                    <div class="add-subtask-btn" id="add-subtask-btn">
+                        <img src="./assets/icons/add -subtasks.png" alt="" onclick="setInputFocus()" />
+                    </div>
+                </div>
+            </div>
+
+           <div id="subtasks-container" class="subtasks-container"></div>
+
+        </form>
+
+        <button class="btn submit submit-btn" type="submit" form="edit-task-form">Ok <img src="./assets/icons/check.png"></button>
+    
+        </div>`
+}
+
+function taskBoardOverlay(id) {
+    return `<div class="overlay-task column">
+            <div class="task-header d-flex">
+                <span id="task-category-overlay">User Story</span>
+                <button class="btn" onclick="classChangeAction('overlaver','overlaver-active','remove')">
+                    <img class="icon" src="./assets/icons/close-icon-dark.png" alt="">
+                </button>
+            </div>
+            <span id="task-title-overlay" class="task-title"></span>
+            <span id="task-discription-overlay" class="discription"></span>
+            <div class="task-details-container">
+                <div class="info">
+                    <span class="info-title">Due date:</span>
+                    <span id="task-date-overlay" class="info-value"></span>
+                </div>
+                <div class="info">
+                    <span class="info-title">Priority:</span>
+                    <div class="info-value">
+                        <span id="task-prio-overlay"></span>
+                        <img id="prio-icon-overlay" class="prio-icon" src="" alt="">
+                    </div>
+                </div>
+                <div class="assigned-to-container">Assigned To:
+                    <ul id="assigned-to-list">
+
+                    </ul>
+
+                    <div class="task-details"></div>
+
+
+                </div>
+                <div class="subtask">Subtask
+                    <ul id="subtask-overlay">
+
+                    </ul>
+                </div>
+            </div>
+            <div class="edit-task-container d-flex">
+                <button class="btn">
+                    <img class="icon" src="./assets/icons/delete.png" alt="">Delete</button>
+                <div class="divider"></div>
+                <button onclick="showEditTaskValues(); stopEventBubbling(event);" class="btn">
+                    <img class="icon" src="./assets/icons/edit.png" alt="">Edit</button>
+            </div>
+        </div>`;
 }

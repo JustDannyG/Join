@@ -11,3 +11,47 @@
         margin-left: 0;
     }
 }
+
+@media(min-width: 1024px) {
+    .submit-row {
+        margin-left: 210px;
+    }
+
+    .add-task-form {
+        flex-direction: row;
+        gap: 60px;
+        padding: 0 40px;
+    }
+
+    .task-details {
+        width: 100%;
+    }
+
+    .task-settings {
+        width: 100%;
+    }
+
+    .add-task-main-content {
+        flex-direction: row;
+        position: relative;
+    }
+
+    .add-task-headline {
+        position: absolute;
+        top: 110px;
+        left: 110px;
+        font-size: 61px;
+    }
+}
+
+
+
+@media (min-width: 1440px) {
+    .add-task-main-content {
+        margin-left: 232px;
+    }
+
+    .submit-row {
+        margin-left: 232px;
+    }
+}

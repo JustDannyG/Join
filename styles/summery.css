@@ -6,7 +6,7 @@
     background-color: var(--light-grey);
     padding: 25px 16px 48px 16px;
     text-wrap: wrap;
-    max-width: 1920px;
+    max-width: calc(1920px - 232px);
     position: relative;
     justify-content: center;
     align-items: center;
@@ -58,6 +58,8 @@
     max-height: 110px;
     height: 100%;
     gap: 8px;
+    transition: all ease-in-out 125ms;
+
     animation-name: summary-2;
     animation-duration: 300ms;
 }
@@ -70,6 +72,8 @@
     max-height: 110px;
     height: 100%;
     gap: 8px;
+    transition: all ease-in-out 125ms;
+
     animation-name: summary-1;
     animation-duration: 300ms;
 }

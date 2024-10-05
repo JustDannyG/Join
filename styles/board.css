@@ -7,9 +7,10 @@
     background-color: var(--light-grey);
     padding: 25px 16px 48px 16px;
     text-wrap: wrap;
-    max-width: 1920px;
+    max-width: calc(1920px - 232px);
     gap: 32px;
     margin-left: 210px;
+    z-index: 1;
 }
 
 .headline {
@@ -48,7 +49,7 @@
     position: sticky;
     top: 0;
     left: 0;
-    z-index: 1;
+    /* z-index: 1; */
 }
 
 .subtitle button {
@@ -68,7 +69,6 @@
     border: 2px dotted var(--dark-grey);
     border-radius: 8px;
 }
-
 
 .task-category {
     color: var(--light-grey);
@@ -164,7 +164,6 @@
     align-items: center;
     transition: all ease-in-out 125ms;
     /* background-color: burlywood; */
-
     animation-name: task;
     animation-duration: 800ms;
     animation-iteration-count: 1;
@@ -248,11 +247,12 @@
     background-color: rgba(0, 0, 0, 0.2);
     padding: 40px;
     transition: all 125ms ease-in-out;
-    transform: translateY(100%);
+    transform: translateX(100%);
+    z-index: 1;
 }
 
 .overlaver-active {
-    transform: translateY(0);
+    transform: translateX(0) !important;
 }
 
 .overlay-task {
@@ -374,6 +374,20 @@
     color: black;
 }
 
+.add-task-btn {
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+    width: 160px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    background-color: #2A3647;
+    border-radius: 10px;
+}
+
 .divider {
     height: 20px;
     width: 1px;
@@ -412,16 +426,17 @@ button {
 
 .task-content {
     display: flex;
-    gap: 32px;
+    gap: 30px;
 }
-
 
 .board-section {
     display: flex;
     flex-direction: column;
-    background-color: wheat;
+    background-color: rgba(245, 222, 179, 0.5);
     overflow: scroll;
-    padding: 0 10px;
+    padding: 10px;
+    border-radius: 10px;
+    transition: all ease-in-out 125ms;
 }
 
 @keyframes task {
@@ -432,4 +447,84 @@ button {
     to {
         scale: 1;
     }
+}
+
+
+/*Edit Task Overlayer*/
+
+.overlay-edit-task {
+    position: relative;
+    text-align: start;
+    padding: 34px;
+    width: 100%;
+    max-width: 424px;
+    height: min-content;
+    border-radius: 16px;
+    background-color: var(--white);
+    max-height: 80%;
+    box-shadow: rgba(99, 99, 99, 0.8) 0px 2px 8px 0px;
+    z-index: 2;
+}
+
+.mt16 {
+    margin-top: 16px;
+}
+
+.button-row {
+    width: 100%;
+    background-color: var(--white);
+    position: relative;
+    height: 22px;
+}
+
+.close-btn {
+    padding: 0 !important;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.dot {
+    position: absolute;
+    background-color: red;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.submit-btn {
+    margin-top: 16px;
+}
+
+.edit-form {
+    overflow-y: auto;
+    margin: 0;
+}
+
+
+.add-task-overlay-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    transform: translateX(100vw);
+    z-index: 1;
+}
+
+
+.add-task-overlay {
+    border: solid 1px;
+    width: 1100px;
+    height: 800px;
+    border-radius: 30px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    position: relative;
 }
