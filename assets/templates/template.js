@@ -142,15 +142,7 @@ function editIconsHTML(i) {
 }
 
 
-function generateAssignedToOerlayLiHTML(a, i) {
-    return `
-                        <li>
-                            <div class="assigned-to-contact d-flex">
-                                <div title="${a.name}" class="initials-circle center" style="background-color:${a.color}">${createInititals(a.name)}</div>
-                                <span class="name">${a.name}</span>
-                            </div>
-                        </li>`
-}
+
 
 //////////////////////////////////////////////////
 ///// mobile and desktop header and sidebar //////
@@ -221,6 +213,71 @@ function desktopSidebar() {
     </aside>`;
 }
 
+
+
+//////////////////////////////////////////////////
+/////          Board Task Overlays          //////
+//////////////////////////////////////////////////
+
+function taskBoardOverlay(currentTask) {
+    return ` <div class="task-overlay-bg" >
+        <div class="task-overlay" onclick="stopEventBubbling(event)">
+            <div class="task-overlay-category-container">
+                <span class="task-overlay-category ${currentTask.categoryText.replace(' ', '-').toLowerCase()}">${currentTask.categoryText}</span>
+                <img class="task-overlay-close-icon" src="./assets/icons/close-icon-dark.png" alt="" onclick="classChangeAction('overlaver','overlaver-active','remove')">
+            </div>
+            <h1 class="task-overlay-title">
+            ${currentTask.title}
+            </h1>
+
+            <div class="task-overlay-scroll-container">
+              <p class="task-overlay-description">${currentTask.description}</p>
+             <table class="task-overlay-prio-date-table">
+                  <tr>
+                      <td>Due date:</td>
+                      <td>${currentTask.date}</td>
+                  </tr>
+                  <tr>
+                      <td>Priority:</td>
+                      <td>${currentTask.prio}</td>
+                  </tr>
+              </table>
+              <div class="task-overlay-assigned">
+                  Assigned To:
+                  <ul class="task-overlay-assigned-to-list" id="assigned-to-list"></ul>
+              </div>
+              <div class="task-overlay-subtasks-container">
+                  Subtasks
+                  <div id="subtask-overlay"></div>
+              </div>
+            </div>
+
+            <div class="task-overlay-edit-btns">
+                <button class="task-overlay-btn"><img src="./assets/icons/delete.png" alt="Delete">Delete</button>
+                <span class="btn-breakline"></span>
+                <button class="task-overlay-btn" onclick="showEditTaskValues()"><img src="./assets/icons/edit.png" alt="Edit">Edit</button>
+            </div>
+
+        </div>
+    </div>`;
+}
+
+
+function generateAssignedToOerlayLiHTML(contact) {
+    return `
+                        <li class="assigned-to-contact">
+                                <div title="${contact.name}" class="initials-circle center" style="background-color:${contact.color};">${createInititals(contact.name)}</div>
+                                <span class="name">${contact.name}</span>
+                        </li>`
+}
+
+
+
+
+
+//////////////////////////////////////////////////
+/////         Board Task Overlays Edit      //////
+//////////////////////////////////////////////////
 
 function editBoardTaskHTML() {
     return ` <div class="overlay-edit-task column" onclick="closeDropdown(); stopEventBubbling(event)">
@@ -298,49 +355,3 @@ function editBoardTaskHTML() {
         </div>`
 }
 
-function taskBoardOverlay(id) {
-    return `<div class="overlay-task column">
-            <div class="task-header d-flex">
-                <span id="task-category-overlay">User Story</span>
-                <button class="btn" onclick="classChangeAction('overlaver','overlaver-active','remove')">
-                    <img class="icon" src="./assets/icons/close-icon-dark.png" alt="">
-                </button>
-            </div>
-            <span id="task-title-overlay" class="task-title"></span>
-            <span id="task-discription-overlay" class="discription"></span>
-            <div class="task-details-container">
-                <div class="info">
-                    <span class="info-title">Due date:</span>
-                    <span id="task-date-overlay" class="info-value"></span>
-                </div>
-                <div class="info">
-                    <span class="info-title">Priority:</span>
-                    <div class="info-value">
-                        <span id="task-prio-overlay"></span>
-                        <img id="prio-icon-overlay" class="prio-icon" src="" alt="">
-                    </div>
-                </div>
-                <div class="assigned-to-container">Assigned To:
-                    <ul id="assigned-to-list">
-
-                    </ul>
-
-                    <div class="task-details"></div>
-
-
-                </div>
-                <div class="subtask">Subtask
-                    <ul id="subtask-overlay">
-
-                    </ul>
-                </div>
-            </div>
-            <div class="edit-task-container d-flex">
-                <button class="btn">
-                    <img class="icon" src="./assets/icons/delete.png" alt="">Delete</button>
-                <div class="divider"></div>
-                <button onclick="showEditTaskValues(); stopEventBubbling(event);" class="btn">
-                    <img class="icon" src="./assets/icons/edit.png" alt="">Edit</button>
-            </div>
-        </div>`;
-}

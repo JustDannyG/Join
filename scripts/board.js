@@ -172,53 +172,60 @@ function animationOndrag(id) {
 
 function openTask(id) {
     currentTask = tasksArray[id]
-    document.getElementById('overlaver').innerHTML = taskBoardOverlay(id);
-    showTaskInfos();
+    document.getElementById('overlaver').innerHTML = taskBoardOverlay(currentTask);
+    console.log(currentTask);
+
+    // showTaskInfos();
     renderTasksArrays();
 }
 
-function showTaskInfos() {
-    document.getElementById('task-category-overlay').innerHTML = currentTask.categoryText;
-    let test =  document.getElementById('task-category-overlay');
-    // console.log(currentTask.categoryText.toLowerCase().replace(" ", "-"));
-    // let textCategory = currentTask.categoryText.toLowerCase().split(" ")
-    
-    // test.style.backgroundColor = `var(--${textCategory[1]}`
-    // document.getElementById('task-category-overlay').style.backgroundColor = `var(--${currentTask.categoryText})`;
-    document.getElementById('task-title-overlay').innerHTML = currentTask.title;
-    document.getElementById('task-discription-overlay').innerHTML = currentTask.description;
-    document.getElementById('task-date-overlay').innerHTML = currentTask.date.replace(/-/g, "/");
-    if (currentTask.prio) {
-        document.getElementById('task-prio-overlay').innerHTML = currentTask.prio.charAt(0).toUpperCase() + currentTask.prio.slice(1);
-        document.getElementById('prio-icon-overlay').src = `./assets/icons/prio-${currentTask.prio}-icon.png`;
-    }
-}
+// function showTaskInfos() {
+//     document.getElementById('task-category-overlay').innerHTML = currentTask.categoryText;
+//     let test =  document.getElementById('task-category-overlay');
+//     // console.log(currentTask.categoryText.toLowerCase().replace(" ", "-"));
+//     // let textCategory = currentTask.categoryText.toLowerCase().split(" ")
+
+//     // test.style.backgroundColor = `var(--${textCategory[1]}`
+//     // document.getElementById('task-category-overlay').style.backgroundColor = `var(--${currentTask.categoryText})`;
+//     document.getElementById('task-title-overlay').innerHTML = currentTask.title;
+//     document.getElementById('task-discription-overlay').innerHTML = currentTask.description;
+//     document.getElementById('task-date-overlay').innerHTML = currentTask.date.replace(/-/g, "/");
+//     if (currentTask.prio) {
+//         document.getElementById('task-prio-overlay').innerHTML = currentTask.prio.charAt(0).toUpperCase() + currentTask.prio.slice(1);
+//         document.getElementById('prio-icon-overlay').src = `./assets/icons/prio-${currentTask.prio}-icon.png`;
+//     }
+// }
 
 function renderTasksArrays() {
     let assignedToRef = document.getElementById('assigned-to-list');
     let subtaskRef = document.getElementById("subtask-overlay");
-    assignedToRef.innerHTML = "";
     subtaskRef.innerHTML = "";
-
+    assignedToRef.innerHTML = "";
     if (currentTask.assignedTo) {
-        currentTask.assignedTo.forEach((a, i) => {
-            assignedToRef.innerHTML += generateAssignedToOerlayLiHTML(a, i)// Verwende Array um daten zu edit ......Die aus der Globalen currentTask
+        currentTask.assignedTo.forEach((contact) => {
+            assignedToRef.innerHTML += generateAssignedToOerlayLiHTML(contact);
         });
     }
     if (currentTask.subtask) {    // Verwende Array um daten zu edit ......
         currentTask.subtask.forEach(s => {
-            renderCheckboxStatus(s, subtaskRef)
+            subtaskRef.innerHTML += `
+        <div class="task-overlay-subtask"><img src="./assets/icons/${s.checked}.png" alt=""> ${s.sub}</div>
+        `
         })
     }
 }
 
-function renderCheckboxStatus(s, subtaskRef) {
-    if (s.checked === true) {
-        subtaskRef.innerHTML += `<li><input class="checkbox" checked type="checkbox" name="" id="">${s.sub}</li>`
-    } else {
-        subtaskRef.innerHTML += `<li><input class="checkbox" type="checkbox" name="" id="">${s.sub}</li>`
-    }
-}
+// function checkboxStatus(s) {
+//     let subtaskRef = document.getElementById("subtask-overlay");
+//     subtaskRef.innerHTML = "";
+//     if (s.checked === true) {
+//         subtaskRef.innerHTML += html`
+//         <div><img src="./assets/icons/${s.checked}.png" alt=""></div>
+//         `
+//     } else {
+//         subtaskRef.innerHTML += `<div><img src="./assets/icons/true.png" alt=""></div>`
+//     }
+// }
 
 ////////////////////////////
 // Edit Task Funktionen
@@ -272,14 +279,14 @@ function currentPrio() {
     document.getElementById("prio-icon-urgent").src = "./assets/icons/prio-urgent-icon.png"
     document.getElementById("prio-icon-medium").src = "./assets/icons/prio-medium-icon.png"
     document.getElementById("prio-icon-low").src = "./assets/icons/prio-low-icon.png"
-   
+
     if (currentTask.prio) {
         console.log(currentPrio.prio);
-        
+
         document.getElementById(`prio-icon-${currentTask.prio}`).src = `./assets/icons/prio-${currentTask.prio}-icon-active.png`
         document.getElementById(`${currentTask.prio}-btn`).style.backgroundColor = "var(--currentTask.prio)";
     } else return
-    
+
 
 }
 
@@ -315,9 +322,9 @@ function renderSubtaskEdit(subtasks) {
 // }
 
 
-////////////////////////
-// Subtasks Bearbeitung
-///////////////////////
+///////////////////////////////
+///   Subtasks Bearbeitung  ///
+///////////////////////////////
 
 
 //Ändern.........
