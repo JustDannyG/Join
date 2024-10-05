@@ -240,8 +240,6 @@ async function checkAndPushToFirebase(subIndex) {
         }
     );
     await getTasks();
-    updateHtml();
-    setCheck()
 }
 
 
