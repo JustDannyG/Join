@@ -284,7 +284,8 @@
     padding: 48px 40px;
     box-sizing: border-box;
     gap: 10px;
-    
+    box-shadow: rgba(0, 0, 0, 0.3) 2px 1px 9px 7px;
+    transition: all ease-in-out 125ms;
 }
 
 .task-overlay-scroll-container{
@@ -375,6 +376,13 @@
     align-items: center;
     gap: 16px;
     padding: 6px 16px;
+    cursor: pointer;
+    border-radius: 15px;
+    transition: all ease-in-out 100ms;
+}
+
+.task-overlay-subtask:hover{
+    background-color: lightgray;
 }
 
 .task-overlay-edit-btns {
