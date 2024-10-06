@@ -173,6 +173,12 @@ function renderTasksArrays() {
     setCheck();
 }
 
+
+
+/////////////////////////////////////////
+///    Check Subtasks Functions     /////
+////////////////////////////////////////
+
 function setCheck() {
     let subtaskRef = document.getElementById("subtask-overlay");
     subtaskRef.innerHTML = "";
@@ -180,26 +186,15 @@ function setCheck() {
         // Verwende Array um daten zu edit ......
         currentTask.subtask.forEach((s, i) => {
             subtaskRef.innerHTML += `
-    <div class="task-overlay-subtask" onclick="checkAndPushToFirebase(${i})"><img  id="subtask${i}checkbox" src="./assets/icons/${s.checked}.png" alt=""> ${s.sub}</div>
+    <div class="task-overlay-subtask" onclick="checkAndPushToFirebase(${i})"><img src="./assets/icons/${s.checked}.png" alt=""> ${s.sub}</div>
     `;
         });
     }
 }
 
 async function checkAndPushToFirebase(subIndex) {
-    // console.log(currentTask.subtask[subIndex].checked);
-    // let value = currentTask.subtask[subIndex].checked;
-    // console.log(value);
-    // value = !value;
-    // console.log(value);
     currentTask.subtask[subIndex].checked = !currentTask.subtask[subIndex].checked;
-    console.log(currentTask.subtask[subIndex]);
-
-    // console.log(currentTask.taskKey);
-    // let checkboxRef = document.getElementById(`subtask${subIndex}checkbox`);
-    // checkboxRef.src = `./assets/icons/${currentTask.subtask[subIndex].checked}.png`;
-    // console.log(value);
-
+    setCheck();
     await putData(
         (path = `/tasks/${currentTask.taskKey}/subtask/${subIndex}`),
         (data = {
@@ -207,21 +202,10 @@ async function checkAndPushToFirebase(subIndex) {
             sub: currentTask.subtask[subIndex].sub,
         })
     );
-    setCheck();
     await getTasks();
 }
 
-// function checkboxStatus(s) {
-//     let subtaskRef = document.getElementById("subtask-overlay");
-//     subtaskRef.innerHTML = "";
-//     if (s.checked === true) {
-//         subtaskRef.innerHTML += html`
-//         <div><img src="./assets/icons/${s.checked}.png" alt=""></div>
-//         `
-//     } else {
-//         subtaskRef.innerHTML += `<div><img src="./assets/icons/true.png" alt=""></div>`
-//     }
-// }
+
 
 ////////////////////////////
 // Edit Task Funktionen
@@ -233,9 +217,9 @@ function showEditTaskValues() {
     editTaskSubtask();
     editTaskPrioBtnColor();
     taskPrioText();
-    // selectedContacts = [] //Required, to clear the Array from the Edit-Task before    //// Anpassungen
-    // getSelectedContacts()
-    // renderContacts(selectedContacts)
+  
+    
+   
 }
 function updateCategoryText(value) {
     currentTask.categoryText = value;
@@ -244,10 +228,15 @@ function updateCategoryText(value) {
 }
 
 function editTaskAssignTo() {
+     selectedContacts = [] //Required, to clear the Array from the Edit-Task before    //// Anpassungen
+    getSelectedContacts()
     if (currentTask.assignedTo) {
         findCheckedContacts(currentTask);
         renderContacts(selectedContacts);
+        renderSelectedContacts();
+       let assignedTo =  filterCheckedAssignedTo()
     }
+   
 }
 
 function editTaskSubtask() {

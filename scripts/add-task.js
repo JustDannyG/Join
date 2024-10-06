@@ -52,14 +52,14 @@ function toggleDropdown(id, iconId) {
     }
 }
 
-// function openDropdown(id, iconId) {
-//     const dropdown = document.getElementById(id);
-//     const dropdownIcon = document.getElementById(iconId);
-//     dropdown.classList.add("show-dropdown");
-//     dropdownIcon.style.transform = 'rotate(180deg)';
-//     isDropdownOpen = true;
-//     classChangeAction('dropdown', 'input-active', 'add')
-// }
+function openDropdown(id, iconId) {
+    const dropdown = document.getElementById(id);
+    const dropdownIcon = document.getElementById(iconId);
+    dropdown.classList.add("show-dropdown");
+    dropdownIcon.style.transform = 'rotate(180deg)';
+    isDropdownOpen = true;
+    classChangeAction('dropdown', 'input-active', 'add')
+}
 
 function closeDropdown() {
     const dropdown = document.getElementById("assign-to-dropdown-contacts");

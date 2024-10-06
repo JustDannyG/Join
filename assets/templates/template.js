@@ -341,17 +341,19 @@ function generateAssignedToOerlayLiHTML(contact) {
 function editBoardTaskHTML(currentTask) {
     return `
     <div class="task-overlay-bg">
-        <form onsubmit="" class="task-overlay" onclick="stopEventBubbling(event)">
+        <form onsubmit="" class="task-overlay" onclick="closeDropdown(); stopEventBubbling(event)">
             <div class="task-overlay-category-container">
-                <span id="category-text" class="task-overlay-category" onclick=" classChangeAction('dropdown-category', 'd-none', 'toggle') " style="background-color:powderblue;">${currentTask.categoryText}</span>
+                <span id="category-text" class="task-overlay-category cursor-pointer" onclick=" classChangeAction('dropdown-category', 'd-none', 'toggle');" style="background-color:powderblue;">${currentTask.categoryText}</span>
                 <img class="task-overlay-close-icon" src="./assets/icons/close-icon-dark.png"
                     onclick="classChangeAction('overlaver','overlaver-active','remove')">
+
+                <ul id="dropdown-category" class="dropdown-category d-none">
+                    <li class="category-text-option" onclick="updateCategoryText('User Story'); classChangeAction('dropdown-category', 'd-none', 'add')">User Story</li>
+                    <li class="category-text-option" onclick="updateCategoryText('Technical Task'); classChangeAction('dropdown-category', 'd-none', 'add')">Technical Task</li>
+            </ul>
             </div>
 
-            <ul id="dropdown-category" class="dropdown-category d-none">
-                <li class="category-text-option" onclick="updateCategoryText('User Story'); classChangeAction('dropdown-category', 'd-none', 'add')">User Story</li>
-                <li class="category-text-option" onclick="updateCategoryText('Technical Task'); classChangeAction('dropdown-category', 'd-none', 'add')">Technical Task</li>
-            </ul>
+           
 
      
               <div>

@@ -288,6 +288,7 @@
 }
 
 .task-overlay {
+    position: relative;
     display: flex;
     flex-direction: column;
     max-height: 870px;
@@ -341,6 +342,7 @@
 
 .task-overlay-description {
     font-size: 20px;
+    word-break: break-word;
 }
 
 .task-overlay-prio-date-table {
@@ -535,12 +537,17 @@
 }
 
 .dropdown-category {
+    position: absolute;
+    top: 88px;
+    width: min-content;
+    border-radius: 8px;
+    border: 1px solid var(--dark-grey);
+    background-color: var(--white);
     padding: 0;
 }
 
 .category-text-option {
     padding: 8px;
-    margin: 4px;
     width: 150px;
     border-radius: 8px;
     display: block;
@@ -551,5 +558,12 @@
 }
 
 .task-overlay-category {
+    
+    position: relative;
+}
+
+.cursor-pointer{
     cursor: pointer;
 }
+
+
