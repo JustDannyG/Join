@@ -283,20 +283,20 @@ function editBoardTaskHTML(currentTask) {
      
               <div>
                   <label for="title">Title</label>
-                <input class="input" type="text" required value="${currentTask.title}">
+                <input class="edit-title-input" type="text" required value="${currentTask.title}">
               </div>
               <div class="task-overlay-scroll-container">
 
                 <div>
                     <label for="description">Description</label>
-                    <textarea class="textarea" name="description"
+                    <textarea class="edit-textarea" name="description"
                         placeholder="Enter a Description">${currentTask.description}</textarea>
                 </div>
 
                 <table class="task-overlay-prio-date-table">
                     <tr>
                         <td>Due date:</td>
-                        <td><input value="${currentTask.date}" type="date"></td>
+                        <td><input class="edit-date-input" value="${currentTask.date}" type="date"></td>
                     </tr>
                     <tr>
                         <td>Priority:</td>
