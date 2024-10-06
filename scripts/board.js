@@ -3,8 +3,6 @@ let tasksArray = [];
 let currentTask;
 // let infosRef;
 
-
-
 ////////////////////////
 //   Start
 ///////////////////////
@@ -15,14 +13,12 @@ async function boardInit() {
     updateHtml();
 }
 
-
-
 ////////////////////////
 // Show Board Tasks
 ///////////////////////
 
 async function getTasks() {
-    let response = await getData(path = "/tasks");
+    let response = await getData((path = "/tasks"));
     let taskKeys = Object.keys(response);
     console.log(taskKeys);
 
@@ -30,38 +26,35 @@ async function getTasks() {
         const key = taskKeys[index];
         let task = response[key];
         tasksArray.push({
-            'title': task.title,
-            'description': task.description,
-            'id': index,
-            'date': task.date,
-            'assignedTo': task.assignedTo,
-            'category': task.category,
-            'prio': task.prio,
-            'categoryText': task.categoryText,
-            'subtask': task.subtask,
-            'taskKey': taskKeys[index]
+            title: task.title,
+            description: task.description,
+            id: index,
+            date: task.date,
+            assignedTo: task.assignedTo,
+            category: task.category,
+            prio: task.prio,
+            categoryText: task.categoryText,
+            subtask: task.subtask,
+            taskKey: taskKeys[index],
         });
     }
 }
 
-
 function updateHtml() {
-    let todoById = document.getElementById('to-do-container');
-    let progressById = document.getElementById('in-progress-container');
-    let feedbackById = document.getElementById('await-feedback-container');
-    let doneById = document.getElementById('done-container');
+    let todoById = document.getElementById("to-do-container");
+    let progressById = document.getElementById("in-progress-container");
+    let feedbackById = document.getElementById("await-feedback-container");
+    let doneById = document.getElementById("done-container");
 
-    renderTasks(filterTasks('todo'), todoById, 'To do');
-    renderTasks(filterTasks('progress'), progressById, 'Progress');
-    renderTasks(filterTasks('feedback'), feedbackById, 'Feedback');
-    renderTasks(filterTasks('done'), doneById, 'Done');
+    renderTasks(filterTasks("todo"), todoById, "To do");
+    renderTasks(filterTasks("progress"), progressById, "Progress");
+    renderTasks(filterTasks("feedback"), feedbackById, "Feedback");
+    renderTasks(filterTasks("done"), doneById, "Done");
 }
-
 
 function filterTasks(task) {
-    return tasksArray.filter(t => t['category'] == task);
+    return tasksArray.filter((t) => t["category"] == task);
 }
-
 
 function renderTasks(tasks, getById, noTask) {
     getById.innerHTML = "";
@@ -70,7 +63,7 @@ function renderTasks(tasks, getById, noTask) {
     } else {
         for (let index = 0; index < tasks.length; index++) {
             const task = tasks[index];
-            let className = task.categoryText.replace(" ", "-").toLowerCase()
+            let className = task.categoryText.replace(" ", "-").toLowerCase();
             getById.innerHTML += generateTaskHTML(task, index, className);
             if (task.assignedTo) {
                 renderAssignedToContacts(task, index);
@@ -85,47 +78,40 @@ function renderTasks(tasks, getById, noTask) {
     }
 }
 
-
 function renderSubtask(task, index) {
-    let taskAmount = document.getElementById(`${task.category}-amount${index}`)
-    let progressBar = document.getElementById(`${task.category}progress-bar${index}`)
-    let progress = document.getElementById(`${task.category}-progress${index}`)
-    let amount = task.subtask.filter(c => c.checked == true).length;
-    let total = 0
+    let taskAmount = document.getElementById(`${task.category}-amount${index}`);
+    let progressBar = document.getElementById(`${task.category}progress-bar${index}`);
+    let progress = document.getElementById(`${task.category}-progress${index}`);
+    let amount = task.subtask.filter((c) => c.checked == true).length;
+    let total = 0;
     task.subtask.forEach((sub, i) => {
-        total = i + 1
+        total = i + 1;
     });
     taskAmount.innerHTML = `${amount}/${total} Subtasks`;
-    let result = Math.round((100 / total) * amount) + '%';
-    progressBar.classList.remove('d-none')
-    progress.style.width = result
-
+    let result = Math.round((100 / total) * amount) + "%";
+    progressBar.classList.remove("d-none");
+    progress.style.width = result;
 }
-
 
 function renderAssignedToContacts(task, index) {
     const assignedToContainer = document.getElementById(`${task.category}contatcs-container${index}`);
     const numContainer = document.getElementById(`${task.category}contatcs-container${index}num`);
     task.assignedTo.forEach((c, i) => {
-
         if (i < 3) {
             assignedToContainer.innerHTML += `
         <div class="c${i} contact center" style="background-color:${c.color}">${createInititals(c.name)}</div>`;
         } else {
-            numContainer.innerHTML = `<div class="task-contact-length center">+${i - 2}</div>`
+            numContainer.innerHTML = `<div class="task-contact-length center">+${i - 2}</div>`;
         }
     });
 }
 
-
 function renderPrio(task, index) {
-    const imgRef = document.getElementById(`${task.category}prio-icon${index}`)
+    const imgRef = document.getElementById(`${task.category}prio-icon${index}`);
     if (task.prio) {
         imgRef.src = `./assets/icons/prio-${task.prio}-icon.png`;
-    }// Else Statment bei keiner Prio mit d-none
+    } // Else Statment bei keiner Prio mit d-none
 }
-
-
 
 ///////////////////////////
 // Drag and Drop Fuktionen
@@ -137,16 +123,13 @@ function moveTo(category) {
     updateHtml();
 }
 
-
 function startDragging(id) {
     currentDraggedElement = id;
 }
 
-
 function allowDrop(ev) {
     ev.preventDefault();
 }
-
 
 async function moveToUpdateDatabase() {
     let getTasks = await getData("/tasks");
@@ -154,54 +137,32 @@ async function moveToUpdateDatabase() {
     await putData(`/tasks/${taskKey[currentDraggedElement]}`, tasksArray[currentDraggedElement]);
 }
 
-
 function highlight(id) {
-    document.getElementById(id).classList.add('drag-area-highlight');
+    document.getElementById(id).classList.add("drag-area-highlight");
 }
 
 function removeHighlight(id) {
-    document.getElementById(id).classList.remove('drag-area-highlight');
+    document.getElementById(id).classList.remove("drag-area-highlight");
 }
-
 
 function animationOndrag(id) {
-    document.getElementById(id).classList.add('animation-ondrag')
+    document.getElementById(id).classList.add("animation-ondrag");
 }
-
-
 
 ////////////////////////
 // Show Task Funktionen
 ///////////////////////
 
 function openTask(id) {
-    currentTask = tasksArray[id]
-    document.getElementById('overlaver').innerHTML = taskBoardOverlay(currentTask);
+    currentTask = tasksArray[id];
+    document.getElementById("overlaver").innerHTML = taskBoardOverlay(currentTask);
     console.log(currentTask);
-
-    // showTaskInfos();
+    taskPrioText();
     renderTasksArrays();
 }
 
-// function showTaskInfos() {
-//     document.getElementById('task-category-overlay').innerHTML = currentTask.categoryText;
-//     let test =  document.getElementById('task-category-overlay');
-//     // console.log(currentTask.categoryText.toLowerCase().replace(" ", "-"));
-//     // let textCategory = currentTask.categoryText.toLowerCase().split(" ")
-
-//     // test.style.backgroundColor = `var(--${textCategory[1]}`
-//     // document.getElementById('task-category-overlay').style.backgroundColor = `var(--${currentTask.categoryText})`;
-//     document.getElementById('task-title-overlay').innerHTML = currentTask.title;
-//     document.getElementById('task-discription-overlay').innerHTML = currentTask.description;
-//     document.getElementById('task-date-overlay').innerHTML = currentTask.date.replace(/-/g, "/");
-//     if (currentTask.prio) {
-//         document.getElementById('task-prio-overlay').innerHTML = currentTask.prio.charAt(0).toUpperCase() + currentTask.prio.slice(1);
-//         document.getElementById('prio-icon-overlay').src = `./assets/icons/prio-${currentTask.prio}-icon.png`;
-//     }
-// }
-
 function renderTasksArrays() {
-    let assignedToRef = document.getElementById('assigned-to-list');
+    let assignedToRef = document.getElementById("assigned-to-list");
 
     assignedToRef.innerHTML = "";
     if (currentTask.assignedTo) {
@@ -209,51 +170,40 @@ function renderTasksArrays() {
             assignedToRef.innerHTML += generateAssignedToOerlayLiHTML(contact);
         });
     }
-    setCheck()
+    setCheck();
 }
 
+
+
+/////////////////////////////////////////
+///    Check Subtasks Functions     /////
+////////////////////////////////////////
 
 function setCheck() {
     let subtaskRef = document.getElementById("subtask-overlay");
     subtaskRef.innerHTML = "";
-    if (currentTask.subtask) {    // Verwende Array um daten zu edit ......
+    if (currentTask.subtask) {
+        // Verwende Array um daten zu edit ......
         currentTask.subtask.forEach((s, i) => {
             subtaskRef.innerHTML += `
     <div class="task-overlay-subtask" onclick="checkAndPushToFirebase(${i})"><img src="./assets/icons/${s.checked}.png" alt=""> ${s.sub}</div>
-    `
-        })
+    `;
+        });
     }
 }
 
-
 async function checkAndPushToFirebase(subIndex) {
-    console.log(currentTask.subtask[subIndex].checked);
-    let value = currentTask.subtask[subIndex].checked;
-    console.log(value);
-    value = !value
-    console.log(value);
-    console.log(currentTask.taskKey);
-    await putData(path = `/tasks/${currentTask.taskKey}/subtask/${subIndex}`,
-        data = {
-            'checked': value,
-            'sub': currentTask.subtask[subIndex].sub
-        }
+    currentTask.subtask[subIndex].checked = !currentTask.subtask[subIndex].checked;
+    setCheck();
+    await putData(
+        (path = `/tasks/${currentTask.taskKey}/subtask/${subIndex}`),
+        (data = {
+            checked: currentTask.subtask[subIndex].checked,
+            sub: currentTask.subtask[subIndex].sub,
+        })
     );
     await getTasks();
 }
-
-
-// function checkboxStatus(s) {
-//     let subtaskRef = document.getElementById("subtask-overlay");
-//     subtaskRef.innerHTML = "";
-//     if (s.checked === true) {
-//         subtaskRef.innerHTML += html`
-//         <div><img src="./assets/icons/${s.checked}.png" alt=""></div>
-//         `
-//     } else {
-//         subtaskRef.innerHTML += `<div><img src="./assets/icons/true.png" alt=""></div>`
-//     }
-// }
 
 
 
@@ -262,66 +212,71 @@ async function checkAndPushToFirebase(subIndex) {
 ////////////////////////////
 
 function showEditTaskValues() {
-    document.getElementById('overlaver').innerHTML = editBoardTaskHTML();
-    selectedContacts = [] //Required, to clear the Array from the Edit-Task before
+    document.getElementById("overlaver").innerHTML = editBoardTaskHTML(currentTask);
+    editTaskAssignTo();
+    editTaskSubtask();
+    editTaskPrioBtnColor();
+    taskPrioText();
+  
+    
+   
+}
+function updateCategoryText(value) {
+    currentTask.categoryText = value;
+    document.getElementById("category-text").innerHTML = value;
+    console.log(currentTask.categoryText);
+}
+
+function editTaskAssignTo() {
+     selectedContacts = [] //Required, to clear the Array from the Edit-Task before    //// Anpassungen
     getSelectedContacts()
-    renderContacts(selectedContacts)
-    renderInputs()
-    styleSelecet()
-}
-
-function renderInputs() {
-    document.getElementById('title').value = currentTask.title;
-    document.getElementById('description').value = currentTask.description;
-    document.getElementById('date').value = currentTask.date;
-    document.getElementById('selected-category').value = currentTask.categoryText;
-    let styledSelect = document.getElementById('selected-category').nextElementSibling;
-
-    if (styledSelect && styledSelect.classList.contains('styledSelect')) {
-        styledSelect.textContent = currentTask.categoryText;
-    }
     if (currentTask.assignedTo) {
-        findCheckedContacts(currentTask)
-        renderContacts(selectedContacts)
+        findCheckedContacts(currentTask);
+        renderContacts(selectedContacts);
+        renderSelectedContacts();
+       let assignedTo =  filterCheckedAssignedTo()
     }
+   
+}
+
+function editTaskSubtask() {
     if (currentTask.subtask) {
-        renderSubtaskEdit(currentTask.subtask)
-        currentSubtasks = []
-        currentSubtasks.push(...currentTask.subtask)
-    }
-    if (currentTask.prio) {
-        currentPrio()
+        renderSubtaskEdit(currentTask.subtask);
+        currentSubtasks = [];
+        currentSubtasks.push(...currentTask.subtask);
     }
 }
 
-
-// function currentPrio() {
-//     document.getElementById("urgent-btn").classList.remove("urgent");
-//     document.getElementById("medium-btn").classList.remove("medium");
-//     document.getElementById("low-btn").classList.remove("low");
-// }
-
-
-function currentPrio() {
-    document.getElementById("urgent-btn").classList.remove("urgent")
-    document.getElementById("medium-btn").classList.remove("medium")
-    document.getElementById("low-btn").classList.remove("low")
-    document.getElementById("prio-icon-urgent").src = "./assets/icons/prio-urgent-icon.png"
-    document.getElementById("prio-icon-medium").src = "./assets/icons/prio-medium-icon.png"
-    document.getElementById("prio-icon-low").src = "./assets/icons/prio-low-icon.png"
-
+function taskPrioText() {
     if (currentTask.prio) {
-        console.log(currentPrio.prio);
-
-        document.getElementById(`prio-icon-${currentTask.prio}`).src = `./assets/icons/prio-${currentTask.prio}-icon-active.png`
-        document.getElementById(`${currentTask.prio}-btn`).style.backgroundColor = "var(--currentTask.prio)";
-    } else return
-
-
+        document.getElementById("prio").innerHTML = currentTask.prio.charAt(0).toUpperCase() + currentTask.prio.slice(1);
+    } else {
+        document.getElementById("prio").innerHTML = "No Prio";
+    }
 }
 
+function editTaskPrioBtnColor() {
+    document.getElementById("urgent-btn").classList.remove("urgent");
+    document.getElementById("medium-btn").classList.remove("medium");
+    document.getElementById("low-btn").classList.remove("low");
+    document.getElementById("prio-icon-urgent").src = "./assets/icons/prio-urgent-icon.png";
+    document.getElementById("prio-icon-medium").src = "./assets/icons/prio-medium-icon.png";
+    document.getElementById("prio-icon-low").src = "./assets/icons/prio-low-icon.png";
 
+    if (currentTask.prio) {
+        document.getElementById(`prio-icon-${currentTask.prio}`).src = `./assets/icons/prio-${currentTask.prio}-icon-active.png`;
+        document.getElementById(`${currentTask.prio}-btn`).classList.add(currentTask.prio);
+    } else return;
+}
 
+function editPrio(prioInput) {
+    if (prioInput == currentTask.prio) {
+        currentTask.prio = null;
+    } else {
+        currentTask.prio = prioInput;
+    }
+    editTaskPrioBtnColor();
+}
 
 function findCheckedContacts(currentTask) {
     for (let i = 0; i < selectedContacts.length; i++) {
@@ -334,23 +289,14 @@ function findCheckedContacts(currentTask) {
             }
         }
     }
-};
-
-function renderSubtaskEdit(subtasks) {
-    let subTaskRef = document.getElementById("subtasks-container")
-    subtasks.forEach((subtask, i) => {
-        subTaskRef.innerHTML += subtaskTaskHTML(subtask, i)
-    });
 }
 
-// Änderung für Task
-// function addPrio(prioInput) {
-//     if (prioInput == prio) {
-//         prio = null;
-//     } else { prio = prioInput }
-//     updateBtnColor()
-// }
-
+function renderSubtaskEdit(subtasks) {
+    let subTaskRef = document.getElementById("subtasks-container");
+    subtasks.forEach((subtask, i) => {
+        subTaskRef.innerHTML += subtaskTaskHTML(subtask, i);
+    });
+}
 
 ///////////////////////////////
 ///   Subtasks Bearbeitung  ///
@@ -361,13 +307,17 @@ function saveWord(index) {
     const newValue = document.getElementById(`editInput${index}`).value;
     currentSubtasks[index].sub = newValue;
     // renderSubtask();
-    renderSubtaskEdit(currentSubtasks)
+    renderSubtaskEdit(currentSubtasks);
 }
 
 //Ändern............
 function deleteSubtask(i) {
     currentSubtasks.splice(i, 1);
-    renderSubtaskEdit(currentSubtasks)
+    renderSubtaskEdit(currentSubtasks);
     // renderSubtaskEdit(currentTask.subtask)
     // renderSubtask();
 }
+
+///////////////////////////////////////////
+///      Edit to Save to Firebase      ///
+//////////////////////////////////////////
