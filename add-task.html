@@ -1,126 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0 , maximum-scale=1" />
+        <link rel="icon" type="image/x-icon" href="./assets/icons/join-logo-light.png" />
+        <title>Join - Add Task</title>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0 , maximum-scale=1" />
-    <link rel="icon" type="image/x-icon" href="./assets/icons/join-logo-light.png">
-    <title>Join - Add Task</title>
+        <script src="./script.js" defer></script>
+        <script defer src="./scripts/add-task.js"></script>
+        <script src="./assets/templates/template.js"></script>
+        <script src="./scripts/fetch.js"></script>
 
-    <script src="./script.js" defer></script>
-    <script defer src="./scripts/add-task.js"></script>
-    <script src="./assets/templates/template.js"></script>
-    <script src="./scripts/fetch.js"></script>
+        <link rel="stylesheet" href="./style.css" />
+        <link rel="stylesheet" href="./styles/add-task.css" />
+        <link rel="stylesheet" href="./styles/header-sidebar.css" />
 
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="./styles/add-task.css" />
-    <link rel="stylesheet" href="./styles/header-sidebar.css">
+        <link rel="stylesheet" href="./styles/responsive/add-task-responsive.css" />
+        <link rel="stylesheet" href="./styles/responsive/responsive.css" />
+    </head>
 
-    <link rel="stylesheet" href="./styles/responsive/add-task-responsive.css" />
-    <link rel="stylesheet" href="./styles/responsive/responsive.css">
-</head>
+    <body class="column" onload="addTaskInit()" onclick="classChangeAction('user-menu', 'd-none', 'add'); classChangeAction('menu', 'menu-active', 'remove'); closeDropdown(); stopEventBubbling(event);">
+        <section id="join-header" class="join-header"></section>
 
-<body class="column" onload="addTaskInit()"
-    onclick="classChangeAction('user-menu', 'd-none', 'add'); classChangeAction('menu', 'menu-active', 'remove'); closeDropdown(); stopEventBubbling(event);">
+        <main class="add-task-main-content">
+            <form id="add-task" class="add-task-form" onsubmit="createTask(); return false;">
+                <div class="task-details">
+                    <h1 class="add-task-headline">Add Task</h1>
 
-    <section id="join-header" class="join-header"></section>
-
-    <main class="add-task-main-content">
-        <form id="add-task" class="add-task-form" onsubmit="createTask(); return false;">
-
-            <div class="task-details">
-                
-                <h1 class="add-task-headline">Add Task</h1>
-
-                <div class="column mt-16">
-                    <label for="title">Title<span class="required">*</span></label>
-                    <input class="input" required id="title" type="text" placeholder="Enter a title">
-                </div>
-
-                <div class="column mt-16">
-                    <label for="description">Description</label>
-                    <textarea id="description" class="textarea" name="description"
-                        placeholder="Enter a Description"></textarea>
-                </div>
-
-                <div class="column mt-16">
-                    <label for="assign-to-dropdown">Assigned to</label>
-                    <div id="dropdown" class="drop-down d-flex">
-                        <input id="assign-to-dropdown" class="input" onkeyup="filter('assign-to-dropdown')"
-                            onclick="handleInputClick(event)" value="Select contacts to assign">
-                        <button class="btn dropdown-btn" onclick="handleDropdownButtonClick(event)" type="button">
-                            <img id="drop-down-icon1" src="./assets/icons/arrow-drop-down.png">
-                        </button>
+                    <div class="column mt-16">
+                        <label for="title">Title<span class="required">*</span></label>
+                        <input class="input" required id="title" type="text" placeholder="Enter a title" />
                     </div>
-                    <ul id="assign-to-dropdown-contacts" class="dropdown-options"></ul>
-                </div>
 
-                <div id="selected-contacts-container" class="d-flex selectet-contacts-container"></div>
-            </div>
-
-            <div class="task-settings">
-                <div class="column mt-16">
-                    <label for="date">Due date<span class="required">*</span></label>
-                    <input id="date" class="input" required type="date">
-                </div>
-
-                <div class="prio mt-16">
-                    <span>Prio</span>
-                    <div class="d-flex row">
-                        <button id="urgent-btn" class=" btn prio-btn" type="button"
-                            onclick="addPrio('urgent'), stopEventBubbling(event)">Urgent<img id="prio-icon-urgent"
-                                src="./assets/icons/prio-urgent-icon.png"></button>
-                        <button id="medium-btn" class="btn prio-btn" type="button"
-                            onclick="addPrio('medium')">Medium<img id="prio-icon-medium"
-                                src="./assets/icons/prio-medium-icon.png"></button>
-                        <button id="low-btn" class="btn prio-btn" type="button" onclick="addPrio('low')">Low<img
-                                id="prio-icon-low" src="./assets/icons/prio-low-icon.png"></button>
+                    <div class="column mt-16">
+                        <label for="description">Description</label>
+                        <textarea id="description" class="textarea" name="description" placeholder="Enter a Description"></textarea>
                     </div>
+
+                    <div class="column mt-16">
+                        <label for="assign-to-dropdown">Assigned to</label>
+                        <div id="dropdown" class="drop-down d-flex">
+                            <input id="assign-to-dropdown" class="input" onkeyup="filter('assign-to-dropdown')" onclick="handleInputClick(event)" value="Select contacts to assign" />
+                            <button class="btn dropdown-btn" onclick="handleDropdownButtonClick(event)" type="button">
+                                <img id="drop-down-icon1" src="./assets/icons/arrow-drop-down.png" />
+                            </button>
+                        </div>
+                        <ul id="assign-to-dropdown-contacts" class="dropdown-options"></ul>
+                    </div>
+
+                    <div id="selected-contacts-container" class="d-flex selectet-contacts-container"></div>
                 </div>
 
-                <div class="column mt-16">
-                    <label for="selected-category">Category<span class="required">*</span></label>
-                    <select required id="selected-category" class="select-category">
-                        <option value="">Select task category:</option>
-                        <option value="Technical Task">Technical Task</option>
-                        <option value="User Story">User Story</option>
-                    </select>
-                </div>
+                <div class="task-settings">
+                    <div class="column mt-16">
+                        <label for="date">Due date<span class="required">*</span></label>
+                        <input id="date" class="input" required type="date" />
+                    </div>
 
-                <div class="form-field column mt-16">
-                    <label for="subtasks-input">Subtasks</label>
-                    <div class="add-task-input">
-                        <input id="subtasks-input" type="subtasks" name="subtasks" onkeyup="subtaskInputBtn()"
-                            placeholder="Add new subtask" />
-                        <div class="add-subtask-btn" id="add-subtask-btn">
-                            <img src="./assets/icons/add -subtasks.png" alt="" onclick="setInputFocus()" />
+                    <div class="prio mt-16">
+                        <span>Prio</span>
+                        <div class="d-flex row">
+                            <button id="urgent-btn" class="btn prio-btn" type="button" onclick="addPrio('urgent'), stopEventBubbling(event)">Urgent<img id="prio-icon-urgent" src="./assets/icons/prio-urgent-icon.png" /></button>
+                            <button id="medium-btn" class="btn prio-btn" type="button" onclick="addPrio('medium')">Medium<img id="prio-icon-medium" src="./assets/icons/prio-medium-icon.png" /></button>
+                            <button id="low-btn" class="btn prio-btn" type="button" onclick="addPrio('low')">Low<img id="prio-icon-low" src="./assets/icons/prio-low-icon.png" /></button>
                         </div>
                     </div>
+
+                    <div class="column mt-16">
+                        <label for="selected-category">Category<span class="required">*</span></label>
+                        <select required id="selected-category" class="select-category">
+                            <option value="">Select task category:</option>
+                            <option value="Technical Task">Technical Task</option>
+                            <option value="User Story">User Story</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field column mt-16">
+                        <label for="subtasks-input">Subtasks</label>
+                        <div class="add-task-input">
+                            <input id="subtasks-input" type="subtasks" name="subtasks" onkeyup="subtaskInputBtn()" placeholder="Add new subtask" />
+                            <div class="add-subtask-btn" id="add-subtask-btn">
+                                <img src="./assets/icons/add -subtasks.png" alt="" onclick="setInputFocus()" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="subtasks-container" class="subtasks-container"></div>
                 </div>
 
-                <div id="subtasks-container" class="subtasks-container"></div>
-            </div>
+                <div class="add-task-action-btn">
+                    <div><span class="required">*</span>This field is required</div>
+                    <div class="d-flex btn-gap">
+                        <button class="btn clear" onclick="return false;">Clear <img src="./assets/icons/clear-icon-dark.png" alt="" /></button>
+                        <button class="btn submit">Create Task <img src="./assets/icons/check.png" alt="" /></button>
+                    </div>
+                </div>
+            </form>
+        </main>
 
-            <div class="add-task-action-btn">
-                <div><span class="required ">*</span>This field is required</div>
-                <div class="d-flex">
-                <button class="btn">Clear <img src="./assets/icons/clear-icon-dark.png" alt=""></button>
-                <button class="btn">Ok <img src="./assets/icons/check.png" alt=""></button>
-            </div>
-            </div>
+        <div class="d-flex submit-row">
+            <div><span class="required">*</span>This field is required</div>
+            <button class="btn submit" type="submit" form="add-task">Create Task <img src="./assets/icons/check.png" /></button>
+        </div>
 
-        </form>
-
-    </main>
-
-    <div class="d-flex submit-row">
-        <div><span class="required ">*</span>This field is required</div>
-        <button class="btn submit" type="submit" form="add-task">Create Task <img
-                src="./assets/icons/check.png"></button>
-    </div>
-
-    <section id="join-sidebar"></section>
-  
-</body>
-
+        <section id="join-sidebar"></section>
+    </body>
 </html>
