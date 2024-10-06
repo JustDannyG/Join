@@ -325,8 +325,10 @@ function deleteSubtask(i) {
     // renderSubtask();
 }
 
+
+
 ///////////////////////////////////////////
-///      editing Save to Firebase      ///
+///    Task editing Save to Firebase    ///
 //////////////////////////////////////////
 
 
@@ -344,7 +346,18 @@ async function editTask(){
         'date': editDate,
         'prio': currentTask.prio,
         'assignedTo': currentTask.assignedTo,
-        'subtask': currentSubtasks
+        'subtask': currentSubtasks,
+        'taskKey': currentTask.taskKey
     })
+    
+    await getTasks();
+    document.getElementById("overlaver").innerHTML = taskBoardOverlay(tasksArray[currentTask.id]);
+}
 
+
+function updateTask(){
+    
+    console.log(data);
+    
+    
 }
