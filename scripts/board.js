@@ -180,23 +180,30 @@ function setCheck() {
         // Verwende Array um daten zu edit ......
         currentTask.subtask.forEach((s, i) => {
             subtaskRef.innerHTML += `
-    <div class="task-overlay-subtask" onclick="checkAndPushToFirebase(${i})"><img src="./assets/icons/${s.checked}.png" alt=""> ${s.sub}</div>
+    <div class="task-overlay-subtask" onclick="checkAndPushToFirebase(${i})"><img  id="subtask${i}checkbox" src="./assets/icons/${s.checked}.png" alt=""> ${s.sub}</div>
     `;
         });
     }
 }
 
 async function checkAndPushToFirebase(subIndex) {
-    console.log(currentTask.subtask[subIndex].checked);
-    let value = currentTask.subtask[subIndex].checked;
-    console.log(value);
-    value = !value;
-    console.log(value);
-    console.log(currentTask.taskKey);
+    // console.log(currentTask.subtask[subIndex].checked);
+    // let value = currentTask.subtask[subIndex].checked;
+    // console.log(value);
+    // value = !value;
+    // console.log(value);
+    currentTask.subtask[subIndex].checked = !currentTask.subtask[subIndex].checked;
+    console.log(currentTask.subtask[subIndex]);
+
+    // console.log(currentTask.taskKey);
+    let checkboxRef = document.getElementById(`subtask${subIndex}checkbox`);
+    checkboxRef.src = `./assets/icons/${currentTask.subtask[subIndex].checked}.png`;
+    // console.log(value);
+
     await putData(
         (path = `/tasks/${currentTask.taskKey}/subtask/${subIndex}`),
         (data = {
-            checked: value,
+            checked: currentTask.subtask[subIndex].checked,
             sub: currentTask.subtask[subIndex].sub,
         })
     );

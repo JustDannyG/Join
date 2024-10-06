@@ -349,8 +349,8 @@ function editBoardTaskHTML(currentTask) {
             </div>
 
             <ul id="dropdown-category" class="dropdown-category d-none">
-                <li class="category-text-option" onclick="updateCategoryText('User Story'); classChangeAction('dropdown-category', 'd-none', 'remove')">User Story</li>
-                <li class="category-text-option" onclick="updateCategoryText('Technical Task'); classChangeAction('dropdown-category', 'd-none', 'remove')">Technical Task</li>
+                <li class="category-text-option" onclick="updateCategoryText('User Story'); classChangeAction('dropdown-category', 'd-none', 'add')">User Story</li>
+                <li class="category-text-option" onclick="updateCategoryText('Technical Task'); classChangeAction('dropdown-category', 'd-none', 'add')">Technical Task</li>
             </ul>
 
      
