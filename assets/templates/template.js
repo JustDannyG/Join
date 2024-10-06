@@ -247,7 +247,7 @@ function taskBoardOverlay(currentTask) {
                   </tr>
                   <tr>
                       <td>Priority:</td>
-                      <td>${currentTask.prio}</td>
+                      <td id="prio">}</td>
                   </tr>
               </table>
               <div class="task-overlay-assigned">
@@ -363,47 +363,47 @@ function generateAssignedToOerlayLiHTML(contact) {
 //         </div>`
 // }
 
-function editBoardTaskHTML() {
+function editBoardTaskHTML(currentTask) {
     return `
     <div class="task-overlay-bg">
-        <div class="task-overlay" onclick="stopEventBubbling(event)">
+        <form onsubmit="" class="task-overlay" onclick="stopEventBubbling(event)">
             <div class="task-overlay-category-container">
                 <span
                     class="task-overlay-category" style="background-color:powderblue;">User Stoty</span>
                 <img class="task-overlay-close-icon" src="./assets/icons/close-icon-dark.png" alt=""
                     onclick="classChangeAction('overlaver','overlaver-active','remove')">
             </div>
-
-            <div>
-                <label for="title">Title</label>
-                <input class="input" id="title" type="text" value="Test Task long">
-            </div>
-            <div class="task-overlay-scroll-container">
+     
+              <div>
+                  <label for="title">Title</label>
+                <input class="input" type="text" required value="${currentTask.title}">
+              </div>
+              <div class="task-overlay-scroll-container">
 
                 <div>
                     <label for="description">Description</label>
-                    <textarea id="description" class="textarea" name="description"
-                        placeholder="Enter a Description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+                    <textarea class="textarea" name="description"
+                        placeholder="Enter a Description">${currentTask.description}</textarea>
                 </div>
 
                 <table class="task-overlay-prio-date-table">
                     <tr>
                         <td>Due date:</td>
-                        <td><input value="2024-10-05" type="date"></td>
+                        <td><input value="${currentTask.date}" type="date"></td>
                     </tr>
                     <tr>
                         <td>Priority:</td>
-                        <td>medium</td>
+                        <td id="prio"></td>
                     </tr>
                 </table>
 
                 <div class="d-flex row">
                     <button id="urgent-btn" class=" btn prio-btn" type="button"
-                        onclick="addPrio('urgent'), stopEventBubbling(event)">Urgent<img id="prio-icon-urgent"
+                        onclick="editPrio('urgent'), stopEventBubbling(event)">Urgent<img id="prio-icon-urgent"
                             src="./assets/icons/prio-urgent-icon.png"></button>
-                    <button id="medium-btn" class="btn prio-btn" type="button" onclick="addPrio('medium')">Medium<img
+                    <button id="medium-btn" class="btn prio-btn" type="button" onclick="editPrio('medium')">Medium<img
                             id="prio-icon-medium" src="./assets/icons/prio-medium-icon.png"></button>
-                    <button id="low-btn" class="btn prio-btn" type="button" onclick="addPrio('low')">Low<img
+                    <button id="low-btn" class="btn prio-btn" type="button" onclick="editPrio('low')">Low<img
                             id="prio-icon-low" src="./assets/icons/prio-low-icon.png"></button>
                 </div>
 
@@ -433,8 +433,9 @@ function editBoardTaskHTML() {
                 <div id="subtasks-container" class="subtasks-container"></div>
             </div>
 
-            <button class="btn submit submit-btn" type="submit" form="edit-task-form">Ok <img src="./assets/icons/check.png"></button>
+            <button class="btn submit submit-btn" >Ok <img src="./assets/icons/check.png"></button>
             
-        </div>
+        </form>
+        
     </div>`
 }
