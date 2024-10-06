@@ -178,27 +178,10 @@ function openTask(id) {
     currentTask = tasksArray[id]
     document.getElementById('overlaver').innerHTML = taskBoardOverlay(currentTask);
     console.log(currentTask);
-
-    // showTaskInfos();
+    taskPrioText()
     renderTasksArrays();
 }
 
-// function showTaskInfos() {
-//     document.getElementById('task-category-overlay').innerHTML = currentTask.categoryText;
-//     let test =  document.getElementById('task-category-overlay');
-//     // console.log(currentTask.categoryText.toLowerCase().replace(" ", "-"));
-//     // let textCategory = currentTask.categoryText.toLowerCase().split(" ")
-
-//     // test.style.backgroundColor = `var(--${textCategory[1]}`
-//     // document.getElementById('task-category-overlay').style.backgroundColor = `var(--${currentTask.categoryText})`;
-//     document.getElementById('task-title-overlay').innerHTML = currentTask.title;
-//     document.getElementById('task-discription-overlay').innerHTML = currentTask.description;
-//     document.getElementById('task-date-overlay').innerHTML = currentTask.date.replace(/-/g, "/");
-//     if (currentTask.prio) {
-//         document.getElementById('task-prio-overlay').innerHTML = currentTask.prio.charAt(0).toUpperCase() + currentTask.prio.slice(1);
-//         document.getElementById('prio-icon-overlay').src = `./assets/icons/prio-${currentTask.prio}-icon.png`;
-//     }
-// }
 
 function renderTasksArrays() {
     let assignedToRef = document.getElementById('assigned-to-list');
@@ -262,47 +245,44 @@ async function checkAndPushToFirebase(subIndex) {
 ////////////////////////////
 
 function showEditTaskValues() {
-    document.getElementById('overlaver').innerHTML = editBoardTaskHTML();
-    selectedContacts = [] //Required, to clear the Array from the Edit-Task before
-    getSelectedContacts()
-    renderContacts(selectedContacts)
-    renderInputs()
-    styleSelecet()
+    document.getElementById('overlaver').innerHTML = editBoardTaskHTML(currentTask);
+    editTaskAssignTo();
+    editTaskSubtask();
+    editTaskPrioBtnColor();
+    taskPrioText()
+    // selectedContacts = [] //Required, to clear the Array from the Edit-Task before    //// Anpassungen
+    // getSelectedContacts()
+    // renderContacts(selectedContacts)
 }
 
-function renderInputs() {
-    document.getElementById('title').value = currentTask.title;
-    document.getElementById('description').value = currentTask.description;
-    document.getElementById('date').value = currentTask.date;
-    document.getElementById('selected-category').value = currentTask.categoryText;
-    let styledSelect = document.getElementById('selected-category').nextElementSibling;
 
-    if (styledSelect && styledSelect.classList.contains('styledSelect')) {
-        styledSelect.textContent = currentTask.categoryText;
-    }
+function editTaskAssignTo(){
     if (currentTask.assignedTo) {
         findCheckedContacts(currentTask)
         renderContacts(selectedContacts)
     }
+}
+
+
+function editTaskSubtask() {
     if (currentTask.subtask) {
         renderSubtaskEdit(currentTask.subtask)
         currentSubtasks = []
         currentSubtasks.push(...currentTask.subtask)
     }
-    if (currentTask.prio) {
-        currentPrio()
-    }
 }
 
 
-// function currentPrio() {
-//     document.getElementById("urgent-btn").classList.remove("urgent");
-//     document.getElementById("medium-btn").classList.remove("medium");
-//     document.getElementById("low-btn").classList.remove("low");
-// }
+ function taskPrioText(){
+    if (currentTask.prio) {
+        document.getElementById('prio').innerHTML = currentTask.prio.charAt(0).toUpperCase() + currentTask.prio.slice(1);
+    } else {
+        document.getElementById('prio').innerHTML = 'No Prio';
+    }
+ }
 
-
-function currentPrio() {
+ 
+function editTaskPrioBtnColor() {
     document.getElementById("urgent-btn").classList.remove("urgent")
     document.getElementById("medium-btn").classList.remove("medium")
     document.getElementById("low-btn").classList.remove("low")
@@ -311,16 +291,18 @@ function currentPrio() {
     document.getElementById("prio-icon-low").src = "./assets/icons/prio-low-icon.png"
 
     if (currentTask.prio) {
-        console.log(currentPrio.prio);
-
         document.getElementById(`prio-icon-${currentTask.prio}`).src = `./assets/icons/prio-${currentTask.prio}-icon-active.png`
-        document.getElementById(`${currentTask.prio}-btn`).style.backgroundColor = "var(--currentTask.prio)";
+        document.getElementById(`${currentTask.prio}-btn`).classList.add(currentTask.prio)
     } else return
-
-
 }
 
 
+function editPrio(prioInput) {
+    if (prioInput == currentTask.prio) {
+        currentTask.prio = null;
+    } else { currentTask.prio = prioInput }
+    editTaskPrioBtnColor()    
+}
 
 
 function findCheckedContacts(currentTask) {
@@ -343,14 +325,6 @@ function renderSubtaskEdit(subtasks) {
     });
 }
 
-// Änderung für Task
-// function addPrio(prioInput) {
-//     if (prioInput == prio) {
-//         prio = null;
-//     } else { prio = prioInput }
-//     updateBtnColor()
-// }
-
 
 ///////////////////////////////
 ///   Subtasks Bearbeitung  ///
@@ -371,3 +345,11 @@ function deleteSubtask(i) {
     // renderSubtaskEdit(currentTask.subtask)
     // renderSubtask();
 }
+
+
+
+
+///////////////////////////////////////////
+///      Edit to Save to Firebase      ///
+//////////////////////////////////////////
+

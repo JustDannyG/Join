@@ -94,17 +94,17 @@ button {
 /*Priority Buttons*/
 
 .low {
-    background-color: var(--low);
+    background-color: var(--low) !important;
     color: var(--white);
 }
 
 .medium {
-    background-color: var(--medium);
+    background-color: var(--medium) !important;
     color: var(--white);
 }
 
 .urgent {
-    background-color: var(--urgent);
+    background-color: var(--urgent) !important;
     color: var(--white);
 }
 
