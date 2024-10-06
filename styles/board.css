@@ -63,8 +63,6 @@
     width: 30px;
 }
 
-
-
 /* =========================
        No Task Template
    ========================= */
@@ -79,9 +77,6 @@
     border: 2px dotted var(--dark-grey);
     border-radius: 8px;
 }
-
-
-
 
 /* =========================
       Task Template
@@ -228,33 +223,31 @@
     animation-duration: 800ms;
 }
 
-
 @keyframes task-drag {
     0% {
-        transform: rotate(0deg)
+        transform: rotate(0deg);
     }
 
     10% {
-        transform: rotate(-8deg)
+        transform: rotate(-8deg);
     }
 
     30% {
-        transform: rotate(6deg)
+        transform: rotate(6deg);
     }
 
     55% {
-        transform: rotate(-3deg)
+        transform: rotate(-3deg);
     }
 
     80% {
-        transform: rotate(1deg)
+        transform: rotate(1deg);
     }
 
     100% {
-        transform: rotate(-1deg)
+        transform: rotate(-1deg);
     }
 }
-
 
 /*Task Overlay*/
 
@@ -276,8 +269,6 @@
 .overlaver-active {
     transform: translateX(0) !important;
 }
-
-
 
 /* =========================
    Board Task Overlay
@@ -350,7 +341,6 @@
 
 .task-overlay-description {
     font-size: 20px;
-
 }
 
 .task-overlay-prio-date-table {
@@ -392,7 +382,6 @@
     font-size: 20px;
 }
 
-
 .task-overlay-subtask {
     display: flex;
     align-items: center;
@@ -430,14 +419,8 @@
 .btn-breakline {
     height: 24px;
     width: 1px;
-    background-color: #D1D1D1;
+    background-color: #d1d1d1;
 }
-
-
-
-
-
-
 
 /*Desktop*/
 
@@ -479,7 +462,6 @@
     }
 }
 
-
 /* =========================
    Edit Task Overlay
    ========================= */
@@ -518,15 +500,6 @@
     right: 0;
 }
 
-.dot {
-    position: absolute;
-    background-color: red;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-}
-
 .submit-btn {
     margin-top: 16px;
 }
@@ -535,7 +508,6 @@
     overflow-y: auto;
     margin: 0;
 }
-
 
 .add-task-overlay-bg {
     position: absolute;
@@ -551,7 +523,6 @@
     z-index: 1;
 }
 
-
 .add-task-overlay {
     border: solid 1px;
     width: 1100px;
@@ -561,4 +532,24 @@
     display: flex;
     align-items: center;
     position: relative;
+}
+
+.dropdown-category {
+    padding: 0;
+}
+
+.category-text-option {
+    padding: 8px;
+    margin: 4px;
+    width: 150px;
+    border-radius: 8px;
+    display: block;
+}
+
+.category-text-option:hover {
+    background-color: var(--dark-grey);
+}
+
+.task-overlay-category {
+    cursor: pointer;
 }

@@ -1,4 +1,3 @@
-
 //////////////////////////////////////////////////
 /////       Header and Sidebar  Defaults    //////
 //////////////////////////////////////////////////
@@ -15,7 +14,6 @@ function mobileHeader() {
       </div>
     </header>`;
 }
-
 
 function desktopHeader() {
     return `
@@ -37,7 +35,6 @@ function desktopHeader() {
     </header>`;
 }
 
-
 function mobileSidebar() {
     return `<aside class="d-flex sidebar-mobile">
       <a class="center column nav-link-mobile" href="./summary.html"><img src="./assets/icons/summary-icon.png"
@@ -50,7 +47,6 @@ function mobileSidebar() {
           alt="Contacts" />Contacts</a>
     </aside>`;
 }
-
 
 function desktopSidebar() {
     return `<aside class="sidebar-desktop">
@@ -67,9 +63,6 @@ function desktopSidebar() {
         </div>
     </aside>`;
 }
-
-
-
 
 ////////////////////////////////////////////
 /////  Board  -  Tasks  Templates     //////
@@ -93,13 +86,9 @@ function generateTaskHTML(task, index, className) {
               </div> `;
 }
 
-
 function generateNoTaskHTML(noTask) {
     return /*html*/ `<div class="no-task"> No task in ${noTask}</div> `;
 }
-
-
-
 
 ////////////////////////////////////////////
 /////      Contact - Templates       //////
@@ -132,8 +121,7 @@ function firstLetterHtml(firstLetter) {
 
 function contactListHtml(contact, i) {
     return /*html*/ `<div onclick="openContact(${i})" class="contact-list d-flex">
-      <span class="contact-initials center" style="background:${contact.color
-        }">${createInititals(contact.name)}</span>
+      <span class="contact-initials center" style="background:${contact.color}">${createInititals(contact.name)}</span>
       <div>
         <p>${contact.name}</p>
         <a href="#">${contact.email}</a>
@@ -163,9 +151,6 @@ function contactSelectionCircleHTML(contact, initials) {
     return /*html*/ `<div class="contact center " style="background-color:${contact.color}">${initials}</div>`;
 }
 
-
-
-
 ////////////////////////////////////////////////////
 /////       Add-Task - Subtask Templates      /////
 //////////////////////////////////////////////////
@@ -189,9 +174,8 @@ function subtaskBtnHTML() {
         </div>
           
         </div>
-`
+`;
 }
-
 
 function subtaskTaskHTML(subtask, i) {
     return `
@@ -207,7 +191,6 @@ function subtaskTaskHTML(subtask, i) {
         `;
 }
 
-
 function editIconsHTML(i) {
     return `<div class="word-item">
                 <input type="text" id="editInput${i}" value="${currentSubtasks[i].sub}">
@@ -220,9 +203,6 @@ function editIconsHTML(i) {
             </div>`;
 }
 
-
-
-
 //////////////////////////////////////////////////
 /////          Board Task Overlays          //////
 //////////////////////////////////////////////////
@@ -231,7 +211,7 @@ function taskBoardOverlay(currentTask) {
     return ` <div class="task-overlay-bg" >
         <div class="task-overlay" onclick="stopEventBubbling(event)">
             <div class="task-overlay-category-container">
-                <span class="task-overlay-category ${currentTask.categoryText.replace(' ', '-').toLowerCase()}">${currentTask.categoryText}</span>
+                <span class="task-overlay-category ${currentTask.categoryText.replace(" ", "-").toLowerCase()}">${currentTask.categoryText}</span>
                 <img class="task-overlay-close-icon" src="./assets/icons/close-icon-dark.png" alt="" onclick="classChangeAction('overlaver','overlaver-active','remove')">
             </div>
             <h1 class="task-overlay-title">
@@ -270,18 +250,13 @@ function taskBoardOverlay(currentTask) {
     </div>`;
 }
 
-
 function generateAssignedToOerlayLiHTML(contact) {
     return `
                         <li class="assigned-to-contact">
                                 <div title="${contact.name}" class="initials-circle center" style="background-color:${contact.color};">${createInititals(contact.name)}</div>
                                 <span class="name">${contact.name}</span>
-                        </li>`
+                        </li>`;
 }
-
-
-
-
 
 //////////////////////////////////////////////////
 /////         Board Task Overlays Edit      //////
@@ -292,7 +267,7 @@ function generateAssignedToOerlayLiHTML(contact) {
 //     <div class="button-row">
 //              <button class="btn close-btn" onclick="classChangeAction('overlaver', 'overlaver-active', 'remove'); stopEventBubbling(event);"><img class="icon" src="./assets/icons/close-icon-dark.png" alt=""></button>
 //     </div>
-   
+
 //             <form id="edit-task-form" class="column edit-form" onsubmit="submitEdit(); return false;">
 
 //             <div class="column">
@@ -359,7 +334,7 @@ function generateAssignedToOerlayLiHTML(contact) {
 //         </form>
 
 //         <button class="btn submit submit-btn" type="submit" form="edit-task-form">Ok <img src="./assets/icons/check.png"></button>
-    
+
 //         </div>`
 // }
 
@@ -368,11 +343,16 @@ function editBoardTaskHTML(currentTask) {
     <div class="task-overlay-bg">
         <form onsubmit="" class="task-overlay" onclick="stopEventBubbling(event)">
             <div class="task-overlay-category-container">
-                <span
-                    class="task-overlay-category" style="background-color:powderblue;">User Stoty</span>
-                <img class="task-overlay-close-icon" src="./assets/icons/close-icon-dark.png" alt=""
+                <span id="category-text" class="task-overlay-category" onclick=" classChangeAction('dropdown-category', 'd-none', 'toggle') " style="background-color:powderblue;">${currentTask.categoryText}</span>
+                <img class="task-overlay-close-icon" src="./assets/icons/close-icon-dark.png"
                     onclick="classChangeAction('overlaver','overlaver-active','remove')">
             </div>
+
+            <ul id="dropdown-category" class="dropdown-category d-none">
+                <li class="category-text-option" onclick="updateCategoryText('User Story'); classChangeAction('dropdown-category', 'd-none', 'remove')">User Story</li>
+                <li class="category-text-option" onclick="updateCategoryText('Technical Task'); classChangeAction('dropdown-category', 'd-none', 'remove')">Technical Task</li>
+            </ul>
+
      
               <div>
                   <label for="title">Title</label>
@@ -437,5 +417,5 @@ function editBoardTaskHTML(currentTask) {
             
         </form>
         
-    </div>`
+    </div>`;
 }
