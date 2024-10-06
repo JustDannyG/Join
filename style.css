@@ -89,3 +89,33 @@ button {
     display: flex;
     flex-direction: column;
 }
+
+
+/*Priority Buttons*/
+
+.low {
+    background-color: var(--low);
+    color: var(--white);
+}
+
+.medium {
+    background-color: var(--medium);
+    color: var(--white);
+}
+
+.urgent {
+    background-color: var(--urgent);
+    color: var(--white);
+}
+
+/* =========================
+     Categorys Colors
+   ========================= */
+
+.user-stoty {
+    background-color: #0038FF;
+}
+
+.technical-task {
+    background-color: #20D7C1;
+}

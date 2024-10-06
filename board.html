@@ -10,21 +10,23 @@
 
     <script src="./script.js" defer></script>
     <script src="./scripts/board.js"></script>
+    <script src="./scripts/add-task.js"></script>
+
     <script src="./scripts/fetch.js"></script>
     <script src="./assets/templates/template.js"></script>
 
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="./styles/add-task.css" />
-    <link rel="stylesheet" href="./styles/board.css" />
+    <link rel="stylesheet" href="./style.css"/>
+    <link rel="stylesheet" href="./styles/add-task.css"/>
+    <link rel="stylesheet" href="./styles/board.css"/>
     <link rel="stylesheet" href="./styles/header-sidebar.css" />
 
 
     <link rel="stylesheet" href="./styles/responsive/add-task-responsive.css">
-    <link rel="stylesheet" href="./styles/responsive/responsive.css" />
+    <link rel="stylesheet" href="./styles/responsive/responsive.css"/>
     <link rel="stylesheet" href="./styles/responsive/board-responsive.css">
 </head>
 
-<body class="column" onload="init()"
+<body class="column" onload="boardInit()"
     onclick="classChangeAction('user-menu', 'd-none', 'add'); classChangeAction('menu', 'menu-active', 'remove'); stopEventBubbling(event);">
 
     <section id="join-header" class="join-header"></section>
