@@ -207,9 +207,9 @@ async function checkAndPushToFirebase(subIndex) {
 
 
 
-////////////////////////////
-// Edit Task Funktionen
-////////////////////////////
+/////////////////////////////////
+//    Edit Task Funktionen    ///
+/////////////////////////////////
 
 function showEditTaskValues() {
     document.getElementById("overlaver").innerHTML = editBoardTaskHTML(currentTask);
@@ -239,13 +239,6 @@ function editTaskAssignTo() {
    
 }
 
-function editTaskSubtask() {
-    if (currentTask.subtask) {
-        renderSubtaskEdit(currentTask.subtask);
-        currentSubtasks = [];
-        currentSubtasks.push(...currentTask.subtask);
-    }
-}
 
 function taskPrioText() {
     if (currentTask.prio) {
@@ -291,16 +284,30 @@ function findCheckedContacts(currentTask) {
     }
 }
 
+
+
+///////////////////////////////
+///   Subtasks editing      ///
+///////////////////////////////
+
+
+
+function editTaskSubtask() {
+    if (currentTask.subtask) {
+        renderSubtaskEdit(currentTask.subtask);
+        currentSubtasks = [];
+        currentSubtasks.push(...currentTask.subtask);
+    }
+}
+
+
+
 function renderSubtaskEdit(subtasks) {
     let subTaskRef = document.getElementById("subtasks-container");
     subtasks.forEach((subtask, i) => {
         subTaskRef.innerHTML += subtaskTaskHTML(subtask, i);
     });
 }
-
-///////////////////////////////
-///   Subtasks Bearbeitung  ///
-///////////////////////////////
 
 //Ändern.........
 function saveWord(index) {
@@ -319,5 +326,25 @@ function deleteSubtask(i) {
 }
 
 ///////////////////////////////////////////
-///      Edit to Save to Firebase      ///
+///      editing Save to Firebase      ///
 //////////////////////////////////////////
+
+
+async function editTask(){
+    let editTitle = document.getElementById('edit-title-input').value;
+    let editDescription = document.getElementById('edit-textarea').value;
+    let editDate = document.getElementById('edit-date-input').value;
+
+   await putData(path=`/tasks/${currentTask.taskKey}`, data={
+        'id': currentTask.id,
+        'category': currentTask.category,
+        'categoryText': currentTask.categoryText,
+        'title': editTitle,
+        'description': editDescription,
+        'date': editDate,
+        'prio': currentTask.prio,
+        'assignedTo': currentTask.assignedTo,
+        'subtask': currentSubtasks
+    })
+
+}

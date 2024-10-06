@@ -183,7 +183,6 @@ function subtaskTaskHTML(subtask, i) {
            <div class="subtask-text" onclick="editWord(${i})">
              <p>${subtask.sub}</p> 
              <img src="./assets/icons/edit.png" alt="">
-             
            </div>
            <span class="break-line"></span>
             <img class="" src="./assets/icons/delete.png" alt="" onclick="deleteSubtask(${i})">
@@ -266,7 +265,7 @@ function generateAssignedToOerlayLiHTML(contact) {
 function editBoardTaskHTML(currentTask) {
     return `
     <div class="task-overlay-bg">
-        <form onsubmit="" class="task-overlay" onclick="closeDropdown(); stopEventBubbling(event)">
+        <form onsubmit="editTask(); return false" class="task-overlay" onclick="closeDropdown(); stopEventBubbling(event)">
             <div class="task-overlay-category-container">
                 <span id="category-text" class="task-overlay-category cursor-pointer" onclick=" classChangeAction('dropdown-category', 'd-none', 'toggle');" style="background-color:powderblue;">${currentTask.categoryText}</span>
                 <img class="task-overlay-close-icon" src="./assets/icons/close-icon-dark.png"
@@ -283,20 +282,20 @@ function editBoardTaskHTML(currentTask) {
      
               <div>
                   <label for="title">Title</label>
-                <input class="edit-title-input" type="text" required value="${currentTask.title}">
+                <input id="edit-title-input" class="edit-title-input" type="text" required value="${currentTask.title}">
               </div>
               <div class="task-overlay-scroll-container">
 
                 <div>
                     <label for="description">Description</label>
-                    <textarea class="edit-textarea" name="description"
+                    <textarea id="edit-textarea" class="edit-textarea" name="description"
                         placeholder="Enter a Description">${currentTask.description}</textarea>
                 </div>
 
                 <table class="task-overlay-prio-date-table">
                     <tr>
                         <td>Due date:</td>
-                        <td><input class="edit-date-input" value="${currentTask.date}" type="date"></td>
+                        <td><input id="edit-date-input" class="edit-date-input" value="${currentTask.date}" type="date"></td>
                     </tr>
                     <tr>
                         <td>Priority:</td>
