@@ -21,7 +21,7 @@ async function getTasks() {
     let response = await getData((path = "/tasks"));
     let taskKeys = Object.keys(response);
     console.log(taskKeys);
-
+    tasksArray = [];
     for (let index = 0; index < taskKeys.length; index++) {
         const key = taskKeys[index];
         let task = response[key];
@@ -207,9 +207,9 @@ async function checkAndPushToFirebase(subIndex) {
 
 
 
-////////////////////////////
-// Edit Task Funktionen
-////////////////////////////
+/////////////////////////////////
+//    Edit Task Funktionen    ///
+/////////////////////////////////
 
 function showEditTaskValues() {
     document.getElementById("overlaver").innerHTML = editBoardTaskHTML(currentTask);
@@ -217,9 +217,9 @@ function showEditTaskValues() {
     editTaskSubtask();
     editTaskPrioBtnColor();
     taskPrioText();
-  
-    
-   
+
+
+
 }
 function updateCategoryText(value) {
     currentTask.categoryText = value;
@@ -228,24 +228,17 @@ function updateCategoryText(value) {
 }
 
 function editTaskAssignTo() {
-     selectedContacts = [] //Required, to clear the Array from the Edit-Task before    //// Anpassungen
+    selectedContacts = [] //Required, to clear the Array from the Edit-Task before    //// Anpassungen
     getSelectedContacts()
     if (currentTask.assignedTo) {
         findCheckedContacts(currentTask);
         renderContacts(selectedContacts);
         renderSelectedContacts();
-       let assignedTo =  filterCheckedAssignedTo()
+        let assignedTo = filterCheckedAssignedTo()
     }
-   
+
 }
 
-function editTaskSubtask() {
-    if (currentTask.subtask) {
-        renderSubtaskEdit(currentTask.subtask);
-        currentSubtasks = [];
-        currentSubtasks.push(...currentTask.subtask);
-    }
-}
 
 function taskPrioText() {
     if (currentTask.prio) {
@@ -291,6 +284,20 @@ function findCheckedContacts(currentTask) {
     }
 }
 
+
+///////////////////////////////
+///   Subtasks editing      ///
+///////////////////////////////
+
+function editTaskSubtask() {
+    if (currentTask.subtask) {
+        renderSubtaskEdit(currentTask.subtask);
+        currentSubtasks = [];
+        currentSubtasks.push(...currentTask.subtask);
+    }
+}
+
+
 function renderSubtaskEdit(subtasks) {
     let subTaskRef = document.getElementById("subtasks-container");
     subtasks.forEach((subtask, i) => {
@@ -298,26 +305,56 @@ function renderSubtaskEdit(subtasks) {
     });
 }
 
-///////////////////////////////
-///   Subtasks Bearbeitung  ///
-///////////////////////////////
 
-//Ändern.........
 function saveWord(index) {
     const newValue = document.getElementById(`editInput${index}`).value;
     currentSubtasks[index].sub = newValue;
-    // renderSubtask();
     renderSubtaskEdit(currentSubtasks);
 }
 
-//Ändern............
+
 function deleteSubtask(i) {
     currentSubtasks.splice(i, 1);
     renderSubtaskEdit(currentSubtasks);
-    // renderSubtaskEdit(currentTask.subtask)
-    // renderSubtask();
+    classChangeAction('overlaver','overlaver-active','remove');
 }
 
+
+
 ///////////////////////////////////////////
-///      Edit to Save to Firebase      ///
+///    Task editing PUT to Firebase    ///
 //////////////////////////////////////////
+
+async function editTask() {
+    let editTitle = document.getElementById('edit-title-input').value;
+    let editDescription = document.getElementById('edit-textarea').value;
+    let editDate = document.getElementById('edit-date-input').value;
+
+    await putData(path = `/tasks/${currentTask.taskKey}`, data = {
+        'id': currentTask.id,
+        'category': currentTask.category,
+        'categoryText': currentTask.categoryText,
+        'title': editTitle,
+        'description': editDescription,
+        'date': editDate,
+        'prio': currentTask.prio,
+        'assignedTo': currentTask.assignedTo,
+        'subtask': currentSubtasks,
+        'taskKey': currentTask.taskKey
+    })
+
+    await getTasks();
+    updateHtml();
+    openTask(currentTask.id);
+}
+
+
+//////////////////////////////////////
+///    Delete  Task / Firebase     ///
+/////////////////////////////////////
+
+async function deleteTask() {
+    await deleteData(path = `/tasks/${currentTask.taskKey}`, data = {})
+    await getTasks();
+    updateHtml();
+}
