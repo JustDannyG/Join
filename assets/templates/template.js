@@ -74,10 +74,10 @@ function generateTaskHTML(task, index, className) {
               <span class="drag-drop-btn">
                 <img class="drag-drop-icon" src="./assets/icons/up-down-arrow.png" alt="" onclick="openTaskMoveOptions(${task.id});stopEventBubbling(event)">
                 <ul id="task-move-list${task.id}" class="drag-drop-list">
-                    <li onclick="moveTaskTo()">To do</li>
-                    <li onclick="moveTaskTo()">Progress</li>
-                    <li onclick="moveTaskTo()">Feedback</li>
-                    <li onclick="moveTaskTo()">Done</li>
+                    <li onclick="moveTaskTo(${task.id}, 'todo');stopEventBubbling(event)">To do</li>
+                    <li onclick="moveTaskTo(${task.id}, 'progress');stopEventBubbling(event)">Progress</li>
+                    <li onclick="moveTaskTo(${task.id}, 'feedback');stopEventBubbling(event)">Feedback</li>
+                    <li onclick="moveTaskTo(${task.id}, 'done');stopEventBubbling(event)">Done</li>
                 </ul>
               </span>
               <h4 class="task-title">${task.title}</h4>

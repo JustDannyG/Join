@@ -346,8 +346,20 @@ async function deleteTask() {
     updateHtml();
 }
 
+
+
+//////////////////////////////////////////
+///     Mobile Move Task / Firebase    ///
+/////////////////////////////////////////
+
+
 function openTaskMoveOptions(taskId) {
     document.getElementById(`task-move-list${taskId}`).classList.toggle("show-drop-list");
 }
 
-function moveTaskTo() {}
+=
+
+async function moveTaskTo(taskId, category){
+    // await putData(path=`/tasks/${tasksArray[taskId].taskKey}/`, data={category})
+}
+
