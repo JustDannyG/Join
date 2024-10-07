@@ -3,6 +3,74 @@ let contacts = [];
 
 
 
+
+
+//////////////////////////////////////
+///         Return Functions     /////
+/////////////////////////////////////
+
+function createInititals(selectName) {
+    let firstsChar = selectName;
+    parts = firstsChar.split(' ');
+    if (parts.length == 1) {
+        neededPartOne = parts[0].slice(0, 1);
+        return neededPartOne;
+    } else if (parts.length == 2) {
+        neededPartOne = parts[0].slice(0, 1);
+        neededPartTwo = parts[1].slice(0, 1);
+        return neededPartOne + neededPartTwo;
+    } else if (parts.length == 3) {
+        neededPartOne = parts[0].slice(0, 1);
+        neededPartThree = parts[2].slice(0, 1);
+        return neededPartOne + neededPartThree;
+    }
+}
+
+
+function randomColor() {
+    let random = Math.floor(Math.random() * 16777215).toString(16);
+    let hexCode = '#' + random;
+    return hexCode;
+
+}
+
+
+function sortByAlphabet(arr) {
+    arr.sort((a, b) => a.name.localeCompare(b.name));
+    return arr;
+}
+
+
+function isCheckBoxChecked(e) {
+    return e.checked;
+}
+
+
+function checkLengthGreater(e, n) {
+    return e.length > n
+}
+
+
+function checkLengthSmaller(e, n) {
+    return e.length > n
+}
+
+
+function clearContent(e) {
+    e.innerHTML = "";
+}
+
+
+function clearInput(input) {
+    input.value = "";
+}
+
+
+//////////////////////////////////////
+///                              /////
+/////////////////////////////////////
+
+
 async function getContacts() {
     const contactsData = await getData("contacts");
     const keys = Object.keys(contactsData);
@@ -22,56 +90,10 @@ function goSummery() {
     window.location.href = "summary.html";
 }
 
-function createInititals(selectName) {
-    let firstsChar = selectName;
-    parts = firstsChar.split(' ');
-    if (parts.length == 1) {
-        neededPartOne = parts[0].slice(0, 1);
-        return neededPartOne;
-    } else if (parts.length == 2) {
-        neededPartOne = parts[0].slice(0, 1);
-        neededPartTwo = parts[1].slice(0, 1);
-        return neededPartOne + neededPartTwo;
-    } else if (parts.length == 3) {
-        neededPartOne = parts[0].slice(0, 1);
-        neededPartThree = parts[2].slice(0, 1);
-        return neededPartOne + neededPartThree;
-    }
-}
 
-function randomColor() {
-    let random = Math.floor(Math.random() * 16777215).toString(16);
-    let hexCode = '#' + random;
-    return hexCode;
-
-}
-
-function sortByAlphabet(arr) {
-    arr.sort((a, b) => a.name.localeCompare(b.name));
-    return arr;
-}
-
-function clearContent(e) {
-    e.innerHTML = "";
-}
-
-function clearInput(input) {
-    input.value = "";
-
-}
-
-function isCheckBoxChecked(e) {
-    return e.checked;
-}
-
-function checkLengthGreater(e, n) {
-    return e.length > n
-}
-
-function checkLengthSmaller(e, n) {
-    return e.length > n
-}
-
+//////////////////////////////////////
+///                             /////
+/////////////////////////////////////
 
 function classChangeAction(id, className, action) {
     const element = document.getElementById(id);
@@ -86,8 +108,14 @@ function classChangeAction(id, className, action) {
     } else return
 }
 
-//Mobile / Desktop //
 
+
+//////////////////////////////////////////////
+///      Check Screen Size Function     /////
+////////////////////////////////////////////
+
+
+//Mobile / Desktop //
 function checkScreenWidth() {
 
     let header = document.getElementById('join-header');
@@ -114,14 +142,6 @@ checkScreenWidth();
 // Optional: Bei jeder Größenänderung des Fensters
 window.addEventListener('resize', checkScreenWidth);
 
-function greetingTime() {
-
-}
-
-function greetingUser() {
-    let greetUser = document.getElementById('greeting-name');
-    greetUser.innerHTML = user;
-}
 
 function openAddTask(taskStatus) {
     if (screenMode == 'mobile') {
@@ -132,17 +152,44 @@ function openAddTask(taskStatus) {
         alert('Here Add Task Overlay')
     }
 }
+////////////////////////////////////////////
+///           Greeting Functions      /////
+//////////////////////////////////////////
+
+function greetingTime() {
+    let A = new Date();
+    let hour = A.getHours();
+    console.log(hour);
+    let greeting = document.getElementById('greeting-time');
+    if (hour < 12) {
+        greeting.innerHTML = `Good morning,`
+    } else if (hour < 17) {
+        greeting.innerHTML = `Good afternoon,`
+    } else if (hour < 24){
+        greeting.innerHTML = `Good evening,`
+    }
+}
+
+
+function greetingUser() {
+    let greetUser = document.getElementById('greeting-name');
+    greetUser.innerHTML = user;
+}
 
 
 
-///////////////////
-// Select Function
-////////////////////
+
+
+
+
+//////////////////////////////////////
+///        Select Function       /////
+/////////////////////////////////////
 
 
 
 function styleSelecet() {
-    document.querySelectorAll('select').forEach(function(select) {
+    document.querySelectorAll('select').forEach(function (select) {
         select.classList.add('s-hidden');
         var styledSelect = document.createElement('div');
         styledSelect.classList.add('styledSelect');
@@ -156,7 +203,7 @@ function styleSelecet() {
         list.classList.add('options');
         select.parentNode.insertBefore(list, styledSelect.nextSibling);
 
-        Array.from(select.options).forEach(function(option, index) {
+        Array.from(select.options).forEach(function (option, index) {
             var li = document.createElement('li');
             li.textContent = option.text;
             li.setAttribute('rel', option.value);
@@ -166,9 +213,9 @@ function styleSelecet() {
             list.appendChild(li);
         });
 
-        styledSelect.addEventListener('click', function(e) {
+        styledSelect.addEventListener('click', function (e) {
             e.stopPropagation();
-            document.querySelectorAll('div.styledSelect.active').forEach(function(activeSelect) {
+            document.querySelectorAll('div.styledSelect.active').forEach(function (activeSelect) {
                 if (activeSelect !== styledSelect) {
                     activeSelect.classList.remove('active');
                     activeSelect.nextElementSibling.style.display = 'none';
@@ -182,7 +229,7 @@ function styleSelecet() {
             }
         });
 
-        list.addEventListener('click', function(e) {
+        list.addEventListener('click', function (e) {
             if (e.target.tagName === 'LI') {
                 styledSelect.textContent = e.target.textContent;
                 styledSelect.classList.remove('active');
@@ -191,7 +238,7 @@ function styleSelecet() {
             }
         });
 
-        document.addEventListener('click', function() {
+        document.addEventListener('click', function () {
             styledSelect.classList.remove('active');
             list.style.display = 'none';
         });
