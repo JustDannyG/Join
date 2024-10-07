@@ -274,6 +274,11 @@ function findCheckedContacts(currentTask) {
     }
 }
 
+async function resetBoard() {
+    await getTasks();
+    updateHtml();
+}
+
 ///////////////////////////////
 ///   Subtasks editing      ///
 ///////////////////////////////
@@ -330,8 +335,7 @@ async function editTask() {
         })
     );
 
-    await getTasks();
-    updateHtml();
+    resetBoard();
     openTask(currentTask.id);
 }
 
@@ -342,24 +346,17 @@ async function editTask() {
 async function deleteTask() {
     classChangeAction("overlaver", "overlaver-active", "remove");
     await deleteData((path = `/tasks/${currentTask.taskKey}`), (data = {}));
-    await getTasks();
-    updateHtml();
+    resetBoard();
 }
-
-
 
 //////////////////////////////////////////
 ///     Mobile Move Task / Firebase    ///
 /////////////////////////////////////////
 
-
 function openTaskMoveOptions(taskId) {
     document.getElementById(`task-move-list${taskId}`).classList.toggle("show-drop-list");
 }
 
-=
-
-async function moveTaskTo(taskId, category){
+async function moveTaskTo(taskId, category) {
     // await putData(path=`/tasks/${tasksArray[taskId].taskKey}/`, data={category})
 }
-
