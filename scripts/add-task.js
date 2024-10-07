@@ -52,14 +52,14 @@ function toggleDropdown(id, iconId) {
     }
 }
 
-// function openDropdown(id, iconId) {
-//     const dropdown = document.getElementById(id);
-//     const dropdownIcon = document.getElementById(iconId);
-//     dropdown.classList.add("show-dropdown");
-//     dropdownIcon.style.transform = 'rotate(180deg)';
-//     isDropdownOpen = true;
-//     classChangeAction('dropdown', 'input-active', 'add')
-// }
+function openDropdown(id, iconId) {
+    const dropdown = document.getElementById(id);
+    const dropdownIcon = document.getElementById(iconId);
+    dropdown.classList.add("show-dropdown");
+    dropdownIcon.style.transform = 'rotate(180deg)';
+    isDropdownOpen = true;
+    classChangeAction('dropdown', 'input-active', 'add')
+}
 
 function closeDropdown() {
     const dropdown = document.getElementById("assign-to-dropdown-contacts");
@@ -178,8 +178,8 @@ function findInput(input) {
 //     return result
 // }
 
-///////////////////
-// Subtasks
+/////////////////////
+//     Subtasks  ///
 ////////////////////
 
 function subtaskInputBtn() {
@@ -193,15 +193,18 @@ function subtaskInputBtn() {
     }
 }
 
+
 function setInputFocus() {
     document.getElementById("subtasks-input").focus();
 }
+
 
 function clearSubtask() {
     let subtaskInput = document.getElementById("subtasks-input");
     subtaskInput.value = "";
     subtaskInputBtn();
 }
+
 
 function addSubtask() {
     let subtaskInput = document.getElementById("subtasks-input");
@@ -214,6 +217,7 @@ function addSubtask() {
     subtaskInputBtn();
 }
 
+
 function renderSubtask() {
     let subtaskContainer = document.getElementById("subtasks-container");
     subtaskContainer.innerHTML = "";
@@ -222,6 +226,7 @@ function renderSubtask() {
         subtaskContainer.innerHTML += subtaskTaskHTML(subtask, i);
     }
 }
+
 
 function editWord(index) {
     let wordListHTML = "";
@@ -237,6 +242,7 @@ function editWord(index) {
     document.getElementById("subtasks-container").innerHTML = wordListHTML;
 }
 
+
 function saveWord(index) {
     const newValue = document.getElementById(`editInput${index}`).value;
     currentSubtasks[index].sub = newValue;
@@ -244,14 +250,16 @@ function saveWord(index) {
     return false;
 }
 
+
 function deleteSubtask(i) {
     currentSubtasks.splice(i, 1);
     renderSubtask();
 }
 
-///////////////////
-// Create Task
-////////////////////
+
+/////////////////////////////////////////
+//   Task creating Post to Firebase   ///
+/////////////////////////////////////////
 
 async function createTask() {
     getInputs();
