@@ -354,6 +354,7 @@ async function editTask() {
 /////////////////////////////////////
 
 async function deleteTask() {
+    classChangeAction('overlaver','overlaver-active','remove');
     await deleteData(path = `/tasks/${currentTask.taskKey}`, data = {})
     await getTasks();
     updateHtml();
