@@ -227,7 +227,6 @@ function editTaskAssignTo() {
         findCheckedContacts(currentTask);
         renderContacts(selectedContacts);
         renderSelectedContacts();
-        let assignedTo = filterCheckedAssignedTo();
     }
 }
 
@@ -315,6 +314,8 @@ async function editTask() {
     let editDescription = document.getElementById("edit-textarea").value;
     let editDate = document.getElementById("edit-date-input").value;
 
+    // console.log(assignedTo);
+
     await putData(
         (path = `/tasks/${currentTask.taskKey}`),
         (data = {
@@ -325,7 +326,7 @@ async function editTask() {
             description: editDescription,
             date: editDate,
             prio: currentTask.prio,
-            assignedTo: currentTask.assignedTo,
+            assignedTo: filterCheckedAssignedTo(),
             subtask: currentSubtasks,
             taskKey: currentTask.taskKey,
         })
