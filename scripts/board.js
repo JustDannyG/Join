@@ -196,8 +196,10 @@ async function checkAndPushToFirebase(subIndex) {
     console.log(currentTask.subtask[subIndex]);
 
     // console.log(currentTask.taskKey);
+
     // let checkboxRef = document.getElementById(`subtask${subIndex}checkbox`);
     // checkboxRef.src = `./assets/icons/${currentTask.subtask[subIndex].checked}.png`;
+
     // console.log(value);
 
     await putData(
