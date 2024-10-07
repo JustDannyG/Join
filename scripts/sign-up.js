@@ -5,12 +5,7 @@ async function signUp() {
     let userConfPwd = document.getElementById('user-conf-pwd').value;
     checkbox = document.getElementById('myCheckbox');
     ceckIfUserAllreadyExists(userNameInput, userEmailInput, userPwd, userConfPwd, checkbox);
-    userInputErrorStyle(userNameInput);
-    emailInputErrorStyle(userEmailInput);
-    passwordInputErrorStyle(userPwd);
-    passwordConfInputErrorStyle(userConfPwd);
-    checkIfConfPwd(userPwd, userConfPwd);
-    checkboxError();
+    errorStyles(userNameInput, userEmailInput, userPwd, userConfPwd);
     //checkIfAllInputsFilled(userNameInput, userEmailInput, userPwd, userConfPwd);
 }
 
