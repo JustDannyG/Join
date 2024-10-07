@@ -71,6 +71,15 @@ function desktopSidebar() {
 function generateTaskHTML(task, index, className) {
     return `<div id="${task.id}" draggable="true" dragleave="animationOndrag(${task.id})"  ondragstart="startDragging(${task.id})"  onclick="classChangeAction('overlaver','overlaver-active','add'); openTask(${task.id})" class="task">
               <div class="task-category ${className}">${task.categoryText}</div>
+              <span class="drag-drop-btn">
+                <img class="drag-drop-icon" src="./assets/icons/up-down-arrow.png" alt="" onclick="openTaskMoveOptions(${task.id});stopEventBubbling(event)">
+                <ul id="task-move-list${task.id}" class="drag-drop-list">
+                    <li onclick="moveTaskTo(${task.id}, 'todo');stopEventBubbling(event)">To do</li>
+                    <li onclick="moveTaskTo(${task.id}, 'progress');stopEventBubbling(event)">Progress</li>
+                    <li onclick="moveTaskTo(${task.id}, 'feedback');stopEventBubbling(event)">Feedback</li>
+                    <li onclick="moveTaskTo(${task.id}, 'done');stopEventBubbling(event)">Done</li>
+                </ul>
+              </span>
               <h4 class="task-title">${task.title}</h4>
               <div class="task-description">${task.description}</div>
               <div class="d-flex task-amount-container">
@@ -182,10 +191,10 @@ function subtaskTaskHTML(subtask, i) {
         <div id="subtask${i}" class="subtask">
            <div class="subtask-text" onclick="editWord(${i})">
              <p>${subtask.sub}</p> 
-             <img src="./assets/icons/edit.png" alt="">
+             <img class="edit-icon" src="./assets/icons/edit.png" alt="">
            </div>
            <span class="break-line"></span>
-            <img class="" src="./assets/icons/delete.png" alt="" onclick="deleteSubtask(${i})">
+            <img class="edit-icon" src="./assets/icons/delete.png" alt="" onclick="deleteSubtask(${i})">
         </div>
         `;
 }
@@ -193,7 +202,7 @@ function subtaskTaskHTML(subtask, i) {
 function editIconsHTML(i) {
     return `<div class="word-item">
                 <input type="text" id="editInput${i}" value="${currentSubtasks[i].sub}">
-                <button onclick="deleteSubtask(${i})"><img src="./assets/icons/delete.png" alt=""></button>
+                <button  onclick="deleteSubtask(${i})"><img src="./assets/icons/delete.png" alt=""></button>
                 <span class="break-line"></span>
                 <svg onclick="saveWord(${i})" width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5.79911 9.15L14.2741 0.675C14.4741 0.475 14.7116 0.375 14.9866 0.375C15.2616 0.375 15.4991 0.475 15.6991 0.675C15.8991 0.875 15.9991 1.1125 15.9991 1.3875C15.9991 1.6625 15.8991 1.9 15.6991 2.1L6.49911 11.3C6.29911 11.5 6.06578 11.6 5.79911 11.6C5.53245 11.6 5.29911 11.5 5.09911 11.3L0.799113 7C0.599113 6.8 0.50328 6.5625 0.511613 6.2875C0.519946 6.0125 0.624113 5.775 0.824113 5.575C1.02411 5.375 1.26161 5.275 1.53661 5.275C1.81161 5.275 2.04911 5.375 2.24911 5.575L5.79911 9.15Z" fill="black"/>
@@ -211,7 +220,7 @@ function taskBoardOverlay(currentTask) {
         <div class="task-overlay" onclick="stopEventBubbling(event)">
             <div class="task-overlay-category-container">
                 <span class="task-overlay-category ${currentTask.categoryText.replace(" ", "-").toLowerCase()}">${currentTask.categoryText}</span>
-                <img class="task-overlay-close-icon" src="./assets/icons/close-icon-dark.png" alt="" onclick="classChangeAction('overlaver','overlaver-active','remove')">
+                <img class="task-overlay-close-icon" src="./assets/icons/close-icon-dark.png" alt="" onclick="classChangeAction('overlaver','overlaver-active','remove');">
             </div>
             <h1 class="task-overlay-title">
             ${currentTask.title}
@@ -226,7 +235,7 @@ function taskBoardOverlay(currentTask) {
                   </tr>
                   <tr>
                       <td>Priority:</td>
-                      <td id="prio">}</td>
+                      <td id="prio"></td>
                   </tr>
               </table>
               <div class="task-overlay-assigned">
@@ -261,13 +270,12 @@ function generateAssignedToOerlayLiHTML(contact) {
 /////         Board Task Overlays Edit      //////
 //////////////////////////////////////////////////
 
-
 function editBoardTaskHTML(currentTask) {
     return `
     <div class="task-overlay-bg">
         <form onsubmit="editTask(); return false" class="task-overlay" onclick="closeDropdown(); stopEventBubbling(event)">
             <div class="task-overlay-category-container">
-                <span id="category-text" class="task-overlay-category cursor-pointer" onclick=" classChangeAction('dropdown-category', 'd-none', 'toggle');" style="background-color:powderblue;">${currentTask.categoryText}</span>
+                <span id="category-text" class="task-overlay-category cursor-pointer" onclick="classChangeAction('dropdown-category', 'd-none', 'toggle'); resetBoard(); " style="background-color:powderblue;">${currentTask.categoryText}</span>
                 <img class="task-overlay-close-icon" src="./assets/icons/close-icon-dark.png"
                     onclick="classChangeAction('overlaver','overlaver-active','remove')">
 
@@ -338,55 +346,54 @@ function editBoardTaskHTML(currentTask) {
             <button class="btn submit submit-btn" >Ok <img src="./assets/icons/check.png"></button>
             
         </form>
-
-        <button class="btn submit submit-btn" type="submit" form="edit-task-form">Ok <img src="./assets/icons/check.png"></button>
     
-        </div>`
-}
-
-function taskBoardOverlay(id) {
-    return `<div class="overlay-task column">
-            <div class="task-header d-flex">
-                <span id="task-category-overlay">User Story</span>
-                <button class="btn" onclick="classChangeAction('overlaver','overlaver-active','remove')">
-                    <img class="icon" src="./assets/icons/close-icon-dark.png" alt="">
-                </button>
-            </div>
-            <span id="task-title-overlay" class="task-title"></span>
-            <span id="task-discription-overlay" class="discription"></span>
-            <div class="task-details-container">
-                <div class="info">
-                    <span class="info-title">Due date:</span>
-                    <span id="task-date-overlay" class="info-value"></span>
-                </div>
-                <div class="info">
-                    <span class="info-title">Priority:</span>
-                    <div class="info-value">
-                        <span id="task-prio-overlay"></span>
-                        <img id="prio-icon-overlay" class="prio-icon" src="" alt="">
-                    </div>
-                </div>
-                <div class="assigned-to-container">Assigned To:
-                    <ul id="assigned-to-list">
-
-                    </ul>
-
-                    <div class="task-details"></div>
-
-
-                </div>
-                <div class="subtask">Subtask
-                    <ul id="subtask-overlay">
-
-                    </ul>
-                </div>
-            </div>
-            <div class="edit-task-container d-flex">
-                <button class="btn">
-                    <img class="icon" src="./assets/icons/delete.png" alt="">Delete</button>
-                <div class="divider"></div>
-                <button onclick="showEditTaskValues(); stopEventBubbling(event);" class="btn">
-                    <img class="icon" src="./assets/icons/edit.png" alt="">Edit</button>
-            </div>
         </div>`;
 }
+
+// War doppelt
+
+// function taskBoardOverlay(id) {
+//     return `<div class="overlay-task column">
+//             <div class="task-header d-flex">
+//                 <span id="task-category-overlay">User Story</span>
+//                 <button class="btn" onclick="classChangeAction('overlaver','overlaver-active','remove')">
+//                     <img class="icon" src="./assets/icons/close-icon-dark.png" alt="">
+//                 </button>
+//             </div>
+//             <span id="task-title-overlay" class="task-title"></span>
+//             <span id="task-discription-overlay" class="discription"></span>
+//             <div class="task-details-container">
+//                 <div class="info">
+//                     <span class="info-title">Due date:</span>
+//                     <span id="task-date-overlay" class="info-value"></span>
+//                 </div>
+//                 <div class="info">
+//                     <span class="info-title">Priority:</span>
+//                     <div class="info-value">
+//                         <span id="task-prio-overlay"></span>
+//                         <img id="prio-icon-overlay" class="prio-icon" src="" alt="">
+//                     </div>
+//                 </div>
+//                 <div class="assigned-to-container">Assigned To:
+//                     <ul id="assigned-to-list">
+
+//                     </ul>
+
+//                     <div class="task-details"></div>
+
+//                 </div>
+//                 <div class="subtask">Subtask
+//                     <ul id="subtask-overlay">
+
+//                     </ul>
+//                 </div>
+//             </div>
+//             <div class="edit-task-container d-flex">
+//                 <button class="btn">
+//                     <img class="icon" src="./assets/icons/delete.png" alt="">Delete</button>
+//                 <div class="divider"></div>
+//                 <button onclick="showEditTaskValues(); stopEventBubbling(event);" class="btn">
+//                     <img class="icon" src="./assets/icons/edit.png" alt="">Edit</button>
+//             </div>
+//         </div>`;
+// }
