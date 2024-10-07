@@ -314,8 +314,6 @@ async function editTask() {
     let editDescription = document.getElementById("edit-textarea").value;
     let editDate = document.getElementById("edit-date-input").value;
 
-    // console.log(assignedTo);
-
     await putData(
         (path = `/tasks/${currentTask.taskKey}`),
         (data = {
