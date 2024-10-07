@@ -372,5 +372,5 @@ function openTaskMoveOptions(taskId) {
 
 
 async function moveTaskTo(taskId, category){
-    await putData(path=`/tasks/${tasksArray[taskId].taskKey}/`, data={category})
+    // await putData(path=`/tasks/${tasksArray[taskId].taskKey}/`, data={category})
 }
