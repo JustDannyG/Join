@@ -21,7 +21,7 @@ async function getTasks() {
     let response = await getData((path = "/tasks"));
     let taskKeys = Object.keys(response);
     console.log(taskKeys);
-
+    tasksArray = [];
     for (let index = 0; index < taskKeys.length; index++) {
         const key = taskKeys[index];
         let task = response[key];
@@ -217,9 +217,9 @@ function showEditTaskValues() {
     editTaskSubtask();
     editTaskPrioBtnColor();
     taskPrioText();
-  
-    
-   
+
+
+
 }
 function updateCategoryText(value) {
     currentTask.categoryText = value;
@@ -228,15 +228,15 @@ function updateCategoryText(value) {
 }
 
 function editTaskAssignTo() {
-     selectedContacts = [] //Required, to clear the Array from the Edit-Task before    //// Anpassungen
+    selectedContacts = [] //Required, to clear the Array from the Edit-Task before    //// Anpassungen
     getSelectedContacts()
     if (currentTask.assignedTo) {
         findCheckedContacts(currentTask);
         renderContacts(selectedContacts);
         renderSelectedContacts();
-       let assignedTo =  filterCheckedAssignedTo()
+        let assignedTo = filterCheckedAssignedTo()
     }
-   
+
 }
 
 
@@ -332,12 +332,12 @@ function deleteSubtask(i) {
 //////////////////////////////////////////
 
 
-async function editTask(){
+async function editTask() {
     let editTitle = document.getElementById('edit-title-input').value;
     let editDescription = document.getElementById('edit-textarea').value;
     let editDate = document.getElementById('edit-date-input').value;
 
-   await putData(path=`/tasks/${currentTask.taskKey}`, data={
+    await putData(path = `/tasks/${currentTask.taskKey}`, data = {
         'id': currentTask.id,
         'category': currentTask.category,
         'categoryText': currentTask.categoryText,
@@ -349,15 +349,9 @@ async function editTask(){
         'subtask': currentSubtasks,
         'taskKey': currentTask.taskKey
     })
-    
+
     await getTasks();
-    document.getElementById("overlaver").innerHTML = taskBoardOverlay(tasksArray[currentTask.id]);
+    updateHtml();
+    openTask(currentTask.id);
 }
 
-
-function updateTask(){
-    
-    console.log(data);
-    
-    
-}
