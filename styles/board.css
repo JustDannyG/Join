@@ -337,7 +337,8 @@
 
 .task-overlay-title {
     width: 100%;
-    font-size: 61px;
+    font-size: 47px;
+    word-break: break-word;
 }
 
 .task-overlay-description {
