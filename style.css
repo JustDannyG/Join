@@ -91,19 +91,31 @@ button {
 }
 
 
-  /*Priority Buttons*/
+/*Priority Buttons*/
 
-  .low {
-    background-color: var(--low);
+.low {
+    background-color: var(--low) !important;
     color: var(--white);
 }
 
 .medium {
-    background-color: var(--medium);
+    background-color: var(--medium) !important;
     color: var(--white);
 }
 
 .urgent {
-    background-color: var(--urgent);
+    background-color: var(--urgent) !important;
     color: var(--white);
+}
+
+/* =========================
+     Categorys Colors
+   ========================= */
+
+.user-stoty {
+    background-color: #0038FF;
+}
+
+.technical-task {
+    background-color: #20D7C1;
 }
