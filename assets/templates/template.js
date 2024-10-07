@@ -336,7 +336,7 @@ function taskBoardOverlay(id) {
                 </div>
             </div>
             <div class="edit-task-container d-flex">
-                <button class="btn">
+                <button onclick="deleteTask(${id})" class="btn">
                     <img class="icon" src="./assets/icons/delete.png" alt="">Delete</button>
                 <div class="divider"></div>
                 <button onclick="showEditTaskValues(); stopEventBubbling(event);" class="btn">

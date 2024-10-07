@@ -335,3 +335,21 @@ function deleteSubtask(i) {
     // renderSubtaskEdit(currentTask.subtask)
     // renderSubtask();
 }
+
+
+////////////////////////
+// delete Task
+///////////////////////
+
+async function deleteTask(taskId) {
+    let allTasks = await getData("tasks");
+    // let assignedToContacts = selectedContacts.filter(c => c.checked == true);
+    let singleTask = allTasks[taskId];
+    console.log(taskId);
+    console.log(allTasks[taskId]);
+    console.log(singleTask);
+    
+    await deleteData(`tasks/${singleTask}`);
+    await boardInit();
+}
+
