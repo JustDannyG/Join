@@ -21,7 +21,7 @@ async function getTasks() {
     let response = await getData((path = "/tasks"));
     let taskKeys = Object.keys(response);
     console.log(taskKeys);
-
+    tasksArray = [];
     for (let index = 0; index < taskKeys.length; index++) {
         const key = taskKeys[index];
         let task = response[key];
@@ -173,6 +173,10 @@ function renderTasksArrays() {
     setCheck();
 }
 
+/////////////////////////////////////////
+///    Check Subtasks Functions     /////
+////////////////////////////////////////
+
 function setCheck() {
     let subtaskRef = document.getElementById("subtask-overlay");
     subtaskRef.innerHTML = "";
@@ -180,28 +184,15 @@ function setCheck() {
         // Verwende Array um daten zu edit ......
         currentTask.subtask.forEach((s, i) => {
             subtaskRef.innerHTML += `
-    <div class="task-overlay-subtask" onclick="checkAndPushToFirebase(${i})"><img  id="subtask${i}checkbox" src="./assets/icons/${s.checked}.png" alt=""> ${s.sub}</div>
+    <div class="task-overlay-subtask" onclick="checkAndPushToFirebase(${i})"><img src="./assets/icons/${s.checked}.png" alt=""> ${s.sub}</div>
     `;
         });
     }
 }
 
 async function checkAndPushToFirebase(subIndex) {
-    // console.log(currentTask.subtask[subIndex].checked);
-    // let value = currentTask.subtask[subIndex].checked;
-    // console.log(value);
-    // value = !value;
-    // console.log(value);
     currentTask.subtask[subIndex].checked = !currentTask.subtask[subIndex].checked;
-    console.log(currentTask.subtask[subIndex]);
-
-    // console.log(currentTask.taskKey);
-
-    // let checkboxRef = document.getElementById(`subtask${subIndex}checkbox`);
-    // checkboxRef.src = `./assets/icons/${currentTask.subtask[subIndex].checked}.png`;
-
-    // console.log(value);
-
+    setCheck();
     await putData(
         (path = `/tasks/${currentTask.taskKey}/subtask/${subIndex}`),
         (data = {
@@ -209,25 +200,12 @@ async function checkAndPushToFirebase(subIndex) {
             sub: currentTask.subtask[subIndex].sub,
         })
     );
-    setCheck();
     await getTasks();
 }
 
-// function checkboxStatus(s) {
-//     let subtaskRef = document.getElementById("subtask-overlay");
-//     subtaskRef.innerHTML = "";
-//     if (s.checked === true) {
-//         subtaskRef.innerHTML += html`
-//         <div><img src="./assets/icons/${s.checked}.png" alt=""></div>
-//         `
-//     } else {
-//         subtaskRef.innerHTML += `<div><img src="./assets/icons/true.png" alt=""></div>`
-//     }
-// }
-
-////////////////////////////
-// Edit Task Funktionen
-////////////////////////////
+/////////////////////////////////
+//    Edit Task Funktionen    ///
+/////////////////////////////////
 
 function showEditTaskValues() {
     document.getElementById("overlaver").innerHTML = editBoardTaskHTML(currentTask);
@@ -235,9 +213,6 @@ function showEditTaskValues() {
     editTaskSubtask();
     editTaskPrioBtnColor();
     taskPrioText();
-    // selectedContacts = [] //Required, to clear the Array from the Edit-Task before    //// Anpassungen
-    // getSelectedContacts()
-    // renderContacts(selectedContacts)
 }
 function updateCategoryText(value) {
     currentTask.categoryText = value;
@@ -246,17 +221,13 @@ function updateCategoryText(value) {
 }
 
 function editTaskAssignTo() {
+    selectedContacts = []; //Required, to clear the Array from the Edit-Task before    //// Anpassungen
+    getSelectedContacts();
     if (currentTask.assignedTo) {
         findCheckedContacts(currentTask);
         renderContacts(selectedContacts);
-    }
-}
-
-function editTaskSubtask() {
-    if (currentTask.subtask) {
-        renderSubtaskEdit(currentTask.subtask);
-        currentSubtasks = [];
-        currentSubtasks.push(...currentTask.subtask);
+        renderSelectedContacts();
+        let assignedTo = filterCheckedAssignedTo();
     }
 }
 
@@ -304,6 +275,18 @@ function findCheckedContacts(currentTask) {
     }
 }
 
+///////////////////////////////
+///   Subtasks editing      ///
+///////////////////////////////
+
+function editTaskSubtask() {
+    if (currentTask.subtask) {
+        renderSubtaskEdit(currentTask.subtask);
+        currentSubtasks = [];
+        currentSubtasks.push(...currentTask.subtask);
+    }
+}
+
 function renderSubtaskEdit(subtasks) {
     let subTaskRef = document.getElementById("subtasks-container");
     subtasks.forEach((subtask, i) => {
@@ -311,26 +294,61 @@ function renderSubtaskEdit(subtasks) {
     });
 }
 
-///////////////////////////////
-///   Subtasks Bearbeitung  ///
-///////////////////////////////
-
-//Ändern.........
 function saveWord(index) {
     const newValue = document.getElementById(`editInput${index}`).value;
     currentSubtasks[index].sub = newValue;
-    // renderSubtask();
     renderSubtaskEdit(currentSubtasks);
 }
 
-//Ändern............
 function deleteSubtask(i) {
     currentSubtasks.splice(i, 1);
     renderSubtaskEdit(currentSubtasks);
-    // renderSubtaskEdit(currentTask.subtask)
-    // renderSubtask();
+    classChangeAction("overlaver", "overlaver-active", "remove");
 }
 
 ///////////////////////////////////////////
-///      Edit to Save to Firebase      ///
+///    Task editing PUT to Firebase    ///
 //////////////////////////////////////////
+
+async function editTask() {
+    let editTitle = document.getElementById("edit-title-input").value;
+    let editDescription = document.getElementById("edit-textarea").value;
+    let editDate = document.getElementById("edit-date-input").value;
+
+    await putData(
+        (path = `/tasks/${currentTask.taskKey}`),
+        (data = {
+            id: currentTask.id,
+            category: currentTask.category,
+            categoryText: currentTask.categoryText,
+            title: editTitle,
+            description: editDescription,
+            date: editDate,
+            prio: currentTask.prio,
+            assignedTo: currentTask.assignedTo,
+            subtask: currentSubtasks,
+            taskKey: currentTask.taskKey,
+        })
+    );
+
+    await getTasks();
+    updateHtml();
+    openTask(currentTask.id);
+}
+
+//////////////////////////////////////
+///    Delete  Task / Firebase     ///
+/////////////////////////////////////
+
+async function deleteTask() {
+    classChangeAction("overlaver", "overlaver-active", "remove");
+    await deleteData((path = `/tasks/${currentTask.taskKey}`), (data = {}));
+    await getTasks();
+    updateHtml();
+}
+
+function openTaskMoveOptions(taskId) {
+    document.getElementById(`task-move-list${taskId}`).classList.toggle("show-drop-list");
+}
+
+function moveTaskTo() {}
