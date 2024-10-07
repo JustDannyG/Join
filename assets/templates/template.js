@@ -1,5 +1,100 @@
-//Templates for Contact-Details
+//////////////////////////////////////////////////
+/////       Header and Sidebar  Defaults    //////
+//////////////////////////////////////////////////
 
+function mobileHeader() {
+    return `<header class="d-flex header-mobile">
+      <img class="logo-mobile" src="./assets/icons/logo-dark.svg" alt="Join Logo" />
+      <div onclick="classChangeAction('menu', 'menu-active', 'toggle'), stopEventBubbling(event)" id="current-user-header" class="current-user-header center">T</div>
+      <div id="menu" class="column menu">
+        <a href="./help.html">Help</a>
+        <a href="./legal-notice.html">Legal Notice</a>
+        <a href="./privacy-policy.html">Privacy Policy</a>
+        <a href="#">Log out</a>
+      </div>
+    </header>`;
+}
+
+function desktopHeader() {
+    return `
+        <header class="header-desktop">
+        <p class="header-title">Kanban Project Management Tool</p>
+        <div class="header-actions">
+            <a href="help.html"> <img class="help-icon" src="./assets/icons/help-icon.png" alt="Help"></a>
+            <div onclick="classChangeAction('user-menu', 'd-none', 'toggle'); stopEventBubbling(event)" id="header-initials" class="header-initials-btn">
+                SM
+            </div>
+        </div>
+        
+       <nav id="user-menu" class="user-menu d-none">
+        <a href="legal-notice.html">Legal Notice</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="#">Log out</a>
+       </nav>
+
+    </header>`;
+}
+
+function mobileSidebar() {
+    return `<aside class="d-flex sidebar-mobile">
+      <a class="center column nav-link-mobile" href="./summary.html"><img src="./assets/icons/summary-icon.png"
+          alt="Summary" />Summary</a>
+      <a class="center column nav-link-mobile" href="./board.html"><img src="./assets/icons/board-icon.png"
+          alt="Board" />Board</a>
+      <a class="center column nav-link-mobile" href="./add-task.html"><img src="./assets/icons/add-task-icon.png"
+          alt="Add Task" />Add Task</a>
+      <a class="center column nav-link-mobile" href="./contact.html"><img src="./assets/icons/contacts-icon.png"
+          alt="Contacts" />Contacts</a>
+    </aside>`;
+}
+
+function desktopSidebar() {
+    return `<aside class="sidebar-desktop">
+        <img class="sidebar-logo-desktop" src="./assets/icons/join-logo-light.png" alt="">
+        <nav class="sidebar-nav">
+            <a class="nav-link-desktop" href="summary.html"><img src="./assets/icons/summary-icon.png" alt=""> Summary</a>
+            <a class="nav-link-desktop" href="add-task.html"><img src="./assets/icons/add-task-icon.png" alt=""> Add Task</a>
+            <a class="nav-link-desktop" href="board.html"><img src="./assets/icons/board-icon.png" alt=""> Board</a>
+            <a class="nav-link-desktop" href="contact.html"><img src="./assets/icons/contacts-icon.png" alt=""> Contacts</a>
+        </nav>
+        <div class="sidebar-info">
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="legal-notice.html">Legal notice</a>
+        </div>
+    </aside>`;
+}
+
+////////////////////////////////////////////
+/////  Board  -  Tasks  Templates     //////
+///////////////////////////////////////////
+
+function generateTaskHTML(task, index, className) {
+    return `<div id="${task.id}" draggable="true" dragleave="animationOndrag(${task.id})"  ondragstart="startDragging(${task.id})"  onclick="classChangeAction('overlaver','overlaver-active','add'); openTask(${task.id})" class="task">
+              <div class="task-category ${className}">${task.categoryText}</div>
+              <h4 class="task-title">${task.title}</h4>
+              <div class="task-description">${task.description}</div>
+              <div class="d-flex task-amount-container">
+                  <div id="${task.category}progress-bar${index}" class="progress-bar d-none">
+                      <div class="progress" id="${task.category}-progress${index}"></div>
+                  </div>
+                  <div id="${task.category}-amount${index}" class="task-amount"></div>
+              </div>
+              <div class="d-flex task-footer">
+                  <div id="${task.category}contatcs-container${index}" class="d-flex contatcs-container"></div>
+                  <div id="${task.category}contatcs-container${index}num" class="d-flex contatcs-container"></div>
+                  <img id="${task.category}prio-icon${index}" class="prio-icon" src="" alt="">
+              </div> `;
+}
+
+function generateNoTaskHTML(noTask) {
+    return /*html*/ `<div class="no-task"> No task in ${noTask}</div> `;
+}
+
+////////////////////////////////////////////
+/////      Contact - Templates       //////
+///////////////////////////////////////////
+
+//Templates for Contact-Details
 function contactCirleHTML(detail) {
     return /*html*/ `
     <div class="current-contact-circle center" style="background:${detail.color}">
@@ -20,15 +115,13 @@ function contactInformationsHTML(detail) {
 }
 
 //Templates for Contact List
-
 function firstLetterHtml(firstLetter) {
     return /*html*/ `<div class="contacts-first-letter">${firstLetter}</div>`;
 }
 
 function contactListHtml(contact, i) {
     return /*html*/ `<div onclick="openContact(${i})" class="contact-list d-flex">
-      <span class="contact-initials center" style="background:${contact.color
-        }">${createInititals(contact.name)}</span>
+      <span class="contact-initials center" style="background:${contact.color}">${createInititals(contact.name)}</span>
       <div>
         <p>${contact.name}</p>
         <a href="#">${contact.email}</a>
@@ -58,37 +151,8 @@ function contactSelectionCircleHTML(contact, initials) {
     return /*html*/ `<div class="contact center " style="background-color:${contact.color}">${initials}</div>`;
 }
 
-
-////////////////////////////////////////////
-/////  Board  -  Tasks  Templates     //////
-///////////////////////////////////////////
-
-function generateTaskHTML(task, index, className) {
-    return `<div id="${task.id}" draggable="true" dragleave="animationOndrag(${task.id})"  ondragstart="startDragging(${task.id})"  onclick="classChangeAction('overlaver','overlaver-active','add'); openTask(${task.id})" class="task">
-              <div class="task-category ${className}">${task.categoryText}</div>
-              <h4 class="task-title">${task.title}</h4>
-              <div class="task-description">${task.description}</div>
-              <div class="d-flex task-amount-container">
-                  <div id="${task.category}progress-bar${index}" class="progress-bar d-none">
-                      <div class="progress" id="${task.category}-progress${index}"></div>
-                  </div>
-                  <div id="${task.category}-amount${index}" class="task-amount"></div>
-              </div>
-              <div class="d-flex task-footer">
-                  <div id="${task.category}contatcs-container${index}" class="d-flex contatcs-container"></div>
-                  <div id="${task.category}contatcs-container${index}num" class="d-flex contatcs-container"></div>
-                  <img id="${task.category}prio-icon${index}" class="prio-icon" src="" alt="">
-              </div> `;
-}
-
-
-function generateNoTaskHTML(noTask) {
-    return /*html*/ `<div class="no-task"> No task in ${noTask}</div> `;
-}
-
-
 ////////////////////////////////////////////////////
-/////     Add-Task - Subtask     Templates    /////
+/////       Add-Task - Subtask Templates      /////
 //////////////////////////////////////////////////
 
 function subtaskBtnHTML() {
@@ -110,9 +174,8 @@ function subtaskBtnHTML() {
         </div>
           
         </div>
-`
+`;
 }
-
 
 function subtaskTaskHTML(subtask, i) {
     return `
@@ -120,14 +183,12 @@ function subtaskTaskHTML(subtask, i) {
            <div class="subtask-text" onclick="editWord(${i})">
              <p>${subtask.sub}</p> 
              <img src="./assets/icons/edit.png" alt="">
-             
            </div>
            <span class="break-line"></span>
             <img class="" src="./assets/icons/delete.png" alt="" onclick="deleteSubtask(${i})">
         </div>
         `;
 }
-
 
 function editIconsHTML(i) {
     return `<div class="word-item">
@@ -141,80 +202,6 @@ function editIconsHTML(i) {
             </div>`;
 }
 
-
-
-
-//////////////////////////////////////////////////
-///// mobile and desktop header and sidebar //////
-//////////////////////////////////////////////////
-
-function mobileHeader() {
-    return `<header class="d-flex header-mobile">
-      <img class="logo-mobile" src="./assets/icons/logo-dark.svg" alt="Join Logo" />
-      <div onclick="classChangeAction('menu', 'menu-active', 'toggle'), stopEventBubbling(event)" id="current-user-header" class="current-user-header center">T</div>
-      <div id="menu" class="column menu">
-        <a href="./help.html">Help</a>
-        <a href="./legal-notice.html">Legal Notice</a>
-        <a href="./privacy-policy.html">Privacy Policy</a>
-        <a href="#">Log out</a>
-      </div>
-    </header>`;
-}
-
-
-function desktopHeader() {
-    return `
-        <header class="header-desktop">
-        <p class="header-title">Kanban Project Management Tool</p>
-        <div class="header-actions">
-            <a href="help.html"> <img class="help-icon" src="./assets/icons/help-icon.png" alt="Help"></a>
-            <div onclick="classChangeAction('user-menu', 'd-none', 'toggle'); stopEventBubbling(event)" id="header-initials" class="header-initials-btn">
-                SM
-            </div>
-        </div>
-        
-       <nav id="user-menu" class="user-menu d-none">
-        <a href="legal-notice.html">Legal Notice</a>
-        <a href="privacy-policy.html">Privacy Policy</a>
-        <a href="#">Log out</a>
-       </nav>
-
-    </header>`;
-}
-
-
-function mobileSidebar() {
-    return `<aside class="d-flex sidebar-mobile">
-      <a class="center column nav-link-mobile" href="./summary.html"><img src="./assets/icons/summary-icon.png"
-          alt="Summary" />Summary</a>
-      <a class="center column nav-link-mobile" href="./board.html"><img src="./assets/icons/board-icon.png"
-          alt="Board" />Board</a>
-      <a class="center column nav-link-mobile" href="./add-task.html"><img src="./assets/icons/add-task-icon.png"
-          alt="Add Task" />Add Task</a>
-      <a class="center column nav-link-mobile" href="./contact.html"><img src="./assets/icons/contacts-icon.png"
-          alt="Contacts" />Contacts</a>
-    </aside>`;
-}
-
-
-function desktopSidebar() {
-    return `<aside class="sidebar-desktop">
-        <img class="sidebar-logo-desktop" src="./assets/icons/join-logo-light.png" alt="">
-        <nav class="sidebar-nav">
-            <a class="nav-link-desktop" href="summary.html"><img src="./assets/icons/summary-icon.png" alt=""> Summary</a>
-            <a class="nav-link-desktop" href="add-task.html"><img src="./assets/icons/add-task-icon.png" alt=""> Add Task</a>
-            <a class="nav-link-desktop" href="board.html"><img src="./assets/icons/board-icon.png" alt=""> Board</a>
-            <a class="nav-link-desktop" href="contact.html"><img src="./assets/icons/contacts-icon.png" alt=""> Contacts</a>
-        </nav>
-        <div class="sidebar-info">
-            <a href="privacy-policy.html">Privacy Policy</a>
-            <a href="legal-notice.html">Legal notice</a>
-        </div>
-    </aside>`;
-}
-
-
-
 //////////////////////////////////////////////////
 /////          Board Task Overlays          //////
 //////////////////////////////////////////////////
@@ -223,7 +210,7 @@ function taskBoardOverlay(currentTask) {
     return ` <div class="task-overlay-bg" >
         <div class="task-overlay" onclick="stopEventBubbling(event)">
             <div class="task-overlay-category-container">
-                <span class="task-overlay-category ${currentTask.categoryText.replace(' ', '-').toLowerCase()}">${currentTask.categoryText}</span>
+                <span class="task-overlay-category ${currentTask.categoryText.replace(" ", "-").toLowerCase()}">${currentTask.categoryText}</span>
                 <img class="task-overlay-close-icon" src="./assets/icons/close-icon-dark.png" alt="" onclick="classChangeAction('overlaver','overlaver-active','remove')">
             </div>
             <h1 class="task-overlay-title">
@@ -239,7 +226,7 @@ function taskBoardOverlay(currentTask) {
                   </tr>
                   <tr>
                       <td>Priority:</td>
-                      <td>${currentTask.prio}</td>
+                      <td id="prio">}</td>
                   </tr>
               </table>
               <div class="task-overlay-assigned">
@@ -253,7 +240,7 @@ function taskBoardOverlay(currentTask) {
             </div>
 
             <div class="task-overlay-edit-btns">
-                <button class="task-overlay-btn"><img src="./assets/icons/delete.png" alt="Delete">Delete</button>
+                <button class="task-overlay-btn" onclick="deleteTask()"><img src="./assets/icons/delete.png" alt="Delete">Delete</button>
                 <span class="btn-breakline"></span>
                 <button class="task-overlay-btn" onclick="showEditTaskValues()"><img src="./assets/icons/edit.png" alt="Edit">Edit</button>
             </div>
@@ -262,96 +249,95 @@ function taskBoardOverlay(currentTask) {
     </div>`;
 }
 
-
 function generateAssignedToOerlayLiHTML(contact) {
     return `
                         <li class="assigned-to-contact">
                                 <div title="${contact.name}" class="initials-circle center" style="background-color:${contact.color};">${createInititals(contact.name)}</div>
                                 <span class="name">${contact.name}</span>
-                        </li>`
+                        </li>`;
 }
-
-
-
-
 
 //////////////////////////////////////////////////
 /////         Board Task Overlays Edit      //////
 //////////////////////////////////////////////////
 
-function editBoardTaskHTML() {
-    return ` <div class="overlay-edit-task column" onclick="closeDropdown(); stopEventBubbling(event)">
-    <div class="button-row">
-             <button class="btn close-btn" onclick="classChangeAction('overlaver', 'overlaver-active', 'remove'); stopEventBubbling(event);"><img class="icon" src="./assets/icons/close-icon-dark.png" alt=""></button>
-    </div>
-   
-            <form id="edit-task-form" class="column edit-form" onsubmit="submitEdit(); return false;">
 
-            <div class="column">
-                <label for="title">Title</label>
-                <input class="input" id="title" type="text" placeholder="Enter a title">
+function editBoardTaskHTML(currentTask) {
+    return `
+    <div class="task-overlay-bg">
+        <form onsubmit="editTask(); return false" class="task-overlay" onclick="closeDropdown(); stopEventBubbling(event)">
+            <div class="task-overlay-category-container">
+                <span id="category-text" class="task-overlay-category cursor-pointer" onclick=" classChangeAction('dropdown-category', 'd-none', 'toggle');" style="background-color:powderblue;">${currentTask.categoryText}</span>
+                <img class="task-overlay-close-icon" src="./assets/icons/close-icon-dark.png"
+                    onclick="classChangeAction('overlaver','overlaver-active','remove')">
+
+                <ul id="dropdown-category" class="dropdown-category d-none">
+                    <li class="category-text-option" onclick="updateCategoryText('User Story'); classChangeAction('dropdown-category', 'd-none', 'add')">User Story</li>
+                    <li class="category-text-option" onclick="updateCategoryText('Technical Task'); classChangeAction('dropdown-category', 'd-none', 'add')">Technical Task</li>
+            </ul>
             </div>
+              <div>
+                  <label for="title">Title</label>
+                <input id="edit-title-input" class="edit-title-input" type="text" required value="${currentTask.title}">
+              </div>
+              <div class="task-overlay-scroll-container">
 
-            <div class="column mt-16">
-                <label for="description">Description</label>
-                <textarea id="description" class="textarea" name="description" placeholder="Enter a Description"></textarea>
-            </div>
-
-            <div class="column mt-16">
-                <label for="assign-to-dropdown">Assigned to</label>
-                <div id="dropdown" class="drop-down d-flex">
-                    <input id="assign-to-dropdown" class="input" onkeyup="filter('assign-to-dropdown')" onclick="handleInputClick(event)" value="Select contacts to assign">
-                    <button class="btn dropdown-btn" onclick="handleDropdownButtonClick(event)" type="button">
-                                <img id="drop-down-icon1" src="./assets/icons/arrow-drop-down.png">
-                            </button>
+                <div>
+                    <label for="description">Description</label>
+                    <textarea id="edit-textarea" class="edit-textarea" name="description"
+                        placeholder="Enter a Description">${currentTask.description}</textarea>
                 </div>
-                <ul id="assign-to-dropdown-contacts" class="dropdown-options"></ul>
-            </div>
 
-            <div id="selected-contacts-container" class="d-flex selectet-contacts-container"></div>
+                <table class="task-overlay-prio-date-table">
+                    <tr>
+                        <td>Due date:</td>
+                        <td><input id="edit-date-input" class="edit-date-input" value="${currentTask.date}" type="date"></td>
+                    </tr>
+                    <tr>
+                        <td>Priority:</td>
+                        <td id="prio"></td>
+                    </tr>
+                </table>
 
-            <div class="column mt-16">
-                <label for="date">Due date</label>
-                <input id="date" class="input" required type="date">
-            </div>
-
-            <div class="prio mt-16">
-                <span>Prio</span>
                 <div class="d-flex row">
-                    <button id="urgent-btn" class=" btn prio-btn" type="button" onclick="addPrio('urgent'), stopEventBubbling(event)">Urgent<img id="prio-icon-urgent"
-                                    src="./assets/icons/prio-urgent-icon.png"></button>
-                    <button id="medium-btn" class="btn prio-btn" type="button" onclick="addPrio('medium')">Medium<img
-                                    id="prio-icon-medium" src="./assets/icons/prio-medium-icon.png"></button>
-                    <button id="low-btn" class="btn prio-btn" type="button" onclick="addPrio('low')">Low<img
-                                    id="prio-icon-low" src="./assets/icons/prio-low-icon.png"></button>
+                    <button id="urgent-btn" class=" btn prio-btn" type="button"
+                        onclick="editPrio('urgent'), stopEventBubbling(event)">Urgent<img id="prio-icon-urgent"
+                            src="./assets/icons/prio-urgent-icon.png"></button>
+                    <button id="medium-btn" class="btn prio-btn" type="button" onclick="editPrio('medium')">Medium<img
+                            id="prio-icon-medium" src="./assets/icons/prio-medium-icon.png"></button>
+                    <button id="low-btn" class="btn prio-btn" type="button" onclick="editPrio('low')">Low<img
+                            id="prio-icon-low" src="./assets/icons/prio-low-icon.png"></button>
                 </div>
-            </div>
 
-            <div class="column mt-16">
-                <label for="selected-category">Category</label>
-                <select id="selected-category" class="select-category">
-                            <option value="">Select task category:</option>
-                            <option value="Technical Task">Technical Task</option>
-                            <option value="User Story">User Story</option>
-                        </select>
-            </div>
+                <div class="task-overlay-assigned">
+                    Assigned To:
+                    <div id="dropdown" class="drop-down d-flex">
+                        <input id="assign-to-dropdown" class="input" onkeyup="filter('assign-to-dropdown')"
+                            onclick="handleInputClick(event)" value="Select contacts to assign">
+                        <button class="btn dropdown-btn" onclick="handleDropdownButtonClick(event)" type="button">
+                            <img id="drop-down-icon1" src="./assets/icons/arrow-drop-down.png">
+                        </button>
+                    </div>
+                    <ul id="assign-to-dropdown-contacts" class="dropdown-options"></ul>
+                    <div id="selected-contacts-container" class="d-flex selectet-contacts-container"></div>
+                </div>
 
-            <div class="form-field column mt-16">
-                <label for="subtasks-input">Subtasks</label>
-                <div class="add-task-input">
-                    <input id="subtasks-input" type="subtasks" name="subtasks" onkeyup="subtaskInputBtn()" placeholder="Add new subtask" />
-                    <div class="add-subtask-btn" id="add-subtask-btn">
-                        <img src="./assets/icons/add -subtasks.png" alt="" onclick="setInputFocus()" />
+                <div class="task-overlay-subtasks-container">
+                    Subtasks
+                    <div class="add-task-input">
+                        <input id="subtasks-input" type="subtasks" name="subtasks" onkeyup="subtaskInputBtn()"
+                            placeholder="Add new subtask" />
+                        <div class="add-subtask-btn" id="add-subtask-btn">
+                            <img src="./assets/icons/add -subtasks.png" alt="" onclick="setInputFocus()" />
+                        </div>
                     </div>
                 </div>
+                <div id="subtasks-container" class="subtasks-container"></div>
             </div>
 
-           <div id="subtasks-container" class="subtasks-container"></div>
-
+            <button class="btn submit submit-btn" >Ok <img src="./assets/icons/check.png"></button>
+            
         </form>
-
-        <button class="btn submit submit-btn" type="submit" form="edit-task-form">Ok <img src="./assets/icons/check.png"></button>
-    
-        </div>`
+        
+    </div>`;
 }
-
