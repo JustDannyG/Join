@@ -285,12 +285,9 @@ function findCheckedContacts(currentTask) {
 }
 
 
-
 ///////////////////////////////
 ///   Subtasks editing      ///
 ///////////////////////////////
-
-
 
 function editTaskSubtask() {
     if (currentTask.subtask) {
@@ -301,7 +298,6 @@ function editTaskSubtask() {
 }
 
 
-
 function renderSubtaskEdit(subtasks) {
     let subTaskRef = document.getElementById("subtasks-container");
     subtasks.forEach((subtask, i) => {
@@ -309,20 +305,17 @@ function renderSubtaskEdit(subtasks) {
     });
 }
 
-//Ändern.........
+
 function saveWord(index) {
     const newValue = document.getElementById(`editInput${index}`).value;
     currentSubtasks[index].sub = newValue;
-    // renderSubtask();
     renderSubtaskEdit(currentSubtasks);
 }
 
-//Ändern............
+
 function deleteSubtask(i) {
     currentSubtasks.splice(i, 1);
     renderSubtaskEdit(currentSubtasks);
-    // renderSubtaskEdit(currentTask.subtask)
-    // renderSubtask();
 }
 
 
@@ -330,7 +323,6 @@ function deleteSubtask(i) {
 ///////////////////////////////////////////
 ///    Task editing Save to Firebase    ///
 //////////////////////////////////////////
-
 
 async function editTask() {
     let editTitle = document.getElementById('edit-title-input').value;
