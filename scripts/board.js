@@ -350,7 +350,7 @@ async function editTask() {
 
 
 //////////////////////////////////////
-///         Delete  Task          ///
+///    Delete  Task / Firebase     ///
 /////////////////////////////////////
 
 async function deleteTask() {
