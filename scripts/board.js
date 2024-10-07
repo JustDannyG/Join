@@ -13,6 +13,11 @@ async function boardInit() {
     updateHtml();
 }
 
+async function resetBoard() {
+    await getTasks();
+    updateHtml();
+}
+
 ////////////////////////
 // Show Board Tasks
 ///////////////////////
@@ -272,11 +277,6 @@ function findCheckedContacts(currentTask) {
             }
         }
     }
-}
-
-async function resetBoard() {
-    await getTasks();
-    updateHtml();
 }
 
 ///////////////////////////////
