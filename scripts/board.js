@@ -316,12 +316,13 @@ function saveWord(index) {
 function deleteSubtask(i) {
     currentSubtasks.splice(i, 1);
     renderSubtaskEdit(currentSubtasks);
+    classChangeAction('overlaver','overlaver-active','remove');
 }
 
 
 
 ///////////////////////////////////////////
-///    Task editing Save to Firebase    ///
+///    Task editing PUT to Firebase    ///
 //////////////////////////////////////////
 
 async function editTask() {
@@ -347,3 +348,13 @@ async function editTask() {
     openTask(currentTask.id);
 }
 
+
+//////////////////////////////////////
+///         Delete  Task          ///
+/////////////////////////////////////
+
+async function deleteTask() {
+    await deleteData(path = `/tasks/${currentTask.taskKey}`, data = {})
+    await getTasks();
+    updateHtml();
+}

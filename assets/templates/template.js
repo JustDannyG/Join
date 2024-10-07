@@ -240,7 +240,7 @@ function taskBoardOverlay(currentTask) {
             </div>
 
             <div class="task-overlay-edit-btns">
-                <button class="task-overlay-btn"><img src="./assets/icons/delete.png" alt="Delete">Delete</button>
+                <button class="task-overlay-btn" onclick="deleteTask()"><img src="./assets/icons/delete.png" alt="Delete">Delete</button>
                 <span class="btn-breakline"></span>
                 <button class="task-overlay-btn" onclick="showEditTaskValues()"><img src="./assets/icons/edit.png" alt="Edit">Edit</button>
             </div>
@@ -276,10 +276,6 @@ function editBoardTaskHTML(currentTask) {
                     <li class="category-text-option" onclick="updateCategoryText('Technical Task'); classChangeAction('dropdown-category', 'd-none', 'add')">Technical Task</li>
             </ul>
             </div>
-
-           
-
-     
               <div>
                   <label for="title">Title</label>
                 <input id="edit-title-input" class="edit-title-input" type="text" required value="${currentTask.title}">
