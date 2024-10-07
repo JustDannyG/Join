@@ -71,6 +71,15 @@ function desktopSidebar() {
 function generateTaskHTML(task, index, className) {
     return `<div id="${task.id}" draggable="true" dragleave="animationOndrag(${task.id})"  ondragstart="startDragging(${task.id})"  onclick="classChangeAction('overlaver','overlaver-active','add'); openTask(${task.id})" class="task">
               <div class="task-category ${className}">${task.categoryText}</div>
+              <span class="drag-drop-btn">
+                <img class="drag-drop-icon" src="./assets/icons/up-down-arrow.png" alt="" onclick="openTaskMoveOptions(${task.id});stopEventBubbling(event)">
+                <ul id="task-move-list${task.id}" class="drag-drop-list">
+                    <li onclick="moveTaskTo()">To do</li>
+                    <li onclick="moveTaskTo()">Progress</li>
+                    <li onclick="moveTaskTo()">Feedback</li>
+                    <li onclick="moveTaskTo()">Done</li>
+                </ul>
+              </span>
               <h4 class="task-title">${task.title}</h4>
               <div class="task-description">${task.description}</div>
               <div class="d-flex task-amount-container">

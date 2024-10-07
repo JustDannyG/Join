@@ -358,3 +358,16 @@ async function deleteTask() {
     await getTasks();
     updateHtml();
 }
+
+
+
+
+function openTaskMoveOptions(taskId) {
+    document.getElementById(`task-move-list${taskId}`).classList.toggle('show-drop-list')
+    
+}
+
+
+function moveTaskTo(){
+
+}
