@@ -359,7 +359,7 @@ function openTaskMoveOptions(taskId) {
     document.getElementById(`task-move-list${taskId}`).classList.toggle("show-drop-list");
 }
 
-=
+
 
 async function moveTaskTo(taskId, category){
     // await putData(path=`/tasks/${tasksArray[taskId].taskKey}/`, data={category})
