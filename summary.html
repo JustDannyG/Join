@@ -8,7 +8,11 @@
     <title>Join - Summary</title>
 
     <script src="./script.js" defer></script>
+    <script src="./scripts/summary.js"></script>
+    <script src="./scripts/board.js"></script>
+    <script src="./scripts/fetch.js"></script>
     <script src="assets/templates/template.js"></script>
+
 
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./styles/header-sidebar.css">
@@ -20,7 +24,7 @@
 
 </head>
 
-<body onload="greetingTime(); greetingUser()"
+<body onload="summaryInit()"
     onclick="classChangeAction('user-menu', 'd-none', 'add'); classChangeAction('menu', 'menu-active', 'remove'); stopEventBubbling(event);"
     class="column">
 
@@ -39,13 +43,13 @@
                 <a href="board.html" class="summary-todo-btn">
                     <img class="summary-icon" src="./assets/icons/summary-todo.png" alt="">
                     <div class="summary-counter">
-                        <span class="task-count" id="#">1</span> To-do
+                        <span class="task-count" id="task-count-todo">1</span> To-do
                     </div>
                 </a>
                 <a href="board.html" class="summary-todo-btn">
                     <img class="summary-icon" src="./assets/icons/summary-done.png" alt="">
                     <div class="summary-counter">
-                        <span class="task-count" id="#">1</span> Done
+                        <span class="task-count" id="task-count-done">1</span> Done
                     </div>
                 </a>
             </div>
@@ -55,7 +59,7 @@
                     <div class="urgent-count-box">
                         <img class="summary-icon" src="./assets/icons/summary-urgent.png" alt="">
                         <div class="summary-counter">
-                            <span class="task-count" id="#">1</span> Done
+                            <span class="task-count" id="task-count-urgent">1</span> Urgent
                         </div>
                     </div>
                     <span class="breakline"></span>
@@ -69,17 +73,17 @@
             <div class="summerys-box1">
                 <a href="board.html" class="summary-task-btn">
                     <div class="summary-counter">
-                        <span class="task-count" id="#">5</span> Tasks in <br> Board
+                        <span class="task-count" id="task-count-board">5</span> Tasks in <br> Board
                     </div>
                 </a>
                 <a href="board.html" class="summary-task-btn">
                     <div class="summary-counter">
-                        <span class="task-count" id="#">2</span> Tasks In <br> Progress
+                        <span class="task-count" id="task-count-progress">2</span> Tasks In <br> Progress
                     </div>
                 </a>
                 <a href="board.html" class="summary-task-btn">
                     <div class="summary-counter">
-                        <span class="task-count" id="#">2</span> Awaiting <br> feedback
+                        <span class="task-count" id="task-count-feedback">2</span> Awaiting <br> feedback
                     </div>
                 </a>
             </div>
