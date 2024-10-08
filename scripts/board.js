@@ -13,6 +13,11 @@ async function boardInit() {
     updateHtml();
 }
 
+async function resetBoard() {
+    await getTasks();
+    updateHtml();
+}
+
 ////////////////////////
 // Show Board Tasks
 ///////////////////////
@@ -274,10 +279,6 @@ function findCheckedContacts(currentTask) {
     }
 }
 
-async function resetBoard() {
-    await getTasks();
-    updateHtml();
-}
 
 ///////////////////////////////
 ///   Subtasks editing      ///
@@ -357,12 +358,8 @@ function openTaskMoveOptions(taskId) {
     document.getElementById(`task-move-list${taskId}`).classList.toggle("show-drop-list");
 }
 
-<<<<<<< HEAD
 
 
 async function moveTaskTo(taskId, category){
-=======
-async function moveTaskTo(taskId, category) {
->>>>>>> c8145a6abbb79ed6b401f83b05022b4b35eebd8b
     // await putData(path=`/tasks/${tasksArray[taskId].taskKey}/`, data={category})
 }
