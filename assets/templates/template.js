@@ -338,55 +338,6 @@ function editBoardTaskHTML(currentTask) {
             <button class="btn submit submit-btn" >Ok <img src="./assets/icons/check.png"></button>
             
         </form>
-
-        <button class="btn submit submit-btn" type="submit" form="edit-task-form">Ok <img src="./assets/icons/check.png"></button>
-    
-        </div>`
-}
-
-function taskBoardOverlay(id) {
-    return `<div class="overlay-task column">
-            <div class="task-header d-flex">
-                <span id="task-category-overlay">User Story</span>
-                <button class="btn" onclick="classChangeAction('overlaver','overlaver-active','remove')">
-                    <img class="icon" src="./assets/icons/close-icon-dark.png" alt="">
-                </button>
-            </div>
-            <span id="task-title-overlay" class="task-title"></span>
-            <span id="task-discription-overlay" class="discription"></span>
-            <div class="task-details-container">
-                <div class="info">
-                    <span class="info-title">Due date:</span>
-                    <span id="task-date-overlay" class="info-value"></span>
-                </div>
-                <div class="info">
-                    <span class="info-title">Priority:</span>
-                    <div class="info-value">
-                        <span id="task-prio-overlay"></span>
-                        <img id="prio-icon-overlay" class="prio-icon" src="" alt="">
-                    </div>
-                </div>
-                <div class="assigned-to-container">Assigned To:
-                    <ul id="assigned-to-list">
-
-                    </ul>
-
-                    <div class="task-details"></div>
-
-
-                </div>
-                <div class="subtask">Subtask
-                    <ul id="subtask-overlay">
-
-                    </ul>
-                </div>
-            </div>
-            <div class="edit-task-container d-flex">
-                <button class="btn">
-                    <img class="icon" src="./assets/icons/delete.png" alt="">Delete</button>
-                <div class="divider"></div>
-                <button onclick="showEditTaskValues(); stopEventBubbling(event);" class="btn">
-                    <img class="icon" src="./assets/icons/edit.png" alt="">Edit</button>
-            </div>
-        </div>`;
+        
+    </div>`;
 }
