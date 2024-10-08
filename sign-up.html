@@ -6,15 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0 , maximum-scale=1" />
   <title>Join - Sign up</title>
 
+  <script src="assets/templates/template.js"></script>
   <script src="scripts/fetch.js"></script>
   <script src="scripts/sign-up.js"></script>
   <script src="script.js"></script>
+  
 
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="styles/sign-up.css" />
 </head>
 
 <body>
+  <section id="join-header" class="join-header"></section>
   <form class="d-flex content center column gap-signup-logo-content">
     <div class="logo-signup-container">
       <img class="logo-login" src="/assets/icons/logo-dark.svg" alt="" />
@@ -64,6 +67,7 @@
       <a id="legalNoticeLink" class="footer-links d-flex center" href="/legal-notice.html">Legal notice</a>
     </div>
   </form>
+  <section id="join-sidebar" class="d-none"></section>
 </body>
 
 <div id="dialog-allready-exists" class="dialog d-flex center">User is allready exists!</div>
