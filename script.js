@@ -152,34 +152,6 @@ function openAddTask(taskStatus) {
         alert('Here Add Task Overlay')
     }
 }
-////////////////////////////////////////////
-///           Greeting Functions      /////
-//////////////////////////////////////////
-
-function greetingTime() {
-    let A = new Date();
-    let hour = A.getHours();
-    console.log(hour);
-    let greeting = document.getElementById('greeting-time');
-    if (hour < 12) {
-        greeting.innerHTML = `Good morning,`
-    } else if (hour < 17) {
-        greeting.innerHTML = `Good afternoon,`
-    } else if (hour < 24){
-        greeting.innerHTML = `Good evening,`
-    }
-}
-
-
-function greetingUser() {
-    let greetUser = document.getElementById('greeting-name');
-    greetUser.innerHTML = user;
-}
-
-
-
-
-
 
 
 //////////////////////////////////////
