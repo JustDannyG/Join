@@ -87,7 +87,7 @@ function stopEventBubbling(event) {
 }
 
 function goSummery() {
-    window.location.href = "summary.html";
+    window.location.href = 'summary.html';
 }
 
 
