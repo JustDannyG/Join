@@ -1,10 +1,10 @@
-async function login() {
+async function login(event) {
+    event.preventDefault();
     let emailInput = document.getElementById('email').value;
     let passwordInput = document.getElementById('password').value;
     let users = await getData('users');
     let userIds = Object.keys(users);
     let userFound = false;
-    console.log(userIds);
     emailInputErrorStyle(emailInput);
     passwordInputErrorStyle(passwordInput);
     searchUserInDatabase(emailInput, passwordInput, users, userIds, userFound);
@@ -16,7 +16,7 @@ function searchUserInDatabase(emailInput, passwordInput, users, userIds, userFou
         let user = users[userId];
         if (user.email === emailInput && user.password === passwordInput) {
             userFound = true;
-            window.location.href = "summary.html";
+            window.location.href = 'summary.html';
             break;
         }
     }
@@ -57,6 +57,12 @@ function rememberMe() {
 
 }
 
-function goSignUp() {
-    window.location.href = "sign-up.html";
+function goSummery(event) {
+    event.preventDefault();  
+    window.location.href = 'summary.html';
+}
+
+function goSignUp(event) {
+    event.preventDefault();
+    window.location.href = 'sign-up.html';
 }

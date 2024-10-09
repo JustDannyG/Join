@@ -175,7 +175,7 @@ button {
     position: absolute;
     top: 42%;
     right: 0;
-    left: 0;
+    left: 42.5%;
     display: none;
 }
 
@@ -187,23 +187,14 @@ button {
     color: red;
     font-size: 12px;
     position: absolute;
-    top: 49%;
+    top: 48.7%;
     right: 0;
-    left: 0;
+    left: 42.5%;
     display: none;
 }
 
 .error-message-password.visible {
     display: block;
-}
-
-.overlay {
-    position: absolute;
-    background-color: var(--light-blue-light);
-    border: 2px solid var(--light-blue);
-    z-index: 999;
-    animation: fadeOut 2s forwards;
-    flex: 1;
 }
 
 .welcomeMessage {
@@ -224,4 +215,60 @@ button {
 
 .border-none {
     border: none;
+}
+
+/* start overlay */
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--darke-blue);
+    z-index: 1000;
+    overflow: hidden;
+    animation: fadeOutOverlay 3s ease forwards;
+}
+
+@keyframes moveAndScale {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        top: 50%;
+        left: 50%;
+    }
+    100% {
+        transform: translate(0, 0) scale(0.64); 
+        top: 0;   
+        left: 0;
+    }
+}
+
+@keyframes fadeOutOverlay {
+    0% {
+        opacity: 1; 
+    }
+    100% {
+        opacity: 0; 
+        pointer-events: none; 
+    }
+}
+
+.overlay .svg-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: moveAndScale 1.5s ease forwards 0.2s;
+}
+
+.svg-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+    width: 100px;
+    height: 122px;
+    object-fit: cover;
 }
