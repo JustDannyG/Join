@@ -49,9 +49,7 @@ async function getSummaryTasks() {
     document.getElementById('task-count-progress').innerHTML = summaryTaskFilter('progress');
     document.getElementById('task-count-feedback').innerHTML = summaryTaskFilter('feedback');
     document.getElementById('task-count-done').innerHTML = summaryTaskFilter('done');
-
     document.getElementById('task-count-urgent').innerHTML = summaryPrioFilter('urgent');
-
     document.getElementById('task-count-board').innerHTML = tasksArray.length;
 }
 

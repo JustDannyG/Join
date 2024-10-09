@@ -16,10 +16,10 @@
     --light-grey: #f6f7f8;
     --medium-grey: #e7e7e7;
     --dark-grey: #a8a8a8;
-    --placeholder-grey: #D1D1D1;
+    --placeholder-grey: #d1d1d1;
     --white: #fff;
     --subtitle: #2a3647;
-    --required: #FF8190;
+    --required: #ff8190;
 }
 
 * {
@@ -55,7 +55,6 @@ main::-webkit-scrollbar-thumb {
 main::-webkit-scrollbar-track {
     background: #f1f1f1;
 }
-
 
 .content {
     padding: 25px 16px 48px 16px;
@@ -108,14 +107,24 @@ button {
     color: var(--white);
 }
 
+
 /* =========================
      Categorys Colors
    ========================= */
 
 .user-stoty {
-    background-color: #0038FF;
+    background-color: #0038ff;
 }
 
 .technical-task {
-    background-color: #20D7C1;
+    background-color: #20d7c1;
+}
+
+
+/* =========================
+    Buttons in Contact 
+   ========================= */
+
+.bg-color-blue {
+    background-color: var(--light-blue) !important;
 }
