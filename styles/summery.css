@@ -255,3 +255,100 @@
         scale: 1;
     }
 }
+
+.mobile-greeting-animation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+
+
+    animation-name: fadeOut;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.summary-greeting-mobile-container {
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+
+    animation-name: greeting-mobile;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.greeting-time-mobile{
+    font-size: 36px;
+    font-weight: 500;
+    transition: all ease-in-out 125ms;
+}
+
+.greeting-name-mobile{
+    color: var(--light-blue);
+    font-size: 50px;
+    font-weight: 700;
+    transition: all ease-in-out 125ms;
+}
+
+
+@keyframes fadeOut {
+
+    0% {
+        opacity: 1;
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        display: none;
+    }
+
+}
+
+@keyframes greeting-mobile {
+
+
+    0% {
+        scale: 0.6;
+        opacity: 0;
+    }
+
+    25% {
+       
+        opacity: 1;
+    }
+
+    50% {
+        
+        opacity: 1;
+    }
+
+    75% {
+    
+        opacity: 1;
+    }
+
+    100% {
+        scale: 1.1;
+        opacity: 1;
+    }
+}
