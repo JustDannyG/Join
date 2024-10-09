@@ -42,11 +42,11 @@
         top: 30px;
     }
 
-    .greeting-time-mobile{
+    .greeting-time-mobile {
         font-size: 47px;
     }
 
-    .greeting-name-mobile{
+    .greeting-name-mobile {
         font-size: 60px;
     }
 }
@@ -58,15 +58,14 @@
 
     }
 
-    .greeting-time-mobile{
+    .greeting-time-mobile {
         font-size: 47px;
     }
 
-    .greeting-name-mobile{
+    .greeting-name-mobile {
         font-size: 64px;
     }
 }
-
 
 
 @media(min-width: 1024px) {
@@ -96,11 +95,11 @@
         font-size: 41px;
     }
 
-    .mobile-greeting-animation{
+    .mobile-greeting-animation {
         display: none;
     }
 
-    
+
 }
 
 @media(min-width: 1440px) {
