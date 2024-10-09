@@ -41,8 +41,8 @@ function mobileSidebar() {
           alt="Summary" />Summary</a>
       <a class="center column nav-link-mobile" href="./board.html"><img src="./assets/icons/board-icon.png"
           alt="Board" />Board</a>
-      <a class="center column nav-link-mobile" href="./add-task.html"><img src="./assets/icons/add-task-icon.png"
-          alt="Add Task" />Add Task</a>
+      <a class="center column nav-link-mobile" href="./add-task.html" onclick="setTaskCategory('todo')"><img src="./assets/icons/add-task-icon.png"
+          alt="Add Task"  />Add Task</a>
       <a class="center column nav-link-mobile" href="./contact.html"><img src="./assets/icons/contacts-icon.png"
           alt="Contacts" />Contacts</a>
     </aside>`;
