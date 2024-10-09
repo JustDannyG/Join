@@ -1,5 +1,4 @@
 let categoryInput;
-let prio = "medium";
 
 // let curretCategory = "todo";
 
@@ -306,4 +305,14 @@ function setTaskCategory(categoryValue) {
 function getCurrentCategory() {
     curretCategory = getFromLocalStorage("taskCategory");
     console.log(curretCategory);
+}
+
+function clearAddTask() {
+    document.getElementById("title").value = "";
+    document.getElementById("description").value = "";
+    document.getElementById("date").value = "";
+    prio = "medium";
+    updateBtnColor();
+    document.getElementById("subtasks-container").innerHTML = "";
+    currentSubtasks = [];
 }

@@ -1,5 +1,6 @@
 let user = "Guest";
 let contacts = [];
+let prio = "medium";
 
 //////////////////////////////////////
 ///         Return Functions     /////
@@ -135,13 +136,16 @@ checkScreenWidth();
 // Optional: Bei jeder Größenänderung des Fensters
 window.addEventListener("resize", checkScreenWidth);
 
-function openAddTask() {
+function openAddTask(taskCategory) {
+    updateBtnColor();
+    setTaskCategory(taskCategory);
     if (screenMode == "mobile") {
         window.location.href = "add-task.html";
         // taskStatus;
     }
     if (screenMode == "desktop") {
         // alert("Here Add Task Overlay");
+        addTaskInit();
         classChangeAction("add-task-overlay", "overlaver-active", "toggle");
     }
 }

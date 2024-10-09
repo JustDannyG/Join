@@ -32,7 +32,7 @@
         <section class="mobile-section-search-add">
             <div class="headline d-flex">
                 <h1>Board</h1>
-                <button onclick="setTaskCategory('todo'); openAddTask()">
+                <button onclick="openAddTask('todo')">
                         <img src="./assets/icons/add-icon-light.png" alt="" />
                     </button>
             </div>
@@ -49,7 +49,7 @@
                     <input class="input" placeholder="Find Task" type="text" />
                     <img src="./assets/icons/search-icon.png" alt="" />
                 </div>
-                <button class="add-task-btn" onclick="setTaskCategory('todo'); classChangeAction('add-task-overlay', 'overlaver-active', 'toggle')">
+                <button class="add-task-btn" onclick="openAddTask('todo')">
                         Add Task
                         <img src="./assets/icons/add.png" alt="" />
                     </button>
@@ -70,7 +70,7 @@
             <section class="board-section">
                 <div class="subtitle d-flex">
                     <h2>In progress</h2>
-                    <button class="center" onclick="setTaskCategory('progress'); openAddTask()">
+                    <button class="center" onclick="openAddTask('progress')">
                             <img src="./assets/icons/add-icon.png" alt="" />
                         </button>
                 </div>
@@ -80,7 +80,7 @@
             <section class="board-section">
                 <div class="subtitle d-flex">
                     <h2>Await feedback</h2>
-                    <button class="center" onclick="setTaskCategory('feedback'); openAddTask()">
+                    <button class="center" onclick="openAddTask('feedback')">
                             <img src="./assets/icons/add-icon.png" alt="" />
                         </button>
                 </div>
@@ -106,10 +106,9 @@
 
     <div id="add-task-overlay" class="add-task-overlay-bg" onclick="classChangeAction('add-task-overlay', 'overlaver-active', 'toggle')">
         <div class="add-task-overlay" onclick="stopEventBubbling(event)">
-            <form id="add-task" class="add-task-form" onsubmit="createTask(); return false;">
+            <form id="add-task" class="add-task-form add-task-form-in-overlay" onsubmit="createTask(); return false;">
+                <h1 class="add-task-headline headline-in-overlay">Add Task</h1>
                 <div class="task-details">
-                    <h1 class="add-task-headline">Add Task</h1>
-
                     <div class="column mt-16">
                         <label for="title">Title<span class="required">*</span></label>
                         <input class="input" required id="title" type="text" placeholder="Enter a title" />
@@ -149,7 +148,7 @@
                         </div>
                     </div>
 
-                    <div class="column mt-16">
+                    <div class="column mt-16" style="position: relative">
                         <label for="selected-category">Category<span class="required">*</span></label>
                         <select required id="selected-category" class="select-category">
                                 <option value="">Select task category:</option>
@@ -174,8 +173,8 @@
                 <div class="add-task-action-btn">
                     <div><span class="required">*</span>This field is required</div>
                     <div class="d-flex btn-gap">
-                        <button type="button" class="btn clear">Clear <img src="./assets/icons/clear-icon-dark.png" alt="" /></button>
-                        <button type="submit" class="btn submit" onclick="boardInit(); classChangeAction('add-task-overlay', 'overlaver-active', 'remove')">Create Task <img src="./assets/icons/check.png" alt="" /></button>
+                        <button type="button" class="btn clear" onclick="clearAddTask()">Clear <img src="./assets/icons/clear-icon-dark.png" alt="" /></button>
+                        <button type="submit" class="btn submit" onclick="boardInit(); clearAddTask(); classChangeAction('add-task-overlay', 'overlaver-active', 'remove')">Create Task <img src="./assets/icons/check.png" alt="" /></button>
                     </div>
                 </div>
             </form>
