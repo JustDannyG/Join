@@ -36,7 +36,7 @@
                     </button>
                 </div>
                 <div class="d-flex input-row">
-                    <input  placeholder="Find Task" type="text"  />
+                    <input id="search-task-mobile" class="input" placeholder="Find Task" type="text" onkeyup="filterBoardTasks('mobile')"/>
                     <img src="./assets/icons/search-icon.png" alt="" />
                 </div>
             </section>
@@ -45,7 +45,7 @@
                 <h1 class="headline">Board</h1>
                 <div class="search-row d-flex">
                     <div class="d-flex search">
-                        <input id="search-task" class="input" placeholder="Find Task" type="text" onkeyup="filterBoardTasks()"/>
+                        <input id="search-task-desktop" class="input" placeholder="Find Task" type="text" onkeyup="filterBoardTasks('desktop')"/>
                         <img src="./assets/icons/search-icon.png" alt="" />
                     </div>
                     <button class="add-task-btn" onclick="classChangeAction('add-task-overlay', 'overlaver-active', 'toggle')">
