@@ -10,7 +10,7 @@ function summaryInit() {
 
 
 
-function greeting(){
+function greeting() {
     let greeting = document.getElementById('greeting-time').innerHTML = greetingTime();
     let greetUser = document.getElementById('greeting-name').innerHTML = greetingUser();
 
@@ -24,11 +24,11 @@ function greetingTime() {
     console.log(hour);
     if (hour < 12) {
         return `Good morning,`
-        
+
     } else if (hour < 17) {
-        return`Good afternoon,`
+        return `Good afternoon,`
     } else if (hour < 24) {
-        return  `Good evening,`
+        return `Good evening,`
     }
 }
 
@@ -74,5 +74,20 @@ function summaryPrioFilter(section) {
             return t
         }
     })
+    findEarliestDate(task)
     return task.length;
+}
+
+
+function findEarliestDate(task) {
+    let earliestUrgentDate = document.getElementById('earliest-urgent-date');
+    let earliestDate = null;
+    task.forEach(item => {
+        const itemDate = new Date(item.date); 
+        if (!earliestDate || itemDate < new Date(earliestDate.date)) {
+            earliestDate = item;
+        }
+    });
+    earliestUrgentDate.innerHTML = earliestDate.date
+    return earliestDate;
 }
