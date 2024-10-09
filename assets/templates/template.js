@@ -346,8 +346,8 @@ function editBoardTaskHTML(currentTask) {
             <button class="btn submit submit-btn" >Ok <img src="./assets/icons/check.png"></button>
             
         </form>
-    
-        </div>`;
+        
+    </div>`;
 }
 
 // War doppelt

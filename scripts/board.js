@@ -357,6 +357,21 @@ function openTaskMoveOptions(taskId) {
     document.getElementById(`task-move-list${taskId}`).classList.toggle("show-drop-list");
 }
 
+
+
 async function moveTaskTo(taskId, category) {
-    // await putData(path=`/tasks/${tasksArray[taskId].taskKey}/`, data={category})
+    await putData(path = `/tasks/${tasksArray[taskId].taskKey}/`,
+        data = {
+            id: taskId,
+            category: category,
+            categoryText: tasksArray[taskId].categoryText,
+            title: tasksArray[taskId].title,
+            description: tasksArray[taskId].description,
+            date: tasksArray[taskId].date,
+            prio: tasksArray[taskId].prio,
+            assignedTo: tasksArray[taskId].assignedTo,
+            subtask: tasksArray[taskId].subtask,
+            taskKey: tasksArray[taskId].taskKey
+        })
+    await resetBoard();
 }
