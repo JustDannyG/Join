@@ -381,8 +381,8 @@ async function moveTaskTo(taskId, category) {
 ///          Search Function          ///
 /////////////////////////////////////////
 
-function filterBoardTasks() {
-    let search = document.getElementById('search-task').value;
+function filterBoardTasks(screen) {
+    let search = document.getElementById(`search-task-${screen}`).value;
     search = search.toLowerCase()
     console.log(search);
 
