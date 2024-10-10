@@ -375,3 +375,37 @@ async function moveTaskTo(taskId, category) {
         })
     await resetBoard();
 }
+
+
+//////////////////////////////////////////
+///          Search Function          ///
+/////////////////////////////////////////
+
+function filterBoardTasks(screen) {
+    let search = document.getElementById(`search-task-${screen}`).value;
+    search = search.toLowerCase()
+    console.log(search);
+
+    let todoById = document.getElementById("to-do-container");
+    let progressById = document.getElementById("in-progress-container");
+    let feedbackById = document.getElementById("await-feedback-container");
+    let doneById = document.getElementById("done-container");
+
+    renderTasks(filterSearchTasks("todo", search), todoById, "To do");
+    renderTasks(filterSearchTasks("progress", search), progressById, "Progress");
+    renderTasks(filterSearchTasks("feedback", search), feedbackById, "Feedback");
+    renderTasks(filterSearchTasks("done", search), doneById, "Done");
+}
+
+
+function filterSearchTasks(task, search) {
+    let filterArray = tasksArray.filter((t) => t["category"] == task);
+    let filterTasks = [];
+    for (let i = 0; i < filterArray.length; i++) {
+        const tasks = filterArray[i];
+        if (tasks.title.toLowerCase().includes(search)) {
+            filterTasks.push(tasks);
+        }
+    }
+    return filterTasks
+}
