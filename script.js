@@ -2,12 +2,9 @@ let user = 'Guest';
 let contacts = [];
 
 
-
-
-
-//////////////////////////////////////
-///         Return Functions     /////
-/////////////////////////////////////
+///////////////////////////////////
+///     Return Functions     /////
+/////////////////////////////////
 
 function createInititals(selectName) {
     let firstsChar = selectName;
@@ -55,6 +52,10 @@ function checkLengthSmaller(e, n) {
     return e.length > n
 }
 
+//////////////////////////////////////
+///                             /////
+/////////////////////////////////////
+
 
 function clearContent(e) {
     e.innerHTML = "";
@@ -66,9 +67,13 @@ function clearInput(input) {
 }
 
 
-//////////////////////////////////////
-///                              /////
-/////////////////////////////////////
+function stopEventBubbling(event) {
+    event.stopPropagation();
+}
+
+////////////////////////////
+///   Get Contacts     /////
+////////////////////////////
 
 
 async function getContacts() {
@@ -81,15 +86,6 @@ async function getContacts() {
     }
     sortByAlphabet(contacts);
 }
-
-function stopEventBubbling(event) {
-    event.stopPropagation();
-}
-
-function goSummery() {
-    window.location.href = 'summary.html';
-}
-
 
 //////////////////////////////////////
 ///                             /////
@@ -109,15 +105,11 @@ function classChangeAction(id, className, action) {
 }
 
 
+///////////////////////////////////////////////////////////////////
+///   Check Screen Size for Mobile or Desktop Design Functions  ///
+///////////////////////////////////////////////////////////////////
 
-//////////////////////////////////////////////
-///      Check Screen Size Function     /////
-////////////////////////////////////////////
-
-
-//Mobile / Desktop //
 function checkScreenWidth() {
-
     let header = document.getElementById('join-header');
     let sidebar = document.getElementById('join-sidebar');
     let currentHeader = '';
@@ -137,6 +129,7 @@ function checkScreenWidth() {
     sidebar.innerHTML = currentSidebar;
 }
 
+
 // Aufrufen der Funktion beim Laden der Seite
 checkScreenWidth();
 // Optional: Bei jeder Größenänderung des Fensters
@@ -154,27 +147,20 @@ function openAddTask(taskStatus) {
 }
 
 
-//////////////////////////////////////
-///        Select Function       /////
-/////////////////////////////////////
-
-
+///////////////////////////////////////////////////////////////////
+///     Select Special Design Function  ** Stack Overflow **    ///
+///////////////////////////////////////////////////////////////////
 
 function styleSelecet() {
     document.querySelectorAll('select').forEach(function (select) {
         select.classList.add('s-hidden');
         var styledSelect = document.createElement('div');
         styledSelect.classList.add('styledSelect');
-
         styledSelect.textContent = select.options[select.selectedIndex].text;
-
-
         select.parentNode.insertBefore(styledSelect, select.nextSibling);
-
         var list = document.createElement('ul');
         list.classList.add('options');
         select.parentNode.insertBefore(list, styledSelect.nextSibling);
-
         Array.from(select.options).forEach(function (option, index) {
             var li = document.createElement('li');
             li.textContent = option.text;
@@ -184,7 +170,6 @@ function styleSelecet() {
             }
             list.appendChild(li);
         });
-
         styledSelect.addEventListener('click', function (e) {
             e.stopPropagation();
             document.querySelectorAll('div.styledSelect.active').forEach(function (activeSelect) {
@@ -195,12 +180,10 @@ function styleSelecet() {
             });
             styledSelect.classList.toggle('active');
             list.style.display = styledSelect.classList.contains('active') ? 'block' : 'none';
-
             if (styledSelect.classList.contains('active')) {
                 list.querySelector('li.hide-first').style.display = 'none';
             }
         });
-
         list.addEventListener('click', function (e) {
             if (e.target.tagName === 'LI') {
                 styledSelect.textContent = e.target.textContent;
@@ -209,7 +192,6 @@ function styleSelecet() {
                 list.style.display = 'none';
             }
         });
-
         document.addEventListener('click', function () {
             styledSelect.classList.remove('active');
             list.style.display = 'none';
