@@ -261,7 +261,7 @@ h1 {
     position: absolute;
     align-self: center;
     bottom: 0;
-    height: 58px;
+    height: 61px;
     transition: 125ms ease-in-out;
     transform: translateY(80px);
     background-color: var(--darke-blue);
@@ -270,6 +270,7 @@ h1 {
     font-size: 16px;
     text-wrap: nowrap;
     border-radius: 12px;
+    cursor: pointer;
 }
 
 .dialog-active {

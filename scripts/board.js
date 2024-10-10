@@ -13,6 +13,11 @@ async function boardInit() {
     updateHtml();
 }
 
+async function resetBoard() {
+    await getTasks();
+    updateHtml();
+}
+
 ////////////////////////
 // Show Board Tasks
 ///////////////////////
@@ -173,8 +178,6 @@ function renderTasksArrays() {
     setCheck();
 }
 
-
-
 /////////////////////////////////////////
 ///    Check Subtasks Functions     /////
 ////////////////////////////////////////
@@ -205,8 +208,6 @@ async function checkAndPushToFirebase(subIndex) {
     await getTasks();
 }
 
-
-
 /////////////////////////////////
 //    Edit Task Funktionen    ///
 /////////////////////////////////
@@ -217,9 +218,6 @@ function showEditTaskValues() {
     editTaskSubtask();
     editTaskPrioBtnColor();
     taskPrioText();
-
-
-
 }
 function updateCategoryText(value) {
     currentTask.categoryText = value;
@@ -228,17 +226,14 @@ function updateCategoryText(value) {
 }
 
 function editTaskAssignTo() {
-    selectedContacts = [] //Required, to clear the Array from the Edit-Task before    //// Anpassungen
-    getSelectedContacts()
+    selectedContacts = []; //Required, to clear the Array from the Edit-Task before    //// Anpassungen
+    getSelectedContacts();
     if (currentTask.assignedTo) {
         findCheckedContacts(currentTask);
         renderContacts(selectedContacts);
         renderSelectedContacts();
-        let assignedTo = filterCheckedAssignedTo()
     }
-
 }
-
 
 function taskPrioText() {
     if (currentTask.prio) {
@@ -284,7 +279,6 @@ function findCheckedContacts(currentTask) {
     }
 }
 
-
 ///////////////////////////////
 ///   Subtasks editing      ///
 ///////////////////////////////
@@ -297,7 +291,6 @@ function editTaskSubtask() {
     }
 }
 
-
 function renderSubtaskEdit(subtasks) {
     let subTaskRef = document.getElementById("subtasks-container");
     subtasks.forEach((subtask, i) => {
@@ -305,56 +298,114 @@ function renderSubtaskEdit(subtasks) {
     });
 }
 
-
 function saveWord(index) {
     const newValue = document.getElementById(`editInput${index}`).value;
     currentSubtasks[index].sub = newValue;
     renderSubtaskEdit(currentSubtasks);
 }
 
-
 function deleteSubtask(i) {
     currentSubtasks.splice(i, 1);
     renderSubtaskEdit(currentSubtasks);
-    classChangeAction('overlaver','overlaver-active','remove');
+    classChangeAction("overlaver", "overlaver-active", "remove");
 }
-
-
 
 ///////////////////////////////////////////
 ///    Task editing PUT to Firebase    ///
 //////////////////////////////////////////
 
 async function editTask() {
-    let editTitle = document.getElementById('edit-title-input').value;
-    let editDescription = document.getElementById('edit-textarea').value;
-    let editDate = document.getElementById('edit-date-input').value;
+    let editTitle = document.getElementById("edit-title-input").value;
+    let editDescription = document.getElementById("edit-textarea").value;
+    let editDate = document.getElementById("edit-date-input").value;
 
-    await putData(path = `/tasks/${currentTask.taskKey}`, data = {
-        'id': currentTask.id,
-        'category': currentTask.category,
-        'categoryText': currentTask.categoryText,
-        'title': editTitle,
-        'description': editDescription,
-        'date': editDate,
-        'prio': currentTask.prio,
-        'assignedTo': currentTask.assignedTo,
-        'subtask': currentSubtasks,
-        'taskKey': currentTask.taskKey
-    })
+    await putData(
+        (path = `/tasks/${currentTask.taskKey}`),
+        (data = {
+            id: currentTask.id,
+            category: currentTask.category,
+            categoryText: currentTask.categoryText,
+            title: editTitle,
+            description: editDescription,
+            date: editDate,
+            prio: currentTask.prio,
+            assignedTo: filterCheckedAssignedTo(),
+            subtask: currentSubtasks,
+            taskKey: currentTask.taskKey,
+        })
+    );
 
-    await getTasks();
-    updateHtml();
+    resetBoard();
     openTask(currentTask.id);
 }
-
 
 //////////////////////////////////////
 ///    Delete  Task / Firebase     ///
 /////////////////////////////////////
 
 async function deleteTask() {
-    await deleteData(path = `/tasks/${currentTask.taskKey}`, data = {})
-    await getTasks();
-    updateHtml();
+    classChangeAction("overlaver", "overlaver-active", "remove");
+    await deleteData((path = `/tasks/${currentTask.taskKey}`), (data = {}));
+    resetBoard();
+}
+
+//////////////////////////////////////////
+///     Mobile Move Task / Firebase    ///
+/////////////////////////////////////////
+
+function openTaskMoveOptions(taskId) {
+    document.getElementById(`task-move-list${taskId}`).classList.toggle("show-drop-list");
+}
+
+
+
+async function moveTaskTo(taskId, category) {
+    await putData(path = `/tasks/${tasksArray[taskId].taskKey}/`,
+        data = {
+            id: taskId,
+            category: category,
+            categoryText: tasksArray[taskId].categoryText,
+            title: tasksArray[taskId].title,
+            description: tasksArray[taskId].description,
+            date: tasksArray[taskId].date,
+            prio: tasksArray[taskId].prio,
+            assignedTo: tasksArray[taskId].assignedTo,
+            subtask: tasksArray[taskId].subtask,
+            taskKey: tasksArray[taskId].taskKey
+        })
+    await resetBoard();
+}
+
+
+//////////////////////////////////////////
+///          Search Function          ///
+/////////////////////////////////////////
+
+function filterBoardTasks(screen) {
+    let search = document.getElementById(`search-task-${screen}`).value;
+    search = search.toLowerCase()
+    console.log(search);
+
+    let todoById = document.getElementById("to-do-container");
+    let progressById = document.getElementById("in-progress-container");
+    let feedbackById = document.getElementById("await-feedback-container");
+    let doneById = document.getElementById("done-container");
+
+    renderTasks(filterSearchTasks("todo", search), todoById, "To do");
+    renderTasks(filterSearchTasks("progress", search), progressById, "Progress");
+    renderTasks(filterSearchTasks("feedback", search), feedbackById, "Feedback");
+    renderTasks(filterSearchTasks("done", search), doneById, "Done");
+}
+
+
+function filterSearchTasks(task, search) {
+    let filterArray = tasksArray.filter((t) => t["category"] == task);
+    let filterTasks = [];
+    for (let i = 0; i < filterArray.length; i++) {
+        const tasks = filterArray[i];
+        if (tasks.title.toLowerCase().includes(search)) {
+            filterTasks.push(tasks);
+        }
+    }
+    return filterTasks
 }
