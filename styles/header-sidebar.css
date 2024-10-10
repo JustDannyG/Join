@@ -12,7 +12,7 @@
     background-color: white;
     box-shadow: 0 1px 10px 2px rgba(0, 0, 0, 0.2);
     position: relative;
-    z-index: 1;
+    /* z-index: 1; */
 }
 
 .header-title {
@@ -49,7 +49,7 @@
 
 .header-initials-btn:hover {
     scale: 1.1;
-    background-color: #0C2E621F;
+    background-color: #0c2e621f;
 }
 
 .header-actions {
@@ -94,7 +94,6 @@
     color: white;
 }
 
-
 /* =========================
       Sidebar Desktop
    ========================= */
@@ -112,7 +111,6 @@
     background-color: var(--darke-blue);
     transition: all ease-in-out 125ms;
     z-index: 1;
-
 }
 
 .sidebar-logo-desktop {
@@ -147,7 +145,6 @@
     color: white;
 }
 
-
 .nav-link-desktop img {
     width: 30px;
     height: 30px;
@@ -173,7 +170,6 @@
     color: var(--light-blue);
     font-weight: bold;
 }
-
 
 /* =========================
       Header Mobile
@@ -229,7 +225,6 @@
     color: var(--light-grey);
 }
 
-
 /* =========================
       Sidebar Mobile
    ========================= */
@@ -259,4 +254,3 @@
 .current-link {
     background-color: var(--hover-darke-blue);
 }
-

@@ -31,7 +31,7 @@
             <section class="mobile-section-search-add">
                 <div class="headline d-flex">
                     <h1>Board</h1>
-                    <button onclick="openAddTask('todo')">
+                    <button class="btn" onclick="openAddTask('todo')">
                         <img src="./assets/icons/add-icon-light.png" alt="" onclick="openAddTask()" />
                     </button>
                 </div>
@@ -48,7 +48,7 @@
                         <input id="search-task-desktop" class="input" placeholder="Find Task" type="text" onkeyup="filterBoardTasks('desktop')" />
                         <img src="./assets/icons/search-icon.png" alt="" />
                     </div>
-                    <button class="add-task-btn" onclick="openAddTask('todo')">
+                    <button class="btn add-task-btn" onclick="openAddTask('todo')">
                         Add Task
                         <img src="./assets/icons/add.png" alt="" />
                     </button>
@@ -104,7 +104,7 @@
         <!-- Add Task Overlay  -->
 
         <div id="add-task-overlay" class="add-task-overlay-bg" onclick="classChangeAction('add-task-overlay', 'overlaver-active', 'toggle')">
-            <div class="add-task-overlay" onclick="stopEventBubbling(event)">
+            <div class="add-task-overlay" onclick="stopEventBubbling(event); closeDropdown();">
                 <form id="add-task" class="add-task-form add-task-form-in-overlay" onsubmit="createTask(); return false;">
                     <h1 class="add-task-headline headline-in-overlay">Add Task</h1>
                     <div class="task-details">
