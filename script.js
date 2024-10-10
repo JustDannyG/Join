@@ -1,11 +1,11 @@
 let user = "Guest";
 let contacts = [];
-
 let prio = "medium";
 
 //////////////////////////////////////
 ///         Return Functions     /////
 /////////////////////////////////////
+
 
 
 function createInititals(selectName) {
@@ -46,21 +46,7 @@ function checkLengthGreater(e, n) {
 
 function checkLengthSmaller(e, n) {
     return e.length > n;
-}
 
-
-//////////////////////////////////////
-///                             /////
-/////////////////////////////////////
-
-
-
-function clearContent(e) {
-    e.innerHTML = "";
-}
-
-function clearInput(input) {
-    input.value = "";
 }
 
 function saveToLocalStorage(key, value) {
@@ -73,6 +59,21 @@ function getFromLocalStorage(key) {
         myData = myArr;
     }
     return myData;
+
+}
+
+
+//////////////////////////////////////
+///                             /////
+/////////////////////////////////////
+
+
+function clearContent(e) {
+    e.innerHTML = "";
+}
+
+function clearInput(input) {
+    input.value = "";
 }
 
 function stopEventBubbling(event) {
@@ -122,17 +123,18 @@ function classChangeAction(id, className, action) {
 }
 
 
-
 ///////////////////////////////////////////////////////////////////
 ///   Check Screen Size for Mobile or Desktop Design Functions  ///
 ///////////////////////////////////////////////////////////////////
 
 function checkScreenWidth() {
+
     let header = document.getElementById('join-header');
     let sidebar = document.getElementById('join-sidebar');
     let currentHeader = '';
     let currentSidebar = '';
   
+
     if (window.innerWidth <= 1024) {
         console.log("Mobile Ansicht");
         currentHeader = mobileHeader(createInititals(user));
@@ -147,7 +149,6 @@ function checkScreenWidth() {
     header.innerHTML = currentHeader;
     sidebar.innerHTML = currentSidebar;
 }
-
 
 // Aufrufen der Funktion beim Laden der Seite
 checkScreenWidth();
@@ -168,23 +169,22 @@ function openAddTask(taskCategory) {
     }
 }
 
-
-
 ///////////////////////////////////////////////////////////////////
 ///     Select Special Design Function  ** Stack Overflow **    ///
 ///////////////////////////////////////////////////////////////////
 
 function styleSelecet() {
-    document.querySelectorAll('select').forEach(function (select) {
-        select.classList.add('s-hidden');
-        var styledSelect = document.createElement('div');
-        styledSelect.classList.add('styledSelect');
+    document.querySelectorAll("select").forEach(function (select) {
+        select.classList.add("s-hidden");
+        var styledSelect = document.createElement("div");
+        styledSelect.classList.add("styledSelect");
         styledSelect.textContent = select.options[select.selectedIndex].text;
         select.parentNode.insertBefore(styledSelect, select.nextSibling);
-        var list = document.createElement('ul');
-        list.classList.add('options');
+        var list = document.createElement("ul");
+        list.classList.add("options");
         select.parentNode.insertBefore(list, styledSelect.nextSibling);
         Array.from(select.options).forEach(function (option, index) {
+
             var li = document.createElement('li');
 
             li.textContent = option.text;
@@ -195,15 +195,18 @@ function styleSelecet() {
             list.appendChild(li);
         });
 
+
         styledSelect.addEventListener('click', function (e) {
 
             e.stopPropagation();
             document.querySelectorAll("div.styledSelect.active").forEach(function(activeSelect) {
+
                 if (activeSelect !== styledSelect) {
                     activeSelect.classList.remove("active");
                     activeSelect.nextElementSibling.style.display = "none";
                 }
             });
+
 
             styledSelect.classList.toggle('active');
             list.style.display = styledSelect.classList.contains('active') ? 'block' : 'none';
@@ -214,6 +217,7 @@ function styleSelecet() {
         list.addEventListener('click', function (e) {
             if (e.target.tagName === 'LI') {
 
+
                 styledSelect.textContent = e.target.textContent;
                 styledSelect.classList.remove("active");
                 select.value = e.target.getAttribute("rel");
@@ -221,9 +225,11 @@ function styleSelecet() {
             }
         });
 
+
         document.addEventListener('click', function () {
             styledSelect.classList.remove('active');
             list.style.display = 'none';
+
 
         });
     });

@@ -1,88 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0 , maximum-scale=1" />
+        <link rel="icon" type="image/x-icon" href="./assets/icons/join-logo-light.png" />
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0 , maximum-scale=1" />
-    <link rel="icon" type="image/x-icon" href="./assets/icons/join-logo-light.png" />
+        <title>Join - Board</title>
 
-    <title>Join - Board</title>
+        <script src="./script.js" defer></script>
+        <script src="./scripts/board.js"></script>
+        <script src="./scripts/add-task.js"></script>
 
-    <script src="./script.js" defer></script>
-    <script src="./scripts/board.js"></script>
-    <script src="./scripts/add-task.js"></script>
+        <script src="./scripts/fetch.js"></script>
+        <script src="./assets/templates/template.js"></script>
 
-    <script src="./scripts/fetch.js"></script>
-    <script src="./assets/templates/template.js"></script>
+        <link rel="stylesheet" href="./style.css" />
+        <link rel="stylesheet" href="./styles/add-task.css" />
+        <link rel="stylesheet" href="./styles/board.css" />
+        <link rel="stylesheet" href="./styles/header-sidebar.css" />
 
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="./styles/add-task.css" />
-    <link rel="stylesheet" href="./styles/board.css" />
-    <link rel="stylesheet" href="./styles/header-sidebar.css" />
+        <link rel="stylesheet" href="./styles/responsive/add-task-responsive.css" />
+        <link rel="stylesheet" href="./styles/responsive/responsive.css" />
+        <link rel="stylesheet" href="./styles/responsive/board-responsive.css" />
+    </head>
 
-    <link rel="stylesheet" href="./styles/responsive/add-task-responsive.css" />
-    <link rel="stylesheet" href="./styles/responsive/responsive.css" />
-    <link rel="stylesheet" href="./styles/responsive/board-responsive.css" />
-</head>
+    <body class="column" onload="boardInit()" onclick="classChangeAction('user-menu', 'd-none', 'add'); classChangeAction('menu', 'menu-active', 'remove'); stopEventBubbling(event);">
+        <section id="join-header" class="join-header"></section>
 
-<body class="column" onload="boardInit()" onclick="classChangeAction('user-menu', 'd-none', 'add'); classChangeAction('menu', 'menu-active', 'remove'); stopEventBubbling(event);">
-    <section id="join-header" class="join-header"></section>
-
-    <main class="board-main-content">
-        <section class="mobile-section-search-add">
-            <div class="headline d-flex">
-                <h1>Board</h1>
-                <button onclick="openAddTask('todo')">
-                        <img src="./assets/icons/add-icon-light.png" alt="" />
+        <main class="board-main-content">
+            <section class="mobile-section-search-add">
+                <div class="headline d-flex">
+                    <h1>Board</h1>
+                    <button onclick="openAddTask('todo')">
+                        <img src="./assets/icons/add-icon-light.png" alt="" onclick="openAddTask()" />
                     </button>
-<<<<<
-            </div>
-            <div class="d-flex input-row">
-                <input placeholder="Find Task" type="text" />
-                <img src="./assets/icons/search-icon.png" alt="" />
-            </div>
-        </section>
-
-        <section class="desktop-section-search-add">
-            <h1 class="headline">Board</h1>
-            <div class="search-row d-flex">
-                <div class="d-flex search">
-                       <input class="input" placeholder="Find Task" type="text" />
+                </div>
+                <div class="d-flex input-row">
+                    <input id="search-task-mobile" class="input" placeholder="Find Task" type="text" onkeyup="filterBoardTasks('mobile')" />
                     <img src="./assets/icons/search-icon.png" alt="" />
                 </div>
-                <button class="add-task-btn" onclick="openAddTask('todo')">  </section>
-             
+            </section>
+
+            <section class="desktop-section-search-add">
+                <h1 class="headline">Board</h1>
+                <div class="search-row d-flex">
+                    <div class="d-flex search">
+                        <input id="search-task-desktop" class="input" placeholder="Find Task" type="text" onkeyup="filterBoardTasks('desktop')" />
+                        <img src="./assets/icons/search-icon.png" alt="" />
+                    </div>
+                    <button class="add-task-btn" onclick="openAddTask('todo')">
+
                         Add Task
                         <img src="./assets/icons/add.png" alt="" />
                     </button>
             </div>
         </section>
 
-        <div class="task-content">
-            <section class="board-section">
-                <div class="subtitle d-flex">
-                    <h2>To do</h2>
-                    <button class="center" onclick="setTaskCategory('todo'); openAddTask()">
+
+            <div class="task-content">
+                <section class="board-section">
+                    <div class="subtitle d-flex">
+                        <h2>To do</h2>
+                        <button class="center" onclick="setTaskCategory('todo'); openAddTask()">
+
                             <img src="./assets/icons/add-icon.png" alt="" />
                         </button>
                 </div>
                 <div id="to-do-container" class="task-container" ondrop="moveTo('todo');removeHighlight('to-do-container')" ondragover="allowDrop(event);highlight('to-do-container')" ondragleave="removeHighlight('to-do-container')"></div>
             </section>
 
-            <section class="board-section">
-                <div class="subtitle d-flex">
-                    <h2>In progress</h2>
-                    <button class="center" onclick="openAddTask('progress')">
+
+                <section class="board-section">
+                    <div class="subtitle d-flex">
+                        <h2>In progress</h2>
+                        <button class="center" onclick="openAddTask('progress')">
+
                             <img src="./assets/icons/add-icon.png" alt="" />
                         </button>
                 </div>
                 <div id="in-progress-container" class="task-container" ondrop="moveTo('progress');removeHighlight('in-progress-container')" ondragover="allowDrop(event);highlight('in-progress-container')" ondragleave="removeHighlight('in-progress-container')"></div>
             </section>
 
-            <section class="board-section">
-                <div class="subtitle d-flex">
-                    <h2>Await feedback</h2>
-                    <button class="center" onclick="openAddTask('feedback')">
+                <section class="board-section">
+                    <div class="subtitle d-flex">
+                        <h2>Await feedback</h2>
+                        <button class="center" onclick="openAddTask('feedback')">
+
                             <img src="./assets/icons/add-icon.png" alt="" />
                         </button>
                 </div>

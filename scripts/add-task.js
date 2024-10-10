@@ -1,15 +1,16 @@
 let categoryInput;
 
 
+
 // let curretCategory = "todo";
 
 let curretCategory;
+
 
 let selectedContacts = [];
 let subtaskArray = [];
 let currentSubtasks = [];
 let isDropdownOpen = false;
-
 
 /////////////////
 ///   Start   ///
@@ -23,7 +24,6 @@ async function addTaskInit() {
     styleSelecet();
 }
 
-
 ///////////////////////////////////////
 ///      Prio Button Functions     ///
 //////////////////////////////////////
@@ -36,7 +36,6 @@ function addPrio(prioInput) {
     }
     updateBtnColor();
 }
-
 
 function updateBtnColor() {
     document.getElementById("urgent-btn").classList.remove("urgent");
@@ -52,7 +51,6 @@ function updateBtnColor() {
         document.getElementById(`${prio}-btn`).classList.add(prio);
     } else return;
 }
-
 
 ///////////////////////////////////////
 ///      AssignTo Functions       ///
@@ -71,7 +69,6 @@ function toggleDropdown(id, iconId) {
     }
 }
 
-
 function openDropdown(id, iconId) {
     const dropdown = document.getElementById(id);
     const dropdownIcon = document.getElementById(iconId);
@@ -80,7 +77,6 @@ function openDropdown(id, iconId) {
     isDropdownOpen = true;
     classChangeAction("dropdown", "input-active", "add");
 }
-
 
 function closeDropdown() {
     const dropdown = document.getElementById("assign-to-dropdown-contacts");
@@ -93,13 +89,11 @@ function closeDropdown() {
     classChangeAction("dropdown", "input-active", "remove");
 }
 
-
 function handleInputClick(event) {
     clearInput(event.target);
     openDropdown("assign-to-dropdown-contacts", "drop-down-icon1");
     stopEventBubbling(event);
 }
-
 
 function handleDropdownButtonClick(event) {
     const input = document.getElementById("assign-to-dropdown");
@@ -114,12 +108,10 @@ function handleDropdownButtonClick(event) {
     }
 }
 
-
 function resetInputText() {
     let inputRef = document.getElementById("assign-to-dropdown");
     inputRef.value = "Select contacts to assign";
 }
-
 
 function getSelectedContacts() {
     contacts.forEach((contact, i) => {
@@ -133,7 +125,6 @@ function getSelectedContacts() {
     sortByAlphabet(selectedContacts);
 }
 
-
 function renderContacts(arr) {
     let dropDownRef = document.getElementById("assign-to-dropdown-contacts");
     dropDownRef.innerHTML = "";
@@ -142,7 +133,6 @@ function renderContacts(arr) {
         updateDesign(contact.id);
     });
 }
-
 
 function updateDesign(id) {
     let contactContainerRef = document.getElementById("contact" + id);
@@ -156,14 +146,12 @@ function updateDesign(id) {
     }
 }
 
-
 function selectContact(id) {
     let currentContact = selectedContacts[id];
     currentContact.checked = !currentContact.checked;
     updateDesign(id);
     renderSelectedContacts();
 }
-
 
 function renderSelectedContacts() {
     const containerRef = document.getElementById("selected-contacts-container");
@@ -174,7 +162,6 @@ function renderSelectedContacts() {
         containerRef.innerHTML += contactSelectionCircleHTML(contact, createInititals(contact.name));
     }
 }
-
 
 function filter(id) {
     const inputRef = document.getElementById(id);
@@ -191,18 +178,15 @@ function filter(id) {
     }
 }
 
-
 function displayNoContactFoundMessage() {
     const dropdownRef = document.getElementById("assign-to-dropdown-contacts");
     dropdownRef.innerHTML = '<li class="not-found">Nicht gefunden</li>';
 }
 
-
 function findInput(input) {
     let result = selectedContacts.filter((contact) => contact.name.toLowerCase().includes(input));
     return result;
 }
-
 
 //////////////////////////////
 //     Subtasks Functions ///
@@ -276,7 +260,6 @@ function deleteSubtask(i) {
 }
 
 
-
 ////////////////////////////////////////
 //   Create Task   Board / Firebase  ///
 ///////////////////////////////////////
@@ -305,12 +288,10 @@ function getInputs() {
     await postTask(task);
 }
 
-
 function filterCheckedAssignedTo() {
     let filtertContacts = selectedContacts.filter((contact) => contact.checked == true);
     return filtertContacts;
 }
-
 
 async function postTask(task) {
     await postData(
@@ -347,4 +328,6 @@ function clearAddTask() {
     updateBtnColor();
     document.getElementById("subtasks-container").innerHTML = "";
     currentSubtasks = [];
+
 }
+
