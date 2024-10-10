@@ -1,5 +1,5 @@
 function summaryInit() {
-    greetingTime()
+    greeting()
     greetingUser()
     getSummaryTasks()
 }
@@ -8,24 +8,33 @@ function summaryInit() {
 ///           Greeting Functions      /////
 //////////////////////////////////////////
 
+
+
+function greeting() {
+    let greeting = document.getElementById('greeting-time').innerHTML = greetingTime();
+    let greetUser = document.getElementById('greeting-name').innerHTML = greetingUser();
+
+    let greetingMobile = document.getElementById('greeting-time-mobile').innerHTML = greetingTime();
+    let greetUserMobile = document.getElementById('greeting-name-mobile').innerHTML = greetingUser();
+}
+
 function greetingTime() {
     let A = new Date();
     let hour = A.getHours();
     console.log(hour);
-    let greeting = document.getElementById('greeting-time');
     if (hour < 12) {
-        greeting.innerHTML = `Good morning,`
+        return `Good morning,`
+
     } else if (hour < 17) {
-        greeting.innerHTML = `Good afternoon,`
+        return `Good afternoon,`
     } else if (hour < 24) {
-        greeting.innerHTML = `Good evening,`
+        return `Good evening,`
     }
 }
 
 
 function greetingUser() {
-    let greetUser = document.getElementById('greeting-name');
-    greetUser.innerHTML = user;
+    return user;
 }
 
 
@@ -63,5 +72,20 @@ function summaryPrioFilter(section) {
             return t
         }
     })
+    findEarliestDate(task)
     return task.length;
+}
+
+
+function findEarliestDate(task) {
+    let earliestUrgentDate = document.getElementById('earliest-urgent-date');
+    let earliestDate = null;
+    task.forEach(item => {
+        const itemDate = new Date(item.date); 
+        if (!earliestDate || itemDate < new Date(earliestDate.date)) {
+            earliestDate = item;
+        }
+    });
+    earliestUrgentDate.innerHTML = earliestDate.date
+    return earliestDate;
 }

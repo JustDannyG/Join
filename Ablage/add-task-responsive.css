@@ -1,0 +1,7 @@
+@media(max-width: 392px) {
+    .prio-btn {
+        padding: 8px 8px;
+        width: 88px;
+        gap: 4px;
+    }
+}

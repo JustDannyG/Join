@@ -1,0 +1,79 @@
+.bg-lightgrey {
+    background-color: var(--light-grey);
+}
+
+.subtitle-details {
+    font-size: 14px;
+    color: var(--subtitle);
+}
+
+.headline-text {
+    gap: 8px;
+}
+
+.current-contact {
+    gap: 18px;
+    margin-top: 32px;
+    align-items: center;
+}
+
+.current-contact h2 {
+    font-size: 26px;
+}
+
+.current-contact-circle {
+    min-width: 80px;
+    min-height: 80px;
+    background-color: #f35858;
+    color: white;
+    border-radius: 50%;
+    font-size: 26px;
+    font-weight: 200;
+}
+
+.details {
+    margin-top: 16px;
+    gap: 12px;
+}
+
+.details h3 {
+    font-weight: 300;
+    font-size: 18px;
+}
+
+.details p {
+    font-size: 15px;
+}
+
+.edit-container {
+    position: absolute;
+    bottom: 96px;
+    right: 6px;
+    width: 116px;
+    height: 100px;
+    justify-content: space-around;
+    border-radius: 16px 16px 0 16px;
+    box-shadow: 0px 6px 20px -4px rgba(0, 0, 0, 0.8);
+    background-color: white;
+    transform: translateX(150px);
+    transition: transform 0.3s ease-in-out;
+}
+
+.edit-container img {
+    width: 24px;
+    height: 24px;
+}
+
+.edit-container div {
+    gap: 14px;
+    height: 100%;
+    align-items: center;
+    width: 100%;
+    border-radius: 16px;
+    padding: 0 10px;
+}
+
+.edit-container div:hover {
+    background-color: var(--medium-grey);
+    cursor: pointer;
+}
