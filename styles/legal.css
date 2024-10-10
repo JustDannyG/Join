@@ -4,7 +4,9 @@
     max-width: 1920px;
 }
 
-/* Help */
+/* =========================
+        Help - Content
+   ========================= */
 
 .text-blue {
     color: var(--light-blue);
@@ -37,8 +39,9 @@
 }
 
 
-/* privacy police */
-
+/* =========================
+   Privacy Police - Content
+   ========================= */
 
 .privacy-police-content {
     display: flex;
@@ -62,9 +65,9 @@
 }
 
 
-/* Legal Notice */
-
-
+/* =========================
+   Legal-Notice - Content
+   ========================= */
 
 h2 {
     margin-top: 24px;

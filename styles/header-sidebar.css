@@ -1,4 +1,6 @@
-/* Header Desktop */
+/* =========================
+        Header Desktop
+   ========================= */
 
 .header-desktop {
     display: flex;
@@ -93,8 +95,9 @@
 }
 
 
-
-/* Sidebar Desktop */
+/* =========================
+      Sidebar Desktop
+   ========================= */
 
 .sidebar-desktop {
     position: absolute;
@@ -172,7 +175,9 @@
 }
 
 
-/* Mobile Styles */
+/* =========================
+      Header Mobile
+   ========================= */
 
 .header-mobile {
     box-shadow: 0 1px 10px 2px rgba(0, 0, 0, 0.2);
@@ -217,12 +222,17 @@
 }
 
 .menu-active {
-    transform: translateX(0)!important;
+    transform: translateX(0) !important;
 }
 
 .menu a {
     color: var(--light-grey);
 }
+
+
+/* =========================
+      Sidebar Mobile
+   ========================= */
 
 .sidebar-mobile {
     height: 80px;
@@ -248,10 +258,5 @@
 
 .current-link {
     background-color: var(--hover-darke-blue);
-}
-
-
-.join-header {
-    transition: all ease-in-out 125ms;
 }
 

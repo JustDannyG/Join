@@ -15,6 +15,7 @@ function mobileHeader() {
     </header>`;
 }
 
+
 function desktopHeader() {
     return `
         <header class="header-desktop">
@@ -35,6 +36,7 @@ function desktopHeader() {
     </header>`;
 }
 
+
 function mobileSidebar() {
     return `<aside class="d-flex sidebar-mobile">
       <a class="center column nav-link-mobile" href="./summary.html"><img src="./assets/icons/summary-icon.png"
@@ -47,6 +49,7 @@ function mobileSidebar() {
           alt="Contacts" />Contacts</a>
     </aside>`;
 }
+
 
 function desktopSidebar() {
     return `<aside class="sidebar-desktop">
@@ -63,6 +66,7 @@ function desktopSidebar() {
         </div>
     </aside>`;
 }
+
 
 ////////////////////////////////////////////
 /////  Board  -  Tasks  Templates     //////
@@ -95,9 +99,11 @@ function generateTaskHTML(task, index, className) {
               </div> `;
 }
 
+
 function generateNoTaskHTML(noTask) {
     return /*html*/ `<div class="no-task"> No task in ${noTask}</div> `;
 }
+
 
 ////////////////////////////////////////////
 /////      Contact - Templates       //////
@@ -113,6 +119,7 @@ function contactCirleHTML(detail) {
     `;
 }
 
+
 function contactInformationsHTML(detail) {
     return /*html*/ `
     <h3>Contact Information</h3>
@@ -123,10 +130,12 @@ function contactInformationsHTML(detail) {
     `;
 }
 
+
 //Templates for Contact List
 function firstLetterHtml(firstLetter) {
     return /*html*/ `<div class="contacts-first-letter">${firstLetter}</div>`;
 }
+
 
 function contactListHtml(contact, i) {
     return /*html*/ `<div onclick="openContact(${i})" class="contact-list d-flex">
@@ -156,9 +165,11 @@ function contactInDropDownHTML(contact, initials) {
             </li>`;
 }
 
+
 function contactSelectionCircleHTML(contact, initials) {
     return /*html*/ `<div class="contact center " style="background-color:${contact.color}">${initials}</div>`;
 }
+
 
 ////////////////////////////////////////////////////
 /////       Add-Task - Subtask Templates      /////
@@ -186,6 +197,7 @@ function subtaskBtnHTML() {
 `;
 }
 
+
 function subtaskTaskHTML(subtask, i) {
     return `
         <div id="subtask${i}" class="subtask">
@@ -199,6 +211,7 @@ function subtaskTaskHTML(subtask, i) {
         `;
 }
 
+
 function editIconsHTML(i) {
     return `<div class="word-item">
                 <input type="text" id="editInput${i}" value="${currentSubtasks[i].sub}">
@@ -210,6 +223,7 @@ function editIconsHTML(i) {
                 
             </div>`;
 }
+
 
 //////////////////////////////////////////////////
 /////          Board Task Overlays          //////
@@ -258,6 +272,7 @@ function taskBoardOverlay(currentTask) {
     </div>`;
 }
 
+
 function generateAssignedToOerlayLiHTML(contact) {
     return `
                         <li class="assigned-to-contact">
@@ -265,6 +280,7 @@ function generateAssignedToOerlayLiHTML(contact) {
                                 <span class="name">${contact.name}</span>
                         </li>`;
 }
+
 
 //////////////////////////////////////////////////
 /////         Board Task Overlays Edit      //////
@@ -350,50 +366,3 @@ function editBoardTaskHTML(currentTask) {
     </div>`;
 }
 
-// War doppelt
-
-// function taskBoardOverlay(id) {
-//     return `<div class="overlay-task column">
-//             <div class="task-header d-flex">
-//                 <span id="task-category-overlay">User Story</span>
-//                 <button class="btn" onclick="classChangeAction('overlaver','overlaver-active','remove')">
-//                     <img class="icon" src="./assets/icons/close-icon-dark.png" alt="">
-//                 </button>
-//             </div>
-//             <span id="task-title-overlay" class="task-title"></span>
-//             <span id="task-discription-overlay" class="discription"></span>
-//             <div class="task-details-container">
-//                 <div class="info">
-//                     <span class="info-title">Due date:</span>
-//                     <span id="task-date-overlay" class="info-value"></span>
-//                 </div>
-//                 <div class="info">
-//                     <span class="info-title">Priority:</span>
-//                     <div class="info-value">
-//                         <span id="task-prio-overlay"></span>
-//                         <img id="prio-icon-overlay" class="prio-icon" src="" alt="">
-//                     </div>
-//                 </div>
-//                 <div class="assigned-to-container">Assigned To:
-//                     <ul id="assigned-to-list">
-
-//                     </ul>
-
-//                     <div class="task-details"></div>
-
-//                 </div>
-//                 <div class="subtask">Subtask
-//                     <ul id="subtask-overlay">
-
-//                     </ul>
-//                 </div>
-//             </div>
-//             <div class="edit-task-container d-flex">
-//                 <button class="btn">
-//                     <img class="icon" src="./assets/icons/delete.png" alt="">Delete</button>
-//                 <div class="divider"></div>
-//                 <button onclick="showEditTaskValues(); stopEventBubbling(event);" class="btn">
-//                     <img class="icon" src="./assets/icons/edit.png" alt="">Edit</button>
-//             </div>
-//         </div>`;
-// }
