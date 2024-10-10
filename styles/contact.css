@@ -2,7 +2,8 @@
 
 .contact-content {
     display: flex;
-    height: calc(100vh - 96px);
+    /* height: calc(100vh - 96px); */
+    flex: 1;
     background-color: var(--light-grey);
 }
 
@@ -17,7 +18,6 @@
     text-wrap: wrap;
     max-width: 1920px;
 }
-
 
 .add-new-contact-desktop-sticky {
     position: sticky;
@@ -43,7 +43,7 @@
     border-radius: 10px;
     border: none;
     gap: 16px;
-    background-color: #2A3647;
+    background-color: #2a3647;
 }
 
 .add-new-contact-desktop-btn:hover {
@@ -56,7 +56,6 @@
     flex: 1;
 }
 
-
 .contacts-mobile-container {
     display: flex;
     flex-direction: column;
@@ -64,11 +63,12 @@
     overflow-y: scroll;
     z-index: 1;
     align-items: center;
+    flex: 1;
 }
 
 .contacts-container {
     gap: 16px;
-    padding: 15px 30px 25px; 
+    padding: 15px 30px 25px;
 }
 
 
@@ -94,6 +94,7 @@
 .add-contact img {
     width: 24px;
 }
+
 
 /* contact list */
 
