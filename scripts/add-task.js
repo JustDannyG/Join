@@ -1,11 +1,8 @@
 let categoryInput;
 
-
-
 // let curretCategory = "todo";
 
 let curretCategory;
-
 
 let selectedContacts = [];
 let subtaskArray = [];
@@ -259,19 +256,16 @@ function deleteSubtask(i) {
     renderSubtask();
 }
 
-
 ////////////////////////////////////////
 //   Create Task   Board / Firebase  ///
 ///////////////////////////////////////
-
 
 async function createTask() {
     getCurrentCategory();
     getInputs();
 }
 
-function getInputs() {
-
+async function getInputs() {
     let titleInput = document.getElementById("title");
     let descriptionInput = document.getElementById("description");
     let dateInput = document.getElementById("date");
@@ -328,6 +322,4 @@ function clearAddTask() {
     updateBtnColor();
     document.getElementById("subtasks-container").innerHTML = "";
     currentSubtasks = [];
-
 }
-
