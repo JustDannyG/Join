@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0 , maximum-scale=1" />
@@ -42,14 +43,13 @@
                         <div id="dropdown" class="drop-down d-flex">
                             <input id="assign-to-dropdown" class="input" onkeyup="filter('assign-to-dropdown')" onclick="handleInputClick(event)" value="Select contacts to assign" />
                             <button class="btn dropdown-btn" onclick="handleDropdownButtonClick(event)" type="button">
+
                                 <img id="drop-down-icon1" src="./assets/icons/arrow-drop-down.png" />
                             </button>
-                        </div>
-                        <ul id="assign-to-dropdown-contacts" class="dropdown-options"></ul>
                     </div>
-
-                    <div id="selected-contacts-container" class="d-flex selectet-contacts-container"></div>
+                    <ul id="assign-to-dropdown-contacts" class="dropdown-options"></ul>
                 </div>
+
 
                 <div class="task-settings">
                     <div class="input-container">
@@ -57,23 +57,36 @@
                         <input id="date" class="input" required type="date" />
                     </div>
 
-                    <div class="prio mt-16">
-                        <span>Prio</span>
-                        <div class="d-flex row">
-                            <button id="urgent-btn" class="btn prio-btn" type="button" onclick="addPrio('urgent'), stopEventBubbling(event)">Urgent<img id="prio-icon-urgent" src="./assets/icons/prio-urgent-icon.png" /></button>
-                            <button id="medium-btn" class="btn prio-btn" type="button" onclick="addPrio('medium')">Medium<img id="prio-icon-medium" src="./assets/icons/prio-medium-icon.png" /></button>
-                            <button id="low-btn" class="btn prio-btn" type="button" onclick="addPrio('low')">Low<img id="prio-icon-low" src="./assets/icons/prio-low-icon.png" /></button>
-                        </div>
+                <div id="selected-contacts-container" class="d-flex selectet-contacts-container"></div>
+            </div>
+
+
+            <div class="task-settings">
+                <div class="column mt-16">
+                    <label for="date">Due date<span class="required">*</span></label>
+                    <input id="date" class="input" required type="date" />
+                </div>
+
+                <div class="prio mt-16">
+                    <span>Prio</span>
+                    <div class="d-flex row">
+                        <button id="urgent-btn" class="btn prio-btn" type="button" onclick="addPrio('urgent'), stopEventBubbling(event)">Urgent<img id="prio-icon-urgent" src="./assets/icons/prio-urgent-icon.png" /></button>
+                        <button id="medium-btn" class="btn prio-btn" type="button" onclick="addPrio('medium')">Medium<img id="prio-icon-medium" src="./assets/icons/prio-medium-icon.png" /></button>
+                        <button id="low-btn" class="btn prio-btn" type="button" onclick="addPrio('low')">Low<img id="prio-icon-low" src="./assets/icons/prio-low-icon.png" /></button>
                     </div>
+                </div>
+
 
                     <div class="input-container">
                         <label for="selected-category">Category<span class="required">*</span></label>
                         <select required id="selected-category" class="select-category">
+
                             <option value="">Select task category:</option>
                             <option value="Technical Task">Technical Task</option>
                             <option value="User Story">User Story</option>
                         </select>
-                    </div>
+                </div>
+
 
                     <div class="form-field input-container">
                         <label for="subtasks-input">Subtasks</label>
@@ -82,27 +95,30 @@
                             <div class="add-subtask-btn" id="add-subtask-btn">
                                 <img src="./assets/icons/add -subtasks.png" alt="" onclick="setInputFocus()" />
                             </div>
+
                         </div>
                     </div>
-
-                    <div id="subtasks-container" class="subtasks-container"></div>
                 </div>
 
-                <div class="add-task-action-btn">
-                    <div><span class="required">*</span>This field is required</div>
-                    <div class="d-flex btn-gap">
-                        <button class="btn clear" onclick="return false;">Clear <img src="./assets/icons/clear-icon-dark.png" alt="" /></button>
-                        <button class="btn submit">Create Task <img src="./assets/icons/check.png" alt="" /></button>
-                    </div>
+                <div id="subtasks-container" class="subtasks-container"></div>
+            </div>
+
+            <div class="add-task-action-btn">
+                <div><span class="required">*</span>This field is required</div>
+                <div class="d-flex btn-gap">
+                    <button class="btn clear">Clear <img src="./assets/icons/clear-icon-dark.png " alt=" " /></button>
+                    <button class="btn submit">Create Task <img src="./assets/icons/check.png " alt=" " /></button>
                 </div>
-            </form>
-        </main>
+            </div>
+        </form>
+    </main>
 
-        <div class="d-flex submit-row">
-            <div><span class="required">*</span>This field is required</div>
-            <button class="btn submit" type="submit" form="add-task">Create Task <img src="./assets/icons/check.png" /></button>
-        </div>
+    <div class="d-flex submit-row">
+        <div><span class="required">*</span>This field is required</div>
+        <button class="btn submit" type="submit" form="add-task">Create Task <img src="./assets/icons/check.png" /></button>
+    </div>
 
-        <section id="join-sidebar"></section>
-    </body>
+    <section id="join-sidebar"></section>
+</body>
+
 </html>
