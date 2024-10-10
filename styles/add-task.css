@@ -30,9 +30,6 @@
     animation-duration: 300ms;
 }
 
-.add-task-headline {
-}
-
 .input-container {
     display: flex;
     flex-direction: column;
