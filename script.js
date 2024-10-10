@@ -116,12 +116,12 @@ function checkScreenWidth() {
     let currentSidebar = '';
     if (window.innerWidth <= 1024) {
         console.log("Mobile Ansicht");
-        currentHeader = mobileHeader();
+        currentHeader = mobileHeader(createInititals(user));
         currentSidebar = mobileSidebar();
         screenMode = 'mobile';
     } else {
         console.log("Desktop Ansicht");
-        currentHeader = desktopHeader();
+        currentHeader = desktopHeader(createInititals(user));
         currentSidebar = desktopSidebar();
         screenMode = 'desktop';
     }

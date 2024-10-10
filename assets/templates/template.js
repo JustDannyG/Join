@@ -2,10 +2,10 @@
 /////       Header and Sidebar  Defaults    //////
 //////////////////////////////////////////////////
 
-function mobileHeader() {
+function mobileHeader(user) {
     return `<header class="d-flex header-mobile">
       <img class="logo-mobile" src="./assets/icons/logo-dark.svg" alt="Join Logo" />
-      <div onclick="classChangeAction('menu', 'menu-active', 'toggle'), stopEventBubbling(event)" id="current-user-header" class="current-user-header center">T</div>
+      <div onclick="classChangeAction('menu', 'menu-active', 'toggle'), stopEventBubbling(event)" id="current-user-header" class="current-user-header center">${user}</div>
       <div id="menu" class="column menu">
         <a href="./help.html">Help</a>
         <a href="./legal-notice.html">Legal Notice</a>
@@ -16,14 +16,14 @@ function mobileHeader() {
 }
 
 
-function desktopHeader() {
+function desktopHeader(user) {
     return `
         <header class="header-desktop">
         <p class="header-title">Kanban Project Management Tool</p>
         <div class="header-actions">
             <a href="help.html"> <img class="help-icon" src="./assets/icons/help-icon.png" alt="Help"></a>
             <div onclick="classChangeAction('user-menu', 'd-none', 'toggle'); stopEventBubbling(event)" id="header-initials" class="header-initials-btn">
-                SM
+                ${user}
             </div>
         </div>
         
