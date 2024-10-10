@@ -1,9 +1,6 @@
-let user = 'Guest';
+let user = "Guest";
 let contacts = [];
-
-
-
-
+let prio = "medium";
 
 //////////////////////////////////////
 ///         Return Functions     /////
@@ -11,7 +8,7 @@ let contacts = [];
 
 function createInititals(selectName) {
     let firstsChar = selectName;
-    parts = firstsChar.split(' ');
+    parts = firstsChar.split(" ");
     if (parts.length == 1) {
         neededPartOne = parts[0].slice(0, 1);
         return neededPartOne;
@@ -26,50 +23,52 @@ function createInititals(selectName) {
     }
 }
 
-
 function randomColor() {
     let random = Math.floor(Math.random() * 16777215).toString(16);
-    let hexCode = '#' + random;
+    let hexCode = "#" + random;
     return hexCode;
-
 }
-
 
 function sortByAlphabet(arr) {
     arr.sort((a, b) => a.name.localeCompare(b.name));
     return arr;
 }
 
-
 function isCheckBoxChecked(e) {
     return e.checked;
 }
 
-
 function checkLengthGreater(e, n) {
-    return e.length > n
+    return e.length > n;
 }
-
 
 function checkLengthSmaller(e, n) {
-    return e.length > n
+    return e.length > n;
 }
-
 
 function clearContent(e) {
     e.innerHTML = "";
 }
 
-
 function clearInput(input) {
     input.value = "";
 }
 
+function saveToLocalStorage(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+}
+
+function getFromLocalStorage(key) {
+    let myArr = JSON.parse(localStorage.getItem(key));
+    if (myArr !== null) {
+        myData = myArr;
+    }
+    return myData;
+}
 
 //////////////////////////////////////
 ///                              /////
 /////////////////////////////////////
-
 
 async function getContacts() {
     const contactsData = await getData("contacts");
@@ -87,9 +86,8 @@ function stopEventBubbling(event) {
 }
 
 function goSummery() {
-    window.location.href = 'summary.html';
+    window.location.href = "summary.html";
 }
-
 
 //////////////////////////////////////
 ///                             /////
@@ -98,40 +96,36 @@ function goSummery() {
 function classChangeAction(id, className, action) {
     const element = document.getElementById(id);
     if (element) {
-        if (action === 'toggle') {
+        if (action === "toggle") {
             element.classList.toggle(className);
-        } else if (action === 'add') {
+        } else if (action === "add") {
             element.classList.add(className);
-        } else if (action === 'remove') {
+        } else if (action === "remove") {
             element.classList.remove(className);
         }
-    } else return
+    } else return;
 }
-
-
 
 //////////////////////////////////////////////
 ///      Check Screen Size Function     /////
 ////////////////////////////////////////////
 
-
 //Mobile / Desktop //
 function checkScreenWidth() {
-
-    let header = document.getElementById('join-header');
-    let sidebar = document.getElementById('join-sidebar');
-    let currentHeader = '';
-    let currentSidebar = '';
+    let header = document.getElementById("join-header");
+    let sidebar = document.getElementById("join-sidebar");
+    let currentHeader = "";
+    let currentSidebar = "";
     if (window.innerWidth <= 1024) {
         console.log("Mobile Ansicht");
         currentHeader = mobileHeader();
         currentSidebar = mobileSidebar();
-        screenMode = 'mobile';
+        screenMode = "mobile";
     } else {
         console.log("Desktop Ansicht");
         currentHeader = desktopHeader();
         currentSidebar = desktopSidebar();
-        screenMode = 'desktop';
+        screenMode = "desktop";
     }
     header.innerHTML = currentHeader;
     sidebar.innerHTML = currentSidebar;
@@ -140,79 +134,78 @@ function checkScreenWidth() {
 // Aufrufen der Funktion beim Laden der Seite
 checkScreenWidth();
 // Optional: Bei jeder Größenänderung des Fensters
-window.addEventListener('resize', checkScreenWidth);
+window.addEventListener("resize", checkScreenWidth);
 
-
-function openAddTask(taskStatus) {
-    if (screenMode == 'mobile') {
+function openAddTask(taskCategory) {
+    updateBtnColor();
+    setTaskCategory(taskCategory);
+    if (screenMode == "mobile") {
         window.location.href = "add-task.html";
-        taskStatus
+        // taskStatus;
     }
-    if (screenMode == 'desktop') {
-        alert('Here Add Task Overlay')
+    if (screenMode == "desktop") {
+        // alert("Here Add Task Overlay");
+        addTaskInit();
+        classChangeAction("add-task-overlay", "overlaver-active", "toggle");
     }
 }
-
 
 //////////////////////////////////////
 ///        Select Function       /////
 /////////////////////////////////////
 
-
-
 function styleSelecet() {
-    document.querySelectorAll('select').forEach(function (select) {
-        select.classList.add('s-hidden');
-        var styledSelect = document.createElement('div');
-        styledSelect.classList.add('styledSelect');
+    document.querySelectorAll("select").forEach(function(select) {
+        select.classList.add("s-hidden");
+        var styledSelect = document.createElement("div");
+        styledSelect.classList.add("styledSelect");
 
         styledSelect.textContent = select.options[select.selectedIndex].text;
 
-
         select.parentNode.insertBefore(styledSelect, select.nextSibling);
 
-        var list = document.createElement('ul');
-        list.classList.add('options');
+        var list = document.createElement("ul");
+        list.classList.add("options");
         select.parentNode.insertBefore(list, styledSelect.nextSibling);
 
-        Array.from(select.options).forEach(function (option, index) {
-            var li = document.createElement('li');
+        Array.from(select.options).forEach(function(option, index) {
+            var li = document.createElement("li");
             li.textContent = option.text;
-            li.setAttribute('rel', option.value);
+            li.setAttribute("rel", option.value);
             if (index === 0) {
-                li.classList.add('hide-first');
+                li.classList.add("hide-first");
             }
             list.appendChild(li);
         });
 
-        styledSelect.addEventListener('click', function (e) {
+        styledSelect.addEventListener("click", function(e) {
             e.stopPropagation();
-            document.querySelectorAll('div.styledSelect.active').forEach(function (activeSelect) {
+            document.querySelectorAll("div.styledSelect.active").forEach(function(activeSelect) {
                 if (activeSelect !== styledSelect) {
-                    activeSelect.classList.remove('active');
-                    activeSelect.nextElementSibling.style.display = 'none';
+                    activeSelect.classList.remove("active");
+                    activeSelect.nextElementSibling.style.display = "none";
                 }
             });
-            styledSelect.classList.toggle('active');
-            list.style.display = styledSelect.classList.contains('active') ? 'block' : 'none';
+            styledSelect.classList.toggle("active");
+            list.style.display = styledSelect.classList.contains("active") ? "block" : "none";
 
-            if (styledSelect.classList.contains('active')) {
-                list.querySelector('li.hide-first').style.display = 'none';
+            if (styledSelect.classList.contains("active")) {
+                list.querySelector("li.hide-first").style.display = "none";
             }
         });
 
-        list.addEventListener('click', function (e) {
-            if (e.target.tagName === 'LI') {
+        list.addEventListener("click", function(e) {
+            if (e.target.tagName === "LI") {
                 styledSelect.textContent = e.target.textContent;
-                styledSelect.classList.remove('active');
-                select.value = e.target.getAttribute('rel');
-                list.style.display = 'none';
+                styledSelect.classList.remove("active");
+                select.value = e.target.getAttribute("rel");
+                list.style.display = "none";
             }
         });
 
-        document.addEventListener('click', function () {
-            styledSelect.classList.remove('active');
-            list.style.display = 'none';
+        document.addEventListener("click", function() {
+            styledSelect.classList.remove("active");
+            list.style.display = "none";
         });
     });
 }
