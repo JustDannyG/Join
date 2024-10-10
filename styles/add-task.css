@@ -248,9 +248,15 @@ select:focus {
 .drop-down {
     justify-content: space-between;
     width: 100%;
+    position: relative;
 }
 
 .dropdown-options {
+    position: absolute;
+    bottom: -142px;
+    width: 478px;
+    border: 1px solid var(--dark-grey);
+    border-radius: 8px;
     max-height: 200px;
     overflow-y: auto;
     display: none;
@@ -430,9 +436,14 @@ select:focus {
 
 /* Selectet*/
 
-.s-hidden {
+/* .s-hidden {
     visibility: hidden;
     padding-right: 10px;
+} */
+
+.s-hidden {
+    position: absolute;
+    left: -9999px;
 }
 
 .select {
