@@ -52,7 +52,11 @@
     position: sticky;
     top: 0;
     left: 0;
+    margin-bottom: 12px;
     /* z-index: 1; */
+}
+.subtitle h2 {
+    margin-right: 12px;
 }
 
 .subtitle button {
@@ -67,8 +71,9 @@
    ========================= */
 
 .no-task {
+    text-wrap: nowrap;
     width: 100%;
-    margin-top: 16px;
+    /* margin-top: 16px; */
     text-align: center;
     padding: 8px;
     background-color: var(--medium-grey);
@@ -225,7 +230,7 @@
     height: fit-content;
     padding: 16px 0px;
     display: flex;
-    gap: 16px;
+    /* gap: 16px; */
     align-items: center;
     transition: all ease-in-out 125ms;
     /* background-color: burlywood; */
@@ -251,11 +256,13 @@
 }
 
 .task {
+    width: 100%;
+    max-width: 220px;
     position: relative;
     max-height: 244px;
     min-height: 225px;
-    width: 220px;
-    min-width: 220px;
+    /* width: 220px; */
+    /* min-width: 220px; */
     position: relative;
     background-color: var(--white);
     padding: 16px;
@@ -511,16 +518,16 @@
 
 .task-content {
     display: flex;
-    gap: 30px;
-    border: 2px solid var(--dark-grey);
+    gap: 8px;
+    /* border: 2px solid var(--dark-grey); */
 }
 
 .board-section {
     display: flex;
     flex-direction: column;
-    background-color: rgba(245, 222, 179, 0.5);
+    /* background-color: rgba(245, 222, 179, 0.5); */
     overflow: scroll;
-    padding: 10px;
+    /* padding: 10px; */
     border-radius: 10px;
     transition: all ease-in-out 125ms;
 }

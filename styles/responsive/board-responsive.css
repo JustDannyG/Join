@@ -1,8 +1,6 @@
 /* Mobile Design Adjustment */
 
-
-@media(max-width: 392px) {
-
+@media (max-width: 392px) {
     .task-overlay {
         padding: 33px 25px;
         max-height: 700px;
@@ -10,13 +8,13 @@
     }
 }
 
-@media(max-width: 428px) {
+@media (max-width: 428px) {
     .task-overlay-title {
         font-size: 51px;
     }
 }
 
-@media (max-width: 600px){
+@media (max-width: 600px) {
     .task-overlay {
         scale: 0.9;
     }
@@ -36,7 +34,6 @@
         font-size: 16px;
     }
 
-
     .task-details-container {
         margin-top: 8px;
         gap: 8px;
@@ -51,11 +48,17 @@
     .task-content {
         display: flex;
         flex-direction: column;
+        gap: 30px;
     }
 
+    .subtitle {
+        margin-bottom: 0px;
+    }
 
+    .task-container {
+        padding-top: 8px;
+    }
 }
-
 
 /* Desktop Design Adjustment */
 
@@ -77,12 +80,12 @@
     }
 
     .board-section {
-        min-width: 240px;
+        /* min-width: 240px; */
         height: 100%;
     }
 
     .task-content {
-        justify-content: space-around;
+        justify-content: space-between;
         height: 100%;
     }
 
@@ -90,34 +93,30 @@
         height: 100%;
         padding: 0;
     }
-
-
-
-
+    .drag-drop-btn {
+        display: none;
+    }
 }
 
-
 @media screen and (max-width: 1440px) and (min-width: 1230px) {
-
     .task-content {
         gap: 10px;
     }
 }
-
 
 @media (min-width: 1440px) {
     .board-main-content {
         margin-left: 232px;
     }
 
-    .board-section {
+    /* .board-section {
         flex: 1;
-    }
+    } */
 
-    .task {
+    /* .task {
         min-width: 220px;
         width: 80%;
-    }
+    } */
 
     .task-content {
         gap: 35px;
