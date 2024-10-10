@@ -1,11 +1,11 @@
 let currentDraggedElement;
 let tasksArray = [];
 let currentTask;
-// let infosRef;
 
-////////////////////////
-//   Start
-///////////////////////
+
+////////////////////
+///    Start   ////
+///////////////////
 
 async function boardInit() {
     await getContacts();
@@ -13,19 +13,20 @@ async function boardInit() {
     updateHtml();
 }
 
+
 async function resetBoard() {
     await getTasks();
     updateHtml();
 }
 
-////////////////////////
-// Show Board Tasks
-///////////////////////
+
+////////////////////////////////////////
+///    Get and Show Tasks on Board   ///
+////////////////////////////////////////
 
 async function getTasks() {
     let response = await getData((path = "/tasks"));
     let taskKeys = Object.keys(response);
-    console.log(taskKeys);
     tasksArray = [];
     for (let index = 0; index < taskKeys.length; index++) {
         const key = taskKeys[index];
@@ -45,6 +46,7 @@ async function getTasks() {
     }
 }
 
+
 function updateHtml() {
     let todoById = document.getElementById("to-do-container");
     let progressById = document.getElementById("in-progress-container");
@@ -57,9 +59,11 @@ function updateHtml() {
     renderTasks(filterTasks("done"), doneById, "Done");
 }
 
+
 function filterTasks(task) {
     return tasksArray.filter((t) => t["category"] == task);
 }
+
 
 function renderTasks(tasks, getById, noTask) {
     getById.innerHTML = "";
@@ -74,7 +78,7 @@ function renderTasks(tasks, getById, noTask) {
                 renderAssignedToContacts(task, index);
             }
             if (task.subtask) {
-                renderSubtask(task, index);
+                renderSubtaskBar(task, index);
             }
             if (task.prio) {
                 renderPrio(task, index);
@@ -83,7 +87,8 @@ function renderTasks(tasks, getById, noTask) {
     }
 }
 
-function renderSubtask(task, index) {
+
+function renderSubtaskBar(task, index) {
     let taskAmount = document.getElementById(`${task.category}-amount${index}`);
     let progressBar = document.getElementById(`${task.category}progress-bar${index}`);
     let progress = document.getElementById(`${task.category}-progress${index}`);
@@ -98,6 +103,7 @@ function renderSubtask(task, index) {
     progress.style.width = result;
 }
 
+
 function renderAssignedToContacts(task, index) {
     const assignedToContainer = document.getElementById(`${task.category}contatcs-container${index}`);
     const numContainer = document.getElementById(`${task.category}contatcs-container${index}num`);
@@ -111,6 +117,7 @@ function renderAssignedToContacts(task, index) {
     });
 }
 
+
 function renderPrio(task, index) {
     const imgRef = document.getElementById(`${task.category}prio-icon${index}`);
     if (task.prio) {
@@ -118,9 +125,10 @@ function renderPrio(task, index) {
     } // Else Statment bei keiner Prio mit d-none
 }
 
-///////////////////////////
-// Drag and Drop Fuktionen
-//////////////////////////
+
+////////////////////////////////////////
+///  Board Drag and Drop Functions   ///
+///////////////////////////////////////
 
 function moveTo(category) {
     tasksArray[currentDraggedElement]["category"] = category;
@@ -128,13 +136,16 @@ function moveTo(category) {
     updateHtml();
 }
 
+
 function startDragging(id) {
     currentDraggedElement = id;
 }
 
+
 function allowDrop(ev) {
     ev.preventDefault();
 }
+
 
 async function moveToUpdateDatabase() {
     let getTasks = await getData("/tasks");
@@ -142,21 +153,25 @@ async function moveToUpdateDatabase() {
     await putData(`/tasks/${taskKey[currentDraggedElement]}`, tasksArray[currentDraggedElement]);
 }
 
+
 function highlight(id) {
     document.getElementById(id).classList.add("drag-area-highlight");
 }
+
 
 function removeHighlight(id) {
     document.getElementById(id).classList.remove("drag-area-highlight");
 }
 
+
 function animationOndrag(id) {
     document.getElementById(id).classList.add("animation-ondrag");
 }
 
-////////////////////////
-// Show Task Funktionen
-///////////////////////
+
+/////////////////////////////////////////////
+///  Task Overlay - Show Task Functions   ///
+////////////////////////////////////////////
 
 function openTask(id) {
     currentTask = tasksArray[id];
@@ -166,9 +181,9 @@ function openTask(id) {
     renderTasksArrays();
 }
 
+
 function renderTasksArrays() {
     let assignedToRef = document.getElementById("assigned-to-list");
-
     assignedToRef.innerHTML = "";
     if (currentTask.assignedTo) {
         currentTask.assignedTo.forEach((contact) => {
@@ -178,9 +193,10 @@ function renderTasksArrays() {
     setCheck();
 }
 
-/////////////////////////////////////////
-///    Check Subtasks Functions     /////
-////////////////////////////////////////
+
+/////////////////////////////////////////////////////
+///   Task Overlay - Check Subtasks Functions    ///
+///////////////////////////////////////////////////
 
 function setCheck() {
     let subtaskRef = document.getElementById("subtask-overlay");
@@ -195,6 +211,7 @@ function setCheck() {
     }
 }
 
+
 async function checkAndPushToFirebase(subIndex) {
     currentTask.subtask[subIndex].checked = !currentTask.subtask[subIndex].checked;
     setCheck();
@@ -208,9 +225,10 @@ async function checkAndPushToFirebase(subIndex) {
     await getTasks();
 }
 
-/////////////////////////////////
-//    Edit Task Funktionen    ///
-/////////////////////////////////
+
+////////////////////////////////////////
+//    Edit Task Overlay Functions   ///
+///////////////////////////////////////
 
 function showEditTaskValues() {
     document.getElementById("overlaver").innerHTML = editBoardTaskHTML(currentTask);
@@ -219,11 +237,14 @@ function showEditTaskValues() {
     editTaskPrioBtnColor();
     taskPrioText();
 }
+
+
 function updateCategoryText(value) {
     currentTask.categoryText = value;
     document.getElementById("category-text").innerHTML = value;
     console.log(currentTask.categoryText);
 }
+
 
 function editTaskAssignTo() {
     selectedContacts = []; //Required, to clear the Array from the Edit-Task before    //// Anpassungen
@@ -235,6 +256,7 @@ function editTaskAssignTo() {
     }
 }
 
+
 function taskPrioText() {
     if (currentTask.prio) {
         document.getElementById("prio").innerHTML = currentTask.prio.charAt(0).toUpperCase() + currentTask.prio.slice(1);
@@ -243,6 +265,7 @@ function taskPrioText() {
     }
 }
 
+
 function editTaskPrioBtnColor() {
     document.getElementById("urgent-btn").classList.remove("urgent");
     document.getElementById("medium-btn").classList.remove("medium");
@@ -250,12 +273,12 @@ function editTaskPrioBtnColor() {
     document.getElementById("prio-icon-urgent").src = "./assets/icons/prio-urgent-icon.png";
     document.getElementById("prio-icon-medium").src = "./assets/icons/prio-medium-icon.png";
     document.getElementById("prio-icon-low").src = "./assets/icons/prio-low-icon.png";
-
     if (currentTask.prio) {
         document.getElementById(`prio-icon-${currentTask.prio}`).src = `./assets/icons/prio-${currentTask.prio}-icon-active.png`;
         document.getElementById(`${currentTask.prio}-btn`).classList.add(currentTask.prio);
     } else return;
 }
+
 
 function editPrio(prioInput) {
     if (prioInput == currentTask.prio) {
@@ -265,6 +288,7 @@ function editPrio(prioInput) {
     }
     editTaskPrioBtnColor();
 }
+
 
 function findCheckedContacts(currentTask) {
     for (let i = 0; i < selectedContacts.length; i++) {
@@ -279,9 +303,10 @@ function findCheckedContacts(currentTask) {
     }
 }
 
-///////////////////////////////
-///   Subtasks editing      ///
-///////////////////////////////
+
+///////////////////////////////////////////////
+///   Edit Task Overlay - Edit Subtasks    ///
+//////////////////////////////////////////////
 
 function editTaskSubtask() {
     if (currentTask.subtask) {
@@ -291,6 +316,7 @@ function editTaskSubtask() {
     }
 }
 
+
 function renderSubtaskEdit(subtasks) {
     let subTaskRef = document.getElementById("subtasks-container");
     subtasks.forEach((subtask, i) => {
@@ -298,11 +324,13 @@ function renderSubtaskEdit(subtasks) {
     });
 }
 
+
 function saveWord(index) {
     const newValue = document.getElementById(`editInput${index}`).value;
     currentSubtasks[index].sub = newValue;
     renderSubtaskEdit(currentSubtasks);
 }
+
 
 function deleteSubtask(i) {
     currentSubtasks.splice(i, 1);
@@ -310,9 +338,10 @@ function deleteSubtask(i) {
     classChangeAction("overlaver", "overlaver-active", "remove");
 }
 
-///////////////////////////////////////////
-///    Task editing PUT to Firebase    ///
-//////////////////////////////////////////
+
+///////////////////////////////////////////////////////
+///   Edit Task Overlay - PUT  Firebase / Board    ///
+/////////////////////////////////////////////////////
 
 async function editTask() {
     let editTitle = document.getElementById("edit-title-input").value;
@@ -334,14 +363,14 @@ async function editTask() {
             taskKey: currentTask.taskKey,
         })
     );
-
     resetBoard();
     openTask(currentTask.id);
 }
 
-//////////////////////////////////////
-///    Delete  Task / Firebase     ///
-/////////////////////////////////////
+
+//////////////////////////////////////////////////////
+///  Edit Task Overlay - Delete  Firebase Board   ///
+/////////////////////////////////////////////////////
 
 async function deleteTask() {
     classChangeAction("overlaver", "overlaver-active", "remove");
@@ -349,14 +378,14 @@ async function deleteTask() {
     resetBoard();
 }
 
-//////////////////////////////////////////
-///     Mobile Move Task / Firebase    ///
-/////////////////////////////////////////
+
+//////////////////////////////////////////////////
+///     Mobile  Drag and Drop  Button Version  ///
+/////////////////////////////////////////////////
 
 function openTaskMoveOptions(taskId) {
     document.getElementById(`task-move-list${taskId}`).classList.toggle("show-drop-list");
 }
-
 
 
 async function moveTaskTo(taskId, category) {
@@ -378,14 +407,12 @@ async function moveTaskTo(taskId, category) {
 
 
 //////////////////////////////////////////
-///          Search Function          ///
+///     Board Search Task Function     ///
 /////////////////////////////////////////
 
 function filterBoardTasks(screen) {
     let search = document.getElementById(`search-task-${screen}`).value;
-    search = search.toLowerCase()
-    console.log(search);
-
+    search = search.toLowerCase();
     let todoById = document.getElementById("to-do-container");
     let progressById = document.getElementById("in-progress-container");
     let feedbackById = document.getElementById("await-feedback-container");

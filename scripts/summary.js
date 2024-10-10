@@ -4,11 +4,9 @@ function summaryInit() {
     getSummaryTasks()
 }
 
-////////////////////////////////////////////
-///           Greeting Functions      /////
-//////////////////////////////////////////
-
-
+///////////////////////////////////////
+///      Greeting Functions      /////
+/////////////////////////////////////
 
 function greeting() {
     let greeting = document.getElementById('greeting-time').innerHTML = greetingTime();
@@ -17,6 +15,7 @@ function greeting() {
     let greetingMobile = document.getElementById('greeting-time-mobile').innerHTML = greetingTime();
     let greetUserMobile = document.getElementById('greeting-name-mobile').innerHTML = greetingUser();
 }
+
 
 function greetingTime() {
     let A = new Date();
@@ -37,11 +36,9 @@ function greetingUser() {
     return user;
 }
 
-
-////////////////////////////////////////////
-///        Filter Summary Tasks      /////
-//////////////////////////////////////////
-
+/////////////////////////////////////////
+///    Show Current Summary Tasks     ///
+////////////////////////////////////////
 
 async function getSummaryTasks() {
     await getTasks();
