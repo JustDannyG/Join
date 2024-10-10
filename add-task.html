@@ -27,17 +27,17 @@
                 <div class="task-details">
                     <h1 class="add-task-headline">Add Task</h1>
 
-                    <div class="column mt-16">
+                    <div class="input-container">
                         <label for="title">Title<span class="required">*</span></label>
                         <input class="input" required id="title" type="text" placeholder="Enter a title" />
                     </div>
 
-                    <div class="column mt-16">
+                    <div class="input-container">
                         <label for="description">Description</label>
                         <textarea id="description" class="textarea" name="description" placeholder="Enter a Description"></textarea>
                     </div>
 
-                    <div class="column mt-16">
+                    <div class="input-container">
                         <label for="assign-to-dropdown">Assigned to</label>
                         <div id="dropdown" class="drop-down d-flex">
                             <input id="assign-to-dropdown" class="input" onkeyup="filter('assign-to-dropdown')" onclick="handleInputClick(event)" value="Select contacts to assign" />
@@ -52,7 +52,7 @@
                 </div>
 
                 <div class="task-settings">
-                    <div class="column mt-16">
+                    <div class="input-container">
                         <label for="date">Due date<span class="required">*</span></label>
                         <input id="date" class="input" required type="date" />
                     </div>
@@ -66,7 +66,7 @@
                         </div>
                     </div>
 
-                    <div class="column mt-16">
+                    <div class="input-container">
                         <label for="selected-category">Category<span class="required">*</span></label>
                         <select required id="selected-category" class="select-category">
                             <option value="">Select task category:</option>
@@ -75,7 +75,7 @@
                         </select>
                     </div>
 
-                    <div class="form-field column mt-16">
+                    <div class="form-field input-container">
                         <label for="subtasks-input">Subtasks</label>
                         <div class="add-task-input">
                             <input id="subtasks-input" type="subtasks" name="subtasks" onkeyup="subtaskInputBtn()" placeholder="Add new subtask" />
