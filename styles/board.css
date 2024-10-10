@@ -658,3 +658,8 @@
     border-radius: 10px;
     border: solid 1px #d1d1d1;
 }
+
+input:indeterminate {
+    border: 2px solid red;
+    background-color: beige;
+}
