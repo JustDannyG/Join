@@ -74,7 +74,7 @@ function renderTasks(tasks, getById, noTask) {
                 renderAssignedToContacts(task, index);
             }
             if (task.subtask) {
-                renderSubtask(task, index);
+                renderSubtaskBar(task, index);
             }
             if (task.prio) {
                 renderPrio(task, index);
@@ -83,7 +83,7 @@ function renderTasks(tasks, getById, noTask) {
     }
 }
 
-function renderSubtask(task, index) {
+function renderSubtaskBar(task, index) {
     let taskAmount = document.getElementById(`${task.category}-amount${index}`);
     let progressBar = document.getElementById(`${task.category}progress-bar${index}`);
     let progress = document.getElementById(`${task.category}-progress${index}`);
@@ -154,9 +154,9 @@ function animationOndrag(id) {
     document.getElementById(id).classList.add("animation-ondrag");
 }
 
-////////////////////////
-// Show Task Funktionen
-///////////////////////
+///////////////////////////////
+///   Show Task Funktionen  ///
+//////////////////////////////
 
 function openTask(id) {
     currentTask = tasksArray[id];
