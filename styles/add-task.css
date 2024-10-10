@@ -12,36 +12,33 @@
     margin-left: 210px;
 }
 
-
-
 .add-task-form {
-  position: relative;
-  width: 1000px;
-  display: flex;
-  justify-content: space-around;
-  flex-direction: column;
-  margin-bottom: 64px;
-  width: 100%;
+    position: relative;
+    width: 1000px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin-bottom: 64px;
+    width: 100%;
 }
 
 .task-details {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 
-  animation-name: field2;
-  animation-duration: 300ms;
+    animation-name: field2;
+    animation-duration: 300ms;
 }
 
-.add-task-headline{
-
+.add-task-headline {
 }
 
-.input-container{
-  display: flex;
-  flex-direction: column;
-  margin-top: 16px;
-  width: 100%;
-
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 16px;
+    width: 100%;
+}
 
 .input,
 .textarea {
@@ -75,7 +72,6 @@ input::placeholder,
     width: 100%;
 }
 
-
 .add-task-form {
     position: relative;
     width: 1000px;
@@ -92,7 +88,6 @@ input::placeholder,
     animation-name: field2;
     animation-duration: 300ms;
 }
-
 
 .task-settings {
     display: flex;
@@ -201,7 +196,6 @@ input::placeholder,
     color: var(--required);
 }
 
-
 /* Dropdown */
 
 .drop-down input {
@@ -251,7 +245,6 @@ select:focus {
 .not-found {
     font-size: 12px;
 }
-
 
 /*Drop-Down Menü*/
 
@@ -307,7 +300,6 @@ select:focus {
     align-items: center;
     gap: 8px;
 }
-
 
 /* Subtasks */
 
@@ -438,7 +430,6 @@ select:focus {
     width: 15px;
     margin: 5px;
 }
-
 
 /* Selectet*/
 
