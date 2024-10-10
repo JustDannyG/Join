@@ -505,6 +505,10 @@
     font-size: 18px;
 }
 
+.add-task-btn:hover {
+    background-color: var(--hover-darke-blue);
+}
+
 .task-content {
     display: flex;
     gap: 30px;
