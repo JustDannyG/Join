@@ -18,7 +18,6 @@ async function addTaskInit() {
     await getContacts();
     getSelectedContacts();
     renderContacts(selectedContacts);
-    styleSelecet();
 }
 
 ///////////////////////////////////////
