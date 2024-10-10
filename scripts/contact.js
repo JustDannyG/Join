@@ -2,15 +2,22 @@ let currentSortKeys = [];
 let contactIndex = getFromLocalStorage('currentDetails');
 let contactsArray = getFromLocalStorage('contacts');
 let currentContactDetails = localStorage.getItem("currentDetails");
-
 let screenMode;
 
+
+////////////////////
+///    Start   ////
+///////////////////
 
 async function initContacts() {
     await getContacts();
     renderContacts();
 }
 
+
+/////////////////////////////////
+///    Render Contact List   ////
+////////////////////////////////
 
 function renderContacts() {
     let containerRef = document.getElementById("contacts-container");
@@ -40,6 +47,10 @@ function openContact(index) {
 }
 
 
+/////////////////////////////////////////////////
+///   LocalStorage - Save / Load Functions   ////
+/////////////////////////////////////////////////
+
 function saveToLocalStorage(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
 }
@@ -53,6 +64,10 @@ function getFromLocalStorage(key) {
     return myData;
 }
 
+
+////////////////////////////////////
+///    Add Contacts Functions   ////
+///////////////////////////////////
 
 async function addContact() {
     const nameRef = document.getElementById("edit-name-input")
@@ -94,9 +109,9 @@ async function findContact(name, email, phone) {
 }
 
 
-///////////////////
-// Contact Details
-////////////////////
+///////////////////////////////
+//   Show Contact Details   ///
+///////////////////////////////
 
 function showContact() {
     let currentContact = document.getElementById('current-contact');
@@ -113,6 +128,10 @@ function toggleOverlayDisplay() {
     editDetails();
 }
 
+
+///////////////////////////////////////
+//  Edit Contact Details Functions  ///
+//////////////////////////////////////
 
 function editDetails() {
     let currentDetail = contactsArray[contactIndex];
@@ -160,10 +179,13 @@ async function editContact() {
 }
 
 
+//////////////////////////
+//   Delete Contact    ///
+//////////////////////////
+
 async function deleteContact() {
     await getCurrentKey();
     let key = currentSortKeys[contactIndex].key;
-    await deleteData(path = `/contacts/${key}`, data = {})
-
+    await deleteData(path = `/contacts/${key}`, data = {});
     window.location.href = "contact.html";
 }
