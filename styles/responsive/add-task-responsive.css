@@ -1,4 +1,4 @@
-@media (max-width: 392px) {
+@media(max-width: 392px) {
     .prio-btn {
         padding: 8px 8px;
         width: 88px;
@@ -6,16 +6,17 @@
     }
 }
 
-@media (max-width: 1024px) {
+@media(max-width: 1024px) {
     .add-task-main-content {
         margin-left: 0;
     }
-    .add-task-action-btn {
-        display: none;
-    }
+   .add-task-action-btn{
+    display: none;
+   }
+ 
 }
 
-@media (min-width: 1024px) {
+@media(min-width: 1024px) {
     .submit-row {
         /* margin-left: 210px; */
         display: none;
@@ -48,6 +49,8 @@
         font-size: 61px;
     }
 }
+
+
 
 @media (min-width: 1440px) {
     .add-task-main-content {
