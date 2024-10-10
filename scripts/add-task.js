@@ -99,7 +99,7 @@ function handleDropdownButtonClick(event) {
     classChangeAction("dropdown", "input-active", "remove");
     isDropdownOpen = !isDropdownOpen;
     if (isDropdownOpen) {
-        clearInput(input);
+        clearInput(input).trim();
         classChangeAction("dropdown", "input-active", "add");
     }
 }
