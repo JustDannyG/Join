@@ -2,9 +2,18 @@ let user = "Guest";
 let contacts = [];
 let prio = "medium";
 
+
 //////////////////////////////////////
 ///         Return Functions     /////
 /////////////////////////////////////
+
+
+function markedPage(id, activeStyle) {
+   document.getElementById(id).classList.add(activeStyle);
+}
+
+
+
 
 function createInititals(selectName) {
     let firstsChar = selectName;
@@ -123,10 +132,11 @@ function classChangeAction(id, className, action) {
 ///////////////////////////////////////////////////////////////////
 
 function checkScreenWidth() {
-    let header = document.getElementById("join-header");
-    let sidebar = document.getElementById("join-sidebar");
-    let currentHeader = "";
-    let currentSidebar = "";
+
+    let header = document.getElementById('join-header');
+    let sidebar = document.getElementById('join-sidebar');
+    let currentHeader = '';
+    let currentSidebar = '';
 
     if (window.innerWidth <= 1024) {
         console.log("Mobile Ansicht");
@@ -190,6 +200,7 @@ function styleSelecet() {
         styledSelect.addEventListener("click", function (e) {
             e.stopPropagation();
             document.querySelectorAll("div.styledSelect.active").forEach(function (activeSelect) {
+
                 if (activeSelect !== styledSelect) {
                     activeSelect.classList.remove("active");
                     activeSelect.nextElementSibling.style.display = "none";

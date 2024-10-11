@@ -138,6 +138,7 @@
     width: 100%;
     height: 46px;
     gap: 8px;
+    cursor: pointer;
 }
 
 .nav-link-desktop:hover {
