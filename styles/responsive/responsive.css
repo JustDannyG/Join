@@ -18,10 +18,38 @@
         padding: 25px 16px 48px calc(232px + 16px);
     }
 
-    .sidebar-desktop {
-        width: 210px;
-    }
+
 }
+
+
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
+    .sidebar-desktop {
+        width: 130px;
+    }
+
+    .nav-link-desktop {
+        padding: 10px 0;
+        flex-direction: column;
+    }
+
+    .sidebar-nav {
+        gap: 25px;
+    }
+
+    .sidebar-info {
+        padding: 0;
+        align-items: center;
+    }
+
+    .subtitle {
+        z-index: 1;
+    }
+
+}
+
+
+
+
 
 @media(min-width: 1440px) {
     .sidebar-desktop {
