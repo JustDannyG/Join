@@ -114,7 +114,7 @@ function contactCirleHTML(detail) {
     <div class="column">
       <h2>${detail.name}</h2>
       <div class="edit-contact-desktop">
-        <button class="edit-contact-btn" onclick="toggleOverlayDisplay()">
+        <button class="edit-contact-btn" onclick="classChangeAction('edit-overlay-bg', 'hide-overlay-desktop', 'remove'); editDetails();">
             <img src="./assets/icons/edit.png " alt="Edit Button" /> Edit
         </button>
 

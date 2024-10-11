@@ -56,7 +56,7 @@
 
         <section id="join-sidebar"></section>
 
-        <!-- start overlay -->
+        <!-- start overlay add contact -->
 
         <section id="dialog-add-contact" class="edit-overlay-bg hide-overlay" onclick="classChangeAction('dialog-add-contact', 'hide-overlay', 'add');classChangeAction('add-contact', 'bg-color-blue', 'remove');">
             <form class="edit-overlay-form" onsubmit="addContact(); return false;">
@@ -89,5 +89,48 @@
         </section>
 
         <section id="dialog-add-succes" class="dialog">Contact successfully created</section>
+
+        <!-- end overlay add contact -->
+
+        <!-- start overlay edit contact -->
+        <section id="edit-overlay-bg" class="edit-overlay-bg hide-overlay-desktop">
+            <form class="edit-overlay-form-desktop" onsubmit="editContact(); return false">
+                <div class="left-container">
+                    <h2 class="edit-headline-desktop">
+                        Edit contact
+                        <span class="blue-underline"></span>
+                    </h2>
+                </div>
+
+                <div class="right-container">
+                    <img class="close-edit" src="./assets/icons/close-icon-dark.png" alt="Close" onclick="classChangeAction('edit-overlay-bg', 'hide-overlay-desktop', 'add')" />
+                    <div class="edit-details-desktop">
+                        <div id="edit-initals-container" class="edit-initals-container-desktop"></div>
+
+                        <div class="edit-form-inputs-desktop">
+                            <div class="edit-input">
+                                <input type="text" id="edit-name" />
+                                <img src="./assets/icons/person.png" />
+                            </div>
+
+                            <div class="edit-input">
+                                <input type="text" id="edit-email" />
+                                <img src="./assets/icons/mail.png" />
+                            </div>
+
+                            <div class="edit-input">
+                                <input type="text" id="edit-phone" />
+                                <img src="./assets/icons/phone.png" />
+                            </div>
+                            <div class="edit-action-btns">
+                                <button class="edit-delete-btn center" onclick="deleteContact(); return false">Delete</button>
+                                <button class="edit-save-btn center">Save <img src="./assets/icons/check.png" alt="" /></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+        <!-- end overlay edit contact -->
     </body>
 </html>
