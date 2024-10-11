@@ -9,7 +9,7 @@
     padding: 0 20px;
     text-wrap: wrap;
     max-width: calc(1920px - 232px);
-    margin-left: 140px;
+    margin-left: 130px;
     z-index: 1;
     /* height: calc(100vh - (80px + 80px)); */
     overflow: hidden;
