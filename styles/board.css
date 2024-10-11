@@ -83,8 +83,9 @@
     display: flex;
     flex-direction: column;
     justify-content: end;
-    gap: 20%;
-    height: 200px;
+    gap: 5px;
+    height: 120px;
+    padding: 0 0 10px 0;
 }
 
 .headline-addTask-container {
@@ -115,7 +116,7 @@
     background-color: white;
 }
 
-.search-task-input-mobile{
+.search-task-input-mobile {
     flex: 1;
     border: none;
 }
@@ -189,7 +190,7 @@
     align-items: center;
     transition: all ease-in-out 125ms;
     overflow-x: scroll;
-    
+
     animation-name: task;
     animation-duration: 800ms;
     animation-iteration-count: 1;
@@ -198,7 +199,7 @@
 
 
 
-.board-section-title{
+.board-section-title {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -207,7 +208,7 @@
 }
 
 
-.add-task-icon-btn{
+.add-task-icon-btn {
     height: 30px;
     width: 30px;
     border: solid 2px;
@@ -216,7 +217,7 @@
     cursor: pointer;
 }
 
-.add-task-icon-btn:hover{
+.add-task-icon-btn:hover {
     scale: 1.1;
 }
 
