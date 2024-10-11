@@ -54,6 +54,7 @@ function desktopSidebar() {
     return `<aside class="sidebar-desktop">
         <img class="sidebar-logo-desktop" src="./assets/icons/join-logo-light.png" alt="">
         <nav class="sidebar-nav">
+
             <a class="nav-link-desktop" id="summary-link" onclick="sideMarking('summary')" href="summary.html"><img src="./assets/icons/summary-icon.png" > Summary</a>
             <a class="nav-link-desktop" id="add-task-link" onclick="sideMarking('add-task')" href="add-task.html"><img src="./assets/icons/add-task-icon.png" > Add Task</a>
             <a class="nav-link-desktop" id="board-link" onclick="sideMarking('board')" href="board.html"><img src="./assets/icons/board-icon.png" > Board</a>
@@ -111,7 +112,19 @@ function contactCirleHTML(detail) {
     <div class="current-contact-circle center" style="background:${detail.color}">
         ${createInititals(detail.name)}
     </div>
+    <div class="column">
       <h2>${detail.name}</h2>
+      <div class="edit-contact-desktop">
+        <button class="edit-contact-btn" onclick="classChangeAction('edit-overlay-bg', 'hide-overlay-desktop', 'remove'); editDetails();">
+            <img src="./assets/icons/edit.png " alt="Edit Button" /> Edit
+        </button>
+
+        <button class="edit-contact-btn" onclick="deleteContact()">
+            <img src="./assets/icons/delete.png " alt="Delete Button" /> Delete
+      </button>
+    </div>
+
+      </div>
     `;
 }
 
@@ -351,6 +364,3 @@ function editBoardTaskHTML(currentTask) {
         
     </div>`;
 }
-
-
-

@@ -14,6 +14,7 @@ function markedPage(id, activeStyle) {
 
 
 
+
 function createInititals(selectName) {
     let firstsChar = selectName;
     parts = firstsChar.split(" ");
@@ -52,8 +53,11 @@ function checkLengthGreater(e, n) {
 
 function checkLengthSmaller(e, n) {
     return e.length > n;
-
 }
+
+/////////////////////////////////////////////////
+///   LocalStorage - Save / Load Functions   ////
+/////////////////////////////////////////////////
 
 function saveToLocalStorage(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
@@ -65,14 +69,11 @@ function getFromLocalStorage(key) {
         myData = myArr;
     }
     return myData;
-
 }
-
 
 //////////////////////////////////////
 ///                             /////
 /////////////////////////////////////
-
 
 function clearContent(e) {
     e.innerHTML = "";
@@ -101,7 +102,6 @@ async function getContacts() {
     sortByAlphabet(contacts);
 }
 
-
 function stopEventBubbling(event) {
     event.stopPropagation();
 }
@@ -109,7 +109,6 @@ function stopEventBubbling(event) {
 function goSummery() {
     window.location.href = "summary.html";
 }
-
 
 //////////////////////////////////////
 ///                             /////
@@ -128,7 +127,6 @@ function classChangeAction(id, className, action) {
     } else return;
 }
 
-
 ///////////////////////////////////////////////////////////////////
 ///   Check Screen Size for Mobile or Desktop Design Functions  ///
 ///////////////////////////////////////////////////////////////////
@@ -139,7 +137,6 @@ function checkScreenWidth() {
     let sidebar = document.getElementById('join-sidebar');
     let currentHeader = '';
     let currentSidebar = '';
-
 
     if (window.innerWidth <= 1024) {
         console.log("Mobile Ansicht");
@@ -190,8 +187,7 @@ function styleSelecet() {
         list.classList.add("options");
         select.parentNode.insertBefore(list, styledSelect.nextSibling);
         Array.from(select.options).forEach(function (option, index) {
-
-            var li = document.createElement('li');
+            var li = document.createElement("li");
 
             li.textContent = option.text;
             li.setAttribute("rel", option.value);
@@ -201,9 +197,7 @@ function styleSelecet() {
             list.appendChild(li);
         });
 
-
-        styledSelect.addEventListener('click', function (e) {
-
+        styledSelect.addEventListener("click", function (e) {
             e.stopPropagation();
             document.querySelectorAll("div.styledSelect.active").forEach(function (activeSelect) {
 
@@ -213,17 +207,14 @@ function styleSelecet() {
                 }
             });
 
-
-            styledSelect.classList.toggle('active');
-            list.style.display = styledSelect.classList.contains('active') ? 'block' : 'none';
-            if (styledSelect.classList.contains('active')) {
-                list.querySelector('li.hide-first').style.display = 'none';
+            styledSelect.classList.toggle("active");
+            list.style.display = styledSelect.classList.contains("active") ? "block" : "none";
+            if (styledSelect.classList.contains("active")) {
+                list.querySelector("li.hide-first").style.display = "none";
             }
         });
-        list.addEventListener('click', function (e) {
-            if (e.target.tagName === 'LI') {
-
-
+        list.addEventListener("click", function (e) {
+            if (e.target.tagName === "LI") {
                 styledSelect.textContent = e.target.textContent;
                 styledSelect.classList.remove("active");
                 select.value = e.target.getAttribute("rel");
@@ -231,12 +222,9 @@ function styleSelecet() {
             }
         });
 
-
-        document.addEventListener('click', function () {
-            styledSelect.classList.remove('active');
-            list.style.display = 'none';
-
-
+        document.addEventListener("click", function () {
+            styledSelect.classList.remove("active");
+            list.style.display = "none";
         });
     });
 }

@@ -4,24 +4,18 @@ let contactsArray = getFromLocalStorage("contacts");
 let currentContactDetails = localStorage.getItem("currentDetails");
 let screenMode;
 
-
-
 ////////////////////
 ///    Start   ////
 ///////////////////
-
 
 async function initContacts() {
     await getContacts();
     renderContacts();
 }
 
-
-
 /////////////////////////////////
 ///    Render Contact List   ////
 ////////////////////////////////
-
 
 function renderContacts() {
     let containerRef = document.getElementById("contacts-container");
@@ -47,9 +41,8 @@ function openContact(index) {
         contactIndex = index;
     }
 
-    showContact()
+    showContact();
 }
-
 
 /////////////////////////////////////////////////
 ///   LocalStorage - Save / Load Functions   ////
@@ -59,22 +52,17 @@ function saveToLocalStorage(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
 }
 
-
 function getFromLocalStorage(key) {
     let myArr = JSON.parse(localStorage.getItem(key));
     if (myArr !== null) {
-        myData = myArr
+        myData = myArr;
     }
     return myData;
 }
 
-
 ////////////////////////////////////
 ///    Add Contacts Functions   ////
 ///////////////////////////////////
-
-
-
 
 async function addContact() {
     const nameRef = document.getElementById("edit-name-input");
@@ -100,7 +88,7 @@ function getInputs(nameRef, emailRef, phoneNumRef) {
 function toogleDialog(id, index) {
     document.getElementById(id).classList.add("dialog-active");
 
-    setTimeout(function() {
+    setTimeout(function () {
         document.getElementById(id).classList.remove("dialog-active");
         openContact(index);
     }, 2000);
@@ -112,12 +100,9 @@ async function findContact(name, email, phone) {
     return contacts.findIndex((e) => e.name == name && e.email == email && e.phone == phone);
 }
 
-
-
 ///////////////////////////////
 //   Show Contact Details   ///
 ///////////////////////////////
-
 
 function showContact() {
     let currentContact = document.getElementById("current-contact");
@@ -133,12 +118,9 @@ function toggleOverlayDisplay() {
     editDetails();
 }
 
-
-
 ///////////////////////////////////////
 //  Edit Contact Details Functions  ///
 //////////////////////////////////////
-
 
 function editDetails() {
     let currentDetail = contactsArray[contactIndex];
@@ -181,11 +163,18 @@ async function editContact() {
             phone: phone,
         })
     );
-    await getContacts();
     saveToLocalStorage("contacts", contacts);
-    window.location.href = "contact-details.html";
-}
 
+    await getContacts();
+
+    if (screenMode == "mobile") {
+        window.location.href = "contact-details.html";
+    }
+    if (screenMode == "desktop") {
+        console.log("test");
+        classChangeAction("edit-overlay-bg", "hide-overlay-desktop", "add");
+    }
+}
 
 //////////////////////////
 //   Delete Contact    ///
@@ -194,7 +183,7 @@ async function editContact() {
 async function deleteContact() {
     await getCurrentKey();
     let key = currentSortKeys[contactIndex].key;
-    await deleteData(path = `/contacts/${key}`, data = {});
+    await deleteData((path = `/contacts/${key}`), (data = {}));
 
     window.location.href = "contact.html";
 }
