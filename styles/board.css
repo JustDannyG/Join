@@ -5,27 +5,136 @@
 .board-main-content {
     display: flex;
     flex-direction: column;
-    flex: 1;
-    overflow-x: hidden;
-    overflow-y: auto;
     background-color: var(--light-grey);
-    padding: 25px 16px 48px 16px;
+    padding: 0 20px;
     text-wrap: wrap;
     max-width: calc(1920px - 232px);
-    gap: 32px;
-    margin-left: 210px;
+    margin-left: 140px;
     z-index: 1;
+    /* height: calc(100vh - (80px + 80px)); */
+    overflow: hidden;
+
 }
 
-.headline {
+
+/* =========================
+      Board Head Desktop
+   ========================= */
+
+.board-head-desktop {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    height: 15%;
+    padding: 0 25px;
+}
+
+.board-headline-desktop {
+    font-size: 61px;
+    font-weight: 700;
+}
+
+.search-addTask-container {
+    display: flex;
+    width: 504px;
+    height: 48px;
     justify-content: space-between;
 }
 
-.headline button {
+.search-box-desktop {
+    display: flex;
+    border: solid 1px;
+    width: 312px;
+    border-radius: 10px;
+    padding: 8px 16px;
+    background-color: white;
+}
+
+.search-task-input-desktop {
+    flex: 1;
+    border: none;
+}
+
+.search-icon {
+    width: 32px;
+    height: 32px;
+}
+
+.add-task-btn {
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+    width: 160px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    border-radius: 10px;
     background-color: var(--darke-blue);
-    border-radius: 8px;
-    height: 40px;
+}
+
+
+/* =========================
+      Board Head Mobile
+   ========================= */
+
+.board-head-mobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    gap: 20%;
+    height: 200px;
+}
+
+.headline-addTask-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.board-headline-mobile {
+    font-size: 47px;
+    font-weight: 700;
+}
+
+.add-task-mobile-btn {
     width: 40px;
+    height: 40px;
+    background-color: var(--darke-blue);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.search-box-mobile {
+    display: flex;
+    border: solid 1px;
+    border-radius: 10px;
+    height: 48px;
+    padding: 8px 16px;
+    background-color: white;
+}
+
+.search-task-input-mobile{
+    flex: 1;
+    border: none;
+}
+
+
+
+/* =========================
+     
+   ========================= */
+
+
+
+
+
+.search {
+    border: 2px solid var(--dark-grey);
+    border-radius: 8px;
+    padding: 4px 8px;
+    background-color: var(--white);
 }
 
 .input-row {
@@ -47,21 +156,70 @@
     font-size: 16px;
 }
 
-.subtitle {
-    justify-content: space-between;
-    width: 100%;
-    position: sticky;
-    top: 0;
-    left: 0;
-    /* z-index: 1; */
+
+
+
+/* =========================
+     Board - Content
+   ========================= */
+
+.task-content {
+    display: flex;
+    flex-direction: column;
+    height: min-content;
+    overflow-y: scroll;
+    gap: 30px;
 }
 
-.subtitle button {
-    border: solid 2px var(--darke-blue);
-    border-radius: 8px;
+.board-section {
+    display: flex;
+    flex-direction: column;
+    /* background-color: rgba(245, 222, 179, 0.5); */
+    padding: 10px;
+    border-radius: 10px;
+    transition: all ease-in-out 125ms;
+    height: min-content;
+}
+
+.task-container {
+    height: fit-content;
+    padding: 16px 0px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    transition: all ease-in-out 125ms;
+    overflow-x: scroll;
+    
+    animation-name: task;
+    animation-duration: 800ms;
+    animation-iteration-count: 1;
+}
+
+
+
+
+.board-section-title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 45px;
+    padding: 0 10px;
+}
+
+
+.add-task-icon-btn{
     height: 30px;
     width: 30px;
+    border: solid 2px;
+    padding: 5px;
+    border-radius: 8px;
+    cursor: pointer;
 }
+
+.add-task-icon-btn:hover{
+    scale: 1.1;
+}
+
 
 /* =========================
        No Task Template
@@ -90,7 +248,7 @@
     border-radius: 8px;
 }
 
-.drag-drop-btn{
+.drag-drop-btn {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -98,7 +256,7 @@
     right: 15px;
 }
 
-.drag-drop-icon{
+.drag-drop-icon {
     align-self: flex-end;
     border-radius: 50%;
     width: 40px;
@@ -106,7 +264,7 @@
     border: solid #D1D1D1 2px;
 }
 
-.drag-drop-list{
+.drag-drop-list {
     background-color: lightblue;
     border-radius: 10px;
     list-style-type: none;
@@ -119,11 +277,11 @@
     transition: all ease-in-out 125ms;
 }
 
-.show-drop-list{
+.show-drop-list {
     transform: translateX(0px);
 }
 
-.drag-drop-list li{
+.drag-drop-list li {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -131,7 +289,7 @@
     height: 40px;
 }
 
-.drag-drop-list li:hover{
+.drag-drop-list li:hover {
     background-color: lightgray;
     border-radius: 10px;
 }
@@ -222,18 +380,7 @@
     left: 78px;
 }
 
-.task-container {
-    height: fit-content;
-    padding: 16px 0px;
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    transition: all ease-in-out 125ms;
-    /* background-color: burlywood; */
-    animation-name: task;
-    animation-duration: 800ms;
-    animation-iteration-count: 1;
-}
+
 
 .user-story {
     background-color: var(--story);
@@ -475,33 +622,12 @@
 
 /*Desktop*/
 
-.desktop-section-search-add {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
 
-.search {
-    border: 2px solid var(--dark-grey);
-    border-radius: 8px;
-    padding: 4px 8px;
-    background-color: var(--white);
-}
 
-.task-content {
-    display: flex;
-    gap: 30px;
-}
 
-.board-section {
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(245, 222, 179, 0.5);
-    overflow: scroll;
-    padding: 10px;
-    border-radius: 10px;
-    transition: all ease-in-out 125ms;
-}
+
+
+
 
 @keyframes task {
     from {
@@ -607,38 +733,38 @@
 }
 
 .task-overlay-category {
-    
+
     position: relative;
 }
 
-.cursor-pointer{
+.cursor-pointer {
     cursor: pointer;
 }
 
 
-.edit-title-input{
+.edit-title-input {
     font-size: 20px;
     width: 100%;
     padding: 0 20px;
     height: 48px;
     border-radius: 10px;
-    border:solid 1px #D1D1D1;
+    border: solid 1px #D1D1D1;
 }
 
-.edit-textarea{
+.edit-textarea {
     font-size: 18px;
     height: 150px;
     padding: 0 20px;
     width: 100%;
     border-radius: 10px;
-    border:solid 1px #D1D1D1;
+    border: solid 1px #D1D1D1;
 }
 
-.edit-date-input{
+.edit-date-input {
     font-size: 18px;
     width: 100%;
     height: 48px;
     padding: 0 20px;
     border-radius: 10px;
-    border:solid 1px #D1D1D1;
+    border: solid 1px #D1D1D1;
 }
