@@ -196,8 +196,15 @@
     animation-iteration-count: 1;
 }
 
+@keyframes task {
+    from {
+        scale: 0.1;
+    }
 
-
+    to {
+        scale: 1;
+    }
+}
 
 .board-section-title {
     display: flex;
@@ -382,7 +389,6 @@
 }
 
 
-
 .user-story {
     background-color: var(--story);
 }
@@ -445,11 +451,9 @@
     }
 }
 
-/*Task Overlay*/
-
-.task-details-container li {
-    list-style: none;
-}
+/* =========================
+      Task Overlay
+   ========================= */
 
 .overlay-bg {
     height: 100%;
@@ -466,9 +470,6 @@
     transform: translateX(0) !important;
 }
 
-/* =========================
-   Board Task Overlay
-   ========================= */
 
 .task-overlay-bg {
     display: flex;
@@ -621,30 +622,9 @@
     background-color: #d1d1d1;
 }
 
-/*Desktop*/
-
-
-
-
-
-
-
-
-@keyframes task {
-    from {
-        scale: 0.1;
-    }
-
-    to {
-        scale: 1;
-    }
-}
-
 /* =========================
    Edit Task Overlay
    ========================= */
-
-/*Edit Task Overlayer*/
 
 .overlay-edit-task {
     position: relative;
