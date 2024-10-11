@@ -469,3 +469,17 @@
 .dialog-active {
     transform: translateY(-120px);
 }
+
+.edit-contact-desktop {
+    display: flex;
+    gap: 16px;
+    margin-top: 12px;
+}
+
+.edit-contact-btn {
+    display: flex;
+    gap: 8px;
+    border: unset;
+    background-color: unset;
+    padding: 0;
+}

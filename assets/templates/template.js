@@ -111,7 +111,19 @@ function contactCirleHTML(detail) {
     <div class="current-contact-circle center" style="background:${detail.color}">
         ${createInititals(detail.name)}
     </div>
+    <div class="column">
       <h2>${detail.name}</h2>
+      <div class="edit-contact-desktop">
+        <button class="edit-contact-btn" onclick="toggleOverlayDisplay()">
+            <img src="./assets/icons/edit.png " alt="Edit Button" /> Edit
+        </button>
+
+        <button class="edit-contact-btn" onclick="deleteContact()">
+            <img src="./assets/icons/delete.png " alt="Delete Button" /> Delete
+      </button>
+    </div>
+
+      </div>
     `;
 }
 
