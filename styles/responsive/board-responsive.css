@@ -55,7 +55,9 @@
         max-height: 112px;
     }
 
-
+    .task-container {
+        padding: 16px 5px;
+    }
 
 }
 
