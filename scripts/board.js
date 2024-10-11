@@ -223,6 +223,7 @@ async function checkAndPushToFirebase(subIndex) {
         })
     );
     await getTasks();
+    await resetBoard()
 }
 
 
