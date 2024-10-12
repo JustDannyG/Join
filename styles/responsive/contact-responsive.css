@@ -88,7 +88,63 @@
     .edit-button {
         display: none;
     }
+
+    .edit-overlay-form {
+        flex-direction: row;
+        width: 1050px;
+        padding: 0;
+    }
+
+    .edit-initals-container {
+        bottom: unset;
+        right: -130px;
+    }
+
+    .submit-btn {
+        position: absolute;
+        right: 110px;
+        bottom: 110px;
+        scale: 0.9;
+    }
+
+    .overlay-header {
+        width: 420px;
+        height: 594px;
+        padding-left: 60px;
+    }
+
+    .edit-form-inputs {
+        padding: 0;
+        margin-left: 170px;
+    }
+
+    .edit-headline {
+        scale: 1.1;
+    }
+
+    .subtitle {
+        scale: 1.1;
+    }
+
+    .blue-underline {
+        scale: 1.1;
+    }
+
+    .hide-overlay {
+        transform: translateX(100vw);
+    }
+
+    .close-edit path{
+        fill: black;
+    }
 }
+
+
+
+
+
+
+
 
 @media (min-width: 1440px) {
     .contact-content {
