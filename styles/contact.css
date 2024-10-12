@@ -564,6 +564,7 @@
     width: min-content;
     text-wrap: nowrap;
     border-radius: 12px;
+    z-index: 10;
 }
 
 .dialog-active {
@@ -604,11 +605,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+}
+
+.left-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.overlay-logo {
+    width: 54px;
 }
 
 .edit-headline-desktop {
     font-size: 47px;
     color: white;
+    margin: 12px 0;
 }
 
 .edit-initals-container-desktop {
@@ -643,4 +655,31 @@
     max-width: 500px;
     width: 100%;
     gap: 24px;
+}
+
+.create-btn {
+    background-color: var(--darke-blue);
+    padding: 8px 16px;
+    outline: none;
+    border: none;
+    text-wrap: nowrap;
+    padding: 16px;
+    color: var(--white);
+    align-items: center;
+}
+
+.create-btn:hover {
+    background-color: var(--light-blue);
+}
+.clear-btn {
+    padding: 8px 16px;
+    outline: none;
+    text-wrap: nowrap;
+    padding: 16px;
+    background-color: unset;
+    align-items: center;
+}
+
+.clear-btn:hover {
+    filter: brightness(0) saturate(100%) invert(54%) sepia(80%) saturate(793%) hue-rotate(165deg) brightness(94%) contrast(89%);
 }
