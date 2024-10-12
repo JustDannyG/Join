@@ -124,6 +124,10 @@
     .subtitle {
         font-size: 14px;
     }
+
+    .task-category {
+        scale: 0.9;
+    }
 }
 
 
