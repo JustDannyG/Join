@@ -53,6 +53,7 @@ function saveToLocalStorage(key, value) {
 }
 
 function getFromLocalStorage(key) {
+    let myData;
     let myArr = JSON.parse(localStorage.getItem(key));
     if (myArr !== null) {
         myData = myArr;
