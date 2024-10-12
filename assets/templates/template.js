@@ -68,6 +68,118 @@ function desktopSidebar() {
 }
 
 
+////////////////////////////////////////////
+/////  Board  -  Tasks  Templates     //////
+///////////////////////////////////////////
+
+function generateTaskHTML(task, index, className) {
+    return `<div id="${task.id}" draggable="true" dragleave="animationOndrag(${task.id})"  ondragstart="startDragging(${task.id})"  onclick="classChangeAction('overlaver','overlaver-active','add'); openTask(${task.id})" class="task">
+              <div class="task-category ${className}">${task.categoryText}</div>
+              <span class="drag-drop-btn">
+                <img class="drag-drop-icon" src="./assets/icons/up-down-arrow.png" alt="" onclick="openTaskMoveOptions(${task.id});stopEventBubbling(event)">
+                <ul id="task-move-list${task.id}" class="drag-drop-list">
+                    <li onclick="moveTaskTo(${task.id}, 'todo');stopEventBubbling(event)">To do</li>
+                    <li onclick="moveTaskTo(${task.id}, 'progress');stopEventBubbling(event)">Progress</li>
+                    <li onclick="moveTaskTo(${task.id}, 'feedback');stopEventBubbling(event)">Feedback</li>
+                    <li onclick="moveTaskTo(${task.id}, 'done');stopEventBubbling(event)">Done</li>
+                </ul>
+              </span>
+              <h4 class="task-title">${task.title}</h4>
+              <div class="task-description">${task.description}</div>
+              <div class="d-flex task-amount-container">
+                  <div id="${task.category}progress-bar${index}" class="progress-bar d-none">
+                      <div class="progress" id="${task.category}-progress${index}"></div>
+                  </div>
+                  <div id="${task.category}-amount${index}" class="task-amount"></div>
+              </div>
+              <div class="d-flex task-footer">
+                  <div id="${task.category}contatcs-container${index}" class="d-flex contatcs-container"></div>
+                  <div id="${task.category}contatcs-container${index}num" class="d-flex contatcs-container"></div>
+                  <img id="${task.category}prio-icon${index}" class="prio-icon" src="" alt="">
+              </div> `;
+}
+
+function generateNoTaskHTML(noTask) {
+    return /*html*/ `<div class="no-task"> No task in ${noTask}</div> `;
+}
+
+////////////////////////////////////////////
+/////      Contact - Templates       //////
+///////////////////////////////////////////
+
+//Templates for Contact-Details
+function contactCirleHTML(detail) {
+    return /*html*/ `
+    <div class="detail-container">
+        <div class="contact-name-details">
+            <span class="name-initals" style="background:${detail.color}">${createInititals(detail.name)}</span>
+            <div class="name-detail">
+                ${detail.name}
+                <div class="edit-details-btns">
+                    <button onclick="classChangeAction('edit-overlay-bg', 'hide-overlay-desktop', 'remove'); editDetails();"><img src="./assets/icons/edit.png"/>Edit</button>
+                    <button onclick="deleteContact()"><img src="./assets/icons/delete.png" />Delete</button>
+                </div>
+            </div>
+        </div>
+        <p class="info-headline">Contact Information</p>
+        <div class="contact-info-box">
+            <span>Email</span>
+            <a href="mailto:${detail.email}">${detail.email}</a>
+            <span>Phone</span>
+            <a href="tel:${detail.phone}">${detail.phone}</a>
+        </div>
+    </div>
+    `;
+}
+
+// function contactInformationsHTML(detail) {
+//     return /*html*/ `
+//     <h3>Contact Information</h3>
+//       <p class="bold">Email</p>
+//       <a href="mailto:${detail.email}">${detail.email}</a>
+//       <p class="bold">Phone</p>
+//       <a href="tel:${detail.phone}">${detail.phone}</a>
+//     `;
+// }
+
+//Templates for Contact List
+function firstLetterHtml(firstLetter) {
+    return /*html*/ `<div class="contacts-first-letter">${firstLetter}</div>`;
+}
+
+function contactListHtml(contact, i) {
+    return /*html*/ `<div onclick="openContact(${i})" class="contact-list d-flex">
+      <span class="contact-initials center" style="background:${contact.color}">${createInititals(contact.name)}</span>
+      <div>
+        <p>${contact.name}</p>
+        <a href="#">${contact.email}</a>
+      </div>
+    </div>`;
+}
+
+//Templates for Add Task
+
+function contactInDropDownHTML(contact, initials) {
+    return /*html*/ `
+            <li id="contact${contact.id}" onclick="selectContact(${contact.id}); stopEventBubbling(event)">
+                <div class="d-flex contact-row">
+                    <div class="center gap">
+                        <div class="contact center" style="background-color:${contact.color}">${initials}</div>
+                        <span>${contact.name}</span>
+                    </div>
+                    <div class="container">
+                        <input type="checkbox" id="checkbox${contact.id}" onclick="selectContact('${contact.name}'); stopEventBubbling(event)">
+                        <span class="checkmark"></span>
+                    </div>
+                </div>
+            </li>`;
+}
+
+function contactSelectionCircleHTML(contact, initials) {
+    return /*html*/ `<div class="contact center " style="background-color:${contact.color}">${initials}</div>`;
+}
+
+
 ////////////////////////////////////////////////////
 /////       Add-Task - Subtask Templates      /////
 //////////////////////////////////////////////////
