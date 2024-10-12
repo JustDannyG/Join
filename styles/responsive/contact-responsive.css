@@ -72,6 +72,10 @@
     .add-new-contact-desktop-sticky {
         display: none;
     }
+
+    .edit-contact-desktop{
+        display: none;
+    }
 }
 
 @media (min-width: 1024px) {
@@ -87,6 +91,13 @@
     .add-contact,
     .edit-button {
         display: none;
+    }
+
+    .current-contact-circle {
+        font-size: 47px;
+        font-weight: 500;
+        width: 120px;
+        height: 120px;
     }
 }
 
