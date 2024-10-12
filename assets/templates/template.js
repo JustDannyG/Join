@@ -37,11 +37,11 @@ function desktopHeader(user) {
 
 function mobileSidebar() {
     return `<aside class="d-flex sidebar-mobile">
-      <a class="center column nav-link-mobile" href="./summary.html" onclick="sideMarking('summary')"><img src="./assets/icons/summary-icon.png"
+      <a class="center column nav-link-mobile" id="summary-link" href="./summary.html" onclick="sideMarking('summary')"><img src="./assets/icons/summary-icon.png"
           alt="Summary" />Summary</a>
-      <a class="center column nav-link-mobile" href="./board.html" onclick="sideMarking('board')"><img src="./assets/icons/board-icon.png"
+      <a class="center column nav-link-mobile" id="board-link" href="./board.html" onclick="sideMarking('board')"><img src="./assets/icons/board-icon.png"
           alt="Board" />Board</a>
-      <a class="center column nav-link-mobile" href="./add-task.html" onclick="setTaskCategory('todo');sideMarking('add-task')"><img src="./assets/icons/add-task-icon.png"
+      <a class="center column nav-link-mobile" id="add-task-link" href="./add-task.html" onclick="setTaskCategory('todo');sideMarking('add-task')"><img src="./assets/icons/add-task-icon.png"
 
           alt="Add Task"  />Add Task</a>
 
