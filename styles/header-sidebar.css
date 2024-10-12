@@ -1,4 +1,6 @@
-/* Header Desktop */
+/* =========================
+        Header Desktop
+   ========================= */
 
 .header-desktop {
     display: flex;
@@ -10,7 +12,7 @@
     background-color: white;
     box-shadow: 0 1px 10px 2px rgba(0, 0, 0, 0.2);
     position: relative;
-    z-index: 1;
+    /* z-index: 1; */
 }
 
 .header-title {
@@ -47,7 +49,7 @@
 
 .header-initials-btn:hover {
     scale: 1.1;
-    background-color: #0C2E621F;
+    background-color: #0c2e621f;
 }
 
 .header-actions {
@@ -92,9 +94,9 @@
     color: white;
 }
 
-
-
-/* Sidebar Desktop */
+/* =========================
+      Sidebar Desktop
+   ========================= */
 
 .sidebar-desktop {
     position: absolute;
@@ -109,7 +111,6 @@
     background-color: var(--darke-blue);
     transition: all ease-in-out 125ms;
     z-index: 1;
-
 }
 
 .sidebar-logo-desktop {
@@ -137,13 +138,13 @@
     width: 100%;
     height: 46px;
     gap: 8px;
+    cursor: pointer;
 }
 
 .nav-link-desktop:hover {
     background-color: var(--hover-darke-blue);
     color: white;
 }
-
 
 .nav-link-desktop img {
     width: 30px;
@@ -171,8 +172,9 @@
     font-weight: bold;
 }
 
-
-/* Mobile Styles */
+/* =========================
+      Header Mobile
+   ========================= */
 
 .header-mobile {
     box-shadow: 0 1px 10px 2px rgba(0, 0, 0, 0.2);
@@ -217,12 +219,16 @@
 }
 
 .menu-active {
-    transform: translateX(0)!important;
+    transform: translateX(0) !important;
 }
 
 .menu a {
     color: var(--light-grey);
 }
+
+/* =========================
+      Sidebar Mobile
+   ========================= */
 
 .sidebar-mobile {
     height: 80px;
@@ -249,9 +255,3 @@
 .current-link {
     background-color: var(--hover-darke-blue);
 }
-
-
-.join-header {
-    transition: all ease-in-out 125ms;
-}
-

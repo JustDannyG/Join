@@ -2,10 +2,10 @@
 /////       Header and Sidebar  Defaults    //////
 //////////////////////////////////////////////////
 
-function mobileHeader() {
+function mobileHeader(user) {
     return `<header class="d-flex header-mobile">
       <img class="logo-mobile" src="./assets/icons/logo-dark.svg" alt="Join Logo" />
-      <div onclick="classChangeAction('menu', 'menu-active', 'toggle'), stopEventBubbling(event)" id="current-user-header" class="current-user-header center">T</div>
+      <div onclick="classChangeAction('menu', 'menu-active', 'toggle'), stopEventBubbling(event)" id="current-user-header" class="current-user-header center">${user}</div>
       <div id="menu" class="column menu">
         <a href="./help.html">Help</a>
         <a href="./legal-notice.html">Legal Notice</a>
@@ -15,14 +15,14 @@ function mobileHeader() {
     </header>`;
 }
 
-function desktopHeader() {
+function desktopHeader(user) {
     return `
         <header class="header-desktop">
         <p class="header-title">Kanban Project Management Tool</p>
         <div class="header-actions">
             <a href="help.html"> <img class="help-icon" src="./assets/icons/help-icon.png" alt="Help"></a>
             <div onclick="classChangeAction('user-menu', 'd-none', 'toggle'); stopEventBubbling(event)" id="header-initials" class="header-initials-btn">
-                SM
+                ${user}
             </div>
         </div>
         
@@ -37,13 +37,15 @@ function desktopHeader() {
 
 function mobileSidebar() {
     return `<aside class="d-flex sidebar-mobile">
-      <a class="center column nav-link-mobile" href="./summary.html"><img src="./assets/icons/summary-icon.png"
+      <a class="center column nav-link-mobile" id="summary-link" href="./summary.html" onclick="sideMarking('summary')"><img src="./assets/icons/summary-icon.png"
           alt="Summary" />Summary</a>
-      <a class="center column nav-link-mobile" href="./board.html"><img src="./assets/icons/board-icon.png"
+      <a class="center column nav-link-mobile" id="board-link" href="./board.html" onclick="sideMarking('board')"><img src="./assets/icons/board-icon.png"
           alt="Board" />Board</a>
-      <a class="center column nav-link-mobile" href="./add-task.html"><img src="./assets/icons/add-task-icon.png"
-          alt="Add Task" />Add Task</a>
-      <a class="center column nav-link-mobile" href="./contact.html"><img src="./assets/icons/contacts-icon.png"
+      <a class="center column nav-link-mobile" id="add-task-link" href="./add-task.html" onclick="setTaskCategory('todo');sideMarking('add-task')"><img src="./assets/icons/add-task-icon.png"
+
+          alt="Add Task"  />Add Task</a>
+
+      <a class="center column nav-link-mobile" href="./contact.html" onclick="sideMarking('contact')"><img src="./assets/icons/contacts-icon.png"
           alt="Contacts" />Contacts</a>
     </aside>`;
 }
@@ -52,10 +54,11 @@ function desktopSidebar() {
     return `<aside class="sidebar-desktop">
         <img class="sidebar-logo-desktop" src="./assets/icons/join-logo-light.png" alt="">
         <nav class="sidebar-nav">
-            <a class="nav-link-desktop" href="summary.html"><img src="./assets/icons/summary-icon.png" alt=""> Summary</a>
-            <a class="nav-link-desktop" href="add-task.html"><img src="./assets/icons/add-task-icon.png" alt=""> Add Task</a>
-            <a class="nav-link-desktop" href="board.html"><img src="./assets/icons/board-icon.png" alt=""> Board</a>
-            <a class="nav-link-desktop" href="contact.html"><img src="./assets/icons/contacts-icon.png" alt=""> Contacts</a>
+
+            <a class="nav-link-desktop" id="summary-link" onclick="sideMarking('summary')" href="summary.html"><img src="./assets/icons/summary-icon.png" > Summary</a>
+            <a class="nav-link-desktop" id="add-task-link" onclick="sideMarking('add-task')" href="add-task.html"><img src="./assets/icons/add-task-icon.png" > Add Task</a>
+            <a class="nav-link-desktop" id="board-link" onclick="sideMarking('board')" href="board.html"><img src="./assets/icons/board-icon.png" > Board</a>
+            <a class="nav-link-desktop" id="contact-link" onclick="sideMarking('contact')" href="contact.html"><img src="./assets/icons/contacts-icon.png" > Contacts</a>
         </nav>
         <div class="sidebar-info">
             <a href="privacy-policy.html">Privacy Policy</a>
@@ -109,7 +112,19 @@ function contactCirleHTML(detail) {
     <div class="current-contact-circle center" style="background:${detail.color}">
         ${createInititals(detail.name)}
     </div>
+    <div class="column">
       <h2>${detail.name}</h2>
+      <div class="edit-contact-desktop">
+        <button class="edit-contact-btn" onclick="classChangeAction('edit-overlay-bg', 'hide-overlay-desktop', 'remove'); editDetails();">
+            <img src="./assets/icons/edit.png " alt="Edit Button" /> Edit
+        </button>
+
+        <button class="edit-contact-btn" onclick="deleteContact()">
+            <img src="./assets/icons/delete.png " alt="Delete Button" /> Delete
+      </button>
+    </div>
+
+      </div>
     `;
 }
 
@@ -349,51 +364,3 @@ function editBoardTaskHTML(currentTask) {
         
     </div>`;
 }
-
-// War doppelt
-
-// function taskBoardOverlay(id) {
-//     return `<div class="overlay-task column">
-//             <div class="task-header d-flex">
-//                 <span id="task-category-overlay">User Story</span>
-//                 <button class="btn" onclick="classChangeAction('overlaver','overlaver-active','remove')">
-//                     <img class="icon" src="./assets/icons/close-icon-dark.png" alt="">
-//                 </button>
-//             </div>
-//             <span id="task-title-overlay" class="task-title"></span>
-//             <span id="task-discription-overlay" class="discription"></span>
-//             <div class="task-details-container">
-//                 <div class="info">
-//                     <span class="info-title">Due date:</span>
-//                     <span id="task-date-overlay" class="info-value"></span>
-//                 </div>
-//                 <div class="info">
-//                     <span class="info-title">Priority:</span>
-//                     <div class="info-value">
-//                         <span id="task-prio-overlay"></span>
-//                         <img id="prio-icon-overlay" class="prio-icon" src="" alt="">
-//                     </div>
-//                 </div>
-//                 <div class="assigned-to-container">Assigned To:
-//                     <ul id="assigned-to-list">
-
-//                     </ul>
-
-//                     <div class="task-details"></div>
-
-//                 </div>
-//                 <div class="subtask">Subtask
-//                     <ul id="subtask-overlay">
-
-//                     </ul>
-//                 </div>
-//             </div>
-//             <div class="edit-task-container d-flex">
-//                 <button class="btn">
-//                     <img class="icon" src="./assets/icons/delete.png" alt="">Delete</button>
-//                 <div class="divider"></div>
-//                 <button onclick="showEditTaskValues(); stopEventBubbling(event);" class="btn">
-//                     <img class="icon" src="./assets/icons/edit.png" alt="">Edit</button>
-//             </div>
-//         </div>`;
-// }

@@ -12,6 +12,11 @@
     align-items: center;
 }
 
+
+/* =========================
+   Summary - Headline
+   ========================= */
+
 .summary-headline-container {
     font-size: 20px;
     display: flex;
@@ -37,6 +42,11 @@
     width: 90px;
     border: solid 2px var(--light-blue);
 }
+
+
+/* =========================
+   Summary Container
+   ========================= */
 
 .summary-container {
     display: flex;
@@ -200,6 +210,11 @@
     background-color: var(--light-blue);
 }
 
+
+/* =========================
+   Summary - Desktop Greeting
+   ========================= */
+
 .summary-greeting-container {
     display: none;
     flex-direction: column;
@@ -226,35 +241,10 @@
     transition: all ease-in-out 125ms;
 }
 
-@keyframes summary-1 {
-    from {
-        transform: translateX(100vw);
-    }
 
-    to {
-        transform: translateX();
-    }
-}
-
-@keyframes summary-2 {
-    from {
-        transform: translateX(-100vw);
-    }
-
-    to {
-        transform: translateX();
-    }
-}
-
-@keyframes summary-3 {
-    from {
-        scale: 0.1;
-    }
-
-    to {
-        scale: 1;
-    }
-}
+/* =========================
+   Summary - Mobile Greeting
+   ========================= */
 
 .mobile-greeting-animation {
     display: flex;
@@ -285,19 +275,59 @@
     animation-fill-mode: forwards;
 }
 
-.greeting-time-mobile{
+.greeting-time-mobile {
     font-size: 36px;
     font-weight: 500;
     transition: all ease-in-out 125ms;
 }
 
-.greeting-name-mobile{
+.greeting-name-mobile {
     color: var(--light-blue);
     font-size: 50px;
     font-weight: 700;
     transition: all ease-in-out 125ms;
 }
 
+
+/* =========================
+   Summary slide in Animations
+   ========================= */
+
+@keyframes summary-1 {
+    from {
+        transform: translateX(100vw);
+    }
+
+    to {
+        transform: translateX();
+    }
+}
+
+
+@keyframes summary-2 {
+    from {
+        transform: translateX(-100vw);
+    }
+
+    to {
+        transform: translateX();
+    }
+}
+
+
+@keyframes summary-3 {
+    from {
+        scale: 0.1;
+    }
+
+    to {
+        scale: 1;
+    }
+}
+
+/* ===================================
+   Summary Mobile Greeting Animations
+   ===================================== */
 
 @keyframes fadeOut {
 
@@ -324,8 +354,8 @@
 
 }
 
-@keyframes greeting-mobile {
 
+@keyframes greeting-mobile {
 
     0% {
         scale: 0.6;
@@ -333,17 +363,17 @@
     }
 
     25% {
-       
+
         opacity: 1;
     }
 
     50% {
-        
+
         opacity: 1;
     }
 
     75% {
-    
+
         opacity: 1;
     }
 
