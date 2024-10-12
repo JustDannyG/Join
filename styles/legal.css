@@ -2,6 +2,33 @@
     padding: 25px 16px 48px 16px;
     text-wrap: wrap;
     max-width: 1920px;
+    background-color: #F6F7F8;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.headline-back{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    max-width: 1016px;
+}
+
+.legal-back-icon{
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.legal-back-icon:hover{
+    scale: 1.1;
+}
+
+.scroll-area{
+    overflow-y: scroll;
 }
 
 /* =========================
@@ -13,9 +40,11 @@
 }
 
 .help-content {
+    padding: 20px 0;
     display: flex;
     flex-direction: column;
     gap: 24px;
+    max-width: 1016px;
 }
 
 .how-to-use {
@@ -33,10 +62,10 @@
     justify-content: space-between;
 }
 
-.headline img {
+/* .headline img {
     width: 18px;
     height: 18px;
-}
+} */
 
 
 /* =========================
@@ -47,6 +76,7 @@
     display: flex;
     flex-direction: column;
     gap: 35px;
+    max-width: 1016px;
 }
 
 .subtitle-container {
@@ -59,10 +89,10 @@
     justify-content: space-between;
 }
 
-.headline img {
+/* .headline img {
     width: 18px;
     height: 18px;
-}
+} */
 
 
 /* =========================
@@ -77,6 +107,10 @@ h3 {
     margin-top: 16px;
 }
 
+.legal-notice{
+    max-width: 1016px;
+}
+
 .legal-notice ul {
     margin-top: 16px;
 }
@@ -85,7 +119,3 @@ h3 {
     justify-content: space-between;
 }
 
-.headline img {
-    width: 18px;
-    height: 18px;
-}

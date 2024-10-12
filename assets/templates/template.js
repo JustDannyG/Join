@@ -37,15 +37,15 @@ function desktopHeader(user) {
 
 function mobileSidebar() {
     return `<aside class="d-flex sidebar-mobile">
-      <a class="center column nav-link-mobile" href="./summary.html"><img src="./assets/icons/summary-icon.png"
+      <a class="center column nav-link-mobile" id="summary-link" href="./summary.html" onclick="sideMarking('summary')"><img src="./assets/icons/summary-icon.png"
           alt="Summary" />Summary</a>
-      <a class="center column nav-link-mobile" href="./board.html"><img src="./assets/icons/board-icon.png"
+      <a class="center column nav-link-mobile" id="board-link" href="./board.html" onclick="sideMarking('board')"><img src="./assets/icons/board-icon.png"
           alt="Board" />Board</a>
-      <a class="center column nav-link-mobile" href="./add-task.html" onclick="setTaskCategory('todo')"><img src="./assets/icons/add-task-icon.png"
+      <a class="center column nav-link-mobile" id="add-task-link" href="./add-task.html" onclick="setTaskCategory('todo');sideMarking('add-task')"><img src="./assets/icons/add-task-icon.png"
 
           alt="Add Task"  />Add Task</a>
 
-      <a class="center column nav-link-mobile" href="./contact.html"><img src="./assets/icons/contacts-icon.png"
+      <a class="center column nav-link-mobile" href="./contact.html" onclick="sideMarking('contact')"><img src="./assets/icons/contacts-icon.png"
           alt="Contacts" />Contacts</a>
     </aside>`;
 }
@@ -54,10 +54,11 @@ function desktopSidebar() {
     return `<aside class="sidebar-desktop">
         <img class="sidebar-logo-desktop" src="./assets/icons/join-logo-light.png" alt="">
         <nav class="sidebar-nav">
-            <a class="nav-link-desktop" href="summary.html"><img src="./assets/icons/summary-icon.png" alt=""> Summary</a>
-            <a class="nav-link-desktop" href="add-task.html" onclick="setTaskCategory('todo')"><img src="./assets/icons/add-task-icon.png" alt=""> Add Task</a>
-            <a class="nav-link-desktop" href="board.html"><img src="./assets/icons/board-icon.png" alt=""> Board</a>
-            <a class="nav-link-desktop" href="contact.html"><img src="./assets/icons/contacts-icon.png" alt=""> Contacts</a>
+
+            <a class="nav-link-desktop" id="summary-link" onclick="sideMarking('summary')" href="summary.html"><img src="./assets/icons/summary-icon.png" > Summary</a>
+            <a class="nav-link-desktop" id="add-task-link" onclick="sideMarking('add-task')" href="add-task.html"><img src="./assets/icons/add-task-icon.png" > Add Task</a>
+            <a class="nav-link-desktop" id="board-link" onclick="sideMarking('board')" href="board.html"><img src="./assets/icons/board-icon.png" > Board</a>
+            <a class="nav-link-desktop" id="contact-link" onclick="sideMarking('contact')" href="contact.html"><img src="./assets/icons/contacts-icon.png" > Contacts</a>
         </nav>
         <div class="sidebar-info">
             <a href="privacy-policy.html">Privacy Policy</a>
