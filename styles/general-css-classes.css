@@ -1,0 +1,83 @@
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Sizes */
+
+.w-100 {
+    width: 100%;
+}
+
+.h-100 {
+    height: 100%;
+}
+
+/*Font-Size*/
+.font-size-s {
+    font-size: 14px;
+}
+
+.font-size-m {
+    font-size: 16px;
+}
+
+.font-size-l {
+    font-size: 18px;
+}
+
+/*Position*/
+.position-absolute {
+    position: absolute;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.justify-content-space-between {
+    justify-content: space-between;
+}
+
+/*Background-color*/
+
+.bg-white {
+    background-color: var(--white);
+}
+
+.bg-light-grey {
+    background-color: var(--light-grey);
+}
+
+.bg-light-blue {
+    background-color: var(--light-blue);
+}
+
+.bg-dark-blue {
+    background-color: var(--dark-blue);
+}
+
+/*Shadow*/
+.shadow-1 {
+    box-shadow: rgba(0, 0, 0, 0.3) 2px 1px 9px 7px;
+}
+/*Border*/
+.borer-dark-grey {
+    border: 1px solid var(--dark-grey);
+}
+
+/*Radius*/
+.border-radius-s {
+    border-radius: 8px;
+}
+
+.border-radius-m {
+    border-radius: 16px;
+}
+
+.border-radius-circle {
+    border-radius: 50%;
+}
