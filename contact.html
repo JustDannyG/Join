@@ -16,6 +16,7 @@
 
         <link rel="stylesheet" href="./style.css" />
         <link rel="stylesheet" href="./styles/header-sidebar.css" />
+        <link rel="stylesheet" href="./styles/general-css-classes.css" />
 
         <link rel="stylesheet" href="./styles/contact.css" />
 
@@ -29,7 +30,7 @@
         <main class="contact-content">
             <div class="contacts-mobile-container">
                 <div class="add-new-contact-desktop-sticky">
-                    <button class="add-new-contact-desktop-btn">
+                    <button class="add-new-contact-desktop-btn" onclick="classChangeAction('add-overlay-bg', 'hide-overlay-desktop', 'remove')">
                         Add new contact
                         <img src="./assets/icons/person_add.png" alt="" />
                     </button>
@@ -59,7 +60,7 @@
         <!-- start overlay add contact -->
 
         <section id="dialog-add-contact" class="edit-overlay-bg hide-overlay" onclick="classChangeAction('dialog-add-contact', 'hide-overlay', 'add');classChangeAction('add-contact', 'bg-color-blue', 'remove');">
-            <form class="edit-overlay-form" onsubmit="addContact(); return false;">
+            <form class="edit-overlay-form" onsubmit="addContact('add-name-input','add-mail-input','add-phone-input'); return false;">
                 <img class="close-edit" src="./assets/icons/close.png" onclick="classChangeAction('dialog-add-contact', 'hide-overlay', 'add');classChangeAction('add-contact', 'bg-color-blue', 'remove');" />
 
                 <div class="overlay-header">
@@ -72,15 +73,15 @@
 
                 <div class="edit-form-inputs">
                     <div class="edit-input">
-                        <input id="edit-name-input" required type="text" placeholder="Name" />
+                        <input id="add-name-input" required type="text" placeholder="Name" />
                         <img src="./assets/icons/person.png" />
                     </div>
                     <div class="edit-input">
-                        <input id="edit-mail-input" required type="email" placeholder="Email" />
+                        <input id="add-mail-input" required type="email" placeholder="Email" />
                         <img src="./assets/icons/mail.png" />
                     </div>
                     <div class="edit-input">
-                        <input id="edit-phone-input" required type="number" placeholder="Phone" />
+                        <input id="add-phone-input" required type="number" placeholder="Phone" />
                         <img src="./assets/icons/phone.png" />
                     </div>
                 </div>
@@ -92,10 +93,11 @@
 
         <!-- end overlay add contact -->
 
-        <!-- start overlay edit contact -->
+        <!-- start overlay edit contact desktop -->
         <section id="edit-overlay-bg" class="edit-overlay-bg hide-overlay-desktop">
             <form class="edit-overlay-form-desktop" onsubmit="editContact(); return false">
                 <div class="left-container">
+                    <img class="overlay-logo" src="./assets/icons/join-logo-light.png" alt="" />
                     <h2 class="edit-headline-desktop">
                         Edit contact
                         <span class="blue-underline"></span>
@@ -109,17 +111,17 @@
 
                         <div class="edit-form-inputs-desktop">
                             <div class="edit-input">
-                                <input type="text" id="edit-name" />
+                                <input required type="text" id="edit-name" />
                                 <img src="./assets/icons/person.png" />
                             </div>
 
                             <div class="edit-input">
-                                <input type="text" id="edit-email" />
+                                <input required type="text" id="edit-email" />
                                 <img src="./assets/icons/mail.png" />
                             </div>
 
                             <div class="edit-input">
-                                <input type="text" id="edit-phone" />
+                                <input required type="text" id="edit-phone" />
                                 <img src="./assets/icons/phone.png" />
                             </div>
                             <div class="edit-action-btns">
@@ -131,6 +133,50 @@
                 </div>
             </form>
         </section>
-        <!-- end overlay edit contact -->
+        <!-- end overlay edit contact desktop-->
+
+        <!-- start overlay add contact desktop-->
+        <section id="add-overlay-bg" class="edit-overlay-bg hide-overlay-desktop">
+            <form class="edit-overlay-form-desktop" onsubmit="addContact('add-name-input-desktop','add-mail-input-desktop','add-phone-input-desktop'); classChangeAction('add-overlay-bg', 'hide-overlay-desktop', 'add');return false">
+                <div class="left-container">
+                    <div class="left-content">
+                        <img class="overlay-logo" src="./assets/icons/join-logo-light.png" alt="" />
+                        <h2 class="edit-headline-desktop">
+                            Add contact
+                            <span class="blue-underline"></span>
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="right-container">
+                    <img class="close-edit" src="./assets/icons/close-icon-dark.png" alt="Close" onclick="classChangeAction('add-overlay-bg', 'hide-overlay-desktop', 'add')" />
+                    <div class="edit-details-desktop">
+                        <img class="edit-initals-container-desktop" src="./assets/icons/default-user-icon.png" alt="" />
+
+                        <div class="edit-form-inputs-desktop">
+                            <div class="edit-input border-dark-grey border-radius-s">
+                                <input required placeholder="Name" type="text" id="add-name-input-desktop" />
+                                <img src="./assets/icons/person.png" />
+                            </div>
+
+                            <div class="edit-input border-dark-grey border-radius-s">
+                                <input required placeholder="Email" type="text" id="add-mail-input-desktop" />
+                                <img src="./assets/icons/mail.png" />
+                            </div>
+
+                            <div class="edit-input border-dark-grey border-radius-s">
+                                <input required placeholder="Phone" type="number" id="add-phone-input-desktop" />
+                                <img src="./assets/icons/phone.png" />
+                            </div>
+                            <div class="d-flex gap-l align-self-flex-start">
+                                <button type="button" class="d-flex clear-btn border-radius-s border-dark-grey font-size-l gap-m" onclick="clearAddInputs('add-name-input-desktop','add-mail-input-desktop','add-phone-input-desktop')">Clear <img src="./assets/icons/close-icon-dark.png" /></button>
+                                <button type="submit" class="d-flex create-btn border-radius-s font-size-l gap-m" type="submit">Create contact <img src="./assets/icons/check.png" /></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+        <!-- add overlay edit contact desktop-->
     </body>
 </html>
