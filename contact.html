@@ -39,7 +39,7 @@
     <main class="contact-content">
         <div class="contacts-mobile-container">
             <div class="add-new-contact-desktop-sticky">
-                <button class="add-new-contact-desktop-btn  onclick="classChangeAction('add-overlay-bg', 'hide-overlay-desktop', 'remove')"">
+                <button class="add-new-contact-desktop-btn"  onclick="classChangeAction('add-overlay-bg', 'hide-overlay-desktop', 'remove')">
                     Add new contact
                     <img src="./assets/icons/person_add.png" alt="" />
                 </button>
@@ -139,40 +139,8 @@
             <button class="submit-btn" type="submit">Create contact <img src="./assets/icons/check.png" /></button>
         </form>
     </section>
+      <!-- end overlay edit contact desktop-->
 
-    <section id="dialog-add-succes" class="dialog">Contact successfully created</section>
-
-
-                <div class="right-container">
-                    <img class="close-edit" src="./assets/icons/close-icon-dark.png" alt="Close" onclick="classChangeAction('edit-overlay-bg', 'hide-overlay-desktop', 'add')" />
-                    <div class="edit-details-desktop">
-                        <div id="edit-initals-container" class="edit-initals-container-desktop"></div>
-
-                        <div class="edit-form-inputs-desktop">
-                            <div class="edit-input">
-                                <input required type="text" id="edit-name" />
-                                <img src="./assets/icons/person.png" />
-                            </div>
-
-                            <div class="edit-input">
-                                <input required type="text" id="edit-email" />
-                                <img src="./assets/icons/mail.png" />
-                            </div>
-
-                            <div class="edit-input">
-                                <input required type="text" id="edit-phone" />
-                                <img src="./assets/icons/phone.png" />
-                            </div>
-                            <div class="edit-action-btns">
-                                <button class="edit-delete-btn center" onclick="deleteContact(); return false">Delete</button>
-                                <button class="edit-save-btn center">Save <img src="./assets/icons/check.png" alt="" /></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </section>
-        <!-- end overlay edit contact desktop-->
 
         <!-- start overlay add contact desktop-->
         <section id="add-overlay-bg" class="edit-overlay-bg hide-overlay-desktop">
