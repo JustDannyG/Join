@@ -28,7 +28,7 @@
 }
 
 .scroll-area{
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 /* =========================
