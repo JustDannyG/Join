@@ -1,95 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+        <link rel="icon" type="image/x-icon" href="./assets/icons/join-logo-light.png" />
 
-    <link rel="icon" type="image/x-icon" href="./assets/icons/join-logo-light.png" />
+        <title>Join - Contact</title>
 
-    <title>Join - Contact</title>
+        <script defer src="./script.js"></script>
+        <script src="./scripts/fetch.js"></script>
+        <script src="./assets/templates/template.js"></script>
 
-    <script defer src="./script.js"></script>
-    <script src="./scripts/fetch.js"></script>
-    <script src="./assets/templates/template.js"></script>
+        <script src="./scripts/contact.js"></script>
 
-    <script src="./scripts/contact.js"></script>
+        <link rel="stylesheet" href="./style.css" />
+        <link rel="stylesheet" href="./styles/header-sidebar.css" />
 
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="./styles/header-sidebar.css" />
+        <link rel="stylesheet" href="./styles/contact.css" />
 
-    <link rel="stylesheet" href="./styles/contact.css" />
+        <link rel="stylesheet" href="./styles/responsive/responsive.css" />
+        <link rel="stylesheet" href="./styles/responsive/contact-responsive.css" />
+    </head>
 
-    <link rel="stylesheet" href="./styles/responsive/responsive.css" />
-    <link rel="stylesheet" href="./styles/responsive/contact-responsive.css" />
-</head>
+    <body class="column" onclick="classChangeAction('menu', 'menu-active', 'remove'); stopEventBubbling(event)" onload="initContacts(); markedPage('contact-link', 'activePage')">
+        <section id="join-header" class="join-header"></section>
 
-<body class="column" onclick="classChangeAction('menu', 'menu-active', 'remove'); stopEventBubbling(event)" onload="initContacts()">
-    <section id="join-header" class="join-header"></section>
-
-    <main class="contact-content">
-        <div class="contacts-mobile-container">
-            <div class="add-new-contact-desktop-sticky">
-                <button class="add-new-contact-desktop-btn">
+        <main class="contact-content">
+            <div class="contacts-mobile-container">
+                <div class="add-new-contact-desktop-sticky">
+                    <button class="add-new-contact-desktop-btn">
                         Add new contact
                         <img src="./assets/icons/person_add.png" alt="" />
                     </button>
+                </div>
+
+                <div id="contacts-container" class="column contacts-container"></div>
+                <button onclick="classChangeAction('dialog-add-contact', 'hide-overlay', 'remove'); classChangeAction('add-contact', 'bg-color-blue', 'add'); stopEventBubbling(event)" id="add-contact" class="edit-button center"><img src="./assets/icons/add-contact-icon.png" alt="add Contact" /></button>
             </div>
 
-            <div id="contacts-container" class="column contacts-container"></div>
-            <button onclick="classChangeAction('dialog-add-contact', 'hide-overlay', 'remove'); classChangeAction('add-contact', 'bg-color-blue', 'add'); stopEventBubbling(event)" id="add-contact" class="edit-button center"><img src="./assets/icons/add-contact-icon.png" alt="add Contact" /></button>
-        </div>
-
-        <div id="contacts-details-desktop-container" class="contacts-details-desktop-container">
-            <div class="headline d-flex">
-                <div class="contact-details-headline">
-                    Contacts
-                    <span class="contact-details-breakline"></span>
-                    <p class="headline-span">Better with a team</p>
+            <div id="contacts-details-desktop-container" class="contacts-details-desktop-container">
+                <div class="headline d-flex">
+                    <div class="contact-details-headline">
+                        Contacts
+                        <span class="contact-details-breakline"></span>
+                        <p class="headline-span">Better with a team</p>
+                    </div>
                 </div>
+
+                <div class="current-contact d-flex" id="current-contact"></div>
+
+                <div class="details column" id="details"></div>
             </div>
+        </main>
 
-            <div class="current-contact d-flex" id="current-contact"></div>
+        <section id="join-sidebar"></section>
 
-            <div class="details column" id="details"></div>
-        </div>
-    </main>
+        <!-- start overlay add contact -->
 
-    <section id="join-sidebar"></section>
+        <section id="dialog-add-contact" class="edit-overlay-bg hide-overlay" onclick="classChangeAction('dialog-add-contact', 'hide-overlay', 'add');classChangeAction('add-contact', 'bg-color-blue', 'remove');">
+            <form class="edit-overlay-form" onsubmit="addContact(); return false;">
+                <img class="close-edit" src="./assets/icons/close.png" onclick="classChangeAction('dialog-add-contact', 'hide-overlay', 'add');classChangeAction('add-contact', 'bg-color-blue', 'remove');" />
 
-    <!-- start overlay -->
+                <div class="overlay-header">
+                    <h2 class="edit-headline">Add contcact</h2>
+                    <span class="subtitle">Task are better with a team!</span>
+                    <span class="blue-underline"></span>
 
-    <section id="dialog-add-contact" class="edit-overlay-bg hide-overlay">
-        <form class="edit-overlay-form" onsubmit="addContact(); return false;">
-            <img class="close-edit" src="./assets/icons/close.png" onclick="classChangeAction('dialog-add-contact', 'hide-overlay', 'add');classChangeAction('add-contact', 'bg-color-blue', 'remove');" />
-
-            <div class="overlay-header">
-                <h2 class="edit-headline">Add contcact</h2>
-                <span class="subtitle">Task are better with a team!</span>
-                <span class="blue-underline"></span>
-
-                <img class="edit-initals-container" src="./assets/icons/default-user-icon.png" />
-            </div>
-
-            <div class="edit-form-inputs">
-                <div class="edit-input">
-                    <input id="edit-name-input" required type="text" placeholder="Name" />
-                    <img src="./assets/icons/person.png" />
+                    <img class="edit-initals-container" src="./assets/icons/default-user-icon.png" />
                 </div>
-                <div class="edit-input">
-                    <input id="edit-mail-input" required type="email" placeholder="Email" />
-                    <img src="./assets/icons/mail.png" />
-                </div>
-                <div class="edit-input">
-                    <input id="edit-phone-input" required type="number" placeholder="Phone" />
-                    <img src="./assets/icons/phone.png" />
-                </div>
-            </div>
-            <button class="submit-btn" type="submit">Create contact <img src="./assets/icons/check.png" /></button>
-        </form>
-    </section>
 
-    <section id="dialog-add-succes" class="dialog">Contact successfully created</section>
-</body>
+                <div class="edit-form-inputs">
+                    <div class="edit-input">
+                        <input id="edit-name-input" required type="text" placeholder="Name" />
+                        <img src="./assets/icons/person.png" />
+                    </div>
+                    <div class="edit-input">
+                        <input id="edit-mail-input" required type="email" placeholder="Email" />
+                        <img src="./assets/icons/mail.png" />
+                    </div>
+                    <div class="edit-input">
+                        <input id="edit-phone-input" required type="number" placeholder="Phone" />
+                        <img src="./assets/icons/phone.png" />
+                    </div>
+                </div>
+                <button class="submit-btn" type="submit">Create contact <img src="./assets/icons/check.png" /></button>
+            </form>
+        </section>
 
+        <section id="dialog-add-succes" class="dialog">Contact successfully created</section>
+
+        <!-- end overlay add contact -->
+
+        <!-- start overlay edit contact -->
+        <section id="edit-overlay-bg" class="edit-overlay-bg hide-overlay-desktop">
+            <form class="edit-overlay-form-desktop" onsubmit="editContact(); return false">
+                <div class="left-container">
+                    <h2 class="edit-headline-desktop">
+                        Edit contact
+                        <span class="blue-underline"></span>
+                    </h2>
+                </div>
+
+                <div class="right-container">
+                    <img class="close-edit" src="./assets/icons/close-icon-dark.png" alt="Close" onclick="classChangeAction('edit-overlay-bg', 'hide-overlay-desktop', 'add')" />
+                    <div class="edit-details-desktop">
+                        <div id="edit-initals-container" class="edit-initals-container-desktop"></div>
+
+                        <div class="edit-form-inputs-desktop">
+                            <div class="edit-input">
+                                <input type="text" id="edit-name" />
+                                <img src="./assets/icons/person.png" />
+                            </div>
+
+                            <div class="edit-input">
+                                <input type="text" id="edit-email" />
+                                <img src="./assets/icons/mail.png" />
+                            </div>
+
+                            <div class="edit-input">
+                                <input type="text" id="edit-phone" />
+                                <img src="./assets/icons/phone.png" />
+                            </div>
+                            <div class="edit-action-btns">
+                                <button class="edit-delete-btn center" onclick="deleteContact(); return false">Delete</button>
+                                <button class="edit-save-btn center">Save <img src="./assets/icons/check.png" alt="" /></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+        <!-- end overlay edit contact -->
+    </body>
 </html>

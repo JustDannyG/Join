@@ -1,4 +1,4 @@
-@media(max-width: 428px) {
+@media (max-width: 428px) {
     .contacts-container {
         padding: 0 20px;
     }
@@ -31,9 +31,8 @@
     }
 
     .contact-list:hover {
-        scale: 1.0;
+        scale: 1;
     }
-
 }
 
 @media screen and (max-width: 1024px) and (min-width: 428px) {
@@ -59,11 +58,9 @@
     .contacts-first-letter {
         scale: 1.1;
     }
-
 }
 
-
-@media(max-width: 1024px) {
+@media (max-width: 1024px) {
     .contacts-details-desktop-container {
         display: none;
     }
@@ -77,26 +74,23 @@
     }
 }
 
-
-
-@media(min-width: 1024px) {
+@media (min-width: 1024px) {
     .contact-content {
-        padding-left: 210px;
-
+        padding-left: 130px;
     }
 
     .contacts-mobile-container {
         box-shadow: 0 1px 10px 2px rgba(0, 0, 0, 0.2);
+        max-width: 456px;
     }
 
-    .add-contact {
+    .add-contact,
+    .edit-button {
         display: none;
     }
-
-
 }
 
-@media(min-width: 1440px) {
+@media (min-width: 1440px) {
     .contact-content {
         padding-left: 232px;
         max-width: 1920px;
@@ -105,5 +99,4 @@
     .contacts-mobile-container {
         width: 456px;
     }
-
 }

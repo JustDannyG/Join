@@ -1,12 +1,18 @@
 const BASE_URL = "https://join--projekt-default-rtdb.europe-west1.firebasedatabase.app/";
 
+
+///////////////////////////
+///   Fetch Functions   ///
+///////////////////////////
+
 async function getData(path = "") {
     let response = await fetch(BASE_URL + path + '.json');
     let responseAsJson = await response.json();
     return responseAsJson;
 }
 
-async function postData(path="", data={}) {
+
+async function postData(path = "", data = {}) {
     let response = await fetch(BASE_URL + path + '.json', {
         method: "POST",
         headers: {
@@ -14,13 +20,12 @@ async function postData(path="", data={}) {
         },
         body: JSON.stringify(data)
     });
-
     let responseToJson = await response.json();
     return responseToJson;
 }
 
 
-async function putData(path="", data={}) {
+async function putData(path = "", data = {}) {
     let response = await fetch(BASE_URL + path + '.json', {
         method: "PUT",
         headers: {
@@ -28,20 +33,18 @@ async function putData(path="", data={}) {
         },
         body: JSON.stringify(data)
     });
-
     let responseToJson = await response.json();
     return responseToJson;
 }
 
 
-async function deleteData(path="" , data={}) {    
+async function deleteData(path = "", data = {}) {
     let response = await fetch(BASE_URL + path + '.json', {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
         },
     });
-
     let responseToJson = await response.json();
     return responseToJson;
 }

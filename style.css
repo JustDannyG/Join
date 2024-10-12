@@ -128,3 +128,7 @@ button {
 .bg-color-blue {
     background-color: var(--light-blue) !important;
 }
+
+.activePage{
+    background-color: var(--hover-darke-blue);
+}
