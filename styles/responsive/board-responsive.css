@@ -76,7 +76,7 @@
     .task-container {
         flex-direction: column;
         overflow-x: unset;
-        overflow-y: scroll;
+        overflow-y: auto;
     }
 
     .board-section {
