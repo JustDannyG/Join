@@ -471,7 +471,7 @@
 }
 
 .hide-overlay-desktop {
-    transform: translateX(100vh);
+    transform: translateX(100vw);
 }
 
 .edit-contact-desktop {
