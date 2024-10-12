@@ -65,32 +65,17 @@ function getFromLocalStorage(key) {
 ///    Add Contacts Functions   ////
 ///////////////////////////////////
 
-async function addContact(nameInput, emailInput, phoneNumInput) {
-    let nameRef = document.getElementById(nameInput);
-    let emailRef = document.getElementById(emailInput);
-    let phoneNumRef = document.getElementById(phoneNumInput);
-
-    // const nameRef = document.getElementById("add-name-input");
-    // const emailRef = document.getElementById("add-mail-input");
-    // const phoneNumRef = document.getElementById("add-phone-input");
-    let inputs = getInputs(nameRef, emailRef, phoneNumRef);
-    console.log(inputs);
-
+async function addContact() {
+    const nameRef = document.getElementById("edit-name-input");
+    const emailRef = document.getElementById("edit-mail-input");
+    const phoneNumRef = document.getElementById("edit-phone-input");
+    const inputs = getInputs(nameRef, emailRef, phoneNumRef);
     clearInput(nameRef);
     clearInput(emailRef);
     clearInput(phoneNumRef);
     await postData((path = "contacts"), (data = { name: `${inputs.name}`, email: `${inputs.email}`, phone: `${inputs.phone}`, color: `${inputs.color}` }));
-    let contact = await findContact(inputs.name, inputs.email, inputs.phone);
+    const contact = await findContact(inputs.name, inputs.email, inputs.phone);
     toogleDialog("dialog-add-succes", contact);
-}
-
-function clearAddInputs(nameInput, emailInput, phoneNumInput) {
-    let nameRef = document.getElementById(nameInput);
-    let emailRef = document.getElementById(emailInput);
-    let phoneNumRef = document.getElementById(phoneNumInput);
-    nameRef.value = "";
-    emailRef.value = "";
-    phoneNumRef.value = "";
 }
 
 function getInputs(nameRef, emailRef, phoneNumRef) {
