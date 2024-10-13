@@ -71,6 +71,10 @@
     .edit-details-btns{
         display: none;
     }
+
+    .add-cancel-btn{
+        display: none;
+    }
 }
 
 @media (min-width: 1024px) {
