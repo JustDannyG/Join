@@ -512,6 +512,7 @@
     margin-left: 4px;
 }
 
+
 .clear-btn-add-contact {
     width: 180px;
     height: 100%;
@@ -543,6 +544,18 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
+.add-cancel-btn {
+    font-size: 20px;
+    width: 126px;
+    height: 56px;
+    border: solid 1px;
+    border-radius: 10px;
+    background-color: unset;
+    position: absolute;
+    bottom: 110px;
+    right: 330px;
+
 }
 
 /* =========================
@@ -563,31 +576,48 @@
     border-radius: 12px;
 }
 
-/*=======                                   Ab hier noch weiter Checken*/
 
 .dialog-active {
     transform: translateY(-120px);
 }
 
+
+
+
+
+
+                                 Ab hier noch weiter Checken*/
+
+
+
 .hide-overlay-desktop {
     transform: translateX(100vw);
 }
 
-.edit-contact-desktop {
+
+
+/* =========================
+                                  Ab Hier unten alles Abfall / Papierkorb  - wird dann alles Gelöscht .....
+   ========================= */
+
+
+
+
+/* .edit-contact-desktop {
     display: flex;
     gap: 16px;
     margin-top: 12px;
-}
+} */
 
-.edit-contact-btn {
+/* .edit-contact-btn {
     display: flex;
     gap: 8px;
     border: unset;
     background-color: unset;
     padding: 0;
-}
+} */
 
-.edit-overlay-form-desktop {
+/* .edit-overlay-form-desktop {
     width: 90%;
     height: 50vh;
     display: flex;
@@ -595,9 +625,9 @@
     overflow: hidden;
     background-color: white;
     z-index: 1;
-}
+} */
 
-.left-container {
+/* .left-container {
     background-color: var(--darke-blue);
     flex: 1;
     display: flex;
@@ -642,11 +672,15 @@
     max-width: 500px;
     width: 100%;
     gap: 24px;
+
 }
 
 /* =========================
                                   Ab Hier unten alles Abfall / Papierkorb  - wird dann alles Gelöscht .....
    ========================= */
+=======
+} */
+
 
 /* .contacts-mobile-container {
     display: flex;
