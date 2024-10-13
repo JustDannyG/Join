@@ -17,11 +17,6 @@
         padding: 25px 35px;
     }
 
-    .current-contact-circle {
-        min-width: 75px;
-        min-height: 75px;
-    }
-
     .contact-content {
         height: calc(100vh - (70px + 70px));
     }
@@ -84,8 +79,7 @@
         max-width: 456px;
     }
 
-    .add-contact,
-    .edit-button {
+    .add-contact-mobile-btn{
         display: none;
     }
 
