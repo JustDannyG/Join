@@ -76,7 +76,7 @@
     .task-container {
         flex-direction: column;
         overflow-x: unset;
-        overflow-y: scroll;
+        overflow-y: auto;
     }
 
     .board-section {
@@ -123,6 +123,10 @@
 
     .subtitle {
         font-size: 14px;
+    }
+
+    .task-category {
+        scale: 0.9;
     }
 }
 
