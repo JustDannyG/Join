@@ -61,7 +61,7 @@
 }
 
 
-.add-contact-mobile-btn{
+.add-contact-mobile-btn {
     position: absolute;
     bottom: 96px;
     right: 8px;
@@ -77,7 +77,7 @@
             Contact - Contact List
    =========================================== */
 
-   .contacts-container {
+.contacts-container {
     gap: 16px;
     padding: 15px 30px 25px;
     height: 100%;
@@ -171,7 +171,7 @@
           Contact Detail Template
    ====================================== */
 
-   .detail-container {
+.detail-container {
     display: flex;
     flex-direction: column;
     min-width: 461px;
@@ -261,117 +261,9 @@
 }
 
 
-/* =========================
-     
-   ========================= */
-
-
-
-
-
-/* .contacts-mobile-container {
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    overflow-y: auto;
-    z-index: 1;
-    align-items: center;
-    flex: 1;
-    height: 100%;
-} */
-
-
-
-/* Contacts Button  */
-
-
-
-/* .toogle-bg-color {
-    background-color: var(--light-blue) !important;
-} */
-
-/* .add-contact img {
-    width: 24px;
-} */
-
-/* contact list */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Contact Details */
-
-/* .details-headline {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 5px;
-} */
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* .current-contact h2 {
-    font-size: 26px;
-} */
-
-/* .current-contact-circle {
-    min-width: 80px;
-    min-height: 80px;
-    background-color: #f35858;
-    color: white;
-    border-radius: 50%;
-    font-size: 26px;
-    font-weight: 200;
-} */
-
-/* .details {
-    margin-top: 16px;
-    gap: 12px;
-} */
-
-/* .details h3 {
-    font-weight: 300;
-    font-size: 18px;
-} */
-
-/* .details p {
-    font-size: 15px;
-} */
-
-
-/* =========================
-     Contact - Edit Overlay
-   ========================= */
+/* ===================================
+     Contact - Edit Toggle Button 
+   =================================== */
 
 .edit-container {
     position: absolute;
@@ -387,10 +279,10 @@
     transition: transform 0.3s ease-in-out;
 }
 
-.edit-container img {
+/* .edit-container img {
     width: 24px;
     height: 24px;
-}
+} */
 
 .edit-container div {
     gap: 14px;
@@ -406,7 +298,14 @@
     cursor: pointer;
 }
 
-/* Edit Contact Overlay */
+
+/* ===================================
+     Contact - Edit Overlay
+   =================================== */
+
+.hide-overlay {
+    transform: translateY(100vh);
+}
 
 .edit-overlay-bg {
     position: absolute;
@@ -436,6 +335,19 @@
     padding-bottom: 40px;
     background-color: white;
     z-index: 1;
+}
+
+.close-edit {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    z-index: 1;
+    cursor: pointer;
+    transition: all ease-in-out 125ms;
+}
+
+.close-edit:hover {
+    scale: 1.1;
 }
 
 .overlay-header {
@@ -567,24 +479,9 @@
     scale: 0.9;
 }
 
-.close-edit {
-    position: absolute;
-    top: 40px;
-    right: 40px;
-    z-index: 1;
-    cursor: pointer;
-    transition: all ease-in-out 125ms;
-}
-
-.close-edit:hover {
-    scale: 1.1;
-}
-
-.hide-overlay {
-    transform: translateY(100vh);
-}
-
-/* Add Contact Overlay */
+/* =========================
+     Contact - Add Overlay
+   ========================= */
 
 .subtitle {
     font-size: 20px;
@@ -614,9 +511,10 @@
     margin-left: 4px;
 }
 
-/* Add Contact Dialog*/
-
-.dialog {
+/* =========================
+     Contact - Add Popup
+   ========================= */
+   .dialog {
     position: absolute;
     align-self: center;
     bottom: 0;
@@ -630,6 +528,14 @@
     text-wrap: nowrap;
     border-radius: 12px;
 }
+
+
+
+
+
+
+
+/*=======                                   Ab hier noch weiter Checken*/
 
 .dialog-active {
     transform: translateY(-120px);
@@ -711,6 +617,162 @@
 }
 
 
+/* =========================
+                                  Ab Hier unten alles Abfall / Papierkorb  - wird dann alles Gelöscht .....
+   ========================= */
+
+
+
+
+
+
+/* .contacts-mobile-container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    overflow-y: auto;
+    z-index: 1;
+    align-items: center;
+    flex: 1;
+    height: 100%;
+} */
+
+
+
+/* Contacts Button  */
+
+
+
+/* .toogle-bg-color {
+    background-color: var(--light-blue) !important;
+} */
+
+/* .add-contact img {
+    width: 24px;
+} */
+
+/* contact list */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Contact Details */
+
+/* .details-headline {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5px;
+} */
+
+
+
+
+/* .current-contact h2 {
+    font-size: 26px;
+} */
+
+/* .current-contact-circle {
+    min-width: 80px;
+    min-height: 80px;
+    background-color: #f35858;
+    color: white;
+    border-radius: 50%;
+    font-size: 26px;
+    font-weight: 200;
+} */
+
+/* .details {
+    margin-top: 16px;
+    gap: 12px;
+} */
+
+/* .details h3 {
+    font-weight: 300;
+    font-size: 18px;
+} */
+
+/* .details p {
+    font-size: 15px;
+} */
+
+
+
+
+/* Edit Contact Overlay */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Add Contact Overlay */
+
+
+
+
+
+
+
+
+
+/* Add Contact Dialog*/
+
+
+
+
+
+
 
 
 
@@ -718,7 +780,7 @@
     Start Edit Overlay Test Marc 
    ========================= */
 
-   .cursor-pointer {
+.cursor-pointer {
     cursor: pointer;
 }
 
