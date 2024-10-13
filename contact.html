@@ -37,6 +37,7 @@
 
                 <div id="contacts-container" class="column contacts-container"></div>
                 <button onclick="classChangeAction('dialog-add-contact', 'hide-overlay', 'remove'); classChangeAction('add-contact', 'bg-color-blue', 'add'); stopEventBubbling(event)" id="add-contact" class="add-contact-mobile-btn center"><img src="./assets/icons/add-contact-icon.png" alt="add Contact" /></button>
+
             </div>
 
             <div id="contacts-details-desktop-container" class="contacts-details-desktop-container">
@@ -87,7 +88,7 @@
                         <img src="./assets/icons/phone.png" />
                     </div>
                 </div>
-                <button type="button" class="d-flex clear-btn border-radius-s border-dark-grey font-size-l gap-m" onclick="clearAddInputs('add-name-input-desktop','add-mail-input-desktop','add-phone-input-desktop')">Clear <img src="./assets/icons/close-icon-dark.png" /></button>
+                <button class="add-cancel-btn">Cancel</button>
                 <button class="submit-btn" type="submit">Create contact <img src="./assets/icons/check.png" /></button>
             </form>
         </section>
@@ -105,6 +106,7 @@
                         <span class="blue-underline"></span>
                     </h2>
                 </div>
+
 
                 <div class="right-container">
                     <img class="close-edit" src="./assets/icons/close-icon-dark.png" alt="Close" onclick="classChangeAction('edit-overlay-bg', 'hide-overlay-desktop', 'add')" />
@@ -136,6 +138,7 @@
             </form>
         </section> -->
         <!-- end overlay edit contact -->
+
 
  <!-- start overlay add contact desktop-->
         <!-- <section id="add-overlay-bg" class="edit-overlay-bg">

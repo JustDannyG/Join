@@ -511,10 +511,22 @@
     margin-left: 4px;
 }
 
+.add-cancel-btn {
+    font-size: 20px;
+    width: 126px;
+    height: 56px;
+    border: solid 1px;
+    border-radius: 10px;
+    background-color: unset;
+    position: absolute;
+    bottom: 110px;
+    right: 330px;
+}
+
 /* =========================
      Contact - Add Popup
    ========================= */
-   .dialog {
+.dialog {
     position: absolute;
     align-self: center;
     bottom: 0;
@@ -545,6 +557,15 @@
 .hide-overlay-desktop {
     transform: translateX(100vw);
 }
+
+
+
+/* =========================
+                                  Ab Hier unten alles Abfall / Papierkorb  - wird dann alles Gelöscht .....
+   ========================= */
+
+
+
 
 /* .edit-contact-desktop {
     display: flex;
@@ -616,16 +637,6 @@
     width: 100%;
     gap: 24px;
 } */
-
-
-/* =========================
-                                  Ab Hier unten alles Abfall / Papierkorb  - wird dann alles Gelöscht .....
-   ========================= */
-
-
-
-
-
 
 /* .contacts-mobile-container {
     display: flex;
