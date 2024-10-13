@@ -529,6 +529,9 @@
     border-radius: 12px;
 }
 
+.dialog-active {
+    transform: translateY(-120px);
+}
 
 
 
@@ -537,29 +540,27 @@
 
 /*=======                                   Ab hier noch weiter Checken*/
 
-.dialog-active {
-    transform: translateY(-120px);
-}
+
 
 .hide-overlay-desktop {
     transform: translateX(100vw);
 }
 
-.edit-contact-desktop {
+/* .edit-contact-desktop {
     display: flex;
     gap: 16px;
     margin-top: 12px;
-}
+} */
 
-.edit-contact-btn {
+/* .edit-contact-btn {
     display: flex;
     gap: 8px;
     border: unset;
     background-color: unset;
     padding: 0;
-}
+} */
 
-.edit-overlay-form-desktop {
+/* .edit-overlay-form-desktop {
     width: 90%;
     height: 50vh;
     display: flex;
@@ -567,9 +568,9 @@
     overflow: hidden;
     background-color: white;
     z-index: 1;
-}
+} */
 
-.left-container {
+/* .left-container {
     background-color: var(--darke-blue);
     flex: 1;
     display: flex;
@@ -614,7 +615,7 @@
     max-width: 500px;
     width: 100%;
     gap: 24px;
-}
+} */
 
 
 /* =========================
