@@ -135,6 +135,12 @@
     .close-edit path {
         fill: black;
     }
+
+    .edit-action-btns{
+        position: absolute;
+        right: 255px;
+        bottom: 114px;
+    }
 }
 
 
