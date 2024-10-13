@@ -504,6 +504,12 @@
     border-radius: 10px;
     gap: 4px;
     background-color: var(--darke-blue);
+    transition: all ease-in-out 100ms;
+}
+
+.submit-btn:hover{
+    background-color: var(--light-blue);
+    box-shadow: 2px 4px 7px 0px rgba(0, 0, 0, 0.5);
 }
 
 .submit-btn img {
@@ -521,8 +527,14 @@
     position: absolute;
     bottom: 110px;
     right: 330px;
+    transition: all ease-in-out 100ms;
 }
 
+.add-cancel-btn:hover{
+    color: var(--light-blue);
+    border: solid 2px var(--light-blue);
+    box-shadow: 2px 4px 7px 0px rgba(0, 0, 0, 0.5);
+}
 /* =========================
      Contact - Add Popup
    ========================= */
