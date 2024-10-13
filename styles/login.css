@@ -8,6 +8,10 @@ h1 {
     font-size: 47px;
 }
 
+p {
+    font-size: 16px;
+}
+
 #myCheckbox {
     border-width: 2px;
 }
@@ -18,9 +22,15 @@ h1 {
 }
 
 .logo-login-container {
-    width: 396px;
+    height: 78px;
     justify-content: start;
     display: flex;
+}
+
+.logo-login-container img {
+    position: absolute;
+    left: 38px;
+    top: 37px;
 }
 
 .login-logo-container {
@@ -197,22 +207,6 @@ button {
     display: block;
 }
 
-.welcomeMessage {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 20px;
-    text-align: center;
-    border-radius: 10px;
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 2s ease-out, visibility 2s ease-out;
-}
-
 .border-none {
     border: none;
 }
@@ -239,8 +233,8 @@ button {
     }
     100% {
         transform: translate(0, 0) scale(0.64); 
-        top: 0;   
-        left: 0;
+        top: 15px;   
+        left: 19px;
     }
 }
 

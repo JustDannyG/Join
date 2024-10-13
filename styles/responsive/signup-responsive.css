@@ -1,0 +1,49 @@
+@media(min-width: 1440px) {
+
+    .logo-login {
+        width: 100px;
+        height: 122px;
+        position: absolute;
+        top: 80px;
+        left: 77px;
+    }
+
+    .sign-up-form {
+        width: 598px;
+        height: 630px;
+    }
+
+    .sign-up-form-inputs {
+        width: 422px;
+        height: 48px;
+    }
+
+    .sign-up-btn {
+        width: 126px;
+        height: 55px;
+    }
+
+    .gap-signup-logo-content {
+        gap: 120px;
+    }
+
+    .error-message-name {
+        top: 33.5%;
+        left: 232px;
+    }
+
+    .error-message-email {
+        top: 45%;
+        left: 232px;
+    }
+    
+    .error-message-password {
+        top: 56.6%;
+        left: 224px;
+    }
+
+    .error-message-checkbox {
+        top: 76.5%;
+        left: 182px;
+    }
+}
