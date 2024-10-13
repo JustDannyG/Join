@@ -17,11 +17,6 @@
         padding: 25px 35px;
     }
 
-    .current-contact-circle {
-        min-width: 75px;
-        min-height: 75px;
-    }
-
     .contact-content {
         height: calc(100vh - (70px + 70px));
     }
@@ -72,10 +67,6 @@
     .add-new-contact-desktop-sticky {
         display: none;
     }
-
-    .edit-contact-desktop{
-        display: none;
-    }
 }
 
 @media (min-width: 1024px) {
@@ -88,18 +79,66 @@
         max-width: 456px;
     }
 
-    .add-contact,
-    .edit-button {
+    .add-contact-mobile-btn{
         display: none;
     }
 
-    .current-contact-circle {
-        font-size: 47px;
-        font-weight: 500;
-        width: 120px;
-        height: 120px;
+    .edit-overlay-form {
+        flex-direction: row;
+        width: 1050px;
+        padding: 0;
+    }
+
+    .edit-initals-container {
+        bottom: unset;
+        right: -130px;
+    }
+
+    .submit-btn {
+        position: absolute;
+        right: 110px;
+        bottom: 110px;
+        scale: 0.9;
+    }
+
+    .overlay-header {
+        width: 420px;
+        height: 594px;
+        padding-left: 60px;
+    }
+
+    .edit-form-inputs {
+        padding: 0;
+        margin-left: 170px;
+    }
+
+    .edit-headline {
+        scale: 1.1;
+    }
+
+    .subtitle {
+        scale: 1.1;
+    }
+
+    .blue-underline {
+        scale: 1.1;
+    }
+
+    .hide-overlay {
+        transform: translateX(100vw);
+    }
+
+    .close-edit path{
+        fill: black;
     }
 }
+
+
+
+
+
+
+
 
 @media (min-width: 1440px) {
     .contact-content {
