@@ -65,29 +65,33 @@
                 </svg>
 
                 <div class="overlay-header">
-                    <h2 class="edit-headline">Add contcact</h2>
-                    <span class="subtitle">Task are better with a team!</span>
-                    <span class="blue-underline"></span>
-
+                    <div class="overlay-header-content">
+                        <img class="overlay-logo" src="./assets/icons/join-logo-light.png" alt="" />
+                        <h2 class="edit-headline">Add contcact</h2>
+                        <span class="subtitle">Task are better with a team!</span>
+                        <span class="blue-underline"></span>
+                    </div>
                     <img class="edit-initals-container" src="./assets/icons/default-user-icon.png" />
                 </div>
 
                 <div class="edit-form-inputs">
                     <div class="edit-input">
-                        <input id="edit-name-input" required type="text" placeholder="Name" />
+                        <input id="add-name-input" required type="text" placeholder="Name" />
                         <img src="./assets/icons/person.png" />
                     </div>
                     <div class="edit-input">
-                        <input id="edit-mail-input" required type="email" placeholder="Email" />
+                        <input id="add-mail-input" required type="email" placeholder="Email" />
                         <img src="./assets/icons/mail.png" />
                     </div>
                     <div class="edit-input">
-                        <input id="edit-phone-input" required type="number" placeholder="Phone" />
+                        <input id="add-phone-input" required type="number" placeholder="Phone" />
                         <img src="./assets/icons/phone.png" />
                     </div>
+                    <div class="add-overlay-buttons">
+                        <button type="button" class="clear-btn-add-contact" onclick="clearAddInputs()">Clear <img src="./assets/icons/close-icon-dark.png" /></button>
+                        <button class="submit-btn" type="submit">Create contact <img src="./assets/icons/check.png" /></button>
+                    </div>
                 </div>
-                <button type="button" class="d-flex clear-btn border-radius-s border-dark-grey font-size-l gap-m" onclick="clearAddInputs('add-name-input-desktop','add-mail-input-desktop','add-phone-input-desktop')">Clear <img src="./assets/icons/close-icon-dark.png" /></button>
-                <button class="submit-btn" type="submit">Create contact <img src="./assets/icons/check.png" /></button>
             </form>
         </section>
 
