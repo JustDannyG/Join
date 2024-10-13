@@ -67,6 +67,10 @@
     .add-new-contact-desktop-sticky {
         display: none;
     }
+
+    .edit-details-btns{
+        display: none;
+    }
 }
 
 @media (min-width: 1024px) {
