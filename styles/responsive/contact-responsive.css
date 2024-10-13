@@ -67,6 +67,12 @@
     .add-new-contact-desktop-sticky {
         display: none;
     }
+    .clear-btn-add-contact {
+        display: none;
+    }
+    .overlay-logo {
+        display: none;
+    }
 }
 
 @media (min-width: 1024px) {
@@ -79,7 +85,7 @@
         max-width: 456px;
     }
 
-    .add-contact-mobile-btn{
+    .add-contact-mobile-btn {
         display: none;
     }
 
@@ -94,9 +100,9 @@
         right: -130px;
     }
 
-    .submit-btn {
+    .add-overlay-buttons {
         position: absolute;
-        right: 110px;
+        left: 577px;
         bottom: 110px;
         scale: 0.9;
     }
@@ -104,7 +110,6 @@
     .overlay-header {
         width: 420px;
         height: 594px;
-        padding-left: 60px;
     }
 
     .edit-form-inputs {
@@ -112,15 +117,7 @@
         margin-left: 170px;
     }
 
-    .edit-headline {
-        scale: 1.1;
-    }
-
-    .subtitle {
-        scale: 1.1;
-    }
-
-    .blue-underline {
+    .overlay-header-content {
         scale: 1.1;
     }
 
@@ -128,17 +125,10 @@
         transform: translateX(100vw);
     }
 
-    .close-edit path{
+    .close-edit path {
         fill: black;
     }
 }
-
-
-
-
-
-
-
 
 @media (min-width: 1440px) {
     .contact-content {
