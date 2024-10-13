@@ -102,10 +102,16 @@
 
     .add-overlay-buttons {
         position: absolute;
-        left: 577px;
-        bottom: 110px;
+
+        right: 96px;
+        bottom: 105px;
+
         scale: 0.9;
+        height: 66px;
+        width: 214px;
+        border: none;
     }
+
 
     .overlay-header {
         width: 420px;

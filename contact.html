@@ -87,11 +87,11 @@
                         <input id="add-phone-input" required type="number" placeholder="Phone" />
                         <img src="./assets/icons/phone.png" />
                     </div>
-                    <div class="add-overlay-buttons">
-                        <button type="button" class="clear-btn-add-contact" onclick="clearAddInputs()">Clear <img src="./assets/icons/close-icon-dark.png" /></button>
-                        <button class="submit-btn" type="submit">Create contact <img src="./assets/icons/check.png" /></button>
-                    </div>
+                  
                 </div>
+
+                <button class="add-cancel-btn" onclick="classChangeAction('dialog-add-contact', 'hide-overlay', 'add')">Cancel</button>
+                <button class="submit-btn" type="submit">Create contact <img src="./assets/icons/check.png" /></button>
 
             </form>
         </section>
