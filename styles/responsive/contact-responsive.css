@@ -79,7 +79,7 @@
         max-width: 456px;
     }
 
-    .add-contact-mobile-btn{
+    .add-contact-mobile-btn {
         display: none;
     }
 
@@ -96,10 +96,14 @@
 
     .submit-btn {
         position: absolute;
-        right: 110px;
-        bottom: 110px;
+        right: 96px;
+        bottom: 105px;
         scale: 0.9;
+        height: 66px;
+        width: 214px;
+        border: none;
     }
+
 
     .overlay-header {
         width: 420px;
@@ -128,7 +132,7 @@
         transform: translateX(100vw);
     }
 
-    .close-edit path{
+    .close-edit path {
         fill: black;
     }
 }
