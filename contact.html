@@ -36,7 +36,7 @@
                 </div>
 
                 <div id="contacts-container" class="column contacts-container"></div>
-                <button onclick="classChangeAction('dialog-add-contact', 'hide-overlay', 'remove'); classChangeAction('add-contact', 'bg-color-blue', 'add'); stopEventBubbling(event)" id="add-contact" class="edit-button center"><img src="./assets/icons/add-contact-icon.png" alt="add Contact" /></button>
+                <button onclick="classChangeAction('dialog-add-contact', 'hide-overlay', 'remove'); classChangeAction('add-contact', 'bg-color-blue', 'add'); stopEventBubbling(event)" id="add-contact" class="add-contact-mobile-btn center"><img src="./assets/icons/add-contact-icon.png" alt="add Contact" /></button>
             </div>
 
             <div id="contacts-details-desktop-container" class="contacts-details-desktop-container">
@@ -47,10 +47,8 @@
                         <p class="headline-span">Better with a team</p>
                     </div>
                 </div>
-
                 <div class="current-contact d-flex" id="current-contact"></div>
-
-                <div class="details column" id="details"></div>
+                <!-- <div class="details column" id="details"></div> -->
             </div>
         </main>
 

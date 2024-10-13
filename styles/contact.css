@@ -1,4 +1,6 @@
-/* Contacts overview */
+/* ================================
+          Contact
+   ================================== */
 
 .contact-content {
     display: flex;
@@ -20,6 +22,11 @@
     text-wrap: wrap;
     max-width: 1920px;
 }
+
+
+/* =========================================
+          Contact - Add new Contact Button
+   =========================================== */
 
 .add-new-contact-desktop-sticky {
     position: sticky;
@@ -53,33 +60,8 @@
     box-shadow: 2px 4px 7px 0px rgba(0, 0, 0, 0.5);
 }
 
-.contacts-details-desktop-container {
-    padding: 70px 16px 48px 50px;
-    flex: 1;
-}
 
-.contacts-mobile-container {
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    overflow-y: auto;
-    z-index: 1;
-    align-items: center;
-    flex: 1;
-    height: 100%;
-}
-
-.contacts-container {
-    gap: 16px;
-    padding: 15px 30px 25px;
-    height: 100%;
-    width: 100%;
-}
-
-/* Contacts Button  */
-
-.add-contact,
-.edit-button {
+.add-contact-mobile-btn{
     position: absolute;
     bottom: 96px;
     right: 8px;
@@ -91,15 +73,24 @@
     outline: unset;
 }
 
-.toogle-bg-color {
-    background-color: var(--light-blue) !important;
+/* =========================================
+            Contact - Contact List
+   =========================================== */
+
+   .contacts-container {
+    gap: 16px;
+    padding: 15px 30px 25px;
+    height: 100%;
+    width: 100%;
 }
 
-.add-contact img {
-    width: 24px;
+.contacts-first-letter {
+    font-size: 20px;
+    font-weight: 400;
+    border-bottom: solid lightgray;
+    padding: 25px 50px;
+    transition: all ease-in-out 125ms;
 }
-
-/* contact list */
 
 .contact-list {
     gap: 25px;
@@ -131,23 +122,56 @@
     border: solid 1px;
 }
 
-.contacts-first-letter {
-    font-size: 20px;
+
+/* =========================================
+               Contact - Details
+   =========================================== */
+
+.contacts-details-desktop-container {
+    padding: 70px 16px 48px 50px;
+    flex: 1;
+}
+
+.contact-details-headline {
+    font-size: 61px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.contact-details-breakline {
+    height: 59px;
+    background-color: var(--light-blue);
+    width: 3px;
+}
+
+.headline-span {
+    font-size: 27px;
     font-weight: 400;
-    border-bottom: solid lightgray;
-    padding: 25px 50px;
-    transition: all ease-in-out 125ms;
+}
+
+.current-contact {
+    gap: 18px;
+    margin-top: 32px;
+    align-items: center;
+}
+
+.subtitle-details {
+    font-size: 14px;
+    color: var(--subtitle);
+}
+
+.headline-text {
+    gap: 8px;
 }
 
 
+/* =====================================
+          Contact Detail Template
+   ====================================== */
 
-
-
-/* =========================
-     Contact Detail Template
-   ========================= */
-
-.detail-container {
+   .detail-container {
     display: flex;
     flex-direction: column;
     min-width: 461px;
@@ -207,7 +231,7 @@
     cursor: pointer;
 }
 
-.edit-details-btns button:hover{
+.edit-details-btns button:hover {
     scale: 1.1;
 }
 
@@ -226,142 +250,57 @@
 
 @keyframes contact {
     0% {
-        transform: translateX(100vw); /* Startpunkt: außerhalb des rechten Rands */
-      }
-      100% {
-        transform: translateX(0); /* Endpunkt: in der Mitte */
-      }
+        transform: translateX(100vw);
+        /* Startpunkt: außerhalb des rechten Rands */
+    }
+
+    100% {
+        transform: translateX(0);
+        /* Endpunkt: in der Mitte */
+    }
 }
 
 
-
-
-
-
-
 /* =========================
-    Start Edit Overlay Test Marc 
+     
    ========================= */
 
 
-.cursor-pointer {
-    cursor: pointer;
-}
 
-/* Sizes */
 
-.w-100 {
-    width: 100%;
-}
 
-.h-100 {
-    height: 100%;
-}
-
-/*Font-Size*/
-.font-size-s {
-    font-size: 14px;
-}
-
-.font-size-m {
-    font-size: 16px;
-}
-
-.font-size-l {
-    font-size: 18px;
-}
-
-/*Position*/
-.position-absolute {
-    position: absolute;
-}
-
-.position-relative {
-    position: relative;
-}
-
-.align-items-center {
+/* .contacts-mobile-container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    overflow-y: auto;
+    z-index: 1;
     align-items: center;
-}
-.align-self-flex-start {
-    align-self: flex-start;
-}
+    flex: 1;
+    height: 100%;
+} */
 
-.justify-content-space-between {
-    justify-content: space-between;
-}
 
-/*Background-color*/
 
-.bg-white {
-    background-color: var(--white);
-}
+/* Contacts Button  */
 
-.bg-light-grey {
-    background-color: var(--light-grey);
-}
 
-.bg-light-blue {
-    background-color: var(--light-blue);
-}
 
-.bg-dark-blue {
-    background-color: var(--dark-blue) !important;
-}
+/* .toogle-bg-color {
+    background-color: var(--light-blue) !important;
+} */
 
-/*Shadow*/
-.shadow-1 {
-    box-shadow: rgba(0, 0, 0, 0.3) 2px 1px 9px 7px;
-}
-/*Border*/
-.border-dark-grey {
-    border: 1px solid var(--dark-grey) !important;
-}
+/* .add-contact img {
+    width: 24px;
+} */
 
-/*Radius*/
-.border-radius-s {
-    border-radius: 8px !important;
-}
-
-.border-radius-m {
-    border-radius: 16px;
-}
-
-.border-radius-circle {
-    border-radius: 50%;
-}
-
-/*Gap*/
-.gap-s {
-    gap: 8px;
-}
-.gap-m {
-    gap: 16px;
-}
-.gap-l {
-    gap: 24px;
-}
+/* contact list */
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-/* =========================
-    Ende Testing Css 
-========================= */
 
 
 
@@ -383,51 +322,29 @@
 
 /* Contact Details */
 
-.details-headline {
+/* .details-headline {
     display: flex;
     justify-content: space-between;
     padding: 0 5px;
-}
+} */
 
-.contact-details-headline {
-    font-size: 61px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    gap: 30px;
-}
 
-.contact-details-breakline {
-    height: 59px;
-    background-color: var(--light-blue);
-    width: 3px;
-}
 
-.headline-span {
-    font-size: 27px;
-    font-weight: 400;
-}
 
-.subtitle-details {
-    font-size: 14px;
-    color: var(--subtitle);
-}
 
-.headline-text {
-    gap: 8px;
-}
 
-.current-contact {
-    gap: 18px;
-    margin-top: 32px;
-    align-items: center;
-}
 
-.current-contact h2 {
+
+
+
+
+
+
+/* .current-contact h2 {
     font-size: 26px;
-}
+} */
 
-.current-contact-circle {
+/* .current-contact-circle {
     min-width: 80px;
     min-height: 80px;
     background-color: #f35858;
@@ -435,21 +352,26 @@
     border-radius: 50%;
     font-size: 26px;
     font-weight: 200;
-}
+} */
 
-.details {
+/* .details {
     margin-top: 16px;
     gap: 12px;
-}
+} */
 
-.details h3 {
+/* .details h3 {
     font-weight: 300;
     font-size: 18px;
-}
+} */
 
-.details p {
+/* .details p {
     font-size: 15px;
-}
+} */
+
+
+/* =========================
+     Contact - Edit Overlay
+   ========================= */
 
 .edit-container {
     position: absolute;
@@ -787,3 +709,119 @@
     width: 100%;
     gap: 24px;
 }
+
+
+
+
+
+/* =========================
+    Start Edit Overlay Test Marc 
+   ========================= */
+
+   .cursor-pointer {
+    cursor: pointer;
+}
+
+/* Sizes */
+
+.w-100 {
+    width: 100%;
+}
+
+.h-100 {
+    height: 100%;
+}
+
+/*Font-Size*/
+.font-size-s {
+    font-size: 14px;
+}
+
+.font-size-m {
+    font-size: 16px;
+}
+
+.font-size-l {
+    font-size: 18px;
+}
+
+/*Position*/
+.position-absolute {
+    position: absolute;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.align-self-flex-start {
+    align-self: flex-start;
+}
+
+.justify-content-space-between {
+    justify-content: space-between;
+}
+
+/*Background-color*/
+
+.bg-white {
+    background-color: var(--white);
+}
+
+.bg-light-grey {
+    background-color: var(--light-grey);
+}
+
+.bg-light-blue {
+    background-color: var(--light-blue);
+}
+
+.bg-dark-blue {
+    background-color: var(--dark-blue) !important;
+}
+
+/*Shadow*/
+.shadow-1 {
+    box-shadow: rgba(0, 0, 0, 0.3) 2px 1px 9px 7px;
+}
+
+/*Border*/
+.border-dark-grey {
+    border: 1px solid var(--dark-grey) !important;
+}
+
+/*Radius*/
+.border-radius-s {
+    border-radius: 8px !important;
+}
+
+.border-radius-m {
+    border-radius: 16px;
+}
+
+.border-radius-circle {
+    border-radius: 50%;
+}
+
+/*Gap*/
+.gap-s {
+    gap: 8px;
+}
+
+.gap-m {
+    gap: 16px;
+}
+
+.gap-l {
+    gap: 24px;
+}
+
+
+
+/* =========================
+    Ende Testing Css 
+========================= */
