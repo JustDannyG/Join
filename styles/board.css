@@ -190,7 +190,7 @@
     gap: 16px;
     align-items: center;
     transition: all ease-in-out 125ms;
-    overflow-x: scroll;
+    overflow-x: auto;
 
     animation-name: task;
     animation-duration: 800ms;
