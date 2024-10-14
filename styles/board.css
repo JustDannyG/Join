@@ -111,6 +111,7 @@
 }
 
 .search-box-mobile {
+    position: relative;
     display: flex;
     border: solid 1px;
     border-radius: 10px;
