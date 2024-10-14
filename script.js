@@ -153,15 +153,12 @@ checkScreenWidth();
 window.addEventListener("resize", checkScreenWidth);
 
 function openAddTask(taskCategory) {
-    updateBtnColor();
     setTaskCategory(taskCategory);
     if (screenMode == "mobile") {
         window.location.href = "add-task.html";
-        // taskStatus;
     }
     if (screenMode == "desktop") {
-        // alert("Here Add Task Overlay");
-        addTaskInit();
+        updateBtnColor();
         classChangeAction("add-task-overlay", "overlaver-active", "toggle");
     }
 }

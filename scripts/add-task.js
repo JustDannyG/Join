@@ -2,7 +2,7 @@ let categoryInput;
 
 // let curretCategory = "todo";
 
-let curretCategory;
+let currentCategory;
 
 let selectedContacts = [];
 let subtaskArray = [];
@@ -14,10 +14,12 @@ let isDropdownOpen = false;
 ////////////////
 
 async function addTaskInit() {
+    selectedContacts = [];
     updateBtnColor();
     await getContacts();
     getSelectedContacts();
     renderContacts(selectedContacts);
+    console.log(selectedContacts);
 }
 
 ///////////////////////////////////////
@@ -56,7 +58,7 @@ function toggleDropdown(id, iconId) {
     const dropdown = document.getElementById(id);
     const dropdownIcon = document.getElementById(iconId);
     dropdown.classList.toggle("show-dropdown");
-
+    isDropdownOpen = dropdown.classList.contains("show-dropdown");
     if (!isDropdownOpen) {
         dropdownIcon.style.transform = "rotate(180deg)";
     } else {
@@ -89,18 +91,24 @@ function handleInputClick(event) {
     clearInput(event.target);
     openDropdown("assign-to-dropdown-contacts", "drop-down-icon1");
     stopEventBubbling(event);
+    filter("assign-to-dropdown");
 }
 
 function handleDropdownButtonClick(event) {
-    const input = document.getElementById("assign-to-dropdown");
     stopEventBubbling(event);
-    resetInputText();
     toggleDropdown("assign-to-dropdown-contacts", "drop-down-icon1");
-    classChangeAction("dropdown", "input-active", "remove");
-    isDropdownOpen = !isDropdownOpen;
-    if (isDropdownOpen) {
-        clearInput(input).trim();
+    const dropdownIcon = document.getElementById("drop-down-icon1");
+
+    if (!isDropdownOpen) {
+        resetInputText();
+        classChangeAction("dropdown", "input-active", "remove");
+        dropdownIcon.style.transform = "rotate(0deg)";
+    } else {
+        const input = document.getElementById("assign-to-dropdown");
+        dropdownIcon.style.transform = "rotate(180deg)";
+        clearInput(input);
         classChangeAction("dropdown", "input-active", "add");
+        filter("assign-to-dropdown");
     }
 }
 
@@ -294,7 +302,7 @@ async function postTask(task) {
             description: task.description,
             date: task.date,
             assignedTo: task.assignedTo,
-            category: curretCategory,
+            category: currentCategory,
             prio: prio,
             categoryText: task.categoryText,
             subtask: currentSubtasks,
@@ -305,20 +313,22 @@ async function postTask(task) {
 
 function setTaskCategory(categoryValue) {
     saveToLocalStorage("taskCategory", categoryValue);
-    console.log(categoryValue);
 }
 
 function getCurrentCategory() {
-    curretCategory = getFromLocalStorage("taskCategory");
-    console.log(curretCategory);
+    currentCategory = getFromLocalStorage("taskCategory");
 }
 
 function clearAddTask() {
     document.getElementById("title").value = "";
     document.getElementById("description").value = "";
     document.getElementById("date").value = "";
-    prio = "medium";
-    updateBtnColor();
     document.getElementById("subtasks-container").innerHTML = "";
+    document.getElementById("selected-contacts-container").innerHTML = "";
+    prio = "medium";
     currentSubtasks = [];
+    selectedContacts.forEach((c) => {
+        c.checked = false;
+    });
+    updateBtnColor();
 }
