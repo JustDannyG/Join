@@ -404,8 +404,10 @@
 }
 
 .drag-area-highlight {
-    background-color: lightblue;
+    border: 2px dotted var(--dark-grey);
+    border-radius: 10px;
 }
+
 
 .task {
     position: relative;
