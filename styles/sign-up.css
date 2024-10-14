@@ -179,10 +179,6 @@ h1 {
   flex: 1;
 }
 
-.d-flex {
-  gap: 24px;
-}
-
 .error-message-name {
   color: red;
   font-size: 12px;
@@ -275,4 +271,8 @@ h1 {
 
 .dialog-active {
     transform: translateY(-349px);
+}
+
+.form-inputs-container {
+  gap: 24px;
 }

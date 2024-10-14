@@ -67,10 +67,12 @@
     .add-new-contact-desktop-sticky {
         display: none;
     }
-    .clear-btn-add-contact {
+
+    .edit-details-btns{
         display: none;
     }
-    .overlay-logo {
+
+    .add-cancel-btn{
         display: none;
     }
 }
@@ -133,6 +135,12 @@
 
     .close-edit path {
         fill: black;
+    }
+
+    .edit-action-btns{
+        position: absolute;
+        right: 255px;
+        bottom: 114px;
     }
 }
 
