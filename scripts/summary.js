@@ -23,7 +23,6 @@ function greetingTime() {
     console.log(hour);
     if (hour < 12) {
         return `Good morning,`
-
     } else if (hour < 17) {
         return `Good afternoon,`
     } else if (hour < 24) {
@@ -52,7 +51,6 @@ async function getSummaryTasks() {
 
 
 function summaryTaskFilter(section) {
-    // let urgents = document.getElementById(`task-count-${category}`);
     let task = tasksArray.filter(t => {
         if (t.category == section) {
             return t
@@ -78,7 +76,7 @@ function findEarliestDate(task) {
     let earliestUrgentDate = document.getElementById('earliest-urgent-date');
     let earliestDate = null;
     task.forEach(item => {
-        const itemDate = new Date(item.date); 
+        let itemDate = new Date(item.date); 
         if (!earliestDate || itemDate < new Date(earliestDate.date)) {
             earliestDate = item;
         }
