@@ -395,11 +395,11 @@ function filterBoardTasks(screen) {
     renderTasks(filterSearchTasks("feedback", search), feedbackById, "Feedback");
     renderTasks(filterSearchTasks("done", search), doneById, "Done");
 
-    foundTasks()
+    foundTasks(screen)
 }
 
-function foundTasks(){
-    let numberOfTasksRef = document.getElementById('nummber-of-tasks');
+function foundTasks(screen){
+    let numberOfTasksRef = document.getElementById(`nummber-of-${screen}`);
     if (taskCounter == 0){
         numberOfTasksRef.innerHTML = `No task found`
     } else if (taskCounter == 1) {
