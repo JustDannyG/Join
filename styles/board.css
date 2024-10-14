@@ -129,32 +129,6 @@
      
    ========================= */
 
-/* .search {
-    border: 2px solid var(--dark-grey);
-    border-radius: 8px;
-    padding: 4px 8px;
-    background-color: var(--white);
-}
-
-.input-row {
-    margin-top: 20px;
-    border: 2px solid var(--dark-grey);
-    border-radius: 8px;
-    padding: 4px 8px;
-    background-color: var(--white);
-}
-
-.input-row input,
-.input {
-    border: unset;
-    border-right: 2px solid var(--medium-grey);
-    width: 100%;
-}
-
-.input-row input::placeholder {
-    font-size: 16px;
-} */
-
 /* =========================
      Board - Content
    ========================= */
