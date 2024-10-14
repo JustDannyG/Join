@@ -402,7 +402,9 @@ function foundTasks(){
     let numberOfTasksRef = document.getElementById('nummber-of-tasks');
     if (taskCounter == 0){
         numberOfTasksRef.innerHTML = `No task found`
-    } else {
+    } else if (taskCounter == 1) {
+        numberOfTasksRef.innerHTML = `${taskCounter} found task`
+    } else{
         numberOfTasksRef.innerHTML = `${taskCounter} found tasks`
     }
 }
