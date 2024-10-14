@@ -2,6 +2,8 @@ let currentDraggedElement;
 let tasksArray = [];
 let currentTask;
 
+let taskCounter = 0;
+
 ////////////////////
 ///    Start   ////
 ///////////////////
@@ -66,7 +68,8 @@ function renderTasks(tasks, getById, noTask) {
         getById.innerHTML += generateNoTaskHTML(noTask);
     } else {
         for (let index = 0; index < tasks.length; index++) {
-            const task = tasks[index];
+            taskCounter ++
+            let task = tasks[index];
             let className = task.categoryText.replace(" ", "-").toLowerCase();
             getById.innerHTML += generateTaskHTML(task, index, className);
             if (task.assignedTo) {
@@ -379,6 +382,7 @@ async function moveTaskTo(taskId, category) {
 /////////////////////////////////////////
 
 function filterBoardTasks(screen) {
+    taskCounter = 0;
     let search = document.getElementById(`search-task-${screen}`).value;
     search = search.toLowerCase();
     let todoById = document.getElementById("to-do-container");
@@ -390,6 +394,17 @@ function filterBoardTasks(screen) {
     renderTasks(filterSearchTasks("progress", search), progressById, "Progress");
     renderTasks(filterSearchTasks("feedback", search), feedbackById, "Feedback");
     renderTasks(filterSearchTasks("done", search), doneById, "Done");
+
+    foundTasks()
+}
+
+function foundTasks(){
+    let numberOfTasksRef = document.getElementById('nummber-of-tasks');
+    if (taskCounter == 0){
+        numberOfTasksRef.innerHTML = `No task found`
+    } else {
+        numberOfTasksRef.innerHTML = `${taskCounter} found tasks`
+    }
 }
 
 function filterSearchTasks(task, search) {

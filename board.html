@@ -42,10 +42,14 @@
             <section class="board-head-desktop">
                 <h1 class="board-headline-desktop">Board</h1>
                 <div class="search-addTask-container">
+
                     <div class="search-box-desktop">
                         <input id="search-task-desktop" class="search-task-input-desktop" placeholder="Find Task" type="text" onkeyup="filterBoardTasks('desktop')" />
                         <img class="search-icon" src="./assets/icons/search-icon.png" alt="" />
+                        <span id="nummber-of-tasks" class="nummber-of-tasks"></span>
                     </div>
+
+
                     <button class="add-task-btn" onclick="openAddTask('todo')">
                         Add Task
                         <img c src="./assets/icons/add.png" alt="" />
