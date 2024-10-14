@@ -57,7 +57,7 @@
                 <section class="board-section">
                     <div class="board-section-title">
                         <h2>To do</h2>
-                        <img class="add-task-icon-btn" src="./assets/icons/add-icon.png" alt="" onclick="setTaskCategory('todo'); openAddTask()" />
+                        <img class="add-task-icon-btn" src="./assets/icons/add-icon.png" alt="" onclick="openAddTask('todo')" />
                     </div>
 
                     <div id="to-do-container" class="task-container" ondrop="moveTo('todo');removeHighlight('to-do-container')" ondragover="allowDrop(event);highlight('to-do-container')" ondragleave="removeHighlight('to-do-container')"></div>

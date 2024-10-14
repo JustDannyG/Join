@@ -309,6 +309,7 @@ async function postTask(task) {
         })
     );
     showSuccesMsg();
+    clearAddTask();
 }
 
 function setTaskCategory(categoryValue) {
