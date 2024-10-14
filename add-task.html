@@ -19,9 +19,7 @@
         <link rel="stylesheet" href="./styles/responsive/responsive.css" />
     </head>
 
-
     <body class="column" onload="addTaskInit(); styleSelecet(); markedPage('add-task-link', 'activePage')" onclick="classChangeAction('user-menu', 'd-none', 'add'); classChangeAction('menu', 'menu-active', 'remove'); closeDropdown(); stopEventBubbling(event);">
-
         <section id="join-header" class="join-header"></section>
 
         <main class="add-task-main-content">
@@ -39,7 +37,7 @@
                         <textarea id="description" class="textarea" name="description" placeholder="Enter a Description"></textarea>
                     </div>
 
-                    <div class="input-container">
+                    <div class="input-container position-relative">
                         <label for="assign-to-dropdown">Assigned to</label>
                         <div id="dropdown" class="drop-down d-flex">
                             <input id="assign-to-dropdown" class="input" onkeyup="filter('assign-to-dropdown')" onclick="handleInputClick(event)" value="Select contacts to assign" />
@@ -68,7 +66,7 @@
                         </div>
                     </div>
 
-                    <div class="input-container">
+                    <div class="input-container position-relative">
                         <label for="selected-category">Category<span class="required">*</span></label>
                         <select required id="selected-category" class="select-category">
                             <option value="">Select task category:</option>
@@ -82,12 +80,12 @@
                         <div class="add-task-input">
                             <input id="subtasks-input" type="subtasks" name="subtasks" onkeyup="subtaskInputBtn()" placeholder="Add new subtask" />
                             <div class="add-subtask-btn" id="add-subtask-btn">
-                                <img src="./assets/icons/add -subtasks.png" alt="" onclick="setInputFocus()" />
+                                <img class="svg-btn" src="./assets/icons/add -subtasks.png" alt="" onclick="setInputFocus()" />
                             </div>
                         </div>
-                    </div>
 
-                    <div id="subtasks-container" class="subtasks-container"></div>
+                        <div id="subtasks-container" class="subtasks-container"></div>
+                    </div>
                 </div>
 
                 <div class="add-task-action-btn">

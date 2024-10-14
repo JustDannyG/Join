@@ -66,9 +66,9 @@ function getFromLocalStorage(key) {
 ///////////////////////////////////
 
 async function addContact() {
-    const nameRef = document.getElementById("edit-name-input");
-    const emailRef = document.getElementById("edit-mail-input");
-    const phoneNumRef = document.getElementById("edit-phone-input");
+    const nameRef = document.getElementById("add-name-input");
+    const emailRef = document.getElementById("add-mail-input");
+    const phoneNumRef = document.getElementById("add-phone-input");
     const inputs = getInputs(nameRef, emailRef, phoneNumRef);
     clearInput(nameRef);
     clearInput(emailRef);
@@ -99,6 +99,12 @@ async function findContact(name, email, phone) {
     contacts = [];
     await getContacts();
     return contacts.findIndex((e) => e.name == name && e.email == email && e.phone == phone);
+}
+
+function clearAddInputs() {
+    document.getElementById("add-name-input").value = "";
+    document.getElementById("add-mail-input").value = "";
+    document.getElementById("add-phone-input").value = "";
 }
 
 ///////////////////////////////
