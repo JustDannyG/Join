@@ -475,6 +475,28 @@ select option[value=""] {
     border-color: var(--light-blue);
 }
 
+.add-task-succes {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: var(--darke-blue);
+    width: min-content;
+    z-index: 10;
+    text-wrap: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    color: var(--white);
+    border-radius: 8px;
+    transition: all 0.125s ease-in-out;
+    transform: translateY(100vh);
+}
+
+.overlaver-active {
+    transform: translateX(0) !important;
+}
+
 /* .drop-down button {
     padding: 0px 16px;
 } */

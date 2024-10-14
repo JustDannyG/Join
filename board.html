@@ -57,7 +57,7 @@
                 <section class="board-section">
                     <div class="board-section-title">
                         <h2>To do</h2>
-                        <img class="add-task-icon-btn" src="./assets/icons/add-icon.png" alt="" onclick="setTaskCategory('todo'); openAddTask()" />
+                        <img class="add-task-icon-btn" src="./assets/icons/add-icon.png" alt="" onclick="openAddTask('todo')" />
                     </div>
 
                     <div id="to-do-container" class="task-container" ondrop="moveTo('todo');removeHighlight('to-do-container')" ondragover="allowDrop(event);highlight('to-do-container')" ondragleave="removeHighlight('to-do-container')"></div>
@@ -101,7 +101,7 @@
 
         <div id="add-task-overlay" class="add-task-overlay-bg" onclick="classChangeAction('add-task-overlay', 'overlaver-active', 'toggle')">
             <div class="add-task-overlay" onclick="stopEventBubbling(event); closeDropdown();">
-                <form id="add-task" class="add-task-form add-task-form-in-overlay" onsubmit="createTask();boardInit(); classChangeAction('add-task-overlay', 'overlaver-active', 'remove'); return false;">
+                <form id="add-task" class="add-task-form add-task-form-in-overlay" onsubmit="createTask();boardInit(); return false;">
                     <h1 class="add-task-headline headline-in-overlay">Add Task</h1>
                     <div class="task-details">
                         <div class="column mt-16">
@@ -175,5 +175,7 @@
                 </form>
             </div>
         </div>
+
+        <div id="add-task-succes-msg" class="add-task-succes">Task added to board <img src="./assets/icons/board-icon.png" alt="" /></div>
     </body>
 </html>

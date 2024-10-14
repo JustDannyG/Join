@@ -13,9 +13,7 @@
     z-index: 1;
     /* height: calc(100vh - (80px + 80px)); */
     overflow: hidden;
-
 }
-
 
 /* =========================
       Board Head Desktop
@@ -55,7 +53,6 @@
     border: none;
 }
 
-
 .search-icon {
     width: 32px;
     height: 32px;
@@ -74,7 +71,6 @@
     border-radius: 10px;
     background-color: var(--darke-blue);
 }
-
 
 /* =========================
       Board Head Mobile
@@ -122,15 +118,9 @@
     border: none;
 }
 
-
-
 /* =========================
      
    ========================= */
-
-
-
-
 
 /* .search {
     border: 2px solid var(--dark-grey);
@@ -157,9 +147,6 @@
 .input-row input::placeholder {
     font-size: 16px;
 } */
-
-
-
 
 /* =========================
      Board - Content
@@ -215,7 +202,6 @@
     padding: 0 10px;
 }
 
-
 .add-task-icon-btn {
     height: 30px;
     width: 30px;
@@ -228,7 +214,6 @@
 .add-task-icon-btn:hover {
     scale: 1.1;
 }
-
 
 /* =========================
        No Task Template
@@ -270,7 +255,7 @@
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    border: solid #D1D1D1 2px;
+    border: solid #d1d1d1 2px;
     background-color: white;
 }
 
@@ -390,7 +375,6 @@
     left: 78px;
 }
 
-
 .user-story {
     background-color: var(--story);
 }
@@ -469,11 +453,6 @@
     transform: translateX(100%);
     z-index: 2;
 }
-
-.overlaver-active {
-    transform: translateX(0) !important;
-}
-
 
 .task-overlay-bg {
     display: flex;
@@ -719,7 +698,6 @@
 }
 
 .task-overlay-category {
-
     position: relative;
 }
 
@@ -727,14 +705,13 @@
     cursor: pointer;
 }
 
-
 .edit-title-input {
     font-size: 20px;
     width: 100%;
     padding: 0 20px;
     height: 48px;
     border-radius: 10px;
-    border: solid 1px #D1D1D1;
+    border: solid 1px #d1d1d1;
 }
 
 .edit-textarea {
@@ -743,7 +720,7 @@
     padding: 0 20px;
     width: 100%;
     border-radius: 10px;
-    border: solid 1px #D1D1D1;
+    border: solid 1px #d1d1d1;
 }
 
 .edit-date-input {
@@ -752,5 +729,5 @@
     height: 48px;
     padding: 0 20px;
     border-radius: 10px;
-    border: solid 1px #D1D1D1;
+    border: solid 1px #d1d1d1;
 }

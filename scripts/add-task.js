@@ -308,7 +308,8 @@ async function postTask(task) {
             subtask: currentSubtasks,
         })
     );
-    window.location.href = "board.html";
+    showSuccesMsg();
+    clearAddTask();
 }
 
 function setTaskCategory(categoryValue) {
@@ -331,4 +332,18 @@ function clearAddTask() {
         c.checked = false;
     });
     updateBtnColor();
+    classChangeAction("add-task-overlay", "overlaver-active", "remove");
+}
+
+function showSuccesMsg() {
+    classChangeAction("add-task-succes-msg", "overlaver-active", "add");
+    setTimeout(function () {
+        classChangeAction("add-task-succes-msg", "overlaver-active", "remove");
+        setTimeout(function () {
+            classChangeAction("add-task-overlay", "overlaver-active", "remove");
+            if (!document.getElementById("board-link").classList.contains("activePage")) {
+                window.location.href = "board.html";
+            }
+        }, 500);
+    }, 2000);
 }
