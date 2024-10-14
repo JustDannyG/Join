@@ -1,0 +1,142 @@
+@media(min-width: 1440px) {
+
+    h1 {
+        font-size: 61px;
+        font-weight: 700;
+    }
+
+    p {
+        font-weight: 400;
+    }
+
+    .login-underline {
+        width: 150px;
+    }
+
+    .signup-container-top {
+        gap: 35px;
+        position: absolute;
+        top: 67px;
+        right: 106px;
+    }
+
+    .gap-login-logo-content {
+        gap: 148px;
+    }
+
+    .logo-login-container {
+        height: 100px;
+        width: 100%;
+        justify-content: space-between;
+        max-width: 1920px;
+        padding: 0px 112px 0 64px;
+    }
+
+    .logo-login-container img {
+        position: absolute;
+        top: 80px;
+        left: 77px;
+    }
+
+    .logo-large-content {
+        width: 100px;
+        height: 122px;
+    }
+
+    .login-area {
+        width: 652px;
+        height: 493px;
+        gap: 32px;
+    }
+
+    .login-input-area {
+        width: 422px;
+        height: 48px;
+    }
+
+    .input-data-container {
+        gap: 32px;
+    }
+
+    .login-buttons {
+        flex-direction: row;
+        width: 100%;
+        gap: 35px;
+    }
+
+    .login-button-top {
+        width: 110px;
+        height: 48px;
+    }
+
+    .login-remember-me {
+        padding: 0px 16px 0px 40px;
+    }
+
+    .empty-container {
+        height: 100px;
+        width: 50px;
+    }
+
+    .overlay {
+        background-color: var(--light-grey);
+    }
+
+    @keyframes moveAndScale {
+        0% {
+            transform: translate(-50%, -50%) scale(1);
+            top: 50%;
+            left: 50%;
+        }
+
+        100% {
+            transform: translate(0, 0) scale(0.36);
+            top: -28px;
+            left: -10px;
+        }
+    }
+
+    @keyframes fadeOutOverlay {
+        0% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+
+    .svg-img {
+        width: 274px;
+        height: 334px;
+    }
+
+    .error-message-email {
+        top: 49.3%;
+        left: 45%;
+    }
+
+    .error-message-password {
+        top: 58%;
+        left: 44%;
+    }
+}
+
+@media(min-width: 1680px) {
+
+    .error-message-email {
+        left: 46%;
+    }
+
+    .error-message-password {
+        top: 57%;
+        left: 45.5%;
+    }
+}
+
+@media(min-width: 1920px) {
+    .error-message-password {
+        top: 56%;
+    }
+}

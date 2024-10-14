@@ -58,11 +58,22 @@ function rememberMe() {
 }
 
 function goSummery(event) {
-    event.preventDefault();  
+    event.preventDefault();
     window.location.href = 'summary.html';
 }
 
 function goSignUp(event) {
     event.preventDefault();
     window.location.href = 'sign-up.html';
+}
+function screeWidth() {
+    if (window.innerWidth >= 1440) {
+        document.getElementById('content-small').style.display = 'none';
+        document.getElementById('svg-image-small-content').style.display = 'none';
+        // document.getElementById('content-large').style.display = 'block';
+    } else {
+        // document.getElementById('content-small').style.display = 'block';
+        document.getElementById('svg-image-large-content').style.display = 'none';
+        document.getElementById('content-large').style.display = 'none';
+    }
 }
