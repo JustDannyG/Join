@@ -40,6 +40,7 @@
 }
 
 .search-box-desktop {
+    position: relative;
     display: flex;
     border: solid 1px;
     width: 312px;
@@ -56,6 +57,11 @@
 .search-icon {
     width: 32px;
     height: 32px;
+}
+
+.nummber-of-tasks{
+    position: absolute;
+    bottom: -25px;
 }
 
 .add-task-btn {
