@@ -10,8 +10,8 @@
     position: relative;
     justify-content: center;
     align-items: center;
+    margin-left: 130px;
 }
-
 
 /* =========================
    Summary - Headline
@@ -42,7 +42,6 @@
     width: 90px;
     border: solid 2px var(--light-blue);
 }
-
 
 /* =========================
    Summary Container
@@ -88,6 +87,10 @@
     animation-duration: 300ms;
 }
 
+/* =========================
+   Summary Container Buttons
+   ========================= */
+
 .summary-todo-btn {
     color: black;
     display: flex;
@@ -118,8 +121,6 @@
     fill: #2A3647;
 }
 
-
-
 .summary-done-btn {
     color: black;
     display: flex;
@@ -149,9 +150,6 @@
 .summary-done-btn:hover path {
     stroke: #2A3647;
 }
-
-
-
 
 .summary-todo-btn:active {
     scale: 0.9;
@@ -211,8 +209,6 @@
     height: 40px;
 }
 
-
-
 .breakline {
     height: 68px;
     border: solid 2px lightgray;
@@ -255,7 +251,6 @@
     background-color: var(--light-blue);
 }
 
-
 /* =========================
    Summary - Desktop Greeting
    ========================= */
@@ -286,7 +281,6 @@
     transition: all ease-in-out 125ms;
 }
 
-
 /* =========================
    Summary - Mobile Greeting
    ========================= */
@@ -302,7 +296,6 @@
     left: 0;
     background-color: white;
     z-index: 2;
-
 
     animation-name: fadeOut;
     animation-duration: 3s;
@@ -334,7 +327,6 @@
     transition: all ease-in-out 125ms;
 }
 
-
 /* =========================
    Summary slide in Animations
    ========================= */
@@ -349,7 +341,6 @@
     }
 }
 
-
 @keyframes summary-2 {
     from {
         transform: translateX(-100vw);
@@ -359,7 +350,6 @@
         transform: translateX();
     }
 }
-
 
 @keyframes summary-3 {
     from {
@@ -376,7 +366,6 @@
    ===================================== */
 
 @keyframes fadeOut {
-
     0% {
         opacity: 1;
     }
@@ -397,12 +386,9 @@
         opacity: 0;
         display: none;
     }
-
 }
 
-
 @keyframes greeting-mobile {
-
     0% {
         scale: 0.6;
         opacity: 0;
