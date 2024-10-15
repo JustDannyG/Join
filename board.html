@@ -13,6 +13,7 @@
 
         <script src="./scripts/fetch.js"></script>
         <script src="./assets/templates/template.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
         <link rel="stylesheet" href="./style.css" />
         <link rel="stylesheet" href="./styles/add-task.css" />
@@ -43,13 +44,11 @@
             <section class="board-head-desktop">
                 <h1 class="board-headline-desktop">Board</h1>
                 <div class="search-addTask-container">
-
                     <div class="search-box-desktop">
                         <input id="search-task-desktop" class="search-task-input-desktop" placeholder="Find Task" type="text" onkeyup="filterBoardTasks('desktop')" />
                         <img class="search-icon" src="./assets/icons/search-icon.png" alt="" />
                         <span id="nummber-of-desktop" class="nummber-of-tasks"></span>
                     </div>
-
 
                     <button class="add-task-btn" onclick="openAddTask('todo')">
                         Add Task
