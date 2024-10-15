@@ -95,7 +95,8 @@ function generateTaskHTML(task, index, className) {
                   <div id="${task.category}contatcs-container${index}" class="d-flex contatcs-container"></div>
                   <div id="${task.category}contatcs-container${index}num" class="d-flex contatcs-container"></div>
                   <img id="${task.category}prio-icon${index}" class="prio-icon" src="" alt="">
-              </div> `;
+              </div> 
+               </div>`;
 }
 
 function generateNoTaskHTML(noTask) {
