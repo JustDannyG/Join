@@ -68,7 +68,7 @@ function renderTasks(tasks, getById, noTask) {
         getById.innerHTML += generateNoTaskHTML(noTask);
     } else {
         for (let index = 0; index < tasks.length; index++) {
-            taskCounter++;
+            taskCounter++
             let task = tasks[index];
             let className = task.categoryText.replace(" ", "-").toLowerCase();
             getById.innerHTML += generateTaskHTML(task, index, className);
@@ -401,11 +401,13 @@ function filterBoardTasks(screen) {
 function foundTasks(screen) {
     let numberOfTasksRef = document.getElementById(`nummber-of-${screen}`);
     if (taskCounter == 0) {
-        numberOfTasksRef.innerHTML = `No task found`;
+
+        numberOfTasksRef.innerHTML = `No task found`
     } else if (taskCounter == 1) {
-        numberOfTasksRef.innerHTML = `${taskCounter} found task`;
+        numberOfTasksRef.innerHTML = `${taskCounter} found task`
     } else {
-        numberOfTasksRef.innerHTML = `${taskCounter} found tasks`;
+        numberOfTasksRef.innerHTML = `${taskCounter} found tasks`
+
     }
 }
 
@@ -422,35 +424,32 @@ function filterSearchTasks(task, search) {
 }
 
 //////////////////////////////////////////
-///    Scroll to Section Function     ///                                                   //  In Progress .....
-/////////////////////////////////////////
+///    Scroll to Section Function     ///              
+/////////////////////////////////////////      
 
-// const feedbackColumn = document.getElementById('feedback');
+window.addEventListener('load', function () {
+    let section = window.location.hash.substring(1);
+    console.log(section);
+    
+    section = section.slice(1);
+    if (section) {
+        setTimeout(function () {
+            scrollToSection(section);  
+        }, 100);  
+    }
+});
 
-// // Warte darauf, dass die Seite vollständig geladen ist, bevor gescrollt wird
-// window.onload = function() {
-//     if (feedbackColumn) {
-//         // Hier wird gezielt innerhalb des Containers gescrollt
-//         feedbackColumn.scrollIntoView({
-//             behavior: 'smooth',   // Optional: für ein weiches Scrollen
-//             block: 'start',       // Scrollt zum Start des Elements
-//             inline: 'center'      // Horizontales Scrollen: positioniert die Spalte in der Mitte
-//         });
-//     }
-// };
 
-function scrollToFeedback() {
-    const feedbackColumn = document.getElementById("feedback"); // Die Spalte, zu der gescrollt werden soll
+function scrollToSection(section) {
+    let sectionColumn = document.getElementById(section); 
 
-    if (feedbackColumn) {
-        feedbackColumn.scrollIntoView({
-            behavior: "smooth",
-            block: "nearest", // Scrollt innerhalb des Containers
-            inline: "start", // Horizontales Scrollen, positioniert die Spalte links
+    if (sectionColumn) {
+        sectionColumn.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',  
+            inline: 'nearest'    
         });
     }
 }
 
-//////////////////////////////////////////
-///                                    ///
-/////////////////////////////////////////
+

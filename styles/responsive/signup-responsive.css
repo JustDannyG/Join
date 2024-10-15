@@ -65,6 +65,14 @@
     .error-message-conf-password {
         left: 20%;
     }
+
+    .dialog {
+        transform: translateY(240px);
+    }
+
+    .dialog-active {
+        transform: translateY(-10px);
+    }
 }
 
 @media(min-width: 1024px) {
@@ -122,5 +130,9 @@
 
     .error-message-conf-password {
         left: 30%;
+    }
+
+    .dialog-active {
+        transform: translateY(-60px);
     }
 }
