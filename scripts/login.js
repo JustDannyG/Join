@@ -10,7 +10,6 @@ async function login(event) {
     searchUserInDatabase(emailInput, passwordInput, users, userIds, userFound);
     emailInputErrorStyle(emailInput);
     passwordInputErrorStyle(passwordInput, emailInput);
-    
 }
 
 function searchUserInDatabase(emailInput, passwordInput, users, userIds, userFound) {
@@ -46,13 +45,14 @@ function passwordInputErrorStyle(passwordInput, emailInput) {
 }
 
 function checkIfPasswordMatch(passwordInput, userPwdError, userPwdContainer, emailInput) {
-    if (passwordInput !== user.password || emailInput !== user.email) {
+    if (passwordInput !== "" && passwordInput !== user.password || emailInput !== user.email && passwordInput !== "") {
         userPwdError.textContent = "Email or Password isn't correct";
         userPwdError.classList.add('visible');
+        userPwdError.classList.add('shake');
+        setTimeout(() => {
+            userPwdError.classList.remove('shake');
+        }, 300);
         // userPwdContainer.classList.add('red-border');
-    } else {
-        document.getElementById('password-error').classList.remove('visible');
-        document.getElementById('pwd-input-container').classList.remove('red-border');
     }
 }
 
@@ -72,12 +72,12 @@ function rememberMe() {
 }
 
 function goSummery(event) {
-    event.preventDefault();
+    // event.preventDefault();
     window.location.href = 'summary.html';
 }
 
 function goSignUp(event) {
-    event.preventDefault();
+    // event.preventDefault();
     window.location.href = 'sign-up.html';
 }
 function screeWidth() {
