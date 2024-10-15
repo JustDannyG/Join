@@ -260,9 +260,9 @@ h1 {
     position: absolute;
     align-self: center;
     bottom: 0;
-    height: 61px;
-    transition: 125ms ease-in-out;
-    transform: translateY(240px);
+    height: 64px;
+    transition: 100ms ease-in-out;
+    transform: translateY(440px);
     background-color: var(--darke-blue);
     color: var(--white);
     padding: 16px;
