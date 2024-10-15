@@ -50,6 +50,10 @@ p {
     box-shadow: 0px 1px 13px 6px rgba(0, 0, 0, 0.15);
 }
 
+.login-area img {
+    border: none;
+}
+
 .login-underline {
     width: 88px;
     border: 2px solid;
@@ -63,7 +67,7 @@ p {
 }
 
 .input-data {
-    gap: 32px;
+    gap: 24px;
 }
 
 .login-remember-me {
@@ -72,15 +76,15 @@ p {
 }
 
 .login-input-area {
-    flex: 10;
     width: 364px;
     height: 48px;
-    gap: 8px;
     border: 1px solid;
     border-radius: 10px;
-    padding: 12px 21px 12px 21px;
+    padding: 12px 21px;
+    border: solid 1px var(--dark-grey);
     justify-content: space-between;
     cursor: pointer;
+    position: relative;
 }
 
 .login-input-area img {
@@ -91,6 +95,8 @@ p {
 
 .login-input-area input {
     flex: 100;
+    border: none;
+    font-style: var(--dark-grey);
 }
 
 button {
@@ -182,11 +188,10 @@ button {
 .error-message-email {
     color: red;
     font-size: 12px;
-    position: absolute;
-    top: 42%;
-    right: 0;
-    left: 42.5%;
     display: none;
+    position: absolute;
+    top: 113%;
+    left: 32%;
 }
 
 .error-message-email.visible {
@@ -196,11 +201,10 @@ button {
 .error-message-password {
     color: red;
     font-size: 12px;
-    position: absolute;
-    top: 48.7%;
-    right: 0;
-    left: 42.5%;
     display: none;
+    position: absolute;
+    top: 110%;
+    left: 28%;
 }
 
 .error-message-password.visible {
@@ -231,20 +235,22 @@ button {
         top: 50%;
         left: 50%;
     }
+
     100% {
-        transform: translate(0, 0) scale(0.64); 
-        top: 15px;   
+        transform: translate(0, 0) scale(0.64);
+        top: 15px;
         left: 19px;
     }
 }
 
 @keyframes fadeOutOverlay {
     0% {
-        opacity: 1; 
+        opacity: 1;
     }
+
     100% {
-        opacity: 0; 
-        pointer-events: none; 
+        opacity: 0;
+        pointer-events: none;
     }
 }
 
@@ -265,4 +271,16 @@ button {
     width: 100px;
     height: 122px;
     object-fit: cover;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+.shake {
+    animation: shake 0.3s ease;
 }

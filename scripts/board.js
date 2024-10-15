@@ -222,11 +222,11 @@ function showEditTaskValues() {
     taskPrioText();
 }
 
-function updateCategoryText(value) {
-    currentTask.categoryText = value;
-    document.getElementById("category-text").innerHTML = value;
-    console.log(currentTask.categoryText);
-}
+// function updateCategoryText(value) {
+//     currentTask.categoryText = value;
+//     document.getElementById("category-text").innerHTML = value;
+//     console.log(currentTask.categoryText);
+// }
 
 function editTaskAssignTo() {
     selectedContacts = []; //Required, to clear the Array from the Edit-Task before    //// Anpassungen
@@ -395,17 +395,19 @@ function filterBoardTasks(screen) {
     renderTasks(filterSearchTasks("feedback", search), feedbackById, "Feedback");
     renderTasks(filterSearchTasks("done", search), doneById, "Done");
 
-    foundTasks(screen)
+    foundTasks(screen);
 }
 
 function foundTasks(screen) {
     let numberOfTasksRef = document.getElementById(`nummber-of-${screen}`);
     if (taskCounter == 0) {
+
         numberOfTasksRef.innerHTML = `No task found`
     } else if (taskCounter == 1) {
         numberOfTasksRef.innerHTML = `${taskCounter} found task`
     } else {
         numberOfTasksRef.innerHTML = `${taskCounter} found tasks`
+
     }
 }
 
@@ -420,7 +422,6 @@ function filterSearchTasks(task, search) {
     }
     return filterTasks;
 }
-
 
 //////////////////////////////////////////
 ///    Scroll to Section Function     ///              
@@ -452,7 +453,3 @@ function scrollToSection(section) {
 }
 
 
-
-//////////////////////////////////////////
-///                                    ///
-/////////////////////////////////////////      

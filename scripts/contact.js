@@ -30,17 +30,19 @@ function renderContacts() {
     });
 }
 
-function openContact(index) {
+async function openContact(index) {
     currentContactDetails = index;
-
+    await initContacts();
     saveToLocalStorage("currentDetails", currentContactDetails);
     saveToLocalStorage("contacts", contacts);
     if (screenMode == "mobile") {
         window.location.href = "contact-details.html";
     } else if (screenMode == "desktop") {
         contactIndex = index;
+        contactsArray = contacts;
+        classChangeAction("dialog-add-contact", "hide-overlay", "add");
+        showContact();
     }
-    showContact();
 }
 
 /////////////////////////////////////////////////
@@ -73,8 +75,8 @@ async function addContact() {
     clearInput(emailRef);
     clearInput(phoneNumRef);
     await postData((path = "contacts"), (data = { name: `${inputs.name}`, email: `${inputs.email}`, phone: `${inputs.phone}`, color: `${inputs.color}` }));
-    const contact = await findContact(inputs.name, inputs.email, inputs.phone);
-    toogleDialog("dialog-add-succes", contact);
+    const contactIndex = await findContact(inputs.name, inputs.email, inputs.phone);
+    toogleDialog("dialog-add-succes", contactIndex);
 }
 
 function getInputs(nameRef, emailRef, phoneNumRef) {
@@ -90,12 +92,12 @@ function toogleDialog(id, index) {
 
     setTimeout(function () {
         document.getElementById(id).classList.remove("dialog-active");
+        console.log(index);
         openContact(index);
     }, 2000);
 }
 
 async function findContact(name, email, phone) {
-    contacts = [];
     await getContacts();
     return contacts.findIndex((e) => e.name == name && e.email == email && e.phone == phone);
 }
@@ -111,11 +113,12 @@ function clearAddInputs() {
 ///////////////////////////////
 
 function showContact() {
+    console.log("Showing contact at index:", contactIndex); // Debugging
     let currentContact = document.getElementById("current-contact");
-    let detailsContainer = document.getElementById("details");
     let detail = contactsArray[contactIndex];
     currentContact.innerHTML = contactCirleHTML(detail);
-    detailsContainer.innerHTML = contactInformationsHTML(detail);
+    // let detailsContainer = document.getElementById("details");
+    // detailsContainer.innerHTML = contactInformationsHTML(detail);
 }
 
 function toggleOverlayDisplay() {
@@ -170,14 +173,13 @@ async function editContact() {
     );
     saveToLocalStorage("contacts", contacts);
 
-    await getContacts();
-
     if (screenMode == "mobile") {
         window.location.href = "contact-details.html";
     }
     if (screenMode == "desktop") {
-        console.log("test");
-        classChangeAction("edit-overlay-bg", "hide-overlay-desktop", "add");
+        await initContacts();
+        openContact(await findContact(name, email, phone));
+        classChangeAction("edit-overlay-bg", "hide-overlay", "add");
     }
 }
 

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0 , maximum-scale=1" />
@@ -14,54 +15,62 @@
 
     <script src="./scripts/fetch.js"></script>
     <script src="./assets/templates/template.js"></script>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0 , maximum-scale=1" />
+        <link rel="icon" type="image/x-icon" href="./assets/icons/join-logo-light.png" />
 
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="./styles/add-task.css" />
-    <link rel="stylesheet" href="./styles/board.css" />
-    <link rel="stylesheet" href="./styles/header-sidebar.css" />
+        <title>Join - Board</title>
 
-    <link rel="stylesheet" href="./styles/responsive/add-task-responsive.css" />
-    <link rel="stylesheet" href="./styles/responsive/responsive.css" />
-    <link rel="stylesheet" href="./styles/responsive/board-responsive.css" />
-</head>
+        <script src="./script.js" defer></script>
+        <script src="./scripts/board.js"></script>
+        <script src="./scripts/add-task.js"></script>
 
-<body class="column" onload="boardInit(); styleSelecet(); markedPage('board-link', 'activePage')"
-    onclick="classChangeAction('user-menu', 'd-none', 'add'); classChangeAction('menu', 'menu-active', 'remove'); stopEventBubbling(event);">
-    <section id="join-header" class="join-header"></section>
+        <script src="./scripts/fetch.js"></script>
+        <script src="./assets/templates/template.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
-    <main class="board-main-content">
-        <section class="board-head-mobile">
-            <div class="headline-addTask-container">
-                <h1 class="board-headline-mobile">Board</h1>
-                <img class="add-task-mobile-btn" src="./assets/icons/add-icon-light.png" alt=""
-                    onclick="openAddTask('todo')" />
-            </div>
-            <div class="search-box-mobile">
-                <input id="search-task-mobile" class="search-task-input-mobile" placeholder="Find Task" type="text"
-                    onkeyup="filterBoardTasks('mobile')" />
-                <img class="search-icon" src="./assets/icons/search-icon.png" alt="" />
-                <span id="nummber-of-mobile" class="nummber-of-tasks"></span>
-            </div>
-        </section>
+        <link rel="stylesheet" href="./style.css" />
+        <link rel="stylesheet" href="./styles/add-task.css" />
+        <link rel="stylesheet" href="./styles/board.css" />
+        <link rel="stylesheet" href="./styles/header-sidebar.css" />
 
-        <section class="board-head-desktop">
-            <h1 class="board-headline-desktop">Board</h1>
-            <div class="search-addTask-container">
+        <link rel="stylesheet" href="./styles/responsive/add-task-responsive.css" />
+        <link rel="stylesheet" href="./styles/responsive/responsive.css" />
+        <link rel="stylesheet" href="./styles/responsive/board-responsive.css" />
+    </head>
 
-                <div class="search-box-desktop">
-                    <input id="search-task-desktop" class="search-task-input-desktop" placeholder="Find Task"
-                        type="text" onkeyup="filterBoardTasks('desktop')" />
-                    <img class="search-icon" src="./assets/icons/search-icon.png" alt="" />
-                    <span id="nummber-of-desktop" class="nummber-of-tasks"></span>
+    <body class="column" onload="boardInit(); styleSelecet(); markedPage('board-link', 'activePage')" onclick="classChangeAction('user-menu', 'd-none', 'add'); classChangeAction('menu', 'menu-active', 'remove'); stopEventBubbling(event);">
+        <section id="join-header" class="join-header"></section>
+
+        <main class="board-main-content">
+            <section class="board-head-mobile">
+                <div class="headline-addTask-container">
+                    <h1 class="board-headline-mobile">Board</h1>
+                    <img class="add-task-mobile-btn" src="./assets/icons/add-icon-light.png" alt="" onclick="openAddTask('todo')" />
                 </div>
+                <div class="search-box-mobile">
+                    <input id="search-task-mobile" class="search-task-input-mobile" placeholder="Find Task" type="text" onkeyup="filterBoardTasks('mobile')" />
+                    <img class="search-icon" src="./assets/icons/search-icon.png" alt="" />
+                    <span id="nummber-of-mobile" class="nummber-of-tasks"></span>
+                </div>
+            </section>
 
+            <section class="board-head-desktop">
+                <h1 class="board-headline-desktop">Board</h1>
+                <div class="search-addTask-container">
+                    <div class="search-box-desktop">
+                        <input id="search-task-desktop" class="search-task-input-desktop" placeholder="Find Task" type="text" onkeyup="filterBoardTasks('desktop')" />
+                        <img class="search-icon" src="./assets/icons/search-icon.png" alt="" />
+                        <span id="nummber-of-desktop" class="nummber-of-tasks"></span>
+                    </div>
 
-                <button class="add-task-btn" onclick="openAddTask('todo')">
-                    Add Task
-                    <img c src="./assets/icons/add.png" alt="" />
-                </button>
-            </div>
-        </section>
+                    <button class="add-task-btn" onclick="openAddTask('todo')">
+                        Add Task
+                        <img c src="./assets/icons/add.png" alt="" />
+                    </button>
+                </div>
+            </section>
 
         <div class="task-content">
             <section class="board-section">

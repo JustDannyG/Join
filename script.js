@@ -87,6 +87,7 @@ function stopEventBubbling(event) {
 ////////////////////////////
 
 async function getContacts() {
+    contacts = [];
     const contactsData = await getData("contacts");
     const keys = Object.keys(contactsData);
     for (let index = 0; index < keys.length; index++) {

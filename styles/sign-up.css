@@ -140,11 +140,17 @@ h1 {
 
 .gap-signup-logo-content {
   gap: 68px;
+  justify-content: center;
+  align-items: center;
+  padding-top: 194px;
 }
 
 .logo-login {
   height: 78px;
   width: 64px;
+  position: absolute;
+  top: 59px;
+  left: 57px;
 }
 
 .logo-signup-container {
@@ -156,6 +162,7 @@ h1 {
 .checkbox-privacy-policy {
   width: 231px;
   height: 24px;
+  position: relative;
 }
 
 .font-size-16 {
@@ -183,9 +190,8 @@ h1 {
   color: red;
   font-size: 12px;
   position: absolute;
-  top: 36%;
-  right: 0;
-  left: 124px;
+  top: 19.5%;
+  left: 31%;
   display: none;
 }
 
@@ -197,9 +203,8 @@ h1 {
   color: red;
   font-size: 12px;
   position: absolute;
-  top: 48%;
-  right: 0;
-  left: 124px;
+  top: 47%;
+  left: 31%;
   display: none;
 }
 
@@ -211,9 +216,8 @@ h1 {
   color: red;
   font-size: 12px;
   position: absolute;
-  top: 60.5%;
-  right: 0;
-  left: 124px;
+  top: 73.5%;
+  left: 29%;
   display: none;
 }
 
@@ -225,9 +229,8 @@ h1 {
   color: red;
   font-size: 12px;
   position: absolute;
-  top: 73.5%;
-  right: 0;
-  left: 124px;
+  top: 101.5%;
+  left: 29%;
   display: none;
 }
 
@@ -239,9 +242,9 @@ h1 {
   color: red;
   font-size: 12px;
   position: absolute;
-  top: 82.5%;
-  right: 0;
-  left: 81px;
+  top: 120%;
+  left: -5px;
+  right: -14px;
   display: none;
 }
 
@@ -257,9 +260,9 @@ h1 {
     position: absolute;
     align-self: center;
     bottom: 0;
-    height: 61px;
-    transition: 125ms ease-in-out;
-    transform: translateY(80px);
+    height: 64px;
+    transition: 100ms ease-in-out;
+    transform: translateY(440px);
     background-color: var(--darke-blue);
     color: var(--white);
     padding: 16px;
@@ -270,9 +273,14 @@ h1 {
 }
 
 .dialog-active {
-    transform: translateY(-349px);
+    transform: translateY(-24px);
 }
 
 .form-inputs-container {
   gap: 24px;
+  position: relative;
+}
+
+.height {
+  height: 78px;
 }
