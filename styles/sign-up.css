@@ -262,7 +262,7 @@ h1 {
     bottom: 0;
     height: 61px;
     transition: 125ms ease-in-out;
-    transform: translateY(80px);
+    transform: translateY(240px);
     background-color: var(--darke-blue);
     color: var(--white);
     padding: 16px;
@@ -273,7 +273,7 @@ h1 {
 }
 
 .dialog-active {
-    transform: translateY(-349px);
+    transform: translateY(-24px);
 }
 
 .form-inputs-container {
