@@ -76,11 +76,20 @@ function findEarliestDate(task) {
     let earliestUrgentDate = document.getElementById('earliest-urgent-date');
     let earliestDate = null;
     task.forEach(item => {
-        let itemDate = new Date(item.date); 
+        let itemDate = new Date(item.date);
         if (!earliestDate || itemDate < new Date(earliestDate.date)) {
             earliestDate = item;
         }
     });
     earliestUrgentDate.innerHTML = earliestDate.date
     return earliestDate;
+}
+
+
+////////////////////////////////////////////////////
+///     Go / Scroll to current Task In Board     ///
+////////////////////////////////////////////////////
+
+function goToSummaryTask() {
+    window.location.href = 'board.html';
 }

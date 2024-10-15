@@ -1,9 +1,5 @@
 let categoryInput;
-
-// let curretCategory = "todo";
-
 let currentCategory;
-
 let selectedContacts = [];
 let subtaskArray = [];
 let currentSubtasks = [];

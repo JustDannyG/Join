@@ -61,7 +61,7 @@
             <div class="task-content">
                 <section class="board-section">
                     <div class="board-section-title">
-                        <h2>To do</h2>
+                        <h2 id="todo">To do</h2>
                         <img class="add-task-icon-btn" src="./assets/icons/add-icon.png" alt="" onclick="openAddTask('todo')" />
                     </div>
 
@@ -70,7 +70,7 @@
 
                 <section class="board-section">
                     <div class="board-section-title">
-                        <h2>In progress</h2>
+                        <h2 id="progress">In progress</h2>
                         <img class="add-task-icon-btn" src="./assets/icons/add-icon.png" alt="" onclick="openAddTask('progress')" />
                     </div>
 
@@ -79,7 +79,7 @@
 
                 <section class="board-section">
                     <div class="board-section-title">
-                        <h2>Await feedback</h2>
+                        <h2 id="feedback">Await feedback</h2>
                         <img class="add-task-icon-btn" src="./assets/icons/add-icon.png" alt="" onclick="openAddTask('feedback')" />
                     </div>
 
@@ -88,7 +88,7 @@
 
                 <section class="board-section">
                     <div class="board-section-title">
-                        <h2>Done</h2>
+                        <h2 id="done">Done</h2>
                     </div>
 
                     <div id="done-container" class="task-container" ondrop="moveTo('done'); removeHighlight('done-container')" ondragover="allowDrop(event);highlight('done-container')" ondragleave="removeHighlight('done-container')"></div>
