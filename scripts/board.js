@@ -420,3 +420,42 @@ function filterSearchTasks(task, search) {
     }
     return filterTasks;
 }
+
+
+//////////////////////////////////////////
+///    Scroll to Section Function     ///                                                   //  In Progress .....
+/////////////////////////////////////////      
+
+
+
+
+// const feedbackColumn = document.getElementById('feedback');
+
+// // Warte darauf, dass die Seite vollständig geladen ist, bevor gescrollt wird
+// window.onload = function() {
+//     if (feedbackColumn) {
+//         // Hier wird gezielt innerhalb des Containers gescrollt
+//         feedbackColumn.scrollIntoView({
+//             behavior: 'smooth',   // Optional: für ein weiches Scrollen
+//             block: 'start',       // Scrollt zum Start des Elements
+//             inline: 'center'      // Horizontales Scrollen: positioniert die Spalte in der Mitte
+//         });
+//     }
+// };
+
+function scrollToFeedback() {
+    const feedbackColumn = document.getElementById('feedback'); // Die Spalte, zu der gescrollt werden soll
+
+    if (feedbackColumn) {
+        feedbackColumn.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',  // Scrollt innerhalb des Containers
+            inline: 'start'    // Horizontales Scrollen, positioniert die Spalte links
+        });
+    }
+}
+
+
+//////////////////////////////////////////
+///                                    ///
+/////////////////////////////////////////      
