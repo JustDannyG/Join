@@ -295,14 +295,10 @@ function editBoardTaskHTML(currentTask) {
     <div class="task-overlay-bg">
         <form onsubmit="editTask(); return false" class="task-overlay" onclick="closeDropdown(); stopEventBubbling(event)">
             <div class="task-overlay-category-container">
-                <span id="category-text" class="task-overlay-category cursor-pointer" onclick="classChangeAction('dropdown-category', 'd-none', 'toggle'); resetBoard(); " style="background-color:powderblue;">${currentTask.categoryText}</span>
+                <span id="category-text" class="task-overlay-category"" style="background-color:powderblue;">${currentTask.categoryText}</span>
                 <img class="task-overlay-close-icon" src="./assets/icons/close-icon-dark.png"
                     onclick="classChangeAction('overlaver','overlaver-active','remove')">
 
-                <ul id="dropdown-category" class="dropdown-category d-none">
-                    <li class="category-text-option" onclick="updateCategoryText('User Story'); classChangeAction('dropdown-category', 'd-none', 'add')">User Story</li>
-                    <li class="category-text-option" onclick="updateCategoryText('Technical Task'); classChangeAction('dropdown-category', 'd-none', 'add')">Technical Task</li>
-            </ul>
             </div>
               <div>
                   <label for="title">Title</label>
@@ -337,7 +333,7 @@ function editBoardTaskHTML(currentTask) {
                             id="prio-icon-low" src="./assets/icons/prio-low-icon.png"></button>
                 </div>
 
-                <div class="task-overlay-assigned">
+                <div class="task-overlay-assigned position-relative">
                     Assigned To:
                     <div id="dropdown" class="drop-down d-flex">
                         <input id="assign-to-dropdown" class="input" onkeyup="filter('assign-to-dropdown')"
@@ -346,11 +342,11 @@ function editBoardTaskHTML(currentTask) {
                             <img id="drop-down-icon1" src="./assets/icons/arrow-drop-down.png">
                         </button>
                     </div>
-                    <ul id="assign-to-dropdown-contacts" class="dropdown-options"></ul>
+                    <ul id="assign-to-dropdown-contacts" class="dropdown-options edit-dropdown"></ul>
                     <div id="selected-contacts-container" class="d-flex selectet-contacts-container"></div>
                 </div>
 
-                <div class="task-overlay-subtasks-container">
+                <div class="task-overlay-subtasks-container position-relative">
                     Subtasks
                     <div class="add-task-input">
                         <input id="subtasks-input" type="subtasks" name="subtasks" onkeyup="subtaskInputBtn()"
@@ -359,8 +355,8 @@ function editBoardTaskHTML(currentTask) {
                             <img src="./assets/icons/add -subtasks.png" alt="" onclick="setInputFocus()" />
                         </div>
                     </div>
-                </div>
                 <div id="subtasks-container" class="subtasks-container"></div>
+                </div>
             </div>
 
             <button class="btn submit submit-btn" >Ok <img src="./assets/icons/check.png"></button>

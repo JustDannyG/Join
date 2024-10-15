@@ -219,11 +219,11 @@ function showEditTaskValues() {
     taskPrioText();
 }
 
-function updateCategoryText(value) {
-    currentTask.categoryText = value;
-    document.getElementById("category-text").innerHTML = value;
-    console.log(currentTask.categoryText);
-}
+// function updateCategoryText(value) {
+//     currentTask.categoryText = value;
+//     document.getElementById("category-text").innerHTML = value;
+//     console.log(currentTask.categoryText);
+// }
 
 function editTaskAssignTo() {
     selectedContacts = []; //Required, to clear the Array from the Edit-Task before    //// Anpassungen
