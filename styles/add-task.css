@@ -221,6 +221,12 @@ select:focus,
     border-radius: 8px;
 }
 
+.edit-dropdown {
+    position: relative;
+    top: 0;
+    max-height: max-content;
+}
+
 .dropdown-options li,
 .options li {
     padding: 12px;
