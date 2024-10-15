@@ -40,7 +40,6 @@ function openContact(index) {
     } else if (screenMode == "desktop") {
         contactIndex = index;
     }
-
     showContact();
 }
 
@@ -160,7 +159,6 @@ async function editContact() {
     let email = document.getElementById("edit-email").value;
     let phone = document.getElementById("edit-phone").value;
     let color = document.getElementById("edit-color").value;
-    // let contactsArray = getFromLocalStorage('contacts');
     await putData(
         (path = `/contacts/${key}`),
         (data = {

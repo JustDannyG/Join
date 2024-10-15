@@ -36,16 +36,21 @@
                 <div class="search-box-mobile">
                     <input id="search-task-mobile" class="search-task-input-mobile" placeholder="Find Task" type="text" onkeyup="filterBoardTasks('mobile')" />
                     <img class="search-icon" src="./assets/icons/search-icon.png" alt="" />
+                    <span id="nummber-of-mobile" class="nummber-of-tasks"></span>
                 </div>
             </section>
 
             <section class="board-head-desktop">
                 <h1 class="board-headline-desktop">Board</h1>
                 <div class="search-addTask-container">
+
                     <div class="search-box-desktop">
                         <input id="search-task-desktop" class="search-task-input-desktop" placeholder="Find Task" type="text" onkeyup="filterBoardTasks('desktop')" />
                         <img class="search-icon" src="./assets/icons/search-icon.png" alt="" />
+                        <span id="nummber-of-desktop" class="nummber-of-tasks"></span>
                     </div>
+
+
                     <button class="add-task-btn" onclick="openAddTask('todo')">
                         Add Task
                         <img c src="./assets/icons/add.png" alt="" />
@@ -56,7 +61,7 @@
             <div class="task-content">
                 <section class="board-section">
                     <div class="board-section-title">
-                        <h2>To do</h2>
+                        <h2 id="todo">To do</h2>
                         <img class="add-task-icon-btn" src="./assets/icons/add-icon.png" alt="" onclick="openAddTask('todo')" />
                     </div>
 
@@ -65,7 +70,7 @@
 
                 <section class="board-section">
                     <div class="board-section-title">
-                        <h2>In progress</h2>
+                        <h2 id="progress">In progress</h2>
                         <img class="add-task-icon-btn" src="./assets/icons/add-icon.png" alt="" onclick="openAddTask('progress')" />
                     </div>
 
@@ -74,7 +79,7 @@
 
                 <section class="board-section">
                     <div class="board-section-title">
-                        <h2>Await feedback</h2>
+                        <h2 id="feedback">Await feedback</h2>
                         <img class="add-task-icon-btn" src="./assets/icons/add-icon.png" alt="" onclick="openAddTask('feedback')" />
                     </div>
 
@@ -83,7 +88,7 @@
 
                 <section class="board-section">
                     <div class="board-section-title">
-                        <h2>Done</h2>
+                        <h2 id="done">Done</h2>
                     </div>
 
                     <div id="done-container" class="task-container" ondrop="moveTo('done'); removeHighlight('done-container')" ondragover="allowDrop(event);highlight('done-container')" ondragleave="removeHighlight('done-container')"></div>

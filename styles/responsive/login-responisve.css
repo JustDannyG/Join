@@ -1,3 +1,96 @@
+@media(max-width: 427px) {
+
+    h1 {
+        font-size: 42px;
+    }
+
+    .logo-login-container img {
+        height: 60px;
+        width: 48px;
+        top: 16px;
+        left: 20px;
+    }
+
+    .input-data-container {
+        gap: 24px;
+    }
+
+    .gap-login-logo-content {
+        padding-top: 112px;
+        gap: 20px;
+    }
+
+    .login-area {
+        height: 428px;
+        width: 296px;
+        gap: 24px;
+        padding: 20px 0;
+    }
+
+    .login-input-area {
+        width: 276px;
+        height: 42px;
+        padding: 13px 21px;
+    }
+
+    .login-logo-container {
+        gap: 8px;
+    }
+
+    .login-input-area input {
+        width: 0px;
+    }
+
+    .font-size-20 {
+        font-size: 18px;
+    }
+
+    .login-button {
+        width: 160px;
+        height: 48px;
+    }
+
+    .login-buttons {
+        gap: 16px;
+    }
+
+    @keyframes moveAndScale {
+        0% {
+            transform: translate(-50%, -50%) scale(1);
+            top: 50%;
+            left: 50%;
+        }
+        100% {
+            transform: translate(0, 0) scale(0.3); 
+            top: -51px;   
+            left: -31px;
+        }
+    }
+    
+    @keyframes fadeOutOverlay {
+        0% {
+            opacity: 1; 
+        }
+        100% {
+            opacity: 0; 
+            pointer-events: none; 
+        }
+    }
+
+    .svg-img {
+        width: 148px;
+        height: 190px;
+    }
+
+    .error-message-email {
+        left: 24%;
+    }
+
+    .error-message-password {
+        left: 20%;
+    }
+}
+
 @media(min-width: 1440px) {
 
     h1 {
@@ -113,30 +206,12 @@
     }
 
     .error-message-email {
-        top: 49.3%;
-        left: 45%;
+        left: 34%;
     }
 
     .error-message-password {
-        top: 58%;
-        left: 44%;
+        left: 31%;
+        top: 118%;
     }
 }
 
-@media(min-width: 1680px) {
-
-    .error-message-email {
-        left: 46%;
-    }
-
-    .error-message-password {
-        top: 57%;
-        left: 45.5%;
-    }
-}
-
-@media(min-width: 1920px) {
-    .error-message-password {
-        top: 56%;
-    }
-}

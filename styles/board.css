@@ -40,6 +40,7 @@
 }
 
 .search-box-desktop {
+    position: relative;
     display: flex;
     border: solid 1px;
     width: 312px;
@@ -56,6 +57,11 @@
 .search-icon {
     width: 32px;
     height: 32px;
+}
+
+.nummber-of-tasks{
+    position: absolute;
+    bottom: -25px;
 }
 
 .add-task-btn {
@@ -105,6 +111,7 @@
 }
 
 .search-box-mobile {
+    position: relative;
     display: flex;
     border: solid 1px;
     border-radius: 10px;
@@ -121,32 +128,6 @@
 /* =========================
      
    ========================= */
-
-/* .search {
-    border: 2px solid var(--dark-grey);
-    border-radius: 8px;
-    padding: 4px 8px;
-    background-color: var(--white);
-}
-
-.input-row {
-    margin-top: 20px;
-    border: 2px solid var(--dark-grey);
-    border-radius: 8px;
-    padding: 4px 8px;
-    background-color: var(--white);
-}
-
-.input-row input,
-.input {
-    border: unset;
-    border-right: 2px solid var(--medium-grey);
-    width: 100%;
-}
-
-.input-row input::placeholder {
-    font-size: 16px;
-} */
 
 /* =========================
      Board - Content

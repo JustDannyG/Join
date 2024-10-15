@@ -2,6 +2,8 @@ let currentDraggedElement;
 let tasksArray = [];
 let currentTask;
 
+let taskCounter = 0;
+
 ////////////////////
 ///    Start   ////
 ///////////////////
@@ -66,7 +68,8 @@ function renderTasks(tasks, getById, noTask) {
         getById.innerHTML += generateNoTaskHTML(noTask);
     } else {
         for (let index = 0; index < tasks.length; index++) {
-            const task = tasks[index];
+            taskCounter ++
+            let task = tasks[index];
             let className = task.categoryText.replace(" ", "-").toLowerCase();
             getById.innerHTML += generateTaskHTML(task, index, className);
             if (task.assignedTo) {
@@ -379,6 +382,7 @@ async function moveTaskTo(taskId, category) {
 /////////////////////////////////////////
 
 function filterBoardTasks(screen) {
+    taskCounter = 0;
     let search = document.getElementById(`search-task-${screen}`).value;
     search = search.toLowerCase();
     let todoById = document.getElementById("to-do-container");
@@ -390,6 +394,19 @@ function filterBoardTasks(screen) {
     renderTasks(filterSearchTasks("progress", search), progressById, "Progress");
     renderTasks(filterSearchTasks("feedback", search), feedbackById, "Feedback");
     renderTasks(filterSearchTasks("done", search), doneById, "Done");
+
+    foundTasks(screen)
+}
+
+function foundTasks(screen){
+    let numberOfTasksRef = document.getElementById(`nummber-of-${screen}`);
+    if (taskCounter == 0){
+        numberOfTasksRef.innerHTML = `No task found`
+    } else if (taskCounter == 1) {
+        numberOfTasksRef.innerHTML = `${taskCounter} found task`
+    } else{
+        numberOfTasksRef.innerHTML = `${taskCounter} found tasks`
+    }
 }
 
 function filterSearchTasks(task, search) {
@@ -403,3 +420,42 @@ function filterSearchTasks(task, search) {
     }
     return filterTasks;
 }
+
+
+//////////////////////////////////////////
+///    Scroll to Section Function     ///                                                   //  In Progress .....
+/////////////////////////////////////////      
+
+
+
+
+// const feedbackColumn = document.getElementById('feedback');
+
+// // Warte darauf, dass die Seite vollständig geladen ist, bevor gescrollt wird
+// window.onload = function() {
+//     if (feedbackColumn) {
+//         // Hier wird gezielt innerhalb des Containers gescrollt
+//         feedbackColumn.scrollIntoView({
+//             behavior: 'smooth',   // Optional: für ein weiches Scrollen
+//             block: 'start',       // Scrollt zum Start des Elements
+//             inline: 'center'      // Horizontales Scrollen: positioniert die Spalte in der Mitte
+//         });
+//     }
+// };
+
+function scrollToFeedback() {
+    const feedbackColumn = document.getElementById('feedback'); // Die Spalte, zu der gescrollt werden soll
+
+    if (feedbackColumn) {
+        feedbackColumn.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',  // Scrollt innerhalb des Containers
+            inline: 'start'    // Horizontales Scrollen, positioniert die Spalte links
+        });
+    }
+}
+
+
+//////////////////////////////////////////
+///                                    ///
+/////////////////////////////////////////      
