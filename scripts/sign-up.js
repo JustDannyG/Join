@@ -93,7 +93,7 @@ function checkIfConfPwd(userPwd, userConfPwd) {
 async function checkIfAllInputsFilled(userNameInput, userEmailInput, userPwd, userConfPwd, user) {
     if (userNameInput === "" && userEmailInput === "" && userPwd !== userConfPwd && !checkbox.checked) {
         errorStyles(userNameInput, userEmailInput, userPwd, userConfPwd);
-    } else if (userNameInput !== "" && userEmailInput !== "" && userPwd !== "" && userConfPwd !== "" && userPwd == userConfPwd 
+    } else if (userNameInput !== "" && userEmailInput !== "" && userPwd !== "" && userConfPwd !== "" && userPwd == userConfPwd
         && checkbox.checked && user.email !== userEmailInput && user.name !== userNameInput) {
         // postSignUpData(userNameInput, userEmailInput, userPwd);
         userSuccessfullySignedup();
@@ -152,7 +152,7 @@ function userAllreadyExists() {
 function toogleDialog(id) {
     document.getElementById(id).classList.add("dialog-active");
 
-    setTimeout(function() {
+    setTimeout(function () {
         document.getElementById(id).classList.remove("dialog-active");
     }, 2000);
 }
