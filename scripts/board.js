@@ -2,6 +2,7 @@ let currentDraggedElement;
 let tasksArray = [];
 let currentTask;
 
+let taskCounter = 0;
 
 ////////////////////
 ///    Start   ////
@@ -9,16 +10,15 @@ let currentTask;
 
 async function boardInit() {
     await getContacts();
+    getSelectedContacts();
     await getTasks();
     updateHtml();
 }
-
 
 async function resetBoard() {
     await getTasks();
     updateHtml();
 }
-
 
 ////////////////////////////////////////
 ///    Get and Show Tasks on Board   ///
@@ -46,7 +46,6 @@ async function getTasks() {
     }
 }
 
-
 function updateHtml() {
     let todoById = document.getElementById("to-do-container");
     let progressById = document.getElementById("in-progress-container");
@@ -59,11 +58,9 @@ function updateHtml() {
     renderTasks(filterTasks("done"), doneById, "Done");
 }
 
-
 function filterTasks(task) {
     return tasksArray.filter((t) => t["category"] == task);
 }
-
 
 function renderTasks(tasks, getById, noTask) {
     getById.innerHTML = "";
@@ -71,7 +68,8 @@ function renderTasks(tasks, getById, noTask) {
         getById.innerHTML += generateNoTaskHTML(noTask);
     } else {
         for (let index = 0; index < tasks.length; index++) {
-            const task = tasks[index];
+            taskCounter++;
+            let task = tasks[index];
             let className = task.categoryText.replace(" ", "-").toLowerCase();
             getById.innerHTML += generateTaskHTML(task, index, className);
             if (task.assignedTo) {
@@ -86,7 +84,6 @@ function renderTasks(tasks, getById, noTask) {
         }
     }
 }
-
 
 function renderSubtaskBar(task, index) {
     let taskAmount = document.getElementById(`${task.category}-amount${index}`);
@@ -103,7 +100,6 @@ function renderSubtaskBar(task, index) {
     progress.style.width = result;
 }
 
-
 function renderAssignedToContacts(task, index) {
     const assignedToContainer = document.getElementById(`${task.category}contatcs-container${index}`);
     const numContainer = document.getElementById(`${task.category}contatcs-container${index}num`);
@@ -117,14 +113,12 @@ function renderAssignedToContacts(task, index) {
     });
 }
 
-
 function renderPrio(task, index) {
     const imgRef = document.getElementById(`${task.category}prio-icon${index}`);
     if (task.prio) {
         imgRef.src = `./assets/icons/prio-${task.prio}-icon.png`;
     } // Else Statment bei keiner Prio mit d-none
 }
-
 
 ////////////////////////////////////////
 ///  Board Drag and Drop Functions   ///
@@ -136,16 +130,13 @@ function moveTo(category) {
     updateHtml();
 }
 
-
 function startDragging(id) {
     currentDraggedElement = id;
 }
 
-
 function allowDrop(ev) {
     ev.preventDefault();
 }
-
 
 async function moveToUpdateDatabase() {
     let getTasks = await getData("/tasks");
@@ -153,21 +144,17 @@ async function moveToUpdateDatabase() {
     await putData(`/tasks/${taskKey[currentDraggedElement]}`, tasksArray[currentDraggedElement]);
 }
 
-
 function highlight(id) {
     document.getElementById(id).classList.add("drag-area-highlight");
 }
-
 
 function removeHighlight(id) {
     document.getElementById(id).classList.remove("drag-area-highlight");
 }
 
-
 function animationOndrag(id) {
     document.getElementById(id).classList.add("animation-ondrag");
 }
-
 
 /////////////////////////////////////////////
 ///  Task Overlay - Show Task Functions   ///
@@ -181,7 +168,6 @@ function openTask(id) {
     renderTasksArrays();
 }
 
-
 function renderTasksArrays() {
     let assignedToRef = document.getElementById("assigned-to-list");
     assignedToRef.innerHTML = "";
@@ -192,7 +178,6 @@ function renderTasksArrays() {
     }
     setCheck();
 }
-
 
 /////////////////////////////////////////////////////
 ///   Task Overlay - Check Subtasks Functions    ///
@@ -211,7 +196,6 @@ function setCheck() {
     }
 }
 
-
 async function checkAndPushToFirebase(subIndex) {
     currentTask.subtask[subIndex].checked = !currentTask.subtask[subIndex].checked;
     setCheck();
@@ -223,9 +207,8 @@ async function checkAndPushToFirebase(subIndex) {
         })
     );
     await getTasks();
-    await resetBoard()
+    await resetBoard();
 }
-
 
 ////////////////////////////////////////
 //    Edit Task Overlay Functions   ///
@@ -239,13 +222,11 @@ function showEditTaskValues() {
     taskPrioText();
 }
 
-
-function updateCategoryText(value) {
-    currentTask.categoryText = value;
-    document.getElementById("category-text").innerHTML = value;
-    console.log(currentTask.categoryText);
-}
-
+// function updateCategoryText(value) {
+//     currentTask.categoryText = value;
+//     document.getElementById("category-text").innerHTML = value;
+//     console.log(currentTask.categoryText);
+// }
 
 function editTaskAssignTo() {
     selectedContacts = []; //Required, to clear the Array from the Edit-Task before    //// Anpassungen
@@ -257,7 +238,6 @@ function editTaskAssignTo() {
     }
 }
 
-
 function taskPrioText() {
     if (currentTask.prio) {
         document.getElementById("prio").innerHTML = currentTask.prio.charAt(0).toUpperCase() + currentTask.prio.slice(1);
@@ -265,7 +245,6 @@ function taskPrioText() {
         document.getElementById("prio").innerHTML = "No Prio";
     }
 }
-
 
 function editTaskPrioBtnColor() {
     document.getElementById("urgent-btn").classList.remove("urgent");
@@ -280,7 +259,6 @@ function editTaskPrioBtnColor() {
     } else return;
 }
 
-
 function editPrio(prioInput) {
     if (prioInput == currentTask.prio) {
         currentTask.prio = null;
@@ -289,7 +267,6 @@ function editPrio(prioInput) {
     }
     editTaskPrioBtnColor();
 }
-
 
 function findCheckedContacts(currentTask) {
     for (let i = 0; i < selectedContacts.length; i++) {
@@ -304,7 +281,6 @@ function findCheckedContacts(currentTask) {
     }
 }
 
-
 ///////////////////////////////////////////////
 ///   Edit Task Overlay - Edit Subtasks    ///
 //////////////////////////////////////////////
@@ -317,7 +293,6 @@ function editTaskSubtask() {
     }
 }
 
-
 function renderSubtaskEdit(subtasks) {
     let subTaskRef = document.getElementById("subtasks-container");
     subtasks.forEach((subtask, i) => {
@@ -325,20 +300,17 @@ function renderSubtaskEdit(subtasks) {
     });
 }
 
-
 function saveWord(index) {
     const newValue = document.getElementById(`editInput${index}`).value;
     currentSubtasks[index].sub = newValue;
     renderSubtaskEdit(currentSubtasks);
 }
 
-
 function deleteSubtask(i) {
     currentSubtasks.splice(i, 1);
     renderSubtaskEdit(currentSubtasks);
     classChangeAction("overlaver", "overlaver-active", "remove");
 }
-
 
 ///////////////////////////////////////////////////////
 ///   Edit Task Overlay - PUT  Firebase / Board    ///
@@ -368,7 +340,6 @@ async function editTask() {
     openTask(currentTask.id);
 }
 
-
 //////////////////////////////////////////////////////
 ///  Edit Task Overlay - Delete  Firebase Board   ///
 /////////////////////////////////////////////////////
@@ -379,7 +350,6 @@ async function deleteTask() {
     resetBoard();
 }
 
-
 //////////////////////////////////////////////////
 ///     Mobile  Drag and Drop  Button Version  ///
 /////////////////////////////////////////////////
@@ -388,10 +358,10 @@ function openTaskMoveOptions(taskId) {
     document.getElementById(`task-move-list${taskId}`).classList.toggle("show-drop-list");
 }
 
-
 async function moveTaskTo(taskId, category) {
-    await putData(path = `/tasks/${tasksArray[taskId].taskKey}/`,
-        data = {
+    await putData(
+        (path = `/tasks/${tasksArray[taskId].taskKey}/`),
+        (data = {
             id: taskId,
             category: category,
             categoryText: tasksArray[taskId].categoryText,
@@ -401,17 +371,18 @@ async function moveTaskTo(taskId, category) {
             prio: tasksArray[taskId].prio,
             assignedTo: tasksArray[taskId].assignedTo,
             subtask: tasksArray[taskId].subtask,
-            taskKey: tasksArray[taskId].taskKey
+            taskKey: tasksArray[taskId].taskKey,
         })
+    );
     await resetBoard();
 }
-
 
 //////////////////////////////////////////
 ///     Board Search Task Function     ///
 /////////////////////////////////////////
 
 function filterBoardTasks(screen) {
+    taskCounter = 0;
     let search = document.getElementById(`search-task-${screen}`).value;
     search = search.toLowerCase();
     let todoById = document.getElementById("to-do-container");
@@ -423,8 +394,20 @@ function filterBoardTasks(screen) {
     renderTasks(filterSearchTasks("progress", search), progressById, "Progress");
     renderTasks(filterSearchTasks("feedback", search), feedbackById, "Feedback");
     renderTasks(filterSearchTasks("done", search), doneById, "Done");
+
+    foundTasks(screen);
 }
 
+function foundTasks(screen) {
+    let numberOfTasksRef = document.getElementById(`nummber-of-${screen}`);
+    if (taskCounter == 0) {
+        numberOfTasksRef.innerHTML = `No task found`;
+    } else if (taskCounter == 1) {
+        numberOfTasksRef.innerHTML = `${taskCounter} found task`;
+    } else {
+        numberOfTasksRef.innerHTML = `${taskCounter} found tasks`;
+    }
+}
 
 function filterSearchTasks(task, search) {
     let filterArray = tasksArray.filter((t) => t["category"] == task);
@@ -435,5 +418,39 @@ function filterSearchTasks(task, search) {
             filterTasks.push(tasks);
         }
     }
-    return filterTasks
+    return filterTasks;
 }
+
+//////////////////////////////////////////
+///    Scroll to Section Function     ///                                                   //  In Progress .....
+/////////////////////////////////////////
+
+// const feedbackColumn = document.getElementById('feedback');
+
+// // Warte darauf, dass die Seite vollständig geladen ist, bevor gescrollt wird
+// window.onload = function() {
+//     if (feedbackColumn) {
+//         // Hier wird gezielt innerhalb des Containers gescrollt
+//         feedbackColumn.scrollIntoView({
+//             behavior: 'smooth',   // Optional: für ein weiches Scrollen
+//             block: 'start',       // Scrollt zum Start des Elements
+//             inline: 'center'      // Horizontales Scrollen: positioniert die Spalte in der Mitte
+//         });
+//     }
+// };
+
+function scrollToFeedback() {
+    const feedbackColumn = document.getElementById("feedback"); // Die Spalte, zu der gescrollt werden soll
+
+    if (feedbackColumn) {
+        feedbackColumn.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest", // Scrollt innerhalb des Containers
+            inline: "start", // Horizontales Scrollen, positioniert die Spalte links
+        });
+    }
+}
+
+//////////////////////////////////////////
+///                                    ///
+/////////////////////////////////////////

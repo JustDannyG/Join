@@ -13,9 +13,7 @@
     z-index: 1;
     /* height: calc(100vh - (80px + 80px)); */
     overflow: hidden;
-
 }
-
 
 /* =========================
       Board Head Desktop
@@ -42,6 +40,7 @@
 }
 
 .search-box-desktop {
+    position: relative;
     display: flex;
     border: solid 1px;
     width: 312px;
@@ -55,10 +54,14 @@
     border: none;
 }
 
-
 .search-icon {
     width: 32px;
     height: 32px;
+}
+
+.nummber-of-tasks {
+    position: absolute;
+    bottom: -25px;
 }
 
 .add-task-btn {
@@ -74,7 +77,6 @@
     border-radius: 10px;
     background-color: var(--darke-blue);
 }
-
 
 /* =========================
       Board Head Mobile
@@ -109,6 +111,7 @@
 }
 
 .search-box-mobile {
+    position: relative;
     display: flex;
     border: solid 1px;
     border-radius: 10px;
@@ -122,44 +125,9 @@
     border: none;
 }
 
-
-
 /* =========================
      
    ========================= */
-
-
-
-
-
-/* .search {
-    border: 2px solid var(--dark-grey);
-    border-radius: 8px;
-    padding: 4px 8px;
-    background-color: var(--white);
-}
-
-.input-row {
-    margin-top: 20px;
-    border: 2px solid var(--dark-grey);
-    border-radius: 8px;
-    padding: 4px 8px;
-    background-color: var(--white);
-}
-
-.input-row input,
-.input {
-    border: unset;
-    border-right: 2px solid var(--medium-grey);
-    width: 100%;
-}
-
-.input-row input::placeholder {
-    font-size: 16px;
-} */
-
-
-
 
 /* =========================
      Board - Content
@@ -215,7 +183,6 @@
     padding: 0 10px;
 }
 
-
 .add-task-icon-btn {
     height: 30px;
     width: 30px;
@@ -228,7 +195,6 @@
 .add-task-icon-btn:hover {
     scale: 1.1;
 }
-
 
 /* =========================
        No Task Template
@@ -270,7 +236,7 @@
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    border: solid #D1D1D1 2px;
+    border: solid #d1d1d1 2px;
     background-color: white;
 }
 
@@ -390,7 +356,6 @@
     left: 78px;
 }
 
-
 .user-story {
     background-color: var(--story);
 }
@@ -404,7 +369,8 @@
 }
 
 .drag-area-highlight {
-    background-color: lightblue;
+    border: 2px dotted var(--dark-grey);
+    border-radius: 10px;
 }
 
 .task {
@@ -467,11 +433,6 @@
     transform: translateX(100%);
     z-index: 2;
 }
-
-.overlaver-active {
-    transform: translateX(0) !important;
-}
-
 
 .task-overlay-bg {
     display: flex;
@@ -695,7 +656,7 @@
     box-shadow: rgba(0, 0, 0, 0.3) 2px 1px 9px 7px;
 }
 
-.dropdown-category {
+/* .dropdown-category {
     position: absolute;
     top: 88px;
     width: min-content;
@@ -717,14 +678,12 @@
 }
 
 .task-overlay-category {
-
     position: relative;
 }
 
 .cursor-pointer {
     cursor: pointer;
-}
-
+} */
 
 .edit-title-input {
     font-size: 20px;
@@ -732,7 +691,7 @@
     padding: 0 20px;
     height: 48px;
     border-radius: 10px;
-    border: solid 1px #D1D1D1;
+    border: solid 1px #d1d1d1;
 }
 
 .edit-textarea {
@@ -741,7 +700,7 @@
     padding: 0 20px;
     width: 100%;
     border-radius: 10px;
-    border: solid 1px #D1D1D1;
+    border: solid 1px #d1d1d1;
 }
 
 .edit-date-input {
@@ -750,5 +709,17 @@
     height: 48px;
     padding: 0 20px;
     border-radius: 10px;
-    border: solid 1px #D1D1D1;
+    border: solid 1px #d1d1d1;
+}
+
+.dropdown-options-in-edit {
+    position: relative;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border-radius: 8px;
 }
