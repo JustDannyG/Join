@@ -4,7 +4,7 @@ async function signUp() {
     let userPwd = document.getElementById('user-pwd').value;
     let userConfPwd = document.getElementById('user-conf-pwd').value;
     checkbox = document.getElementById('myCheckbox');
-    ceckIfUserAllreadyExists(userNameInput, userEmailInput, userPwd, userConfPwd, checkbox);
+    checkIfUserAllreadyExists(userNameInput, userEmailInput, userPwd, userConfPwd, checkbox);
     errorStyles(userNameInput, userEmailInput, userPwd, userConfPwd);
     // checkIfAllInputsFilled(userNameInput, userEmailInput, userPwd, userConfPwd);
 }
@@ -117,22 +117,27 @@ function errorStyles(userNameInput, userEmailInput, userPwd, userConfPwd) {
     checkboxError();
 }
 
-async function ceckIfUserAllreadyExists(userNameInput, userEmailInput, userPwd, userConfPwd, checkbox) {
+async function checkIfUserAllreadyExists(userNameInput, userEmailInput, userPwd, userConfPwd, checkbox) {
     let users = await getData('users');
     let userIds = Object.keys(users);
-    let user;
+    let userExists = false;
     for (let i = 0; i < userIds.length; i++) {
-        let userId = userIds[i];
-        user = users[userId];
-        if (user.email === userEmailInput || user.email === userEmailInput && user.name === userNameInput && checkbox.checked && userConfPwd !== "") {
-            userAllreadyExists();
-        } 
+        let user = users[userIds[i]];
+        if (user.email == userEmailInput || user.name == userNameInput) {
+            userExists = true;
+            break;
+        }
     }
-    if (user.email !== userEmailInput && checkbox.checked && userNameInput !== "" && userEmailInput !== "" && userPwd !== "" && userConfPwd !== "" && userPwd === userConfPwd) {
-        postSignUpData(userNameInput, userEmailInput, userPwd);
+    if (userExists) {
+        userAllreadyExists();
+    } else {
+        if (checkbox.checked && userNameInput !== "" && userEmailInput !== "" && userPwd !== "" && userConfPwd !== "" && userPwd === userConfPwd && userExists == false) {
+            checkIfAllInputsFilled(userNameInput, userEmailInput, userPwd, userConfPwd, users);
+            postSignUpData(userNameInput, userEmailInput, userPwd);
+        }
     }
-    checkIfAllInputsFilled(userNameInput, userEmailInput, userPwd, userConfPwd, user);
 }
+
 
 function userSuccessfullySignedup() {
     console.log('User successfully signed up!');
