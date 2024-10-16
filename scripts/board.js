@@ -131,7 +131,9 @@ function moveTo(category) {
 }
 
 function startDragging(id) {
+    // document.getElementById(id).classList.add('rotate-drag')
     currentDraggedElement = id;
+   
 }
 
 function allowDrop(ev) {
@@ -452,4 +454,38 @@ function scrollToSection(section) {
     }
 }
 
+//////////////////////////////////////////
+///    Draggin     ///              
+/////////////////////////////////////////  
+// task.addEventListener('dragstart', function(event) {
+//     console.log('Dragging started');
+//     event.target.classList.add('task-dragging');
+// });
 
+// task.addEventListener('dragend', function(event) {
+//     console.log('Dragging ended');
+//     event.target.classList.remove('task-dragging');
+// });
+
+
+// function rotadeTask(){
+
+
+// }
+// document.querySelectorAll('.task').forEach(task => {
+//     // Füge eine onclick-Funktion hinzu, die das Element beim Anklicken verändert
+//     task.addEventListener('click', function(event) {
+//         // Wenn das Task-Element nicht die Klasse hat, fügen wir sie hinzu
+//         console.log('Dragging started');
+//         if (!event.target.classList.contains('task-selected')) {
+//             event.target.classList.add('task-selected');
+//         }
+//     });
+
+//     // Entferne die Klasse wieder, wenn der Benutzer die Maustaste loslässt
+//     task.addEventListener('mouseup', function(event) {
+//         // Entferne die Klasse, wenn die Maustaste losgelassen wird
+//         console.log('Dragging ended');
+//         event.target.classList.remove('task-selected');
+//     });
+// });
