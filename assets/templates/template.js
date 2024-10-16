@@ -55,7 +55,7 @@ function desktopSidebar() {
         <img class="sidebar-logo-desktop" src="./assets/icons/join-logo-light.png" alt="">
         <nav class="sidebar-nav">
 
-            <a class="nav-link-desktop" id="summary-link" " href="summary.html"><img src="./assets/icons/summary-icon.png" > Summary</a>
+            <a class="nav-link-desktop" id="summary-link" href="summary.html"><img src="./assets/icons/summary-icon.png" > Summary</a>
             <a class="nav-link-desktop" id="add-task-link"  href="add-task.html" onclick="setTaskCategory('todo')"><img src="./assets/icons/add-task-icon.png" > Add Task</a>
 
             <a class="nav-link-desktop" id="board-link"  href="board.html"><img src="./assets/icons/board-icon.png" > Board</a>
