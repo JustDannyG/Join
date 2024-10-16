@@ -66,6 +66,9 @@ async function getTasks() {
     let deletedContact = getFromLocalStorage("deletedContact");
 
     for (let index = 0; index < taskKeys.length; index++) {
+
+        // let deletedContact = getFromLocalStorage("deletedContact");
+
         const key = taskKeys[index];
         let task = response[key];
 
@@ -82,19 +85,10 @@ async function getTasks() {
             taskKey: taskKeys[index],
         });
 
-        if (Array.isArray(task.assignedTo)) {
-            for (let i = 0; i < task.assignedTo.length; i++) {
-                const assignedContact = task.assignedTo[i];
+        // if (deletedContact.name == task.assignedTo) {
+        //     console.log("Muss gelöscht werden");
+        // }
 
-                if (deletedContact.name === assignedContact.name) {
-                    console.log(`Contact ${assignedContact.name} must be deleted`);
-                } else {
-                    console.log(`Contact ${assignedContact.name} is not in the deleted contacts`);
-                }
-            }
-        } else {
-            return;
-        }
     }
 }
 
@@ -184,6 +178,7 @@ function moveTo(category) {
 
 function startDragging(id) {
     currentDraggedElement = id;
+   
 }
 
 function allowDrop(ev) {
@@ -494,3 +489,4 @@ function scrollToSection(section) {
         });
     }
 }
+
