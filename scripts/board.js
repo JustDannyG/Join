@@ -25,40 +25,31 @@ async function resetBoard() {
 ////////////////////////////////////////
 
 
-async function getTasks() {
-    let response = await getData((path = "/tasks"));
-    let taskKeys = Object.keys(response);
-    tasksArray = [];
+//Ist jetzt in der Sktipt, wegen deleteContact()
 
-    // Fetch deleted contact once before the loop
-    let deletedContact = getFromLocalStorage("deletedContact");
+// async function getTasks() {
+//     let response = await getData((path = "/tasks"));
+//     let taskKeys = Object.keys(response);
+//     tasksArray = [];
+//     for (let index = 0; index < taskKeys.length; index++) {
+//         const key = taskKeys[index];
+//         let task = response[key];
 
-    for (let index = 0; index < taskKeys.length; index++) {
+//         tasksArray.push({
+//             title: task.title,
+//             description: task.description,
+//             id: index,
+//             date: task.date,
+//             assignedTo: task.assignedTo,
+//             category: task.category,
+//             prio: task.prio,
+//             categoryText: task.categoryText,
+//             subtask: task.subtask,
+//             taskKey: taskKeys[index],
+//         });
+//     }
+// }
 
-        // let deletedContact = getFromLocalStorage("deletedContact");
-
-        const key = taskKeys[index];
-        let task = response[key];
-
-        tasksArray.push({
-            title: task.title,
-            description: task.description,
-            id: index,
-            date: task.date,
-            assignedTo: task.assignedTo,
-            category: task.category,
-            prio: task.prio,
-            categoryText: task.categoryText,
-            subtask: task.subtask,
-            taskKey: taskKeys[index],
-        });
-
-        // if (deletedContact.name == task.assignedTo) {
-        //     console.log("Muss gelöscht werden");
-        // }
-
-    }
-}
 
 function updateHtml() {
     let todoById = document.getElementById("to-do-container");
@@ -146,7 +137,6 @@ function moveTo(category) {
 
 function startDragging(id) {
     currentDraggedElement = id;
-   
 }
 
 function allowDrop(ev) {
@@ -457,4 +447,3 @@ function scrollToSection(section) {
         });
     }
 }
-
