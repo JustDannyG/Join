@@ -30,7 +30,7 @@ async function getTasks() {
     tasksArray = [];
 
     for (let index = 0; index < taskKeys.length; index++) {
-        let deletedContact = getFromLocalStorage("deletedContact");
+        // let deletedContact = getFromLocalStorage("deletedContact");
         const key = taskKeys[index];
         let task = response[key];
         tasksArray.push({
@@ -45,9 +45,9 @@ async function getTasks() {
             subtask: task.subtask,
             taskKey: taskKeys[index],
         });
-        if (deletedContact.name == task.assignedTo) {
-            console.log("Muss gelöscht werden");
-        }
+        // if (deletedContact.name == task.assignedTo) {
+        //     console.log("Muss gelöscht werden");
+        // }
     }
 }
 
