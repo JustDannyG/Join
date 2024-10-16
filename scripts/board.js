@@ -24,6 +24,7 @@ async function resetBoard() {
 ///    Get and Show Tasks on Board   ///
 ////////////////////////////////////////
 
+
 //Ist jetzt in der Sktipt, wegen deleteContact()
 
 // async function getTasks() {
@@ -48,6 +49,7 @@ async function resetBoard() {
 //         });
 //     }
 // }
+
 
 function updateHtml() {
     let todoById = document.getElementById("to-do-container");
