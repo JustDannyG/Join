@@ -1,8 +1,8 @@
 let categoryInput;
 let currentCategory;
 let selectedContacts = [];
-let subtaskArray = [];
 let currentSubtasks = [];
+let subtaskArray = [];
 let isDropdownOpen = false;
 
 /////////////////

@@ -24,15 +24,16 @@ async function resetBoard() {
 ///    Get and Show Tasks on Board   ///
 ////////////////////////////////////////
 
+//Ist jetzt in der Sktipt, wegen deleteContact()
+
 // async function getTasks() {
 //     let response = await getData((path = "/tasks"));
 //     let taskKeys = Object.keys(response);
 //     tasksArray = [];
-
 //     for (let index = 0; index < taskKeys.length; index++) {
-//         let deletedContact = getFromLocalStorage("deletedContact");
 //         const key = taskKeys[index];
 //         let task = response[key];
+
 //         tasksArray.push({
 //             title: task.title,
 //             description: task.description,
@@ -45,52 +46,8 @@ async function resetBoard() {
 //             subtask: task.subtask,
 //             taskKey: taskKeys[index],
 //         });
-//         for (let i = 0; i < task.assignedTo.length; i++) {
-//             const assignedContact = task.assignedTo[i];
-//             console.log("gelöschter Kontakt", deletedContact.name);
-//             console.log("assignTo", task.assignedTo);
-//             if (deletedContact.name == assignedContact.name) {
-//                 console.log("Muss gelöscht werden");
-//             }
-//             console.log("nicht in der if abfrage");
-//         }
 //     }
 // }
-
-async function getTasks() {
-    let response = await getData((path = "/tasks"));
-    let taskKeys = Object.keys(response);
-    tasksArray = [];
-
-    // Fetch deleted contact once before the loop
-    let deletedContact = getFromLocalStorage("deletedContact");
-
-    for (let index = 0; index < taskKeys.length; index++) {
-
-        // let deletedContact = getFromLocalStorage("deletedContact");
-
-        const key = taskKeys[index];
-        let task = response[key];
-
-        tasksArray.push({
-            title: task.title,
-            description: task.description,
-            id: index,
-            date: task.date,
-            assignedTo: task.assignedTo,
-            category: task.category,
-            prio: task.prio,
-            categoryText: task.categoryText,
-            subtask: task.subtask,
-            taskKey: taskKeys[index],
-        });
-
-        // if (deletedContact.name == task.assignedTo) {
-        //     console.log("Muss gelöscht werden");
-        // }
-
-    }
-}
 
 function updateHtml() {
     let todoById = document.getElementById("to-do-container");
@@ -178,7 +135,6 @@ function moveTo(category) {
 
 function startDragging(id) {
     currentDraggedElement = id;
-   
 }
 
 function allowDrop(ev) {
@@ -489,4 +445,3 @@ function scrollToSection(section) {
         });
     }
 }
-
