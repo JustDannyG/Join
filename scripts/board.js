@@ -24,38 +24,6 @@ async function resetBoard() {
 ///    Get and Show Tasks on Board   ///
 ////////////////////////////////////////
 
-// async function getTasks() {
-//     let response = await getData((path = "/tasks"));
-//     let taskKeys = Object.keys(response);
-//     tasksArray = [];
-
-//     for (let index = 0; index < taskKeys.length; index++) {
-//         let deletedContact = getFromLocalStorage("deletedContact");
-//         const key = taskKeys[index];
-//         let task = response[key];
-//         tasksArray.push({
-//             title: task.title,
-//             description: task.description,
-//             id: index,
-//             date: task.date,
-//             assignedTo: task.assignedTo,
-//             category: task.category,
-//             prio: task.prio,
-//             categoryText: task.categoryText,
-//             subtask: task.subtask,
-//             taskKey: taskKeys[index],
-//         });
-//         for (let i = 0; i < task.assignedTo.length; i++) {
-//             const assignedContact = task.assignedTo[i];
-//             console.log("gelöschter Kontakt", deletedContact.name);
-//             console.log("assignTo", task.assignedTo);
-//             if (deletedContact.name == assignedContact.name) {
-//                 console.log("Muss gelöscht werden");
-//             }
-//             console.log("nicht in der if abfrage");
-//         }
-//     }
-// }
 
 async function getTasks() {
     let response = await getData((path = "/tasks"));
