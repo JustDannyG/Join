@@ -13,7 +13,6 @@
 
         <script src="./scripts/fetch.js"></script>
         <script src="./assets/templates/template.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
         <link rel="stylesheet" href="./style.css" />
         <link rel="stylesheet" href="./styles/add-task.css" />
@@ -60,37 +59,41 @@
             <div class="task-content">
                 <section class="board-section">
                     <div class="board-section-title">
-                        <h2 id="todo">To do</h2>
+                        <h2>To do</h2>
                         <img class="add-task-icon-btn" src="./assets/icons/add-icon.png" alt="" onclick="openAddTask('todo')" />
                     </div>
 
                     <div id="to-do-container" class="task-container" ondrop="moveTo('todo');removeHighlight('to-do-container')" ondragover="allowDrop(event);highlight('to-do-container')" ondragleave="removeHighlight('to-do-container')"></div>
+                    <span id="todo"></span>
                 </section>
 
                 <section class="board-section">
                     <div class="board-section-title">
-                        <h2 id="progress">In progress</h2>
+                        <h2>In progress</h2>
                         <img class="add-task-icon-btn" src="./assets/icons/add-icon.png" alt="" onclick="openAddTask('progress')" />
                     </div>
 
                     <div id="in-progress-container" class="task-container" ondrop="moveTo('progress');removeHighlight('in-progress-container')" ondragover="allowDrop(event);highlight('in-progress-container')" ondragleave="removeHighlight('in-progress-container')"></div>
+                    <span id="progress"></span>
                 </section>
 
                 <section class="board-section">
                     <div class="board-section-title">
-                        <h2 id="feedback">Await feedback</h2>
+                        <h2>Await feedback</h2>
                         <img class="add-task-icon-btn" src="./assets/icons/add-icon.png" alt="" onclick="openAddTask('feedback')" />
                     </div>
 
                     <div id="await-feedback-container" class="task-container" ondrop="moveTo('feedback'); removeHighlight('await-feedback-container')" ondragover="allowDrop(event);highlight('await-feedback-container')" ondragleave="removeHighlight('await-feedback-container')"></div>
+                    <span id="feedback"></span>
                 </section>
 
                 <section class="board-section">
                     <div class="board-section-title">
-                        <h2 id="done">Done</h2>
+                        <h2>Done</h2>
                     </div>
 
                     <div id="done-container" class="task-container" ondrop="moveTo('done'); removeHighlight('done-container')" ondragover="allowDrop(event);highlight('done-container')" ondragleave="removeHighlight('done-container')"></div>
+                    <span id="done"></span>
                 </section>
             </div>
         </main>

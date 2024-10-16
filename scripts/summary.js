@@ -1,3 +1,6 @@
+let upcomingDeadlineScroll
+
+
 function summaryInit() {
     greeting()
     greetingUser()
@@ -82,6 +85,7 @@ function findEarliestDate(task) {
         }
     });
     earliestUrgentDate.innerHTML = earliestDate.date
+    upcomingDeadlineScroll = earliestDate.id;
     return earliestDate;
 }
 
@@ -90,6 +94,6 @@ function findEarliestDate(task) {
 ///     Go / Scroll to current Task In Board     ///
 ////////////////////////////////////////////////////
 
-function goToSummaryTask() {
-    window.location.href = 'board.html';
+function goToSummaryTask(section) {
+    window.location.href = 'board.html#' + '/' + section;
 }
