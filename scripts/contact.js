@@ -92,7 +92,6 @@ function toogleDialog(id, index) {
 
     setTimeout(function () {
         document.getElementById(id).classList.remove("dialog-active");
-        console.log(index);
         openContact(index);
     }, 2000);
 }
@@ -113,7 +112,6 @@ function clearAddInputs() {
 ///////////////////////////////
 
 function showContact() {
-    console.log("Showing contact at index:", contactIndex); // Debugging
     let currentContact = document.getElementById("current-contact");
     let detail = contactsArray[contactIndex];
     currentContact.innerHTML = contactCirleHTML(detail);
@@ -175,8 +173,7 @@ async function editContact() {
 
     if (screenMode == "mobile") {
         window.location.href = "contact-details.html";
-    }
-    if (screenMode == "desktop") {
+    } else if (screenMode == "desktop") {
         await initContacts();
         openContact(await findContact(name, email, phone));
         classChangeAction("edit-overlay-bg", "hide-overlay", "add");
@@ -191,6 +188,6 @@ async function deleteContact() {
     await getCurrentKey();
     let key = currentSortKeys[contactIndex].key;
     await deleteData((path = `/contacts/${key}`), (data = {}));
-
+    saveToLocalStorage("deletedContact", contacts[contactIndex]);
     window.location.href = "contact.html";
 }

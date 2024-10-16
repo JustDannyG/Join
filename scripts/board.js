@@ -28,7 +28,9 @@ async function getTasks() {
     let response = await getData((path = "/tasks"));
     let taskKeys = Object.keys(response);
     tasksArray = [];
+
     for (let index = 0; index < taskKeys.length; index++) {
+        let deletedContact = getFromLocalStorage("deletedContact");
         const key = taskKeys[index];
         let task = response[key];
         tasksArray.push({
@@ -43,6 +45,9 @@ async function getTasks() {
             subtask: task.subtask,
             taskKey: taskKeys[index],
         });
+        if (deletedContact.name == task.assignedTo) {
+            console.log("Muss gelöscht werden");
+        }
     }
 }
 
@@ -68,7 +73,7 @@ function renderTasks(tasks, getById, noTask) {
         getById.innerHTML += generateNoTaskHTML(noTask);
     } else {
         for (let index = 0; index < tasks.length; index++) {
-            taskCounter++
+            taskCounter++;
             let task = tasks[index];
             let className = task.categoryText.replace(" ", "-").toLowerCase();
             getById.innerHTML += generateTaskHTML(task, index, className);
@@ -222,12 +227,6 @@ function showEditTaskValues() {
     editTaskPrioBtnColor();
     taskPrioText();
 }
-
-// function updateCategoryText(value) {
-//     currentTask.categoryText = value;
-//     document.getElementById("category-text").innerHTML = value;
-//     console.log(currentTask.categoryText);
-// }
 
 function editTaskAssignTo() {
     selectedContacts = []; //Required, to clear the Array from the Edit-Task before    //// Anpassungen
@@ -402,13 +401,11 @@ function filterBoardTasks(screen) {
 function foundTasks(screen) {
     let numberOfTasksRef = document.getElementById(`nummber-of-${screen}`);
     if (taskCounter == 0) {
-
-        numberOfTasksRef.innerHTML = `No task found`
+        numberOfTasksRef.innerHTML = `No task found`;
     } else if (taskCounter == 1) {
-        numberOfTasksRef.innerHTML = `${taskCounter} found task`
+        numberOfTasksRef.innerHTML = `${taskCounter} found task`;
     } else {
-        numberOfTasksRef.innerHTML = `${taskCounter} found tasks`
-
+        numberOfTasksRef.innerHTML = `${taskCounter} found tasks`;
     }
 }
 
@@ -425,66 +422,30 @@ function filterSearchTasks(task, search) {
 }
 
 //////////////////////////////////////////
-///    Scroll to Section Function     ///              
-/////////////////////////////////////////      
+///    Scroll to Section Function     ///
+/////////////////////////////////////////
 
-window.addEventListener('load', function () {
+window.addEventListener("load", function () {
     let section = window.location.hash.substring(1);
     console.log(section);
-    
+
     section = section.slice(1);
     if (section) {
         setTimeout(function () {
-            scrollToSection(section);  
-        }, 100);  
+            scrollToSection(section);
+        }, 100);
     }
 });
 
-
 function scrollToSection(section) {
-    let sectionColumn = document.getElementById(section); 
+    let sectionColumn = document.getElementById(section);
 
     if (sectionColumn) {
         sectionColumn.scrollIntoView({
-            behavior: 'smooth',
-            block: 'nearest',  
-            inline: 'nearest'    
+            behavior: "smooth",
+            block: "nearest",
+            inline: "nearest",
         });
     }
 }
 
-//////////////////////////////////////////
-///    Draggin     ///              
-/////////////////////////////////////////  
-// task.addEventListener('dragstart', function(event) {
-//     console.log('Dragging started');
-//     event.target.classList.add('task-dragging');
-// });
-
-// task.addEventListener('dragend', function(event) {
-//     console.log('Dragging ended');
-//     event.target.classList.remove('task-dragging');
-// });
-
-
-// function rotadeTask(){
-
-
-// }
-// document.querySelectorAll('.task').forEach(task => {
-//     // Füge eine onclick-Funktion hinzu, die das Element beim Anklicken verändert
-//     task.addEventListener('click', function(event) {
-//         // Wenn das Task-Element nicht die Klasse hat, fügen wir sie hinzu
-//         console.log('Dragging started');
-//         if (!event.target.classList.contains('task-selected')) {
-//             event.target.classList.add('task-selected');
-//         }
-//     });
-
-//     // Entferne die Klasse wieder, wenn der Benutzer die Maustaste loslässt
-//     task.addEventListener('mouseup', function(event) {
-//         // Entferne die Klasse, wenn die Maustaste losgelassen wird
-//         console.log('Dragging ended');
-//         event.target.classList.remove('task-selected');
-//     });
-// });
