@@ -137,6 +137,7 @@ function moveTo(category) {
 
 function startDragging(id) {
     currentDraggedElement = id;
+   
 }
 
 function allowDrop(ev) {
@@ -447,3 +448,4 @@ function scrollToSection(section) {
         });
     }
 }
+
