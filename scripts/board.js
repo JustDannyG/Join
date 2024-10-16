@@ -131,7 +131,6 @@ function moveTo(category) {
 }
 
 function startDragging(id) {
-    // document.getElementById(id).classList.add('rotate-drag')
     currentDraggedElement = id;
    
 }

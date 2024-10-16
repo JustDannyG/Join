@@ -73,7 +73,8 @@ function desktopSidebar() {
 ///////////////////////////////////////////
 
 function generateTaskHTML(task, index, className) {
-    return /*html*/`<div id="${task.id}" draggable="true" dragleave="animationOndrag(${task.id})"  ondragstart="startDragging(${task.id})"  onclick="classChangeAction('overlaver','overlaver-active','add'); openTask(${task.id})" class="task">
+    return /*html*/`<div id="${task.id}" draggable="true" dragleave="animationOndrag(${task.id})"  ondragstart="startDragging(${task.id})"  onclick="classChangeAction('overlaver','overlaver-active','add'); openTask(${task.id})" class="task-wrapper">
+            <div class ="task">
               <div class="task-category ${className}">${task.categoryText}</div>
               <span class="drag-drop-btn">
                 <img class="drag-drop-icon" src="./assets/icons/up-down-arrow.png" alt="" onclick="openTaskMoveOptions(${task.id});stopEventBubbling(event)">
@@ -97,6 +98,7 @@ function generateTaskHTML(task, index, className) {
                   <div id="${task.category}contatcs-container${index}num" class="d-flex contatcs-container"></div>
                   <img id="${task.category}prio-icon${index}" class="prio-icon" src="" alt="">
               </div> 
+           </div>
                </div>`;
 }
 

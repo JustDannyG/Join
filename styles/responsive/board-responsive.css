@@ -148,9 +148,8 @@
         flex: 1;
     }
 
-    .task {
+    .task-wrapper {
         min-width: 220px;
-        width: 80%;
     }
 
     .task-content {
