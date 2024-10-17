@@ -273,7 +273,6 @@
     transition: transform 0.3s ease-in-out;
 }
 
-
 .edit-container div {
     gap: 14px;
     height: 100%;
@@ -503,17 +502,18 @@
     transition: all ease-in-out 100ms;
 }
 
-.submit-btn:hover{
+.submit-btn:hover {
     background-color: var(--light-blue);
     box-shadow: 2px 4px 7px 0px rgba(0, 0, 0, 0.5);
-
+}
+.submit-btn:disabled {
+    background-color: var(--light-blue);
 }
 
 .submit-btn img {
     width: 20px;
     margin-left: 4px;
 }
-
 
 .clear-btn-add-contact {
     width: 180px;
@@ -527,13 +527,10 @@
     transition: all ease-in-out 125ms;
 }
 
-
-
 .overlay-header-content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-   
 }
 
 .add-cancel-btn {
@@ -548,10 +545,9 @@
     right: 330px;
 
     transition: all ease-in-out 100ms;
-
 }
 
-.add-cancel-btn:hover{
+.add-cancel-btn:hover {
     color: var(--light-blue);
     border: solid 2px var(--light-blue);
     box-shadow: 2px 4px 7px 0px rgba(0, 0, 0, 0.5);
@@ -574,21 +570,12 @@
     border-radius: 12px;
 }
 
-
 .dialog-active {
     transform: translateY(-120px);
 }
 
-
-
-
 /*=======                                   Ab hier noch weiter Checken*/
-
-
 
 .hide-overlay-desktop {
     transform: translateX(100vw);
 }
-
-
-
