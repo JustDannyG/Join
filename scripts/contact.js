@@ -67,13 +67,15 @@ function getFromLocalStorage(key) {
 ///////////////////////////////////
 
 async function addContact() {
-    const nameRef = document.getElementById("add-name-input");
-    const emailRef = document.getElementById("add-mail-input");
-    const phoneNumRef = document.getElementById("add-phone-input");
-    const inputs = getInputs(nameRef, emailRef, phoneNumRef);
+    let nameRef = document.getElementById("add-name-input");
+    let emailRef = document.getElementById("add-mail-input");
+    let phoneNumRef = document.getElementById("add-phone-input");
+    let inputs = getInputs(nameRef, emailRef, phoneNumRef);
+    document.getElementById("submit-add-contact-btn").setAttribute("disabled", true);
     clearInput(nameRef);
     clearInput(emailRef);
     clearInput(phoneNumRef);
+
     await postData((path = "contacts"), (data = { name: `${inputs.name}`, email: `${inputs.email}`, phone: `${inputs.phone}`, color: `${inputs.color}` }));
     const contactIndex = await findContact(inputs.name, inputs.email, inputs.phone);
     toogleDialog("dialog-add-succes", contactIndex);
@@ -92,6 +94,7 @@ function toogleDialog(id, index) {
 
     setTimeout(function () {
         document.getElementById(id).classList.remove("dialog-active");
+        buttonRef = document.getElementById("submit-add-contact-btn").removeAttribute("disabled");
         openContact(index);
     }, 2000);
 }
@@ -186,8 +189,40 @@ async function editContact() {
 
 async function deleteContact() {
     await getCurrentKey();
+    await getTasks();
     let key = currentSortKeys[contactIndex].key;
+
     await deleteData((path = `/contacts/${key}`), (data = {}));
-    saveToLocalStorage("deletedContact", contacts[contactIndex]);
+    await updateTasksWithRemovedContact();
     window.location.href = "contact.html";
+}
+
+async function updateTasksWithRemovedContact() {
+    let allTasks = await getData((path = "/tasks"));
+    let keyOfTask = Object.keys(allTasks);
+    let contactToDelete = contactsArray[contactIndex];
+
+    for (let i = 0; i < tasksArray.length; i++) {
+        const task = tasksArray[i];
+        if (task.assignedTo) {
+            await checkAndRemoveAssignedContact(task, contactToDelete, keyOfTask[i], allTasks);
+        }
+    }
+}
+
+async function checkAndRemoveAssignedContact(task, contactToDelete, taskKey, allTasks) {
+    for (let j = 0; j < task.assignedTo.length; j++) {
+        const assignedContact = task.assignedTo[j];
+        if (assignedContact.name === contactToDelete.name) {
+            task.assignedTo.splice(j, 1);
+            await putData(
+                (path = `/tasks/${taskKey}`),
+                (data = {
+                    ...allTasks[taskKey],
+                    assignedTo: task.assignedTo,
+                })
+            );
+            j--;
+        }
+    }
 }

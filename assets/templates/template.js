@@ -10,7 +10,7 @@ function mobileHeader(user) {
         <a href="./help.html">Help</a>
         <a href="./legal-notice.html">Legal Notice</a>
         <a href="./privacy-policy.html">Privacy Policy</a>
-        <a href="./index.html">Log out</a>
+        <a onclick="logOut()" href="#">Log out</a>
       </div>
     </header>`;
 }

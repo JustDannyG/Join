@@ -18,6 +18,7 @@ function searchUserInDatabase(emailInput, passwordInput, users, userIds, userFou
         user = users[userId];
         if (user.email === emailInput && user.password === passwordInput) {
             userFound = true;
+            localStorage.setItem("user", user.name);
             window.location.href = 'summary.html';
             break;
         }
@@ -72,6 +73,7 @@ function rememberMe() {
 }
 
 function goSummery(event) {
+    localStorage.setItem("user", "Guest");
     // event.preventDefault();
     window.location.href = 'summary.html';
 }

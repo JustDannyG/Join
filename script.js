@@ -1,4 +1,7 @@
-let user = "Guest";
+let user = localStorage.getItem("user");
+console.log(user);
+
+//Wenn kein User eingelogt dann bitte so: let user;
 let contacts = [];
 let prio = "medium";
 
@@ -11,18 +14,20 @@ function markedPage(id, activeStyle) {
 }
 
 function createInititals(selectName) {
-    let firstsChar = selectName;
-    parts = firstsChar.split(" ");
-    if (parts.length == 1) {
-        neededPartOne = parts[0].slice(0, 1);
+    if (selectName === undefined || selectName === null) {
+        return "";
+    }
+    let parts = selectName.split(" ");
+    if (parts.length === 1) {
+        let neededPartOne = parts[0].slice(0, 1);
         return neededPartOne;
-    } else if (parts.length == 2) {
-        neededPartOne = parts[0].slice(0, 1);
-        neededPartTwo = parts[1].slice(0, 1);
+    } else if (parts.length === 2) {
+        let neededPartOne = parts[0].slice(0, 1);
+        let neededPartTwo = parts[1].slice(0, 1);
         return neededPartOne + neededPartTwo;
-    } else if (parts.length == 3) {
-        neededPartOne = parts[0].slice(0, 1);
-        neededPartThree = parts[2].slice(0, 1);
+    } else if (parts.length >= 3) {
+        let neededPartOne = parts[0].slice(0, 1);
+        let neededPartThree = parts[2].slice(0, 1);
         return neededPartOne + neededPartThree;
     }
 }
@@ -148,10 +153,21 @@ function checkScreenWidth() {
     sidebar.innerHTML = currentSidebar;
 }
 
+function checkIsSomeoneLogedId() {
+    if (!user) {
+        document.getElementById("summary-link").classList.add("d-none");
+        document.getElementById("board-link").classList.add("d-none");
+        document.getElementById("add-task-link").classList.add("d-none");
+        document.getElementById("contact-link").classList.add("d-none");
+    }
+}
+
 // Aufrufen der Funktion beim Laden der Seite
 checkScreenWidth();
+checkIsSomeoneLogedId();
 // Optional: Bei jeder Größenänderung des Fensters
 window.addEventListener("resize", checkScreenWidth);
+window.addEventListener("resize", checkIsSomeoneLogedId);
 
 function openAddTask(taskCategory) {
     setTaskCategory(taskCategory);
@@ -218,4 +234,38 @@ function styleSelecet() {
             list.style.display = "none";
         });
     });
+}
+
+//////////////////////
+///    Get  Tasks  ///
+//////////////////////
+
+async function getTasks() {
+    let response = await getData((path = "/tasks"));
+    let taskKeys = Object.keys(response);
+    tasksArray = [];
+    for (let index = 0; index < taskKeys.length; index++) {
+        const key = taskKeys[index];
+        let task = response[key];
+
+        tasksArray.push({
+            title: task.title,
+            description: task.description,
+            id: index,
+            date: task.date,
+            assignedTo: task.assignedTo,
+            category: task.category,
+            prio: task.prio,
+            categoryText: task.categoryText,
+            subtask: task.subtask,
+            taskKey: taskKeys[index],
+        });
+    }
+}
+
+
+
+function logOut(){
+    localStorage.setItem("user", "");
+    window.location.href = "index.html";
 }

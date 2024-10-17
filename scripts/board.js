@@ -24,32 +24,32 @@ async function resetBoard() {
 ///    Get and Show Tasks on Board   ///
 ////////////////////////////////////////
 
-async function getTasks() {
-    let response = await getData((path = "/tasks"));
-    let taskKeys = Object.keys(response);
-    tasksArray = [];
 
-    for (let index = 0; index < taskKeys.length; index++) {
-        // let deletedContact = getFromLocalStorage("deletedContact");
-        const key = taskKeys[index];
-        let task = response[key];
-        tasksArray.push({
-            title: task.title,
-            description: task.description,
-            id: index,
-            date: task.date,
-            assignedTo: task.assignedTo,
-            category: task.category,
-            prio: task.prio,
-            categoryText: task.categoryText,
-            subtask: task.subtask,
-            taskKey: taskKeys[index],
-        });
-        // if (deletedContact.name == task.assignedTo) {
-        //     console.log("Muss gelöscht werden");
-        // }
-    }
-}
+//Ist jetzt in der Sktipt, wegen deleteContact()
+
+// async function getTasks() {
+//     let response = await getData((path = "/tasks"));
+//     let taskKeys = Object.keys(response);
+//     tasksArray = [];
+//     for (let index = 0; index < taskKeys.length; index++) {
+//         const key = taskKeys[index];
+//         let task = response[key];
+
+//         tasksArray.push({
+//             title: task.title,
+//             description: task.description,
+//             id: index,
+//             date: task.date,
+//             assignedTo: task.assignedTo,
+//             category: task.category,
+//             prio: task.prio,
+//             categoryText: task.categoryText,
+//             subtask: task.subtask,
+//             taskKey: taskKeys[index],
+//         });
+//     }
+// }
+
 
 function updateHtml() {
     let todoById = document.getElementById("to-do-container");
@@ -137,7 +137,6 @@ function moveTo(category) {
 
 function startDragging(id) {
     currentDraggedElement = id;
-   
 }
 
 function allowDrop(ev) {
@@ -413,8 +412,8 @@ function filterSearchTasks(task, search) {
     let filterArray = tasksArray.filter((t) => t["category"] == task);
     let filterTasks = [];
     for (let i = 0; i < filterArray.length; i++) {
-        const tasks = filterArray[i];
-        if (tasks.title.toLowerCase().includes(search)) {
+        let tasks = filterArray[i];
+        if (tasks.title.toLowerCase().includes(search) || tasks.description.toLowerCase().includes(search)) {
             filterTasks.push(tasks);
         }
     }
@@ -448,4 +447,3 @@ function scrollToSection(section) {
         });
     }
 }
-
