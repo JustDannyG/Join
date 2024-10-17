@@ -67,13 +67,15 @@ function getFromLocalStorage(key) {
 ///////////////////////////////////
 
 async function addContact() {
-    const nameRef = document.getElementById("add-name-input");
-    const emailRef = document.getElementById("add-mail-input");
-    const phoneNumRef = document.getElementById("add-phone-input");
-    const inputs = getInputs(nameRef, emailRef, phoneNumRef);
+    let nameRef = document.getElementById("add-name-input");
+    let emailRef = document.getElementById("add-mail-input");
+    let phoneNumRef = document.getElementById("add-phone-input");
+    let inputs = getInputs(nameRef, emailRef, phoneNumRef);
+    document.getElementById("submit-add-contact-btn").setAttribute("disabled", true);
     clearInput(nameRef);
     clearInput(emailRef);
     clearInput(phoneNumRef);
+
     await postData((path = "contacts"), (data = { name: `${inputs.name}`, email: `${inputs.email}`, phone: `${inputs.phone}`, color: `${inputs.color}` }));
     const contactIndex = await findContact(inputs.name, inputs.email, inputs.phone);
     toogleDialog("dialog-add-succes", contactIndex);
@@ -92,6 +94,7 @@ function toogleDialog(id, index) {
 
     setTimeout(function () {
         document.getElementById(id).classList.remove("dialog-active");
+        buttonRef = document.getElementById("submit-add-contact-btn").removeAttribute("disabled");
         openContact(index);
     }, 2000);
 }
