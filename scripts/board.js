@@ -412,8 +412,8 @@ function filterSearchTasks(task, search) {
     let filterArray = tasksArray.filter((t) => t["category"] == task);
     let filterTasks = [];
     for (let i = 0; i < filterArray.length; i++) {
-        const tasks = filterArray[i];
-        if (tasks.title.toLowerCase().includes(search)) {
+        let tasks = filterArray[i];
+        if (tasks.title.toLowerCase().includes(search) || tasks.description.toLowerCase().includes(search)) {
             filterTasks.push(tasks);
         }
     }
