@@ -1,4 +1,6 @@
-let user = "Guest";
+let user = localStorage.getItem("user");
+console.log(user);
+
 //Wenn kein User eingelogt dann bitte so: let user;
 let contacts = [];
 let prio = "medium";
@@ -259,4 +261,11 @@ async function getTasks() {
             taskKey: taskKeys[index],
         });
     }
+}
+
+
+
+function logOut(){
+    localStorage.setItem("user", "");
+    window.location.href = "index.html";
 }
