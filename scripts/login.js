@@ -20,7 +20,11 @@ async function searchUserInDatabase(emailInput, passwordInput, users, userIds, u
         currentUser = users[userId];
         if (currentUser.email.toLowerCase() === emailInputLower && currentUser.password === passwordInput) {
             userFound = true;
+          
+            localStorage.setItem("user", user.name);
+
             await saveLoggedUser(emailInput, checkbox, userId);
+
             window.location.href = 'summary.html';
         }
     }
