@@ -172,8 +172,12 @@ async function editContact() {
             phone: phone,
         })
     );
-    saveToLocalStorage("contacts", contacts);
 
+    showEditedContact(contacts, name, email, phone);
+}
+
+async function showEditedContact(contacts, name, email, phone) {
+    saveToLocalStorage("contacts", contacts);
     if (screenMode == "mobile") {
         window.location.href = "contact-details.html";
     } else if (screenMode == "desktop") {
