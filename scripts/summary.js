@@ -2,9 +2,9 @@ let upcomingDeadlineScroll
 
 
 function summaryInit() {
-    greeting()
-    greetingUser()
-    getSummaryTasks()
+    greeting();
+    greetingUser();
+    getSummaryTasks();
 }
 
 ///////////////////////////////////////

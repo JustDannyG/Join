@@ -1,7 +1,31 @@
-let user = "Guest";
+
+let user = localStorage.getItem("user");
+<<<<<<< HEAD
+=======
+
 //Wenn kein User eingelogt dann bitte so: let user;
+
+>>>>>>> 88eee40789a992c653d9bcc99a245fd4f65b6ed9
 let contacts = [];
 let prio = "medium";
+
+//////////////////////////////
+///    Log out Function   ///
+/////////////////////////////
+
+function logOut() {
+    localStorage.setItem("user", "");
+    window.location.href = "index.html";
+}
+
+function ownContact() {
+    return {
+        'color': '#1bb544',
+        'email': "",
+        'name': user,
+        'phone': ""
+    }
+}
 
 //////////////////////////////////////
 ///         Return Functions     /////
@@ -98,12 +122,18 @@ async function getContacts() {
         const contact = contactsData[key];
         contacts.push(contact);
     }
+    contacts.push(ownContact());
     sortByAlphabet(contacts);
+    console.log(contacts);
+
 }
 
-function stopEventBubbling(event) {
-    event.stopPropagation();
-}
+
+// ist doppelt 
+
+// function stopEventBubbling(event) {
+//     event.stopPropagation();
+// }
 
 function goSummery() {
     window.location.href = "summary.html";
@@ -135,7 +165,7 @@ function checkScreenWidth() {
     let sidebar = document.getElementById("join-sidebar");
     let currentHeader = "";
     let currentSidebar = "";
-
+    
     if (window.innerWidth <= 1024) {
         console.log("Mobile Ansicht");
         currentHeader = mobileHeader(createInititals(user));
@@ -232,31 +262,4 @@ function styleSelecet() {
             list.style.display = "none";
         });
     });
-}
-
-//////////////////////
-///    Get  Tasks  ///
-//////////////////////
-
-async function getTasks() {
-    let response = await getData((path = "/tasks"));
-    let taskKeys = Object.keys(response);
-    tasksArray = [];
-    for (let index = 0; index < taskKeys.length; index++) {
-        const key = taskKeys[index];
-        let task = response[key];
-
-        tasksArray.push({
-            title: task.title,
-            description: task.description,
-            id: index,
-            date: task.date,
-            assignedTo: task.assignedTo,
-            category: task.category,
-            prio: task.prio,
-            categoryText: task.categoryText,
-            subtask: task.subtask,
-            taskKey: taskKeys[index],
-        });
-    }
 }

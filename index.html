@@ -47,20 +47,20 @@
                         <div id="email-error" class="error-message-email"></div>
                     </div>
                     <div id="pwd-input-container" class="login-input-area d-flex center">
-                        <input id="password" placeholder="password" class="border-none font-size-20" type="password">
+                        <input id="password" placeholder="password" class="border-none font-size-20" type="password" required>
                         <img src="./assets/icons/lock.png" alt="keylock">
                         <div id="password-error" class="error-message-password"></div>
                     </div>
                 </div>
                 <div class="d-flex login-remember-me">
                     <div>
-                        <input onclick="rememberMe()" id="myCheckbox" type="checkbox">
+                        <input id="myCheckbox" type="checkbox">
                     </div>
                     <p>Remember me</p>
                 </div>
             </div>
             <div class="login-buttons d-flex column center">
-                <button onclick="login(event)" id="loginButton" class="login-button login-button-top">Log in</button>
+                <button onclick="login(event)" id="loginButton" class="login-button login-button-top" type="submit">Log in</button>
                 <button onclick="goSummery(event)" id="guestLoginButton" class="login-button login-button-bottom">Guest
                     Log in</a></button>
             </div>
