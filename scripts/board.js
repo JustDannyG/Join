@@ -27,28 +27,28 @@ async function resetBoard() {
 
 //Ist jetzt in der Sktipt, wegen deleteContact()
 
-// async function getTasks() {
-//     let response = await getData((path = "/tasks"));
-//     let taskKeys = Object.keys(response);
-//     tasksArray = [];
-//     for (let index = 0; index < taskKeys.length; index++) {
-//         const key = taskKeys[index];
-//         let task = response[key];
+async function getTasks() {
+    let response = await getData((path = "/tasks"));
+    let taskKeys = Object.keys(response);
+    tasksArray = [];
+    for (let index = 0; index < taskKeys.length; index++) {
+        const key = taskKeys[index];
+        let task = response[key];
 
-//         tasksArray.push({
-//             title: task.title,
-//             description: task.description,
-//             id: index,
-//             date: task.date,
-//             assignedTo: task.assignedTo,
-//             category: task.category,
-//             prio: task.prio,
-//             categoryText: task.categoryText,
-//             subtask: task.subtask,
-//             taskKey: taskKeys[index],
-//         });
-//     }
-// }
+        tasksArray.push({
+            title: task.title,
+            description: task.description,
+            id: index,
+            date: task.date,
+            assignedTo: task.assignedTo,
+            category: task.category,
+            prio: task.prio,
+            categoryText: task.categoryText,
+            subtask: task.subtask,
+            taskKey: taskKeys[index],
+        });
+    }
+}
 
 
 function updateHtml() {
