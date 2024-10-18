@@ -375,8 +375,7 @@
 
 .task-wrapper {
     height: fit-content;
-    width: 252px;
-    background-color: transparent;
+    max-width: 252px;
     margin: 8px;
     border-radius: 25px;
 }
@@ -391,12 +390,14 @@
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     overflow: hidden;
     cursor: grab;
+    transition: all ease-in-out 100ms;
 }
 
 .task:hover {
-    animation-name: task-drag;
+    /* animation-name: task-drag;
     animation-duration: 300ms;
-    animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out; */
+    rotate: z 5deg;
 }
 
 .task:active {
