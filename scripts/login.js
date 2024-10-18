@@ -20,34 +20,38 @@ async function searchUserInDatabase(emailInput, passwordInput, users, userIds, u
         currentUser = users[userId];
         if (currentUser.email.toLowerCase() === emailInputLower && currentUser.password === passwordInput) {
             userFound = true;
-          
             localStorage.setItem("user", currentUser.name);
-
-            await saveLoggedUser(emailInput, checkbox, userId);
-
+            // await saveLoggedUser(emailInput, checkbox, userId);
             window.location.href = 'summary.html';
         }
     }
 }
 
-async function logOut() {
-    let users = await getData('users');
-    let userIds = Object.keys(users);
-    for (let i = 0; i < userIds.length; i++) {
-        let userId = userIds[i];
-        currentUser = users[userId];
-        // if (xxx) {
-        // }
-    }
+function shake(Error) {
+    Error.classList.add('shake');
+    setTimeout(() => {
+        Error.classList.remove('shake');
+    }, 300);
 }
 
-async function saveLoggedUser(emailInput, checkbox, userId) {
-    emailInput = true;
-    await putData(path = `/users/${userId}/loggedIn`, data = {
-        'email': emailInput,
-        'remember-me-checkbox': checkbox.checked,
-    });
-}
+// async function logOut() {
+//     let users = await getData('users');
+//     let userIds = Object.keys(users);
+//     for (let i = 0; i < userIds.length; i++) {
+//         let userId = userIds[i];
+//         currentUser = users[userId];
+//         // if (xxx) {
+//         // }
+//     }
+// }
+
+// async function saveLoggedUser(emailInput, checkbox, userId) {
+//     emailInput = true;
+//     await putData(path = `/users/${userId}/loggedIn`, data = {
+//         'email': emailInput,
+//         'remember-me-checkbox': checkbox.checked,
+//     });
+// }
 
 function emailInputErrorStyle(emailInput) {
     let userEmailError = document.getElementById('email-error');
@@ -60,11 +64,8 @@ function checkIfEmailInputFilled(emailInput, userEmailError, userEmailContainer)
     if (emailInput === "") {
         userEmailError.textContent = "Please enter your Email!";
         userEmailError.classList.add('visible');
-        userEmailError.classList.add('shake');
         userEmailContainer.classList.add('red-border');
-        setTimeout(() => {
-            userEmailError.classList.remove('shake');
-        }, 300);
+        shake(userEmailError);
     } else {
         document.getElementById('email-error').classList.remove('visible');
         document.getElementById('email-input-container').classList.remove('red-border');
@@ -73,13 +74,10 @@ function checkIfEmailInputFilled(emailInput, userEmailError, userEmailContainer)
 
 function checkIfEmailHaveAnAtt(emailInput, userEmailError, userEmailContainer) {
     if (!containsAtSymbol(emailInput) && emailInput !== "") {
-        userEmailError.textContent = "Your email is not a valid email";
+        userEmailError.textContent = "Your email isn't an email";
         userEmailError.classList.add('visible');
-        userEmailError.classList.add('shake');
         userEmailContainer.classList.add('red-border');
-        setTimeout(() => {
-            userEmailError.classList.remove('shake');
-        }, 300);
+        shake(userEmailError);
     }
 }
 
@@ -95,13 +93,10 @@ function passwordInputErrorStyle(passwordInput, emailInput) {
 }
 
 function checkIfPasswordMatch(passwordInput, userPwdError, emailInput) {
-    if (passwordInput !== "" && passwordInput !== user.password || emailInput !== user.email && passwordInput !== "") {
+    if (passwordInput !== "" && passwordInput !== currentUser.password || emailInput !== currentUser.email && passwordInput !== "") {
         userPwdError.textContent = "Email or Password isn't correct";
         userPwdError.classList.add('visible');
-        userPwdError.classList.add('shake');
-        setTimeout(() => {
-            userPwdError.classList.remove('shake');
-        }, 300);
+        shake(userPwdError);
     }
 }
 
@@ -109,11 +104,8 @@ function checkIfPasswordInputFilled(passwordInput, userPwdError, userPwdContaine
     if (passwordInput === "") {
         userPwdError.textContent = "Please enter your Password!";
         userPwdError.classList.add('visible');
-        userPwdError.classList.add('shake');
         userPwdContainer.classList.add('red-border');
-        setTimeout(() => {
-            userPwdError.classList.remove('shake');
-        }, 300);
+        shake(userPwdError);
     } else {
         document.getElementById('password-error').classList.remove('visible');
         document.getElementById('pwd-input-container').classList.remove('red-border');

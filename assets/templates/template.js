@@ -2,9 +2,7 @@
 /////       Header and Sidebar  Defaults    //////
 //////////////////////////////////////////////////
 
-function mobileHeader(user, loggedUser) {
-    console.log(loggedUser);
-    
+function mobileHeader(user) {
     return /*html*/ `<header class="d-flex header-mobile">
       <img class="logo-mobile" src="./assets/icons/logo-dark.svg" alt="Join Logo" />
       <div onclick="classChangeAction('menu', 'menu-active', 'toggle'), stopEventBubbling(event)" id="current-user-header" class="current-user-header center">${user}</div>

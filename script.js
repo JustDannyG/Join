@@ -1,6 +1,5 @@
 
 let user = localStorage.getItem("user");
-console.log(user);
 
 //Wenn kein User eingelogt dann bitte so: let user;
 
@@ -170,7 +169,7 @@ function checkScreenWidth() {
     let sidebar = document.getElementById("join-sidebar");
     let currentHeader = "";
     let currentSidebar = "";
-
+    
     if (window.innerWidth <= 1024) {
         console.log("Mobile Ansicht");
         currentHeader = mobileHeader(createInititals(user));
