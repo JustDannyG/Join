@@ -8,7 +8,6 @@
     background-color: var(--light-grey);
     padding: 0 20px;
     text-wrap: wrap;
-    max-width: calc(1920px - 232px);
     margin-left: 130px;
     z-index: 1;
     /* height: calc(100vh - (80px + 80px)); */
@@ -404,8 +403,6 @@
     rotate: z 5deg;
 }
 
-
-
 @keyframes task-drag {
     0% {
         transform: rotate(0deg);
@@ -668,7 +665,6 @@
     position: relative;
     box-shadow: rgba(0, 0, 0, 0.3) 2px 1px 9px 7px;
 }
-
 
 .edit-title-input {
     font-size: 20px;
