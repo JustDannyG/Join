@@ -1,4 +1,5 @@
 let user = "Guest";
+let loggedUser = `${currentUser}`; // Warum bin ich undefined
 let contacts = [];
 let prio = "medium";
 
@@ -135,7 +136,7 @@ function checkScreenWidth() {
 
     if (window.innerWidth <= 1024) {
         console.log("Mobile Ansicht");
-        currentHeader = mobileHeader(createInititals(user));
+        currentHeader = mobileHeader(createInititals(user), loggedUser);
         currentSidebar = mobileSidebar();
         screenMode = "mobile";
     } else {
@@ -246,3 +247,7 @@ async function getTasks() {
         });
     }
 }
+
+//////////////////////
+///    Log Out     ///
+//////////////////////

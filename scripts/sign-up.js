@@ -106,6 +106,13 @@ async function postSignUpData(userNameInput, userEmailInput, userPwd) {
         'email': userEmailInput,
         'password': userPwd
     });
+    setTimeout(() => {
+        goLogin();
+    }, 1500);
+}
+
+function goLogin() {
+    window.location.href = 'index.html';
 }
 
 function errorStyles(userNameInput, userEmailInput, userPwd, userConfPwd) {
