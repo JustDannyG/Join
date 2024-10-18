@@ -143,9 +143,12 @@ async function getContacts() {
 
 }
 
-function stopEventBubbling(event) {
-    event.stopPropagation();
-}
+
+// ist doppelt 
+
+// function stopEventBubbling(event) {
+//     event.stopPropagation();
+// }
 
 function goSummery() {
     window.location.href = "summary.html";
