@@ -6,7 +6,39 @@ async function signUp() {
     checkbox = document.getElementById('myCheckbox');
     checkIfUserAllreadyExists(userNameInput, userEmailInput, userPwd, userConfPwd, checkbox);
     errorStyles(userNameInput, userEmailInput, userPwd, userConfPwd);
-    // checkIfAllInputsFilled(userNameInput, userEmailInput, userPwd, userConfPwd);
+}
+
+function capitalizeFirstLetter(userEmailInput, userPwd) {
+    let userNameInput = document.getElementById('name-input');
+    let userNameValue = userNameInput.value;
+    if (userNameValue.length > 0) {
+        let capitalizedUserName = userNameValue.charAt(0).toUpperCase() + userNameValue.slice(1);
+        userNameValue = capitalizedUserName;
+        postSignUpData(userNameValue, userEmailInput, userPwd);
+    }
+}
+
+function checkIfEmailHaveAnAtt(emailInput, userEmailError, userEmailContainer) {
+    if (!containsAtSymbol(emailInput) && emailInput !== "") {
+        userEmailError.textContent = "Your email isn't an Email";
+        userEmailError.classList.add('visible');
+        userEmailContainer.classList.add('red-border');
+        shake(userEmailError);
+    } else {
+        document.getElementById('email-error').classList.remove('visible');
+        document.getElementById('email-input-container').classList.remove('red-border');
+    }
+}
+
+function shake(Error) {
+    Error.classList.add('shake');
+    setTimeout(() => {
+        Error.classList.remove('shake');
+    }, 300);
+}
+
+function containsAtSymbol(emailInput) {
+    return emailInput.includes("@");
 }
 
 function checkboxError() {
@@ -17,6 +49,7 @@ function checkboxError() {
         checkboxError.textContent = "Please agree to our terms and conditions!";
         checkboxError.classList.add('visible');
         ckeckboxContainer.classList.add('red-border');
+        shake(checkboxError);
     } else {
         document.getElementById('checkbox-error').classList.remove('visible');
         document.getElementById('checkbox-container').classList.remove('red-border');
@@ -30,6 +63,7 @@ function userInputErrorStyle(userNameInput) {
         userNameError.textContent = "Please enter your name!";
         userNameError.classList.add('visible');
         userNameContainer.classList.add('red-border');
+        shake(userNameError);
     } else {
         document.getElementById('name-error').classList.remove('visible');
         document.getElementById('name-input-container').classList.remove('red-border');
@@ -37,18 +71,22 @@ function userInputErrorStyle(userNameInput) {
 }
 
 function emailInputErrorStyle(userEmailInput) {
+    let userEmailError = document.getElementById('email-error');
+    let userEmailContainer = document.getElementById('email-input-container');
     if (userEmailInput === "") {
-        let userEmailError = document.getElementById('email-error');
-        let userEmailContainer = document.getElementById('email-input-container');
         userEmailError.textContent = "Please enter your Email!";
         userEmailError.classList.add('visible');
         userEmailContainer.classList.add('red-border');
-
+        shake(userEmailError);
+    } else if (userEmailInput !== "") {
+        checkIfEmailHaveAnAtt(userEmailInput, userEmailError, userEmailContainer)
+        shake(userEmailError);
     } else {
         document.getElementById('email-error').classList.remove('visible');
         document.getElementById('email-input-container').classList.remove('red-border');
     }
 }
+
 
 function passwordInputErrorStyle(userPwd) {
     if (userPwd === "") {
@@ -57,7 +95,7 @@ function passwordInputErrorStyle(userPwd) {
         userPwdError.textContent = "Please enter any Password!";
         userPwdError.classList.add('visible');
         userPwdContainer.classList.add('red-border');
-
+        shake(userPwdError);
     } else {
         document.getElementById('password-error').classList.remove('visible');
         document.getElementById('pwd-input-container').classList.remove('red-border');
@@ -71,6 +109,7 @@ function passwordConfInputErrorStyle(userConfPwd) {
         userConfPwdError.textContent = "Please confirm your Password!";
         userConfPwdError.classList.add('visible');
         userConfPwdContainer.classList.add('red-border');
+        shake(userConfPwdError);
     } else {
         document.getElementById('conf-pwd-error').classList.remove('visible');
         document.getElementById('conf-pwd-input-container').classList.remove('red-border');
@@ -84,6 +123,7 @@ function checkIfConfPwd(userPwd, userConfPwd) {
         userConfPwdError.textContent = "Please confirm your Password!";
         userConfPwdError.classList.add('visible');
         userConfPwdContainer.classList.add('red-border');
+        shake(userConfPwdError);
     } else {
         document.getElementById('conf-pwd-error').classList.remove('visible');
         document.getElementById('conf-pwd-input-container').classList.remove('red-border');
@@ -91,11 +131,10 @@ function checkIfConfPwd(userPwd, userConfPwd) {
 }
 
 async function checkIfAllInputsFilled(userNameInput, userEmailInput, userPwd, userConfPwd, user) {
-    if (userNameInput === "" && userEmailInput === "" && userPwd !== userConfPwd && !checkbox.checked) {
+    if (userNameInput === "" && userEmailInput === "" && userPwd !== userConfPwd && !checkbox.checked && !emailInput.includes("@")) {
         errorStyles(userNameInput, userEmailInput, userPwd, userConfPwd);
     } else if (userNameInput !== "" && userEmailInput !== "" && userPwd !== "" && userConfPwd !== "" && userPwd == userConfPwd
         && checkbox.checked && user.email !== userEmailInput && user.name !== userNameInput) {
-        // postSignUpData(userNameInput, userEmailInput, userPwd);
         userSuccessfullySignedup();
     }
 }
@@ -116,7 +155,10 @@ function goLogin() {
 }
 
 function errorStyles(userNameInput, userEmailInput, userPwd, userConfPwd) {
+    let userEmailError = document.getElementById('email-error');
+    let userEmailContainer = document.getElementById('email-input-container');
     userInputErrorStyle(userNameInput);
+    checkIfEmailHaveAnAtt(userEmailInput, userEmailError, userEmailContainer)
     emailInputErrorStyle(userEmailInput);
     passwordInputErrorStyle(userPwd);
     passwordConfInputErrorStyle(userConfPwd);
@@ -138,9 +180,9 @@ async function checkIfUserAllreadyExists(userNameInput, userEmailInput, userPwd,
     if (userExists) {
         userAllreadyExists();
     } else {
-        if (checkbox.checked && userNameInput !== "" && userEmailInput !== "" && userPwd !== "" && userConfPwd !== "" && userPwd === userConfPwd && userExists == false) {
+        if (checkbox.checked && userNameInput !== "" && userEmailInput !== "" && userEmailInput.includes("@") && userPwd !== "" && userConfPwd !== "" && userPwd === userConfPwd && userExists == false) {
             checkIfAllInputsFilled(userNameInput, userEmailInput, userPwd, userConfPwd, users);
-            postSignUpData(userNameInput, userEmailInput, userPwd);
+            capitalizeFirstLetter(userEmailInput, userPwd);
         }
     }
 }
