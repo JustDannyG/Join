@@ -24,7 +24,6 @@ async function resetBoard() {
 ///    Get and Show Tasks on Board   ///
 ////////////////////////////////////////
 
-
 //Ist jetzt in der Sktipt, wegen deleteContact()
 
 async function getTasks() {
@@ -49,7 +48,6 @@ async function getTasks() {
         });
     }
 }
-
 
 function updateHtml() {
     let todoById = document.getElementById("to-do-container");
@@ -95,10 +93,7 @@ function renderSubtaskBar(task, index) {
     let progressBar = document.getElementById(`${task.category}progress-bar${index}`);
     let progress = document.getElementById(`${task.category}-progress${index}`);
     let amount = task.subtask.filter((c) => c.checked == true).length;
-    let total = 0;
-    task.subtask.forEach((sub, i) => {
-        total = i + 1;
-    });
+    let total = task.subtask.length;
     taskAmount.innerHTML = `${amount}/${total} Subtasks`;
     let result = Math.round((100 / total) * amount) + "%";
     progressBar.classList.remove("d-none");
@@ -447,4 +442,3 @@ function scrollToSection(section) {
         });
     }
 }
-
