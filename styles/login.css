@@ -22,7 +22,7 @@ p {
 }
 
 .logo-login-container {
-    height: 78px;
+    /* height: 78px; */
     justify-content: start;
     display: flex;
 }
@@ -303,4 +303,15 @@ button {
 
 .shake {
     animation: shake 0.3s ease;
+}
+
+form {
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+
+.content {
+    padding: 0;
+    height: 100%;
 }
