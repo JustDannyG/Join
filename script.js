@@ -20,14 +20,23 @@ function logOut() {
 /////////////////////////////
 
 
-function ownContact(){
-    if (user !== "Guest" ){
-        return {
-            'color': '#1bb544',
-            'email': "",
-            'name': user,
-            'phone': ""
-        }
+// function ownContact() {
+//     if (user !== "Guest") {
+//         return {
+//             'color': '#1bb544',
+//             'email': "",
+//             'name': user,
+//             'phone': ""
+//         }
+//     } 
+// }
+
+function ownContact() {
+    return {
+        'color': '#1bb544',
+        'email': "",
+        'name': user,
+        'phone': ""
     }
 }
 
@@ -130,8 +139,8 @@ async function getContacts() {
     contacts.push(ownContact());
     sortByAlphabet(contacts);
     console.log(contacts);
-    
-    
+
+
 }
 
 function stopEventBubbling(event) {
