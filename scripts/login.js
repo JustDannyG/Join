@@ -21,7 +21,7 @@ async function searchUserInDatabase(emailInput, passwordInput, users, userIds, u
         if (currentUser.email.toLowerCase() === emailInputLower && currentUser.password === passwordInput) {
             userFound = true;
           
-            localStorage.setItem("user", user.name);
+            localStorage.setItem("user", currentUser.name);
 
             await saveLoggedUser(emailInput, checkbox, userId);
 
