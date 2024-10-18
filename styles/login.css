@@ -118,10 +118,11 @@ button {
 .login-button {
     width: 180px;
     height: 51px;
-    padding: 4px 0px 4px 0px;
-    border-radius: 8px;
-    cursor: pointer;
-    background-color: var();
+    /* padding: 4px 0px 4px 0px; */
+    /* border-radius: 8px; */
+    border: none;
+    /* cursor: pointer; */
+    /* background-color: var(); */
 }
 
 .login-button-top {
@@ -147,14 +148,16 @@ button {
     color: var(--darke-blue);
     font-size: 16px;
     font-weight: 700;
-    border: solid 1.5px;
+    border: solid 1px var(--dark-grey);
     border-color: var(--darke-blue);
     transition: all ease-in-out 125ms;
 }
 
 .login-button-bottom:hover {
-    background-color: var(--light-blue);
+    /* background-color: var(--light-blue); */
     scale: 1.1;
+    border-color: var(--light-blue);
+    color: var(--light-blue);
 }
 
 .login-button-bottom:active {
@@ -162,6 +165,7 @@ button {
 }
 
 .signup-button {
+    border: none;
     width: 104px;
     height: 49px;
 }
@@ -280,11 +284,21 @@ button {
 }
 
 @keyframes shake {
-    0% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    50% { transform: translateX(5px); }
-    75% { transform: translateX(-5px); }
-    100% { transform: translateX(0); }
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    75% {
+        transform: translateX(-5px);
+    }
+    100% {
+        transform: translateX(0);
+    }
 }
 
 .shake {

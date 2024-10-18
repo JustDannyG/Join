@@ -11,22 +11,22 @@
     <link rel="stylesheet" href="./styles/login.css">
     <link rel="stylesheet" href="./styles/responsive/login-responisve.css">
     <!-- <script defer src="script.js"></script> -->
-    <script src="assets/templates/template.js"></script>
-    <script src="scripts/login.js"></script>
-    <script src="scripts/fetch.js"></script>
+    <script src="./assets/templates/template.js"></script>
+    <script src="./scripts/login.js"></script>
+    <script src="./scripts/fetch.js"></script>
 
 </head>
 
 <body onload="screeWidth()">
 
     <div class="overlay">
-        <img id="svg-image-small-content" src="/assets/icons/logo-light.svg" alt="SVG Image" class="svg-img">
-        <img id="svg-image-large-content" src="/assets/icons/logo-dark.svg" alt="SVG Image" class="svg-img">
+        <img id="svg-image-small-content" src="./assets/icons/logo-light.svg" alt="SVG Image" class="svg-img">
+        <img id="svg-image-large-content" src="./assets/icons/logo-dark.svg" alt="SVG Image" class="svg-img">
     </div>
     <section id="join-header" class="join-header d-none"></section>
     <form class="d-flex content center gap-login-logo-content">
         <div class="logo-login-container ">
-            <img class="logo-login logo-large-content" src="/assets/icons/logo-dark.svg" alt="">
+            <img class="logo-login logo-large-content" src="./assets/icons/logo-dark.svg" alt="">
             <div class="empty-container"></div>
             <div class="signup-container-top d-flex center" id="content-large">
                 <p class="#">Not a Join user?</p>
@@ -70,8 +70,8 @@
             <button onclick="goSignUp(event)" id="signupButton" class="signup-button login-button-top">Sign up</button>
         </div>
         <div class="footer-container d-flex">
-            <a id="privacyPolicyLink" class="footer-links d-flex center" href="/privacy-policy.html">Privacy Policy</a>
-            <a id="legalNoticeLink" class="footer-links d-flex center" href="/legal-notice.html">Legal notice</a>
+            <a id="privacyPolicyLink" class="footer-links d-flex center" href="./privacy-policy.html">Privacy Policy</a>
+            <a id="legalNoticeLink" class="footer-links d-flex center" href="./legal-notice.html">Legal notice</a>
         </div>
     </form>
     <section id="join-sidebar"></section>

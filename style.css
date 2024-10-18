@@ -60,7 +60,7 @@ main::-webkit-scrollbar-track {
 .content {
     padding: 25px 16px 48px 16px;
     text-wrap: wrap;
-    max-width: 1920px;
+    /* max-width: 1920px; */
 }
 
 a {
@@ -90,7 +90,6 @@ button {
     flex-direction: column;
 }
 
-
 /*Priority Buttons*/
 
 .low {
@@ -108,7 +107,6 @@ button {
     color: var(--white);
 }
 
-
 /* =========================
      Categorys Colors
    ========================= */
@@ -121,7 +119,6 @@ button {
     background-color: #20d7c1;
 }
 
-
 /* =========================
     Buttons in Contact 
    ========================= */
@@ -130,6 +127,6 @@ button {
     background-color: var(--light-blue) !important;
 }
 
-.activePage{
+.activePage {
     background-color: var(--hover-darke-blue);
 }
