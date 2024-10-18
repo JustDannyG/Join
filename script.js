@@ -5,6 +5,16 @@ console.log(user);
 let contacts = [];
 let prio = "medium";
 
+//////////////////////////////
+///    Log out Function   ///
+/////////////////////////////
+
+function logOut() {
+    localStorage.setItem("user", "");
+    window.location.href = "index.html";
+}
+
+
 //////////////////////////////////////
 ///         Return Functions     /////
 /////////////////////////////////////
@@ -266,12 +276,3 @@ function styleSelecet() {
 // }
 
 
-//////////////////////////////
-///    Log out Function   ///
-/////////////////////////////
-
-
-function logOut() {
-    localStorage.setItem("user", "");
-    window.location.href = "index.html";
-}
