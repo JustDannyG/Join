@@ -173,7 +173,7 @@ function checkScreenWidth() {
 
     if (window.innerWidth <= 1024) {
         console.log("Mobile Ansicht");
-        currentHeader = mobileHeader(createInititals(user), loggedUser);
+        currentHeader = mobileHeader(createInititals(user));
         currentSidebar = mobileSidebar();
         screenMode = "mobile";
     } else {
