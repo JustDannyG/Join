@@ -1,15 +1,14 @@
 .content {
     padding: 25px 16px 48px 16px;
     text-wrap: wrap;
-    max-width: 1920px;
-    background-color: #F6F7F8;
+    background-color: var(--light-grey);
     overflow: hidden;
     height: 100vh;
     display: flex;
     align-items: center;
 }
 
-.headline-back{
+.headline-back {
     display: flex;
     align-items: center;
     width: 100%;
@@ -17,17 +16,17 @@
     max-width: 1016px;
 }
 
-.legal-back-icon{
+.legal-back-icon {
     width: 24px;
     height: 24px;
     cursor: pointer;
 }
 
-.legal-back-icon:hover{
+.legal-back-icon:hover {
     scale: 1.1;
 }
 
-.scroll-area{
+.scroll-area {
     overflow-y: auto;
 }
 
@@ -67,7 +66,6 @@
     height: 18px;
 } */
 
-
 /* =========================
    Privacy Police - Content
    ========================= */
@@ -94,7 +92,6 @@
     height: 18px;
 } */
 
-
 /* =========================
    Legal-Notice - Content
    ========================= */
@@ -107,7 +104,7 @@ h3 {
     margin-top: 16px;
 }
 
-.legal-notice{
+.legal-notice {
     max-width: 1016px;
 }
 
@@ -118,4 +115,3 @@ h3 {
 .headline {
     justify-content: space-between;
 }
-
