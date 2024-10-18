@@ -70,6 +70,12 @@ p {
     gap: 24px;
 }
 
+.input-data input {
+    border: none;
+    flex: 1;
+    outline: none;
+}
+
 .login-remember-me {
     gap: 16px;
     padding: 0px 16px 0px 16px;
