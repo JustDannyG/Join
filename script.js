@@ -1,11 +1,7 @@
-
 let user = localStorage.getItem("user");
-<<<<<<< HEAD
-=======
 
 //Wenn kein User eingelogt dann bitte so: let user;
 
->>>>>>> 88eee40789a992c653d9bcc99a245fd4f65b6ed9
 let contacts = [];
 let prio = "medium";
 
@@ -20,11 +16,11 @@ function logOut() {
 
 function ownContact() {
     return {
-        'color': '#1bb544',
-        'email': "",
-        'name': user,
-        'phone': ""
-    }
+        color: "#1bb544",
+        email: "",
+        name: user,
+        phone: "",
+    };
 }
 
 //////////////////////////////////////
@@ -125,11 +121,9 @@ async function getContacts() {
     contacts.push(ownContact());
     sortByAlphabet(contacts);
     console.log(contacts);
-
 }
 
-
-// ist doppelt 
+// ist doppelt
 
 // function stopEventBubbling(event) {
 //     event.stopPropagation();
@@ -165,7 +159,7 @@ function checkScreenWidth() {
     let sidebar = document.getElementById("join-sidebar");
     let currentHeader = "";
     let currentSidebar = "";
-    
+
     if (window.innerWidth <= 1024) {
         console.log("Mobile Ansicht");
         currentHeader = mobileHeader(createInititals(user));
