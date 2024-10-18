@@ -15,6 +15,23 @@ function logOut() {
 }
 
 
+//////////////////////////////
+///                      ///
+/////////////////////////////
+
+
+function ownContact(){
+    if (user !== "Guest" ){
+        return {
+            'color': '#1bb544',
+            'email': "",
+            'name': user,
+            'phone': ""
+        }
+    }
+}
+
+
 //////////////////////////////////////
 ///         Return Functions     /////
 /////////////////////////////////////
@@ -110,7 +127,11 @@ async function getContacts() {
         const contact = contactsData[key];
         contacts.push(contact);
     }
+    contacts.push(ownContact());
     sortByAlphabet(contacts);
+    console.log(contacts);
+    
+    
 }
 
 function stopEventBubbling(event) {
