@@ -305,12 +305,6 @@ button {
     animation: shake 0.3s ease;
 }
 
-form {
-    position: relative;
-    align-items: center;
-    justify-content: center;
-}
-
 .content {
     padding: 0;
     height: 100%;
