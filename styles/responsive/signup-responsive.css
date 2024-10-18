@@ -1,5 +1,4 @@
-@media(max-width: 427px) {
-
+@media (max-width: 427px) {
     h1 {
         font-size: 42px;
     }
@@ -38,7 +37,8 @@
 
     .gap-signup-logo-content {
         gap: 12px;
-        padding-top: 112px;
+        /* padding-top: 112px; */
+        padding-top: 64px;
     }
 
     .footer-container {
@@ -75,7 +75,7 @@
     }
 }
 
-@media(min-width: 1024px) {
+@media (min-width: 1024px) {
     .logo-login {
         top: 59px;
         left: 57px;
@@ -84,8 +84,7 @@
     }
 }
 
-@media(min-width: 1440px) {
-
+@media (min-width: 1440px) {
     .logo-login {
         width: 100px;
         height: 122px;
