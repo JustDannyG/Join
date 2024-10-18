@@ -112,8 +112,10 @@ function checkIfPasswordInputFilled(passwordInput, userPwdError, userPwdContaine
     }
 }
 
-function goSummery() {
-    window.location.href = "summary.html";
+function goSummery(event) {
+    localStorage.setItem("user", "Guest");
+
+    window.location.href = 'summary.html';
 }
 
 function goSignUp() {
