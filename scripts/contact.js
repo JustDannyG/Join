@@ -172,7 +172,6 @@ async function editContact() {
             phone: phone,
         })
     );
-
     showEditedContact(contacts, name, email, phone);
 }
 
