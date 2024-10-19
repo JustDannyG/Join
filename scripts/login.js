@@ -21,7 +21,7 @@ async function searchUserInDatabase(emailInput, passwordInput, users, userIds, u
         if (currentUser.email.toLowerCase() === emailInputLower && currentUser.password === passwordInput) {
             userFound = true;
             localStorage.setItem("user", currentUser.name);
-            // await saveLoggedUser(emailInput, checkbox, userId);
+            localStorage.setItem("userId", userId);  
             window.location.href = "summary.html";
         }
     }
@@ -114,13 +114,20 @@ function checkIfPasswordInputFilled(passwordInput, userPwdError, userPwdContaine
 
 function goSummery(event) {
     localStorage.setItem("user", "Guest");
-
     window.location.href = 'summary.html';
 }
+
+
+// Hier a tag verwenden dann ist keine funktion nötig !!!
 
 function goSignUp() {
     window.location.href = "sign-up.html";
 }
+
+
+
+// Das kann man in den @media auf display ein und ausblenden !!!
+
 function screeWidth() {
     if (window.innerWidth >= 1440) {
         document.getElementById("content-small").style.display = "none";
