@@ -189,12 +189,10 @@ async function checkIfUserAllreadyExists(userNameInput, userEmailInput, userPwd,
 }
 
 function userSuccessfullySignedup() {
-    console.log("User successfully signed up!");
     toogleDialog("dialog-signup-succes");
 }
 
 function userAllreadyExists() {
-    console.log("User allready exists!");
     toogleDialog("dialog-allready-exists");
 }
 
