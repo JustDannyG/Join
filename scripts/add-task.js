@@ -9,6 +9,10 @@ let isDropdownOpen = false;
 ///   Start   ///
 ////////////////
 
+/**
+ * Initializes the task adding process by resetting selected contacts, updating button colors,
+ * fetching available contacts, and rendering the contacts.
+ */
 async function addTaskInit() {
     selectedContacts = [];
     updateBtnColor(prio);
@@ -22,6 +26,14 @@ async function addTaskInit() {
 ///      Prio Button Functions     ///
 //////////////////////////////////////
 
+/**
+ * Toggles the task priority based on the input.
+ *
+ * @param {string} prioInput - The new priority value to set (e.g., "urgent", "medium", "low").
+ *
+ * If the provided `prioInput` matches the current priority, it resets the priority to `null`.
+ * Otherwise, it updates the priority to the new input and update the button color.
+ */
 function addPrio(prioInput) {
     if (prioInput == prio) {
         prio = null;
@@ -31,6 +43,14 @@ function addPrio(prioInput) {
     updateBtnColor(prio);
 }
 
+/**
+ * Updates the appearance of priority buttons and icons based on the selected priority.
+ *
+ * @param {string|null} prioValue - The current priority value ("urgent", "medium", "low") or `null` if no priority is set.
+ *
+ * This function resets all priority buttons and icons to their default state.
+ * If a valid `prioValue` is provided, it updates the corresponding button and icon to indicate the active priority.
+ */
 function updateBtnColor(prioValue) {
     let prios = ["urgent", "medium", "low"];
     prios.forEach((p) => {
@@ -48,6 +68,17 @@ function updateBtnColor(prioValue) {
 ///      AssignTo Functions       ///
 //////////////////////////////////////
 
+/**
+ * Toggles the visibility of a dropdown menu and updates the associated icon.
+ *
+ * @param {string} id - The ID of the dropdown element to toggle.
+ * @param {string} iconId - The ID of the icon element to rotate based on dropdown state.
+ *
+ * This function adds or removes the "show-dropdown" class to the specified dropdown element,
+ * indicating whether it is open or closed. It also rotates the icon: 180 degrees when closed
+ * and back to its original position when open. If the dropdown is closed, it calls
+ * `classChangeAction` to remove the "input-active" class.
+ */
 function toggleDropdown(id, iconId) {
     const dropdown = document.getElementById(id);
     const dropdownIcon = document.getElementById(iconId);
@@ -61,6 +92,17 @@ function toggleDropdown(id, iconId) {
     }
 }
 
+/**
+ * Opens a dropdown menu and updates the associated icon.
+ *
+ * @param {string} id - The ID of the dropdown element to open.
+ * @param {string} iconId - The ID of the icon element to rotate.
+ *
+ * This function adds the "show-dropdown" class to the specified dropdown, making it visible.
+ * It rotates the icon to indicate that the dropdown is open and sets the global
+ * `isDropdownOpen` variable to `true`. Finally, it calls `classChangeAction` to add
+ * the "input-active" class.
+ */
 function openDropdown(id, iconId) {
     const dropdown = document.getElementById(id);
     const dropdownIcon = document.getElementById(iconId);
@@ -70,6 +112,14 @@ function openDropdown(id, iconId) {
     classChangeAction("dropdown", "input-active", "add");
 }
 
+/**
+ * Closes the dropdown menu and resets the associated icon.
+ *
+ * This function removes the "show-dropdown" class from the dropdown, making it hidden.
+ * It resets the icon's rotation to its original position and sets the global
+ * `isDropdownOpen` variable to `false`. Additionally, it resets the input text
+ * and calls `classChangeAction` to remove the "input-active" class.
+ */
 function closeDropdown() {
     const dropdown = document.getElementById("assign-to-dropdown-contacts");
     const dropdownIcon = document.getElementById("drop-down-icon1");
@@ -81,13 +131,34 @@ function closeDropdown() {
     classChangeAction("dropdown", "input-active", "remove");
 }
 
+/**
+ * Handles the click on the Assigned to Input.
+ *
+ * @param {Event} event - The click event object.
+ *
+ * This function clears the input field when clicked, opens the dropdown menu for
+ * assigning contacts, stops the event from bubbling up to parent elements,
+ * and filters the dropdown options based on the input.
+ */
 function handleInputClick(event) {
-    clearInput(event.target);
+    document.getElementById("assign-to-dropdown").value = "";
     openDropdown("assign-to-dropdown-contacts", "drop-down-icon1");
     stopEventBubbling(event);
     filter("assign-to-dropdown");
 }
 
+/**
+ * Handles the click event on the dropdown button.
+ *
+ * @param {Event} event - The click event object.
+ *
+ * This function stops the event from bubbling up, toggles the visibility of the dropdown menu,
+ * and updates the icon's rotation.
+ * If the dropdown is closed, it resets the input text and
+ * removes the "input-active" class.
+ * If the dropdown is open, it clears the dropdown's value, rotates the icon to indicate it is open, adds the "input-active" class, and filters the
+ * dropdown options based on the input.
+ */
 function handleDropdownButtonClick(event) {
     stopEventBubbling(event);
     toggleDropdown("assign-to-dropdown-contacts", "drop-down-icon1");
@@ -98,19 +169,29 @@ function handleDropdownButtonClick(event) {
         classChangeAction("dropdown", "input-active", "remove");
         dropdownIcon.style.transform = "rotate(0deg)";
     } else {
-        const input = document.getElementById("assign-to-dropdown");
+        document.getElementById("assign-to-dropdown").value = "";
         dropdownIcon.style.transform = "rotate(180deg)";
-        clearInput(input);
         classChangeAction("dropdown", "input-active", "add");
         filter("assign-to-dropdown");
     }
 }
 
+/**
+ * Resets the text of the input field to default message.
+ */
 function resetInputText() {
     let inputRef = document.getElementById("assign-to-dropdown");
     inputRef.value = "Select contacts to assign";
 }
 
+/**
+ * Retrieves and prepares the list of selected contacts.
+ *
+ * This function iterates over the global `contacts` array and creates an array of
+ * selected contacts. Each selected contact includes its name, color, a checked
+ * status set to `false`, and an index ID. After preparing the list, it sorts the
+ * selected contacts alphabetically using the `sortByAlphabet` function.
+ */
 function getSelectedContacts() {
     contacts.forEach((contact, i) => {
         selectedContacts.push({
@@ -123,6 +204,17 @@ function getSelectedContacts() {
     sortByAlphabet(selectedContacts);
 }
 
+/**
+ * Renders the list of contacts in the dropdown menu.
+ *
+ * @param {Array} arr - An array of contact objects to display.
+ *
+ * This function clears the current content of the dropdown with the ID
+ * "assign-to-dropdown-contacts" and populates it with HTML generated for each
+ * contact in the provided array. It uses the `contactInDropDownHTML` function
+ * to create the HTML for each contact and updates the design by calling
+ * `updateDesign` for each contact's ID.
+ */
 function renderContacts(arr) {
     let dropDownRef = document.getElementById("assign-to-dropdown-contacts");
     dropDownRef.innerHTML = "";
@@ -132,6 +224,16 @@ function renderContacts(arr) {
     });
 }
 
+/**
+ * Updates the design of a contact based on its selection status.
+ *
+ * @param {number} id - The ID of the contact to update.
+ *
+ * This function modifies the appearance of the contact container and its checkbox
+ * based on whether the contact is selected (checked) or not. If the contact is selected,
+ * it adds the "contact-active" class to the contact container and marks the checkbox as checked.
+ * If the contact is not selected, it removes the "contact-active" class and unchecks the checkbox.
+ */
 function updateDesign(id) {
     let contactContainerRef = document.getElementById("contact" + id);
     let checkboxRef = document.getElementById("checkbox" + id);
@@ -144,6 +246,16 @@ function updateDesign(id) {
     }
 }
 
+/**
+ * Toggles the selection status of a contact and updates the UI.
+ *
+ * @param {number} id - The ID of the contact to select or deselect.
+ *
+ * This function retrieves the contact from the `selectedContacts` array based on the
+ * provided ID, toggles its `checked` status, and updates the design of the contact
+ * using `updateDesign`. Finally, it calls `renderSelectedContacts` to refresh the
+ * display of selected contacts.
+ */
 function selectContact(id) {
     let currentContact = selectedContacts[id];
     currentContact.checked = !currentContact.checked;
@@ -151,6 +263,15 @@ function selectContact(id) {
     renderSelectedContacts();
 }
 
+/**
+ * Renders the list of selected contacts in the designated container.
+ *
+ * This function clears the current content of the "selected-contacts-container"
+ * and populates it with HTML for each selected contact. It filters the `selectedContacts`
+ * array to find contacts that are checked (selected) and then generates the corresponding
+ * HTML for each using the `contactSelectionCircleHTML` function, along with the initials
+ * of each contact's name.
+ */
 function renderSelectedContacts() {
     const containerRef = document.getElementById("selected-contacts-container");
     containerRef.innerHTML = "";
@@ -161,10 +282,22 @@ function renderSelectedContacts() {
     }
 }
 
+/**
+ * Filters and displays contacts based on the input value.
+ *
+ * @param {string} id - The ID of the input element used for filtering.
+ *
+ * This function retrieves the value from the specified input element, converts it
+ * to lowercase, and checks if the input length is greater than 2. If so, it searches
+ * for matching contacts using the `findInput` function. If no contacts are found,
+ * it displays a "no contact found" message. If matches are found, it renders those
+ * contacts using `renderContacts`. If the input length is 2 or less, it renders
+ * all selected contacts.
+ */
 function filter(id) {
     const inputRef = document.getElementById(id);
     const input = inputRef.value.toLowerCase();
-    if (checkLengthGreater(input, 2)) {
+    if (input > 2) {
         const result = findInput(input);
         if (result.length === 0) {
             displayNoContactFoundMessage();
@@ -176,11 +309,27 @@ function filter(id) {
     }
 }
 
+/**
+ * Displays a message indicating that no contacts were found.
+ *
+ * This function updates the content of the dropdown with the ID
+ * "assign-to-dropdown-contacts" to show a message ">No Contact found"
+ * when no contacts match the search criteria.
+ */
 function displayNoContactFoundMessage() {
     const dropdownRef = document.getElementById("assign-to-dropdown-contacts");
-    dropdownRef.innerHTML = '<li class="not-found">Nicht gefunden</li>';
+    dropdownRef.innerHTML = '<li class="not-found">No Contact found</li>';
 }
 
+/**
+ * Finds contacts that match the given input.
+ *
+ * @param {string} input - The input string to search for in contact names.
+ * @returns {Array} An array of contacts whose names include the input string (case-insensitive).
+ *
+ * This function filters the `selectedContacts` array, returning an array of contacts
+ * whose names contain the specified input string, ignoring case.
+ */
 function findInput(input) {
     let result = selectedContacts.filter((contact) => contact.name.toLowerCase().includes(input));
     return result;
@@ -261,59 +410,91 @@ function deleteSubtask(i) {
 //   Create Task   Board / Firebase  ///
 ///////////////////////////////////////
 
+/**
+ * Creates a new task and updates the user interface accordingly.
+ *
+ * This asynchronous function retrieves the current category, posts the new task
+ * using the `postTask` function, shows a success message, and clears the task
+ * input fields with the `clearAddTask` function.
+ */
 async function createTask() {
     getCurrentCategory();
-    getInputs();
+    await postTask();
+    showSuccesMsg();
+    clearAddTask();
 }
 
-async function getInputs() {
-    let titleInput = document.getElementById("title");
-    let descriptionInput = document.getElementById("description");
-    let dateInput = document.getElementById("date");
-    let assignedTo = filterCheckedAssignedTo();
-    let categoryText = document.getElementById("selected-category");
-
-    task = {
-        title: titleInput.value,
-        description: descriptionInput.value,
-        date: dateInput.value,
-        assignedTo: assignedTo,
-        categoryText: categoryText.value,
-    };
-    await postTask(task);
-}
-
+/**
+ * Filters the selected contacts to return only those that are checked (selected).
+ *
+ * @returns {Array} An array of contacts that are marked as checked.
+ *
+ * This function iterates over the `selectedContacts` array and filters it to
+ * create a new array containing only the contacts that have their `checked`
+ * property set to `true`.
+ */
 function filterCheckedAssignedTo() {
     let filtertContacts = selectedContacts.filter((contact) => contact.checked == true);
     return filtertContacts;
 }
 
-async function postTask(task) {
+/**
+ * Sends a new task to the server via a POST request.
+ *
+ * This asynchronous function gathers task data from input fields and the current
+ * application state, then sends this data to the server at the specified path
+ * ("/tasks") using the `postData` function. The data includes the task title,
+ * description, date, assigned contacts (filtered to include only those checked),
+ * the current category, priority, selected category text, and any subtasks.
+ */
+async function postTask() {
     await postData(
         (path = "/tasks"),
         (data = {
-            title: task.title,
-            description: task.description,
-            date: task.date,
-            assignedTo: task.assignedTo,
+            title: document.getElementById("title").value,
+            description: document.getElementById("description").value,
+            date: document.getElementById("date").value,
+            assignedTo: filterCheckedAssignedTo(),
             category: currentCategory,
             prio: prio,
-            categoryText: task.categoryText,
+            categoryText: document.getElementById("selected-category").value,
             subtask: currentSubtasks,
         })
     );
-    showSuccesMsg();
-    clearAddTask();
 }
 
+/**
+ * Saves the selected task category to local storage.
+ *
+ * @param {string} categoryValue - The category value to be saved e.g "To-Do" or "Await feedback".
+ *
+ * This function calls `saveToLocalStorage` to store the specified category value
+ * under the key "taskCategory" in the browser's local storage.
+ */
 function setTaskCategory(categoryValue) {
     saveToLocalStorage("taskCategory", categoryValue);
 }
 
+/**
+ * Retrieves the current task category from local storage.
+ *
+ * This function updates the global variable `currentCategory` by
+ * retrieving the value stored under the key "taskCategory" from
+ * the browser's local storage.
+ */
 function getCurrentCategory() {
     currentCategory = getFromLocalStorage("taskCategory");
 }
 
+/**
+ * Clears the task input fields and resets related UI elements.
+ *
+ * This function resets the values of the title, description, and date input fields
+ * to empty strings, clears the inner HTML of the subtasks and selected contacts
+ * containers, and resets the priority to "medium". It also clears the current subtasks
+ * array, unchecks all selected contacts, updates the button color to reflect the reset
+ * priority, and removes the active overlay class from the add task overlay.
+ */
 function clearAddTask() {
     document.getElementById("title").value = "";
     document.getElementById("description").value = "";
@@ -325,7 +506,7 @@ function clearAddTask() {
     selectedContacts.forEach((c) => {
         c.checked = false;
     });
-    updateBtnColor();
+    updateBtnColor(prio);
     classChangeAction("add-task-overlay", "overlaver-active", "remove");
 }
 
