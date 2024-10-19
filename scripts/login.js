@@ -8,11 +8,14 @@ async function login(event) {
     // let checkbox = document.getElementById("myCheckbox");
     let users = await getData("users");
     let userIds = Object.keys(users);
-
     searchUserInDatabase(emailInput, passwordInput, users, userIds);
+    if (!userFound) {
+        emailInputErrorStyle(emailInput);
+        passwordInputErrorStyle(passwordInput, emailInput);
+    }
 }
 
-async function searchUserInDatabase(emailInput, passwordInput, users, userIds) {
+function searchUserInDatabase(emailInput, passwordInput, users, userIds) {
     let emailInputLower = emailInput.toLowerCase();
     for (let i = 0; i < userIds.length; i++) {
         let userId = userIds[i];
@@ -22,9 +25,7 @@ async function searchUserInDatabase(emailInput, passwordInput, users, userIds) {
             localStorage.setItem("user", currentUser.name);
             localStorage.setItem("userId", userId);
             window.location.href = "summary.html";
-        } else if (!userFound) {
-            emailInputErrorStyle(emailInput);
-            passwordInputErrorStyle(passwordInput, emailInput);
+            return;
         }
     }
 }
