@@ -17,10 +17,12 @@ async function initContacts() {
 ///    Render Contact List   ////
 ////////////////////////////////
 
-function renderContacts() {
+async function renderContacts() {
     let containerRef = document.getElementById("contacts-container");
     containerRef.innerHTML = "";
     let firstLetter = "";
+    containerRef.innerHTML = firstLetterHtml('My User')
+    containerRef.innerHTML += contactListHtml(await ownContact());
     contacts.forEach((contact, i) => {
         if (firstLetter !== contact.name.charAt(0).toUpperCase()) {
             firstLetter = contact.name.charAt(0).toUpperCase();
