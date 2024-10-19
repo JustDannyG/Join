@@ -316,3 +316,8 @@ h1 {
 .link:visited {
     color: var(--light-blue);
 }
+
+a,
+a:visited {
+    color: var(--dark-grey);
+}

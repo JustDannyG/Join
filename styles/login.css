@@ -311,7 +311,7 @@ button {
     height: 100%;
 }
 
-.link,
-.link:visited {
-    color: var(--light-blue);
+a,
+a:visited {
+    color: var(--dark-grey);
 }

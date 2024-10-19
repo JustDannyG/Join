@@ -70,8 +70,8 @@ function checkIfEmailInputFilled(emailInput, userEmailError, userEmailContainer)
         userEmailContainer.classList.add("red-border");
         shake(userEmailError);
     } else {
-        document.getElementById("email-error").classList.remove("visible");
-        document.getElementById("email-input-container").classList.remove("red-border");
+        userEmailError.classList.remove("visible");
+        userEmailContainer.classList.remove("red-border");
     }
 }
 
@@ -110,12 +110,12 @@ function checkIfPasswordInputFilled(passwordInput, userPwdError, userPwdContaine
         userPwdContainer.classList.add("red-border");
         shake(userPwdError);
     } else {
-        document.getElementById("password-error").classList.remove("visible");
-        document.getElementById("pwd-input-container").classList.remove("red-border");
+        userPwdError.classList.remove("visible");
+        userPwdContainer.classList.remove("red-border");
     }
 }
 
-function goSummery(event) {
+function goSummery() {
     localStorage.setItem("user", "Guest");
     window.location.href = "summary.html";
 }
