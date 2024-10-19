@@ -62,7 +62,7 @@ function openOwnContact(){
 
 async function showOwnContact() {
     let currentContact = document.getElementById("current-contact");
-    currentContact.innerHTML = contactCirleHTML(await ownContact());
+    currentContact.innerHTML = contactOwnCirleHTML(await ownContact());
 }
 
 /////////////////////////////////////////////////
