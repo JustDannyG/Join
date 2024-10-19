@@ -1,4 +1,5 @@
 let user = localStorage.getItem("user");
+let userId = localStorage.getItem("userId");
 
 //Wenn kein User eingelogt dann bitte so: let user;
 
@@ -11,6 +12,7 @@ let prio = "medium";
 
 function logOut() {
     localStorage.setItem("user", "");
+    localStorage.setItem("userId", "");
     window.location.href = "index.html";
 }
 
@@ -175,6 +177,18 @@ function checkScreenWidth() {
     sidebar.innerHTML = currentSidebar;
 }
 
+// Aufrufen der Funktion beim Laden der Seite
+checkScreenWidth();
+checkIsSomeoneLogedId();
+// Optional: Bei jeder Größenänderung des Fensters
+window.addEventListener("resize", checkScreenWidth);
+window.addEventListener("resize", checkIsSomeoneLogedId);
+
+
+///////////////////////////////////////////////////////////////////
+///                                                            ///
+///////////////////////////////////////////////////////////////////
+
 function checkIsSomeoneLogedId() {
     if (!user) {
         document.getElementById("summary-link").classList.add("d-none");
@@ -184,12 +198,6 @@ function checkIsSomeoneLogedId() {
     }
 }
 
-// Aufrufen der Funktion beim Laden der Seite
-checkScreenWidth();
-checkIsSomeoneLogedId();
-// Optional: Bei jeder Größenänderung des Fensters
-window.addEventListener("resize", checkScreenWidth);
-window.addEventListener("resize", checkIsSomeoneLogedId);
 
 function openAddTask(taskCategory) {
     setTaskCategory(taskCategory);
