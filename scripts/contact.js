@@ -2,7 +2,7 @@ let currentSortKeys = [];
 let contactIndex = getFromLocalStorage("currentDetails");
 let contactsArray = getFromLocalStorage("contacts");
 let currentContactDetails = localStorage.getItem("currentDetails");
-let screenMode;
+
 
 ////////////////////
 ///    Start   ////
@@ -21,8 +21,11 @@ async function renderContacts() {
     let containerRef = document.getElementById("contacts-container");
     containerRef.innerHTML = "";
     let firstLetter = "";
-    containerRef.innerHTML = firstLetterHtml('User')
-    containerRef.innerHTML += contactListHtml(await ownContact());
+    if (user !== 'Guest') {
+        containerRef.innerHTML = firstLetterHtml('Me')
+        containerRef.innerHTML += contactListHtml(await ownContact());
+    }
+
     contacts.forEach((contact, i) => {
         if (firstLetter !== contact.name.charAt(0).toUpperCase()) {
             firstLetter = contact.name.charAt(0).toUpperCase();
