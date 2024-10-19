@@ -150,8 +150,21 @@ function firstLetterHtml(firstLetter) {
     return /*html*/ `<div class="contacts-first-letter">${firstLetter}</div>`;
 }
 
+
+
 function contactListHtml(contact, i) {
     return /*html*/ `<div onclick="openContact(${i})" class="contact-list d-flex">
+      <span class="contact-initials center" style="background:${contact.color}">${createInititals(contact.name)}</span>
+      <div>
+        <p>${contact.name}</p>
+        <a href="#">${contact.email}</a>
+      </div>
+    </div>`;
+}
+
+
+function ownContactListHtml(contact) {
+    return /*html*/ `<div onclick="openOwnContact()" class="contact-list d-flex">
       <span class="contact-initials center" style="background:${contact.color}">${createInititals(contact.name)}</span>
       <div>
         <p>${contact.name}</p>

@@ -23,7 +23,8 @@ async function renderContacts() {
     let firstLetter = "";
     if (user !== 'Guest') {
         containerRef.innerHTML = firstLetterHtml('Me')
-        containerRef.innerHTML += contactListHtml(await ownContact());
+        containerRef.innerHTML += ownContactListHtml(await ownContact());
+
     }
 
     contacts.forEach((contact, i) => {
@@ -48,6 +49,20 @@ async function openContact(index) {
         classChangeAction("dialog-add-contact", "hide-overlay", "add");
         showContact();
     }
+}
+
+function openOwnContact(){
+    if (screenMode == "mobile") {
+        window.location.href = "contact-details.html";
+    } else if (screenMode == "desktop") {
+        classChangeAction("dialog-add-contact", "hide-overlay", "add");
+        showOwnContact()
+    }
+}
+
+async function showOwnContact() {
+    let currentContact = document.getElementById("current-contact");
+    currentContact.innerHTML = contactCirleHTML(await ownContact());
 }
 
 /////////////////////////////////////////////////
@@ -123,8 +138,6 @@ function showContact() {
     let currentContact = document.getElementById("current-contact");
     let detail = contactsArray[contactIndex];
     currentContact.innerHTML = contactCirleHTML(detail);
-    // let detailsContainer = document.getElementById("details");
-    // detailsContainer.innerHTML = contactInformationsHTML(detail);
 }
 
 function toggleOverlayDisplay() {
