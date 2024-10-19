@@ -130,3 +130,10 @@ button {
 .activePage {
     background-color: var(--hover-darke-blue);
 }
+
+
+.max-content{
+    max-width: 1920px;
+    width: 100%;
+    height: 100%;
+}
