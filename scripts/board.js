@@ -24,7 +24,6 @@ async function resetBoard() {
 ///    Get and Show Tasks on Board   ///
 ////////////////////////////////////////
 
-
 //Ist jetzt in der Sktipt, wegen deleteContact()
 
 async function getTasks() {
@@ -49,7 +48,6 @@ async function getTasks() {
         });
     }
 }
-
 
 function updateHtml() {
     let todoById = document.getElementById("to-do-container");
@@ -95,10 +93,7 @@ function renderSubtaskBar(task, index) {
     let progressBar = document.getElementById(`${task.category}progress-bar${index}`);
     let progress = document.getElementById(`${task.category}-progress${index}`);
     let amount = task.subtask.filter((c) => c.checked == true).length;
-    let total = 0;
-    task.subtask.forEach((sub, i) => {
-        total = i + 1;
-    });
+    let total = task.subtask.length;
     taskAmount.innerHTML = `${amount}/${total} Subtasks`;
     let result = Math.round((100 / total) * amount) + "%";
     progressBar.classList.remove("d-none");
@@ -223,7 +218,8 @@ function showEditTaskValues() {
     document.getElementById("overlaver").innerHTML = editBoardTaskHTML(currentTask);
     editTaskAssignTo();
     editTaskSubtask();
-    editTaskPrioBtnColor();
+    updateBtnColor(currentTask.prio);
+    // editTaskPrioBtnColor();
     taskPrioText();
 }
 
@@ -244,19 +240,19 @@ function taskPrioText() {
         document.getElementById("prio").innerHTML = "No Prio";
     }
 }
+//Nicht mehr notwendig
+// function editTaskPrioBtnColor() {
+//     const prios = ["urgent", "medium", "low"];
+//     prios.forEach((p) => {
+//         document.getElementById(`${p}-btn`).classList.remove(p);
+//         document.getElementById(`prio-icon-${p}`).src = `./assets/icons/prio-${p}-icon.png`;
+//     });
 
-function editTaskPrioBtnColor() {
-    document.getElementById("urgent-btn").classList.remove("urgent");
-    document.getElementById("medium-btn").classList.remove("medium");
-    document.getElementById("low-btn").classList.remove("low");
-    document.getElementById("prio-icon-urgent").src = "./assets/icons/prio-urgent-icon.png";
-    document.getElementById("prio-icon-medium").src = "./assets/icons/prio-medium-icon.png";
-    document.getElementById("prio-icon-low").src = "./assets/icons/prio-low-icon.png";
-    if (currentTask.prio) {
-        document.getElementById(`prio-icon-${currentTask.prio}`).src = `./assets/icons/prio-${currentTask.prio}-icon-active.png`;
-        document.getElementById(`${currentTask.prio}-btn`).classList.add(currentTask.prio);
-    } else return;
-}
+//     if (currentTask.prio) {
+//         document.getElementById(`prio-icon-${currentTask.prio}`).src = `./assets/icons/prio-${currentTask.prio}-icon-active.png`;
+//         document.getElementById(`${currentTask.prio}-btn`).classList.add(currentTask.prio);
+//     } else return;
+// }
 
 function editPrio(prioInput) {
     if (prioInput == currentTask.prio) {
@@ -264,7 +260,8 @@ function editPrio(prioInput) {
     } else {
         currentTask.prio = prioInput;
     }
-    editTaskPrioBtnColor();
+    updateBtnColor(currentTask.prio);
+    // editTaskPrioBtnColor();
 }
 
 function findCheckedContacts(currentTask) {
@@ -447,4 +444,3 @@ function scrollToSection(section) {
         });
     }
 }
-

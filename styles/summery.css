@@ -6,7 +6,6 @@
     background-color: var(--light-grey);
     padding: 25px 16px 48px 16px;
     text-wrap: wrap;
-    max-width: calc(1920px - 232px);
     position: relative;
     justify-content: center;
     align-items: center;
@@ -118,7 +117,7 @@
 }
 
 .summary-todo-btn:hover path {
-    fill: #2A3647;
+    fill: #2a3647;
 }
 
 .summary-done-btn {
@@ -148,7 +147,7 @@
 }
 
 .summary-done-btn:hover path {
-    stroke: #2A3647;
+    stroke: #2a3647;
 }
 
 .summary-todo-btn:active {
@@ -395,17 +394,14 @@
     }
 
     25% {
-
         opacity: 1;
     }
 
     50% {
-
         opacity: 1;
     }
 
     75% {
-
         opacity: 1;
     }
 

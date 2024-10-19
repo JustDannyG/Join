@@ -23,79 +23,81 @@
         <section id="join-header" class="join-header"></section>
 
         <main class="add-task-main-content">
-            <form id="add-task" class="add-task-form" onsubmit="createTask(); return false;">
-                <div class="task-details">
-                    <h1 class="add-task-headline">Add Task</h1>
+            <div class="max-content-add-task">
+                <form id="add-task" class="add-task-form" onsubmit="createTask(); return false;">
+                    <div class="task-details">
+                        <h1 class="add-task-headline">Add Task</h1>
 
-                    <div class="input-container">
-                        <label for="title">Title<span class="required">*</span></label>
-                        <input class="input" required id="title" type="text" placeholder="Enter a title" />
-                    </div>
-
-                    <div class="input-container">
-                        <label for="description">Description</label>
-                        <textarea id="description" class="textarea" name="description" placeholder="Enter a Description"></textarea>
-                    </div>
-
-                    <div class="input-container position-relative">
-                        <label for="assign-to-dropdown">Assigned to</label>
-                        <div id="dropdown" class="drop-down d-flex">
-                            <input id="assign-to-dropdown" class="input" onkeyup="filter('assign-to-dropdown')" onclick="handleInputClick(event)" value="Select contacts to assign" />
-                            <button class="btn dropdown-btn" onclick="handleDropdownButtonClick(event)" type="button">
-                                <img id="drop-down-icon1" src="./assets/icons/arrow-drop-down.png" />
-                            </button>
+                        <div class="input-container">
+                            <label for="title">Title<span class="required">*</span></label>
+                            <input class="input" required id="title" type="text" placeholder="Enter a title" />
                         </div>
-                        <ul id="assign-to-dropdown-contacts" class="dropdown-options"></ul>
-                    </div>
 
-                    <div id="selected-contacts-container" class="d-flex selectet-contacts-container"></div>
-                </div>
-
-                <div class="task-settings">
-                    <div class="input-container">
-                        <label for="date">Due date<span class="required">*</span></label>
-                        <input id="date" class="input" required type="date" />
-                    </div>
-
-                    <div class="prio mt-16">
-                        <span>Prio</span>
-                        <div class="d-flex row">
-                            <button id="urgent-btn" class="btn prio-btn" type="button" onclick="addPrio('urgent'), stopEventBubbling(event)">Urgent<img id="prio-icon-urgent" src="./assets/icons/prio-urgent-icon.png" /></button>
-                            <button id="medium-btn" class="btn prio-btn" type="button" onclick="addPrio('medium')">Medium<img id="prio-icon-medium" src="./assets/icons/prio-medium-icon.png" /></button>
-                            <button id="low-btn" class="btn prio-btn" type="button" onclick="addPrio('low')">Low<img id="prio-icon-low" src="./assets/icons/prio-low-icon.png" /></button>
+                        <div class="input-container">
+                            <label for="description">Description</label>
+                            <textarea id="description" class="textarea" name="description" placeholder="Enter a Description"></textarea>
                         </div>
+
+                        <div class="input-container position-relative">
+                            <label for="assign-to-dropdown">Assigned to</label>
+                            <div id="dropdown" class="drop-down d-flex">
+                                <input id="assign-to-dropdown" class="input" onkeyup="filter('assign-to-dropdown')" onclick="handleInputClick(event)" value="Select contacts to assign" />
+                                <button class="btn dropdown-btn" onclick="handleDropdownButtonClick(event)" type="button">
+                                    <img id="drop-down-icon1" src="./assets/icons/arrow-drop-down.png" />
+                                </button>
+                            </div>
+                            <ul id="assign-to-dropdown-contacts" class="dropdown-options"></ul>
+                        </div>
+
+                        <div id="selected-contacts-container" class="d-flex selectet-contacts-container"></div>
                     </div>
 
-                    <div class="input-container position-relative">
-                        <label for="selected-category">Category<span class="required">*</span></label>
-                        <select required id="selected-category" class="select-category">
-                            <option value="">Select task category:</option>
-                            <option value="Technical Task">Technical Task</option>
-                            <option value="User Story">User Story</option>
-                        </select>
-                    </div>
+                    <div class="task-settings">
+                        <div class="input-container">
+                            <label for="date">Due date<span class="required">*</span></label>
+                            <input id="date" class="input" required type="date" />
+                        </div>
 
-                    <div class="form-field input-container">
-                        <label for="subtasks-input">Subtasks</label>
-                        <div class="add-task-input">
-                            <input id="subtasks-input" type="subtasks" name="subtasks" onkeyup="subtaskInputBtn()" placeholder="Add new subtask" />
-                            <div class="add-subtask-btn" id="add-subtask-btn">
-                                <img class="svg-btn" src="./assets/icons/add -subtasks.png" alt="" onclick="setInputFocus()" />
+                        <div class="prio mt-16">
+                            <span>Prio</span>
+                            <div class="d-flex row">
+                                <button id="urgent-btn" class="btn prio-btn" type="button" onclick="addPrio('urgent'), stopEventBubbling(event)">Urgent<img id="prio-icon-urgent" src="./assets/icons/prio-urgent-icon.png" /></button>
+                                <button id="medium-btn" class="btn prio-btn" type="button" onclick="addPrio('medium')">Medium<img id="prio-icon-medium" src="./assets/icons/prio-medium-icon.png" /></button>
+                                <button id="low-btn" class="btn prio-btn" type="button" onclick="addPrio('low')">Low<img id="prio-icon-low" src="./assets/icons/prio-low-icon.png" /></button>
                             </div>
                         </div>
 
-                        <div id="subtasks-container" class="subtasks-container"></div>
-                    </div>
-                </div>
+                        <div class="input-container position-relative">
+                            <label for="selected-category">Category<span class="required">*</span></label>
+                            <select required id="selected-category" class="select-category">
+                                <option value="">Select task category:</option>
+                                <option value="Technical Task">Technical Task</option>
+                                <option value="User Story">User Story</option>
+                            </select>
+                        </div>
 
-                <div class="add-task-action-btn">
-                    <div><span class="required">*</span>This field is required</div>
-                    <div class="d-flex btn-gap">
-                        <button type="button" class="btn clear" onclick="clearAddTask()">Clear <img src="./assets/icons/clear-icon-dark.png" alt="" /></button>
-                        <button type="submit" class="btn submit">Create Task <img src="./assets/icons/check.png" alt="" /></button>
+                        <div class="form-field input-container">
+                            <label for="subtasks-input">Subtasks</label>
+                            <div class="add-task-input">
+                                <input id="subtasks-input" type="subtasks" name="subtasks" onkeyup="subtaskInputBtn()" placeholder="Add new subtask" />
+                                <div class="add-subtask-btn" id="add-subtask-btn">
+                                    <img class="svg-btn" src="./assets/icons/add -subtasks.png" alt="" onclick="setInputFocus()" />
+                                </div>
+                            </div>
+
+                            <div id="subtasks-container" class="subtasks-container"></div>
+                        </div>
                     </div>
-                </div>
-            </form>
+
+                    <div class="add-task-action-btn">
+                        <div><span class="required">*</span>This field is required</div>
+                        <div class="d-flex btn-gap">
+                            <button type="button" class="btn clear" onclick="clearAddTask()">Clear <img src="./assets/icons/clear-icon-dark.png" alt="" /></button>
+                            <button type="submit" class="btn submit">Create Task <img src="./assets/icons/check.png" alt="" /></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </main>
 
         <div class="d-flex submit-row">

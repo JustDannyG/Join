@@ -2,10 +2,10 @@ let currentUser;
 
 async function login(event) {
     event.preventDefault();
-    let emailInput = document.getElementById('email').value;
-    let passwordInput = document.getElementById('password').value;
-    let checkbox = document.getElementById('myCheckbox');
-    let users = await getData('users');
+    let emailInput = document.getElementById("email").value;
+    let passwordInput = document.getElementById("password").value;
+    let checkbox = document.getElementById("myCheckbox");
+    let users = await getData("users");
     let userIds = Object.keys(users);
     let userFound = false;
     searchUserInDatabase(emailInput, passwordInput, users, userIds, userFound, checkbox);
@@ -21,16 +21,16 @@ async function searchUserInDatabase(emailInput, passwordInput, users, userIds, u
         if (currentUser.email.toLowerCase() === emailInputLower && currentUser.password === passwordInput) {
             userFound = true;
             localStorage.setItem("user", currentUser.name);
-            // await saveLoggedUser(emailInput, checkbox, userId);
-            window.location.href = 'summary.html';
+            localStorage.setItem("userId", userId);  
+            window.location.href = "summary.html";
         }
     }
 }
 
 function shake(Error) {
-    Error.classList.add('shake');
+    Error.classList.add("shake");
     setTimeout(() => {
-        Error.classList.remove('shake');
+        Error.classList.remove("shake");
     }, 300);
 }
 
@@ -54,8 +54,8 @@ function shake(Error) {
 // }
 
 function emailInputErrorStyle(emailInput) {
-    let userEmailError = document.getElementById('email-error');
-    let userEmailContainer = document.getElementById('email-input-container');
+    let userEmailError = document.getElementById("email-error");
+    let userEmailContainer = document.getElementById("email-input-container");
     checkIfEmailInputFilled(emailInput, userEmailError, userEmailContainer);
     checkIfEmailHaveAnAtt(emailInput, userEmailError, userEmailContainer);
 }
@@ -63,20 +63,20 @@ function emailInputErrorStyle(emailInput) {
 function checkIfEmailInputFilled(emailInput, userEmailError, userEmailContainer) {
     if (emailInput === "") {
         userEmailError.textContent = "Please enter your Email!";
-        userEmailError.classList.add('visible');
-        userEmailContainer.classList.add('red-border');
+        userEmailError.classList.add("visible");
+        userEmailContainer.classList.add("red-border");
         shake(userEmailError);
     } else {
-        document.getElementById('email-error').classList.remove('visible');
-        document.getElementById('email-input-container').classList.remove('red-border');
+        document.getElementById("email-error").classList.remove("visible");
+        document.getElementById("email-input-container").classList.remove("red-border");
     }
 }
 
 function checkIfEmailHaveAnAtt(emailInput, userEmailError, userEmailContainer) {
     if (!containsAtSymbol(emailInput) && emailInput !== "") {
         userEmailError.textContent = "Your email isn't an email";
-        userEmailError.classList.add('visible');
-        userEmailContainer.classList.add('red-border');
+        userEmailError.classList.add("visible");
+        userEmailContainer.classList.add("red-border");
         shake(userEmailError);
     }
 }
@@ -86,16 +86,16 @@ function containsAtSymbol(emailInput) {
 }
 
 function passwordInputErrorStyle(passwordInput, emailInput) {
-    let userPwdError = document.getElementById('password-error');
-    let userPwdContainer = document.getElementById('pwd-input-container');
+    let userPwdError = document.getElementById("password-error");
+    let userPwdContainer = document.getElementById("pwd-input-container");
     checkIfPasswordInputFilled(passwordInput, userPwdError, userPwdContainer);
     checkIfPasswordMatch(passwordInput, userPwdError, emailInput);
 }
 
 function checkIfPasswordMatch(passwordInput, userPwdError, emailInput) {
-    if (passwordInput !== "" && passwordInput !== currentUser.password || emailInput !== currentUser.email && passwordInput !== "") {
+    if ((passwordInput !== "" && passwordInput !== currentUser.password) || (emailInput !== currentUser.email && passwordInput !== "")) {
         userPwdError.textContent = "Email or Password isn't correct";
-        userPwdError.classList.add('visible');
+        userPwdError.classList.add("visible");
         shake(userPwdError);
     }
 }
@@ -103,31 +103,40 @@ function checkIfPasswordMatch(passwordInput, userPwdError, emailInput) {
 function checkIfPasswordInputFilled(passwordInput, userPwdError, userPwdContainer) {
     if (passwordInput === "") {
         userPwdError.textContent = "Please enter your Password!";
-        userPwdError.classList.add('visible');
-        userPwdContainer.classList.add('red-border');
+        userPwdError.classList.add("visible");
+        userPwdContainer.classList.add("red-border");
         shake(userPwdError);
     } else {
-        document.getElementById('password-error').classList.remove('visible');
-        document.getElementById('pwd-input-container').classList.remove('red-border');
+        document.getElementById("password-error").classList.remove("visible");
+        document.getElementById("pwd-input-container").classList.remove("red-border");
     }
 }
 
-function goSummery() {
+function goSummery(event) {
+    localStorage.setItem("user", "Guest");
     window.location.href = 'summary.html';
 }
 
+
+// Hier a tag verwenden dann ist keine funktion nötig !!!
+
 function goSignUp() {
-    window.location.href = 'sign-up.html';
+    window.location.href = "sign-up.html";
 }
+
+
+
+// Das kann man in den @media auf display ein und ausblenden !!!
+
 function screeWidth() {
     if (window.innerWidth >= 1440) {
-        document.getElementById('content-small').style.display = 'none';
-        document.getElementById('svg-image-small-content').style.display = 'none';
+        document.getElementById("content-small").style.display = "none";
+        document.getElementById("svg-image-small-content").style.display = "none";
         // document.getElementById('content-large').style.display = 'block';
     } else {
         // document.getElementById('content-small').style.display = 'block';
-        document.getElementById('svg-image-large-content').style.display = 'none';
-        document.getElementById('content-large').style.display = 'none';
+        document.getElementById("svg-image-large-content").style.display = "none";
+        document.getElementById("content-large").style.display = "none";
     }
 }
 

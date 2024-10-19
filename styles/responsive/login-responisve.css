@@ -1,5 +1,4 @@
-@media(max-width: 427px) {
-
+@media (max-width: 427px) {
     h1 {
         font-size: 42px;
     }
@@ -16,7 +15,8 @@
     }
 
     .gap-login-logo-content {
-        padding-top: 112px;
+        /* padding-top: 112px; */
+        padding-top: 64px;
         gap: 20px;
     }
 
@@ -61,19 +61,19 @@
             left: 50%;
         }
         100% {
-            transform: translate(0, 0) scale(0.3); 
-            top: -51px;   
+            transform: translate(0, 0) scale(0.3);
+            top: -51px;
             left: -31px;
         }
     }
-    
+
     @keyframes fadeOutOverlay {
         0% {
-            opacity: 1; 
+            opacity: 1;
         }
         100% {
-            opacity: 0; 
-            pointer-events: none; 
+            opacity: 0;
+            pointer-events: none;
         }
     }
 
@@ -91,8 +91,7 @@
     }
 }
 
-@media(min-width: 1440px) {
-
+@media (min-width: 1440px) {
     h1 {
         font-size: 61px;
         font-weight: 700;
@@ -213,4 +212,3 @@
         top: 118%;
     }
 }
-

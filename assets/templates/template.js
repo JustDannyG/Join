@@ -135,6 +135,30 @@ function contactCirleHTML(detail) {
     `;
 }
 
+function contactOwnCirleHTML(detail) {
+    return /*html*/ `
+    <div class="detail-container">
+        <div class="contact-name-details">
+            <span class="name-initals" style="background:${detail.color}">${createInititals(detail.name)}</span>
+            <div class="name-detail">
+                ${detail.name}
+                <div class="edit-details-btns">
+                    <button onclick="toggleOwnOverlayDisplay()"><img src="./assets/icons/edit.png"/>Edit</button>
+                    <!-- <button onclick="deleteContact()"><img src="./assets/icons/delete.png" />Delete</button> -->
+                </div>
+            </div>
+        </div>
+        <p class="info-headline">Contact Information</p>
+        <div class="contact-info-box">
+            <span>Email</span>
+            <a href="mailto:${detail.email}">${detail.email}</a>
+            <span>Phone</span>
+            <a href="tel:${detail.phone}">${detail.phone}</a>
+        </div>
+    </div>
+    `;
+}
+
 // function contactInformationsHTML(detail) {
 //     return /*html*/ `
 //     <h3>Contact Information</h3>
@@ -150,8 +174,21 @@ function firstLetterHtml(firstLetter) {
     return /*html*/ `<div class="contacts-first-letter">${firstLetter}</div>`;
 }
 
+
+
 function contactListHtml(contact, i) {
     return /*html*/ `<div onclick="openContact(${i})" class="contact-list d-flex">
+      <span class="contact-initials center" style="background:${contact.color}">${createInititals(contact.name)}</span>
+      <div>
+        <p>${contact.name}</p>
+        <a href="#">${contact.email}</a>
+      </div>
+    </div>`;
+}
+
+
+function ownContactListHtml(contact) {
+    return /*html*/ `<div onclick="openOwnContact()" class="contact-list d-flex">
       <span class="contact-initials center" style="background:${contact.color}">${createInititals(contact.name)}</span>
       <div>
         <p>${contact.name}</p>

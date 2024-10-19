@@ -1,5 +1,5 @@
-
 let user = localStorage.getItem("user");
+let userId = localStorage.getItem("userId");
 
 //Wenn kein User eingelogt dann bitte so: let user;
 
@@ -12,26 +12,28 @@ let prio = "medium";
 
 function logOut() {
     localStorage.setItem("user", "");
+    localStorage.setItem("userId", "");
     window.location.href = "index.html";
 }
 
-
 //////////////////////////////
-///                      ///
+///    Own Contact        ///
 /////////////////////////////
 
-
-function ownContact(){
-    if (user !== "Guest" ){
-        return {
-            'color': '#1bb544',
-            'email': "",
-            'name': user,
-            'phone': ""
-        }
-    }
+async function getOwnContact() {
+    let ownContactResponse = await getData((path = `users/${userId}`));
+    return ownContactResponse;
 }
 
+async function ownContact() {
+    let ownContactData = await getOwnContact();
+    return {
+        color: ownContactData.color,
+        email: ownContactData.email,
+        name: ownContactData.name,
+        phone: ownContactData.phnoe,
+    };
+}
 
 //////////////////////////////////////
 ///         Return Functions     /////
@@ -128,20 +130,20 @@ async function getContacts() {
         const contact = contactsData[key];
         contacts.push(contact);
     }
-    contacts.push(ownContact());
+    // contacts.push(ownContact());
     sortByAlphabet(contacts);
     console.log(contacts);
-    
-    
 }
 
-function stopEventBubbling(event) {
-    event.stopPropagation();
-}
+// ist doppelt
 
-function goSummery() {
-    window.location.href = "summary.html";
-}
+// function stopEventBubbling(event) {
+//     event.stopPropagation();
+// }
+
+// function goSummery() {
+//     window.location.href = "summary.html";
+// }
 
 //////////////////////////////////////
 ///                             /////
@@ -169,7 +171,7 @@ function checkScreenWidth() {
     let sidebar = document.getElementById("join-sidebar");
     let currentHeader = "";
     let currentSidebar = "";
-    
+
     if (window.innerWidth <= 1024) {
         console.log("Mobile Ansicht");
         currentHeader = mobileHeader(createInititals(user));
@@ -185,6 +187,17 @@ function checkScreenWidth() {
     sidebar.innerHTML = currentSidebar;
 }
 
+// Aufrufen der Funktion beim Laden der Seite
+checkScreenWidth();
+checkIsSomeoneLogedId();
+// Optional: Bei jeder Größenänderung des Fensters
+window.addEventListener("resize", checkScreenWidth);
+window.addEventListener("resize", checkIsSomeoneLogedId);
+
+///////////////////////////////////////////////////////////////////
+///                                                            ///
+///////////////////////////////////////////////////////////////////
+
 function checkIsSomeoneLogedId() {
     if (!user) {
         document.getElementById("summary-link").classList.add("d-none");
@@ -194,20 +207,13 @@ function checkIsSomeoneLogedId() {
     }
 }
 
-// Aufrufen der Funktion beim Laden der Seite
-checkScreenWidth();
-checkIsSomeoneLogedId();
-// Optional: Bei jeder Größenänderung des Fensters
-window.addEventListener("resize", checkScreenWidth);
-window.addEventListener("resize", checkIsSomeoneLogedId);
-
 function openAddTask(taskCategory) {
     setTaskCategory(taskCategory);
     if (screenMode == "mobile") {
         window.location.href = "add-task.html";
     }
     if (screenMode == "desktop") {
-        updateBtnColor();
+        updateBtnColor(prio);
         classChangeAction("add-task-overlay", "overlaver-active", "toggle");
     }
 }
@@ -267,32 +273,3 @@ function styleSelecet() {
         });
     });
 }
-
-//////////////////////
-///    Get  Tasks  ///
-//////////////////////
-
-// board js is mit in cantacts head eingebunden 
-
-// async function getTasks() {
-//     let response = await getData((path = "/tasks"));
-//     let taskKeys = Object.keys(response);
-//     tasksArray = [];
-//     for (let index = 0; index < taskKeys.length; index++) {
-//         const key = taskKeys[index];
-//         let task = response[key];
-
-//         tasksArray.push({
-//             title: task.title,
-//             description: task.description,
-//             id: index,
-//             date: task.date,
-//             assignedTo: task.assignedTo,
-//             category: task.category,
-//             prio: task.prio,
-//             categoryText: task.categoryText,
-//             subtask: task.subtask,
-//             taskKey: taskKeys[index],
-//         });
-//     }
-// }
