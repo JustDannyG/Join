@@ -42,9 +42,10 @@ function searchUserInDatabase(emailInput, passwordInput, users, userIds) {
             userFound = true;
             localStorage.setItem("user", currentUser.name);
             localStorage.setItem("userId", userId);
-            saveToLocalStorage("rememberMe", remeberMeRef.checked);
-            saveToLocalStorage("rememberMeUser", currentUser);
-
+            if (remeberMeRef.checked) {
+                saveToLocalStorage("rememberMe", remeberMeRef.checked);
+                saveToLocalStorage("rememberMeUser", currentUser);
+            }
             window.location.href = "summary.html";
             return;
         }
