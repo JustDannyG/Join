@@ -130,3 +130,11 @@ function screeWidth() {
         document.getElementById('content-large').style.display = 'none';
     }
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    const svgImage = document.getElementById('loginSvg');
+
+    svgImage.addEventListener('animationend', function() {
+        svgImage.src = "/assets/icons/logo-dark.svg"; // Ändere das Bild nach der Animation
+    });
+});
