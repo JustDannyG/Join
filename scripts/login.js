@@ -1,19 +1,18 @@
 let currentUser;
+let userFound = false;
 
 async function login(event) {
     event.preventDefault();
     let emailInput = document.getElementById("email").value;
     let passwordInput = document.getElementById("password").value;
-    let checkbox = document.getElementById("myCheckbox");
+    // let checkbox = document.getElementById("myCheckbox");
     let users = await getData("users");
     let userIds = Object.keys(users);
-    let userFound = false;
-    searchUserInDatabase(emailInput, passwordInput, users, userIds, userFound, checkbox);
-    emailInputErrorStyle(emailInput);
-    passwordInputErrorStyle(passwordInput, emailInput);
+
+    searchUserInDatabase(emailInput, passwordInput, users, userIds);
 }
 
-async function searchUserInDatabase(emailInput, passwordInput, users, userIds, userFound, checkbox) {
+async function searchUserInDatabase(emailInput, passwordInput, users, userIds) {
     let emailInputLower = emailInput.toLowerCase();
     for (let i = 0; i < userIds.length; i++) {
         let userId = userIds[i];
@@ -21,8 +20,11 @@ async function searchUserInDatabase(emailInput, passwordInput, users, userIds, u
         if (currentUser.email.toLowerCase() === emailInputLower && currentUser.password === passwordInput) {
             userFound = true;
             localStorage.setItem("user", currentUser.name);
-            localStorage.setItem("userId", userId);  
+            localStorage.setItem("userId", userId);
             window.location.href = "summary.html";
+        } else if (!userFound) {
+            emailInputErrorStyle(emailInput);
+            passwordInputErrorStyle(passwordInput, emailInput);
         }
     }
 }
@@ -114,17 +116,14 @@ function checkIfPasswordInputFilled(passwordInput, userPwdError, userPwdContaine
 
 function goSummery(event) {
     localStorage.setItem("user", "Guest");
-    window.location.href = 'summary.html';
+    window.location.href = "summary.html";
 }
-
 
 // Hier a tag verwenden dann ist keine funktion nötig !!!
 
-function goSignUp() {
-    window.location.href = "sign-up.html";
-}
-
-
+// function goSignUp() {
+//     window.location.href = "sign-up.html";
+// }
 
 // Das kann man in den @media auf display ein und ausblenden !!!
 
@@ -140,10 +139,10 @@ function screeWidth() {
     }
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    const svgImage = document.getElementById('loginSvg');
+document.addEventListener("DOMContentLoaded", function () {
+    const svgImage = document.getElementById("loginSvg");
 
-    svgImage.addEventListener('animationend', function() {
-        svgImage.src = "/assets/icons/logo-dark.svg"; // Ändere das Bild nach der Animation
+    svgImage.addEventListener("animationend", function () {
+        svgImage.src = "./assets/icons/logo-dark.svg"; // Ändere das Bild nach der Animation
     });
 });
