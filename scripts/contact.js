@@ -141,7 +141,55 @@ function showContact() {
 function toggleOverlayDisplay() {
     let overlay = document.getElementById("edit-overlay-bg");
     overlay.classList.toggle("hide-overlay");
+    document.getElementById('edit-action-btns').innerHTML = `
+                    <button class="edit-delete-btn center" onclick="deleteContact(); return false">Delete</button>
+                    <button class="edit-save-btn center">Save <img src="./assets/icons/check.png" alt="" /></button>`;
     editDetails();
+}
+
+
+
+///////////////////////////////
+//   Own User Details   ///
+///////////////////////////////
+
+function toggleOwnOverlayDisplay() {
+    let overlay = document.getElementById("edit-overlay-bg");
+    overlay.classList.toggle("hide-overlay");
+    document.getElementById('edit-action-btns').innerHTML = `<button class="edit-save-btn center" onclick="editOwnUser(); return false">Save <img src="./assets/icons/check.png" alt="" /></button>`;
+    editOwnDetails();
+}
+
+async function editOwnDetails() {
+    let currentDetail = await ownContact()
+    document.getElementById("edit-name").value = currentDetail.name;
+    document.getElementById("edit-email").value = currentDetail.email;
+    document.getElementById("edit-phone").value = currentDetail.phone;
+    document.getElementById("edit-initals-container").innerHTML = `
+    <span style="background-color:${currentDetail.color}" class="edit-initals center">${createInititals(currentDetail.name)}
+                        <input id="edit-color" type="color" value="${currentDetail.color}">
+                    </span>
+    `;
+}
+
+
+async function editOwnUser() {
+    let name = document.getElementById("edit-name").value;
+    let email = document.getElementById("edit-email").value;
+    let phone = document.getElementById("edit-phone").value;
+    let color = document.getElementById("edit-color").value;
+    let pw = await getData(`users/${userId}/password`)
+
+    await putData(
+        (path = `/users/${userId}`),
+        (data = {
+            color: color,
+            name: name,
+            email: email,
+            phone: phone,
+            password: pw
+        })
+    );
 }
 
 ///////////////////////////////////////
@@ -159,6 +207,7 @@ function editDetails() {
                     </span>
     `;
 }
+
 
 async function getCurrentKey() {
     let allContacts = await getData((path = "/contacts"));

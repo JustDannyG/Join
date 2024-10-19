@@ -143,7 +143,7 @@ function contactOwnCirleHTML(detail) {
             <div class="name-detail">
                 ${detail.name}
                 <div class="edit-details-btns">
-                    <button onclick="toggleOverlayDisplay()"><img src="./assets/icons/edit.png"/>Edit</button>
+                    <button onclick="toggleOwnOverlayDisplay()"><img src="./assets/icons/edit.png"/>Edit</button>
                     <!-- <button onclick="deleteContact()"><img src="./assets/icons/delete.png" />Delete</button> -->
                 </div>
             </div>
