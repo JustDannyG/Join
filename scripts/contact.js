@@ -146,12 +146,30 @@ function toggleOverlayDisplay() {
     editDetails();
 }
 
+function toggleOwnOverlayDisplay() {
+    let overlay = document.getElementById("edit-overlay-bg");
+    overlay.classList.toggle("hide-overlay");
+    editOwnDetails();
+}
+
 ///////////////////////////////////////
 //  Edit Contact Details Functions  ///
 //////////////////////////////////////
 
 function editDetails() {
     let currentDetail = contactsArray[contactIndex];
+    document.getElementById("edit-name").value = currentDetail.name;
+    document.getElementById("edit-email").value = currentDetail.email;
+    document.getElementById("edit-phone").value = currentDetail.phone;
+    document.getElementById("edit-initals-container").innerHTML = `
+    <span style="background-color:${currentDetail.color}" class="edit-initals center">${createInititals(currentDetail.name)}
+                        <input id="edit-color" type="color" value="${currentDetail.color}">
+                    </span>
+    `;
+}
+
+async function editOwnDetails() {
+    let currentDetail = await ownContact()
     document.getElementById("edit-name").value = currentDetail.name;
     document.getElementById("edit-email").value = currentDetail.email;
     document.getElementById("edit-phone").value = currentDetail.phone;
