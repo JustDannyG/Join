@@ -49,8 +49,10 @@ async function openContact(index) {
     }
 }
 
-function openOwnContact() {
+async function openOwnContact() {
     if (screenMode == "mobile") {
+        let myUser = await ownContact();
+        saveToLocalStorage("contacts", 'user');
         window.location.href = "contact-details.html";
     } else if (screenMode == "desktop") {
         classChangeAction("dialog-add-contact", "hide-overlay", "add");
@@ -132,11 +134,17 @@ function clearAddInputs() {
 //   Show Contact Details   ///
 ///////////////////////////////
 
-function showContact() {
+async function showContact() {
     let currentContact = document.getElementById("current-contact");
-    let detail = contactsArray[contactIndex];
-    currentContact.innerHTML = contactCirleHTML(detail);
+    if (contactsArray == 'user') {
+        currentContact.innerHTML = contactOwnCirleHTML(await ownContact());
+    } else {
+        let detail = contactsArray[contactIndex];
+        currentContact.innerHTML = contactCirleHTML(detail);
+    }
 }
+
+
 
 function toggleOverlayDisplay() {
     let overlay = document.getElementById("edit-overlay-bg");
