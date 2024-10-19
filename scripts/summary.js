@@ -11,15 +11,28 @@ function summaryInit() {
 ///      Greeting Functions      /////
 /////////////////////////////////////
 
+/**
+ * Displays the greeting message and user's name on both desktop and mobile versions.
+ */
 function greeting() {
+    // Update desktop 
     let greeting = document.getElementById('greeting-time').innerHTML = greetingTime();
-    let greetUser = document.getElementById('greeting-name').innerHTML = greetingUser();
-
+    let greetUser = document.getElementById('greeting-name').innerHTML = user;
+    // Update mobile
     let greetingMobile = document.getElementById('greeting-time-mobile').innerHTML = greetingTime();
-    let greetUserMobile = document.getElementById('greeting-name-mobile').innerHTML = greetingUser();
+    let greetUserMobile = document.getElementById('greeting-name-mobile').innerHTML = user;
 }
 
 
+/**
+ * Returns a greeting based on the current time of day.
+ *
+ * @function
+ * @returns {string} - A greeting message based on the time:
+ *   - "Good morning" for hours before 12:00 PM.
+ *   - "Good afternoon" for hours between 12:00 PM and 5:00 PM.
+ *   - "Good evening" for hours after 5:00 PM.
+ */
 function greetingTime() {
     let A = new Date();
     let hour = A.getHours();
@@ -34,9 +47,9 @@ function greetingTime() {
 }
 
 
-function greetingUser() {
-    return user;
-}
+// function greetingUser() {
+//     return user;
+// }
 
 /////////////////////////////////////////
 ///    Show Current Summary Tasks     ///
