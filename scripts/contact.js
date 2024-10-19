@@ -37,9 +37,9 @@ async function renderContacts() {
 }
 
 async function openContact(index) {
-    currentContactDetails = index;
+    // currentContactDetails = index;
     await initContacts();
-    saveToLocalStorage("currentDetails", currentContactDetails);
+    saveToLocalStorage("currentDetails", index);
     saveToLocalStorage("contacts", contacts);
     if (screenMode == "mobile") {
         window.location.href = "contact-details.html";
