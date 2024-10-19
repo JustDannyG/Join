@@ -510,6 +510,16 @@ function clearAddTask() {
     classChangeAction("add-task-overlay", "overlaver-active", "remove");
 }
 
+/**
+ * Displays a success message after a task is created and manages
+ * the visibility of overlays.
+ *
+ * This function adds an active overlay class to the success message element,
+ * then sets a timeout to remove it after 2 seconds. After removing the
+ * success message, it sets another timeout for an additional 500 milliseconds
+ * to remove the add task overlay. If the current page is not the board page,
+ * it redirects the user to "board.html".
+ */
 function showSuccesMsg() {
     classChangeAction("add-task-succes-msg", "overlaver-active", "add");
     setTimeout(function () {
