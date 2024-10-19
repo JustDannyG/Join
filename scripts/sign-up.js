@@ -45,10 +45,10 @@ function checkboxError() {
     checkbox = document.getElementById("myCheckbox");
     if (!checkbox.checked) {
         let checkboxError = document.getElementById("checkbox-error");
-        let ckeckboxContainer = document.getElementById("checkbox-container");
+        // let ckeckboxContainer = document.getElementById("checkbox-container");
         checkboxError.textContent = "Please agree to our terms and conditions!";
         checkboxError.classList.add("visible");
-        ckeckboxContainer.classList.add("red-border");
+        // ckeckboxContainer.classList.add("red-border");
         shake(checkboxError);
     } else {
         document.getElementById("checkbox-error").classList.remove("visible");
@@ -119,7 +119,7 @@ function checkIfConfPwd(userPwd, userConfPwd) {
     if (userPwd !== userConfPwd) {
         let userConfPwdError = document.getElementById("conf-pwd-error");
         let userConfPwdContainer = document.getElementById("conf-pwd-input-container");
-        userConfPwdError.textContent = "Please confirm your Password!";
+        userConfPwdError.textContent = "Your passwords don't match. Please try again.";
         userConfPwdError.classList.add("visible");
         userConfPwdContainer.classList.add("red-border");
         shake(userConfPwdError);

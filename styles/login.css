@@ -310,3 +310,8 @@ button {
     padding: 0;
     height: 100%;
 }
+
+.link,
+.link:visited {
+    color: var(--light-blue);
+}
