@@ -21,17 +21,17 @@ function logOut() {
 /////////////////////////////
 
 async function getOwnContact() {
-    let ownContactResponse = await getData(path = `users/${userId}`)
-    return ownContactResponse
+    let ownContactResponse = await getData((path = `users/${userId}`));
+    return ownContactResponse;
 }
 
 async function ownContact() {
-    let ownContactData = await getOwnContact()
+    let ownContactData = await getOwnContact();
     return {
         color: ownContactData.color,
         email: ownContactData.email,
         name: ownContactData.name,
-        phone: ownContactData.phnoe
+        phone: ownContactData.phnoe,
     };
 }
 
@@ -194,7 +194,6 @@ checkIsSomeoneLogedId();
 window.addEventListener("resize", checkScreenWidth);
 window.addEventListener("resize", checkIsSomeoneLogedId);
 
-
 ///////////////////////////////////////////////////////////////////
 ///                                                            ///
 ///////////////////////////////////////////////////////////////////
@@ -208,14 +207,13 @@ function checkIsSomeoneLogedId() {
     }
 }
 
-
 function openAddTask(taskCategory) {
     setTaskCategory(taskCategory);
     if (screenMode == "mobile") {
         window.location.href = "add-task.html";
     }
     if (screenMode == "desktop") {
-        updateBtnColor();
+        updateBtnColor(prio);
         classChangeAction("add-task-overlay", "overlaver-active", "toggle");
     }
 }

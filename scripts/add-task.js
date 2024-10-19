@@ -11,7 +11,7 @@ let isDropdownOpen = false;
 
 async function addTaskInit() {
     selectedContacts = [];
-    updateBtnColor();
+    updateBtnColor(prio);
     await getContacts();
     getSelectedContacts();
     renderContacts(selectedContacts);
@@ -28,19 +28,19 @@ function addPrio(prioInput) {
     } else {
         prio = prioInput;
     }
-    updateBtnColor();
+    updateBtnColor(prio);
 }
 
-function updateBtnColor() {
+function updateBtnColor(prioValue) {
     let prios = ["urgent", "medium", "low"];
     prios.forEach((p) => {
         document.getElementById(`${p}-btn`).classList.remove(p);
         document.getElementById(`prio-icon-${p}`).src = `./assets/icons/prio-${p}-icon.png`;
     });
 
-    if (prio) {
-        document.getElementById(`prio-icon-${prio}`).src = `./assets/icons/prio-${prio}-icon-active.png`;
-        document.getElementById(`${prio}-btn`).classList.add(prio);
+    if (prioValue) {
+        document.getElementById(`prio-icon-${prioValue}`).src = `./assets/icons/prio-${prioValue}-icon-active.png`;
+        document.getElementById(`${prioValue}-btn`).classList.add(prioValue);
     }
 }
 

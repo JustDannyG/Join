@@ -218,7 +218,8 @@ function showEditTaskValues() {
     document.getElementById("overlaver").innerHTML = editBoardTaskHTML(currentTask);
     editTaskAssignTo();
     editTaskSubtask();
-    editTaskPrioBtnColor();
+    updateBtnColor(currentTask.prio);
+    // editTaskPrioBtnColor();
     taskPrioText();
 }
 
@@ -239,19 +240,19 @@ function taskPrioText() {
         document.getElementById("prio").innerHTML = "No Prio";
     }
 }
+//Nicht mehr notwendig
+// function editTaskPrioBtnColor() {
+//     const prios = ["urgent", "medium", "low"];
+//     prios.forEach((p) => {
+//         document.getElementById(`${p}-btn`).classList.remove(p);
+//         document.getElementById(`prio-icon-${p}`).src = `./assets/icons/prio-${p}-icon.png`;
+//     });
 
-function editTaskPrioBtnColor() {
-    const prios = ["urgent", "medium", "low"];
-    prios.forEach((p) => {
-        document.getElementById(`${p}-btn`).classList.remove(p);
-        document.getElementById(`prio-icon-${p}`).src = `./assets/icons/prio-${p}-icon.png`;
-    });
-
-    if (currentTask.prio) {
-        document.getElementById(`prio-icon-${currentTask.prio}`).src = `./assets/icons/prio-${currentTask.prio}-icon-active.png`;
-        document.getElementById(`${currentTask.prio}-btn`).classList.add(currentTask.prio);
-    } else return;
-}
+//     if (currentTask.prio) {
+//         document.getElementById(`prio-icon-${currentTask.prio}`).src = `./assets/icons/prio-${currentTask.prio}-icon-active.png`;
+//         document.getElementById(`${currentTask.prio}-btn`).classList.add(currentTask.prio);
+//     } else return;
+// }
 
 function editPrio(prioInput) {
     if (prioInput == currentTask.prio) {
@@ -259,7 +260,8 @@ function editPrio(prioInput) {
     } else {
         currentTask.prio = prioInput;
     }
-    editTaskPrioBtnColor();
+    updateBtnColor(currentTask.prio);
+    // editTaskPrioBtnColor();
 }
 
 function findCheckedContacts(currentTask) {
