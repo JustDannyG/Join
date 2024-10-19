@@ -192,6 +192,7 @@ async function editOwnUser() {
             password: pw
         })
     );
+    await initContacts();
 }
 
 ///////////////////////////////////////
