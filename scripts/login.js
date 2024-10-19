@@ -1,13 +1,30 @@
 let currentUser;
 let userFound = false;
+let users;
+let userIds;
+let remeberMe;
+let remeberMeUser;
+
+async function loginInit() {
+    screeWidth();
+    remeberMe = getFromLocalStorage("rememberMe");
+    remeberMeUser = getFromLocalStorage("rememberMeUser");
+    users = await getData("users");
+    userIds = Object.keys(users);
+
+    if (remeberMe) {
+        let emailInput = document.getElementById("email");
+        let passwordInput = document.getElementById("password");
+        emailInput.value = remeberMeUser.email;
+        passwordInput.value = remeberMeUser.password;
+    }
+}
 
 async function login(event) {
     event.preventDefault();
     let emailInput = document.getElementById("email").value;
     let passwordInput = document.getElementById("password").value;
-    // let checkbox = document.getElementById("myCheckbox");
-    let users = await getData("users");
-    let userIds = Object.keys(users);
+
     searchUserInDatabase(emailInput, passwordInput, users, userIds);
     if (!userFound) {
         emailInputErrorStyle(emailInput);
@@ -17,6 +34,7 @@ async function login(event) {
 
 function searchUserInDatabase(emailInput, passwordInput, users, userIds) {
     let emailInputLower = emailInput.toLowerCase();
+    let remeberMeRef = document.getElementById("myCheckbox");
     for (let i = 0; i < userIds.length; i++) {
         let userId = userIds[i];
         currentUser = users[userId];
@@ -24,8 +42,15 @@ function searchUserInDatabase(emailInput, passwordInput, users, userIds) {
             userFound = true;
             localStorage.setItem("user", currentUser.name);
             localStorage.setItem("userId", userId);
+            saveToLocalStorage("rememberMe", remeberMeRef.checked);
+            saveToLocalStorage("rememberMeUser", currentUser);
+
             window.location.href = "summary.html";
             return;
+        }
+        if (!remeberMeRef.checked) {
+            localStorage.removeItem("rememberMeUser");
+            localStorage.removeItem("rememberMe");
         }
     }
 }
