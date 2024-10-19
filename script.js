@@ -16,12 +16,22 @@ function logOut() {
     window.location.href = "index.html";
 }
 
-function ownContact() {
+//////////////////////////////
+///    Own Contact        ///
+/////////////////////////////
+
+async function getOwnContact() {
+    let ownContactResponse = await getData(path = `users/${userId}`)
+    return ownContactResponse
+}
+
+async function ownContact() {
+    let ownContactData = await getOwnContact()
     return {
-        color: "#1bb544",
-        email: "",
-        name: user,
-        phone: "",
+        color: ownContactData.color,
+        email: ownContactData.email,
+        name: ownContactData.name,
+        phone: ownContactData.phnoe
     };
 }
 
@@ -120,7 +130,7 @@ async function getContacts() {
         const contact = contactsData[key];
         contacts.push(contact);
     }
-    contacts.push(ownContact());
+    // contacts.push(ownContact());
     sortByAlphabet(contacts);
     console.log(contacts);
 }
