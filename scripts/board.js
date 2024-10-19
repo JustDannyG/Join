@@ -241,12 +241,12 @@ function taskPrioText() {
 }
 
 function editTaskPrioBtnColor() {
-    document.getElementById("urgent-btn").classList.remove("urgent");
-    document.getElementById("medium-btn").classList.remove("medium");
-    document.getElementById("low-btn").classList.remove("low");
-    document.getElementById("prio-icon-urgent").src = "./assets/icons/prio-urgent-icon.png";
-    document.getElementById("prio-icon-medium").src = "./assets/icons/prio-medium-icon.png";
-    document.getElementById("prio-icon-low").src = "./assets/icons/prio-low-icon.png";
+    const prios = ["urgent", "medium", "low"];
+    prios.forEach((p) => {
+        document.getElementById(`${p}-btn`).classList.remove(p);
+        document.getElementById(`prio-icon-${p}`).src = `./assets/icons/prio-${p}-icon.png`;
+    });
+
     if (currentTask.prio) {
         document.getElementById(`prio-icon-${currentTask.prio}`).src = `./assets/icons/prio-${currentTask.prio}-icon-active.png`;
         document.getElementById(`${currentTask.prio}-btn`).classList.add(currentTask.prio);

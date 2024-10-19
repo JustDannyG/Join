@@ -32,18 +32,16 @@ function addPrio(prioInput) {
 }
 
 function updateBtnColor() {
-    document.getElementById("urgent-btn").classList.remove("urgent");
-    document.getElementById("medium-btn").classList.remove("medium");
-    document.getElementById("low-btn").classList.remove("low");
-
-    document.getElementById("prio-icon-urgent").src = "./assets/icons/prio-urgent-icon.png";
-    document.getElementById("prio-icon-medium").src = "./assets/icons/prio-medium-icon.png";
-    document.getElementById("prio-icon-low").src = "./assets/icons/prio-low-icon.png";
+    let prios = ["urgent", "medium", "low"];
+    prios.forEach((p) => {
+        document.getElementById(`${p}-btn`).classList.remove(p);
+        document.getElementById(`prio-icon-${p}`).src = `./assets/icons/prio-${p}-icon.png`;
+    });
 
     if (prio) {
         document.getElementById(`prio-icon-${prio}`).src = `./assets/icons/prio-${prio}-icon-active.png`;
         document.getElementById(`${prio}-btn`).classList.add(prio);
-    } else return;
+    }
 }
 
 ///////////////////////////////////////
