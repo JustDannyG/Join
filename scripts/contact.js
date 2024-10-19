@@ -3,7 +3,6 @@ let contactIndex = getFromLocalStorage("currentDetails");
 let contactsArray = getFromLocalStorage("contacts");
 let currentContactDetails = localStorage.getItem("currentDetails");
 
-
 ////////////////////
 ///    Start   ////
 ///////////////////
@@ -21,10 +20,9 @@ async function renderContacts() {
     let containerRef = document.getElementById("contacts-container");
     containerRef.innerHTML = "";
     let firstLetter = "";
-    if (user !== 'Guest') {
-        containerRef.innerHTML = firstLetterHtml('Me')
+    if (user !== "Guest") {
+        containerRef.innerHTML = firstLetterHtml("Me");
         containerRef.innerHTML += ownContactListHtml(await ownContact());
-
     }
 
     contacts.forEach((contact, i) => {
@@ -51,12 +49,12 @@ async function openContact(index) {
     }
 }
 
-function openOwnContact(){
+function openOwnContact() {
     if (screenMode == "mobile") {
         window.location.href = "contact-details.html";
     } else if (screenMode == "desktop") {
         classChangeAction("dialog-add-contact", "hide-overlay", "add");
-        showOwnContact()
+        showOwnContact();
     }
 }
 
