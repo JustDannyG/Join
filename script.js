@@ -141,9 +141,9 @@ async function getContacts() {
 //     event.stopPropagation();
 // }
 
-function goSummery() {
-    window.location.href = "summary.html";
-}
+// function goSummery() {
+//     window.location.href = "summary.html";
+// }
 
 //////////////////////////////////////
 ///                             /////
