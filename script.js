@@ -1,7 +1,7 @@
 let user = localStorage.getItem("user");
-console.log(user);
 
 //Wenn kein User eingelogt dann bitte so: let user;
+
 let contacts = [];
 let prio = "medium";
 
@@ -14,32 +14,14 @@ function logOut() {
     window.location.href = "index.html";
 }
 
-
-//////////////////////////////
-///                      ///
-/////////////////////////////
-
-
-// function ownContact() {
-//     if (user !== "Guest") {
-//         return {
-//             'color': '#1bb544',
-//             'email': "",
-//             'name': user,
-//             'phone': ""
-//         }
-//     } 
-// }
-
 function ownContact() {
     return {
-        'color': '#1bb544',
-        'email': "",
-        'name': user,
-        'phone': ""
-    }
+        color: "#1bb544",
+        email: "",
+        name: user,
+        phone: "",
+    };
 }
-
 
 //////////////////////////////////////
 ///         Return Functions     /////
@@ -139,12 +121,9 @@ async function getContacts() {
     contacts.push(ownContact());
     sortByAlphabet(contacts);
     console.log(contacts);
-
-
 }
 
-
-// ist doppelt 
+// ist doppelt
 
 // function stopEventBubbling(event) {
 //     event.stopPropagation();
@@ -278,34 +257,3 @@ function styleSelecet() {
         });
     });
 }
-
-//////////////////////
-///    Get  Tasks  ///
-//////////////////////
-
-// board js is mit in cantacts head eingebunden 
-
-// async function getTasks() {
-//     let response = await getData((path = "/tasks"));
-//     let taskKeys = Object.keys(response);
-//     tasksArray = [];
-//     for (let index = 0; index < taskKeys.length; index++) {
-//         const key = taskKeys[index];
-//         let task = response[key];
-
-//         tasksArray.push({
-//             title: task.title,
-//             description: task.description,
-//             id: index,
-//             date: task.date,
-//             assignedTo: task.assignedTo,
-//             category: task.category,
-//             prio: task.prio,
-//             categoryText: task.categoryText,
-//             subtask: task.subtask,
-//             taskKey: taskKeys[index],
-//         });
-//     }
-// }
-
-
