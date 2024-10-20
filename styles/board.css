@@ -61,6 +61,10 @@
     border: none;
 }
 
+.search-task-input-desktop:focus {
+    border: none;
+}
+
 .search-icon {
     width: 32px;
     height: 32px;
