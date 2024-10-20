@@ -94,6 +94,10 @@
    ========================= */
 
 .board-head-mobile {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: var(--light-grey);
     display: flex;
     flex-direction: column;
     justify-content: end;
