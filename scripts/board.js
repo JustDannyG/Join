@@ -240,19 +240,6 @@ function taskPrioText() {
         document.getElementById("prio").innerHTML = "No Prio";
     }
 }
-//Nicht mehr notwendig
-// function editTaskPrioBtnColor() {
-//     const prios = ["urgent", "medium", "low"];
-//     prios.forEach((p) => {
-//         document.getElementById(`${p}-btn`).classList.remove(p);
-//         document.getElementById(`prio-icon-${p}`).src = `./assets/icons/prio-${p}-icon.png`;
-//     });
-
-//     if (currentTask.prio) {
-//         document.getElementById(`prio-icon-${currentTask.prio}`).src = `./assets/icons/prio-${currentTask.prio}-icon-active.png`;
-//         document.getElementById(`${currentTask.prio}-btn`).classList.add(currentTask.prio);
-//     } else return;
-// }
 
 function editPrio(prioInput) {
     if (prioInput == currentTask.prio) {
@@ -261,20 +248,16 @@ function editPrio(prioInput) {
         currentTask.prio = prioInput;
     }
     updateBtnColor(currentTask.prio);
-    // editTaskPrioBtnColor();
 }
 
 function findCheckedContacts(currentTask) {
-    for (let i = 0; i < selectedContacts.length; i++) {
-        let selectedName = selectedContacts[i].name;
-
-        for (let j = 0; j < currentTask.assignedTo.length; j++) {
-            let assignedName = currentTask.assignedTo[j].name;
-            if (assignedName == selectedName) {
-                selectedContacts[i].checked = true;
+    selectedContacts.forEach((selectedContact) => {
+        currentTask.assignedTo.forEach((assignedContact) => {
+            if (assignedContact.name === selectedContact.name) {
+                selectedContact.checked = true;
             }
-        }
-    }
+        });
+    });
 }
 
 ///////////////////////////////////////////////
@@ -313,26 +296,22 @@ function deleteSubtask(i) {
 /////////////////////////////////////////////////////
 
 async function editTask() {
-    let editTitle = document.getElementById("edit-title-input").value;
-    let editDescription = document.getElementById("edit-textarea").value;
-    let editDate = document.getElementById("edit-date-input").value;
-
     await putData(
         (path = `/tasks/${currentTask.taskKey}`),
         (data = {
             id: currentTask.id,
             category: currentTask.category,
             categoryText: currentTask.categoryText,
-            title: editTitle,
-            description: editDescription,
-            date: editDate,
+            title: document.getElementById("edit-title-input").value,
+            description: document.getElementById("edit-textarea").value,
+            date: document.getElementById("edit-date-input").value,
             prio: currentTask.prio,
             assignedTo: filterCheckedAssignedTo(),
             subtask: currentSubtasks,
             taskKey: currentTask.taskKey,
         })
     );
-    resetBoard();
+    await resetBoard();
     openTask(currentTask.id);
 }
 
