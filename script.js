@@ -1,11 +1,5 @@
-
 let user = localStorage.getItem("user");
-<<<<<<< HEAD
-=======
-
-//Wenn kein User eingelogt dann bitte so: let user;
-
->>>>>>> 88eee40789a992c653d9bcc99a245fd4f65b6ed9
+let userId = localStorage.getItem("userId");
 let contacts = [];
 let prio = "medium";
 
@@ -15,16 +9,29 @@ let prio = "medium";
 
 function logOut() {
     localStorage.setItem("user", "");
+    localStorage.setItem("userId", "");
     window.location.href = "index.html";
+    localStorage.removeItem("rememberMeUser");
+    localStorage.removeItem("rememberMe");
 }
 
-function ownContact() {
+//////////////////////////////
+///    Own Contact        ///
+/////////////////////////////
+
+async function getOwnContact() {
+    let ownContactResponse = await getData((path = `users/${userId}`));
+    return ownContactResponse;
+}
+
+async function ownContact() {
+    let ownContactData = await getOwnContact();
     return {
-        'color': '#1bb544',
-        'email': "",
-        'name': user,
-        'phone': ""
-    }
+        color: ownContactData.color,
+        email: ownContactData.email,
+        name: ownContactData.name,
+        phone: ownContactData.phnoe,
+    };
 }
 
 //////////////////////////////////////
@@ -65,18 +72,6 @@ function sortByAlphabet(arr) {
     return arr;
 }
 
-function isCheckBoxChecked(e) {
-    return e.checked;
-}
-
-function checkLengthGreater(e, n) {
-    return e.length > n;
-}
-
-function checkLengthSmaller(e, n) {
-    return e.length > n;
-}
-
 /////////////////////////////////////////////////
 ///   LocalStorage - Save / Load Functions   ////
 /////////////////////////////////////////////////
@@ -86,6 +81,7 @@ function saveToLocalStorage(key, value) {
 }
 
 function getFromLocalStorage(key) {
+    let myData;
     let myArr = JSON.parse(localStorage.getItem(key));
     if (myArr !== null) {
         myData = myArr;
@@ -96,10 +92,6 @@ function getFromLocalStorage(key) {
 //////////////////////////////////////
 ///                             /////
 /////////////////////////////////////
-
-function clearContent(e) {
-    e.innerHTML = "";
-}
 
 function clearInput(input) {
     input.value = "";
@@ -122,21 +114,9 @@ async function getContacts() {
         const contact = contactsData[key];
         contacts.push(contact);
     }
-    contacts.push(ownContact());
+    // contacts.push(ownContact());
     sortByAlphabet(contacts);
     console.log(contacts);
-
-}
-
-
-// ist doppelt 
-
-// function stopEventBubbling(event) {
-//     event.stopPropagation();
-// }
-
-function goSummery() {
-    window.location.href = "summary.html";
 }
 
 //////////////////////////////////////
@@ -165,7 +145,7 @@ function checkScreenWidth() {
     let sidebar = document.getElementById("join-sidebar");
     let currentHeader = "";
     let currentSidebar = "";
-    
+
     if (window.innerWidth <= 1024) {
         console.log("Mobile Ansicht");
         currentHeader = mobileHeader(createInititals(user));
@@ -181,6 +161,17 @@ function checkScreenWidth() {
     sidebar.innerHTML = currentSidebar;
 }
 
+// Aufrufen der Funktion beim Laden der Seite
+checkScreenWidth();
+checkIsSomeoneLogedId();
+// Optional: Bei jeder Größenänderung des Fensters
+window.addEventListener("resize", checkScreenWidth);
+window.addEventListener("resize", checkIsSomeoneLogedId);
+
+///////////////////////////////////////////////////////////////////
+///                                                            ///
+///////////////////////////////////////////////////////////////////
+
 function checkIsSomeoneLogedId() {
     if (!user) {
         document.getElementById("summary-link").classList.add("d-none");
@@ -190,20 +181,13 @@ function checkIsSomeoneLogedId() {
     }
 }
 
-// Aufrufen der Funktion beim Laden der Seite
-checkScreenWidth();
-checkIsSomeoneLogedId();
-// Optional: Bei jeder Größenänderung des Fensters
-window.addEventListener("resize", checkScreenWidth);
-window.addEventListener("resize", checkIsSomeoneLogedId);
-
 function openAddTask(taskCategory) {
     setTaskCategory(taskCategory);
     if (screenMode == "mobile") {
         window.location.href = "add-task.html";
     }
     if (screenMode == "desktop") {
-        updateBtnColor();
+        updateBtnColor(prio);
         classChangeAction("add-task-overlay", "overlaver-active", "toggle");
     }
 }

@@ -1,15 +1,15 @@
 async function signUp() {
-    let userNameInput = document.getElementById('name-input').value;
-    let userEmailInput = document.getElementById('email-input').value;
-    let userPwd = document.getElementById('user-pwd').value;
-    let userConfPwd = document.getElementById('user-conf-pwd').value;
-    checkbox = document.getElementById('myCheckbox');
+    let userNameInput = document.getElementById("name-input").value;
+    let userEmailInput = document.getElementById("email-input").value;
+    let userPwd = document.getElementById("user-pwd").value;
+    let userConfPwd = document.getElementById("user-conf-pwd").value;
+    checkbox = document.getElementById("myCheckbox");
     checkIfUserAllreadyExists(userNameInput, userEmailInput, userPwd, userConfPwd, checkbox);
     errorStyles(userNameInput, userEmailInput, userPwd, userConfPwd);
 }
 
 function capitalizeFirstLetter(userEmailInput, userPwd) {
-    let userNameInput = document.getElementById('name-input');
+    let userNameInput = document.getElementById("name-input");
     let userNameValue = userNameInput.value;
     if (userNameValue.length > 0) {
         let capitalizedUserName = userNameValue.charAt(0).toUpperCase() + userNameValue.slice(1);
@@ -21,19 +21,19 @@ function capitalizeFirstLetter(userEmailInput, userPwd) {
 function checkIfEmailHaveAnAtt(emailInput, userEmailError, userEmailContainer) {
     if (!containsAtSymbol(emailInput) && emailInput !== "") {
         userEmailError.textContent = "Your email isn't an Email";
-        userEmailError.classList.add('visible');
-        userEmailContainer.classList.add('red-border');
+        userEmailError.classList.add("visible");
+        userEmailContainer.classList.add("red-border");
         shake(userEmailError);
     } else {
-        document.getElementById('email-error').classList.remove('visible');
-        document.getElementById('email-input-container').classList.remove('red-border');
+        document.getElementById("email-error").classList.remove("visible");
+        document.getElementById("email-input-container").classList.remove("red-border");
     }
 }
 
 function shake(Error) {
-    Error.classList.add('shake');
+    Error.classList.add("shake");
     setTimeout(() => {
-        Error.classList.remove('shake');
+        Error.classList.remove("shake");
     }, 300);
 }
 
@@ -42,123 +42,124 @@ function containsAtSymbol(emailInput) {
 }
 
 function checkboxError() {
-    checkbox = document.getElementById('myCheckbox');
+    checkbox = document.getElementById("myCheckbox");
     if (!checkbox.checked) {
-        let checkboxError = document.getElementById('checkbox-error');
-        let ckeckboxContainer = document.getElementById('checkbox-container');
+        let checkboxError = document.getElementById("checkbox-error");
+        // let ckeckboxContainer = document.getElementById("checkbox-container");
         checkboxError.textContent = "Please agree to our terms and conditions!";
-        checkboxError.classList.add('visible');
-        ckeckboxContainer.classList.add('red-border');
+        checkboxError.classList.add("visible");
+        // ckeckboxContainer.classList.add("red-border");
         shake(checkboxError);
     } else {
-        document.getElementById('checkbox-error').classList.remove('visible');
-        document.getElementById('checkbox-container').classList.remove('red-border');
+        document.getElementById("checkbox-error").classList.remove("visible");
+        document.getElementById("checkbox-container").classList.remove("red-border");
     }
 }
 
 function userInputErrorStyle(userNameInput) {
     if (userNameInput === "") {
-        let userNameError = document.getElementById('name-error');
-        let userNameContainer = document.getElementById('name-input-container');
+        let userNameError = document.getElementById("name-error");
+        let userNameContainer = document.getElementById("name-input-container");
         userNameError.textContent = "Please enter your name!";
-        userNameError.classList.add('visible');
-        userNameContainer.classList.add('red-border');
+        userNameError.classList.add("visible");
+        userNameContainer.classList.add("red-border");
         shake(userNameError);
     } else {
-        document.getElementById('name-error').classList.remove('visible');
-        document.getElementById('name-input-container').classList.remove('red-border');
+        document.getElementById("name-error").classList.remove("visible");
+        document.getElementById("name-input-container").classList.remove("red-border");
     }
 }
 
 function emailInputErrorStyle(userEmailInput) {
-    let userEmailError = document.getElementById('email-error');
-    let userEmailContainer = document.getElementById('email-input-container');
+    let userEmailError = document.getElementById("email-error");
+    let userEmailContainer = document.getElementById("email-input-container");
     if (userEmailInput === "") {
         userEmailError.textContent = "Please enter your Email!";
-        userEmailError.classList.add('visible');
-        userEmailContainer.classList.add('red-border');
+        userEmailError.classList.add("visible");
+        userEmailContainer.classList.add("red-border");
         shake(userEmailError);
     } else if (userEmailInput !== "") {
-        checkIfEmailHaveAnAtt(userEmailInput, userEmailError, userEmailContainer)
+        checkIfEmailHaveAnAtt(userEmailInput, userEmailError, userEmailContainer);
         shake(userEmailError);
     } else {
-        document.getElementById('email-error').classList.remove('visible');
-        document.getElementById('email-input-container').classList.remove('red-border');
+        document.getElementById("email-error").classList.remove("visible");
+        document.getElementById("email-input-container").classList.remove("red-border");
     }
 }
 
-
 function passwordInputErrorStyle(userPwd) {
     if (userPwd === "") {
-        let userPwdError = document.getElementById('password-error');
-        let userPwdContainer = document.getElementById('pwd-input-container');
+        let userPwdError = document.getElementById("password-error");
+        let userPwdContainer = document.getElementById("pwd-input-container");
         userPwdError.textContent = "Please enter any Password!";
-        userPwdError.classList.add('visible');
-        userPwdContainer.classList.add('red-border');
+        userPwdError.classList.add("visible");
+        userPwdContainer.classList.add("red-border");
         shake(userPwdError);
     } else {
-        document.getElementById('password-error').classList.remove('visible');
-        document.getElementById('pwd-input-container').classList.remove('red-border');
+        document.getElementById("password-error").classList.remove("visible");
+        document.getElementById("pwd-input-container").classList.remove("red-border");
     }
 }
 
 function passwordConfInputErrorStyle(userConfPwd) {
     if (userConfPwd === "") {
-        let userConfPwdError = document.getElementById('conf-pwd-error');
-        let userConfPwdContainer = document.getElementById('conf-pwd-input-container');
+        let userConfPwdError = document.getElementById("conf-pwd-error");
+        let userConfPwdContainer = document.getElementById("conf-pwd-input-container");
         userConfPwdError.textContent = "Please confirm your Password!";
-        userConfPwdError.classList.add('visible');
-        userConfPwdContainer.classList.add('red-border');
+        userConfPwdError.classList.add("visible");
+        userConfPwdContainer.classList.add("red-border");
         shake(userConfPwdError);
     } else {
-        document.getElementById('conf-pwd-error').classList.remove('visible');
-        document.getElementById('conf-pwd-input-container').classList.remove('red-border');
+        document.getElementById("conf-pwd-error").classList.remove("visible");
+        document.getElementById("conf-pwd-input-container").classList.remove("red-border");
     }
 }
 
 function checkIfConfPwd(userPwd, userConfPwd) {
     if (userPwd !== userConfPwd) {
-        let userConfPwdError = document.getElementById('conf-pwd-error');
-        let userConfPwdContainer = document.getElementById('conf-pwd-input-container');
-        userConfPwdError.textContent = "Please confirm your Password!";
-        userConfPwdError.classList.add('visible');
-        userConfPwdContainer.classList.add('red-border');
+        let userConfPwdError = document.getElementById("conf-pwd-error");
+        let userConfPwdContainer = document.getElementById("conf-pwd-input-container");
+        userConfPwdError.textContent = "Your passwords don't match. Please try again.";
+        userConfPwdError.classList.add("visible");
+        userConfPwdContainer.classList.add("red-border");
         shake(userConfPwdError);
     } else {
-        document.getElementById('conf-pwd-error').classList.remove('visible');
-        document.getElementById('conf-pwd-input-container').classList.remove('red-border');
+        document.getElementById("conf-pwd-error").classList.remove("visible");
+        document.getElementById("conf-pwd-input-container").classList.remove("red-border");
     }
 }
 
 async function checkIfAllInputsFilled(userNameInput, userEmailInput, userPwd, userConfPwd, user) {
     if (userNameInput === "" && userEmailInput === "" && userPwd !== userConfPwd && !checkbox.checked && !emailInput.includes("@")) {
         errorStyles(userNameInput, userEmailInput, userPwd, userConfPwd);
-    } else if (userNameInput !== "" && userEmailInput !== "" && userPwd !== "" && userConfPwd !== "" && userPwd == userConfPwd
-        && checkbox.checked && user.email !== userEmailInput && user.name !== userNameInput) {
+    } else if (userNameInput !== "" && userEmailInput !== "" && userPwd !== "" && userConfPwd !== "" && userPwd == userConfPwd && checkbox.checked && user.email !== userEmailInput && user.name !== userNameInput) {
         userSuccessfullySignedup();
     }
 }
 
 async function postSignUpData(userNameInput, userEmailInput, userPwd) {
-    await postData(path = "/users", data = {
-        'name': userNameInput,
-        'email': userEmailInput,
-        'password': userPwd
-    });
+    await postData(
+        (path = "/users"),
+        (data = {
+            name: userNameInput,
+            email: userEmailInput,
+            password: userPwd,
+        })
+    );
     setTimeout(() => {
         goLogin();
     }, 1500);
 }
 
 function goLogin() {
-    window.location.href = 'index.html';
+    window.location.href = "index.html";
 }
 
 function errorStyles(userNameInput, userEmailInput, userPwd, userConfPwd) {
-    let userEmailError = document.getElementById('email-error');
-    let userEmailContainer = document.getElementById('email-input-container');
+    let userEmailError = document.getElementById("email-error");
+    let userEmailContainer = document.getElementById("email-input-container");
     userInputErrorStyle(userNameInput);
-    checkIfEmailHaveAnAtt(userEmailInput, userEmailError, userEmailContainer)
+    checkIfEmailHaveAnAtt(userEmailInput, userEmailError, userEmailContainer);
     emailInputErrorStyle(userEmailInput);
     passwordInputErrorStyle(userPwd);
     passwordConfInputErrorStyle(userConfPwd);
@@ -167,7 +168,7 @@ function errorStyles(userNameInput, userEmailInput, userPwd, userConfPwd) {
 }
 
 async function checkIfUserAllreadyExists(userNameInput, userEmailInput, userPwd, userConfPwd, checkbox) {
-    let users = await getData('users');
+    let users = await getData("users");
     let userIds = Object.keys(users);
     let userExists = false;
     for (let i = 0; i < userIds.length; i++) {
@@ -187,15 +188,12 @@ async function checkIfUserAllreadyExists(userNameInput, userEmailInput, userPwd,
     }
 }
 
-
 function userSuccessfullySignedup() {
-    console.log('User successfully signed up!');
-    toogleDialog('dialog-signup-succes');
+    toogleDialog("dialog-signup-succes");
 }
 
 function userAllreadyExists() {
-    console.log('User allready exists!');
-    toogleDialog('dialog-allready-exists');
+    toogleDialog("dialog-allready-exists");
 }
 
 function toogleDialog(id) {

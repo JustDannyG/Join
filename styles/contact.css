@@ -23,6 +23,7 @@
     max-width: 1920px;
 }
 
+
 /* =========================================
           Contact - Add new Contact Button
    =========================================== */
@@ -537,7 +538,7 @@
     font-size: 20px;
     width: 126px;
     height: 56px;
-    border: solid 1px;
+    border: solid 1px var(--dark-grey);
     border-radius: 10px;
     background-color: unset;
     position: absolute;
@@ -579,3 +580,5 @@
 .hide-overlay-desktop {
     transform: translateX(100vw);
 }
+
+

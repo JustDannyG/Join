@@ -2,7 +2,6 @@ let currentSortKeys = [];
 let contactIndex = getFromLocalStorage("currentDetails");
 let contactsArray = getFromLocalStorage("contacts");
 let currentContactDetails = localStorage.getItem("currentDetails");
-let screenMode;
 
 ////////////////////
 ///    Start   ////
@@ -17,10 +16,15 @@ async function initContacts() {
 ///    Render Contact List   ////
 ////////////////////////////////
 
-function renderContacts() {
+async function renderContacts() {
     let containerRef = document.getElementById("contacts-container");
     containerRef.innerHTML = "";
     let firstLetter = "";
+    if (user !== "Guest") {
+        containerRef.innerHTML = firstLetterHtml("Me");
+        containerRef.innerHTML += ownContactListHtml(await ownContact());
+    }
+
     contacts.forEach((contact, i) => {
         if (firstLetter !== contact.name.charAt(0).toUpperCase()) {
             firstLetter = contact.name.charAt(0).toUpperCase();
@@ -31,9 +35,9 @@ function renderContacts() {
 }
 
 async function openContact(index) {
-    currentContactDetails = index;
+    // currentContactDetails = index;
     await initContacts();
-    saveToLocalStorage("currentDetails", currentContactDetails);
+    saveToLocalStorage("currentDetails", index);
     saveToLocalStorage("contacts", contacts);
     if (screenMode == "mobile") {
         window.location.href = "contact-details.html";
@@ -43,6 +47,22 @@ async function openContact(index) {
         classChangeAction("dialog-add-contact", "hide-overlay", "add");
         showContact();
     }
+}
+
+async function openOwnContact() {
+    if (screenMode == "mobile") {
+        let myUser = await ownContact();
+        saveToLocalStorage("contacts", 'user');
+        window.location.href = "contact-details.html";
+    } else if (screenMode == "desktop") {
+        classChangeAction("dialog-add-contact", "hide-overlay", "add");
+        showOwnContact();
+    }
+}
+
+async function showOwnContact() {
+    let currentContact = document.getElementById("current-contact");
+    currentContact.innerHTML = contactOwnCirleHTML(await ownContact());
 }
 
 /////////////////////////////////////////////////
@@ -114,18 +134,71 @@ function clearAddInputs() {
 //   Show Contact Details   ///
 ///////////////////////////////
 
-function showContact() {
+async function showContact() {
     let currentContact = document.getElementById("current-contact");
-    let detail = contactsArray[contactIndex];
-    currentContact.innerHTML = contactCirleHTML(detail);
-    // let detailsContainer = document.getElementById("details");
-    // detailsContainer.innerHTML = contactInformationsHTML(detail);
+    if (contactsArray == 'user') {
+        currentContact.innerHTML = contactOwnCirleHTML(await ownContact());
+    } else {
+        let detail = contactsArray[contactIndex];
+        currentContact.innerHTML = contactCirleHTML(detail);
+    }
 }
+
+
 
 function toggleOverlayDisplay() {
     let overlay = document.getElementById("edit-overlay-bg");
     overlay.classList.toggle("hide-overlay");
+    document.getElementById('edit-action-btns').innerHTML = `
+                    <button class="edit-delete-btn center" onclick="deleteContact(); return false">Delete</button>
+                    <button class="edit-save-btn center">Save <img src="./assets/icons/check.png" alt="" /></button>`;
     editDetails();
+}
+
+
+
+///////////////////////////////
+//   Own User Details   ///
+///////////////////////////////
+
+function toggleOwnOverlayDisplay() {
+    let overlay = document.getElementById("edit-overlay-bg");
+    overlay.classList.toggle("hide-overlay");
+    document.getElementById('edit-action-btns').innerHTML = `<button class="edit-save-btn center" onclick="editOwnUser(); return false">Save <img src="./assets/icons/check.png" alt="" /></button>`;
+    editOwnDetails();
+}
+
+async function editOwnDetails() {
+    let currentDetail = await ownContact()
+    document.getElementById("edit-name").value = currentDetail.name;
+    document.getElementById("edit-email").value = currentDetail.email;
+    document.getElementById("edit-phone").value = currentDetail.phone;
+    document.getElementById("edit-initals-container").innerHTML = `
+    <span style="background-color:${currentDetail.color}" class="edit-initals center">${createInititals(currentDetail.name)}
+                        <input id="edit-color" type="color" value="${currentDetail.color}">
+                    </span>
+    `;
+}
+
+
+async function editOwnUser() {
+    let name = document.getElementById("edit-name").value;
+    let email = document.getElementById("edit-email").value;
+    let phone = document.getElementById("edit-phone").value;
+    let color = document.getElementById("edit-color").value;
+    let pw = await getData(`users/${userId}/password`)
+
+    await putData(
+        (path = `/users/${userId}`),
+        (data = {
+            color: color,
+            name: name,
+            email: email,
+            phone: phone,
+            password: pw
+        })
+    );
+    await initContacts();
 }
 
 ///////////////////////////////////////
@@ -143,6 +216,7 @@ function editDetails() {
                     </span>
     `;
 }
+
 
 async function getCurrentKey() {
     let allContacts = await getData((path = "/contacts"));
@@ -172,8 +246,11 @@ async function editContact() {
             phone: phone,
         })
     );
-    saveToLocalStorage("contacts", contacts);
+    showEditedContact(contacts, name, email, phone);
+}
 
+async function showEditedContact(contacts, name, email, phone) {
+    saveToLocalStorage("contacts", contacts);
     if (screenMode == "mobile") {
         window.location.href = "contact-details.html";
     } else if (screenMode == "desktop") {

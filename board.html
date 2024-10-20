@@ -28,73 +28,75 @@
         <section id="join-header" class="join-header"></section>
 
         <main class="board-main-content">
-            <section class="board-head-mobile">
-                <div class="headline-addTask-container">
-                    <h1 class="board-headline-mobile">Board</h1>
-                    <img class="add-task-mobile-btn" src="./assets/icons/add-icon-light.png" alt="" onclick="openAddTask('todo')" />
-                </div>
-                <div class="search-box-mobile">
-                    <input id="search-task-mobile" class="search-task-input-mobile" placeholder="Find Task" type="text" onkeyup="filterBoardTasks('mobile')" />
-                    <img class="search-icon" src="./assets/icons/search-icon.png" alt="" />
-                    <span id="nummber-of-mobile" class="nummber-of-tasks"></span>
-                </div>
-            </section>
-
-            <section class="board-head-desktop">
-                <h1 class="board-headline-desktop">Board</h1>
-                <div class="search-addTask-container">
-                    <div class="search-box-desktop">
-                        <input id="search-task-desktop" class="search-task-input-desktop" placeholder="Find Task" type="text" onkeyup="filterBoardTasks('desktop')" />
+            <div class="max-content-board">
+                <section class="board-head-mobile">
+                    <div class="headline-addTask-container">
+                        <h1 class="board-headline-mobile">Board</h1>
+                        <img class="add-task-mobile-btn" src="./assets/icons/add-icon-light.png" alt="" onclick="openAddTask('todo')" />
+                    </div>
+                    <div class="search-box-mobile">
+                        <input id="search-task-mobile" class="search-task-input-mobile" placeholder="Find Task" type="text" onkeyup="filterBoardTasks('mobile')" />
                         <img class="search-icon" src="./assets/icons/search-icon.png" alt="" />
-                        <span id="nummber-of-desktop" class="nummber-of-tasks"></span>
+                        <span id="nummber-of-mobile" class="nummber-of-tasks"></span>
                     </div>
+                </section>
 
-                    <button class="add-task-btn" onclick="openAddTask('todo')">
-                        Add Task
-                        <img c src="./assets/icons/add.png" alt="" />
-                    </button>
+                <section class="board-head-desktop">
+                    <h1 class="board-headline-desktop">Board</h1>
+                    <div class="search-addTask-container">
+                        <div class="search-box-desktop">
+                            <input id="search-task-desktop" class="search-task-input-desktop" placeholder="Find Task" type="text" onkeyup="filterBoardTasks('desktop')" />
+                            <img class="search-icon" src="./assets/icons/search-icon.png" alt="" />
+                            <span id="nummber-of-desktop" class="nummber-of-tasks"></span>
+                        </div>
+
+                        <button class="add-task-btn" onclick="openAddTask('todo')">
+                            Add Task
+                            <img c src="./assets/icons/add.png" alt="" />
+                        </button>
+                    </div>
+                </section>
+
+                <div class="task-content">
+                    <section class="board-section">
+                        <div class="board-section-title">
+                            <h2>To do</h2>
+                            <img class="add-task-icon-btn" src="./assets/icons/add-icon.png" alt="" onclick="openAddTask('todo')" />
+                        </div>
+
+                        <div id="to-do-container" class="task-container" ondrop="moveTo('todo');removeHighlight('to-do-container')" ondragover="allowDrop(event);highlight('to-do-container')" ondragleave="removeHighlight('to-do-container')"></div>
+                        <span id="todo"></span>
+                    </section>
+
+                    <section class="board-section">
+                        <div class="board-section-title">
+                            <h2>In progress</h2>
+                            <img class="add-task-icon-btn" src="./assets/icons/add-icon.png" alt="" onclick="openAddTask('progress')" />
+                        </div>
+
+                        <div id="in-progress-container" class="task-container" ondrop="moveTo('progress');removeHighlight('in-progress-container')" ondragover="allowDrop(event);highlight('in-progress-container')" ondragleave="removeHighlight('in-progress-container')"></div>
+                        <span id="progress"></span>
+                    </section>
+
+                    <section class="board-section">
+                        <div class="board-section-title">
+                            <h2>Await feedback</h2>
+                            <img class="add-task-icon-btn" src="./assets/icons/add-icon.png" alt="" onclick="openAddTask('feedback')" />
+                        </div>
+
+                        <div id="await-feedback-container" class="task-container" ondrop="moveTo('feedback'); removeHighlight('await-feedback-container')" ondragover="allowDrop(event);highlight('await-feedback-container')" ondragleave="removeHighlight('await-feedback-container')"></div>
+                        <span id="feedback"></span>
+                    </section>
+
+                    <section class="board-section">
+                        <div class="board-section-title">
+                            <h2>Done</h2>
+                        </div>
+
+                        <div id="done-container" class="task-container" ondrop="moveTo('done'); removeHighlight('done-container')" ondragover="allowDrop(event);highlight('done-container')" ondragleave="removeHighlight('done-container')"></div>
+                        <span id="done"></span>
+                    </section>
                 </div>
-            </section>
-
-            <div class="task-content">
-                <section class="board-section">
-                    <div class="board-section-title">
-                        <h2>To do</h2>
-                        <img class="add-task-icon-btn" src="./assets/icons/add-icon.png" alt="" onclick="openAddTask('todo')" />
-                    </div>
-
-                    <div id="to-do-container" class="task-container" ondrop="moveTo('todo');removeHighlight('to-do-container')" ondragover="allowDrop(event);highlight('to-do-container')" ondragleave="removeHighlight('to-do-container')"></div>
-                    <span id="todo"></span>
-                </section>
-
-                <section class="board-section">
-                    <div class="board-section-title">
-                        <h2>In progress</h2>
-                        <img class="add-task-icon-btn" src="./assets/icons/add-icon.png" alt="" onclick="openAddTask('progress')" />
-                    </div>
-
-                    <div id="in-progress-container" class="task-container" ondrop="moveTo('progress');removeHighlight('in-progress-container')" ondragover="allowDrop(event);highlight('in-progress-container')" ondragleave="removeHighlight('in-progress-container')"></div>
-                    <span id="progress"></span>
-                </section>
-
-                <section class="board-section">
-                    <div class="board-section-title">
-                        <h2>Await feedback</h2>
-                        <img class="add-task-icon-btn" src="./assets/icons/add-icon.png" alt="" onclick="openAddTask('feedback')" />
-                    </div>
-
-                    <div id="await-feedback-container" class="task-container" ondrop="moveTo('feedback'); removeHighlight('await-feedback-container')" ondragover="allowDrop(event);highlight('await-feedback-container')" ondragleave="removeHighlight('await-feedback-container')"></div>
-                    <span id="feedback"></span>
-                </section>
-
-                <section class="board-section">
-                    <div class="board-section-title">
-                        <h2>Done</h2>
-                    </div>
-
-                    <div id="done-container" class="task-container" ondrop="moveTo('done'); removeHighlight('done-container')" ondragover="allowDrop(event);highlight('done-container')" ondragleave="removeHighlight('done-container')"></div>
-                    <span id="done"></span>
-                </section>
             </div>
         </main>
 
