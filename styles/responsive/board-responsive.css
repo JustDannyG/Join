@@ -1,8 +1,6 @@
 /* Mobile Design Adjustment */
 
-
-@media(max-width: 392px) {
-
+@media (max-width: 392px) {
     .task-overlay {
         padding: 33px 25px;
         max-height: 700px;
@@ -10,16 +8,11 @@
     }
 }
 
-
-@media(max-width: 428px) {
+@media (max-width: 428px) {
     .task-overlay-title {
         font-size: 51px;
     }
-
-
 }
-
-
 
 @media (max-width: 600px) {
     .task-overlay {
@@ -27,9 +20,11 @@
     }
 }
 
-
-
 @media (max-width: 1024px) {
+    .max-content-board {
+        overflow-y: auto;
+    }
+
     .board-main-content {
         margin-left: 0;
     }
@@ -42,7 +37,6 @@
         padding: 24px;
         font-size: 16px;
     }
-
 
     .task-details-container {
         margin-top: 8px;
@@ -58,9 +52,7 @@
     .task-container {
         padding: 16px 5px;
     }
-
 }
-
 
 /* Desktop Design Adjustment */
 
@@ -101,9 +93,7 @@
     .board-head-mobile {
         display: none;
     }
-
 }
-
 
 @media screen and (min-width: 1024px) and (max-width: 1440px) {
     .task-content {
@@ -130,14 +120,11 @@
     }
 }
 
-
 @media screen and (max-width: 1440px) and (min-width: 1230px) {
-
     .task-content {
         gap: 10px;
     }
 }
-
 
 @media (min-width: 1440px) {
     .board-main-content {

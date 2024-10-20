@@ -1,8 +1,5 @@
 let user = localStorage.getItem("user");
 let userId = localStorage.getItem("userId");
-
-//Wenn kein User eingelogt dann bitte so: let user;
-
 let contacts = [];
 let prio = "medium";
 
@@ -14,6 +11,8 @@ function logOut() {
     localStorage.setItem("user", "");
     localStorage.setItem("userId", "");
     window.location.href = "index.html";
+    localStorage.removeItem("rememberMeUser");
+    localStorage.removeItem("rememberMe");
 }
 
 //////////////////////////////
@@ -21,17 +20,17 @@ function logOut() {
 /////////////////////////////
 
 async function getOwnContact() {
-    let ownContactResponse = await getData(path = `users/${userId}`)
-    return ownContactResponse
+    let ownContactResponse = await getData((path = `users/${userId}`));
+    return ownContactResponse;
 }
 
 async function ownContact() {
-    let ownContactData = await getOwnContact()
+    let ownContactData = await getOwnContact();
     return {
         color: ownContactData.color,
         email: ownContactData.email,
         name: ownContactData.name,
-        phone: ownContactData.phnoe
+        phone: ownContactData.phnoe,
     };
 }
 
@@ -73,18 +72,6 @@ function sortByAlphabet(arr) {
     return arr;
 }
 
-function isCheckBoxChecked(e) {
-    return e.checked;
-}
-
-function checkLengthGreater(e, n) {
-    return e.length > n;
-}
-
-function checkLengthSmaller(e, n) {
-    return e.length > n;
-}
-
 /////////////////////////////////////////////////
 ///   LocalStorage - Save / Load Functions   ////
 /////////////////////////////////////////////////
@@ -94,6 +81,7 @@ function saveToLocalStorage(key, value) {
 }
 
 function getFromLocalStorage(key) {
+    let myData;
     let myArr = JSON.parse(localStorage.getItem(key));
     if (myArr !== null) {
         myData = myArr;
@@ -104,10 +92,6 @@ function getFromLocalStorage(key) {
 //////////////////////////////////////
 ///                             /////
 /////////////////////////////////////
-
-function clearContent(e) {
-    e.innerHTML = "";
-}
 
 function clearInput(input) {
     input.value = "";
@@ -134,16 +118,6 @@ async function getContacts() {
     sortByAlphabet(contacts);
     console.log(contacts);
 }
-
-// ist doppelt
-
-// function stopEventBubbling(event) {
-//     event.stopPropagation();
-// }
-
-// function goSummery() {
-//     window.location.href = "summary.html";
-// }
 
 //////////////////////////////////////
 ///                             /////
@@ -194,7 +168,6 @@ checkIsSomeoneLogedId();
 window.addEventListener("resize", checkScreenWidth);
 window.addEventListener("resize", checkIsSomeoneLogedId);
 
-
 ///////////////////////////////////////////////////////////////////
 ///                                                            ///
 ///////////////////////////////////////////////////////////////////
@@ -208,14 +181,13 @@ function checkIsSomeoneLogedId() {
     }
 }
 
-
 function openAddTask(taskCategory) {
     setTaskCategory(taskCategory);
     if (screenMode == "mobile") {
         window.location.href = "add-task.html";
     }
     if (screenMode == "desktop") {
-        updateBtnColor();
+        updateBtnColor(prio);
         classChangeAction("add-task-overlay", "overlaver-active", "toggle");
     }
 }

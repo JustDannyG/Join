@@ -3,7 +3,6 @@ let contactIndex = getFromLocalStorage("currentDetails");
 let contactsArray = getFromLocalStorage("contacts");
 let currentContactDetails = localStorage.getItem("currentDetails");
 
-
 ////////////////////
 ///    Start   ////
 ///////////////////
@@ -21,10 +20,9 @@ async function renderContacts() {
     let containerRef = document.getElementById("contacts-container");
     containerRef.innerHTML = "";
     let firstLetter = "";
-    if (user !== 'Guest') {
-        containerRef.innerHTML = firstLetterHtml('Me')
+    if (user !== "Guest") {
+        containerRef.innerHTML = firstLetterHtml("Me");
         containerRef.innerHTML += ownContactListHtml(await ownContact());
-
     }
 
     contacts.forEach((contact, i) => {
@@ -51,12 +49,14 @@ async function openContact(index) {
     }
 }
 
-function openOwnContact() {
+async function openOwnContact() {
     if (screenMode == "mobile") {
+        let myUser = await ownContact();
+        saveToLocalStorage("contacts", 'user');
         window.location.href = "contact-details.html";
     } else if (screenMode == "desktop") {
         classChangeAction("dialog-add-contact", "hide-overlay", "add");
-        showOwnContact()
+        showOwnContact();
     }
 }
 
@@ -134,11 +134,17 @@ function clearAddInputs() {
 //   Show Contact Details   ///
 ///////////////////////////////
 
-function showContact() {
+async function showContact() {
     let currentContact = document.getElementById("current-contact");
-    let detail = contactsArray[contactIndex];
-    currentContact.innerHTML = contactCirleHTML(detail);
+    if (contactsArray == 'user') {
+        currentContact.innerHTML = contactOwnCirleHTML(await ownContact());
+    } else {
+        let detail = contactsArray[contactIndex];
+        currentContact.innerHTML = contactCirleHTML(detail);
+    }
 }
+
+
 
 function toggleOverlayDisplay() {
     let overlay = document.getElementById("edit-overlay-bg");

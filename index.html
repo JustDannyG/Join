@@ -11,28 +11,33 @@
     <link rel="stylesheet" href="./styles/login.css">
     <link rel="stylesheet" href="./styles/responsive/login-responisve.css">
     <!-- <script defer src="script.js"></script> -->
-    <script src="./script.js"></script>
+
+    <script defer src="./script.js"></script>
     <script src="./assets/templates/template.js"></script>
     <script src="./scripts/login.js"></script>
     <script src="./scripts/fetch.js"></script>
 
+
 </head>
 
-<body onload="screeWidth()">
+<body onload="loginInit()">
 
     <div class="overlay">
         <img id="svg-image-small-content" src="./assets/icons/logo-light.svg" alt="SVG Image" class="svg-img">
         <img id="svg-image-large-content" src="./assets/icons/logo-dark.svg" alt="SVG Image" class="svg-img">
     </div>
-    <section id="join-header" class="join-header d-none"></section>
-    <form class="d-flex content center gap-login-logo-content">
-        <div class="logo-login-container ">
-            <img class="logo-login logo-large-content" src="./assets/icons/logo-dark.svg" alt="">
+
+    <form class="d-flex center gap-login-logo-content">
+        <div class="logo-login-container">
+            <img id="loginSvg" class="logo-login logo-large-content" src="./assets/icons/logo-dark.svg" alt="">
             <div class="empty-container"></div>
             <div class="signup-container-top d-flex center" id="content-large">
                 <p>Not a Join user?</p>
-                <button type="button" onclick="goSignUp(event)" id="signupButton-desktop"
-                    class="signup-button login-button-top">Signup</button>
+                <a href="./sign-up.html"> 
+                    <button type="button" id="signupButton-desktop" class="signup-button login-button-top">
+                      Sign up
+                    </button>
+                </a>
             </div>
         </div>
 
@@ -63,21 +68,24 @@
                 </div>
             </div>
             <div class="login-buttons d-flex column center">
-                <button onclick="login(event)" id="loginButton" class="login-button login-button-top" type="submit">Log
+                <button onclick="login();  event.preventDefault();" id="loginButton" class="login-button login-button-top" type="submit">Log
                     in</button>
-                <button type="button" onclick="goSummery(event)" id="guestLoginButton"
+                <button type="button" onclick="goSummery()" id="guestLoginButton"
                     class="login-button login-button-bottom">Guest
                     Log in</a></button>
             </div>
         </div>
         <div id="content-small" class="d-flex center font-size-20 content-small">
             <p>Not a Join user?</p>
-            <button type="button" onclick="goSignUp(event)" id="signupButton"
-                class="signup-button login-button-top">Sign up</button>
+            <a href="./sign-up.html"> 
+                <button type="button" id="signupButton" class="signup-button login-button-top">
+                    Sign up
+                </button>
+            </a>
         </div>
         <div class="footer-container d-flex">
-            <a id="privacyPolicyLink" class="footer-links d-flex center" href="./privacy-policy.html">Privacy Policy</a>
-            <a id="legalNoticeLink" class="footer-links d-flex center" href="./legal-notice.html">Legal notice</a>
+            <a id="privacyPolicyLink" class="center" href="./privacy-policy.html">Privacy Policy</a>
+            <a id="legalNoticeLink" class="center" href="./legal-notice.html">Legal notice</a>
         </div>
     </form>
     <section id="join-sidebar"></section>
