@@ -679,8 +679,8 @@
     width: 100%;
     padding: 0 20px;
     height: 48px;
-    border-radius: 10px;
-    border: solid 1px #d1d1d1;
+    border-radius: 8px;
+    border: solid 1px var(--medium-grey);
 }
 
 .edit-textarea {
@@ -688,8 +688,9 @@
     height: 150px;
     padding: 0 20px;
     width: 100%;
-    border-radius: 10px;
-    border: solid 1px #d1d1d1;
+    border-radius: 8px;
+    border: solid 1px var(--medium-grey);
+    resize: none;
 }
 
 .edit-date-input {
