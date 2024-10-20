@@ -16,7 +16,6 @@ async function loginInit() {
         document.getElementById("password").value = remeberMeUser.password;
         login();
     }
-    screeWidth();
 }
 
 async function login() {
@@ -141,20 +140,6 @@ function checkIfPasswordInputFilled(passwordInput, userPwdError, userPwdContaine
 function goSummery() {
     localStorage.setItem("user", "Guest");
     window.location.href = "summary.html";
-}
-
-// Das kann man in den @media auf display ein und ausblenden !!!
-
-function screeWidth() {
-    if (window.innerWidth >= 1440) {
-        document.getElementById("content-small").style.display = "none";
-        document.getElementById("svg-image-small-content").style.display = "none";
-        // document.getElementById('content-large').style.display = 'block';
-    } else {
-        // document.getElementById('content-small').style.display = 'block';
-        document.getElementById("svg-image-large-content").style.display = "none";
-        document.getElementById("content-large").style.display = "none";
-    }
 }
 
 document.addEventListener("DOMContentLoaded", function () {

@@ -60,6 +60,7 @@
             top: 50%;
             left: 50%;
         }
+
         100% {
             transform: translate(0, 0) scale(0.3);
             top: -51px;
@@ -71,6 +72,7 @@
         0% {
             opacity: 1;
         }
+
         100% {
             opacity: 0;
             pointer-events: none;
@@ -91,7 +93,22 @@
     }
 }
 
-@media (min-width: 1440px) {
+@media (max-width:1024px) {
+
+    #svg-image-large-content,
+    #content-large {
+        display: none;
+    }
+}
+
+
+@media (min-width: 1024px) {
+
+    #svg-image-small-content,
+    #content-small {
+        display: none;
+    }
+
     h1 {
         font-size: 61px;
         font-weight: 700;

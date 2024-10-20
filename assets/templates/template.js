@@ -384,7 +384,7 @@ function editBoardTaskHTML(currentTask) {
                     <div id="selected-contacts-container" class="d-flex selectet-contacts-container"></div>
                 </div>
 
-                <div class="task-overlay-subtasks-container position-relative">
+                <div class="task-overlay-subtasks-container position-relative" >
                     Subtasks
                     <div class="add-task-input">
                         <input id="subtasks-input" type="subtasks" name="subtasks" onkeyup="subtaskInputBtn()"
@@ -393,7 +393,7 @@ function editBoardTaskHTML(currentTask) {
                             <img src="./assets/icons/add -subtasks.png" alt="" onclick="setInputFocus()" />
                         </div>
                     </div>
-                <div id="subtasks-container" class="subtasks-container"></div>
+                <div id="subtasks-container" class="subtasks-container overflow-unset"></div>
                 </div>
             </div>
 
