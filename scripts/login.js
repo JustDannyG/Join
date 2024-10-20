@@ -17,11 +17,11 @@ async function loginInit() {
         let passwordInput = document.getElementById("password");
         emailInput.value = remeberMeUser.email;
         passwordInput.value = remeberMeUser.password;
+        login();
     }
 }
 
-async function login(event) {
-    event.preventDefault();
+async function login() {
     let emailInput = document.getElementById("email").value;
     let passwordInput = document.getElementById("password").value;
 
@@ -40,20 +40,19 @@ function searchUserInDatabase(emailInput, passwordInput, users, userIds) {
         currentUser = users[userId];
         if (currentUser.email.toLowerCase() === emailInputLower && currentUser.password === passwordInput) {
             userFound = true;
-            localStorage.setItem("user", currentUser.name);
-            localStorage.setItem("userId", userId);
-            if (remeberMeRef.checked) {
-                saveToLocalStorage("rememberMe", remeberMeRef.checked);
-                saveToLocalStorage("rememberMeUser", currentUser);
-            }
-            window.location.href = "summary.html";
-            return;
-        }
-        if (!remeberMeRef.checked) {
-            localStorage.removeItem("rememberMeUser");
-            localStorage.removeItem("rememberMe");
+            userLogin(remeberMeRef);
+            break;
         }
     }
+}
+function userLogin(remeberMeRef) {
+    localStorage.setItem("user", currentUser.name);
+    localStorage.setItem("userId", userId);
+    if (remeberMeRef.checked) {
+        saveToLocalStorage("rememberMe", remeberMeRef.checked);
+        saveToLocalStorage("rememberMeUser", currentUser);
+    }
+    window.location.href = "summary.html";
 }
 
 function shake(Error) {

@@ -14,6 +14,8 @@ function logOut() {
     localStorage.setItem("user", "");
     localStorage.setItem("userId", "");
     window.location.href = "index.html";
+    localStorage.removeItem("rememberMeUser");
+    localStorage.removeItem("rememberMe");
 }
 
 //////////////////////////////

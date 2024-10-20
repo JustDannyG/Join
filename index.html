@@ -68,7 +68,7 @@
                 </div>
             </div>
             <div class="login-buttons d-flex column center">
-                <button onclick="login(event)" id="loginButton" class="login-button login-button-top" type="submit">Log
+                <button onclick="login();  event.preventDefault();" id="loginButton" class="login-button login-button-top" type="submit">Log
                     in</button>
                 <button type="button" onclick="goSummery()" id="guestLoginButton"
                     class="login-button login-button-bottom">Guest
