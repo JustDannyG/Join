@@ -1,13 +1,17 @@
 let currentDraggedElement;
 let tasksArray = [];
 let currentTask;
-
 let taskCounter = 0;
 
 ////////////////////
 ///    Start   ////
 ///////////////////
 
+
+/**
+ * Initializes the board by fetching contacts and tasks, 
+ * then updates the board's HTML based on the data.
+ */
 async function boardInit() {
     await getContacts();
     getSelectedContacts();
@@ -15,6 +19,10 @@ async function boardInit() {
     updateHtml();
 }
 
+
+/**
+ * Resets the board by fetching updated tasks and refreshing the HTML.
+ */
 async function resetBoard() {
     await getTasks();
     updateHtml();
@@ -24,8 +32,9 @@ async function resetBoard() {
 ///    Get and Show Tasks on Board   ///
 ////////////////////////////////////////
 
-//Ist jetzt in der Sktipt, wegen deleteContact()
-
+/**
+ * Fetches tasks from the server, processes them, and updates the `tasksArray`.
+ */
 async function getTasks() {
     let response = await getData((path = "/tasks"));
     let taskKeys = Object.keys(response);
@@ -33,7 +42,6 @@ async function getTasks() {
     for (let index = 0; index < taskKeys.length; index++) {
         const key = taskKeys[index];
         let task = response[key];
-
         tasksArray.push({
             title: task.title,
             description: task.description,
@@ -49,6 +57,10 @@ async function getTasks() {
     }
 }
 
+
+/**
+ * Updates the HTML by rendering tasks into their respective columns
+ */
 function updateHtml() {
     let todoById = document.getElementById("to-do-container");
     let progressById = document.getElementById("in-progress-container");
@@ -61,10 +73,21 @@ function updateHtml() {
     renderTasks(filterTasks("done"), doneById, "Done");
 }
 
-function filterTasks(task) {
-    return tasksArray.filter((t) => t["category"] == task);
+/**
+ * Filters tasks based on their category.
+ * @param {string} category - The category to filter tasks by (e.g., "todo", "progress").
+ * @returns {Array} - The array of tasks that match the given category.
+ */
+function filterTasks(category) {
+    return tasksArray.filter((task) => task.category === category);
 }
 
+/**
+ * Renders tasks into the provided HTML container.
+ * @param {Array} tasks - Array of tasks to be rendered.
+ * @param {HTMLElement} getById - The HTML container element where the tasks will be rendered.
+ * @param {string} noTask - The message to display when there are no tasks.
+ */
 function renderTasks(tasks, getById, noTask) {
     getById.innerHTML = "";
     if (tasks.length == 0) {
@@ -80,6 +103,12 @@ function renderTasks(tasks, getById, noTask) {
     }
 }
 
+
+/**
+ * Renders optional details for a task such as assigned contacts, subtasks, and priority.
+ * @param {Object} task - The task object containing details.
+ * @param {number} index - The index of the task in the list.
+ */
 function renderNoRequiredDetails(task, index) {
     if (task.assignedTo) {
         renderAssignedToContacts(task, index);
@@ -92,6 +121,11 @@ function renderNoRequiredDetails(task, index) {
     }
 }
 
+/**
+ * Calculates and renders the progress of a task based on its subtasks.
+ * @param {Object} task - The task object containing subtasks.
+ * @param {number} index - The index of the task in the list.
+ */
 function renderSubtaskBar(task, index) {
     let amount = task.subtask.filter((c) => c.checked == true).length;
     let total = task.subtask.length;
@@ -101,6 +135,11 @@ function renderSubtaskBar(task, index) {
     document.getElementById(`${task.category}-progress${index}`).style.width = result;
 }
 
+/**
+ * Renders up to three assigned contacts for a task, and shows the number of additional contacts if any.
+ * @param {Object} task - The task object containing assigned contacts.
+ * @param {number} index - The index of the task in the list.
+ */
 function renderAssignedToContacts(task, index) {
     const assignedToContainer = document.getElementById(`${task.category}contatcs-container${index}`);
     const numContainer = document.getElementById(`${task.category}contatcs-container${index}num`);
@@ -357,6 +396,11 @@ async function moveTaskTo(taskId, category) {
 ///     Board Search Task Function     ///
 /////////////////////////////////////////
 
+/**
+ * Filters and renders tasks across different categories based on the search input.
+ * 
+ * @param {string} screen - The current screen (used for search input identification).
+ */
 function filterBoardTasks(screen) {
     taskCounter = 0;
     let search = document.getElementById(`search-task-${screen}`).value;
@@ -365,12 +409,10 @@ function filterBoardTasks(screen) {
     let progressById = document.getElementById("in-progress-container");
     let feedbackById = document.getElementById("await-feedback-container");
     let doneById = document.getElementById("done-container");
-
     renderTasks(filterSearchTasks("todo", search), todoById, "To do");
     renderTasks(filterSearchTasks("progress", search), progressById, "Progress");
     renderTasks(filterSearchTasks("feedback", search), feedbackById, "Feedback");
     renderTasks(filterSearchTasks("done", search), doneById, "Done");
-
     foundTasks(screen);
 }
 
@@ -415,7 +457,6 @@ window.addEventListener("load", function () {
 
 function scrollToSection(section) {
     let sectionColumn = document.getElementById(section);
-
     if (sectionColumn) {
         sectionColumn.scrollIntoView({
             behavior: "smooth",
