@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="./styles/responsive/login-responisve.css">
     <!-- <script defer src="script.js"></script> -->
 
-    <!-- <script src="./script.js"></script> -->
+    <script defer src="./script.js"></script>
     <script src="./assets/templates/template.js"></script>
     <script src="./scripts/login.js"></script>
     <script src="./scripts/fetch.js"></script>
@@ -20,7 +20,7 @@
 
 </head>
 
-<body onload="screeWidth()">
+<body onload="loginInit()">
 
     <div class="overlay">
         <img id="svg-image-small-content" src="./assets/icons/logo-light.svg" alt="SVG Image" class="svg-img">
@@ -68,7 +68,7 @@
                 </div>
             </div>
             <div class="login-buttons d-flex column center">
-                <button onclick="login(event)" id="loginButton" class="login-button login-button-top" type="submit">Log
+                <button onclick="login();  event.preventDefault();" id="loginButton" class="login-button login-button-top" type="submit">Log
                     in</button>
                 <button type="button" onclick="goSummery()" id="guestLoginButton"
                     class="login-button login-button-bottom">Guest
