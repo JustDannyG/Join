@@ -101,6 +101,8 @@ function stopEventBubbling(event) {
     event.stopPropagation();
 }
 
+
+
 ////////////////////////////
 ///   Get Contacts     /////
 ////////////////////////////
@@ -146,19 +148,24 @@ function checkScreenWidth() {
     let currentHeader = "";
     let currentSidebar = "";
 
-    if (window.innerWidth <= 1024) {
-        console.log("Mobile Ansicht");
-        currentHeader = mobileHeader(createInititals(user));
-        currentSidebar = mobileSidebar();
-        screenMode = "mobile";
-    } else {
-        console.log("Desktop Ansicht");
-        currentHeader = desktopHeader(createInititals(user));
-        currentSidebar = desktopSidebar();
-        screenMode = "desktop";
+    try {
+        if (window.innerWidth <= 1024) {
+            console.log("Mobile Ansicht");
+            currentHeader = mobileHeader(createInititals(user));
+            currentSidebar = mobileSidebar();
+            screenMode = "mobile";
+        } else {
+            console.log("Desktop Ansicht");
+            currentHeader = desktopHeader(createInititals(user));
+            currentSidebar = desktopSidebar();
+            screenMode = "desktop";
+        }
+        header.innerHTML = currentHeader;
+        sidebar.innerHTML = currentSidebar;
+    } catch {
+        console.log('No Header No Sidebar on this Page');
+
     }
-    header.innerHTML = currentHeader;
-    sidebar.innerHTML = currentSidebar;
 }
 
 // Aufrufen der Funktion beim Laden der Seite
@@ -167,6 +174,11 @@ checkIsSomeoneLogedId();
 // Optional: Bei jeder Größenänderung des Fensters
 window.addEventListener("resize", checkScreenWidth);
 window.addEventListener("resize", checkIsSomeoneLogedId);
+
+
+function hideHelpIcon() {
+    document.getElementById('help-icon').style.display = "none";
+}
 
 ///////////////////////////////////////////////////////////////////
 ///                                                            ///
