@@ -8,7 +8,6 @@
     flex: 1;
     height: 100%;
     background-color: var(--light-grey);
-    overflow-y: auto;
 }
 
 .contact-details-main-content {
@@ -81,6 +80,10 @@
     padding: 15px 30px 25px;
     height: 100%;
     width: 100%;
+}
+
+.contacts-mobile-container {
+    overflow-y: auto;
 }
 
 .contacts-first-letter {
@@ -507,6 +510,7 @@
     background-color: var(--light-blue);
     box-shadow: 2px 4px 7px 0px rgba(0, 0, 0, 0.5);
 }
+
 .submit-btn:disabled {
     background-color: var(--light-blue);
 }
@@ -553,6 +557,7 @@
     border: solid 2px var(--light-blue);
     box-shadow: 2px 4px 7px 0px rgba(0, 0, 0, 0.5);
 }
+
 /* =========================
      Contact - Add Popup
    ========================= */
@@ -580,5 +585,3 @@
 .hide-overlay-desktop {
     transform: translateX(100vw);
 }
-
-
