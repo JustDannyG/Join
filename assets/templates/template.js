@@ -20,7 +20,7 @@ function desktopHeader(user) {
         <header class="header-desktop">
         <p class="header-title">Kanban Project Management Tool</p>
         <div class="header-actions">
-            <a href="help.html"> <img class="help-icon" src="./assets/icons/help-icon.png" alt="Help"></a>
+            <a id="help-icon" href="help.html"> <img class="help-icon" src="./assets/icons/help-icon.png" alt="Help"></a>
             <div onclick="classChangeAction('user-menu', 'd-none', 'toggle'); stopEventBubbling(event)" id="header-initials" class="header-initials-btn">
                 ${user}
             </div>
