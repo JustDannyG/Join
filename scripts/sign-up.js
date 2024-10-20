@@ -4,17 +4,17 @@ async function signUp() {
     let userPwd = document.getElementById("user-pwd").value;
     let userConfPwd = document.getElementById("user-conf-pwd").value;
     checkbox = document.getElementById("myCheckbox");
-    checkIfUserAllreadyExists(userNameInput, userEmailInput, userPwd, userConfPwd, checkbox);
+    await checkIfUserAllreadyExists(userNameInput, userEmailInput, userPwd, userConfPwd, checkbox);
     errorStyles(userNameInput, userEmailInput, userPwd, userConfPwd);
 }
 
-function capitalizeFirstLetter(userEmailInput, userPwd) {
+async function capitalizeFirstLetter(userEmailInput, userPwd) {
     let userNameInput = document.getElementById("name-input");
     let userNameValue = userNameInput.value;
     if (userNameValue.length > 0) {
         let capitalizedUserName = userNameValue.charAt(0).toUpperCase() + userNameValue.slice(1);
         userNameValue = capitalizedUserName;
-        postSignUpData(userNameValue, userEmailInput, userPwd);
+        await postSignUpData(userNameValue, userEmailInput, userPwd);
     }
 }
 
@@ -170,30 +170,60 @@ function errorStyles(userNameInput, userEmailInput, userPwd, userConfPwd) {
 async function checkIfUserAllreadyExists(userNameInput, userEmailInput, userPwd, userConfPwd, checkbox) {
     let users = await getData("users");
     let userIds = Object.keys(users);
-    let userExists = false;
+    let nameExists = false;
+    let emailExists = false;
+    hideErrorMsg("name-error");
+    hideErrorMsg("email-error");
+    checkUserNameAndEmail(users, userIds, userNameInput, userEmailInput, nameExists, emailExists);
+
+    if (checkbox.checked && userNameInput !== "" && userEmailInput !== "" && userEmailInput.includes("@") && userPwd !== "" && userConfPwd !== "" && userPwd === userConfPwd && nameExists == false && emailExists == false) {
+        checkIfAllInputsFilled(userNameInput, userEmailInput, userPwd, userConfPwd, users);
+        await capitalizeFirstLetter(userEmailInput, userPwd);
+    }
+}
+
+function checkUserNameAndEmail(users, userIds, userNameInput, userEmailInput, nameExists, emailExists) {
     for (let i = 0; i < userIds.length; i++) {
         let user = users[userIds[i]];
-        if (user.email == userEmailInput || user.name == userNameInput) {
-            userExists = true;
-            break;
-        }
+        nameExists = checkNameExist(user, userNameInput, nameExists);
+        emailExists = checkEmailExist(user, userEmailInput, emailExists);
+        if (nameExists || emailExists) break;
     }
-    if (userExists) {
-        userAllreadyExists();
+}
+
+function checkNameExist(user, userNameInput, nameExists) {
+    if (user.name == userNameInput) {
+        nameExists = true;
+        userAlreadyExistsMsg("name-error", "Name");
     } else {
-        if (checkbox.checked && userNameInput !== "" && userEmailInput !== "" && userEmailInput.includes("@") && userPwd !== "" && userConfPwd !== "" && userPwd === userConfPwd && userExists == false) {
-            checkIfAllInputsFilled(userNameInput, userEmailInput, userPwd, userConfPwd, users);
-            capitalizeFirstLetter(userEmailInput, userPwd);
-        }
+        return nameExists;
     }
+}
+
+function checkEmailExist(user, userEmailInput, emailExists) {
+    if (user.email == userEmailInput) {
+        emailExists = true;
+        userAlreadyExistsMsg("email-error", "Email");
+    } else {
+        return emailExists;
+    }
+}
+
+function hideErrorMsg(errorInput) {
+    let errorRef = document.getElementById(errorInput);
+    errorRef.innerHTML = "";
+    errorRef.style.display = "none";
+}
+
+function userAlreadyExistsMsg(errorInput, errorText) {
+    let errorRef = document.getElementById(errorInput);
+    errorRef.innerHTML = `User ${errorText} already exists`;
+    errorRef.style.display = "block";
+    shake(errorRef);
 }
 
 function userSuccessfullySignedup() {
     toogleDialog("dialog-signup-succes");
-}
-
-function userAllreadyExists() {
-    toogleDialog("dialog-allready-exists");
 }
 
 function toogleDialog(id) {
