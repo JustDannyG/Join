@@ -84,6 +84,7 @@
 
 .contacts-mobile-container {
     overflow-y: auto;
+    height: 100%;
 }
 
 .contacts-first-letter {
