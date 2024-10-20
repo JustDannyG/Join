@@ -11,15 +11,27 @@ function summaryInit() {
 ///      Greeting Functions      /////
 /////////////////////////////////////
 
+/**
+ * Displays the greeting message and user's name on both desktop and mobile versions.
+ */
 function greeting() {
+    // Update desktop 
     let greeting = document.getElementById('greeting-time').innerHTML = greetingTime();
-    let greetUser = document.getElementById('greeting-name').innerHTML = greetingUser();
-
+    let greetUser = document.getElementById('greeting-name').innerHTML = user;
+    // Update mobile
     let greetingMobile = document.getElementById('greeting-time-mobile').innerHTML = greetingTime();
-    let greetUserMobile = document.getElementById('greeting-name-mobile').innerHTML = greetingUser();
+    let greetUserMobile = document.getElementById('greeting-name-mobile').innerHTML = user;
 }
 
-
+/**
+ * Returns a greeting based on the current time of day.
+ *
+ * @function
+ * @returns {string} - A greeting message based on the time:
+ *   - "Good morning" for hours before 12:00 PM.
+ *   - "Good afternoon" for hours between 12:00 PM and 5:00 PM.
+ *   - "Good evening" for hours after 5:00 PM.
+ */
 function greetingTime() {
     let A = new Date();
     let hour = A.getHours();
@@ -33,15 +45,15 @@ function greetingTime() {
     }
 }
 
-
-function greetingUser() {
-    return user;
-}
-
 /////////////////////////////////////////
 ///    Show Current Summary Tasks     ///
 ////////////////////////////////////////
 
+
+/**
+ * Fetches tasks and updates the task counts in the summary view.
+ * Handles various task states and priorities.
+ */
 async function getSummaryTasks() {
     await getTasks();
     document.getElementById('task-count-todo').innerHTML = summaryTaskFilter('todo');
@@ -52,7 +64,12 @@ async function getSummaryTasks() {
     document.getElementById('task-count-board').innerHTML = tasksArray.length;
 }
 
-
+/**
+ * Filter tasks by their category and return the count of tasks in that category.
+ * 
+ * @param {string} section - The category to filter by (todo, progress, feedback, done)
+ * @returns {number} -The number of tasks in the category
+ */
 function summaryTaskFilter(section) {
     let task = tasksArray.filter(t => {
         if (t.category == section) {
@@ -62,9 +79,14 @@ function summaryTaskFilter(section) {
     return task.length;
 }
 
-
+/**
+ * Filters tasks by priority and returns the count of tasks in that priority category.
+ * Also finds the earliest date from the filtered tasks.
+ * 
+ * @param {string} section - The priority to filter ('urgent',...)
+ * @returns {number} - The number of tasks with the specified priority.
+ */
 function summaryPrioFilter(section) {
-    // let urgents = document.getElementById(`task-count-${category}`);
     let task = tasksArray.filter(t => {
         if (t.prio == section) {
             return t
@@ -74,7 +96,12 @@ function summaryPrioFilter(section) {
     return task.length;
 }
 
-
+/**
+ * Finds the earliest task by date from a list of tasks and updates the UI with the date.
+ * 
+ * @param {Array} task - The list of tasks to search through.
+ * @returns {Object|null} - The task with the earliest date or null if no tasks are found.
+ */
 function findEarliestDate(task) {
     let earliestUrgentDate = document.getElementById('earliest-urgent-date');
     let earliestDate = null;

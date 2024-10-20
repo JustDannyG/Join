@@ -20,6 +20,7 @@
     --white: #fff;
     --subtitle: #2a3647;
     --required: #ff8190;
+    --red: #ff001f;
 }
 
 * {
@@ -130,5 +131,3 @@ button {
 .activePage {
     background-color: var(--hover-darke-blue);
 }
-
-
