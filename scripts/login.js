@@ -16,7 +16,6 @@ async function loginInit() {
         document.getElementById("password").value = remeberMeUser.password;
         login();
     }
-    screeWidth();
 }
 
 async function login() {
