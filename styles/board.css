@@ -668,6 +668,7 @@
     background-color: rgba(0, 0, 0, 0.2);
     transform: translateX(100vw);
     z-index: 1;
+    padding: 30px;
 }
 
 .add-task-overlay {
