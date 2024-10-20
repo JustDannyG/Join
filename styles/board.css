@@ -713,3 +713,7 @@
     padding: 0;
     border-radius: 8px;
 }
+
+.overflow-unset {
+    overflow: unset;
+}
