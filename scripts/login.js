@@ -6,19 +6,17 @@ let remeberMe;
 let remeberMeUser;
 
 async function loginInit() {
-    screeWidth();
-    remeberMe = getFromLocalStorage("rememberMe");
-    remeberMeUser = getFromLocalStorage("rememberMeUser");
     users = await getData("users");
     userIds = Object.keys(users);
+    remeberMe = getFromLocalStorage("rememberMe");
+    remeberMeUser = getFromLocalStorage("rememberMeUser");
 
     if (remeberMe) {
-        let emailInput = document.getElementById("email");
-        let passwordInput = document.getElementById("password");
-        emailInput.value = remeberMeUser.email;
-        passwordInput.value = remeberMeUser.password;
+        document.getElementById("email").value = remeberMeUser.email;
+        document.getElementById("password").value = remeberMeUser.password;
         login();
     }
+    screeWidth();
 }
 
 async function login() {
@@ -144,12 +142,6 @@ function goSummery() {
     localStorage.setItem("user", "Guest");
     window.location.href = "summary.html";
 }
-
-// Hier a tag verwenden dann ist keine funktion nötig !!!
-
-// function goSignUp() {
-//     window.location.href = "sign-up.html";
-// }
 
 // Das kann man in den @media auf display ein und ausblenden !!!
 

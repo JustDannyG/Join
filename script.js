@@ -1,8 +1,5 @@
 let user = localStorage.getItem("user");
 let userId = localStorage.getItem("userId");
-
-//Wenn kein User eingelogt dann bitte so: let user;
-
 let contacts = [];
 let prio = "medium";
 
@@ -75,18 +72,6 @@ function sortByAlphabet(arr) {
     return arr;
 }
 
-function isCheckBoxChecked(e) {
-    return e.checked;
-}
-
-function checkLengthGreater(e, n) {
-    return e.length > n;
-}
-
-function checkLengthSmaller(e, n) {
-    return e.length > n;
-}
-
 /////////////////////////////////////////////////
 ///   LocalStorage - Save / Load Functions   ////
 /////////////////////////////////////////////////
@@ -107,10 +92,6 @@ function getFromLocalStorage(key) {
 //////////////////////////////////////
 ///                             /////
 /////////////////////////////////////
-
-function clearContent(e) {
-    e.innerHTML = "";
-}
 
 function clearInput(input) {
     input.value = "";
@@ -137,16 +118,6 @@ async function getContacts() {
     sortByAlphabet(contacts);
     console.log(contacts);
 }
-
-// ist doppelt
-
-// function stopEventBubbling(event) {
-//     event.stopPropagation();
-// }
-
-// function goSummery() {
-//     window.location.href = "summary.html";
-// }
 
 //////////////////////////////////////
 ///                             /////
