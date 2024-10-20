@@ -75,29 +75,30 @@ function renderTasks(tasks, getById, noTask) {
             let task = tasks[index];
             let className = task.categoryText.replace(" ", "-").toLowerCase();
             getById.innerHTML += generateTaskHTML(task, index, className);
-            if (task.assignedTo) {
-                renderAssignedToContacts(task, index);
-            }
-            if (task.subtask) {
-                renderSubtaskBar(task, index);
-            }
-            if (task.prio) {
-                renderPrio(task, index);
-            }
+            renderNoRequiredDetails(task, index);
         }
     }
 }
 
+function renderNoRequiredDetails(task, index) {
+    if (task.assignedTo) {
+        renderAssignedToContacts(task, index);
+    }
+    if (task.subtask) {
+        renderSubtaskBar(task, index);
+    }
+    if (task.prio) {
+        renderPrio(task, index);
+    }
+}
+
 function renderSubtaskBar(task, index) {
-    let taskAmount = document.getElementById(`${task.category}-amount${index}`);
-    let progressBar = document.getElementById(`${task.category}progress-bar${index}`);
-    let progress = document.getElementById(`${task.category}-progress${index}`);
     let amount = task.subtask.filter((c) => c.checked == true).length;
     let total = task.subtask.length;
-    taskAmount.innerHTML = `${amount}/${total} Subtasks`;
     let result = Math.round((100 / total) * amount) + "%";
-    progressBar.classList.remove("d-none");
-    progress.style.width = result;
+    document.getElementById(`${task.category}-amount${index}`).innerHTML = `${amount}/${total} Subtasks`;
+    document.getElementById(`${task.category}progress-bar${index}`).classList.remove("d-none");
+    document.getElementById(`${task.category}-progress${index}`).style.width = result;
 }
 
 function renderAssignedToContacts(task, index) {
@@ -117,7 +118,8 @@ function renderPrio(task, index) {
     const imgRef = document.getElementById(`${task.category}prio-icon${index}`);
     if (task.prio) {
         imgRef.src = `./assets/icons/prio-${task.prio}-icon.png`;
-    } // Else Statment bei keiner Prio mit d-none
+        imgRef.classList.remove("d-none");
+    }
 }
 
 ////////////////////////////////////////
@@ -219,7 +221,6 @@ function showEditTaskValues() {
     editTaskAssignTo();
     editTaskSubtask();
     updateBtnColor(currentTask.prio);
-    // editTaskPrioBtnColor();
     taskPrioText();
 }
 
