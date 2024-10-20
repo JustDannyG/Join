@@ -1,7 +1,6 @@
 let currentDraggedElement;
 let tasksArray = [];
 let currentTask;
-
 let taskCounter = 0;
 
 ////////////////////
@@ -23,8 +22,6 @@ async function resetBoard() {
 ////////////////////////////////////////
 ///    Get and Show Tasks on Board   ///
 ////////////////////////////////////////
-
-//Ist jetzt in der Sktipt, wegen deleteContact()
 
 async function getTasks() {
     let response = await getData((path = "/tasks"));

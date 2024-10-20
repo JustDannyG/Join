@@ -1,3 +1,10 @@
+/**
+ * Handles the sign-up process by collecting user inputs and performing validation checks.
+ *
+ * This function collects the user's name, email, password, and confirmation password from the input fields,
+ * then calls validation functions to check if the user already exists and applies error styles if necessary.
+ */
+
 async function signUp() {
     let userNameInput = document.getElementById("name-input").value;
     let userEmailInput = document.getElementById("email-input").value;
