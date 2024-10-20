@@ -128,10 +128,6 @@
     }
 
     .error-message-conf-password {
-        left: 30%;
-    }
-
-    .dialog-active {
-        transform: translateY(-60px);
+        left: 19%;
     }
 }
