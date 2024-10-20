@@ -93,6 +93,11 @@
     .board-head-mobile {
         display: none;
     }
+
+    .add-task-headline {
+        top: -140px;
+        left: 47px;
+    }
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1440px) {
