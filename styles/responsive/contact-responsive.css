@@ -64,6 +64,12 @@
         display: none;
     }
 
+    .contacts-mobile-container {
+        display: flex;
+        justify-content: center;
+
+    }
+
     .contact-content {
         flex-direction: column;
     }
