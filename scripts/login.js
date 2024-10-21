@@ -37,12 +37,12 @@ function searchUserInDatabase(emailInput, passwordInput, users, userIds) {
         currentUser = users[userId];
         if (currentUser.email.toLowerCase() === emailInputLower && currentUser.password === passwordInput) {
             userFound = true;
-            userLogin(remeberMeRef);
+            userLogin(remeberMeRef, userId);
             break;
         }
     }
 }
-function userLogin(remeberMeRef) {
+function userLogin(remeberMeRef, userId) {
     localStorage.setItem("user", currentUser.name);
     localStorage.setItem("userId", userId);
     if (remeberMeRef.checked) {
