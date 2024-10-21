@@ -73,7 +73,7 @@ function desktopSidebar() {
 ///////////////////////////////////////////
 
 function generateTaskHTML(task, index, className) {
-    return /*html*/ `<div id="${task.id}" draggable="true" dragleave="animationOndrag(${task.id})"  ondragstart="startDragging(${task.id})"  onclick="classChangeAction('overlaver','overlaver-active','add'); openTask(${task.id})" class="task-wrapper">
+    return /*html*/ `<div id="${task.id}" draggable="true" ondragstart="startDragging(${task.id})"  onclick="classChangeAction('overlaver','overlaver-active','add'); openTask(${task.id})" class="task-wrapper">
             <div class ="task">
               <div class="task-category ${className}">${task.categoryText}</div>
               <span class="drag-drop-btn">
@@ -206,6 +206,22 @@ function contactInDropDownHTML(contact, initials) {
                     </div>
                     <div class="container">
                         <input type="checkbox" id="checkbox${contact.id}" onclick="selectContact('${contact.name}'); stopEventBubbling(event)">
+                        <span class="checkmark"></span>
+                    </div>
+                </div>
+            </li>`;
+}
+
+function userInDropDownHTML(initials, userIndex) {
+    return /*html*/ `
+            <li id="contact${userIndex}" onclick="selectContact(${userIndex}); stopEventBubbling(event)">
+                <div class="d-flex contact-row">
+                    <div class="center gap">
+                        <div class="contact center userBackground">${initials}</div>
+                        <span>${user}</span>
+                    </div>
+                    <div class="container">
+                        <input type="checkbox" id="checkbox${userIndex}" onclick="selectContact('${userIndex}'); stopEventBubbling(event)">
                         <span class="checkmark"></span>
                     </div>
                 </div>
