@@ -223,6 +223,7 @@ function editDetails() {
 async function getCurrentKey() {
     let allContacts = await getData((path = "/contacts"));
     let contactKeys = Object.keys(allContacts);
+    currentSortKeys = [];
     contactKeys.forEach((key) => {
         currentSortKeys.push({
             name: allContacts[key].name,
