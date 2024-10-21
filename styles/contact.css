@@ -142,6 +142,11 @@
     gap: 30px;
 }
 
+.details-headline {
+    display: flex;
+    justify-content: space-between;
+}
+
 .contact-details-breakline {
     height: 59px;
     background-color: var(--light-blue);
@@ -175,7 +180,7 @@
 .detail-container {
     display: flex;
     flex-direction: column;
-    min-width: 461px;
+    /* min-width: 461px; */
     height: 364px;
     gap: 35px;
 
@@ -202,6 +207,7 @@
     width: 120px;
     border-radius: 50%;
     background-color: orange;
+    border: solid 2px white;
 }
 
 .name-detail {
@@ -211,6 +217,7 @@
     font-size: 47px;
     min-width: 287px;
     height: 88px;
+    font-weight: 500;
 }
 
 .edit-details-btns {
