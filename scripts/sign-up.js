@@ -146,6 +146,11 @@ async function postSignUpData(userNameInput, userEmailInput, userPwd) {
             password: userPwd,
         })
     );
+    document.getElementById("name-input").value = "";
+    document.getElementById("email-input").value = "";
+    document.getElementById("user-pwd").value = "";
+    document.getElementById("user-conf-pwd").value = "";
+
     setTimeout(() => {
         goLogin();
     }, 1500);
