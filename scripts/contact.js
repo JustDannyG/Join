@@ -51,7 +51,7 @@ async function openContact(index) {
 
 async function openOwnContact() {
     if (screenMode == "mobile") {
-        let myUser = await ownContact();
+        // let myUser = await ownContact();
         saveToLocalStorage("contacts", 'user');
         window.location.href = "contact-details.html";
     } else if (screenMode == "desktop") {
@@ -199,6 +199,8 @@ async function editOwnUser() {
         })
     );
     await initContacts();
+    showOwnContact();
+    toggleOwnOverlayDisplay()
 }
 
 ///////////////////////////////////////
