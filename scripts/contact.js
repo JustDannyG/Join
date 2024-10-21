@@ -1,7 +1,7 @@
-let currentSortKeys = [];
+// let currentSortKeys = [];
 let contactIndex = getFromLocalStorage("currentDetails");
 let contactsArray = getFromLocalStorage("contacts");
-let currentContactDetails = localStorage.getItem("currentDetails");
+// let currentContactDetails = localStorage.getItem("currentDetails");
 
 ////////////////////
 ///    Start   ////
@@ -149,9 +149,11 @@ async function showContact() {
 function toggleOverlayDisplay() {
     let overlay = document.getElementById("edit-overlay-bg");
     overlay.classList.toggle("hide-overlay");
-    document.getElementById('edit-action-btns').innerHTML = `
+    if (screenMode == 'desktop') {
+        document.getElementById('edit-action-btns').innerHTML = `
                     <button class="edit-delete-btn center" onclick="deleteContact(); return false">Delete</button>
                     <button class="edit-save-btn center">Save <img src="./assets/icons/check.png" alt="" /></button>`;
+    }
     editDetails();
 }
 
@@ -220,28 +222,31 @@ function editDetails() {
 }
 
 
-async function getCurrentKey() {
-    let allContacts = await getData((path = "/contacts"));
-    let contactKeys = Object.keys(allContacts);
-    currentSortKeys = [];
-    contactKeys.forEach((key) => {
-        currentSortKeys.push({
-            name: allContacts[key].name,
-            key: key,
-        });
-    });
-    sortByAlphabet(currentSortKeys);
-}
+// async function getCurrentKey() {
+//     let allContacts = await getData((path = "/contacts"));
+//     let contactKeys = Object.keys(allContacts);
+//     currentSortKeys = [];
+//     contactKeys.forEach((key) => {
+//         currentSortKeys.push({
+//             name: allContacts[key].name,
+//             key: key,
+//         });
+//     });
+//     sortByAlphabet(currentSortKeys);
+// }
 
 async function editContact() {
-    await getCurrentKey();
-    let key = currentSortKeys[currentContactDetails].key;
+    // await getCurrentKey();
+    // let key = currentSortKeys[contactIndex].key;
+    await getContacts()
+    console.log("Contacts:", contacts);
+    console.log("Contact Index:", contactIndex);
     let name = document.getElementById("edit-name").value;
     let email = document.getElementById("edit-email").value;
     let phone = document.getElementById("edit-phone").value;
     let color = document.getElementById("edit-color").value;
     await putData(
-        (path = `/contacts/${key}`),
+        (path = `/contacts/${contacts[contactIndex].key}`),
         (data = {
             color: color,
             name: name,

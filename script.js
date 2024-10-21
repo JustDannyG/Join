@@ -2,6 +2,7 @@ let user = localStorage.getItem("user");
 let userId = localStorage.getItem("userId");
 let contacts = [];
 let prio = "medium";
+let screenMode
 
 
 //////////////////////////////
@@ -244,7 +245,15 @@ async function getContacts() {
     for (let index = 0; index < keys.length; index++) {
         const key = keys[index];
         const contact = contactsData[key];
-        contacts.push(contact);
+        contacts.push(
+            {
+                'name': contact.name,
+                'email': contact.email,
+                'phone': contact.phone,
+                'color': contact.color,
+                'key': key
+            }
+        );
     }
     sortByAlphabet(contacts);
     console.log(contacts);
