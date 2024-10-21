@@ -51,7 +51,7 @@ async function openContact(index) {
 
 async function openOwnContact() {
     if (screenMode == "mobile") {
-        let myUser = await ownContact();
+        // let myUser = await ownContact();
         saveToLocalStorage("contacts", 'user');
         window.location.href = "contact-details.html";
     } else if (screenMode == "desktop") {
@@ -199,6 +199,8 @@ async function editOwnUser() {
         })
     );
     await initContacts();
+    showOwnContact();
+    toggleOwnOverlayDisplay()
 }
 
 ///////////////////////////////////////
@@ -268,7 +270,6 @@ async function deleteContact() {
     await getCurrentKey();
     await getTasks();
     let key = currentSortKeys[contactIndex].key;
-
     await deleteData((path = `/contacts/${key}`), (data = {}));
     await updateTasksWithRemovedContact();
     window.location.href = "contact.html";
@@ -278,7 +279,6 @@ async function updateTasksWithRemovedContact() {
     let allTasks = await getData((path = "/tasks"));
     let keyOfTask = Object.keys(allTasks);
     let contactToDelete = contactsArray[contactIndex];
-
     for (let i = 0; i < tasksArray.length; i++) {
         const task = tasksArray[i];
         if (task.assignedTo) {

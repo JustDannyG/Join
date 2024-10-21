@@ -30,7 +30,7 @@ async function ownContact() {
         color: ownContactData.color,
         email: ownContactData.email,
         name: ownContactData.name,
-        phone: ownContactData.phnoe,
+        phone: ownContactData.phone,
     };
 }
 
