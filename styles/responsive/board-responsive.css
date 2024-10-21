@@ -57,6 +57,11 @@
 /* Desktop Design Adjustment */
 
 @media (min-width: 1024px) {
+
+    .drag-drop-icon {
+        display: none;
+    }
+
     .board-main-content {
         height: 100vh;
     }

@@ -1,7 +1,5 @@
-let currentUser;
 let userFound = false;
 let users;
-let userIds;
 let remeberMe;
 let remeberMeUser;
 
@@ -10,7 +8,6 @@ async function loginInit() {
     userIds = Object.keys(users);
     remeberMe = getFromLocalStorage("rememberMe");
     remeberMeUser = getFromLocalStorage("rememberMeUser");
-
     if (remeberMe) {
         document.getElementById("email").value = remeberMeUser.email;
         document.getElementById("password").value = remeberMeUser.password;
@@ -32,12 +29,15 @@ async function login() {
 function searchUserInDatabase(emailInput, passwordInput, users, userIds) {
     let emailInputLower = emailInput.toLowerCase();
     let remeberMeRef = document.getElementById("myCheckbox");
-    for (let i = 0; i < userIds.length; i++) {
-        let userId = userIds[i];
-        currentUser = users[userId];
+    for (let i = 0; i < userIds.length; i++) { 
+        userId = userIds[i];
         if (currentUser.email.toLowerCase() === emailInputLower && currentUser.password === passwordInput) {
             userFound = true;
+          
+            currentUser = users[userId];
+
             userLogin(remeberMeRef, userId);
+
             break;
         }
     }
@@ -45,6 +45,7 @@ function searchUserInDatabase(emailInput, passwordInput, users, userIds) {
 function userLogin(remeberMeRef, userId) {
     localStorage.setItem("user", currentUser.name);
     localStorage.setItem("userId", userId);
+    localStorage.setItem("userName", currentUser.name);
     if (remeberMeRef.checked) {
         saveToLocalStorage("rememberMe", remeberMeRef.checked);
         saveToLocalStorage("rememberMeUser", currentUser);

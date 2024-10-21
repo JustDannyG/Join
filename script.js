@@ -1,7 +1,11 @@
 let user = localStorage.getItem("user");
+let currentUser;
 let userId = localStorage.getItem("userId");
 let contacts = [];
 let prio = "medium";
+
+console.log(currentUser);
+
 
 //////////////////////////////
 ///    Log out Function   ///

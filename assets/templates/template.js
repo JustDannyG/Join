@@ -212,6 +212,22 @@ function contactInDropDownHTML(contact, initials) {
             </li>`;
 }
 
+function userInDropDownHTML(initials, userIndex) {
+    return /*html*/ `
+            <li id="contact${userIndex}" onclick="selectContact(${userIndex}); stopEventBubbling(event)">
+                <div class="d-flex contact-row">
+                    <div class="center gap">
+                        <div class="contact center userBackground">${initials}</div>
+                        <span>${user}</span>
+                    </div>
+                    <div class="container">
+                        <input type="checkbox" id="checkbox${userIndex}" onclick="selectContact('${userIndex}'); stopEventBubbling(event)">
+                        <span class="checkmark"></span>
+                    </div>
+                </div>
+            </li>`;
+}
+
 function contactSelectionCircleHTML(contact, initials) {
     return /*html*/ `<div class="contact center " style="background-color:${contact.color}">${initials}</div>`;
 }
