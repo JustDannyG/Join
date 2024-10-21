@@ -65,6 +65,19 @@ async function showOwnContact() {
     currentContact.innerHTML = contactOwnCirleHTML(await ownContact());
 }
 
+
+function changeOwnEditButtons() {
+    document.getElementById('edit-contact').innerHTML = `
+ <div class="edit-contact d-flex " onclick="toggleOwnOverlayDisplay()">
+            <img src="./assets/icons/edit.png " alt="Edit Button" /> Edit
+        </div>
+
+        <div class="edit-contact d-flex " onclick="alert('yes')">
+            <img src="./assets/icons/delete.png " alt="Delete Button" /> Delete
+        </div>
+`;
+}
+
 /////////////////////////////////////////////////
 ///   LocalStorage - Save / Load Functions   ////
 /////////////////////////////////////////////////
@@ -138,6 +151,7 @@ async function showContact() {
     let currentContact = document.getElementById("current-contact");
     if (contactsArray == 'user') {
         currentContact.innerHTML = contactOwnCirleHTML(await ownContact());
+        changeOwnEditButtons()
     } else {
         let detail = contactsArray[contactIndex];
         currentContact.innerHTML = contactCirleHTML(detail);
@@ -205,6 +219,15 @@ async function editOwnUser() {
     toggleOwnOverlayDisplay()
 }
 
+function deletePopUp() {  /// Her Pop up um fragen ob user wirklich gelöscht werden soll 
+    
+}
+
+async function deleteOwnUser() {  // user Entgültig löschen und ausloggen 
+   await deleteData(path = `/users/${userId}`)
+   logOut();
+}
+
 ///////////////////////////////////////
 //  Edit Contact Details Functions  ///
 //////////////////////////////////////
@@ -260,6 +283,7 @@ async function editContact() {
 async function showEditedContact(contacts, name, email, phone) {
     saveToLocalStorage("contacts", contacts);
     if (screenMode == "mobile") {
+        // await initContacts();
         window.location.href = "contact-details.html";
     } else if (screenMode == "desktop") {
         await initContacts();
@@ -272,12 +296,18 @@ async function showEditedContact(contacts, name, email, phone) {
 //   Delete Contact    ///
 //////////////////////////
 
+// async function deleteContact() {
+//     await getCurrentKey();
+//     await getTasks();
+//     let key = currentSortKeys[contactIndex].key;
+//     await deleteData((path = `/contacts/${key}`), (data = {}));
+//     await updateTasksWithRemovedContact();
+//     window.location.href = "contact.html";
+// }
+
 async function deleteContact() {
-    await getCurrentKey();
-    await getTasks();
-    let key = currentSortKeys[contactIndex].key;
-    await deleteData((path = `/contacts/${key}`), (data = {}));
-    await updateTasksWithRemovedContact();
+    await getContacts()
+    await deleteData((path = `/contacts/${contacts[contactIndex].key}`), (data = {}));
     window.location.href = "contact.html";
 }
 
