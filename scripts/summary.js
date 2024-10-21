@@ -3,7 +3,7 @@ let upcomingDeadlineScroll
 
 function summaryInit() {
     greeting();
-    greetingUser();
+    // greetingUser();
     getSummaryTasks();
 }
 

@@ -20,7 +20,7 @@ function desktopHeader(user) {
         <header class="header-desktop">
         <p class="header-title">Kanban Project Management Tool</p>
         <div class="header-actions">
-            <a href="help.html"> <img class="help-icon" src="./assets/icons/help-icon.png" alt="Help"></a>
+            <a id="help-icon" href="help.html"> <img class="help-icon" src="./assets/icons/help-icon.png" alt="Help"></a>
             <div onclick="classChangeAction('user-menu', 'd-none', 'toggle'); stopEventBubbling(event)" id="header-initials" class="header-initials-btn">
                 ${user}
             </div>
@@ -73,7 +73,7 @@ function desktopSidebar() {
 ///////////////////////////////////////////
 
 function generateTaskHTML(task, index, className) {
-    return /*html*/ `<div id="${task.id}" draggable="true" dragleave="animationOndrag(${task.id})"  ondragstart="startDragging(${task.id})"  onclick="classChangeAction('overlaver','overlaver-active','add'); openTask(${task.id})" class="task-wrapper">
+    return /*html*/ `<div id="${task.id}" draggable="true" ondragstart="startDragging(${task.id})"  onclick="classChangeAction('overlaver','overlaver-active','add'); openTask(${task.id})" class="task-wrapper">
             <div class ="task">
               <div class="task-category ${className}">${task.categoryText}</div>
               <span class="drag-drop-btn">
@@ -400,7 +400,7 @@ function editBoardTaskHTML(currentTask) {
                     <div id="selected-contacts-container" class="d-flex selectet-contacts-container"></div>
                 </div>
 
-                <div class="task-overlay-subtasks-container position-relative">
+                <div class="task-overlay-subtasks-container position-relative" >
                     Subtasks
                     <div class="add-task-input">
                         <input id="subtasks-input" type="subtasks" name="subtasks" onkeyup="subtaskInputBtn()"
@@ -409,7 +409,7 @@ function editBoardTaskHTML(currentTask) {
                             <img src="./assets/icons/add -subtasks.png" alt="" onclick="setInputFocus()" />
                         </div>
                     </div>
-                <div id="subtasks-container" class="subtasks-container"></div>
+                <div id="subtasks-container" class="subtasks-container overflow-unset"></div>
                 </div>
             </div>
 

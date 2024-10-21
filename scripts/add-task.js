@@ -448,9 +448,13 @@ function editWord(index) {
  */
 function saveWord(index) {
     const newValue = document.getElementById(`editInput${index}`).value;
-    currentSubtasks[index].sub = newValue;
-    renderSubtask();
-    return false;
+    if (newValue.length > 0) {
+        currentSubtasks[index].sub = newValue;
+        renderSubtask();
+        return false;
+    } else {
+        deleteSubtask(index)
+    }
 }
 
 /**
