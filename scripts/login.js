@@ -1,5 +1,6 @@
 let userFound = false;
 let users;
+let currentUser;
 let remeberMe;
 let remeberMeUser;
 
@@ -31,13 +32,10 @@ function searchUserInDatabase(emailInput, passwordInput, users, userIds) {
     let remeberMeRef = document.getElementById("myCheckbox");
     for (let i = 0; i < userIds.length; i++) { 
         userId = userIds[i];
+        currentUser = users[userId];
         if (currentUser.email.toLowerCase() === emailInputLower && currentUser.password === passwordInput) {
             userFound = true;
-          
-            currentUser = users[userId];
-
             userLogin(remeberMeRef, userId);
-
             break;
         }
     }
