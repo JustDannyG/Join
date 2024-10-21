@@ -3,6 +3,7 @@ let userId = localStorage.getItem("userId");
 let contacts = [];
 let prio = "medium";
 
+
 //////////////////////////////
 ///    Log out Function   ///
 /////////////////////////////

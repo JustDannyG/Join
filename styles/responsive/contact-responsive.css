@@ -17,10 +17,6 @@
         padding: 25px 35px;
     }
 
-    .contact-content {
-        height: calc(100vh - (70px + 70px));
-    }
-
     .contact-list {
         scale: 0.9;
     }
