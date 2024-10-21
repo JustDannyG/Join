@@ -510,6 +510,10 @@ select option[value=""] {
     transform: translateX(0) !important;
 }
 
+.userBackground {
+    background-color: var(--light-blue);
+}
+
 /* .drop-down button {
     padding: 0px 16px;
 } */

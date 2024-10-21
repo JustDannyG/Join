@@ -123,7 +123,6 @@ function openDropdown(id, iconId) {
 function closeDropdown() {
     const dropdown = document.getElementById("assign-to-dropdown-contacts");
     const dropdownIcon = document.getElementById("drop-down-icon1");
-
     dropdown.classList.remove("show-dropdown");
     dropdownIcon.style.transform = "rotate(0deg)";
     isDropdownOpen = false;
@@ -217,11 +216,15 @@ function getSelectedContacts() {
  */
 function renderContacts(arr) {
     let dropDownRef = document.getElementById("assign-to-dropdown-contacts");
+    let userName = localStorage.getItem("userName");
+    let userIndex = 0;
     dropDownRef.innerHTML = "";
     arr.forEach((contact) => {
         dropDownRef.innerHTML += contactInDropDownHTML(contact, createInititals(contact.name));
         updateDesign(contact.id);
     });
+    dropDownRef.innerHTML += userInDropDownHTML(createInititals(userName), userIndex);
+    updateDesign(userIndex);
 }
 
 /**
