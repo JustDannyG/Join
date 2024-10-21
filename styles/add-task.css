@@ -255,6 +255,7 @@ select:focus,
 
 .show-dropdown {
     display: block;
+    box-shadow: 9px 15px 28px -6px;
 }
 
 .dropdown-btn {
