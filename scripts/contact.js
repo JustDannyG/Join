@@ -268,7 +268,6 @@ async function deleteContact() {
     await getCurrentKey();
     await getTasks();
     let key = currentSortKeys[contactIndex].key;
-
     await deleteData((path = `/contacts/${key}`), (data = {}));
     await updateTasksWithRemovedContact();
     window.location.href = "contact.html";
@@ -278,7 +277,6 @@ async function updateTasksWithRemovedContact() {
     let allTasks = await getData((path = "/tasks"));
     let keyOfTask = Object.keys(allTasks);
     let contactToDelete = contactsArray[contactIndex];
-
     for (let i = 0; i < tasksArray.length; i++) {
         const task = tasksArray[i];
         if (task.assignedTo) {
