@@ -72,7 +72,7 @@ function changeOwnEditButtons() {
             <img src="./assets/icons/edit.png " alt="Edit Button" /> Edit
         </div>
 
-        <div class="edit-contact d-flex " onclick="alert('yes')">
+        <div class="edit-contact d-flex " onclick="alert('here comes pop up for Delete and Loggout user')">
             <img src="./assets/icons/delete.png " alt="Delete Button" /> Delete
         </div>
 `;
