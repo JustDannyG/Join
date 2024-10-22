@@ -180,7 +180,7 @@ function toggleOwnOverlayDisplay() {
     let overlay = document.getElementById("edit-overlay-bg");
     overlay.classList.toggle("hide-overlay");
     document.getElementById('edit-action-btns').innerHTML = `
-    <button class="edit-delete-btn center" onclick="deletePopUp(); return false; stopEventBubbling(event)">Delete</button>
+    <button class="edit-delete-btn center" onclick="deletePopUp(); return false">Delete</button>
     <button class="edit-save-btn center" onclick="editOwnUser(); return false">Save <img src="./assets/icons/check.png" alt="" /></button>`;
     editOwnDetails();
 }
