@@ -10,6 +10,7 @@ let contactsArray = getFromLocalStorage("contacts");
 async function initContacts() {
     await getContacts();
     renderContacts();
+
 }
 
 /////////////////////////////////
@@ -17,6 +18,7 @@ async function initContacts() {
 ////////////////////////////////
 
 async function renderContacts() {
+    // if(screenMode == 'desktop'){}
     let containerRef = document.getElementById("contacts-container");
     containerRef.innerHTML = "";
     let firstLetter = "";
@@ -164,7 +166,7 @@ function toggleOverlayDisplay() {
     overlay.classList.toggle("hide-overlay");
     if (screenMode == 'desktop') {
         document.getElementById('edit-action-btns').innerHTML = `
-                    <button class="edit-delete-btn center" onclick="deleteContact(); return false">Delete</button>
+                    <button class="edit-delete-btn center" onclick="deleteContact();return false;">Delete</button>
                     <button class="edit-save-btn center">Save <img src="./assets/icons/check.png" alt="" /></button>`;
     }
     editDetails();
@@ -215,7 +217,9 @@ async function editOwnUser() {
             password: pw
         })
     );
-    await initContacts();
+    if (screenMode == 'desktop') {
+        await initContacts();
+    }
     showOwnContact();
     toggleOwnOverlayDisplay()
 }
@@ -225,8 +229,8 @@ function deletePopUp() {  /// Her Pop up um fragen ob user wirklich gelöscht we
 }
 
 async function deleteOwnUser() {  // user Entgültig löschen und ausloggen 
-   await deleteData(path = `/users/${userId}`)
-   logOut();
+    await deleteData(path = `/users/${userId}`)
+    logOut();
 }
 
 ///////////////////////////////////////
@@ -278,6 +282,7 @@ async function editContact() {
             phone: phone,
         })
     );
+    await getContacts();
     showEditedContact(contacts, name, email, phone);
 }
 
