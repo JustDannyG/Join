@@ -21,8 +21,9 @@ async function renderContacts() {
     containerRef.innerHTML = "";
     let firstLetter = "";
     if (user !== "Guest") {
-        containerRef.innerHTML = firstLetterHtml("Me");
+        containerRef.innerHTML = firstLetterHtml("My User");
         containerRef.innerHTML += ownContactListHtml(await ownContact());
+        containerRef.innerHTML += firstLetterHtml("Contacts");
     }
 
     contacts.forEach((contact, i) => {
@@ -72,9 +73,7 @@ function changeOwnEditButtons() {
             <img src="./assets/icons/edit.png " alt="Edit Button" /> Edit
         </div>
 
-        <div class="edit-contact d-flex " onclick="alert('here comes pop up for Delete and Loggout user')">
-            <img src="./assets/icons/delete.png " alt="Delete Button" /> Delete
-        </div>
+
 `;
 }
 
@@ -180,7 +179,9 @@ function toggleOverlayDisplay() {
 function toggleOwnOverlayDisplay() {
     let overlay = document.getElementById("edit-overlay-bg");
     overlay.classList.toggle("hide-overlay");
-    document.getElementById('edit-action-btns').innerHTML = `<button class="edit-save-btn center" onclick="editOwnUser(); return false">Save <img src="./assets/icons/check.png" alt="" /></button>`;
+    document.getElementById('edit-action-btns').innerHTML = `
+    <button class="edit-delete-btn center" onclick="deletePopUp(); return false; stopEventBubbling(event)">Delete</button>
+    <button class="edit-save-btn center" onclick="editOwnUser(); return false">Save <img src="./assets/icons/check.png" alt="" /></button>`;
     editOwnDetails();
 }
 
@@ -220,7 +221,7 @@ async function editOwnUser() {
 }
 
 function deletePopUp() {  /// Her Pop up um fragen ob user wirklich gelöscht werden soll 
-    
+    document.getElementById('delete-user-popup').classList.toggle('d-none');
 }
 
 async function deleteOwnUser() {  // user Entgültig löschen und ausloggen 
