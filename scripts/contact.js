@@ -313,14 +313,17 @@ async function showEditedContact(contacts, name, email, phone) {
 
 async function deleteContact() {
     await getContacts()
-    await deleteData((path = `/contacts/${contacts[contactIndex].key}`), (data = {}));
+    /await deleteData((path = `/contacts/${contacts[contactIndex].key}`), (data = {}));
+     await updateTasksWithRemovedContact();
     window.location.href = "contact.html";
 }
 
 async function updateTasksWithRemovedContact() {
     let allTasks = await getData((path = "/tasks"));
     let keyOfTask = Object.keys(allTasks);
-    let contactToDelete = contactsArray[contactIndex];
+    console.log(contacts[contactIndex].key);
+     
+    let contactToDelete = contacts[contactIndex];
     for (let i = 0; i < tasksArray.length; i++) {
         const task = tasksArray[i];
         if (task.assignedTo) {
@@ -332,7 +335,7 @@ async function updateTasksWithRemovedContact() {
 async function checkAndRemoveAssignedContact(task, contactToDelete, taskKey, allTasks) {
     for (let j = 0; j < task.assignedTo.length; j++) {
         const assignedContact = task.assignedTo[j];
-        if (assignedContact.name === contactToDelete.name) {
+        if (assignedContact.key === contactToDelete.key) {
             task.assignedTo.splice(j, 1);
             await putData(
                 (path = `/tasks/${taskKey}`),
