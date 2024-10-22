@@ -21,8 +21,9 @@ async function renderContacts() {
     containerRef.innerHTML = "";
     let firstLetter = "";
     if (user !== "Guest") {
-        containerRef.innerHTML = firstLetterHtml("Me");
+        containerRef.innerHTML = firstLetterHtml("My User");
         containerRef.innerHTML += ownContactListHtml(await ownContact());
+        containerRef.innerHTML += firstLetterHtml("Contacts");
     }
 
     contacts.forEach((contact, i) => {
@@ -180,7 +181,9 @@ function toggleOverlayDisplay() {
 function toggleOwnOverlayDisplay() {
     let overlay = document.getElementById("edit-overlay-bg");
     overlay.classList.toggle("hide-overlay");
-    document.getElementById('edit-action-btns').innerHTML = `<button class="edit-save-btn center" onclick="editOwnUser(); return false">Save <img src="./assets/icons/check.png" alt="" /></button>`;
+    document.getElementById('edit-action-btns').innerHTML = `
+    <button class="edit-delete-btn center" onclick="deletePopUp(); return false">Delete</button>
+    <button class="edit-save-btn center" onclick="editOwnUser(); return false">Save <img src="./assets/icons/check.png" alt="" /></button>`;
     editOwnDetails();
 }
 
@@ -220,7 +223,7 @@ async function editOwnUser() {
 }
 
 function deletePopUp() {  /// Her Pop up um fragen ob user wirklich gelöscht werden soll 
-    
+    document.getElementById('delete-user-popup').classList.toggle('d-none');
 }
 
 async function deleteOwnUser() {  // user Entgültig löschen und ausloggen 
