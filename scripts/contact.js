@@ -1,7 +1,7 @@
-let currentSortKeys = [];
+// let currentSortKeys = [];
 let contactIndex = getFromLocalStorage("currentDetails");
 let contactsArray = getFromLocalStorage("contacts");
-let currentContactDetails = localStorage.getItem("currentDetails");
+// let currentContactDetails = localStorage.getItem("currentDetails");
 
 ////////////////////
 ///    Start   ////
@@ -21,8 +21,9 @@ async function renderContacts() {
     containerRef.innerHTML = "";
     let firstLetter = "";
     if (user !== "Guest") {
-        containerRef.innerHTML = firstLetterHtml("Me");
+        containerRef.innerHTML = firstLetterHtml("My User");
         containerRef.innerHTML += ownContactListHtml(await ownContact());
+        containerRef.innerHTML += firstLetterHtml("Contacts");
     }
 
     contacts.forEach((contact, i) => {
@@ -63,6 +64,17 @@ async function openOwnContact() {
 async function showOwnContact() {
     let currentContact = document.getElementById("current-contact");
     currentContact.innerHTML = contactOwnCirleHTML(await ownContact());
+}
+
+
+function changeOwnEditButtons() {
+    document.getElementById('edit-contact').innerHTML = `
+ <div class="edit-contact d-flex " onclick="toggleOwnOverlayDisplay()">
+            <img src="./assets/icons/edit.png " alt="Edit Button" /> Edit
+        </div>
+
+
+`;
 }
 
 /////////////////////////////////////////////////
@@ -138,6 +150,7 @@ async function showContact() {
     let currentContact = document.getElementById("current-contact");
     if (contactsArray == 'user') {
         currentContact.innerHTML = contactOwnCirleHTML(await ownContact());
+        changeOwnEditButtons()
     } else {
         let detail = contactsArray[contactIndex];
         currentContact.innerHTML = contactCirleHTML(detail);
@@ -149,9 +162,11 @@ async function showContact() {
 function toggleOverlayDisplay() {
     let overlay = document.getElementById("edit-overlay-bg");
     overlay.classList.toggle("hide-overlay");
-    document.getElementById('edit-action-btns').innerHTML = `
+    if (screenMode == 'desktop') {
+        document.getElementById('edit-action-btns').innerHTML = `
                     <button class="edit-delete-btn center" onclick="deleteContact(); return false">Delete</button>
                     <button class="edit-save-btn center">Save <img src="./assets/icons/check.png" alt="" /></button>`;
+    }
     editDetails();
 }
 
@@ -164,7 +179,9 @@ function toggleOverlayDisplay() {
 function toggleOwnOverlayDisplay() {
     let overlay = document.getElementById("edit-overlay-bg");
     overlay.classList.toggle("hide-overlay");
-    document.getElementById('edit-action-btns').innerHTML = `<button class="edit-save-btn center" onclick="editOwnUser(); return false">Save <img src="./assets/icons/check.png" alt="" /></button>`;
+    document.getElementById('edit-action-btns').innerHTML = `
+    <button class="edit-delete-btn center" onclick="deletePopUp(); return false; stopEventBubbling(event)">Delete</button>
+    <button class="edit-save-btn center" onclick="editOwnUser(); return false">Save <img src="./assets/icons/check.png" alt="" /></button>`;
     editOwnDetails();
 }
 
@@ -203,6 +220,15 @@ async function editOwnUser() {
     toggleOwnOverlayDisplay()
 }
 
+function deletePopUp() {  /// Her Pop up um fragen ob user wirklich gelöscht werden soll 
+    document.getElementById('delete-user-popup').classList.toggle('d-none');
+}
+
+async function deleteOwnUser() {  // user Entgültig löschen und ausloggen 
+   await deleteData(path = `/users/${userId}`)
+   logOut();
+}
+
 ///////////////////////////////////////
 //  Edit Contact Details Functions  ///
 //////////////////////////////////////
@@ -220,28 +246,31 @@ function editDetails() {
 }
 
 
-async function getCurrentKey() {
-    let allContacts = await getData((path = "/contacts"));
-    let contactKeys = Object.keys(allContacts);
-    currentSortKeys = [];
-    contactKeys.forEach((key) => {
-        currentSortKeys.push({
-            name: allContacts[key].name,
-            key: key,
-        });
-    });
-    sortByAlphabet(currentSortKeys);
-}
+// async function getCurrentKey() {
+//     let allContacts = await getData((path = "/contacts"));
+//     let contactKeys = Object.keys(allContacts);
+//     currentSortKeys = [];
+//     contactKeys.forEach((key) => {
+//         currentSortKeys.push({
+//             name: allContacts[key].name,
+//             key: key,
+//         });
+//     });
+//     sortByAlphabet(currentSortKeys);
+// }
 
 async function editContact() {
-    await getCurrentKey();
-    let key = currentSortKeys[currentContactDetails].key;
+    // await getCurrentKey();
+    // let key = currentSortKeys[contactIndex].key;
+    await getContacts()
+    console.log("Contacts:", contacts);
+    console.log("Contact Index:", contactIndex);
     let name = document.getElementById("edit-name").value;
     let email = document.getElementById("edit-email").value;
     let phone = document.getElementById("edit-phone").value;
     let color = document.getElementById("edit-color").value;
     await putData(
-        (path = `/contacts/${key}`),
+        (path = `/contacts/${contacts[contactIndex].key}`),
         (data = {
             color: color,
             name: name,
@@ -255,6 +284,7 @@ async function editContact() {
 async function showEditedContact(contacts, name, email, phone) {
     saveToLocalStorage("contacts", contacts);
     if (screenMode == "mobile") {
+        // await initContacts();
         window.location.href = "contact-details.html";
     } else if (screenMode == "desktop") {
         await initContacts();
@@ -267,12 +297,18 @@ async function showEditedContact(contacts, name, email, phone) {
 //   Delete Contact    ///
 //////////////////////////
 
+// async function deleteContact() {
+//     await getCurrentKey();
+//     await getTasks();
+//     let key = currentSortKeys[contactIndex].key;
+//     await deleteData((path = `/contacts/${key}`), (data = {}));
+//     await updateTasksWithRemovedContact();
+//     window.location.href = "contact.html";
+// }
+
 async function deleteContact() {
-    await getCurrentKey();
-    await getTasks();
-    let key = currentSortKeys[contactIndex].key;
-    await deleteData((path = `/contacts/${key}`), (data = {}));
-    await updateTasksWithRemovedContact();
+    await getContacts()
+    await deleteData((path = `/contacts/${contacts[contactIndex].key}`), (data = {}));
     window.location.href = "contact.html";
 }
 
