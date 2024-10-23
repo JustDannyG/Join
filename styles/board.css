@@ -387,6 +387,7 @@
     border: 2px dotted var(--dark-grey);
     border-radius: 10px;
     background-color: rgb(0, 0, 0, 0.04);
+    transition: all ease-in-out 100ms;
 }
 
 .task-wrapper {
