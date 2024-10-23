@@ -155,6 +155,12 @@ function renderAssignedToContacts(task, index) {
     });
 }
 
+/**
+ * Renders the priority icon for a task based on its priority level.
+ *
+ * @param {Object} task - The task object containing task details.
+ * @param {number} index - The index of the task, used to uniquely identify the priority icon.
+ */
 function renderPrio(task, index) {
     const imgRef = document.getElementById(`${task.category}prio-icon${index}`);
     if (task.prio) {
@@ -167,34 +173,71 @@ function renderPrio(task, index) {
 ///  Board Drag and Drop Functions   ///
 ///////////////////////////////////////
 
+/**
+ * Moves the currently dragged task to a specified category.
+ * Updates the task in the array and refreshes the database and HTML accordingly.
+ *
+ * @param {string} category - The target category to move the task to.
+ */
 function moveTo(category) {
     tasksArray[currentDraggedElement]["category"] = category;
     moveToUpdateDatabase();
     updateHtml();
 }
 
+/**
+ * Initiates the dragging operation by setting the currently dragged element.
+ * 
+ * @param {number} id - The ID of the element being dragged.
+ */
 function startDragging(id) {
     currentDraggedElement = id;
 }
 
+/**
+ * Allows an element to be dropped by preventing the default behavior of the event.
+ * 
+ * @param {DragEvent} ev - The drag event object.
+ */
 function allowDrop(ev) {
     ev.preventDefault();
 }
 
+/**
+ * Moves the dragged task to update the database. Fetches the current tasks,
+ * identifies the task key for the dragged element, and updates the database.
+ * 
+ * @returns {Promise<void>} A promise that resolves when the task is updated.
+ */
 async function moveToUpdateDatabase() {
     let getTasks = await getData("/tasks");
     let taskKey = Object.keys(getTasks);
     await putData(`/tasks/${taskKey[currentDraggedElement]}`, tasksArray[currentDraggedElement]);
 }
 
+/**
+ * Highlights a drag area by adding a specific CSS class.
+ * 
+ * @param {string} id - The ID of the HTML element to highlight.
+ */
 function highlight(id) {
     document.getElementById(id).classList.add("drag-area-highlight");
 }
 
+/**
+ * Removes the highlight from a drag area by removing a specific CSS class.
+ * 
+ * @param {string} id - The ID of the HTML element to remove the highlight from.
+ */
 function removeHighlight(id) {
     document.getElementById(id).classList.remove("drag-area-highlight");
 }
 
+/**
+ * Adds a dragging animation to a specific element.
+ * 
+ * @param {string} id - The ID of the HTML element to animate.
+ */
 function animationOndrag(id) {
     document.getElementById(id).classList.add("animation-ondrag");
 }
@@ -203,6 +246,11 @@ function animationOndrag(id) {
 ///  Task Overlay - Show Task Functions   ///
 ////////////////////////////////////////////
 
+/**
+ * Opens a task, displays its overlay, and triggers related functions.
+ * 
+ * @param {number} id - The ID of the task to open.
+ */
 function openTask(id) {
     currentTask = tasksArray[id];
     document.getElementById("overlaver").innerHTML = taskBoardOverlay(currentTask);
@@ -211,6 +259,9 @@ function openTask(id) {
     renderTasksArrays();
 }
 
+/**
+ * Renders the list of assigned contacts and their subtasks for the current task.
+ */
 function renderTasksArrays() {
     let assignedToRef = document.getElementById("assigned-to-list");
     assignedToRef.innerHTML = "";
@@ -226,6 +277,9 @@ function renderTasksArrays() {
 ///   Task Overlay - Check Subtasks Functions    ///
 ///////////////////////////////////////////////////
 
+/**
+ * Renders the checklist for subtasks within the task overlay.
+ */
 function setCheck() {
     let subtaskRef = document.getElementById("subtask-overlay");
     subtaskRef.innerHTML = "";
@@ -239,6 +293,11 @@ function setCheck() {
     }
 }
 
+/**
+ * Toggles the subtask's checked status and updates the backend data.
+ * 
+ * @param {number} subIndex - The index of the subtask to toggle.
+ */
 async function checkAndPushToFirebase(subIndex) {
     currentTask.subtask[subIndex].checked = !currentTask.subtask[subIndex].checked;
     setCheck();
@@ -257,6 +316,9 @@ async function checkAndPushToFirebase(subIndex) {
 //    Edit Task Overlay Functions   ///
 ///////////////////////////////////////
 
+/**
+ * Displays the editable values for the selected task.
+ */
 function showEditTaskValues() {
     document.getElementById("overlaver").innerHTML = editBoardTaskHTML(currentTask);
     editTaskAssignTo();
@@ -265,6 +327,9 @@ function showEditTaskValues() {
     taskPrioText();
 }
 
+/**
+ * Edits the task's assigned contacts.
+ */
 function editTaskAssignTo() {
     selectedContacts = []; //Required, to clear the Array from the Edit-Task before    //// Anpassungen
     getSelectedContacts();
@@ -275,6 +340,9 @@ function editTaskAssignTo() {
     }
 }
 
+/**
+ * Updates the priority text displayed in the task overlay.
+ */
 function taskPrioText() {
     if (currentTask.prio) {
         document.getElementById("prio").innerHTML = currentTask.prio.charAt(0).toUpperCase() + currentTask.prio.slice(1);
@@ -283,6 +351,11 @@ function taskPrioText() {
     }
 }
 
+/**
+ * Toggles the priority of the task.
+ * 
+ * @param {string|null} prioInput - The new priority value.
+ */
 function editPrio(prioInput) {
     if (prioInput == currentTask.prio) {
         currentTask.prio = null;
@@ -292,6 +365,11 @@ function editPrio(prioInput) {
     updateBtnColor(currentTask.prio);
 }
 
+/**
+ * Finds and marks contacts that are already assigned to the current task.
+ * 
+ * @param {Object} currentTask - The task being edited.
+ */
 function findCheckedContacts(currentTask) {
     selectedContacts.forEach((selectedContact) => {
         currentTask.assignedTo.forEach((assignedContact) => {
@@ -306,6 +384,9 @@ function findCheckedContacts(currentTask) {
 ///   Edit Task Overlay - Edit Subtasks    ///
 //////////////////////////////////////////////
 
+/**
+ * Renders the subtasks for editing.
+ */
 function editTaskSubtask() {
     if (currentTask.subtask) {
         renderSubtaskEdit(currentTask.subtask);
@@ -314,6 +395,11 @@ function editTaskSubtask() {
     }
 }
 
+/**
+ * Renders the subtask edit form.
+ * 
+ * @param {Array} subtasks - Array of subtasks to render.
+ */
 function renderSubtaskEdit(subtasks) {
     let subTaskRef = document.getElementById("subtasks-container");
     subtasks.forEach((subtask, i) => {
@@ -321,12 +407,22 @@ function renderSubtaskEdit(subtasks) {
     });
 }
 
+/**
+ * Saves the edited value of a subtask.
+ * 
+ * @param {number} index - The index of the subtask being edited.
+ */
 function saveWord(index) {
     const newValue = document.getElementById(`editInput${index}`).value;
     currentSubtasks[index].sub = newValue;
     renderSubtaskEdit(currentSubtasks);
 }
 
+/**
+ * Deletes a subtask from the task.
+ * 
+ * @param {number} i - The index of the subtask to delete.
+ */
 function deleteSubtask(i) {
     currentSubtasks.splice(i, 1);
     renderSubtaskEdit(currentSubtasks);
@@ -337,6 +433,9 @@ function deleteSubtask(i) {
 ///   Edit Task Overlay - PUT  Firebase / Board    ///
 /////////////////////////////////////////////////////
 
+/**
+ * Saves the edited task to the database.
+ */
 async function editTask() {
     await putData(
         (path = `/tasks/${currentTask.taskKey}`),
@@ -361,6 +460,9 @@ async function editTask() {
 ///  Edit Task Overlay - Delete  Firebase Board   ///
 /////////////////////////////////////////////////////
 
+/**
+ * Deletes the task from the backend.
+ */
 async function deleteTask() {
     classChangeAction("overlaver", "overlaver-active", "remove");
     await deleteData((path = `/tasks/${currentTask.taskKey}`), (data = {}));
@@ -371,10 +473,21 @@ async function deleteTask() {
 ///     Mobile  Drag and Drop  Button Version  ///
 /////////////////////////////////////////////////
 
+/**
+ * Toggles the display of task move options.
+ * 
+ * @param {number} taskId - The ID of the task.
+ */
 function openTaskMoveOptions(taskId) {
     document.getElementById(`task-move-list${taskId}`).classList.toggle("show-drop-list");
 }
 
+/**
+ * Moves a task to a different category and updates it in the databse.
+ * 
+ * @param {number} taskId - The ID of the task.
+ * @param {string} category - The new category to move the task to.
+ */
 async function moveTaskTo(taskId, category) {
     await putData(
         (path = `/tasks/${tasksArray[taskId].taskKey}/`),
@@ -418,6 +531,11 @@ function filterBoardTasks(screen) {
     foundTasks(screen);
 }
 
+/**
+ * Displays the number of tasks found for a given screen.
+ * 
+ * @param {string} screen - The screen identifier.
+ */
 function foundTasks(screen) {
     let numberOfTasksRef = document.getElementById(`nummber-of-${screen}`);
     if (taskCounter == 0) {
@@ -429,6 +547,12 @@ function foundTasks(screen) {
     }
 }
 
+/**
+ * Filters tasks based on a search query.
+ * 
+ * @param {string} task - The category to filter by.
+ * @param {string} search - The search query.
+ */
 function filterSearchTasks(task, search) {
     let filterArray = tasksArray.filter((t) => t["category"] == task);
     let filterTasks = [];
@@ -445,6 +569,10 @@ function filterSearchTasks(task, search) {
 ///    Scroll to Section Function     ///
 /////////////////////////////////////////
 
+
+/**
+ * Automatically scrolls to a section of the page when loaded, based on the URL hash.
+ */
 window.addEventListener("load", function () {
     let section = window.location.hash.substring(1);
     console.log(section);
@@ -457,6 +585,11 @@ window.addEventListener("load", function () {
     }
 });
 
+/**
+ * Smoothly scrolls to a specified section of the page.
+ * 
+ * @param {string} section - The section ID to scroll to.
+ */
 function scrollToSection(section) {
     let sectionColumn = document.getElementById(section);
     if (sectionColumn) {
