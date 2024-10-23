@@ -198,6 +198,7 @@ function getSelectedContacts() {
             color: contact.color,
             checked: false,
             id: i,
+            key: contact.key
         });
     });
     sortByAlphabet(selectedContacts);
@@ -281,7 +282,7 @@ function renderSelectedContacts() {
     let assignedToContacts = selectedContacts.filter((c) => c.checked == true);
 
     for (let contact of assignedToContacts) {
-        containerRef.innerHTML += contactSelectionCircleHTML(contact, createInititals(contact.name));
+        containerRef.innerHTML += contactSelectionCircleHTML(contact);
     }
 }
 

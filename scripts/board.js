@@ -37,6 +37,8 @@ async function resetBoard() {
  */
 async function getTasks() {
     let response = await getData((path = "/tasks"));
+    console.log(response);
+    
     let taskKeys = Object.keys(response);
     tasksArray = [];
     for (let index = 0; index < taskKeys.length; index++) {
