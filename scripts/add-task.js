@@ -217,7 +217,7 @@ function getSelectedContacts() {
  */
 function renderContacts(arr) {
     let dropDownRef = document.getElementById("assign-to-dropdown-contacts");
-    let userName = localStorage.getItem("userName");
+    let userName = localStorage.getItem("user");
     let userIndex = 0;
     dropDownRef.innerHTML = "";
     arr.forEach((contact) => {
