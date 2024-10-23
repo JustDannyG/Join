@@ -351,6 +351,35 @@ async function deleteContact() {
 //     }
 // }
 
+
+///// Die Hier Geht Muss nur abgeändert werden 
+
+// async function deleteTaskContact(deleteKey) {
+//     let response = await getData("/tasks"); // Warten auf das Auflösen der Daten
+//     let keyOfTask = Object.keys(response);  // Extrahiere die Keys aus den Tasks
+   
+
+//    for (let i = 0; i < keyOfTask.length; i++) {
+//     const key = keyOfTask[i];
+//     let task = response[key];
+//     if (task.assignedTo) {
+//        let assignedKey = Object.keys(task.assignedTo);
+//        for (let j = 0; j < assignedKey.length; j++) {
+//         const assignKey = assignedKey[j];
+//         let assignContact = task.assignedTo[assignKey]
+//         if (assignContact.key == deleteKey) {
+//             await deleteData((path = `/tasks/${key}/assignedTo/${assignKey}`), (data = {}));
+//         }
+//        }
+//     }
+     
+//    }
+// }
+
+
+
+/// Änderung der oberen Funktion...
+
 async function deleteTaskContact(deleteKey) {
     let response = await getData("/tasks"); // Warten auf das Auflösen der Daten
     let keyOfTask = Object.keys(response);  // Extrahiere die Keys aus den Tasks
@@ -358,19 +387,23 @@ async function deleteTaskContact(deleteKey) {
 
    for (let i = 0; i < keyOfTask.length; i++) {
     const key = keyOfTask[i];
-    let task = response[key]
+    let task = response[key];
     if (task.assignedTo) {
        let assignedKey = Object.keys(task.assignedTo);
+
+        let assignedTo = []
        for (let j = 0; j < assignedKey.length; j++) {
         const assignKey = assignedKey[j];
         let assignContact = task.assignedTo[assignKey]
-        if (assignContact.key == deleteKey) {
-            await deleteData((path = `/tasks/${key}/assignedTo/${assignKey}`), (data = {}));
+           
+        if (assignContact.key !== deleteKey) {
+            assignedTo.push(assignContact)
+               
+           
         }
        }
+         await putData((path = `/tasks/${key}/assignedTo`), assignedTo);
     }
-     
-    
    }
 }
 
