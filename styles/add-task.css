@@ -226,6 +226,7 @@ select:focus,
     margin: 0;
     padding: 0;
     border-radius: 8px;
+    z-index: 1;
 }
 
 .edit-dropdown {
