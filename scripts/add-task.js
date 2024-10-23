@@ -123,7 +123,6 @@ function openDropdown(id, iconId) {
 function closeDropdown() {
     const dropdown = document.getElementById("assign-to-dropdown-contacts");
     const dropdownIcon = document.getElementById("drop-down-icon1");
-
     dropdown.classList.remove("show-dropdown");
     dropdownIcon.style.transform = "rotate(0deg)";
     isDropdownOpen = false;
@@ -199,6 +198,7 @@ function getSelectedContacts() {
             color: contact.color,
             checked: false,
             id: i,
+            key: contact.key
         });
     });
     sortByAlphabet(selectedContacts);
@@ -217,11 +217,15 @@ function getSelectedContacts() {
  */
 function renderContacts(arr) {
     let dropDownRef = document.getElementById("assign-to-dropdown-contacts");
+    let userName = localStorage.getItem("userName");
+    let userIndex = 0;
     dropDownRef.innerHTML = "";
     arr.forEach((contact) => {
         dropDownRef.innerHTML += contactInDropDownHTML(contact, createInititals(contact.name));
         updateDesign(contact.id);
     });
+    dropDownRef.innerHTML += userInDropDownHTML(createInititals(userName), userIndex);
+    updateDesign(userIndex);
 }
 
 /**
@@ -278,7 +282,7 @@ function renderSelectedContacts() {
     let assignedToContacts = selectedContacts.filter((c) => c.checked == true);
 
     for (let contact of assignedToContacts) {
-        containerRef.innerHTML += contactSelectionCircleHTML(contact, createInititals(contact.name));
+        containerRef.innerHTML += contactSelectionCircleHTML(contact);
     }
 }
 
@@ -445,9 +449,13 @@ function editWord(index) {
  */
 function saveWord(index) {
     const newValue = document.getElementById(`editInput${index}`).value;
-    currentSubtasks[index].sub = newValue;
-    renderSubtask();
-    return false;
+    if (newValue.length > 0) {
+        currentSubtasks[index].sub = newValue;
+        renderSubtask();
+        return false;
+    } else {
+        deleteSubtask(index)
+    }
 }
 
 /**

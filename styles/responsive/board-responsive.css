@@ -57,6 +57,11 @@
 /* Desktop Design Adjustment */
 
 @media (min-width: 1024px) {
+
+    .drag-drop-icon {
+        display: none;
+    }
+
     .board-main-content {
         height: 100vh;
     }
@@ -73,7 +78,7 @@
 
     .board-section {
         min-width: 240px;
-        height: 90%;
+        height: 100%;
         padding: 0;
     }
 
@@ -92,6 +97,11 @@
 
     .board-head-mobile {
         display: none;
+    }
+
+    .add-task-headline {
+        top: -140px;
+        left: 47px;
     }
 }
 

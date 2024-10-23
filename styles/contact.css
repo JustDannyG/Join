@@ -8,7 +8,6 @@
     flex: 1;
     height: 100%;
     background-color: var(--light-grey);
-    overflow-y: auto;
 }
 
 .contact-details-main-content {
@@ -83,6 +82,11 @@
     width: 100%;
 }
 
+.contacts-mobile-container {
+    overflow-y: auto;
+    height: 100%;
+}
+
 .contacts-first-letter {
     font-size: 20px;
     font-weight: 400;
@@ -138,6 +142,11 @@
     gap: 30px;
 }
 
+.details-headline {
+    display: flex;
+    justify-content: space-between;
+}
+
 .contact-details-breakline {
     height: 59px;
     background-color: var(--light-blue);
@@ -171,7 +180,7 @@
 .detail-container {
     display: flex;
     flex-direction: column;
-    min-width: 461px;
+    /* min-width: 461px; */
     height: 364px;
     gap: 35px;
 
@@ -198,6 +207,7 @@
     width: 120px;
     border-radius: 50%;
     background-color: orange;
+    border: solid 2px white;
 }
 
 .name-detail {
@@ -207,6 +217,7 @@
     font-size: 47px;
     min-width: 287px;
     height: 88px;
+    font-weight: 500;
 }
 
 .edit-details-btns {
@@ -507,6 +518,7 @@
     background-color: var(--light-blue);
     box-shadow: 2px 4px 7px 0px rgba(0, 0, 0, 0.5);
 }
+
 .submit-btn:disabled {
     background-color: var(--light-blue);
 }
@@ -553,6 +565,7 @@
     border: solid 2px var(--light-blue);
     box-shadow: 2px 4px 7px 0px rgba(0, 0, 0, 0.5);
 }
+
 /* =========================
      Contact - Add Popup
    ========================= */
@@ -575,10 +588,67 @@
     transform: translateY(-120px);
 }
 
+
+/* ====================================
+     Contact - Delete Own User Popup
+   ==================================== */
+
+.delete-user-popup-bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.delete-user-popup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    height: 300px;
+    width: 300px;
+    border-radius: 30px;
+    background-color: white;
+    padding: 20px;
+    font-size: 20px;
+    text-align: center;
+
+}
+
+.delete-popup-btns-container {
+    display: flex;
+    gap: 20px;
+}
+
+.delete-popup-cancel-btn {
+    font-size: 16px;
+    height: 50px;
+    border-radius: 10px;
+    width: 80px;
+}
+
+.delete-popup-yes-btn {
+    font-size: 16px;
+    height: 50px;
+    border-radius: 10px;
+    width: 150px;
+    background-color: rgba(251, 61, 1, 0.5);
+    transition: all ease-in-out 100ms;
+}
+
+.delete-popup-yes-btn:hover {
+    background-color: rgba(251, 61, 1, 1.0);
+}
+
+
 /*=======                                   Ab hier noch weiter Checken*/
 
 .hide-overlay-desktop {
     transform: translateX(100vw);
 }
-
-

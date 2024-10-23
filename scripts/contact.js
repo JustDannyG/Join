@@ -1,7 +1,7 @@
-let currentSortKeys = [];
+// let currentSortKeys = [];
 let contactIndex = getFromLocalStorage("currentDetails");
 let contactsArray = getFromLocalStorage("contacts");
-let currentContactDetails = localStorage.getItem("currentDetails");
+// let currentContactDetails = localStorage.getItem("currentDetails");
 
 ////////////////////
 ///    Start   ////
@@ -10,6 +10,7 @@ let currentContactDetails = localStorage.getItem("currentDetails");
 async function initContacts() {
     await getContacts();
     renderContacts();
+
 }
 
 /////////////////////////////////
@@ -17,12 +18,14 @@ async function initContacts() {
 ////////////////////////////////
 
 async function renderContacts() {
+    // if(screenMode == 'desktop'){}
     let containerRef = document.getElementById("contacts-container");
     containerRef.innerHTML = "";
     let firstLetter = "";
     if (user !== "Guest") {
-        containerRef.innerHTML = firstLetterHtml("Me");
+        containerRef.innerHTML = firstLetterHtml("My User");
         containerRef.innerHTML += ownContactListHtml(await ownContact());
+        containerRef.innerHTML += firstLetterHtml("Contacts");
     }
 
     contacts.forEach((contact, i) => {
@@ -51,7 +54,7 @@ async function openContact(index) {
 
 async function openOwnContact() {
     if (screenMode == "mobile") {
-        let myUser = await ownContact();
+        // let myUser = await ownContact();
         saveToLocalStorage("contacts", 'user');
         window.location.href = "contact-details.html";
     } else if (screenMode == "desktop") {
@@ -63,6 +66,17 @@ async function openOwnContact() {
 async function showOwnContact() {
     let currentContact = document.getElementById("current-contact");
     currentContact.innerHTML = contactOwnCirleHTML(await ownContact());
+}
+
+
+function changeOwnEditButtons() {
+    document.getElementById('edit-contact').innerHTML = `
+ <div class="edit-contact d-flex " onclick="toggleOwnOverlayDisplay()">
+            <img src="./assets/icons/edit.png " alt="Edit Button" /> Edit
+        </div>
+
+
+`;
 }
 
 /////////////////////////////////////////////////
@@ -138,6 +152,7 @@ async function showContact() {
     let currentContact = document.getElementById("current-contact");
     if (contactsArray == 'user') {
         currentContact.innerHTML = contactOwnCirleHTML(await ownContact());
+        changeOwnEditButtons()
     } else {
         let detail = contactsArray[contactIndex];
         currentContact.innerHTML = contactCirleHTML(detail);
@@ -149,9 +164,11 @@ async function showContact() {
 function toggleOverlayDisplay() {
     let overlay = document.getElementById("edit-overlay-bg");
     overlay.classList.toggle("hide-overlay");
-    document.getElementById('edit-action-btns').innerHTML = `
-                    <button class="edit-delete-btn center" onclick="deleteContact(); return false">Delete</button>
+    if (screenMode == 'desktop') {
+        document.getElementById('edit-action-btns').innerHTML = `
+                    <button class="edit-delete-btn center" onclick="deleteContact();return false;">Delete</button>
                     <button class="edit-save-btn center">Save <img src="./assets/icons/check.png" alt="" /></button>`;
+    }
     editDetails();
 }
 
@@ -164,7 +181,9 @@ function toggleOverlayDisplay() {
 function toggleOwnOverlayDisplay() {
     let overlay = document.getElementById("edit-overlay-bg");
     overlay.classList.toggle("hide-overlay");
-    document.getElementById('edit-action-btns').innerHTML = `<button class="edit-save-btn center" onclick="editOwnUser(); return false">Save <img src="./assets/icons/check.png" alt="" /></button>`;
+    document.getElementById('edit-action-btns').innerHTML = `
+    <button class="edit-delete-btn center" onclick="deletePopUp(); return false">Delete</button>
+    <button class="edit-save-btn center" onclick="editOwnUser(); return false">Save <img src="./assets/icons/check.png" alt="" /></button>`;
     editOwnDetails();
 }
 
@@ -198,7 +217,20 @@ async function editOwnUser() {
             password: pw
         })
     );
-    await initContacts();
+    if (screenMode == 'desktop') {
+        await initContacts();
+    }
+    showOwnContact();
+    toggleOwnOverlayDisplay()
+}
+
+function deletePopUp() {  /// Her Pop up um fragen ob user wirklich gelöscht werden soll 
+    document.getElementById('delete-user-popup').classList.toggle('d-none');
+}
+
+async function deleteOwnUser() {  // user Entgültig löschen und ausloggen 
+    await deleteData(path = `/users/${userId}`)
+    logOut();
 }
 
 ///////////////////////////////////////
@@ -218,27 +250,31 @@ function editDetails() {
 }
 
 
-async function getCurrentKey() {
-    let allContacts = await getData((path = "/contacts"));
-    let contactKeys = Object.keys(allContacts);
-    contactKeys.forEach((key) => {
-        currentSortKeys.push({
-            name: allContacts[key].name,
-            key: key,
-        });
-    });
-    sortByAlphabet(currentSortKeys);
-}
+// async function getCurrentKey() {
+//     let allContacts = await getData((path = "/contacts"));
+//     let contactKeys = Object.keys(allContacts);
+//     currentSortKeys = [];
+//     contactKeys.forEach((key) => {
+//         currentSortKeys.push({
+//             name: allContacts[key].name,
+//             key: key,
+//         });
+//     });
+//     sortByAlphabet(currentSortKeys);
+// }
 
 async function editContact() {
-    await getCurrentKey();
-    let key = currentSortKeys[currentContactDetails].key;
+    // await getCurrentKey();
+    // let key = currentSortKeys[contactIndex].key;
+    await getContacts()
+    console.log("Contacts:", contacts);
+    console.log("Contact Index:", contactIndex);
     let name = document.getElementById("edit-name").value;
     let email = document.getElementById("edit-email").value;
     let phone = document.getElementById("edit-phone").value;
     let color = document.getElementById("edit-color").value;
     await putData(
-        (path = `/contacts/${key}`),
+        (path = `/contacts/${contacts[contactIndex].key}`),
         (data = {
             color: color,
             name: name,
@@ -246,12 +282,14 @@ async function editContact() {
             phone: phone,
         })
     );
+    await getContacts();
     showEditedContact(contacts, name, email, phone);
 }
 
 async function showEditedContact(contacts, name, email, phone) {
     saveToLocalStorage("contacts", contacts);
     if (screenMode == "mobile") {
+        // await initContacts();
         window.location.href = "contact-details.html";
     } else if (screenMode == "desktop") {
         await initContacts();
@@ -264,42 +302,129 @@ async function showEditedContact(contacts, name, email, phone) {
 //   Delete Contact    ///
 //////////////////////////
 
-async function deleteContact() {
-    await getCurrentKey();
-    await getTasks();
-    let key = currentSortKeys[contactIndex].key;
+// async function deleteContact() {
+//     await getCurrentKey();
+//     await getTasks();
+//     let key = currentSortKeys[contactIndex].key;
+//     await deleteData((path = `/contacts/${key}`), (data = {}));
+//     await updateTasksWithRemovedContact();
+//     window.location.href = "contact.html";
+// }
 
-    await deleteData((path = `/contacts/${key}`), (data = {}));
-    await updateTasksWithRemovedContact();
+async function deleteContact() {
+    await getContacts()
+    await deleteTaskContact(contacts[contactIndex].key)
+    await deleteData((path = `/contacts/${contacts[contactIndex].key}`), (data = {}));
+    // await updateTasksWithRemovedContact();
+   
     window.location.href = "contact.html";
 }
 
-async function updateTasksWithRemovedContact() {
-    let allTasks = await getData((path = "/tasks"));
-    let keyOfTask = Object.keys(allTasks);
-    let contactToDelete = contactsArray[contactIndex];
+// async function updateTasksWithRemovedContact() {
+//     let allTasks = await getData((path = "/tasks"));
+//     let keyOfTask = Object.keys(allTasks);
+//     console.log(contacts[contactIndex].key);
 
-    for (let i = 0; i < tasksArray.length; i++) {
-        const task = tasksArray[i];
-        if (task.assignedTo) {
-            await checkAndRemoveAssignedContact(task, contactToDelete, keyOfTask[i], allTasks);
+//     let contactToDelete = contacts[contactIndex];
+//     for (let i = 0; i < tasksArray.length; i++) {
+//         const task = tasksArray[i];
+//         if (task.assignedTo) {
+//             await checkAndRemoveAssignedContact(task, contactToDelete, keyOfTask[i], allTasks);
+//         }
+//     }
+// }
+
+// async function checkAndRemoveAssignedContact(task, contactToDelete, taskKey, allTasks) {
+//     for (let j = 0; j < task.assignedTo.length; j++) {
+//         const assignedContact = task.assignedTo[j];
+//         if (assignedContact.key === contactToDelete.key) {
+//             task.assignedTo.splice(j, 1);
+//             await putData(
+//                 (path = `/tasks/${taskKey}`),
+//                 (data = {
+//                     ...allTasks[taskKey],
+//                     assignedTo: task.assignedTo,
+//                 })
+//             );
+//             j--;
+//         }
+//     }
+// }
+
+
+///// Die Hier Geht Muss nur abgeändert werden 
+
+// async function deleteTaskContact(deleteKey) {
+//     let response = await getData("/tasks"); // Warten auf das Auflösen der Daten
+//     let keyOfTask = Object.keys(response);  // Extrahiere die Keys aus den Tasks
+   
+
+//    for (let i = 0; i < keyOfTask.length; i++) {
+//     const key = keyOfTask[i];
+//     let task = response[key];
+//     if (task.assignedTo) {
+//        let assignedKey = Object.keys(task.assignedTo);
+//        for (let j = 0; j < assignedKey.length; j++) {
+//         const assignKey = assignedKey[j];
+//         let assignContact = task.assignedTo[assignKey]
+//         if (assignContact.key == deleteKey) {
+//             await deleteData((path = `/tasks/${key}/assignedTo/${assignKey}`), (data = {}));
+//         }
+//        }
+//     }
+     
+//    }
+// }
+
+
+
+/// Änderung der oberen Funktion...
+
+async function deleteTaskContact(deleteKey) {
+    let response = await getData("/tasks"); // Warten auf das Auflösen der Daten
+    let keyOfTask = Object.keys(response);  // Extrahiere die Keys aus den Tasks
+   
+
+   for (let i = 0; i < keyOfTask.length; i++) {
+    const key = keyOfTask[i];
+    let task = response[key];
+    if (task.assignedTo) {
+       let assignedKey = Object.keys(task.assignedTo);
+
+        let assignedTo = []
+       for (let j = 0; j < assignedKey.length; j++) {
+        const assignKey = assignedKey[j];
+        let assignContact = task.assignedTo[assignKey]
+           
+        if (assignContact.key !== deleteKey) {
+            assignedTo.push(assignContact)
+               
+           
         }
+       }
+         await putData((path = `/tasks/${key}/assignedTo`), assignedTo);
     }
+   }
 }
 
-async function checkAndRemoveAssignedContact(task, contactToDelete, taskKey, allTasks) {
-    for (let j = 0; j < task.assignedTo.length; j++) {
-        const assignedContact = task.assignedTo[j];
-        if (assignedContact.name === contactToDelete.name) {
-            task.assignedTo.splice(j, 1);
-            await putData(
-                (path = `/tasks/${taskKey}`),
-                (data = {
-                    ...allTasks[taskKey],
-                    assignedTo: task.assignedTo,
-                })
-            );
-            j--;
-        }
-    }
-}
+
+
+
+
+// async function getAllTaskData() {
+//     let allTasks = await getData("/tasks");
+//     console.log("All Tasks:", allTasks);  // Logge die Daten, um sicherzustellen, dass sie wie erwartet aussehen
+
+//     if (allTasks && typeof allTasks === 'object') {
+//         let keyOfTask = Object.keys(allTasks);
+//         console.log("Keys:", keyOfTask);  // Logge die Keys, um zu sehen, ob sie richtig extrahiert werden
+
+//         for (let i = 0; i < keyOfTask.length; i++) {
+//             const element = keyOfTask[i];
+//             console.log("Key:", element);
+//         }
+//     } else {
+//         console.log("All Tasks ist kein gültiges Objekt oder leer:", allTasks);
+//     }
+// }
+

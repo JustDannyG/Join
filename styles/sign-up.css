@@ -76,7 +76,6 @@ h1 {
 }
 
 .sign-up-form-inputs img {
-    width: 16px;
     height: 21px;
     object-fit: cover;
 }
@@ -231,6 +230,7 @@ h1 {
     position: absolute;
     top: 101.5%;
     left: 14%;
+
     display: none;
 }
 
@@ -289,15 +289,19 @@ h1 {
     0% {
         transform: translateX(0);
     }
+
     25% {
         transform: translateX(-5px);
     }
+
     50% {
         transform: translateX(5px);
     }
+
     75% {
         transform: translateX(-5px);
     }
+
     100% {
         transform: translateX(0);
     }

@@ -1,7 +1,6 @@
-let currentUser;
 let userFound = false;
 let users;
-let userIds;
+let currentUser;
 let remeberMe;
 let remeberMeUser;
 
@@ -10,13 +9,11 @@ async function loginInit() {
     userIds = Object.keys(users);
     remeberMe = getFromLocalStorage("rememberMe");
     remeberMeUser = getFromLocalStorage("rememberMeUser");
-
     if (remeberMe) {
         document.getElementById("email").value = remeberMeUser.email;
         document.getElementById("password").value = remeberMeUser.password;
         login();
     }
-    screeWidth();
 }
 
 async function login() {
@@ -33,19 +30,20 @@ async function login() {
 function searchUserInDatabase(emailInput, passwordInput, users, userIds) {
     let emailInputLower = emailInput.toLowerCase();
     let remeberMeRef = document.getElementById("myCheckbox");
-    for (let i = 0; i < userIds.length; i++) {
-        let userId = userIds[i];
+    for (let i = 0; i < userIds.length; i++) { 
+        userId = userIds[i];
         currentUser = users[userId];
         if (currentUser.email.toLowerCase() === emailInputLower && currentUser.password === passwordInput) {
             userFound = true;
-            userLogin(remeberMeRef);
+            userLogin(remeberMeRef, userId);
             break;
         }
     }
 }
-function userLogin(remeberMeRef) {
+function userLogin(remeberMeRef, userId) {
     localStorage.setItem("user", currentUser.name);
     localStorage.setItem("userId", userId);
+    localStorage.setItem("userName", currentUser.name);
     if (remeberMeRef.checked) {
         saveToLocalStorage("rememberMe", remeberMeRef.checked);
         saveToLocalStorage("rememberMeUser", currentUser);
@@ -141,20 +139,6 @@ function checkIfPasswordInputFilled(passwordInput, userPwdError, userPwdContaine
 function goSummery() {
     localStorage.setItem("user", "Guest");
     window.location.href = "summary.html";
-}
-
-// Das kann man in den @media auf display ein und ausblenden !!!
-
-function screeWidth() {
-    if (window.innerWidth >= 1440) {
-        document.getElementById("content-small").style.display = "none";
-        document.getElementById("svg-image-small-content").style.display = "none";
-        // document.getElementById('content-large').style.display = 'block';
-    } else {
-        // document.getElementById('content-small').style.display = 'block';
-        document.getElementById("svg-image-large-content").style.display = "none";
-        document.getElementById("content-large").style.display = "none";
-    }
 }
 
 document.addEventListener("DOMContentLoaded", function () {

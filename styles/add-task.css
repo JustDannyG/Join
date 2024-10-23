@@ -255,6 +255,7 @@ select:focus,
 
 .show-dropdown {
     display: block;
+    box-shadow: 9px 15px 28px -6px;
 }
 
 .dropdown-btn {
@@ -508,6 +509,10 @@ select option[value=""] {
 
 .overlaver-active {
     transform: translateX(0) !important;
+}
+
+.userBackground {
+    background-color: var(--light-blue);
 }
 
 /* .drop-down button {
