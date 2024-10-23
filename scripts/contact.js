@@ -389,11 +389,63 @@ async function deleteContact() {
     window.location.href = "contact.html";
 }
 
-/**
- * Deletes a contact from associated tasks in the backend.
- * 
- * @param {string} deleteKey - The key of the contact to be deleted from tasks.
- */
+// async function updateTasksWithRemovedContact() {
+//     let allTasks = await getData((path = "/tasks"));
+//     let keyOfTask = Object.keys(allTasks);
+//     console.log(contacts[contactIndex].key);
+
+//     let contactToDelete = contacts[contactIndex];
+//     for (let i = 0; i < tasksArray.length; i++) {
+//         const task = tasksArray[i];
+//         if (task.assignedTo) {
+//             await checkAndRemoveAssignedContact(task, contactToDelete, keyOfTask[i], allTasks);
+//         }
+//     }
+// }
+
+// async function checkAndRemoveAssignedContact(task, contactToDelete, taskKey, allTasks) {
+//     for (let j = 0; j < task.assignedTo.length; j++) {
+//         const assignedContact = task.assignedTo[j];
+//         if (assignedContact.key === contactToDelete.key) {
+//             task.assignedTo.splice(j, 1);
+//             await putData(
+//                 (path = `/tasks/${taskKey}`),
+//                 (data = {
+//                     ...allTasks[taskKey],
+//                     assignedTo: task.assignedTo,
+//                 })
+//             );
+//             j--;
+//         }
+//     }
+// }
+
+///// Die Hier Geht Muss nur abgeändert werden 
+
+// async function deleteTaskContact(deleteKey) {
+//     let response = await getData("/tasks"); // Warten auf das Auflösen der Daten
+//     let keyOfTask = Object.keys(response);  // Extrahiere die Keys aus den Tasks
+   
+
+//    for (let i = 0; i < keyOfTask.length; i++) {
+//     const key = keyOfTask[i];
+//     let task = response[key];
+//     if (task.assignedTo) {
+//        let assignedKey = Object.keys(task.assignedTo);
+//        for (let j = 0; j < assignedKey.length; j++) {
+//         const assignKey = assignedKey[j];
+//         let assignContact = task.assignedTo[assignKey]
+//         if (assignContact.key == deleteKey) {
+//             await deleteData((path = `/tasks/${key}/assignedTo/${assignKey}`), (data = {}));
+//         }
+//        }
+//     }
+     
+//    }
+// }
+
+/// Änderung der oberen Funktion...
+
 async function deleteTaskContact(deleteKey) {
     let response = await getData("/tasks"); // Warten auf das Auflösen der Daten
     let keyOfTask = Object.keys(response);  // Extrahiere die Keys aus den Tasks
@@ -401,18 +453,22 @@ async function deleteTaskContact(deleteKey) {
 
    for (let i = 0; i < keyOfTask.length; i++) {
     const key = keyOfTask[i];
-    let task = response[key]
+    let task = response[key];
     if (task.assignedTo) {
        let assignedKey = Object.keys(task.assignedTo);
+
+        let assignedTo = []
        for (let j = 0; j < assignedKey.length; j++) {
         const assignKey = assignedKey[j];
         let assignContact = task.assignedTo[assignKey]
-        if (assignContact.key == deleteKey) {
-            await deleteData((path = `/tasks/${key}/assignedTo/${assignKey}`), (data = {}));
+           
+        if (assignContact.key !== deleteKey) {
+            assignedTo.push(assignContact)
+               
+           
         }
        }
+         await putData((path = `/tasks/${key}/assignedTo`), assignedTo);
     }
-     
-    
    }
 }
