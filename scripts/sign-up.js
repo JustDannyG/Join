@@ -144,6 +144,7 @@ async function postSignUpData(userNameInput, userEmailInput, userPwd) {
             name: userNameInput,
             email: userEmailInput,
             password: userPwd,
+            color: '#29ABE3'
         })
     );
     document.getElementById("name-input").value = "";
@@ -174,18 +175,29 @@ function errorStyles(userNameInput, userEmailInput, userPwd, userConfPwd) {
 
 async function checkIfUserAllreadyExists(userNameInput, userEmailInput, userPwd, userConfPwd, checkbox) {
     let users = await getData("users");
-    let userIds = Object.keys(users);
-    let nameExists = false;
-    let emailExists = false;
-    hideErrorMsg("name-error");
-    hideErrorMsg("email-error");
-    checkUserNameAndEmail(users, userIds, userNameInput, userEmailInput, nameExists, emailExists);
+     let nameExists = false;
+        let emailExists = false;
+    if (users) {
+        let userIds = Object.keys(users);
+       
+        hideErrorMsg("name-error");
+        hideErrorMsg("email-error");
+        checkUserNameAndEmail(users, userIds, userNameInput, userEmailInput, nameExists, emailExists);
 
-    if (checkbox.checked && userNameInput !== "" && userEmailInput !== "" && userEmailInput.includes("@") && userPwd !== "" && userConfPwd !== "" && userPwd === userConfPwd && nameExists == false && emailExists == false) {
-        checkIfAllInputsFilled(userNameInput, userEmailInput, userPwd, userConfPwd, users);
-        await capitalizeFirstLetter(userEmailInput, userPwd);
+        if (checkbox.checked && userNameInput !== "" && userEmailInput !== "" && userEmailInput.includes("@") && userPwd !== "" && userConfPwd !== "" && userPwd === userConfPwd && nameExists == false && emailExists == false) {
+            checkIfAllInputsFilled(userNameInput, userEmailInput, userPwd, userConfPwd, users);
+            await capitalizeFirstLetter(userEmailInput, userPwd);
+        }
+    }
+    else {
+        if (checkbox.checked && userNameInput !== "" && userEmailInput !== "" && userEmailInput.includes("@") && userPwd !== "" && userConfPwd !== "" && userPwd === userConfPwd && nameExists == false && emailExists == false) {
+            checkIfAllInputsFilled(userNameInput, userEmailInput, userPwd, userConfPwd, users);
+            await capitalizeFirstLetter(userEmailInput, userPwd);
+        }
     }
 }
+
+
 
 function checkUserNameAndEmail(users, userIds, userNameInput, userEmailInput, nameExists, emailExists) {
     for (let i = 0; i < userIds.length; i++) {
