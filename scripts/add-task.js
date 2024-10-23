@@ -198,7 +198,7 @@ function getSelectedContacts() {
             color: contact.color,
             checked: false,
             id: i,
-            key: contact.key
+            key: contact.key,
         });
     });
     sortByAlphabet(selectedContacts);
@@ -224,8 +224,12 @@ function renderContacts(arr) {
         dropDownRef.innerHTML += contactInDropDownHTML(contact, createInititals(contact.name));
         updateDesign(contact.id);
     });
-    dropDownRef.innerHTML += userInDropDownHTML(createInititals(userName), userIndex);
-    updateDesign(userIndex);
+    if (userName !== "Guest") {
+        dropDownRef.innerHTML += userInDropDownHTML(createInititals(userName), userIndex);
+        updateDesign(userIndex);
+    } else {
+        return;
+    }
 }
 
 /**
@@ -454,7 +458,7 @@ function saveWord(index) {
         renderSubtask();
         return false;
     } else {
-        deleteSubtask(index)
+        deleteSubtask(index);
     }
 }
 
