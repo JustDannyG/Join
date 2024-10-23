@@ -228,8 +228,8 @@ function userInDropDownHTML(initials, userIndex) {
             </li>`;
 }
 
-function contactSelectionCircleHTML(contact, initials) {
-    return /*html*/ `<div class="contact center " style="background-color:${contact.color}">${initials}</div>`;
+function contactSelectionCircleHTML(contact) {
+    return /*html*/ `<div class="contact center " style="background-color:${contact.color}">${createInititals(contact.name)}</div>`;
 }
 
 ////////////////////////////////////////////////////
