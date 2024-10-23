@@ -313,38 +313,85 @@ async function showEditedContact(contacts, name, email, phone) {
 
 async function deleteContact() {
     await getContacts()
-    /await deleteData((path = `/contacts/${contacts[contactIndex].key}`), (data = {}));
-     await updateTasksWithRemovedContact();
+    await deleteTaskContact(contacts[contactIndex].key)
+    await deleteData((path = `/contacts/${contacts[contactIndex].key}`), (data = {}));
+    // await updateTasksWithRemovedContact();
+   
     window.location.href = "contact.html";
 }
 
-async function updateTasksWithRemovedContact() {
-    let allTasks = await getData((path = "/tasks"));
-    let keyOfTask = Object.keys(allTasks);
-    console.log(contacts[contactIndex].key);
-     
-    let contactToDelete = contacts[contactIndex];
-    for (let i = 0; i < tasksArray.length; i++) {
-        const task = tasksArray[i];
-        if (task.assignedTo) {
-            await checkAndRemoveAssignedContact(task, contactToDelete, keyOfTask[i], allTasks);
+// async function updateTasksWithRemovedContact() {
+//     let allTasks = await getData((path = "/tasks"));
+//     let keyOfTask = Object.keys(allTasks);
+//     console.log(contacts[contactIndex].key);
+
+//     let contactToDelete = contacts[contactIndex];
+//     for (let i = 0; i < tasksArray.length; i++) {
+//         const task = tasksArray[i];
+//         if (task.assignedTo) {
+//             await checkAndRemoveAssignedContact(task, contactToDelete, keyOfTask[i], allTasks);
+//         }
+//     }
+// }
+
+// async function checkAndRemoveAssignedContact(task, contactToDelete, taskKey, allTasks) {
+//     for (let j = 0; j < task.assignedTo.length; j++) {
+//         const assignedContact = task.assignedTo[j];
+//         if (assignedContact.key === contactToDelete.key) {
+//             task.assignedTo.splice(j, 1);
+//             await putData(
+//                 (path = `/tasks/${taskKey}`),
+//                 (data = {
+//                     ...allTasks[taskKey],
+//                     assignedTo: task.assignedTo,
+//                 })
+//             );
+//             j--;
+//         }
+//     }
+// }
+
+async function deleteTaskContact(deleteKey) {
+    let response = await getData("/tasks"); // Warten auf das Auflösen der Daten
+    let keyOfTask = Object.keys(response);  // Extrahiere die Keys aus den Tasks
+   
+
+   for (let i = 0; i < keyOfTask.length; i++) {
+    const key = keyOfTask[i];
+    let task = response[key]
+    if (task.assignedTo) {
+       let assignedKey = Object.keys(task.assignedTo);
+       for (let j = 0; j < assignedKey.length; j++) {
+        const assignKey = assignedKey[j];
+        let assignContact = task.assignedTo[assignKey]
+        if (assignContact.key == deleteKey) {
+            await deleteData((path = `/tasks/${key}/assignedTo/${assignKey}`), (data = {}));
         }
+       }
     }
+     
+    
+   }
 }
 
-async function checkAndRemoveAssignedContact(task, contactToDelete, taskKey, allTasks) {
-    for (let j = 0; j < task.assignedTo.length; j++) {
-        const assignedContact = task.assignedTo[j];
-        if (assignedContact.key === contactToDelete.key) {
-            task.assignedTo.splice(j, 1);
-            await putData(
-                (path = `/tasks/${taskKey}`),
-                (data = {
-                    ...allTasks[taskKey],
-                    assignedTo: task.assignedTo,
-                })
-            );
-            j--;
-        }
-    }
-}
+
+
+
+
+// async function getAllTaskData() {
+//     let allTasks = await getData("/tasks");
+//     console.log("All Tasks:", allTasks);  // Logge die Daten, um sicherzustellen, dass sie wie erwartet aussehen
+
+//     if (allTasks && typeof allTasks === 'object') {
+//         let keyOfTask = Object.keys(allTasks);
+//         console.log("Keys:", keyOfTask);  // Logge die Keys, um zu sehen, ob sie richtig extrahiert werden
+
+//         for (let i = 0; i < keyOfTask.length; i++) {
+//             const element = keyOfTask[i];
+//             console.log("Key:", element);
+//         }
+//     } else {
+//         console.log("All Tasks ist kein gültiges Objekt oder leer:", allTasks);
+//     }
+// }
+
