@@ -254,7 +254,6 @@ async function getContacts() {
         });
     }
     sortByAlphabet(contacts);
-    console.log(contacts);
 }
 
 //////////////////////////////////////
@@ -311,12 +310,10 @@ function checkScreenWidth() {
     let currentSidebar = "";
     try {
         if (window.innerWidth <= 1024) {
-            console.log("Mobile Ansicht");
             currentHeader = mobileHeader(createInititals(user));
             currentSidebar = mobileSidebar();
             screenMode = "mobile";
         } else {
-            console.log("Desktop Ansicht");
             currentHeader = desktopHeader(createInititals(user));
             currentSidebar = desktopSidebar();
             screenMode = "desktop";
