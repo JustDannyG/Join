@@ -120,13 +120,12 @@ function emailInputErrorStyle(userEmailInput) {
         userEmailError.classList.add("visible");
         userEmailContainer.classList.add("red-border");
         shake(userEmailError);
-    } else if (userEmailInput !== "") {
+    } else {
         checkIfEmailHaveAnAtt(userEmailInput, userEmailError, userEmailContainer);
         shake(userEmailError);
-    } else {
         document.getElementById("email-error").classList.remove("visible");
         document.getElementById("email-input-container").classList.remove("red-border");
-    }
+    } 
 }
 
 /**
@@ -197,10 +196,10 @@ function checkIfConfPwd(userPwd, userConfPwd) {
  * @param {string} userConfPwd - The user's password confirmation.
  * @param {Object} user - User object containing user data.
  */
-async function checkIfAllInputsFilled(userNameInput, userEmailInput, userPwd, userConfPwd, user) {
+async function checkIfAllInputsFilled(userNameInput, userEmailInput, userPwd, userConfPwd, user, nameExists, emailExists) {
     if (userNameInput === "" && userEmailInput === "" && userPwd !== userConfPwd && !checkbox.checked && !emailInput.includes("@")) {
         errorStyles(userNameInput, userEmailInput, userPwd, userConfPwd);
-    } else if (userNameInput !== "" && userEmailInput !== "" && userPwd !== "" && userConfPwd !== "" && userPwd == userConfPwd && checkbox.checked && user.email !== userEmailInput && user.name !== userNameInput) {
+    } else if (userNameInput !== "" && userEmailInput !== "" && userPwd !== "" && userConfPwd !== "" && userPwd == userConfPwd && checkbox.checked && user.email !== userEmailInput && user.name !== userNameInput || nameExists == false && emailExists == false) {
         userSuccessfullySignedup();
     }
 }
@@ -276,30 +275,24 @@ async function checkIfUserAllreadyExists(userNameInput, userEmailInput, userPwd,
     let emailExists = false;
     if (users) {
         let userIds = Object.keys(users);
-
         hideErrorMsg("name-error");
         hideErrorMsg("email-error");
-        checkUserNameAndEmail(users, userIds, userNameInput, userEmailInput, nameExists, emailExists);
-
         if (checkbox.checked && userNameInput !== "" && userEmailInput !== "" && userEmailInput.includes("@") && userPwd !== "" && userConfPwd !== "" && userPwd === userConfPwd && nameExists == false && emailExists == false) {
-            checkIfAllInputsFilled(userNameInput, userEmailInput, userPwd, userConfPwd, users);
-            await capitalizeFirstLetter(userEmailInput, userPwd);
+            checkUserNameAndEmail(users, userIds, userNameInput, userEmailInput, nameExists, emailExists, userPwd, userConfPwd);
+            // await capitalizeFirstLetter(userEmailInput, userPwd);
         }
-    } else {
-        if (checkbox.checked && userNameInput !== "" && userEmailInput !== "" && userEmailInput.includes("@") && userPwd !== "" && userConfPwd !== "" && userPwd === userConfPwd && nameExists == false && emailExists == false) {
-            checkIfAllInputsFilled(userNameInput, userEmailInput, userPwd, userConfPwd, users);
-            await capitalizeFirstLetter(userEmailInput, userPwd);
-        }
-    }
+    } 
 }
 
-function checkUserNameAndEmail(users, userIds, userNameInput, userEmailInput, nameExists, emailExists) {
+function checkUserNameAndEmail(users, userIds, userNameInput, userEmailInput, nameExists, emailExists, userPwd, userConfPwd) {
     for (let i = 0; i < userIds.length; i++) {
         let user = users[userIds[i]];
         nameExists = checkNameExist(user, userNameInput, nameExists);
         emailExists = checkEmailExist(user, userEmailInput, emailExists);
+        checkIfAllInputsFilled(userNameInput, userEmailInput, userPwd, userConfPwd, user, nameExists, emailExists);
         if (nameExists || emailExists) break;
     }
+
 }
 
 /**
@@ -310,12 +303,12 @@ function checkUserNameAndEmail(users, userIds, userNameInput, userEmailInput, na
  * @param {boolean} nameExists - Whether the name already exists.
  */
 function checkNameExist(user, userNameInput, nameExists) {
-    if (user.name == userNameInput) {
+    // Vergleiche Benutzernamen unabhängig von Groß-/Kleinschreibung
+    if (user.name.toLowerCase() === userNameInput.toLowerCase()) {
         nameExists = true;
         userAlreadyExistsMsg("name-error", "Name");
-    } else {
-        return nameExists;
     }
+    return nameExists; // Dieser Rückgabewert wurde vorher nicht immer zurückgegeben
 }
 
 /**
@@ -329,9 +322,8 @@ function checkEmailExist(user, userEmailInput, emailExists) {
     if (user.email == userEmailInput) {
         emailExists = true;
         userAlreadyExistsMsg("email-error", "Email");
-    } else {
-        return emailExists;
-    }
+    } 
+    return emailExists;
 }
 
 /**
