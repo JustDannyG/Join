@@ -1,7 +1,5 @@
-// let currentSortKeys = [];
 let contactIndex = getFromLocalStorage("currentDetails");
 let contactsArray = getFromLocalStorage("contacts");
-// let currentContactDetails = localStorage.getItem("currentDetails");
 
 ////////////////////
 ///    Start   ////
@@ -23,7 +21,6 @@ async function initContacts() {
  * Renders the list of contacts in the HTML container, including the user's own contact and their other contacts.
  */
 async function renderContacts() {
-    // if(screenMode == 'desktop'){}
     let containerRef = document.getElementById("contacts-container");
     containerRef.innerHTML = "";
     let firstLetter = "";
@@ -48,7 +45,6 @@ async function renderContacts() {
  * @param {number} index - The index of the contact in the contacts array.
  */
 async function openContact(index) {
-    // currentContactDetails = index;
     await initContacts();
     saveToLocalStorage("currentDetails", index);
     saveToLocalStorage("contacts", contacts);
@@ -67,7 +63,6 @@ async function openContact(index) {
  */
 async function openOwnContact() {
     if (screenMode == "mobile") {
-        // let myUser = await ownContact();
         saveToLocalStorage("contacts", "user");
         window.location.href = "contact-details.html";
     } else if (screenMode == "desktop") {
@@ -294,7 +289,6 @@ async function editOwnUser() {
  * Displays a delete confirmation popup for the user.
  */
 function deletePopUp() {
-    /// Her Pop up um fragen ob user wirklich gelöscht werden soll
     document.getElementById("delete-user-popup").classList.toggle("d-none");
 }
 
@@ -302,7 +296,6 @@ function deletePopUp() {
  * Deletes the user's account and logs them out.
  */
 async function deleteOwnUser() {
-    // user Entgültig löschen und ausloggen
     await deleteData((path = `/users/${userId}`));
     logOut();
 }
@@ -330,8 +323,6 @@ function editDetails() {
  * Saves the edited contact details to the backend.
  */
 async function editContact() {
-    // await getCurrentKey();
-    // let key = currentSortKeys[contactIndex].key;
     await getContacts();
     let name = document.getElementById("edit-name").value;
     let email = document.getElementById("edit-email").value;
@@ -361,7 +352,6 @@ async function editContact() {
 async function showEditedContact(contacts, name, email, phone) {
     saveToLocalStorage("contacts", contacts);
     if (screenMode == "mobile") {
-        // await initContacts();
         window.location.href = "contact-details.html";
     } else if (screenMode == "desktop") {
         await initContacts();

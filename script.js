@@ -18,19 +18,12 @@ let screenMode;
 function logOut() {
     localStorage.setItem("user", "");
     localStorage.setItem("userId", "");
-    historyStop();
     window.location.href = "index.html";
     localStorage.removeItem("rememberMeUser");
     localStorage.removeItem("rememberMe");
 }
 
-function historyStop() {
-    window.history.pushState(null, "", window.location.href);
 
-    window.addEventListener("popstate", function () {
-        window.history.pushState(null, "", window.location.href);
-    });
-}
 
 //////////////////////////////
 ///    Own Contact        ///
@@ -309,7 +302,7 @@ function checkScreenWidth() {
     let currentHeader = "";
     let currentSidebar = "";
     try {
-        if (window.innerWidth <= 1024) {
+        if (window.innerWidth <= 1024) {        
             currentHeader = mobileHeader(createInititals(user));
             currentSidebar = mobileSidebar();
             screenMode = "mobile";
@@ -323,12 +316,12 @@ function checkScreenWidth() {
     } catch {
         console.log("No Header No Sidebar on this Page");
     }
+    console.log(screenMode);
+    
 }
 
-// Aufrufen der Funktion beim Laden der Seite
 checkScreenWidth();
 checkIsSomeoneLogedId();
-// Optional: Bei jeder Größenänderung des Fensters
 window.addEventListener("resize", checkScreenWidth);
 window.addEventListener("resize", checkIsSomeoneLogedId);
 
