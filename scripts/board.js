@@ -576,7 +576,6 @@ function filterSearchTasks(task, search) {
 window.addEventListener("load", function () {
     let section = window.location.hash.substring(1);
     console.log(section);
-
     section = section.slice(1);
     if (section) {
         setTimeout(function () {

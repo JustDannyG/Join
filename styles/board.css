@@ -140,9 +140,9 @@
     border: none;
 }
 
-/* =========================
-     
-   ========================= */
+.search-task-input-mobile:focus {
+    border: none;
+}
 
 /* =========================
      Board - Content
