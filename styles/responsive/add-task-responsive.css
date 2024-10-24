@@ -4,6 +4,11 @@
         width: 88px;
         gap: 4px;
     }
+
+    .add-task-succes {
+        margin: 0 -34% !important;
+    }
+
 }
 
 @media (max-width: 1024px) {
@@ -13,6 +18,10 @@
 
     .add-task-action-btn {
         display: none;
+    }
+
+    .add-task-succes {
+        margin: 0 -15%;
     }
 }
 
