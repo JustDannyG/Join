@@ -7,6 +7,9 @@ let contactsArray = getFromLocalStorage("contacts");
 ///    Start   ////
 ///////////////////
 
+/**
+ * Initializes the contact list by fetching contacts and rendering them.
+ */
 async function initContacts() {
     await getContacts();
     renderContacts();
@@ -17,6 +20,9 @@ async function initContacts() {
 ///    Render Contact List   ////
 ////////////////////////////////
 
+/**
+ * Renders the list of contacts in the HTML container, including the user's own contact and their other contacts.
+ */
 async function renderContacts() {
     // if(screenMode == 'desktop'){}
     let containerRef = document.getElementById("contacts-container");
@@ -37,6 +43,11 @@ async function renderContacts() {
     });
 }
 
+/**
+ * Opens the details of a selected contact.
+ * 
+ * @param {number} index - The index of the contact in the contacts array.
+ */
 async function openContact(index) {
     // currentContactDetails = index;
     await initContacts();
@@ -52,6 +63,9 @@ async function openContact(index) {
     }
 }
 
+/**
+ * Opens the current user's own contact details.
+ */
 async function openOwnContact() {
     if (screenMode == "mobile") {
         // let myUser = await ownContact();
@@ -63,12 +77,17 @@ async function openOwnContact() {
     }
 }
 
+/**
+ * Displays the current user's own contact details.
+ */
 async function showOwnContact() {
     let currentContact = document.getElementById("current-contact");
     currentContact.innerHTML = contactOwnCirleHTML(await ownContact());
 }
 
-
+/**
+ * Changes the edit buttons for the user's own contact in the UI.
+ */
 function changeOwnEditButtons() {
     document.getElementById('edit-contact').innerHTML = `
  <div class="edit-contact d-flex " onclick="toggleOwnOverlayDisplay()">
@@ -83,10 +102,22 @@ function changeOwnEditButtons() {
 ///   LocalStorage - Save / Load Functions   ////
 /////////////////////////////////////////////////
 
+/**
+ * Saves a value to localStorage.
+ * 
+ * @param {string} key - The key to store the value under.
+ * @param {any} value - The value to be stored.
+ */
 function saveToLocalStorage(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
 }
 
+/**
+ * Retrieves a value from localStorage.
+ * 
+ * @param {string} key - The key of the value to retrieve.
+ * @returns {any|null} - The value stored under the key, or null if not found.
+ */
 function getFromLocalStorage(key) {
     let myData;
     let myArr = JSON.parse(localStorage.getItem(key));
@@ -100,6 +131,9 @@ function getFromLocalStorage(key) {
 ///    Add Contacts Functions   ////
 ///////////////////////////////////
 
+/**
+ * Adds a new contact by collecting input data and saving it to the backend.
+ */
 async function addContact() {
     let nameRef = document.getElementById("add-name-input");
     let emailRef = document.getElementById("add-mail-input");
@@ -115,6 +149,13 @@ async function addContact() {
     toogleDialog("dialog-add-succes", contactIndex);
 }
 
+/**
+ * Retrieves and returns user input from the contact form.
+ * 
+ * @param {HTMLElement} nameRef - The input element for the name.
+ * @param {HTMLElement} emailRef - The input element for the email.
+ * @param {HTMLElement} phoneNumRef - The input element for the phone number.
+ */
 function getInputs(nameRef, emailRef, phoneNumRef) {
     const name = nameRef.value;
     const email = emailRef.value;
@@ -123,6 +164,12 @@ function getInputs(nameRef, emailRef, phoneNumRef) {
     return { name, email, phone, color };
 }
 
+/**
+ * Toggles the visibility of a dialog and opens the specified contact.
+ * 
+ * @param {string} id - The ID of the dialog to toggle.
+ * @param {number} index - The index of the contact to open.
+ */
 function toogleDialog(id, index) {
     document.getElementById(id).classList.add("dialog-active");
 
@@ -133,11 +180,21 @@ function toogleDialog(id, index) {
     }, 2000);
 }
 
+/**
+ * Finds a contact based on the name, email, and phone.
+ * 
+ * @param {string} name - The contact's name.
+ * @param {string} email - The contact's email.
+ * @param {string} phone - The contact's phone number.
+ */
 async function findContact(name, email, phone) {
     await getContacts();
     return contacts.findIndex((e) => e.name == name && e.email == email && e.phone == phone);
 }
 
+/**
+ * Clears the input fields for adding a contact.
+ */
 function clearAddInputs() {
     document.getElementById("add-name-input").value = "";
     document.getElementById("add-mail-input").value = "";
@@ -148,6 +205,9 @@ function clearAddInputs() {
 //   Show Contact Details   ///
 ///////////////////////////////
 
+/**
+ * Displays the details of the currently selected contact.
+ */
 async function showContact() {
     let currentContact = document.getElementById("current-contact");
     if (contactsArray == 'user') {
@@ -159,8 +219,9 @@ async function showContact() {
     }
 }
 
-
-
+/**
+ * Toggles the display of the edit overlay.
+ */
 function toggleOverlayDisplay() {
     let overlay = document.getElementById("edit-overlay-bg");
     overlay.classList.toggle("hide-overlay");
@@ -178,6 +239,9 @@ function toggleOverlayDisplay() {
 //   Own User Details   ///
 ///////////////////////////////
 
+/**
+ * Toggles the display of the user's own contact edit overlay.
+ */
 function toggleOwnOverlayDisplay() {
     let overlay = document.getElementById("edit-overlay-bg");
     overlay.classList.toggle("hide-overlay");
@@ -187,6 +251,9 @@ function toggleOwnOverlayDisplay() {
     editOwnDetails();
 }
 
+/**
+ * Populates the edit form with the user's own contact details.
+ */
 async function editOwnDetails() {
     let currentDetail = await ownContact()
     document.getElementById("edit-name").value = currentDetail.name;
@@ -199,7 +266,9 @@ async function editOwnDetails() {
     `;
 }
 
-
+/**
+ * Saves the user's own contact details after editing.
+ */
 async function editOwnUser() {
     let name = document.getElementById("edit-name").value;
     let email = document.getElementById("edit-email").value;
@@ -224,10 +293,16 @@ async function editOwnUser() {
     toggleOwnOverlayDisplay()
 }
 
+/**
+ * Displays a delete confirmation popup for the user.
+ */
 function deletePopUp() {  /// Her Pop up um fragen ob user wirklich gelöscht werden soll 
     document.getElementById('delete-user-popup').classList.toggle('d-none');
 }
 
+/**
+ * Deletes the user's account and logs them out.
+ */
 async function deleteOwnUser() {  // user Entgültig löschen und ausloggen 
     await deleteData(path = `/users/${userId}`)
     logOut();
@@ -237,6 +312,9 @@ async function deleteOwnUser() {  // user Entgültig löschen und ausloggen
 //  Edit Contact Details Functions  ///
 //////////////////////////////////////
 
+/**
+ * Populates the edit form with the currently selected contact's details.
+ */
 function editDetails() {
     let currentDetail = contactsArray[contactIndex];
     document.getElementById("edit-name").value = currentDetail.name;
@@ -249,20 +327,9 @@ function editDetails() {
     `;
 }
 
-
-// async function getCurrentKey() {
-//     let allContacts = await getData((path = "/contacts"));
-//     let contactKeys = Object.keys(allContacts);
-//     currentSortKeys = [];
-//     contactKeys.forEach((key) => {
-//         currentSortKeys.push({
-//             name: allContacts[key].name,
-//             key: key,
-//         });
-//     });
-//     sortByAlphabet(currentSortKeys);
-// }
-
+/**
+ * Saves the edited contact details to the backend.
+ */
 async function editContact() {
     // await getCurrentKey();
     // let key = currentSortKeys[contactIndex].key;
@@ -286,6 +353,14 @@ async function editContact() {
     showEditedContact(contacts, name, email, phone);
 }
 
+/**
+ * Displays the edited contact's details.
+ * 
+ * @param {Array} contacts - The array of contact objects.
+ * @param {string} name - The name of the contact.
+ * @param {string} email - The email of the contact.
+ * @param {string} phone - The phone number of the contact.
+ */
 async function showEditedContact(contacts, name, email, phone) {
     saveToLocalStorage("contacts", contacts);
     if (screenMode == "mobile") {
@@ -302,15 +377,9 @@ async function showEditedContact(contacts, name, email, phone) {
 //   Delete Contact    ///
 //////////////////////////
 
-// async function deleteContact() {
-//     await getCurrentKey();
-//     await getTasks();
-//     let key = currentSortKeys[contactIndex].key;
-//     await deleteData((path = `/contacts/${key}`), (data = {}));
-//     await updateTasksWithRemovedContact();
-//     window.location.href = "contact.html";
-// }
-
+/**
+ * Deletes the selected contact and removes it from the backend.
+ */
 async function deleteContact() {
     await getContacts()
     await deleteTaskContact(contacts[contactIndex].key)
@@ -351,7 +420,6 @@ async function deleteContact() {
 //     }
 // }
 
-
 ///// Die Hier Geht Muss nur abgeändert werden 
 
 // async function deleteTaskContact(deleteKey) {
@@ -375,8 +443,6 @@ async function deleteContact() {
      
 //    }
 // }
-
-
 
 /// Änderung der oberen Funktion...
 
@@ -406,25 +472,3 @@ async function deleteTaskContact(deleteKey) {
     }
    }
 }
-
-
-
-
-
-// async function getAllTaskData() {
-//     let allTasks = await getData("/tasks");
-//     console.log("All Tasks:", allTasks);  // Logge die Daten, um sicherzustellen, dass sie wie erwartet aussehen
-
-//     if (allTasks && typeof allTasks === 'object') {
-//         let keyOfTask = Object.keys(allTasks);
-//         console.log("Keys:", keyOfTask);  // Logge die Keys, um zu sehen, ob sie richtig extrahiert werden
-
-//         for (let i = 0; i < keyOfTask.length; i++) {
-//             const element = keyOfTask[i];
-//             console.log("Key:", element);
-//         }
-//     } else {
-//         console.log("All Tasks ist kein gültiges Objekt oder leer:", allTasks);
-//     }
-// }
-

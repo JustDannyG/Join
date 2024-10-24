@@ -15,6 +15,13 @@ async function signUp() {
     errorStyles(userNameInput, userEmailInput, userPwd, userConfPwd);
 }
 
+/**
+ * Capitalizes the first letter of the username and posts sign-up data.
+ *
+ * @async
+ * @param {string} userEmailInput - The user's email address.
+ * @param {string} userPwd - The user's password.
+ */
 async function capitalizeFirstLetter(userEmailInput, userPwd) {
     let userNameInput = document.getElementById("name-input");
     let userNameValue = userNameInput.value;
@@ -25,6 +32,13 @@ async function capitalizeFirstLetter(userEmailInput, userPwd) {
     }
 }
 
+/**
+ * Checks if the email contains an "@" symbol and applies error styles if not.
+ *
+ * @param {string} emailInput - The user's email address.
+ * @param {HTMLElement} userEmailError - The HTML element to display email errors.
+ * @param {HTMLElement} userEmailContainer - The HTML element for the email input container.
+ */
 function checkIfEmailHaveAnAtt(emailInput, userEmailError, userEmailContainer) {
     if (!containsAtSymbol(emailInput) && emailInput !== "") {
         userEmailError.textContent = "Your email isn't an Email";
@@ -37,6 +51,11 @@ function checkIfEmailHaveAnAtt(emailInput, userEmailError, userEmailContainer) {
     }
 }
 
+/**
+ * Adds a "shake" animation to an error element.
+ *
+ * @param {HTMLElement} Error - The error element to shake.
+ */
 function shake(Error) {
     Error.classList.add("shake");
     setTimeout(() => {
@@ -44,10 +63,18 @@ function shake(Error) {
     }, 300);
 }
 
+/**
+ * Checks if an email address contains an "@" symbol.
+ *
+ * @param {string} emailInput - The user's email address.
+ */
 function containsAtSymbol(emailInput) {
     return emailInput.includes("@");
 }
 
+/**
+ * Displays an error message if the terms and conditions checkbox is not checked.
+ */
 function checkboxError() {
     checkbox = document.getElementById("myCheckbox");
     if (!checkbox.checked) {
@@ -63,6 +90,11 @@ function checkboxError() {
     }
 }
 
+/**
+ * Applies error styles to the username input if empty.
+ *
+ * @param {string} userNameInput - The user's name.
+ */
 function userInputErrorStyle(userNameInput) {
     if (userNameInput === "") {
         let userNameError = document.getElementById("name-error");
@@ -77,6 +109,11 @@ function userInputErrorStyle(userNameInput) {
     }
 }
 
+/**
+ * Applies error styles to the email input if empty or invalid.
+ *
+ * @param {string} userEmailInput - The user's email address.
+ */
 function emailInputErrorStyle(userEmailInput) {
     let userEmailError = document.getElementById("email-error");
     let userEmailContainer = document.getElementById("email-input-container");
@@ -85,15 +122,19 @@ function emailInputErrorStyle(userEmailInput) {
         userEmailError.classList.add("visible");
         userEmailContainer.classList.add("red-border");
         shake(userEmailError);
-    } else if (userEmailInput !== "") {
+    } else {
         checkIfEmailHaveAnAtt(userEmailInput, userEmailError, userEmailContainer);
         shake(userEmailError);
-    } else {
         document.getElementById("email-error").classList.remove("visible");
         document.getElementById("email-input-container").classList.remove("red-border");
     }
 }
 
+/**
+ * Applies error styles to the password input if empty.
+ *
+ * @param {string} userPwd - The user's password.
+ */
 function passwordInputErrorStyle(userPwd) {
     if (userPwd === "") {
         let userPwdError = document.getElementById("password-error");
@@ -108,6 +149,11 @@ function passwordInputErrorStyle(userPwd) {
     }
 }
 
+/**
+ * Applies error styles to the password confirmation input if empty.
+ *
+ * @param {string} userConfPwd - The user's password confirmation.
+ */
 function passwordConfInputErrorStyle(userConfPwd) {
     if (userConfPwd === "") {
         let userConfPwdError = document.getElementById("conf-pwd-error");
@@ -122,6 +168,12 @@ function passwordConfInputErrorStyle(userConfPwd) {
     }
 }
 
+/**
+ * Checks if the password and confirmation match, and applies error styles if they don't.
+ *
+ * @param {string} userPwd - The user's password.
+ * @param {string} userConfPwd - The user's password confirmation.
+ */
 function checkIfConfPwd(userPwd, userConfPwd) {
     if (userPwd !== userConfPwd) {
         let userConfPwdError = document.getElementById("conf-pwd-error");
@@ -136,14 +188,32 @@ function checkIfConfPwd(userPwd, userConfPwd) {
     }
 }
 
-async function checkIfAllInputsFilled(userNameInput, userEmailInput, userPwd, userConfPwd, user) {
+/**
+ * Checks if all required inputs are filled in and valid.
+ *
+ * @async
+ * @param {string} userNameInput - The user's name.
+ * @param {string} userEmailInput - The user's email address.
+ * @param {string} userPwd - The user's password.
+ * @param {string} userConfPwd - The user's password confirmation.
+ * @param {Object} user - User object containing user data.
+ */
+async function checkIfAllInputsFilled(userNameInput, userEmailInput, userPwd, userConfPwd, user, nameExists, emailExists) {
     if (userNameInput === "" && userEmailInput === "" && userPwd !== userConfPwd && !checkbox.checked && !emailInput.includes("@")) {
         errorStyles(userNameInput, userEmailInput, userPwd, userConfPwd);
-    } else if (userNameInput !== "" && userEmailInput !== "" && userPwd !== "" && userConfPwd !== "" && userPwd == userConfPwd && checkbox.checked && user.email !== userEmailInput && user.name !== userNameInput) {
+    } else if ((userNameInput !== "" && userEmailInput !== "" && userPwd !== "" && userConfPwd !== "" && userPwd == userConfPwd && checkbox.checked && user.email !== userEmailInput && user.name !== userNameInput) || (nameExists == false && emailExists == false)) {
         userSuccessfullySignedup();
     }
 }
 
+/**
+ * Sends user sign-up data to the server.
+ *
+ * @async
+ * @param {string} userNameInput - The user's name.
+ * @param {string} userEmailInput - The user's email address.
+ * @param {string} userPwd - The user's password.
+ */
 async function postSignUpData(userNameInput, userEmailInput, userPwd) {
     await postData(
         (path = "/users"),
@@ -151,6 +221,7 @@ async function postSignUpData(userNameInput, userEmailInput, userPwd) {
             name: userNameInput,
             email: userEmailInput,
             password: userPwd,
+            color: "#29ABE3",
         })
     );
     document.getElementById("name-input").value = "";
@@ -163,10 +234,21 @@ async function postSignUpData(userNameInput, userEmailInput, userPwd) {
     }, 1500);
 }
 
+/**
+ * Redirects the user to the login page.
+ */
 function goLogin() {
     window.location.href = "index.html";
 }
 
+/**
+ * Applies error styles to various input fields.
+ *
+ * @param {string} userNameInput - The user's name.
+ * @param {string} userEmailInput - The user's email address.
+ * @param {string} userPwd - The user's password.
+ * @param {string} userConfPwd - The user's password confirmation.
+ */
 function errorStyles(userNameInput, userEmailInput, userPwd, userConfPwd) {
     let userEmailError = document.getElementById("email-error");
     let userEmailContainer = document.getElementById("email-input-container");
@@ -179,54 +261,89 @@ function errorStyles(userNameInput, userEmailInput, userPwd, userConfPwd) {
     checkboxError();
 }
 
+/**
+ * Checks if a user already exists based on the provided inputs.
+ *
+ * @async
+ * @param {string} userNameInput - The user's name.
+ * @param {string} userEmailInput - The user's email address.
+ * @param {string} userPwd - The user's password.
+ * @param {string} userConfPwd - The user's password confirmation.
+ * @param {HTMLElement} checkbox - The terms and conditions checkbox element.
+ */
 async function checkIfUserAllreadyExists(userNameInput, userEmailInput, userPwd, userConfPwd, checkbox) {
     let users = await getData("users");
-    let userIds = Object.keys(users);
     let nameExists = false;
     let emailExists = false;
-    hideErrorMsg("name-error");
-    hideErrorMsg("email-error");
-    checkUserNameAndEmail(users, userIds, userNameInput, userEmailInput, nameExists, emailExists);
-
-    if (checkbox.checked && userNameInput !== "" && userEmailInput !== "" && userEmailInput.includes("@") && userPwd !== "" && userConfPwd !== "" && userPwd === userConfPwd && nameExists == false && emailExists == false) {
-        checkIfAllInputsFilled(userNameInput, userEmailInput, userPwd, userConfPwd, users);
-        await capitalizeFirstLetter(userEmailInput, userPwd);
+    if (users) {
+        let userIds = Object.keys(users);
+        hideErrorMsg("name-error");
+        hideErrorMsg("email-error");
+        if (checkbox.checked && userNameInput !== "" && userEmailInput !== "" && userEmailInput.includes("@") && userPwd !== "" && userConfPwd !== "" && userPwd === userConfPwd && nameExists == false && emailExists == false) {
+            checkUserNameAndEmail(users, userIds, userNameInput, userEmailInput, nameExists, emailExists, userPwd, userConfPwd);
+            // await capitalizeFirstLetter(userEmailInput, userPwd);
+        }
     }
 }
 
-function checkUserNameAndEmail(users, userIds, userNameInput, userEmailInput, nameExists, emailExists) {
+function checkUserNameAndEmail(users, userIds, userNameInput, userEmailInput, nameExists, emailExists, userPwd, userConfPwd) {
     for (let i = 0; i < userIds.length; i++) {
         let user = users[userIds[i]];
         nameExists = checkNameExist(user, userNameInput, nameExists);
         emailExists = checkEmailExist(user, userEmailInput, emailExists);
+        checkIfAllInputsFilled(userNameInput, userEmailInput, userPwd, userConfPwd, user, nameExists, emailExists);
         if (nameExists || emailExists) break;
     }
 }
 
+/**
+ * Checks if a name already exists and applies an error message if it does.
+ *
+ * @param {Object} user - The user object to check.
+ * @param {string} userNameInput - The user's name.
+ * @param {boolean} nameExists - Whether the name already exists.
+ */
 function checkNameExist(user, userNameInput, nameExists) {
-    if (user.name == userNameInput) {
+    // Vergleiche Benutzernamen unabhängig von Groß-/Kleinschreibung
+    if (user.name.toLowerCase() === userNameInput.toLowerCase()) {
         nameExists = true;
         userAlreadyExistsMsg("name-error", "Name");
-    } else {
-        return nameExists;
     }
+    return nameExists; // Dieser Rückgabewert wurde vorher nicht immer zurückgegeben
 }
 
+/**
+ * Checks if an email already exists and applies an error message if it does.
+ *
+ * @param {Object} user - The user object to check.
+ * @param {string} userEmailInput - The user's email address.
+ * @param {boolean} emailExists - Whether the email already exists.
+ */
 function checkEmailExist(user, userEmailInput, emailExists) {
     if (user.email == userEmailInput) {
         emailExists = true;
         userAlreadyExistsMsg("email-error", "Email");
-    } else {
-        return emailExists;
     }
+    return emailExists;
 }
 
+/**
+ * Hides an error message element.
+ *
+ * @param {string} errorInput - The ID of the error element.
+ */
 function hideErrorMsg(errorInput) {
     let errorRef = document.getElementById(errorInput);
     errorRef.innerHTML = "";
     errorRef.style.display = "none";
 }
 
+/**
+ * Displays a message indicating that the user already exists.
+ *
+ * @param {string} errorInput - The ID of the error element.
+ * @param {string} errorText - The type of error (e.g., "Name" or "Email").
+ */
 function userAlreadyExistsMsg(errorInput, errorText) {
     let errorRef = document.getElementById(errorInput);
     errorRef.innerHTML = `User ${errorText} already exists`;
@@ -234,10 +351,18 @@ function userAlreadyExistsMsg(errorInput, errorText) {
     shake(errorRef);
 }
 
+/**
+ * Displays a success message when the user successfully signs up.
+ */
 function userSuccessfullySignedup() {
     toogleDialog("dialog-signup-succes");
 }
 
+/**
+ * Toggles the visibility of a dialog.
+ *
+ * @param {string} id - The ID of the dialog element.
+ */
 function toogleDialog(id) {
     document.getElementById(id).classList.add("dialog-active");
 

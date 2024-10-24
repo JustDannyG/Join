@@ -315,3 +315,8 @@ a,
 a:visited {
     color: var(--dark-grey);
 }
+
+.p-relative {
+    position: relative;
+    gap: 20px;
+}

@@ -10,10 +10,10 @@
     /* max-width: calc(1920px - 232px); */
     align-items: center;
     margin-left: 130px;
-    justify-content: center;
+    /* justify-content: center; */
 }
 
-.max-content-add-task{
+.max-content-add-task {
     max-width: 1920px;
     width: 100%;
 }
@@ -226,6 +226,7 @@ select:focus,
     margin: 0;
     padding: 0;
     border-radius: 8px;
+    z-index: 1;
 }
 
 .edit-dropdown {
@@ -327,6 +328,7 @@ select:focus,
     width: 16px;
     height: 16px;
 }
+
 .break-line {
     width: 1px;
     background-color: var(--dark-grey);
@@ -549,5 +551,3 @@ select option[value=""] {
     width: 15px;
     margin: 5px;
 } */
-
-
