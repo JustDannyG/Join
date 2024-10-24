@@ -195,7 +195,7 @@ h1 {
 }
 
 .error-message-name.visible {
-    display: block;
+    display: block !important;
 }
 
 .error-message-email {
@@ -208,7 +208,7 @@ h1 {
 }
 
 .error-message-email.visible {
-    display: block;
+    display: block !important;
 }
 
 .error-message-password {
@@ -221,7 +221,7 @@ h1 {
 }
 
 .error-message-password.visible {
-    display: block;
+    display: block !important;
 }
 
 .error-message-conf-password {
@@ -235,7 +235,7 @@ h1 {
 }
 
 .error-message-conf-password.visible {
-    display: block;
+    display: block !important;
 }
 
 .error-message-checkbox {

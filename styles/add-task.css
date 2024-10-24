@@ -10,7 +10,7 @@
     /* max-width: calc(1920px - 232px); */
     align-items: center;
     margin-left: 130px;
-    justify-content: center;
+    /* justify-content: center; */
 }
 
 .max-content-add-task{
