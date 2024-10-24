@@ -7,18 +7,21 @@ let taskCounter = 0;
 ///    Start   ////
 ///////////////////
 
-
 /**
- * Initializes the board by fetching contacts and tasks, 
- * then updates the board's HTML based on the data.
+ * Initializes the board by fetching the necessary data and updating the UI.
+ *
+ * This function retrieves the list of contacts, prepares the selected contacts,
+ * fetches tasks, updates the HTML to display the tasks,
+ * and finally adds the current user as a contact.
  */
 async function boardInit() {
     await getContacts();
     getSelectedContacts();
     await getTasks();
     updateHtml();
+    userAsContact = await getOwnContact();
+    userInContatcs();
 }
-
 
 /**
  * Resets the board by fetching updated tasks and refreshing the HTML.
@@ -37,8 +40,6 @@ async function resetBoard() {
  */
 async function getTasks() {
     let response = await getData((path = "/tasks"));
-    console.log(response);
-    
     let taskKeys = Object.keys(response);
     tasksArray = [];
     for (let index = 0; index < taskKeys.length; index++) {
@@ -58,7 +59,6 @@ async function getTasks() {
         });
     }
 }
-
 
 /**
  * Updates the HTML by rendering tasks into their respective columns
@@ -104,7 +104,6 @@ function renderTasks(tasks, getById, noTask) {
         }
     }
 }
-
 
 /**
  * Renders optional details for a task such as assigned contacts, subtasks, and priority.
@@ -187,7 +186,7 @@ function moveTo(category) {
 
 /**
  * Initiates the dragging operation by setting the currently dragged element.
- * 
+ *
  * @param {number} id - The ID of the element being dragged.
  */
 function startDragging(id) {
@@ -196,7 +195,7 @@ function startDragging(id) {
 
 /**
  * Allows an element to be dropped by preventing the default behavior of the event.
- * 
+ *
  * @param {DragEvent} ev - The drag event object.
  */
 function allowDrop(ev) {
@@ -206,7 +205,7 @@ function allowDrop(ev) {
 /**
  * Moves the dragged task to update the database. Fetches the current tasks,
  * identifies the task key for the dragged element, and updates the database.
- * 
+ *
  * @returns {Promise<void>} A promise that resolves when the task is updated.
  */
 async function moveToUpdateDatabase() {
@@ -217,7 +216,7 @@ async function moveToUpdateDatabase() {
 
 /**
  * Highlights a drag area by adding a specific CSS class.
- * 
+ *
  * @param {string} id - The ID of the HTML element to highlight.
  */
 function highlight(id) {
@@ -226,7 +225,7 @@ function highlight(id) {
 
 /**
  * Removes the highlight from a drag area by removing a specific CSS class.
- * 
+ *
  * @param {string} id - The ID of the HTML element to remove the highlight from.
  */
 function removeHighlight(id) {
@@ -235,7 +234,7 @@ function removeHighlight(id) {
 
 /**
  * Adds a dragging animation to a specific element.
- * 
+ *
  * @param {string} id - The ID of the HTML element to animate.
  */
 function animationOndrag(id) {
@@ -248,13 +247,13 @@ function animationOndrag(id) {
 
 /**
  * Opens a task, displays its overlay, and triggers related functions.
- * 
+ *
  * @param {number} id - The ID of the task to open.
  */
 function openTask(id) {
     currentTask = tasksArray[id];
     document.getElementById("overlaver").innerHTML = taskBoardOverlay(currentTask);
-    console.log(currentTask);
+
     taskPrioText();
     renderTasksArrays();
 }
@@ -295,7 +294,7 @@ function setCheck() {
 
 /**
  * Toggles the subtask's checked status and updates the backend data.
- * 
+ *
  * @param {number} subIndex - The index of the subtask to toggle.
  */
 async function checkAndPushToFirebase(subIndex) {
@@ -353,7 +352,7 @@ function taskPrioText() {
 
 /**
  * Toggles the priority of the task.
- * 
+ *
  * @param {string|null} prioInput - The new priority value.
  */
 function editPrio(prioInput) {
@@ -367,7 +366,7 @@ function editPrio(prioInput) {
 
 /**
  * Finds and marks contacts that are already assigned to the current task.
- * 
+ *
  * @param {Object} currentTask - The task being edited.
  */
 function findCheckedContacts(currentTask) {
@@ -397,7 +396,7 @@ function editTaskSubtask() {
 
 /**
  * Renders the subtask edit form.
- * 
+ *
  * @param {Array} subtasks - Array of subtasks to render.
  */
 function renderSubtaskEdit(subtasks) {
@@ -409,7 +408,7 @@ function renderSubtaskEdit(subtasks) {
 
 /**
  * Saves the edited value of a subtask.
- * 
+ *
  * @param {number} index - The index of the subtask being edited.
  */
 function saveWord(index) {
@@ -420,7 +419,7 @@ function saveWord(index) {
 
 /**
  * Deletes a subtask from the task.
- * 
+ *
  * @param {number} i - The index of the subtask to delete.
  */
 function deleteSubtask(i) {
@@ -475,7 +474,7 @@ async function deleteTask() {
 
 /**
  * Toggles the display of task move options.
- * 
+ *
  * @param {number} taskId - The ID of the task.
  */
 function openTaskMoveOptions(taskId) {
@@ -484,7 +483,7 @@ function openTaskMoveOptions(taskId) {
 
 /**
  * Moves a task to a different category and updates it in the databse.
- * 
+ *
  * @param {number} taskId - The ID of the task.
  * @param {string} category - The new category to move the task to.
  */
@@ -513,7 +512,7 @@ async function moveTaskTo(taskId, category) {
 
 /**
  * Filters and renders tasks across different categories based on the search input.
- * 
+ *
  * @param {string} screen - The current screen (used for search input identification).
  */
 function filterBoardTasks(screen) {
@@ -533,7 +532,7 @@ function filterBoardTasks(screen) {
 
 /**
  * Displays the number of tasks found for a given screen.
- * 
+ *
  * @param {string} screen - The screen identifier.
  */
 function foundTasks(screen) {
@@ -549,7 +548,7 @@ function foundTasks(screen) {
 
 /**
  * Filters tasks based on a search query.
- * 
+ *
  * @param {string} task - The category to filter by.
  * @param {string} search - The search query.
  */
@@ -569,13 +568,11 @@ function filterSearchTasks(task, search) {
 ///    Scroll to Section Function     ///
 /////////////////////////////////////////
 
-
 /**
  * Automatically scrolls to a section of the page when loaded, based on the URL hash.
  */
 window.addEventListener("load", function () {
     let section = window.location.hash.substring(1);
-    console.log(section);
     section = section.slice(1);
     if (section) {
         setTimeout(function () {
@@ -586,7 +583,7 @@ window.addEventListener("load", function () {
 
 /**
  * Smoothly scrolls to a specified section of the page.
- * 
+ *
  * @param {string} section - The section ID to scroll to.
  */
 function scrollToSection(section) {

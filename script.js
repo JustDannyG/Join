@@ -2,8 +2,7 @@ let user = localStorage.getItem("user");
 let userId = localStorage.getItem("userId");
 let contacts = [];
 let prio = "medium";
-let screenMode
-
+let screenMode;
 
 //////////////////////////////
 ///    Log out Function   ///
@@ -19,23 +18,19 @@ let screenMode
 function logOut() {
     localStorage.setItem("user", "");
     localStorage.setItem("userId", "");
-    historyStop()
+    historyStop();
     window.location.href = "index.html";
     localStorage.removeItem("rememberMeUser");
     localStorage.removeItem("rememberMe");
-    
 }
 
-function historyStop(){
-  
+function historyStop() {
     window.history.pushState(null, "", window.location.href);
 
-   
     window.addEventListener("popstate", function () {
         window.history.pushState(null, "", window.location.href);
     });
 }
-
 
 //////////////////////////////
 ///    Own Contact        ///
@@ -56,7 +51,6 @@ async function getOwnContact() {
     let ownContactResponse = await getData((path = `users/${userId}`));
     return ownContactResponse;
 }
-
 
 /**
  * Formats and returns the essential contact information of the current user.
@@ -97,15 +91,14 @@ function markedPage(id, activeStyle) {
     document.getElementById(id).classList.add(activeStyle);
 }
 
-
 /**
  * Creates initials from a given name.
- * 
+ *
  * Depending on the number of words in the input name, this function will return initials:
  * - If there is one word, the first letter of that word is returned.
  * - If there are two words, the first letter of each word is returned.
  * - If there are three or more words, the first letter of the first and third words is returned.
- * 
+ *
  * @function createInititals
  * @param {string} selectName - The full name from which to extract initials.
  * @returns {string} The initials derived from the name, or an empty string if the name is invalid.
@@ -129,13 +122,12 @@ function createInititals(selectName) {
     }
 }
 
-
 /**
  * Generates a random hex color code.
- * 
+ *
  * This function creates a random number between 0 and 16777215 (which is the maximum value for 24-bit colors),
  * converts it to a hexadecimal string, and returns the corresponding hex color code.
- * 
+ *
  * @function randomColor
  * @returns {string} The generated random hex color code, prefixed with '#'.
  */
@@ -145,13 +137,12 @@ function randomColor() {
     return hexCode;
 }
 
-
 /**
  * Sorts an array of objects alphabetically by the 'name' property.
- * 
- * This function uses the `localeCompare` method to sort the objects in the array 
+ *
+ * This function uses the `localeCompare` method to sort the objects in the array
  * based on the value of their `name` property in alphabetical order.
- * 
+ *
  * @function sortByAlphabet
  * @param {Object[]} arr - The array of objects to be sorted.
  * @param {string} arr[].name - The 'name' property of each object.
@@ -168,26 +159,25 @@ function sortByAlphabet(arr) {
 
 /**
  * Saves a value to the browser's local storage.
- * 
- * The value is first converted to a JSON string using `JSON.stringify` 
+ *
+ * The value is first converted to a JSON string using `JSON.stringify`
  * before being stored under the specified key.
- * 
+ *
  * @function saveToLocalStorage
  * @param {string} key - The key under which the value will be stored in local storage.
- * @param {*} value - The value to be stored in local storage. It can be of any type, 
+ * @param {*} value - The value to be stored in local storage. It can be of any type,
  *                    as it will be serialized into a JSON string.
  */
 function saveToLocalStorage(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
 }
 
-
 /**
  * Retrieves a value from the browser's local storage.
- * 
- * The value is parsed from a JSON string back to its original form 
+ *
+ * The value is parsed from a JSON string back to its original form
  * (e.g., array, object, string, etc.) using `JSON.parse`.
- * 
+ *
  * @function getFromLocalStorage
  * @param {string} key - The key under which the value is stored in local storage.
  * @returns {*} The value retrieved from local storage, or `undefined` if no value is found.
@@ -205,13 +195,12 @@ function getFromLocalStorage(key) {
 ///                             /////
 /////////////////////////////////////
 
-
 /**
  * Clears the value of the specified input element.
- * 
+ *
  * This function sets the value of the input field to an empty string,
  * effectively clearing any text that was previously entered by the user.
- * 
+ *
  * @function clearInput
  * @param {HTMLInputElement} input - The input element to be cleared.
  */
@@ -232,8 +221,6 @@ function clearInput(input) {
 function stopEventBubbling(event) {
     event.stopPropagation();
 }
-
-
 
 ////////////////////////////
 ///   Get Contacts     /////
@@ -258,36 +245,32 @@ async function getContacts() {
     for (let index = 0; index < keys.length; index++) {
         const key = keys[index];
         const contact = contactsData[key];
-        contacts.push(
-            {
-                'name': contact.name,
-                'email': contact.email,
-                'phone': contact.phone,
-                'color': contact.color,
-                'key': key
-            }
-        );
+        contacts.push({
+            name: contact.name,
+            email: contact.email,
+            phone: contact.phone,
+            color: contact.color,
+            key: key,
+        });
     }
     sortByAlphabet(contacts);
-    console.log(contacts);
 }
 
 //////////////////////////////////////
 ///                             /////
 /////////////////////////////////////
 
-
 /**
  * Changes the CSS class of a specified HTML element based on the provided action.
  *
- * This function adds, removes, or toggles a CSS class on an HTML element with the 
- * given ID. The action to be performed can be specified as either "add", "remove", 
+ * This function adds, removes, or toggles a CSS class on an HTML element with the
+ * given ID. The action to be performed can be specified as either "add", "remove",
  * or "toggle".
  *
  * @function classChangeAction
  * @param {string} id - The ID of the HTML element to modify.
  * @param {string} className - The name of the CSS class to be added, removed, or toggled.
- * @param {("add"|"remove"|"toggle")} action - The action to perform on the CSS class. 
+ * @param {("add"|"remove"|"toggle")} action - The action to perform on the CSS class.
  *                                              Must be one of "add", "remove", or "toggle".
  * @returns {void} This function does not return a value.
  */
@@ -308,7 +291,6 @@ function classChangeAction(id, className, action) {
 ///   Check Screen Size for Mobile or Desktop Design Functions  ///
 ///////////////////////////////////////////////////////////////////
 
-
 /**
  * Checks the current screen width and updates the header and sidebar
  * content accordingly based on whether the screen is in mobile or desktop mode.
@@ -328,12 +310,10 @@ function checkScreenWidth() {
     let currentSidebar = "";
     try {
         if (window.innerWidth <= 1024) {
-            console.log("Mobile Ansicht");
             currentHeader = mobileHeader(createInititals(user));
             currentSidebar = mobileSidebar();
             screenMode = "mobile";
         } else {
-            console.log("Desktop Ansicht");
             currentHeader = desktopHeader(createInititals(user));
             currentSidebar = desktopSidebar();
             screenMode = "desktop";
@@ -341,8 +321,7 @@ function checkScreenWidth() {
         header.innerHTML = currentHeader;
         sidebar.innerHTML = currentSidebar;
     } catch {
-        console.log('No Header No Sidebar on this Page');
-
+        console.log("No Header No Sidebar on this Page");
     }
 }
 
@@ -363,7 +342,7 @@ window.addEventListener("resize", checkIsSomeoneLogedId);
  * @returns {void} This function does not return a value.
  */
 function hideHelpIcon() {
-    document.getElementById('help-icon').style.display = "none";
+    document.getElementById("help-icon").style.display = "none";
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -374,7 +353,7 @@ function hideHelpIcon() {
  * Checks if a user is logged in and hides specific UI elements if not.
  *
  * This function verifies if the `user` variable is falsy (indicating
- * that no user is logged in). If no user is logged in, it adds the 
+ * that no user is logged in). If no user is logged in, it adds the
  * "d-none" class to several elements in the user interface to hide
  * links related to the summary, task board, adding tasks, and contacts.
  *
@@ -383,12 +362,13 @@ function hideHelpIcon() {
  */
 function checkIsSomeoneLogedId() {
     if (!user) {
-        let summaryRef =    document.getElementById("summary-link")
-        if(summaryRef){
-        document.getElementById("summary-link").classList.add("d-none");
-        document.getElementById("board-link").classList.add("d-none");
-        document.getElementById("add-task-link").classList.add("d-none");
-        document.getElementById("contact-link").classList.add("d-none");}
+        let summaryRef = document.getElementById("summary-link");
+        if (summaryRef) {
+            document.getElementById("summary-link").classList.add("d-none");
+            document.getElementById("board-link").classList.add("d-none");
+            document.getElementById("add-task-link").classList.add("d-none");
+            document.getElementById("contact-link").classList.add("d-none");
+        }
     }
 }
 
@@ -417,20 +397,19 @@ function openAddTask(taskCategory) {
 ///     Select Special Design Function  ** Stack Overflow **    ///
 ///////////////////////////////////////////////////////////////////
 
-
 /**
  * Customizes the appearance and behavior of all `<select>` elements on the page.
  *
  * This function hides the original `<select>` elements and creates a styled version
- * that mimics the select functionality. The styled select allows users to click to 
- * display options, select an option, and closes when an option is chosen or when 
+ * that mimics the select functionality. The styled select allows users to click to
+ * display options, select an option, and closes when an option is chosen or when
  * clicking outside of the styled select.
  *
  * The function works as follows:
- * 1. Each `<select>` element is hidden and replaced with a styled div that shows the 
+ * 1. Each `<select>` element is hidden and replaced with a styled div that shows the
  *    currently selected option.
  * 2. A list of options is generated and displayed when the styled div is clicked.
- * 3. Users can select an option, which updates the styled div and sets the 
+ * 3. Users can select an option, which updates the styled div and sets the
  *    corresponding value of the original `<select>`.
  * 4. Clicking outside of the styled select will close any open option lists.
  *
