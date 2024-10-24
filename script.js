@@ -19,10 +19,23 @@ let screenMode
 function logOut() {
     localStorage.setItem("user", "");
     localStorage.setItem("userId", "");
+    historyStop()
     window.location.href = "index.html";
     localStorage.removeItem("rememberMeUser");
     localStorage.removeItem("rememberMe");
+    
 }
+
+function historyStop(){
+  
+    window.history.pushState(null, "", window.location.href);
+
+   
+    window.addEventListener("popstate", function () {
+        window.history.pushState(null, "", window.location.href);
+    });
+}
+
 
 //////////////////////////////
 ///    Own Contact        ///
@@ -370,10 +383,12 @@ function hideHelpIcon() {
  */
 function checkIsSomeoneLogedId() {
     if (!user) {
+        let summaryRef =    document.getElementById("summary-link")
+        if(summaryRef){
         document.getElementById("summary-link").classList.add("d-none");
         document.getElementById("board-link").classList.add("d-none");
         document.getElementById("add-task-link").classList.add("d-none");
-        document.getElementById("contact-link").classList.add("d-none");
+        document.getElementById("contact-link").classList.add("d-none");}
     }
 }
 

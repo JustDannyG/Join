@@ -98,6 +98,7 @@
     }
 
     .contact-content {
+            overflow: auto;
         flex-direction: column;
     }
 
@@ -121,6 +122,7 @@
 
 @media (min-width: 1024px) {
     .contact-content {
+        overflow: auto;
         padding-left: 130px;
     }
 
