@@ -1,9 +1,12 @@
-/* Contacts overview */
+/* ================================
+          Contact
+   ================================== */
 
 .contact-content {
     display: flex;
     /* height: calc(100vh - 96px); */
     flex: 1;
+    height: 100%;
     background-color: var(--light-grey);
 }
 
@@ -18,6 +21,11 @@
     text-wrap: wrap;
     max-width: 1920px;
 }
+
+
+/* =========================================
+          Contact - Add new Contact Button
+   =========================================== */
 
 .add-new-contact-desktop-sticky {
     position: sticky;
@@ -51,31 +59,7 @@
     box-shadow: 2px 4px 7px 0px rgba(0, 0, 0, 0.5);
 }
 
-.contacts-details-desktop-container {
-    padding: 70px 16px 48px 50px;
-    flex: 1;
-}
-
-.contacts-mobile-container {
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    overflow-y: scroll;
-    z-index: 1;
-    align-items: center;
-    flex: 1;
-}
-
-.contacts-container {
-    gap: 16px;
-    padding: 15px 30px 25px;
-}
-
-
-/* Contacts Button  */
-
-.add-contact,
-.edit-button {
+.add-contact-mobile-btn {
     position: absolute;
     bottom: 96px;
     right: 8px;
@@ -87,21 +71,34 @@
     outline: unset;
 }
 
-.toogle-bg-color {
-    background-color: var(--light-blue) !important;
+/* =========================================
+            Contact - Contact List
+   =========================================== */
+
+.contacts-container {
+    gap: 16px;
+    padding: 15px 30px 25px;
+    height: 100%;
+    width: 100%;
 }
 
-.add-contact img {
-    width: 24px;
+.contacts-mobile-container {
+    overflow-y: auto;
+    height: 100%;
 }
 
-
-/* contact list */
+.contacts-first-letter {
+    font-size: 20px;
+    font-weight: 400;
+    border-bottom: solid lightgray;
+    padding: 25px 50px;
+    transition: all ease-in-out 125ms;
+}
 
 .contact-list {
     gap: 25px;
     width: 100%;
-    height: 70px;
+    min-height: 70px;
     align-items: center;
     padding: 0 30px;
     border-radius: 20px;
@@ -128,21 +125,13 @@
     border: solid 1px;
 }
 
-.contacts-first-letter {
-    font-size: 20px;
-    font-weight: 400;
-    border-bottom: solid lightgray;
-    padding: 25px 50px;
-    transition: all ease-in-out 125ms;
-}
+/* =========================================
+               Contact - Details
+   =========================================== */
 
-
-/* Contact Details */
-
-.details-headline {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 5px;
+.contacts-details-desktop-container {
+    padding: 70px 16px 48px 50px;
+    flex: 1;
 }
 
 .contact-details-headline {
@@ -151,6 +140,11 @@
     display: flex;
     align-items: center;
     gap: 30px;
+}
+
+.details-headline {
+    display: flex;
+    justify-content: space-between;
 }
 
 .contact-details-breakline {
@@ -164,6 +158,12 @@
     font-weight: 400;
 }
 
+.current-contact {
+    gap: 18px;
+    margin-top: 32px;
+    align-items: center;
+}
+
 .subtitle-details {
     font-size: 14px;
     color: var(--subtitle);
@@ -173,39 +173,103 @@
     gap: 8px;
 }
 
-.current-contact {
-    gap: 18px;
-    margin-top: 32px;
+/* =====================================
+          Contact Detail Template
+   ====================================== */
+
+.detail-container {
+    display: flex;
+    flex-direction: column;
+    /* min-width: 461px; */
+    height: 364px;
+    gap: 35px;
+
+    animation-name: contact;
+    animation-duration: 300ms;
+    animation-timing-function: ease-in-out;
+}
+
+.contact-name-details {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+    height: 120px;
+    gap: 30px;
 }
 
-.current-contact h2 {
-    font-size: 26px;
-}
-
-.current-contact-circle {
-    min-width: 80px;
-    min-height: 80px;
-    background-color: #f35858;
+.name-initals {
+    font-size: 47px;
     color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+    width: 120px;
     border-radius: 50%;
-    font-size: 26px;
-    font-weight: 200;
+    background-color: orange;
+    border: solid 2px white;
 }
 
-.details {
-    margin-top: 16px;
-    gap: 12px;
+.name-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 47px;
+    min-width: 287px;
+    height: 88px;
+    font-weight: 500;
 }
 
-.details h3 {
-    font-weight: 300;
-    font-size: 18px;
+.edit-details-btns {
+    display: flex;
+    width: 159px;
+    height: 24px;
+    justify-content: space-between;
 }
 
-.details p {
-    font-size: 15px;
+.edit-details-btns button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 62px;
+    height: 24px;
+    padding: 0;
+    border: none;
+    background-color: unset;
+    cursor: pointer;
 }
+
+.edit-details-btns button:hover {
+    scale: 1.1;
+}
+
+.info-headline {
+    font-size: 20px;
+}
+
+.contact-info-box {
+    display: flex;
+    height: 128px;
+    width: 140px;
+    flex-direction: column;
+    gap: 15px;
+}
+
+@keyframes contact {
+    0% {
+        transform: translateX(100vw);
+        /* Startpunkt: außerhalb des rechten Rands */
+    }
+
+    100% {
+        transform: translateX(0);
+        /* Endpunkt: in der Mitte */
+    }
+}
+
+/* ===================================
+     Contact - Edit Toggle Button 
+   =================================== */
 
 .edit-container {
     position: absolute;
@@ -219,11 +283,6 @@
     background-color: white;
     transform: translateX(150px);
     transition: transform 0.3s ease-in-out;
-}
-
-.edit-container img {
-    width: 24px;
-    height: 24px;
 }
 
 .edit-container div {
@@ -240,8 +299,13 @@
     cursor: pointer;
 }
 
+/* ===================================
+     Contact - Edit Overlay
+   =================================== */
 
-/* Edit Contact Overlay */
+.hide-overlay {
+    transform: translateY(100vh);
+}
 
 .edit-overlay-bg {
     position: absolute;
@@ -255,7 +319,7 @@
     padding: 10px;
     background-color: rgba(0, 0, 0, 0.3);
     transition: all ease-in-out 125ms;
-    z-index: 1;
+    z-index: 2;
 }
 
 .edit-overlay-form {
@@ -263,7 +327,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: solid 1px;
     width: 396px;
     max-height: 650px;
     border-radius: 30px;
@@ -271,6 +334,20 @@
     padding-bottom: 40px;
     background-color: white;
     z-index: 1;
+    box-shadow: rgba(0, 0, 0, 0.3) 2px 1px 9px 7px;
+}
+
+.close-edit {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    z-index: 1;
+    cursor: pointer;
+    transition: all ease-in-out 125ms;
+}
+
+.close-edit:hover {
+    scale: 1.1;
 }
 
 .overlay-header {
@@ -335,7 +412,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: solid 1px;
+    border: solid 1px var(--dark-grey);
     height: 41px;
     width: 100%;
     border-radius: 10px;
@@ -402,25 +479,9 @@
     scale: 0.9;
 }
 
-.close-edit {
-    position: absolute;
-    top: 40px;
-    right: 40px;
-    z-index: 1;
-    cursor: pointer;
-    transition: all ease-in-out 125ms;
-}
-
-.close-edit:hover {
-    scale: 1.1;
-}
-
-.hide-overlay {
-    transform: translateY(100vh);
-}
-
-
-/* Add Contact Overlay */
+/* =========================
+     Contact - Add Overlay
+   ========================= */
 
 .subtitle {
     font-size: 20px;
@@ -435,6 +496,13 @@
     margin-top: 12px;
 }
 
+.add-overlay-buttons {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    height: 54px;
+}
+
 .submit-btn {
     font-size: 20px;
     color: white;
@@ -443,6 +511,16 @@
     border-radius: 10px;
     gap: 4px;
     background-color: var(--darke-blue);
+    transition: all ease-in-out 100ms;
+}
+
+.submit-btn:hover {
+    background-color: var(--light-blue);
+    box-shadow: 2px 4px 7px 0px rgba(0, 0, 0, 0.5);
+}
+
+.submit-btn:disabled {
+    background-color: var(--light-blue);
 }
 
 .submit-btn img {
@@ -450,9 +528,47 @@
     margin-left: 4px;
 }
 
+.clear-btn-add-contact {
+    width: 180px;
+    height: 100%;
+    font-size: 20px;
+    border: unset;
+    border-radius: 10px;
+    gap: 4px;
+    background-color: unset;
+    border: 1px solid var(--dark-grey);
+    transition: all ease-in-out 125ms;
+}
 
-/* Add Contact Dialog*/
+.overlay-header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
 
+.add-cancel-btn {
+    font-size: 20px;
+    width: 126px;
+    height: 56px;
+    border: solid 1px var(--dark-grey);
+    border-radius: 10px;
+    background-color: unset;
+    position: absolute;
+    bottom: 110px;
+    right: 330px;
+
+    transition: all ease-in-out 100ms;
+}
+
+.add-cancel-btn:hover {
+    color: var(--light-blue);
+    border: solid 2px var(--light-blue);
+    box-shadow: 2px 4px 7px 0px rgba(0, 0, 0, 0.5);
+}
+
+/* =========================
+     Contact - Add Popup
+   ========================= */
 .dialog {
     position: absolute;
     align-self: center;
@@ -470,4 +586,69 @@
 
 .dialog-active {
     transform: translateY(-120px);
+}
+
+
+/* ====================================
+     Contact - Delete Own User Popup
+   ==================================== */
+
+.delete-user-popup-bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.delete-user-popup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    height: 300px;
+    width: 300px;
+    border-radius: 30px;
+    background-color: white;
+    padding: 20px;
+    font-size: 20px;
+    text-align: center;
+
+}
+
+.delete-popup-btns-container {
+    display: flex;
+    gap: 20px;
+}
+
+.delete-popup-cancel-btn {
+    font-size: 16px;
+    height: 50px;
+    border-radius: 10px;
+    width: 80px;
+}
+
+.delete-popup-yes-btn {
+    font-size: 16px;
+    height: 50px;
+    border-radius: 10px;
+    width: 150px;
+    background-color: rgba(251, 61, 1, 0.5);
+    transition: all ease-in-out 100ms;
+}
+
+.delete-popup-yes-btn:hover {
+    background-color: rgba(251, 61, 1, 1.0);
+}
+
+
+/*=======                                   Ab hier noch weiter Checken*/
+
+.hide-overlay-desktop {
+    transform: translateX(100vw);
 }

@@ -18,11 +18,12 @@
     <link rel="stylesheet" href="./styles/contact.css" />
     <link rel="stylesheet" href="./styles/header-sidebar.css">
 
+    <link rel="stylesheet" href="./styles/responsive/responsive.css">
     <link rel="stylesheet" href="./styles/responsive/contact-responsive.css">
 </head>
 
 
-<body class="column" onload="showContact()"
+<body class="column" onload="showContact(); markedPage('contact-link', 'activePage')"
     onclick="classChangeAction('user-menu', 'd-none', 'add'); classChangeAction('menu', 'menu-active', 'remove'); classChangeAction('edit-contact', 'menu-active', 'remove'), stopEventBubbling(event);">
 
     <section id="join-header" class="join-header"></section>
@@ -41,9 +42,7 @@
 
         <div id="current-contact" class="current-contact d-flex"></div>
 
-        <div id="details" class="details column"></div>
-
-        <button id="edit-button" class="edit-button center"
+        <button id="edit-button" class="add-contact-mobile-btn center"
             onclick="classChangeAction('edit-contact', 'menu-active', 'toggle'); stopEventBubbling(event)">
             <img src="./assets/icons/more_vert.png " alt="edit-contact " />
         </button>
@@ -92,9 +91,22 @@
                 </div>
             </div>
 
-            <div class="edit-action-btns">
+            <div id="edit-action-btns" class="edit-action-btns">
                 <button class="edit-delete-btn center" onclick="deleteContact(); return false">Delete</button>
                 <button class="edit-save-btn center">Save <img src="./assets/icons/check.png" alt=""></button>
+            </div>
+
+            <div id="delete-user-popup" class="delete-user-popup-bg d-none" onclick="deletePopUp(); stopEventBubbling(event)">
+                <div class="delete-user-popup" onclick="stopEventBubbling(event)">
+                    <h3>Delete User?</h3>
+                    <p>Are you sure you want to permanently delete this user?</p>
+
+                    <div class="delete-popup-btns-container">
+                        <button class="delete-popup-cancel-btn" onclick="deletePopUp();return false">Cancel</button>
+                        <button class="delete-popup-yes-btn" onclick="deleteOwnUser()">Yes, Delete User</button>
+                    </div>
+                </div>
+
             </div>
 
         </form>

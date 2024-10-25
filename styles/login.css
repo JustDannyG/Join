@@ -8,6 +8,10 @@ h1 {
     font-size: 47px;
 }
 
+p {
+    font-size: 16px;
+}
+
 #myCheckbox {
     border-width: 2px;
 }
@@ -18,9 +22,15 @@ h1 {
 }
 
 .logo-login-container {
-    width: 396px;
+    /* height: 78px; */
     justify-content: start;
     display: flex;
+}
+
+.logo-login-container img {
+    position: absolute;
+    left: 38px;
+    top: 37px;
 }
 
 .login-logo-container {
@@ -40,6 +50,10 @@ h1 {
     box-shadow: 0px 1px 13px 6px rgba(0, 0, 0, 0.15);
 }
 
+.login-area img {
+    border: none;
+}
+
 .login-underline {
     width: 88px;
     border: 2px solid;
@@ -53,7 +67,13 @@ h1 {
 }
 
 .input-data {
-    gap: 32px;
+    gap: 24px;
+}
+
+.input-data input {
+    border: none;
+    flex: 1;
+    outline: none;
 }
 
 .login-remember-me {
@@ -62,15 +82,15 @@ h1 {
 }
 
 .login-input-area {
-    flex: 10;
     width: 364px;
     height: 48px;
-    gap: 8px;
     border: 1px solid;
     border-radius: 10px;
-    padding: 12px 21px 12px 21px;
+    padding: 12px 21px;
+    border: solid 1px var(--dark-grey);
     justify-content: space-between;
     cursor: pointer;
+    position: relative;
 }
 
 .login-input-area img {
@@ -81,6 +101,8 @@ h1 {
 
 .login-input-area input {
     flex: 100;
+    border: none;
+    font-style: var(--dark-grey);
 }
 
 button {
@@ -96,10 +118,11 @@ button {
 .login-button {
     width: 180px;
     height: 51px;
-    padding: 4px 0px 4px 0px;
-    border-radius: 8px;
-    cursor: pointer;
-    background-color: var();
+    /* padding: 4px 0px 4px 0px; */
+    /* border-radius: 8px; */
+    border: none;
+    /* cursor: pointer; */
+    /* background-color: var(); */
 }
 
 .login-button-top {
@@ -125,14 +148,16 @@ button {
     color: var(--darke-blue);
     font-size: 16px;
     font-weight: 700;
-    border: solid 1.5px;
+    border: solid 1px var(--dark-grey);
     border-color: var(--darke-blue);
     transition: all ease-in-out 125ms;
 }
 
 .login-button-bottom:hover {
-    background-color: var(--light-blue);
+    /* background-color: var(--light-blue); */
     scale: 1.1;
+    border-color: var(--light-blue);
+    color: var(--light-blue);
 }
 
 .login-button-bottom:active {
@@ -140,6 +165,7 @@ button {
 }
 
 .signup-button {
+    border: none;
     width: 104px;
     height: 49px;
 }
@@ -172,11 +198,10 @@ button {
 .error-message-email {
     color: red;
     font-size: 12px;
-    position: absolute;
-    top: 42%;
-    right: 0;
-    left: 42.5%;
     display: none;
+    position: absolute;
+    top: 113%;
+    left: 32%;
 }
 
 .error-message-email.visible {
@@ -186,31 +211,14 @@ button {
 .error-message-password {
     color: red;
     font-size: 12px;
-    position: absolute;
-    top: 48.7%;
-    right: 0;
-    left: 42.5%;
     display: none;
+    position: absolute;
+    top: 110%;
+    left: 28%;
 }
 
 .error-message-password.visible {
     display: block;
-}
-
-.welcomeMessage {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 20px;
-    text-align: center;
-    border-radius: 10px;
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 2s ease-out, visibility 2s ease-out;
 }
 
 .border-none {
@@ -237,20 +245,22 @@ button {
         top: 50%;
         left: 50%;
     }
+
     100% {
-        transform: translate(0, 0) scale(0.64); 
-        top: 0;   
-        left: 0;
+        transform: translate(0, 0) scale(0.64);
+        top: 15px;
+        left: 19px;
     }
 }
 
 @keyframes fadeOutOverlay {
     0% {
-        opacity: 1; 
+        opacity: 1;
     }
+
     100% {
-        opacity: 0; 
-        pointer-events: none; 
+        opacity: 0;
+        pointer-events: none;
     }
 }
 
@@ -267,8 +277,46 @@ button {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 1001;
+    /* z-index: 1001;
     width: 100px;
     height: 122px;
-    object-fit: cover;
+    object-fit: cover; */
+    animation: moveAndScale 1.5s ease forwards 0.2s;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    75% {
+        transform: translateX(-5px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.shake {
+    animation: shake 0.3s ease;
+}
+
+.content {
+    padding: 0;
+    height: 100%;
+}
+
+a,
+a:visited {
+    color: var(--dark-grey);
+}
+
+.p-relative {
+    position: relative;
+    gap: 20px;
 }

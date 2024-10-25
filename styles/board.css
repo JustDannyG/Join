@@ -5,62 +5,211 @@
 .board-main-content {
     display: flex;
     flex-direction: column;
-    flex: 1;
-    overflow-x: hidden;
-    overflow-y: auto;
     background-color: var(--light-grey);
-    padding: 25px 16px 48px 16px;
+    padding: 0 20px;
     text-wrap: wrap;
-    max-width: calc(1920px - 232px);
-    gap: 32px;
-    margin-left: 210px;
+    /* max-width: calc(1920px - 232px); */
+    margin-left: 130px;
     z-index: 1;
+    align-items: center;
+    /* height: calc(100vh - (80px + 80px)); */
+    overflow: hidden;
 }
 
-.headline {
+.max-content-board {
+    max-width: 1920px;
+    width: 100%;
+    height: 100%;
+}
+
+/* =========================
+      Board Head Desktop
+   ========================= */
+
+.board-head-desktop {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    height: 15%;
+    padding: 0 25px;
+}
+
+.board-headline-desktop {
+    font-size: 61px;
+    font-weight: 700;
+}
+
+.search-addTask-container {
+    display: flex;
+    width: 504px;
+    height: 48px;
     justify-content: space-between;
 }
 
-.headline button {
+.search-box-desktop {
+    position: relative;
+    display: flex;
+    border: solid 1px;
+    width: 312px;
+    border-radius: 10px;
+    padding: 8px 16px;
+    background-color: white;
+}
+
+.search-task-input-desktop {
+    flex: 1;
+    border: none;
+}
+
+.search-task-input-desktop:focus {
+    border: none;
+}
+
+.search-icon {
+    width: 32px;
+    height: 32px;
+}
+
+.nummber-of-tasks {
+    position: absolute;
+    bottom: -25px;
+}
+
+.add-task-btn {
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+    width: 160px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    border-radius: 10px;
     background-color: var(--darke-blue);
-    border-radius: 8px;
-    height: 40px;
-    width: 40px;
-}
-
-.input-row {
-    margin-top: 20px;
-    border: 2px solid var(--dark-grey);
-    border-radius: 8px;
-    padding: 4px 8px;
-    background-color: var(--white);
-}
-
-.input-row input,
-.input {
     border: unset;
-    border-right: 2px solid var(--medium-grey);
-    width: 100%;
 }
 
-.input-row input::placeholder {
-    font-size: 16px;
-}
+/* =========================
+      Board Head Mobile
+   ========================= */
 
-.subtitle {
-    justify-content: space-between;
-    width: 100%;
+.board-head-mobile {
     position: sticky;
     top: 0;
-    left: 0;
-    /* z-index: 1; */
+    z-index: 2;
+    background-color: var(--light-grey);
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    gap: 5px;
+    height: 120px;
+    padding: 0 0 10px 0;
 }
 
-.subtitle button {
-    border: solid 2px var(--darke-blue);
-    border-radius: 8px;
+.headline-addTask-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.board-headline-mobile {
+    font-size: 47px;
+    font-weight: 700;
+}
+
+.add-task-mobile-btn {
+    width: 40px;
+    height: 40px;
+    background-color: var(--darke-blue);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.search-box-mobile {
+    position: relative;
+    display: flex;
+    border: solid 1px;
+    border-radius: 10px;
+    height: 48px;
+    padding: 8px 16px;
+    background-color: white;
+}
+
+.search-task-input-mobile {
+    flex: 1;
+    border: none;
+}
+
+.search-task-input-mobile:focus {
+    border: none;
+}
+
+/* =========================
+     Board - Content
+   ========================= */
+
+.task-content {
+    display: flex;
+    flex-direction: column;
+    height: min-content;
+    overflow-y: auto;
+    gap: 30px;
+}
+
+.board-section {
+    display: flex;
+    flex-direction: column;
+    /* background-color: rgba(245, 222, 179, 0.5); */
+    padding: 10px;
+    border-radius: 10px;
+    transition: all ease-in-out 125ms;
+    height: min-content;
+}
+
+.task-container {
+    height: fit-content;
+    padding: 16px 0px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    transition: all ease-in-out 125ms;
+    overflow-x: auto;
+
+    animation-name: task;
+    animation-duration: 800ms;
+    animation-iteration-count: 1;
+}
+
+@keyframes task {
+    from {
+        scale: 0.1;
+    }
+
+    to {
+        scale: 1;
+    }
+}
+
+.board-section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 45px;
+    padding: 0 10px;
+}
+
+.add-task-icon-btn {
     height: 30px;
     width: 30px;
+    border: solid 2px;
+    padding: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.add-task-icon-btn:hover {
+    scale: 1.1;
 }
 
 /* =========================
@@ -90,7 +239,7 @@
     border-radius: 8px;
 }
 
-.drag-drop-btn{
+.drag-drop-btn {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -98,15 +247,16 @@
     right: 15px;
 }
 
-.drag-drop-icon{
+.drag-drop-icon {
     align-self: flex-end;
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    border: solid #D1D1D1 2px;
+    border: solid #d1d1d1 2px;
+    background-color: white;
 }
 
-.drag-drop-list{
+.drag-drop-list {
     background-color: lightblue;
     border-radius: 10px;
     list-style-type: none;
@@ -119,11 +269,11 @@
     transition: all ease-in-out 125ms;
 }
 
-.show-drop-list{
+.show-drop-list {
     transform: translateX(0px);
 }
 
-.drag-drop-list li{
+.drag-drop-list li {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -131,7 +281,7 @@
     height: 40px;
 }
 
-.drag-drop-list li:hover{
+.drag-drop-list li:hover {
     background-color: lightgray;
     border-radius: 10px;
 }
@@ -222,19 +372,6 @@
     left: 78px;
 }
 
-.task-container {
-    height: fit-content;
-    padding: 16px 0px;
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    transition: all ease-in-out 125ms;
-    /* background-color: burlywood; */
-    animation-name: task;
-    animation-duration: 800ms;
-    animation-iteration-count: 1;
-}
-
 .user-story {
     background-color: var(--story);
 }
@@ -248,27 +385,42 @@
 }
 
 .drag-area-highlight {
-    background-color: lightblue;
+    border: 2px dotted var(--dark-grey);
+    border-radius: 10px;
+    background-color: rgb(0, 0, 0, 0.04);
+    transition: all ease-in-out 100ms;
+}
+
+.task-wrapper {
+    height: fit-content;
+    max-width: 252px;
+    margin: 8px;
+    border-radius: 25px;
+    z-index: 1;
 }
 
 .task {
     position: relative;
-    max-height: 244px;
-    min-height: 225px;
-    width: 220px;
-    min-width: 220px;
-    position: relative;
-    background-color: var(--white);
+    width: 100%;
     padding: 16px;
+    background-color: white;
     border-radius: 24px;
+    gap: 24px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     overflow: hidden;
+    cursor: grab;
+    transition: all ease-in-out 100ms;
 }
 
 .task:hover {
-    cursor: pointer;
-    animation-name: task-drag;
-    animation-duration: 800ms;
+    /* animation-name: task-drag;
+    animation-duration: 300ms;
+    animation-timing-function: ease-in-out; */
+    rotate: z 5deg;
+}
+
+.task:active {
+    rotate: z 5deg;
 }
 
 @keyframes task-drag {
@@ -277,15 +429,15 @@
     }
 
     10% {
-        transform: rotate(-8deg);
+        transform: rotate(-4deg);
     }
 
     30% {
-        transform: rotate(6deg);
+        transform: rotate(4deg);
     }
 
     55% {
-        transform: rotate(-3deg);
+        transform: rotate(-1deg);
     }
 
     80% {
@@ -297,11 +449,9 @@
     }
 }
 
-/*Task Overlay*/
-
-.task-details-container li {
-    list-style: none;
-}
+/* =========================
+      Task Overlay
+   ========================= */
 
 .overlay-bg {
     height: 100%;
@@ -311,16 +461,8 @@
     padding: 40px;
     transition: all 125ms ease-in-out;
     transform: translateX(100%);
-    z-index: 1;
+    z-index: 2;
 }
-
-.overlaver-active {
-    transform: translateX(0) !important;
-}
-
-/* =========================
-   Board Task Overlay
-   ========================= */
 
 .task-overlay-bg {
     display: flex;
@@ -473,51 +615,9 @@
     background-color: #d1d1d1;
 }
 
-/*Desktop*/
-
-.desktop-section-search-add {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.search {
-    border: 2px solid var(--dark-grey);
-    border-radius: 8px;
-    padding: 4px 8px;
-    background-color: var(--white);
-}
-
-.task-content {
-    display: flex;
-    gap: 30px;
-}
-
-.board-section {
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(245, 222, 179, 0.5);
-    overflow: scroll;
-    padding: 10px;
-    border-radius: 10px;
-    transition: all ease-in-out 125ms;
-}
-
-@keyframes task {
-    from {
-        scale: 0.1;
-    }
-
-    to {
-        scale: 1;
-    }
-}
-
 /* =========================
    Edit Task Overlay
    ========================= */
-
-/*Edit Task Overlayer*/
 
 .overlay-edit-task {
     position: relative;
@@ -572,10 +672,11 @@
     background-color: rgba(0, 0, 0, 0.2);
     transform: translateX(100vw);
     z-index: 1;
+    padding: 30px;
 }
 
 .add-task-overlay {
-    border: solid 1px;
+    /* border: solid 1px; */
     width: 1100px;
     height: 800px;
     border-radius: 30px;
@@ -583,62 +684,49 @@
     display: flex;
     align-items: center;
     position: relative;
+    box-shadow: rgba(0, 0, 0, 0.3) 2px 1px 9px 7px;
 }
 
-.dropdown-category {
-    position: absolute;
-    top: 88px;
-    width: min-content;
-    border-radius: 8px;
-    border: 1px solid var(--dark-grey);
-    background-color: var(--white);
-    padding: 0;
-}
-
-.category-text-option {
-    padding: 8px;
-    width: 150px;
-    border-radius: 8px;
-    display: block;
-}
-
-.category-text-option:hover {
-    background-color: var(--dark-grey);
-}
-
-.task-overlay-category {
-    
-    position: relative;
-}
-
-.cursor-pointer{
-    cursor: pointer;
-}
-
-
-.edit-title-input{
+.edit-title-input {
     font-size: 20px;
     width: 100%;
     padding: 0 20px;
     height: 48px;
-    border-radius: 10px;
-    border:solid 1px #D1D1D1;
+    border-radius: 8px;
+    border: solid 1px var(--medium-grey);
 }
 
-.edit-textarea{
+.edit-textarea {
     font-size: 18px;
     height: 150px;
     padding: 0 20px;
     width: 100%;
-    border-radius: 10px;
-    border:solid 1px #D1D1D1;
+    border-radius: 8px;
+    border: solid 1px var(--medium-grey);
+    resize: none;
 }
 
-.edit-date-input{
+.edit-date-input {
     font-size: 18px;
     width: 100%;
     height: 48px;
     padding: 0 20px;
     border-radius: 10px;
-    border:solid 1px #D1D1D1;
+    border: solid 1px #d1d1d1;
+}
+
+.dropdown-options-in-edit {
+    position: relative;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border-radius: 8px;
+}
+
+.overflow-unset {
+    overflow: unset;
 }

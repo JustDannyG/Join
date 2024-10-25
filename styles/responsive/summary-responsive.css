@@ -67,12 +67,15 @@
     }
 }
 
+@media(max-width: 1024px){
+    .summary-main-content {
+        margin-left: 0;
+    }
+}
+
 
 @media(min-width: 1024px) {
-    .summary-main-content {
-        margin-left: 210px;
-    }
-
+   
     .summary-headline-container {
         left: 40px;
         top: 40px;
