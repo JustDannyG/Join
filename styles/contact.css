@@ -125,6 +125,11 @@
     border: solid 1px;
 }
 
+.contact-highlight{
+    background-color: var(--darke-blue);
+    color: white;
+}
+
 /* =========================================
                Contact - Details
    =========================================== */

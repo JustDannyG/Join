@@ -52,10 +52,15 @@ async function openContact(index) {
         window.location.href = "contact-details.html";
     } else if (screenMode == "desktop") {
         contactIndex = index;
+        highlightContact(index)
         contactsArray = contacts;
         classChangeAction("dialog-add-contact", "hide-overlay", "add");
         showContact();
     }
+}
+
+function highlightContact(i) {
+    document.getElementById(`contact-list${i}`).classList.add('contact-highlight')
 }
 
 /**

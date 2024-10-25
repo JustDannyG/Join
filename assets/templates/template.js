@@ -175,7 +175,7 @@ function firstLetterHtml(firstLetter) {
 }
 
 function contactListHtml(contact, i) {
-    return /*html*/ `<div onclick="openContact(${i})" class="contact-list d-flex">
+    return /*html*/ `<div onclick="openContact(${i})" id="contact-list${i}" class="contact-list d-flex">
       <span class="contact-initials center" style="background:${contact.color}">${createInititals(contact.name)}</span>
       <div>
         <p>${contact.name}</p>

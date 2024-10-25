@@ -314,10 +314,8 @@ function checkScreenWidth() {
         header.innerHTML = currentHeader;
         sidebar.innerHTML = currentSidebar;
     } catch {
-        console.log("No Header No Sidebar on this Page");
+        
     }
-    console.log(screenMode);
-    
 }
 
 checkScreenWidth();
