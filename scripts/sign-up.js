@@ -10,7 +10,7 @@ async function signUp() {
     let userEmailInput = document.getElementById("email-input").value;
     let userPwd = document.getElementById("user-pwd").value;
     let userConfPwd = document.getElementById("user-conf-pwd").value;
-    checkbox = document.getElementById("myCheckbox");
+    checkbox = document.getElementById("myCheckbox");                         
     await checkIfUserAllreadyExists(userNameInput, userEmailInput, userPwd, userConfPwd, checkbox);
     errorStyles(userNameInput, userEmailInput, userPwd, userConfPwd);
 }
@@ -279,11 +279,13 @@ async function checkIfUserAllreadyExists(userNameInput, userEmailInput, userPwd,
         let userIds = Object.keys(users);
         hideErrorMsg("name-error");
         hideErrorMsg("email-error");
+       ({ nameExists, emailExists } = checkUserNameAndEmail(users, userIds, userNameInput, userEmailInput, nameExists, emailExists, userPwd, userConfPwd));
+
         if (checkbox.checked && userNameInput !== "" && userEmailInput !== "" && userEmailInput.includes("@") && userPwd !== "" && userConfPwd !== "" && userPwd === userConfPwd && nameExists == false && emailExists == false) {
-            checkUserNameAndEmail(users, userIds, userNameInput, userEmailInput, nameExists, emailExists, userPwd, userConfPwd);
-            // await capitalizeFirstLetter(userEmailInput, userPwd);
+            await capitalizeFirstLetter(userEmailInput, userPwd);
         }
     }
+    else {await capitalizeFirstLetter(userEmailInput, userPwd);}
 }
 
 function checkUserNameAndEmail(users, userIds, userNameInput, userEmailInput, nameExists, emailExists, userPwd, userConfPwd) {
@@ -291,9 +293,9 @@ function checkUserNameAndEmail(users, userIds, userNameInput, userEmailInput, na
         let user = users[userIds[i]];
         nameExists = checkNameExist(user, userNameInput, nameExists);
         emailExists = checkEmailExist(user, userEmailInput, emailExists);
-        checkIfAllInputsFilled(userNameInput, userEmailInput, userPwd, userConfPwd, user, nameExists, emailExists);
         if (nameExists || emailExists) break;
     }
+      return { nameExists, emailExists };
 }
 
 /**
@@ -304,12 +306,11 @@ function checkUserNameAndEmail(users, userIds, userNameInput, userEmailInput, na
  * @param {boolean} nameExists - Whether the name already exists.
  */
 function checkNameExist(user, userNameInput, nameExists) {
-    // Vergleiche Benutzernamen unabhängig von Groß-/Kleinschreibung
     if (user.name.toLowerCase() === userNameInput.toLowerCase()) {
         nameExists = true;
         userAlreadyExistsMsg("name-error", "Name");
-    }
-    return nameExists; // Dieser Rückgabewert wurde vorher nicht immer zurückgegeben
+    } else {
+    return nameExists;}
 }
 
 /**
@@ -323,8 +324,8 @@ function checkEmailExist(user, userEmailInput, emailExists) {
     if (user.email == userEmailInput) {
         emailExists = true;
         userAlreadyExistsMsg("email-error", "Email");
-    }
-    return emailExists;
+    } else {
+    return emailExists;}
 }
 
 /**

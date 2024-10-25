@@ -29,6 +29,10 @@
     font-family: inter;
 }
 
+a{
+    color: #2E7CEE;
+}
+
 html,
 body {
     height: 100%;

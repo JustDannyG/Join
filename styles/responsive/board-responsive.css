@@ -52,6 +52,15 @@
     .task-container {
         padding: 16px 5px;
     }
+
+    .board-main-content { 
+        padding: 0 5px;
+    }
+
+    .board-section {
+        padding: 0;
+    }
+
 }
 
 /* Desktop Design Adjustment */
@@ -105,6 +114,8 @@
     }
 }
 
+
+
 @media screen and (min-width: 1024px) and (max-width: 1440px) {
     .task-content {
         gap: 0;
@@ -127,6 +138,23 @@
 
     .task-category {
         scale: 0.9;
+    }
+
+    .task-wrapper{
+        max-width: 100%;
+    }
+
+    .task-container {
+        height: 100%;
+        padding: 0 8px;
+    }
+
+    .board-section{
+        padding: 0;
+    }
+
+    .board-main-content {
+        padding: 0;
     }
 }
 

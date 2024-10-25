@@ -2,7 +2,6 @@ let upcomingDeadlineScroll;
 
 function summaryInit() {
     greeting();
-    // greetingUser();
     getSummaryTasks();
 }
 
@@ -14,10 +13,8 @@ function summaryInit() {
  * Displays the greeting message and user's name on both desktop and mobile versions.
  */
 function greeting() {
-    // Update desktop
     let greeting = (document.getElementById("greeting-time").innerHTML = greetingTime());
     let greetUser = (document.getElementById("greeting-name").innerHTML = user);
-    // Update mobile
     let greetingMobile = (document.getElementById("greeting-time-mobile").innerHTML = greetingTime());
     let greetUserMobile = (document.getElementById("greeting-name-mobile").innerHTML = user);
 }
@@ -102,6 +99,9 @@ function summaryPrioFilter(section) {
 function findEarliestDate(task) {
     let earliestUrgentDate = document.getElementById("earliest-urgent-date");
     let earliestDate = null;
+  
+        
+    try{
     task.forEach((item) => {
         let itemDate = new Date(item.date);
         if (!earliestDate || itemDate < new Date(earliestDate.date)) {
@@ -111,6 +111,10 @@ function findEarliestDate(task) {
     earliestUrgentDate.innerHTML = earliestDate.date;
     upcomingDeadlineScroll = earliestDate.id;
     return earliestDate;
+} catch {
+    
+}
+
 }
 
 ////////////////////////////////////////////////////

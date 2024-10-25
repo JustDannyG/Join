@@ -87,6 +87,7 @@
     gap: 4px;
     border-radius: 10px;
     background-color: var(--darke-blue);
+    border: unset;
 }
 
 /* =========================
@@ -395,6 +396,7 @@
     max-width: 252px;
     margin: 8px;
     border-radius: 25px;
+    z-index: 1;
 }
 
 .task {

@@ -40,23 +40,25 @@ async function resetBoard() {
  */
 async function getTasks() {
     let response = await getData((path = "/tasks"));
-    let taskKeys = Object.keys(response);
-    tasksArray = [];
-    for (let index = 0; index < taskKeys.length; index++) {
-        const key = taskKeys[index];
-        let task = response[key];
-        tasksArray.push({
-            title: task.title,
-            description: task.description,
-            id: index,
-            date: task.date,
-            assignedTo: task.assignedTo,
-            category: task.category,
-            prio: task.prio,
-            categoryText: task.categoryText,
-            subtask: task.subtask,
-            taskKey: taskKeys[index],
-        });
+    if (response) {
+        let taskKeys = Object.keys(response);
+        tasksArray = [];
+        for (let index = 0; index < taskKeys.length; index++) {
+            const key = taskKeys[index];
+            let task = response[key];
+            tasksArray.push({
+                title: task.title,
+                description: task.description,
+                id: index,
+                date: task.date,
+                assignedTo: task.assignedTo,
+                category: task.category,
+                prio: task.prio,
+                categoryText: task.categoryText,
+                subtask: task.subtask,
+                taskKey: taskKeys[index],
+            });
+        }
     }
 }
 
@@ -283,7 +285,6 @@ function setCheck() {
     let subtaskRef = document.getElementById("subtask-overlay");
     subtaskRef.innerHTML = "";
     if (currentTask.subtask) {
-        // Verwende Array um daten zu edit ......
         currentTask.subtask.forEach((s, i) => {
             subtaskRef.innerHTML += `
     <div class="task-overlay-subtask" onclick="checkAndPushToFirebase(${i})"><img src="./assets/icons/${s.checked}.png" alt=""> ${s.sub}</div>
@@ -330,7 +331,7 @@ function showEditTaskValues() {
  * Edits the task's assigned contacts.
  */
 function editTaskAssignTo() {
-    selectedContacts = []; //Required, to clear the Array from the Edit-Task before    //// Anpassungen
+    selectedContacts = []
     getSelectedContacts();
     if (currentTask.assignedTo) {
         findCheckedContacts(currentTask);
