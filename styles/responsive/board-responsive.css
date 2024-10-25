@@ -56,6 +56,11 @@
     .board-main-content { 
         padding: 0 5px;
     }
+
+    .board-section {
+        padding: 0;
+    }
+
 }
 
 /* Desktop Design Adjustment */
