@@ -52,6 +52,10 @@
     .task-container {
         padding: 16px 5px;
     }
+
+    .board-main-content { 
+        padding: 0 5px;
+    }
 }
 
 /* Desktop Design Adjustment */
