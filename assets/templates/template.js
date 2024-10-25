@@ -159,15 +159,7 @@ function contactOwnCirleHTML(detail) {
     `;
 }
 
-// function contactInformationsHTML(detail) {
-//     return /*html*/ `
-//     <h3>Contact Information</h3>
-//       <p class="bold">Email</p>
-//       <a href="mailto:${detail.email}">${detail.email}</a>
-//       <p class="bold">Phone</p>
-//       <a href="tel:${detail.phone}">${detail.phone}</a>
-//     `;
-// }
+
 
 //Templates for Contact List
 function firstLetterHtml(firstLetter) {

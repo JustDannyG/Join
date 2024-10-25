@@ -125,7 +125,7 @@
     border: solid 1px;
 }
 
-.contact-highlight{
+.contact-highlight {
     background-color: var(--darke-blue);
     color: white;
 }
@@ -394,6 +394,7 @@
 }
 
 .edit-initals {
+    position: relative;
     width: 100%;
     height: 100%;
     display: flex;
@@ -401,6 +402,45 @@
     flex-direction: column;
     border: solid 2px white;
 }
+
+.change-color {
+    color: black;
+    position: absolute;
+    width: 75px;
+    text-align: center;
+    height: 35px;
+    font-size: 14px;
+    bottom: -38px;
+    border: solid 1px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all ease-in-out 100ms;
+}
+
+.change-color summary {
+    display: flex;
+}
+
+.change-color summary:hover{
+    scale: 1.1;
+}
+
+
+input[type="color"] {
+    -webkit-appearance: none;
+    border: 2px solid #333;
+    border-radius: 10px;
+    width: 60px;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+  }
+
+  input[type="color"]:hover{
+    scale: 1.1;
+  }
+
 
 .edit-form-inputs {
     padding: 80px 20px 40px;

@@ -258,7 +258,12 @@ async function editOwnDetails() {
     document.getElementById("edit-phone").value = currentDetail.phone;
     document.getElementById("edit-initals-container").innerHTML = `
     <span style="background-color:${currentDetail.color}" class="edit-initals center">${createInititals(currentDetail.name)}
-                        <input id="edit-color" type="color" value="${currentDetail.color}">
+        <details class="change-color">
+           <summary>
+              Change Color
+           </summary>
+           <input id="edit-color" type="color" value="${currentDetail.color}">
+       </details>    
                     </span>
     `;
 }
@@ -319,7 +324,12 @@ function editDetails() {
     document.getElementById("edit-phone").value = currentDetail.phone;
     document.getElementById("edit-initals-container").innerHTML = `
     <span style="background-color:${currentDetail.color}" class="edit-initals center">${createInititals(currentDetail.name)}
-                        <input id="edit-color" type="color" value="${currentDetail.color}">
+                         <details class="change-color">
+           <summary>
+              Change Color
+           </summary>
+           <input id="edit-color" type="color" value="${currentDetail.color}">
+       </details>    
                     </span>
     `;
 }
