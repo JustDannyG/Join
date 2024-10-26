@@ -99,6 +99,7 @@
 
                         <div id="subtasks-container" class="subtasks-container"></div>
                     </div>
+                    <div class="required-info-mobile"><span class="required">*</span>This field is required</div>
                 </div>
 
                 <div class="add-task-action-btn">
@@ -115,10 +116,17 @@
     </main>
 
     <div class="d-flex submit-row">
-        <div><span class="required">*</span>This field is required</div>
-        <button class="btn submit" type="submit" form="add-task">Create Task <img
-                src="./assets/icons/check.png" /></button>
+        <div class="add-task-mobile-action-btn">
+            <button type="button" class="btn clear" onclick="clearAddTask()">Clear <img
+                    src="./assets/icons/clear-icon-dark.png" alt="" /></button>
+
+            <button class="btn submit" type="submit" form="add-task">Create Task <img
+                    src="./assets/icons/check.png" /></button>
+
+        </div>
     </div>
+
+
     <section id="join-sidebar"></section>
 
     <div id="add-task-succes-msg" class="add-task-succes">Task added to board <img src="./assets/icons/board-icon.png"

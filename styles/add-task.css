@@ -146,7 +146,7 @@ input::placeholder,
 
 .submit-row {
     background-color: var(--light-grey);
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     padding: 16px;
     max-width: calc(1920px - 232px);
@@ -296,7 +296,7 @@ select:focus,
 }
 
 .subtasks-container {
-    position: absolute;
+    /* position: absolute; */
     top: 66px;
     width: 100%;
     max-height: 136px;
@@ -517,37 +517,13 @@ select option[value=""] {
     background-color: var(--light-blue);
 }
 
-/* .drop-down button {
-    padding: 0px 16px;
-} */
-
-/* .select-placeholder {
-    height: 34px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-} */
-
-/* .select-placeholder span {
-    padding: 8px;
-} */
-
-/* .links {
-    margin-top: 72px;
-    gap: 40px;
+.required-info-mobile{
+    padding-top: 20px;
 }
 
-.nav-link {
-    color: var(--white);
+.add-task-mobile-action-btn{
+    display: flex;
     align-items: center;
-    gap: 8px;
-} */
-
-/* .word-item svg {
-    cursor: pointer;
-} */
-
-/* .word-item button img {
-    width: 15px;
-    margin: 5px;
-} */
+    gap: 20px;
+    
+}
