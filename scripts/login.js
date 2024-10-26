@@ -68,7 +68,6 @@ function searchUserInDatabase(emailInput, passwordInput, users, userIds) {
 function userLogin(remeberMeRef, userId) {
     localStorage.setItem("user", currentUser.name);
     localStorage.setItem("userId", userId);
-    // localStorage.setItem("userName", currentUser.name);
     if (remeberMeRef.checked) {
         saveToLocalStorage("rememberMe", remeberMeRef.checked);
         saveToLocalStorage("rememberMeUser", currentUser);

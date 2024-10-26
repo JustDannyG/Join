@@ -4,22 +4,26 @@ let selectedContacts = [];
 let currentSubtasks = [];
 let subtaskArray = [];
 let isDropdownOpen = false;
-
+let userAsContact;
 /////////////////
 ///   Start   ///
 ////////////////
 
 /**
- * Initializes the task adding process by resetting selected contacts, updating button colors,
- * fetching available contacts, and rendering the contacts.
+ * Initializes the task creation process by setting up the necessary data and UI elements.
+ *
+ * This function clears the selected contacts array, updates the priority button color,
+ * fetches the contacts from the server, adds the current user as a contact,
+ * prepares the selected contacts for display, and renders the contact list in the dropdown.
  */
 async function addTaskInit() {
     selectedContacts = [];
     updateBtnColor(prio);
     await getContacts();
+    userAsContact = await getOwnContact();
+    userInContatcs();
     getSelectedContacts();
     renderContacts(selectedContacts);
-    console.log(selectedContacts);
 }
 
 ///////////////////////////////////////
@@ -188,8 +192,7 @@ function resetInputText() {
  *
  * This function iterates over the global `contacts` array and creates an array of
  * selected contacts. Each selected contact includes its name, color, a checked
- * status set to `false`, and an index ID. After preparing the list, it sorts the
- * selected contacts alphabetically using the `sortByAlphabet` function.
+ * status set to `false`, and an index ID.
  */
 function getSelectedContacts() {
     contacts.forEach((contact, i) => {
@@ -198,10 +201,24 @@ function getSelectedContacts() {
             color: contact.color,
             checked: false,
             id: i,
-            key: contact.key
+            key: contact.key,
         });
     });
-    sortByAlphabet(selectedContacts);
+}
+
+/**
+ * Adds the current user as a contact to the contacts list.
+ *
+ * This function adds the user as a contact to the global contacts array.
+ * The user's name and color are taken from the `userAsContact` object.
+ */
+function userInContatcs() {
+    if(user !== "Guest"){
+    contacts.push({
+        name: userAsContact.name,
+        color: userAsContact.color,
+    });}
+    else return
 }
 
 /**
@@ -215,17 +232,18 @@ function getSelectedContacts() {
  * to create the HTML for each contact and updates the design by calling
  * `updateDesign` for each contact's ID.
  */
-function renderContacts(arr) {
+async function renderContacts(arr) {
     let dropDownRef = document.getElementById("assign-to-dropdown-contacts");
     let userName = localStorage.getItem("user");
-    let userIndex = 0;
     dropDownRef.innerHTML = "";
     arr.forEach((contact) => {
         dropDownRef.innerHTML += contactInDropDownHTML(contact, createInititals(contact.name));
         updateDesign(contact.id);
     });
-    dropDownRef.innerHTML += userInDropDownHTML(createInititals(userName), userIndex);
-    updateDesign(userIndex);
+
+    if (userName == "Guest") {
+        return;
+    }
 }
 
 /**
@@ -301,7 +319,7 @@ function renderSelectedContacts() {
 function filter(id) {
     const inputRef = document.getElementById(id);
     const input = inputRef.value.toLowerCase();
-    if (input > 2) {
+    if (input.length > 2) {
         const result = findInput(input);
         if (result.length === 0) {
             displayNoContactFoundMessage();
@@ -454,7 +472,7 @@ function saveWord(index) {
         renderSubtask();
         return false;
     } else {
-        deleteSubtask(index)
+        deleteSubtask(index);
     }
 }
 
