@@ -421,7 +421,7 @@
     display: flex;
 }
 
-.change-color summary:hover{
+.change-color summary:hover {
     scale: 1.1;
 }
 
@@ -435,11 +435,11 @@ input[type="color"] {
     border-radius: 10px;
     border: none;
     cursor: pointer;
-  }
+}
 
-  input[type="color"]:hover{
+input[type="color"]:hover {
     scale: 1.1;
-  }
+}
 
 
 .edit-form-inputs {
@@ -454,6 +454,7 @@ input[type="color"] {
 }
 
 .edit-input {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -472,6 +473,42 @@ input[type="color"] {
 
 .edit-input input:focus {
     outline: none;
+}
+
+.form-error {
+    width: 100%;
+    padding-left: 15px;
+    color: red;
+    position: absolute;
+    bottom: -20px;
+
+}
+
+.error-message {
+    animation: error 0.5s ease;
+}
+
+@keyframes error {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: translateX(-5px);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: translateX(5px);
+    }
 }
 
 .edit-action-btns {
