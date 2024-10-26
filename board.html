@@ -125,7 +125,7 @@
     <!-- Overlayer Task Details  Start-->
 
     <div id="overlaver" class="overlay-bg center"
-        onclick="classChangeAction('overlaver', 'overlaver-active', 'remove'); resetBoard(); stopEventBubbling(event);">
+        onclick="classChangeAction('overlaver', 'overlaver-active', 'remove'); stopEventBubbling(event);">
     </div>
 
     <!-- Add Task Overlay  -->
@@ -133,8 +133,7 @@
     <div id="add-task-overlay" class="add-task-overlay-bg"
         onclick="classChangeAction('add-task-overlay', 'overlaver-active', 'toggle'); clearAddTask();closeDropdown()">
         <div class="add-task-overlay" onclick="stopEventBubbling(event); closeDropdown()">
-            <form id="add-task" class="add-task-form add-task-form-in-overlay"
-                onsubmit="createTask()">
+            <form id="add-task" class="add-task-form add-task-form-in-overlay" onsubmit="createTask(); return false">
                 <h1 class="add-task-headline headline-in-overlay">Add Task</h1>
                 <div class="task-details">
                     <div class="column mt-16">
@@ -210,17 +209,17 @@
                     <div><span class="required">*</span>This field is required</div>
                     <div class="d-flex btn-gap">
                         <button type="button" class="btn clear" onclick="clearAddTask()">Cancel <img
-                                src="./assets/icons/clear-icon-dark.png" alt="" /></button>
-                        <button type="submit" class="btn submit">Create Task <img src="./assets/icons/check.png"
-                                alt="" /></button>
+                                src="./assets/icons/clear-icon-dark.png" /></button>
+                        <button type="submit" class="btn submit">Create Task <img
+                                src="./assets/icons/check.png" /></button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 
-    <div id="add-task-succes-msg" class="add-task-succes">Task added to board <img src="./assets/icons/board-icon.png"
-            alt="" /></div>
+    <div id="add-task-succes-msg" class="add-task-succes">Task added to board <img
+            src="./assets/icons/board-icon.png" /></div>
 </body>
 
 </html>
