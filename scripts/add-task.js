@@ -213,12 +213,12 @@ function getSelectedContacts() {
  * The user's name and color are taken from the `userAsContact` object.
  */
 function userInContatcs() {
-    if(user !== "Guest"){
-    contacts.push({
-        name: userAsContact.name,
-        color: userAsContact.color,
-    });}
-    else return
+    if (user !== "Guest") {
+        contacts.push({
+            name: userAsContact.name,
+            color: userAsContact.color,
+        });
+    } else return;
 }
 
 /**
@@ -608,7 +608,7 @@ function showSuccesMsg() {
             classChangeAction("add-task-overlay", "overlaver-active", "remove");
             if (!document.getElementById("board-link").classList.contains("activePage")) {
                 window.location.href = "board.html";
-            }
+            } else resetBoard();
         }, 500);
     }, 2000);
 }
