@@ -213,10 +213,12 @@ function getSelectedContacts() {
  * The user's name and color are taken from the `userAsContact` object.
  */
 function userInContatcs() {
+    if(user !== "Guest"){
     contacts.push({
         name: userAsContact.name,
         color: userAsContact.color,
-    });
+    });}
+    else return
 }
 
 /**
@@ -238,12 +240,6 @@ async function renderContacts(arr) {
         dropDownRef.innerHTML += contactInDropDownHTML(contact, createInititals(contact.name));
         updateDesign(contact.id);
     });
-    // if (userName !== "Guest") {
-    //     dropDownRef.innerHTML += userInDropDownHTML(createInititals(userName), userIndex);
-    //     updateDesign(userIndex);
-    // } else {
-    //     return;
-    // }
 
     if (userName == "Guest") {
         return;
@@ -323,7 +319,7 @@ function renderSelectedContacts() {
 function filter(id) {
     const inputRef = document.getElementById(id);
     const input = inputRef.value.toLowerCase();
-    if (input > 2) {
+    if (input.length > 2) {
         const result = findInput(input);
         if (result.length === 0) {
             displayNoContactFoundMessage();

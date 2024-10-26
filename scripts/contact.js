@@ -1,7 +1,5 @@
-// let currentSortKeys = [];
 let contactIndex = getFromLocalStorage("currentDetails");
 let contactsArray = getFromLocalStorage("contacts");
-// let currentContactDetails = localStorage.getItem("currentDetails");
 
 ////////////////////
 ///    Start   ////
@@ -23,7 +21,6 @@ async function initContacts() {
  * Renders the list of contacts in the HTML container, including the user's own contact and their other contacts.
  */
 async function renderContacts() {
-    // if(screenMode == 'desktop'){}
     let containerRef = document.getElementById("contacts-container");
     containerRef.innerHTML = "";
     let firstLetter = "";
@@ -48,7 +45,6 @@ async function renderContacts() {
  * @param {number} index - The index of the contact in the contacts array.
  */
 async function openContact(index) {
-    // currentContactDetails = index;
     await initContacts();
     saveToLocalStorage("currentDetails", index);
     saveToLocalStorage("contacts", contacts);
@@ -56,10 +52,15 @@ async function openContact(index) {
         window.location.href = "contact-details.html";
     } else if (screenMode == "desktop") {
         contactIndex = index;
+        highlightContact(index)
         contactsArray = contacts;
         classChangeAction("dialog-add-contact", "hide-overlay", "add");
         showContact();
     }
+}
+
+function highlightContact(i) {
+    document.getElementById(`contact-list${i}`).classList.add('contact-highlight')
 }
 
 /**
@@ -67,7 +68,6 @@ async function openContact(index) {
  */
 async function openOwnContact() {
     if (screenMode == "mobile") {
-        // let myUser = await ownContact();
         saveToLocalStorage("contacts", "user");
         window.location.href = "contact-details.html";
     } else if (screenMode == "desktop") {
@@ -138,6 +138,9 @@ async function addContact() {
     let emailRef = document.getElementById("add-mail-input");
     let phoneNumRef = document.getElementById("add-phone-input");
     let inputs = getInputs(nameRef, emailRef, phoneNumRef);
+    if (!formValidation(nameRef.value, emailRef.value, phoneNumRef.value, 'add')) {
+        return
+    }
     document.getElementById("submit-add-contact-btn").setAttribute("disabled", true);
     clearInput(nameRef);
     clearInput(emailRef);
@@ -258,7 +261,12 @@ async function editOwnDetails() {
     document.getElementById("edit-phone").value = currentDetail.phone;
     document.getElementById("edit-initals-container").innerHTML = `
     <span style="background-color:${currentDetail.color}" class="edit-initals center">${createInititals(currentDetail.name)}
-                        <input id="edit-color" type="color" value="${currentDetail.color}">
+        <details class="change-color">
+           <summary>
+              Change Color
+           </summary>
+           <input id="edit-color" type="color" value="${currentDetail.color}">
+       </details>    
                     </span>
     `;
 }
@@ -294,7 +302,6 @@ async function editOwnUser() {
  * Displays a delete confirmation popup for the user.
  */
 function deletePopUp() {
-    /// Her Pop up um fragen ob user wirklich gelöscht werden soll
     document.getElementById("delete-user-popup").classList.toggle("d-none");
 }
 
@@ -302,7 +309,6 @@ function deletePopUp() {
  * Deletes the user's account and logs them out.
  */
 async function deleteOwnUser() {
-    // user Entgültig löschen und ausloggen
     await deleteData((path = `/users/${userId}`));
     logOut();
 }
@@ -321,7 +327,12 @@ function editDetails() {
     document.getElementById("edit-phone").value = currentDetail.phone;
     document.getElementById("edit-initals-container").innerHTML = `
     <span style="background-color:${currentDetail.color}" class="edit-initals center">${createInititals(currentDetail.name)}
-                        <input id="edit-color" type="color" value="${currentDetail.color}">
+                         <details class="change-color">
+           <summary>
+              Change Color
+           </summary>
+           <input id="edit-color" type="color" value="${currentDetail.color}">
+       </details>    
                     </span>
     `;
 }
@@ -330,13 +341,14 @@ function editDetails() {
  * Saves the edited contact details to the backend.
  */
 async function editContact() {
-    // await getCurrentKey();
-    // let key = currentSortKeys[contactIndex].key;
     await getContacts();
     let name = document.getElementById("edit-name").value;
     let email = document.getElementById("edit-email").value;
     let phone = document.getElementById("edit-phone").value;
     let color = document.getElementById("edit-color").value;
+    if (!formValidation(name, email, phone, 'edit')) {
+        return
+    }
     await putData(
         (path = `/contacts/${contacts[contactIndex].key}`),
         (data = {
@@ -350,6 +362,55 @@ async function editContact() {
     showEditedContact(contacts, name, email, phone);
 }
 
+
+function formValidation(name, email, phone, mode) {
+    let isValid = true;
+    let nameError = document.getElementById(`name_error_${mode}`);
+    let emailError = document.getElementById(`email_error_${mode}`);
+    let phoneError = document.getElementById(`phone_error_${mode}`);
+    nameError.innerHTML = '';
+    emailError.innerHTML = '';
+    phoneError.innerHTML = '';
+
+    nameError.classList.remove('error-message')
+    emailError.classList.remove('error-message')
+    phoneError.classList.remove('error-message')
+ 
+    if (!name || name.trim() === '') {
+        nameError.innerHTML = 'Name is required';
+        isValid = false;
+    } else if (name[0] !== name[0].toUpperCase()) {
+        nameError.innerHTML = 'Name should start with a capital letter';
+        isValid = false;
+    }
+
+ 
+    if (!email || email.trim() === '') {
+        emailError.innerHTML = 'Email is required';
+        isValid = false;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { 
+        emailError.innerHTML = 'Please enter a valid email';
+        isValid = false;
+    }
+
+    
+    if (!phone || phone.trim() === '') {
+        phoneError.innerHTML = 'Phone number is required';
+        isValid = false;
+    } else if (!/^\d+$/.test(phone)) {
+        phoneError.innerHTML = 'Phone number should contain only numbers';
+        isValid = false;
+    }
+
+
+    nameError.classList.add('error-message')
+    emailError.classList.add('error-message')
+    phoneError.classList.add('error-message')
+  
+    return isValid
+}
+
+
 /**
  * Displays the edited contact's details.
  *
@@ -361,7 +422,6 @@ async function editContact() {
 async function showEditedContact(contacts, name, email, phone) {
     saveToLocalStorage("contacts", contacts);
     if (screenMode == "mobile") {
-        // await initContacts();
         window.location.href = "contact-details.html";
     } else if (screenMode == "desktop") {
         await initContacts();
@@ -418,3 +478,6 @@ async function deleteTaskContact(deleteKey) {
         }
     }
 }
+
+
+
