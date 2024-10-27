@@ -395,7 +395,7 @@
 .task-wrapper {
     height: fit-content;
     max-width: 252px;
-    margin: 8px;
+    /* margin: 8px; */
     border-radius: 25px;
     z-index: 1;
 }
