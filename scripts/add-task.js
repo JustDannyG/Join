@@ -670,6 +670,6 @@ function currentDate() {
 
     let currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
 
-    console.log("The current date is " + currentDate);
+    // console.log("The current date is " + currentDate);
     return currentDate;
 }

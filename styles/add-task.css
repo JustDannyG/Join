@@ -307,6 +307,10 @@ select:focus,
     overflow-y: auto;
 }
 
+.absolute {
+    position: absolute;
+}
+
 .subtasks-btns {
     display: flex;
     justify-content: center;
