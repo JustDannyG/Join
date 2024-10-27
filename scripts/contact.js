@@ -60,12 +60,15 @@ async function openContact(index) {
 }
 
 function highlightContact(i) {
+    let ownContactRef = document.getElementById("ownContact");
     let liRef = Array.from(document.getElementsByClassName("contact-list"));
     liRef.forEach((element) => {
         element.classList.remove("contact-highlight");
     });
+    if (ownContactRef) {
+        ownContactRef.classList.remove("contact-highlight");
+    }
     document.getElementById(`contact-list${i}`).classList.add("contact-highlight");
-    document.getElementById("ownContact").classList.remove("contact-highlight");
 }
 /**
  * Opens the current user's own contact details.
