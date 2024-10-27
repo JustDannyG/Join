@@ -38,6 +38,7 @@
 }
 
 .input-container {
+    position: relative;
     display: flex;
     flex-direction: column;
     margin-top: 16px;
@@ -88,6 +89,7 @@ input::placeholder,
 }
 
 .mt-16 {
+    position: relative;
     margin-top: 16px;
     width: 100%;
 }
@@ -116,6 +118,7 @@ input::placeholder,
 .selectet-contacts-container {
     margin-top: 4px;
     gap: 4px;
+    flex-wrap: wrap;
 }
 
 .contact {
@@ -146,7 +149,7 @@ input::placeholder,
 
 .submit-row {
     background-color: var(--light-grey);
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     padding: 16px;
     max-width: calc(1920px - 232px);
@@ -287,7 +290,8 @@ select:focus,
 .add-task-input input {
     font-size: 16px;
     border: none;
-    flex: 1;
+    /* flex: 1; */
+    width: 100%;
 }
 
 .add-subtask-btn {
@@ -296,7 +300,7 @@ select:focus,
 }
 
 .subtasks-container {
-    position: absolute;
+    /* position: absolute; */
     top: 66px;
     width: 100%;
     max-height: 136px;
@@ -318,6 +322,7 @@ select:focus,
     transition: all ease-in-out 125ms;
     gap: 3px;
 }
+
 
 .edit-icon {
     width: 20px;
@@ -517,37 +522,13 @@ select option[value=""] {
     background-color: var(--light-blue);
 }
 
-/* .drop-down button {
-    padding: 0px 16px;
-} */
-
-/* .select-placeholder {
-    height: 34px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-} */
-
-/* .select-placeholder span {
-    padding: 8px;
-} */
-
-/* .links {
-    margin-top: 72px;
-    gap: 40px;
+.required-info-mobile {
+    padding-top: 20px;
 }
 
-.nav-link {
-    color: var(--white);
+.add-task-mobile-action-btn {
+    display: flex;
     align-items: center;
-    gap: 8px;
-} */
+    gap: 20px;
 
-/* .word-item svg {
-    cursor: pointer;
-} */
-
-/* .word-item button img {
-    width: 15px;
-    margin: 5px;
-} */
+}

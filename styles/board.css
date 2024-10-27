@@ -10,7 +10,7 @@
     text-wrap: wrap;
     /* max-width: calc(1920px - 232px); */
     margin-left: 130px;
-    z-index: 1;
+    /* z-index: 1; */
     align-items: center;
     /* height: calc(100vh - (80px + 80px)); */
     height: 100%;
@@ -395,7 +395,7 @@
 .task-wrapper {
     height: fit-content;
     max-width: 252px;
-    margin: 8px;
+    /* margin: 8px; */
     border-radius: 25px;
     z-index: 1;
 }
@@ -494,7 +494,7 @@
 }
 
 .task-overlay-scroll-container {
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .task-overlay-category-container {
@@ -588,6 +588,11 @@
 
 .task-overlay-subtask:hover {
     background-color: lightgray;
+}
+
+.subtask-overlay{
+    height: 200px;
+    overflow: auto;
 }
 
 .task-overlay-edit-btns {

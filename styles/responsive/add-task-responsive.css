@@ -65,6 +65,10 @@
         /* left: 110px; */
         font-size: 61px;
     }
+
+    .required-info-mobile{
+        display: none;
+    }
 }
 
 @media (min-width: 1440px) {
