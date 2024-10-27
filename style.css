@@ -144,3 +144,46 @@ button {
 .activePage {
     background-color: var(--hover-darke-blue);
 }
+
+
+/* =========================
+    Error  
+   ========================= */
+
+
+.form-error {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    /* padding-left: 15px; */
+    color: red;
+    position: absolute;
+    bottom: -20px;
+}
+
+.error-message {
+    animation: error 0.5s ease;
+}
+
+@keyframes error {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: translateX(-5px);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: translateX(5px);
+    }
+}
