@@ -399,7 +399,7 @@ function editBoardTaskHTML(currentTask) {
                             <img src="./assets/icons/add -subtasks.png" alt="" onclick="setInputFocus()" />
                         </div>
                     </div>
-                <div id="subtasks-container" class="subtasks-container overflow-unset"></div>
+                <div id="subtasks-container" class="subtasks-container"></div>
                 </div>
             </div>
 
