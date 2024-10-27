@@ -411,7 +411,7 @@
     height: 35px;
     font-size: 14px;
     bottom: -38px;
-    border: solid 1px;
+    border: solid 1px var(--dark-grey);
     border-radius: 10px;
     cursor: pointer;
     transition: all ease-in-out 100ms;
