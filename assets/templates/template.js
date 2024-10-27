@@ -308,7 +308,7 @@ function taskBoardOverlay(currentTask) {
               </div>
               <div class="task-overlay-subtasks-container">
                   Subtasks
-                  <div id="subtask-overlay"></div>
+                  <div class="subtask-overlay" id="subtask-overlay"></div>
               </div>
             </div>
 

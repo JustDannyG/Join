@@ -468,7 +468,8 @@ input[type="color"]:hover {
 .edit-input input {
     font-size: 20px;
     border: none;
-    flex: 1;
+    /* flex: 1; */
+    width: 100%;
 }
 
 .edit-input input:focus {

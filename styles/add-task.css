@@ -116,6 +116,7 @@ input::placeholder,
 .selectet-contacts-container {
     margin-top: 4px;
     gap: 4px;
+    flex-wrap: wrap;
 }
 
 .contact {
@@ -287,7 +288,8 @@ select:focus,
 .add-task-input input {
     font-size: 16px;
     border: none;
-    flex: 1;
+    /* flex: 1; */
+    width: 100%;
 }
 
 .add-subtask-btn {
@@ -318,6 +320,7 @@ select:focus,
     transition: all ease-in-out 125ms;
     gap: 3px;
 }
+
 
 .edit-icon {
     width: 20px;
@@ -517,13 +520,13 @@ select option[value=""] {
     background-color: var(--light-blue);
 }
 
-.required-info-mobile{
+.required-info-mobile {
     padding-top: 20px;
 }
 
-.add-task-mobile-action-btn{
+.add-task-mobile-action-btn {
     display: flex;
     align-items: center;
     gap: 20px;
-    
+
 }
