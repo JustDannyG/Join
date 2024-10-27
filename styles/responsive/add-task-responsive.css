@@ -33,7 +33,6 @@
     }
 
     .submit-row {
-        /* margin-left: 210px; */
         display: none;
     }
 
@@ -61,8 +60,6 @@
     .add-task-headline {
         position: absolute;
         top: -164px;
-        /* top: -250px; */
-        /* left: 110px; */
         font-size: 61px;
     }
 

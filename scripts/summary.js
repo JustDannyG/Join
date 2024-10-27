@@ -5,10 +5,6 @@ function summaryInit() {
     getSummaryTasks();
 }
 
-///////////////////////////////////////
-///      Greeting Functions      /////
-/////////////////////////////////////
-
 /**
  * Displays the greeting message and user's name on both desktop and mobile versions.
  */
@@ -39,10 +35,6 @@ function greetingTime() {
         return `Good evening,`;
     }
 }
-
-/////////////////////////////////////////
-///    Show Current Summary Tasks     ///
-////////////////////////////////////////
 
 /**
  * Fetches tasks and updates the task counts in the summary view.
@@ -116,10 +108,6 @@ function findEarliestDate(task) {
 }
 
 }
-
-////////////////////////////////////////////////////
-///     Go / Scroll to current Task In Board     ///
-////////////////////////////////////////////////////
 
 function goToSummaryTask(section) {
     window.location.href = "board.html#" + "/" + section;

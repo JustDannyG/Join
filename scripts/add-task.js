@@ -5,9 +5,6 @@ let currentSubtasks = [];
 let subtaskArray = [];
 let isDropdownOpen = false;
 let userAsContact;
-/////////////////
-///   Start   ///
-////////////////
 
 /**
  * Initializes the task creation process by setting up the necessary data and UI elements.
@@ -25,10 +22,6 @@ async function addTaskInit() {
     getSelectedContacts();
     renderContacts(selectedContacts);
 }
-
-///////////////////////////////////////
-///      Prio Button Functions     ///
-//////////////////////////////////////
 
 /**
  * Toggles the task priority based on the input.
@@ -67,10 +60,6 @@ function updateBtnColor(prioValue) {
         document.getElementById(`${prioValue}-btn`).classList.add(prioValue);
     }
 }
-
-///////////////////////////////////////
-///      AssignTo Functions       ///
-//////////////////////////////////////
 
 /**
  * Toggles the visibility of a dropdown menu and updates the associated icon.
@@ -356,10 +345,6 @@ function findInput(input) {
     let result = selectedContacts.filter((contact) => contact.name.toLowerCase().includes(input));
     return result;
 }
-
-//////////////////////////////
-//     Subtasks Functions ///
-////////////////////////////
 
 /**
  * Updates the subtask button based on the content of the input field.
@@ -659,17 +644,12 @@ function addTaskValidation() {
 
 function currentDate() {
     const date = new Date();
-
     let currentDay = String(date.getDate()).padStart(2, '0');
-
     let currentMonth = String(date.getMonth() + 1).padStart(2, "0");
-
     let currentYear = date.getFullYear();
-
-    // we will display the date as DD-MM-YYYY 
-
     let currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
 
-    // console.log("The current date is " + currentDate);
     return currentDate;
 }
+
+document.querySelector('#date').min = currentDate();

@@ -1,10 +1,6 @@
 let contactIndex = getFromLocalStorage("currentDetails");
 let contactsArray = getFromLocalStorage("contacts");
 
-////////////////////
-///    Start   ////
-///////////////////
-
 /**
  * Initializes the contact list by fetching contacts and rendering them.
  */
@@ -12,10 +8,6 @@ async function initContacts() {
     await getContacts();
     await renderContacts();
 }
-
-/////////////////////////////////
-///    Render Contact List   ////
-////////////////////////////////
 
 /**
  * Renders the list of contacts in the HTML container, including the user's own contact and their other contacts.
@@ -105,17 +97,11 @@ async function showOwnContact() {
  */
 function changeOwnEditButtons() {
     document.getElementById("edit-contact").innerHTML = `
- <div class="edit-contact d-flex " onclick="toggleOwnOverlayDisplay()">
+        <div class="edit-contact d-flex " onclick="toggleOwnOverlayDisplay()">
             <img src="./assets/icons/edit.png " alt="Edit Button" /> Edit
         </div>
-
-
 `;
 }
-
-/////////////////////////////////////////////////
-///   LocalStorage - Save / Load Functions   ////
-/////////////////////////////////////////////////
 
 /**
  * Saves a value to localStorage.
@@ -142,10 +128,6 @@ function getFromLocalStorage(key) {
     return myData;
 }
 
-////////////////////////////////////
-///    Add Contacts Functions   ////
-///////////////////////////////////
-
 /**
  * Adds a new contact by collecting input data and saving it to the backend.
  */
@@ -164,7 +146,6 @@ async function addContact() {
 
     await postData((path = "contacts"), (data = { name: `${inputs.name}`, email: `${inputs.email}`, phone: `${inputs.phone}`, color: `${inputs.color}` }));
     const contactIndex = await findContact(inputs.name, inputs.email, inputs.phone);
-    console.log(contactIndex);
     toogleDialog("dialog-add-succes", contactIndex);
 }
 
@@ -220,10 +201,6 @@ function clearAddInputs() {
     document.getElementById("add-phone-input").value = "";
 }
 
-///////////////////////////////
-//   Show Contact Details   ///
-///////////////////////////////
-
 /**
  * Displays the details of the currently selected contact.
  */
@@ -251,10 +228,6 @@ function toggleOverlayDisplay() {
     }
     editDetails();
 }
-
-///////////////////////////////
-//   Own User Details   ///
-///////////////////////////////
 
 /**
  * Toggles the display of the user's own contact edit overlay.
@@ -330,10 +303,6 @@ async function deleteOwnUser() {
     logOut();
 }
 
-///////////////////////////////////////
-//  Edit Contact Details Functions  ///
-//////////////////////////////////////
-
 /**
  * Populates the edit form with the currently selected contact's details.
  */
@@ -379,6 +348,7 @@ async function editContact() {
     showEditedContact(contacts, name, email, phone);
 }
 
+
 function formValidation(name, email, phone, mode) {
     let isValid = true;
     let nameError = document.getElementById(`name_error_${mode}`);
@@ -387,11 +357,31 @@ function formValidation(name, email, phone, mode) {
     nameError.innerHTML = "";
     emailError.innerHTML = "";
     phoneError.innerHTML = "";
+    let nameCheck = checkName(name, nameError)
+    let emailCheck = checkEmail(email, emailError)
+    let phoneCheck = checkPhone(phone, phoneError)
+    if (true == nameCheck && emailCheck && phoneCheck) {
+        return isValid;
+    }
+    addErrorClasses(nameError, emailError, phoneError)
+    return false;
+}
 
-    nameError.classList.remove("error-message");
-    emailError.classList.remove("error-message");
-    phoneError.classList.remove("error-message");
+function addErrorClasses(nameError, emailError, phoneError) {
+    nameError.classList.add("error-message");
+    emailError.classList.add("error-message");
+    phoneError.classList.add("error-message");
+}
 
+function check() {
+    checkName(name, nameError)
+    checkEmail(email, emailError)
+    checkPhone(phone, phoneError)
+}
+
+
+function checkName(name, nameError) {
+    let isValid = true;
     if (!name || name.trim() === "") {
         nameError.innerHTML = "Name is required";
         isValid = false;
@@ -399,7 +389,11 @@ function formValidation(name, email, phone, mode) {
         nameError.innerHTML = "Name should start with a capital letter";
         isValid = false;
     }
+    return isValid
+}
 
+function checkEmail(email, emailError) {
+    let isValid = true;
     if (!email || email.trim() === "") {
         emailError.innerHTML = "Email is required";
         isValid = false;
@@ -407,7 +401,11 @@ function formValidation(name, email, phone, mode) {
         emailError.innerHTML = "Please enter a valid email";
         isValid = false;
     }
+    return isValid
+}
 
+function checkPhone(phone, phoneError) {
+    let isValid = true;
     if (!phone || phone.trim() === "") {
         phoneError.innerHTML = "Phone number is required";
         isValid = false;
@@ -415,12 +413,7 @@ function formValidation(name, email, phone, mode) {
         phoneError.innerHTML = "Phone number should contain only numbers";
         isValid = false;
     }
-
-    nameError.classList.add("error-message");
-    emailError.classList.add("error-message");
-    phoneError.classList.add("error-message");
-
-    return isValid;
+    return isValid
 }
 
 /**
@@ -441,10 +434,6 @@ async function showEditedContact(contacts, name, email, phone) {
         classChangeAction("edit-overlay-bg", "hide-overlay", "add");
     }
 }
-
-//////////////////////////
-//   Delete Contact    ///
-//////////////////////////
 
 /**
  * Deletes the selected contact and removes it from the backend.

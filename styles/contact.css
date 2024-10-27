@@ -1,10 +1,5 @@
-/* ================================
-          Contact
-   ================================== */
-
 .contact-content {
     display: flex;
-    /* height: calc(100vh - 96px); */
     flex: 1;
     height: 100%;
     background-color: var(--light-grey);
@@ -21,11 +16,6 @@
     text-wrap: wrap;
     max-width: 1920px;
 }
-
-
-/* =========================================
-          Contact - Add new Contact Button
-   =========================================== */
 
 .add-new-contact-desktop-sticky {
     position: sticky;
@@ -70,10 +60,6 @@
     border: unset;
     outline: unset;
 }
-
-/* =========================================
-            Contact - Contact List
-   =========================================== */
 
 .contacts-container {
     gap: 16px;
@@ -130,10 +116,6 @@
     color: white;
 }
 
-/* =========================================
-               Contact - Details
-   =========================================== */
-
 .contacts-details-desktop-container {
     padding: 70px 16px 48px 50px;
     flex: 1;
@@ -178,14 +160,9 @@
     gap: 8px;
 }
 
-/* =====================================
-          Contact Detail Template
-   ====================================== */
-
 .detail-container {
     display: flex;
     flex-direction: column;
-    /* min-width: 461px; */
     height: 364px;
     gap: 35px;
 
@@ -208,8 +185,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 120px;
-    width: 120px;
+    max-height: 120px;
+    max-width: 120px;
+    min-height: 120px;
+    min-width: 120px;
     border-radius: 50%;
     background-color: orange;
     border: solid 2px white;
@@ -220,9 +199,10 @@
     flex-direction: column;
     justify-content: space-between;
     font-size: 47px;
-    min-width: 287px;
     height: 88px;
     font-weight: 500;
+    width: 100%;
+    text-wrap: wrap;
 }
 
 .edit-details-btns {
@@ -263,18 +243,12 @@
 @keyframes contact {
     0% {
         transform: translateX(100vw);
-        /* Startpunkt: außerhalb des rechten Rands */
     }
 
     100% {
         transform: translateX(0);
-        /* Endpunkt: in der Mitte */
     }
 }
-
-/* ===================================
-     Contact - Edit Toggle Button 
-   =================================== */
 
 .edit-container {
     position: absolute;
@@ -303,10 +277,6 @@
     background-color: var(--medium-grey);
     cursor: pointer;
 }
-
-/* ===================================
-     Contact - Edit Overlay
-   =================================== */
 
 .hide-overlay {
     transform: translateY(100vh);
@@ -468,7 +438,6 @@ input[type="color"]:hover {
 .edit-input input {
     font-size: 20px;
     border: none;
-    /* flex: 1; */
     width: 100%;
 }
 
@@ -527,10 +496,6 @@ input[type="color"]:hover {
 .edit-save-btn:active {
     scale: 0.9;
 }
-
-/* =========================
-     Contact - Add Overlay
-   ========================= */
 
 .subtitle {
     font-size: 20px;
@@ -615,9 +580,6 @@ input[type="color"]:hover {
     box-shadow: 2px 4px 7px 0px rgba(0, 0, 0, 0.5);
 }
 
-/* =========================
-     Contact - Add Popup
-   ========================= */
 .dialog {
     position: absolute;
     align-self: center;
@@ -636,11 +598,6 @@ input[type="color"]:hover {
 .dialog-active {
     transform: translateY(-120px);
 }
-
-
-/* ====================================
-     Contact - Delete Own User Popup
-   ==================================== */
 
 .delete-user-popup-bg {
     display: flex;
@@ -694,9 +651,6 @@ input[type="color"]:hover {
 .delete-popup-yes-btn:hover {
     background-color: rgba(251, 61, 1, 1.0);
 }
-
-
-/*=======                                   Ab hier noch weiter Checken*/
 
 .hide-overlay-desktop {
     transform: translateX(100vw);

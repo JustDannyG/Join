@@ -1,7 +1,3 @@
-//////////////////////////////////////////////////
-/////       Header and Sidebar  Defaults    //////
-//////////////////////////////////////////////////
-
 function mobileHeader(user) {
     return /*html*/ `<header class="d-flex header-mobile">
       <img class="logo-mobile" src="./assets/icons/logo-dark.svg" alt="Join Logo" />
@@ -68,10 +64,6 @@ function desktopSidebar() {
     </aside>`;
 }
 
-////////////////////////////////////////////
-/////  Board  -  Tasks  Templates     //////
-///////////////////////////////////////////
-
 function generateTaskHTML(task, index, className) {
     return /*html*/ `<div id="${task.id}" draggable="true" ondragstart="startDragging(${task.id})"  onclick="classChangeAction('overlaver','overlaver-active','add'); openTask(${task.id})" class="task-wrapper">
             <div class ="task">
@@ -106,11 +98,6 @@ function generateNoTaskHTML(noTask) {
     return /*html*/ `<div class="no-task"> No task in ${noTask}</div> `;
 }
 
-////////////////////////////////////////////
-/////      Contact - Templates       //////
-///////////////////////////////////////////
-
-//Templates for Contact-Details
 function contactCirleHTML(detail) {
     return /*html*/ `
     <div class="detail-container">
@@ -144,7 +131,6 @@ function contactOwnCirleHTML(detail) {
                 ${detail.name}
                 <div class="edit-details-btns">
                     <button onclick="toggleOwnOverlayDisplay()"><img src="./assets/icons/edit.png"/>Edit</button>
-                    <!-- <button onclick="deleteContact()"><img src="./assets/icons/delete.png" />Delete</button> -->
                 </div>
             </div>
         </div>
@@ -159,7 +145,6 @@ function contactOwnCirleHTML(detail) {
     `;
 }
 
-//Templates for Contact List
 function firstLetterHtml(firstLetter) {
     return /*html*/ `<div class="contacts-first-letter">${firstLetter}</div>`;
 }
@@ -184,7 +169,6 @@ function ownContactListHtml(contact) {
     </div>`;
 }
 
-//Templates for Add Task
 
 function contactInDropDownHTML(contact, initials) {
     return /*html*/ `
@@ -222,9 +206,6 @@ function contactSelectionCircleHTML(contact) {
     return /*html*/ `<div class="contact center " style="background-color:${contact.color}">${createInititals(contact.name)}</div>`;
 }
 
-////////////////////////////////////////////////////
-/////       Add-Task - Subtask Templates      /////
-//////////////////////////////////////////////////
 
 function subtaskBtnHTML() {
     return /*html*/ `
@@ -275,9 +256,6 @@ function editIconsHTML(i) {
             </div>`;
 }
 
-//////////////////////////////////////////////////
-/////          Board Task Overlays          //////
-//////////////////////////////////////////////////
 
 function taskBoardOverlay(currentTask) {
     return /*html*/ ` <div class="task-overlay-bg" >
@@ -329,10 +307,6 @@ function generateAssignedToOerlayLiHTML(contact) {
                                 <span class="name">${contact.name}</span>
                         </li>`;
 }
-
-//////////////////////////////////////////////////
-/////         Board Task Overlays Edit      //////
-//////////////////////////////////////////////////
 
 function editBoardTaskHTML(currentTask) {
     return /*html*/ `

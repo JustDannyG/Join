@@ -3,10 +3,6 @@ let tasksArray = [];
 let currentTask;
 let taskCounter = 0;
 
-////////////////////
-///    Start   ////
-///////////////////
-
 /**
  * Initializes the board by fetching the necessary data and updating the UI.
  *
@@ -30,10 +26,6 @@ async function resetBoard() {
     await getTasks();
     updateHtml();
 }
-
-////////////////////////////////////////
-///    Get and Show Tasks on Board   ///
-////////////////////////////////////////
 
 /**
  * Fetches tasks from the server, processes them, and updates the `tasksArray`.
@@ -170,10 +162,6 @@ function renderPrio(task, index) {
     }
 }
 
-////////////////////////////////////////
-///  Board Drag and Drop Functions   ///
-///////////////////////////////////////
-
 /**
  * Moves the currently dragged task to a specified category.
  * Updates the task in the array and refreshes the database and HTML accordingly.
@@ -243,10 +231,6 @@ function animationOndrag(id) {
     document.getElementById(id).classList.add("animation-ondrag");
 }
 
-/////////////////////////////////////////////
-///  Task Overlay - Show Task Functions   ///
-////////////////////////////////////////////
-
 /**
  * Opens a task, displays its overlay, and triggers related functions.
  *
@@ -273,10 +257,6 @@ function renderTasksArrays() {
     }
     setCheck();
 }
-
-/////////////////////////////////////////////////////
-///   Task Overlay - Check Subtasks Functions    ///
-///////////////////////////////////////////////////
 
 /**
  * Renders the checklist for subtasks within the task overlay.
@@ -311,10 +291,6 @@ async function checkAndPushToFirebase(subIndex) {
     await getTasks();
     await resetBoard();
 }
-
-////////////////////////////////////////
-//    Edit Task Overlay Functions   ///
-///////////////////////////////////////
 
 /**
  * Displays the editable values for the selected task.
@@ -380,10 +356,6 @@ function findCheckedContacts(currentTask) {
     });
 }
 
-///////////////////////////////////////////////
-///   Edit Task Overlay - Edit Subtasks    ///
-//////////////////////////////////////////////
-
 /**
  * Renders the subtasks for editing.
  */
@@ -429,10 +401,6 @@ function deleteSubtask(i) {
     classChangeAction("overlaver", "overlaver-active", "remove");
 }
 
-///////////////////////////////////////////////////////
-///   Edit Task Overlay - PUT  Firebase / Board    ///
-/////////////////////////////////////////////////////
-
 /**
  * Saves the edited task to the database.
  */
@@ -456,10 +424,6 @@ async function editTask() {
     openTask(currentTask.id);
 }
 
-//////////////////////////////////////////////////////
-///  Edit Task Overlay - Delete  Firebase Board   ///
-/////////////////////////////////////////////////////
-
 /**
  * Deletes the task from the backend.
  */
@@ -468,10 +432,6 @@ async function deleteTask() {
     await deleteData((path = `/tasks/${currentTask.taskKey}`), (data = {}));
     resetBoard();
 }
-
-//////////////////////////////////////////////////
-///     Mobile  Drag and Drop  Button Version  ///
-/////////////////////////////////////////////////
 
 /**
  * Toggles the display of task move options.
@@ -506,10 +466,6 @@ async function moveTaskTo(taskId, category) {
     );
     await resetBoard();
 }
-
-//////////////////////////////////////////
-///     Board Search Task Function     ///
-/////////////////////////////////////////
 
 /**
  * Filters and renders tasks across different categories based on the search input.
@@ -564,10 +520,6 @@ function filterSearchTasks(task, search) {
     }
     return filterTasks;
 }
-
-//////////////////////////////////////////
-///    Scroll to Section Function     ///
-/////////////////////////////////////////
 
 /**
  * Automatically scrolls to a section of the page when loaded, based on the URL hash.

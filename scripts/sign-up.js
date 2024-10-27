@@ -79,10 +79,8 @@ function checkboxError() {
     checkbox = document.getElementById("myCheckbox");
     if (!checkbox.checked) {
         let checkboxError = document.getElementById("checkbox-error");
-        // let ckeckboxContainer = document.getElementById("checkbox-container");
         checkboxError.textContent = "Please agree to our terms and conditions!";
         checkboxError.classList.add("visible");
-        // ckeckboxContainer.classList.add("red-border");
         shake(checkboxError);
     } else {
         document.getElementById("checkbox-error").classList.remove("visible");
