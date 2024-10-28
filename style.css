@@ -29,6 +29,10 @@
     font-family: inter;
 }
 
+a{
+    color: #2E7CEE;
+}
+
 html,
 body {
     height: 100%;
@@ -45,23 +49,30 @@ body {
     background-color: var(--light-grey);
 }
 
-main::-webkit-scrollbar {
-    width: 6px;
+::-webkit-scrollbar {
+    width: 10px;
 }
 
-main::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background: var(--dark-grey);
+::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 10px;
 }
 
-main::-webkit-scrollbar-track {
-    background: #f1f1f1;
+::-webkit-scrollbar-thumb {
+    background-color: #2DABE2;
+    border-radius: 10px;
+    border: 2px solid #f0f0f0; 
 }
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #1b8bb5;
+}
+
+
 
 .content {
     padding: 25px 16px 48px 16px;
     text-wrap: wrap;
-    /* max-width: 1920px; */
 }
 
 a {
@@ -91,7 +102,6 @@ button {
     flex-direction: column;
 }
 
-/*Priority Buttons*/
 
 .low {
     background-color: var(--low) !important;
@@ -108,10 +118,6 @@ button {
     color: var(--white);
 }
 
-/* =========================
-     Categorys Colors
-   ========================= */
-
 .user-stoty {
     background-color: #0038ff;
 }
@@ -120,9 +126,6 @@ button {
     background-color: #20d7c1;
 }
 
-/* =========================
-    Buttons in Contact 
-   ========================= */
 
 .bg-color-blue {
     background-color: var(--light-blue) !important;
@@ -130,4 +133,41 @@ button {
 
 .activePage {
     background-color: var(--hover-darke-blue);
+}
+
+
+.form-error {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    color: red;
+    position: absolute;
+    bottom: -20px;
+}
+
+.error-message {
+    animation: error 0.5s ease;
+}
+
+@keyframes error {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: translateX(-5px);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: translateX(5px);
+    }
 }

@@ -1,9 +1,5 @@
 const BASE_URL = "https://join--projekt-default-rtdb.europe-west1.firebasedatabase.app/";
 
-///////////////////////////
-///   Fetch Functions   ///
-///////////////////////////
-
 /**
  * Fetches data asynchronously from the specified API endpoint.
  *

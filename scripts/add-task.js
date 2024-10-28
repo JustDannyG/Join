@@ -5,9 +5,6 @@ let currentSubtasks = [];
 let subtaskArray = [];
 let isDropdownOpen = false;
 let userAsContact;
-/////////////////
-///   Start   ///
-////////////////
 
 /**
  * Initializes the task creation process by setting up the necessary data and UI elements.
@@ -25,10 +22,6 @@ async function addTaskInit() {
     getSelectedContacts();
     renderContacts(selectedContacts);
 }
-
-///////////////////////////////////////
-///      Prio Button Functions     ///
-//////////////////////////////////////
 
 /**
  * Toggles the task priority based on the input.
@@ -67,10 +60,6 @@ function updateBtnColor(prioValue) {
         document.getElementById(`${prioValue}-btn`).classList.add(prioValue);
     }
 }
-
-///////////////////////////////////////
-///      AssignTo Functions       ///
-//////////////////////////////////////
 
 /**
  * Toggles the visibility of a dropdown menu and updates the associated icon.
@@ -213,12 +202,12 @@ function getSelectedContacts() {
  * The user's name and color are taken from the `userAsContact` object.
  */
 function userInContatcs() {
-    if(user !== "Guest"){
-    contacts.push({
-        name: userAsContact.name,
-        color: userAsContact.color,
-    });}
-    else return
+    if (user !== "Guest") {
+        contacts.push({
+            name: userAsContact.name,
+            color: userAsContact.color,
+        });
+    } else return;
 }
 
 /**
@@ -357,138 +346,6 @@ function findInput(input) {
     return result;
 }
 
-//////////////////////////////
-//     Subtasks Functions ///
-////////////////////////////
-
-/**
- * Updates the subtask button based on the content of the input field.
- *
- * This function checks if the subtask input field has any text. If it does,
- * it updates the button's inner HTML to display a custom button. If the input
- * field is empty, it resets the button to show a default image.
- */
-function subtaskInputBtn() {
-    let subtaskInput = document.getElementById("subtasks-input");
-    let subtaskButtons = document.getElementById("add-subtask-btn");
-
-    if (subtaskInput.value.length > 0) {
-        subtaskButtons.innerHTML = subtaskBtnHTML();
-    } else {
-        subtaskButtons.innerHTML = `<img src="./assets/icons/add -subtasks.png" alt=""></img>`;
-    }
-}
-
-/**
- * Sets the focus on the subtask input field.
- *
- * This function retrieves the subtask input element by its ID and applies focus to it,
- * allowing the user to start typing immediately.
- */
-function setInputFocus() {
-    document.getElementById("subtasks-input").focus();
-}
-
-/**
- * Clears the subtask input field and updates the button state.
- *
- * This function sets the value of the subtask input field to an empty string,
- * effectively clearing it. After clearing, it calls the `subtaskInputBtn` function
- * to update the button's appearance based on the new input state.
- */
-function clearSubtask() {
-    let subtaskInput = document.getElementById("subtasks-input");
-    subtaskInput.value = "";
-    subtaskInputBtn();
-}
-
-/**
- * Adds a subtask to the current subtasks array and updates the display.
- *
- * This function retrieves the value from the subtask input field, adds a new
- * subtask object to the `currentSubtasks` array, and then calls the
- * `renderSubtask` function to update the UI. Finally, it clears the input field
- * and updates the button state.
- */
-function addSubtask() {
-    let subtaskInput = document.getElementById("subtasks-input");
-    currentSubtasks.push({
-        sub: subtaskInput.value,
-        checked: false,
-    });
-    renderSubtask();
-    subtaskInput.value = "";
-    subtaskInputBtn();
-}
-
-/**
- * Generates HTML for a subtask.
- *
- * @param {Object} subtask - The subtask object.
- * @param {number} index - The index of the subtask in the array.
- * @returns {string} - HTML string representing the subtask.
- */
-function renderSubtask() {
-    let subtaskContainer = document.getElementById("subtasks-container");
-    subtaskContainer.innerHTML = "";
-    for (let i = 0; i < currentSubtasks.length; i++) {
-        const subtask = currentSubtasks[i];
-        subtaskContainer.innerHTML += subtaskTaskHTML(subtask, i);
-    }
-}
-
-/**
- * Edits a subtask by updating the display to show edit icons for the specified index.
- *
- * This function generates the HTML for the subtasks, displaying an edit icon for
- * the selected subtask. Other subtasks are shown as clickable items that can be edited.
- *
- * @param {number} index - The index of the subtask to edit.
- */
-function editWord(index) {
-    let wordListHTML = "";
-    for (let i = 0; i < currentSubtasks.length; i++) {
-        if (i === index) {
-            wordListHTML += editIconsHTML(i);
-        } else {
-            wordListHTML += `<div class="word-item">
-                <span onclick="editWord(${i})">${currentSubtasks[i].sub}</span>
-            </div>`;
-        }
-    }
-    document.getElementById("subtasks-container").innerHTML = wordListHTML;
-}
-
-/**
- * Saves the edited subtask by updating its value and re-rendering the subtasks list.
- *
- * @param {number} index - The index of the subtask to be updated.
- * @returns {boolean} - Returns false to prevent any default form submission behavior.
- */
-function saveWord(index) {
-    const newValue = document.getElementById(`editInput${index}`).value;
-    if (newValue.length > 0) {
-        currentSubtasks[index].sub = newValue;
-        renderSubtask();
-        return false;
-    } else {
-        deleteSubtask(index);
-    }
-}
-
-/**
- * Deletes a subtask from the currentSubtasks array by its index.
- *
- * @param {number} i - The index of the subtask to be deleted.
- */
-function deleteSubtask(i) {
-    currentSubtasks.splice(i, 1);
-    renderSubtask();
-}
-
-////////////////////////////////////////
-//   Create Task   Board / Firebase  ///
-///////////////////////////////////////
 
 /**
  * Creates a new task and updates the user interface accordingly.
@@ -499,6 +356,9 @@ function deleteSubtask(i) {
  */
 async function createTask() {
     getCurrentCategory();
+    if (!addTaskValidation()) {
+        return
+    }
     await postTask();
     showSuccesMsg();
     clearAddTask();
@@ -518,30 +378,6 @@ function filterCheckedAssignedTo() {
     return filtertContacts;
 }
 
-/**
- * Sends a new task to the server via a POST request.
- *
- * This asynchronous function gathers task data from input fields and the current
- * application state, then sends this data to the server at the specified path
- * ("/tasks") using the `postData` function. The data includes the task title,
- * description, date, assigned contacts (filtered to include only those checked),
- * the current category, priority, selected category text, and any subtasks.
- */
-async function postTask() {
-    await postData(
-        (path = "/tasks"),
-        (data = {
-            title: document.getElementById("title").value,
-            description: document.getElementById("description").value,
-            date: document.getElementById("date").value,
-            assignedTo: filterCheckedAssignedTo(),
-            category: currentCategory,
-            prio: prio,
-            categoryText: document.getElementById("selected-category").value,
-            subtask: currentSubtasks,
-        })
-    );
-}
 
 /**
  * Saves the selected task category to local storage.
@@ -608,7 +444,36 @@ function showSuccesMsg() {
             classChangeAction("add-task-overlay", "overlaver-active", "remove");
             if (!document.getElementById("board-link").classList.contains("activePage")) {
                 window.location.href = "board.html";
-            }
+            } else resetBoard();
         }, 500);
     }, 2000);
 }
+
+/**
+ * Returns today's date in the format YYYY-MM-DD.
+ *
+ * This function creates a Date object for the current date
+ * and formats it in ISO format (year-month-day), which is suitable for 
+ * the `min` attribute in <input type="date"> fields.
+ *
+ * @returns {string} Today's date in the format "YYYY-MM-DD".
+ */
+function currentDate() {
+    const date = new Date();
+    let currentDay = String(date.getDate()).padStart(2, '0');
+    let currentMonth = String(date.getMonth() + 1).padStart(2, "0");
+    let currentYear = date.getFullYear();
+    let currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
+
+    return currentDate;
+}
+
+/**
+ * Sets the minimum selectable date for the date input field to today's date.
+ * 
+ * This code executes after the DOM is fully loaded to ensure that the `#date`
+ * input field is present in the document before setting its `min` attribute.
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('#date').min = currentDate();
+});

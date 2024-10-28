@@ -1,21 +1,13 @@
 let contactIndex = getFromLocalStorage("currentDetails");
 let contactsArray = getFromLocalStorage("contacts");
 
-////////////////////
-///    Start   ////
-///////////////////
-
 /**
  * Initializes the contact list by fetching contacts and rendering them.
  */
 async function initContacts() {
     await getContacts();
-    renderContacts();
+    await renderContacts();
 }
-
-/////////////////////////////////
-///    Render Contact List   ////
-////////////////////////////////
 
 /**
  * Renders the list of contacts in the HTML container, including the user's own contact and their other contacts.
@@ -54,10 +46,22 @@ async function openContact(index) {
         contactIndex = index;
         contactsArray = contacts;
         classChangeAction("dialog-add-contact", "hide-overlay", "add");
-        showContact();
+        await showContact();
+        highlightContact(index);
     }
 }
 
+function highlightContact(i) {
+    let ownContactRef = document.getElementById("ownContact");
+    let liRef = Array.from(document.getElementsByClassName("contact-list"));
+    liRef.forEach((element) => {
+        element.classList.remove("contact-highlight");
+    });
+    if (ownContactRef) {
+        ownContactRef.classList.remove("contact-highlight");
+    }
+    document.getElementById(`contact-list${i}`).classList.add("contact-highlight");
+}
 /**
  * Opens the current user's own contact details.
  */
@@ -67,8 +71,17 @@ async function openOwnContact() {
         window.location.href = "contact-details.html";
     } else if (screenMode == "desktop") {
         classChangeAction("dialog-add-contact", "hide-overlay", "add");
-        showOwnContact();
+        await showOwnContact();
+        highlightOwnContact();
     }
+}
+
+function highlightOwnContact() {
+    let liRef = Array.from(document.getElementsByClassName("contact-list"));
+    liRef.forEach((element) => {
+        element.classList.remove("contact-highlight");
+    });
+    document.getElementById("ownContact").classList.add("contact-highlight");
 }
 
 /**
@@ -84,17 +97,11 @@ async function showOwnContact() {
  */
 function changeOwnEditButtons() {
     document.getElementById("edit-contact").innerHTML = `
- <div class="edit-contact d-flex " onclick="toggleOwnOverlayDisplay()">
+        <div class="edit-contact d-flex " onclick="toggleOwnOverlayDisplay()">
             <img src="./assets/icons/edit.png " alt="Edit Button" /> Edit
         </div>
-
-
 `;
 }
-
-/////////////////////////////////////////////////
-///   LocalStorage - Save / Load Functions   ////
-/////////////////////////////////////////////////
 
 /**
  * Saves a value to localStorage.
@@ -119,28 +126,6 @@ function getFromLocalStorage(key) {
         myData = myArr;
     }
     return myData;
-}
-
-////////////////////////////////////
-///    Add Contacts Functions   ////
-///////////////////////////////////
-
-/**
- * Adds a new contact by collecting input data and saving it to the backend.
- */
-async function addContact() {
-    let nameRef = document.getElementById("add-name-input");
-    let emailRef = document.getElementById("add-mail-input");
-    let phoneNumRef = document.getElementById("add-phone-input");
-    let inputs = getInputs(nameRef, emailRef, phoneNumRef);
-    document.getElementById("submit-add-contact-btn").setAttribute("disabled", true);
-    clearInput(nameRef);
-    clearInput(emailRef);
-    clearInput(phoneNumRef);
-
-    await postData((path = "contacts"), (data = { name: `${inputs.name}`, email: `${inputs.email}`, phone: `${inputs.phone}`, color: `${inputs.color}` }));
-    const contactIndex = await findContact(inputs.name, inputs.email, inputs.phone);
-    toogleDialog("dialog-add-succes", contactIndex);
 }
 
 /**
@@ -195,10 +180,6 @@ function clearAddInputs() {
     document.getElementById("add-phone-input").value = "";
 }
 
-///////////////////////////////
-//   Show Contact Details   ///
-///////////////////////////////
-
 /**
  * Displays the details of the currently selected contact.
  */
@@ -227,10 +208,6 @@ function toggleOverlayDisplay() {
     editDetails();
 }
 
-///////////////////////////////
-//   Own User Details   ///
-///////////////////////////////
-
 /**
  * Toggles the display of the user's own contact edit overlay.
  */
@@ -253,36 +230,14 @@ async function editOwnDetails() {
     document.getElementById("edit-phone").value = currentDetail.phone;
     document.getElementById("edit-initals-container").innerHTML = `
     <span style="background-color:${currentDetail.color}" class="edit-initals center">${createInititals(currentDetail.name)}
-                        <input id="edit-color" type="color" value="${currentDetail.color}">
+        <details class="change-color">
+           <summary>
+              Change Color
+           </summary>
+           <input id="edit-color" type="color" value="${currentDetail.color}">
+       </details>    
                     </span>
     `;
-}
-
-/**
- * Saves the user's own contact details after editing.
- */
-async function editOwnUser() {
-    let name = document.getElementById("edit-name").value;
-    let email = document.getElementById("edit-email").value;
-    let phone = document.getElementById("edit-phone").value;
-    let color = document.getElementById("edit-color").value;
-    let pw = await getData(`users/${userId}/password`);
-
-    await putData(
-        (path = `/users/${userId}`),
-        (data = {
-            color: color,
-            name: name,
-            email: email,
-            phone: phone,
-            password: pw,
-        })
-    );
-    if (screenMode == "desktop") {
-        await initContacts();
-    }
-    showOwnContact();
-    toggleOwnOverlayDisplay();
 }
 
 /**
@@ -291,18 +246,6 @@ async function editOwnUser() {
 function deletePopUp() {
     document.getElementById("delete-user-popup").classList.toggle("d-none");
 }
-
-/**
- * Deletes the user's account and logs them out.
- */
-async function deleteOwnUser() {
-    await deleteData((path = `/users/${userId}`));
-    logOut();
-}
-
-///////////////////////////////////////
-//  Edit Contact Details Functions  ///
-//////////////////////////////////////
 
 /**
  * Populates the edit form with the currently selected contact's details.
@@ -314,31 +257,14 @@ function editDetails() {
     document.getElementById("edit-phone").value = currentDetail.phone;
     document.getElementById("edit-initals-container").innerHTML = `
     <span style="background-color:${currentDetail.color}" class="edit-initals center">${createInititals(currentDetail.name)}
-                        <input id="edit-color" type="color" value="${currentDetail.color}">
+                         <details class="change-color">
+           <summary>
+              Change Color
+           </summary>
+           <input id="edit-color" type="color" value="${currentDetail.color}">
+       </details>    
                     </span>
     `;
-}
-
-/**
- * Saves the edited contact details to the backend.
- */
-async function editContact() {
-    await getContacts();
-    let name = document.getElementById("edit-name").value;
-    let email = document.getElementById("edit-email").value;
-    let phone = document.getElementById("edit-phone").value;
-    let color = document.getElementById("edit-color").value;
-    await putData(
-        (path = `/contacts/${contacts[contactIndex].key}`),
-        (data = {
-            color: color,
-            name: name,
-            email: email,
-            phone: phone,
-        })
-    );
-    await getContacts();
-    showEditedContact(contacts, name, email, phone);
 }
 
 /**
@@ -360,51 +286,6 @@ async function showEditedContact(contacts, name, email, phone) {
     }
 }
 
-//////////////////////////
-//   Delete Contact    ///
-//////////////////////////
 
-/**
- * Deletes the selected contact and removes it from the backend.
- */
-async function deleteContact() {
-    await getContacts();
-    await deleteTaskContact(contacts[contactIndex].key);
-    await deleteData((path = `/contacts/${contacts[contactIndex].key}`), (data = {}));
-    window.location.href = "contact.html";
-}
 
-/**
- * Deletes a contact from all tasks where it has been assigned.
- *
- * This function fetches all tasks from the server, iterates over each task,
- * and checks if the contact is assigned to that task. If the contact is found,
- * it is removed from the task's assigned contacts. The updated task is then
- * sent back to the server.
- *
- * @param {string} deleteKey - The unique key of the contact to be deleted from the assigned tasks.
- * @returns {Promise<void>} - A promise that resolves once the contact has been removed from all relevant tasks.
- */
-async function deleteTaskContact(deleteKey) {
-    let response = await getData("/tasks"); // Warten auf das Auflösen der Daten
-    let keyOfTask = Object.keys(response); // Extrahiere die Keys aus den Tasks
 
-    for (let i = 0; i < keyOfTask.length; i++) {
-        const key = keyOfTask[i];
-        let task = response[key];
-        if (task.assignedTo) {
-            let assignedKey = Object.keys(task.assignedTo);
-
-            let assignedTo = [];
-            for (let j = 0; j < assignedKey.length; j++) {
-                const assignKey = assignedKey[j];
-                let assignContact = task.assignedTo[assignKey];
-
-                if (assignContact.key !== deleteKey) {
-                    assignedTo.push(assignContact);
-                }
-            }
-            await putData((path = `/tasks/${key}/assignedTo`), assignedTo);
-        }
-    }
-}

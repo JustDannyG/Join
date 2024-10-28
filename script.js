@@ -4,10 +4,6 @@ let contacts = [];
 let prio = "medium";
 let screenMode;
 
-//////////////////////////////
-///    Log out Function   ///
-/////////////////////////////
-
 /**
  * Logs the user out by clearing relevant user data from localStorage
  * and redirecting to the login page (index.html).
@@ -22,12 +18,6 @@ function logOut() {
     localStorage.removeItem("rememberMeUser");
     localStorage.removeItem("rememberMe");
 }
-
-
-
-//////////////////////////////
-///    Own Contact        ///
-/////////////////////////////
 
 /**
  * Retrieves the contact information for the current user from the database.
@@ -65,10 +55,6 @@ async function ownContact() {
         phone: ownContactData.phone,
     };
 }
-
-//////////////////////////////////////
-///         Return Functions     /////
-/////////////////////////////////////
 
 /**
  * Marks a specific page element by adding an active style class.
@@ -146,10 +132,6 @@ function sortByAlphabet(arr) {
     return arr;
 }
 
-/////////////////////////////////////////////////
-///   LocalStorage - Save / Load Functions   ////
-/////////////////////////////////////////////////
-
 /**
  * Saves a value to the browser's local storage.
  *
@@ -184,10 +166,6 @@ function getFromLocalStorage(key) {
     return myData;
 }
 
-//////////////////////////////////////
-///                             /////
-/////////////////////////////////////
-
 /**
  * Clears the value of the specified input element.
  *
@@ -214,10 +192,6 @@ function clearInput(input) {
 function stopEventBubbling(event) {
     event.stopPropagation();
 }
-
-////////////////////////////
-///   Get Contacts     /////
-////////////////////////////
 
 /**
  * Retrieves contacts from a remote data source and stores them in a local array.
@@ -249,10 +223,6 @@ async function getContacts() {
     sortByAlphabet(contacts);
 }
 
-//////////////////////////////////////
-///                             /////
-/////////////////////////////////////
-
 /**
  * Changes the CSS class of a specified HTML element based on the provided action.
  *
@@ -279,10 +249,6 @@ function classChangeAction(id, className, action) {
         }
     } else return;
 }
-
-///////////////////////////////////////////////////////////////////
-///   Check Screen Size for Mobile or Desktop Design Functions  ///
-///////////////////////////////////////////////////////////////////
 
 /**
  * Checks the current screen width and updates the header and sidebar
@@ -314,10 +280,7 @@ function checkScreenWidth() {
         header.innerHTML = currentHeader;
         sidebar.innerHTML = currentSidebar;
     } catch {
-        console.log("No Header No Sidebar on this Page");
     }
-    console.log(screenMode);
-    
 }
 
 checkScreenWidth();
@@ -337,10 +300,6 @@ window.addEventListener("resize", checkIsSomeoneLogedId);
 function hideHelpIcon() {
     document.getElementById("help-icon").style.display = "none";
 }
-
-///////////////////////////////////////////////////////////////////
-///                                                            ///
-///////////////////////////////////////////////////////////////////
 
 /**
  * Checks if a user is logged in and hides specific UI elements if not.
@@ -386,76 +345,111 @@ function openAddTask(taskCategory) {
     }
 }
 
-///////////////////////////////////////////////////////////////////
-///     Select Special Design Function  ** Stack Overflow **    ///
-///////////////////////////////////////////////////////////////////
-
 /**
- * Customizes the appearance and behavior of all `<select>` elements on the page.
- *
- * This function hides the original `<select>` elements and creates a styled version
- * that mimics the select functionality. The styled select allows users to click to
- * display options, select an option, and closes when an option is chosen or when
- * clicking outside of the styled select.
- *
- * The function works as follows:
- * 1. Each `<select>` element is hidden and replaced with a styled div that shows the
- *    currently selected option.
- * 2. A list of options is generated and displayed when the styled div is clicked.
- * 3. Users can select an option, which updates the styled div and sets the
- *    corresponding value of the original `<select>`.
- * 4. Clicking outside of the styled select will close any open option lists.
- *
- * @returns {void} This function does not return a value.
+ * Styles all <select> elements on the page.
  */
 function styleSelecet() {
     document.querySelectorAll("select").forEach(function (select) {
         select.classList.add("s-hidden");
-        var styledSelect = document.createElement("div");
-        styledSelect.classList.add("styledSelect");
-        styledSelect.textContent = select.options[select.selectedIndex].text;
+        var styledSelect = createStyledSelect(select);
         select.parentNode.insertBefore(styledSelect, select.nextSibling);
-        var list = document.createElement("ul");
-        list.classList.add("options");
+
+        var list = createOptionsList(select);
         select.parentNode.insertBefore(list, styledSelect.nextSibling);
-        Array.from(select.options).forEach(function (option, index) {
-            var li = document.createElement("li");
 
-            li.textContent = option.text;
-            li.setAttribute("rel", option.value);
-            if (index === 0) {
-                li.classList.add("hide-first");
-            }
-            list.appendChild(li);
-        });
+        hideFirst(select, list);
+        selection(select, styledSelect, list);
+    });
+}
 
-        styledSelect.addEventListener("click", function (e) {
-            e.stopPropagation();
-            document.querySelectorAll("div.styledSelect.active").forEach(function (activeSelect) {
-                if (activeSelect !== styledSelect) {
-                    activeSelect.classList.remove("active");
-                    activeSelect.nextElementSibling.style.display = "none";
-                }
-            });
+/**
+ * Creates a styled <div> for the selected <select> element.
+ * @param {HTMLSelectElement} select - The original <select> element.
+ * @returns {HTMLDivElement} The styled <div> element.
+ */
+function createStyledSelect(select) {
+    var styledSelect = document.createElement("div");
+    styledSelect.classList.add("styledSelect");
+    styledSelect.textContent = select.options[select.selectedIndex].text;
+    return styledSelect;
+}
 
-            styledSelect.classList.toggle("active");
-            list.style.display = styledSelect.classList.contains("active") ? "block" : "none";
-            if (styledSelect.classList.contains("active")) {
-                list.querySelector("li.hide-first").style.display = "none";
-            }
-        });
-        list.addEventListener("click", function (e) {
-            if (e.target.tagName === "LI") {
-                styledSelect.textContent = e.target.textContent;
-                styledSelect.classList.remove("active");
-                select.value = e.target.getAttribute("rel");
-                list.style.display = "none";
-            }
-        });
+/**
+ * Creates a <ul> for the options of the <select> element.
+ * @param {HTMLSelectElement} select - The original <select> element.
+ * @returns {HTMLUListElement} The created <ul> list.
+ */
+function createOptionsList(select) {
+    var list = document.createElement("ul");
+    list.classList.add("options");
+    return list;
+}
 
-        document.addEventListener("click", function () {
+/**
+ * Adds the options of the <select> element as <li> elements in the <ul>.
+ * @param {HTMLSelectElement} select - The original <select> element.
+ * @param {HTMLUListElement} list - The <ul> to which the options will be added.
+ */
+function hideFirst(select, list) {
+    Array.from(select.options).forEach(function (option, index) {
+        var li = document.createElement("li");
+        li.textContent = option.text;
+        li.setAttribute("rel", option.value);
+        if (index === 0) li.classList.add("hide-first");
+        list.appendChild(li);
+    });
+}
+
+/**
+ * Adds event listeners for the styled <div> and the options.
+ * @param {HTMLSelectElement} select - The original <select> element.
+ * @param {HTMLDivElement} styledSelect - The styled <div> element.
+ * @param {HTMLUListElement} list - The <ul> with the options.
+ */
+function selection(select, styledSelect, list) {
+    styledSelect.addEventListener("click", function (e) {
+        e.stopPropagation();
+        closeOtherSelects(styledSelect);
+
+        styledSelect.classList.toggle("active");
+        list.style.display = styledSelect.classList.contains("active") ? "block" : "none";
+        if (styledSelect.classList.contains("active")) 
+            list.querySelector("li.hide-first").style.display = "none";
+    });
+    closeList(list, styledSelect, select);
+}
+
+/**
+ * Closes all other styled dropdowns except the current one.
+ * @param {HTMLDivElement} currentSelect - The currently opened styled <div>.
+ */
+function closeOtherSelects(currentSelect) {
+    document.querySelectorAll("div.styledSelect.active").forEach(function (activeSelect) {
+        if (activeSelect !== currentSelect) {
+            activeSelect.classList.remove("active");
+            activeSelect.nextElementSibling.style.display = "none";
+        }
+    });
+}
+
+/**
+ * Adds event listeners to close the list and update the selection.
+ * @param {HTMLUListElement} list - The <ul> with the options.
+ * @param {HTMLDivElement} styledSelect - The styled <div> element.
+ * @param {HTMLSelectElement} select - The original <select> element.
+ */
+function closeList(list, styledSelect, select) {
+    list.addEventListener("click", function (e) {
+        if (e.target.tagName === "LI") {
+            styledSelect.textContent = e.target.textContent;
             styledSelect.classList.remove("active");
+            select.value = e.target.getAttribute("rel");
             list.style.display = "none";
-        });
+        }
+    });
+
+    document.addEventListener("click", function () {
+        styledSelect.classList.remove("active");
+        list.style.display = "none";
     });
 }
