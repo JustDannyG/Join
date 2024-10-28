@@ -402,7 +402,7 @@
     padding: 40px;
     transition: all 125ms ease-in-out;
     transform: translateX(100%);
-    z-index: 2;
+    z-index: 3;
 }
 
 .task-overlay-bg {
@@ -560,10 +560,6 @@
     width: 1px;
     background-color: #d1d1d1;
 }
-
-/* =========================
-   Edit Task Overlay
-   ========================= */
 
 .overlay-edit-task {
     position: relative;
