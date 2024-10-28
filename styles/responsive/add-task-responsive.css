@@ -66,6 +66,10 @@
     .required-info-mobile{
         display: none;
     }
+
+    .subtasks-container {
+        position: absolute;
+    }
 }
 
 @media (min-width: 1440px) {
