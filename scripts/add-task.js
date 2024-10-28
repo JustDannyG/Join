@@ -471,10 +471,6 @@ function deleteSubtask(i) {
     renderSubtask();
 }
 
-////////////////////////////////////////
-//   Create Task   Board / Firebase  ///
-///////////////////////////////////////
-
 /**
  * Creates a new task and updates the user interface accordingly.
  *
@@ -506,30 +502,6 @@ function filterCheckedAssignedTo() {
     return filtertContacts;
 }
 
-/**
- * Sends a new task to the server via a POST request.
- *
- * This asynchronous function gathers task data from input fields and the current
- * application state, then sends this data to the server at the specified path
- * ("/tasks") using the `postData` function. The data includes the task title,
- * description, date, assigned contacts (filtered to include only those checked),
- * the current category, priority, selected category text, and any subtasks.
- */
-async function postTask() {
-    await postData(
-        (path = "/tasks"),
-        (data = {
-            title: document.getElementById("title").value,
-            description: document.getElementById("description").value,
-            date: document.getElementById("date").value,
-            assignedTo: filterCheckedAssignedTo(),
-            category: currentCategory,
-            prio: prio,
-            categoryText: document.getElementById("selected-category").value,
-            subtask: currentSubtasks,
-        })
-    );
-}
 
 /**
  * Saves the selected task category to local storage.
@@ -602,54 +574,3 @@ function showSuccesMsg() {
 }
 
 
-function addTaskValidation() {
-    let isValid = true;
-    let addTaskTitle = document.getElementById('title-error');
-    let addTaskDate = document.getElementById('date-error');
-    let addTaskCategory = document.getElementById('category-error');
-
-    let title = document.getElementById("title").value;
-    let date = document.getElementById("date").value;
-    let category = document.getElementById("selected-category").value;
-
-    addTaskTitle.innerHTML = "";
-    addTaskDate.innerHTML = "";
-    addTaskCategory.innerHTML = "";
-
-    addTaskTitle.classList.add("error-message");
-    addTaskDate.classList.add("error-message");
-    addTaskCategory.classList.add("error-message");
-
-    if (!title) {
-        addTaskTitle.innerHTML = "Title is required";
-        isValid = false;
-    }
-
-    if (!date) {
-        addTaskDate.innerHTML = "Date is required";
-        isValid = false;
-    } else if (currentDate() > date ){
-        addTaskDate.innerHTML = `Value must be ${currentDate()} or later.`;
-        isValid = false;
-    }
-
-    if (!category) {
-        addTaskCategory.innerHTML = "Category is required";
-        isValid = false;
-    }
-
-
-    return isValid;
-}
-
-function currentDate() {
-    const date = new Date();
-    let currentDay = String(date.getDate()).padStart(2, '0');
-    let currentMonth = String(date.getMonth() + 1).padStart(2, "0");
-    let currentYear = date.getFullYear();
-    let currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
-
-    return currentDate;
-}
-
-document.querySelector('#date').min = currentDate();

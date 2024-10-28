@@ -129,27 +129,6 @@ function getFromLocalStorage(key) {
 }
 
 /**
- * Adds a new contact by collecting input data and saving it to the backend.
- */
-async function addContact() {
-    let nameRef = document.getElementById("add-name-input");
-    let emailRef = document.getElementById("add-mail-input");
-    let phoneNumRef = document.getElementById("add-phone-input");
-    let inputs = getInputs(nameRef, emailRef, phoneNumRef);
-    if (!formValidation(nameRef.value, emailRef.value, phoneNumRef.value, "add")) {
-        return;
-    }
-    document.getElementById("submit-add-contact-btn").setAttribute("disabled", true);
-    clearInput(nameRef);
-    clearInput(emailRef);
-    clearInput(phoneNumRef);
-
-    await postData((path = "contacts"), (data = { name: `${inputs.name}`, email: `${inputs.email}`, phone: `${inputs.phone}`, color: `${inputs.color}` }));
-    const contactIndex = await findContact(inputs.name, inputs.email, inputs.phone);
-    toogleDialog("dialog-add-succes", contactIndex);
-}
-
-/**
  * Retrieves and returns user input from the contact form.
  *
  * @param {HTMLElement} nameRef - The input element for the name.
@@ -262,45 +241,10 @@ async function editOwnDetails() {
 }
 
 /**
- * Saves the user's own contact details after editing.
- */
-async function editOwnUser() {
-    let name = document.getElementById("edit-name").value;
-    let email = document.getElementById("edit-email").value;
-    let phone = document.getElementById("edit-phone").value;
-    let color = document.getElementById("edit-color").value;
-    let pw = await getData(`users/${userId}/password`);
-
-    await putData(
-        (path = `/users/${userId}`),
-        (data = {
-            color: color,
-            name: name,
-            email: email,
-            phone: phone,
-            password: pw,
-        })
-    );
-    if (screenMode == "desktop") {
-        await initContacts();
-    }
-    showOwnContact();
-    toggleOwnOverlayDisplay();
-}
-
-/**
  * Displays a delete confirmation popup for the user.
  */
 function deletePopUp() {
     document.getElementById("delete-user-popup").classList.toggle("d-none");
-}
-
-/**
- * Deletes the user's account and logs them out.
- */
-async function deleteOwnUser() {
-    await deleteData((path = `/users/${userId}`));
-    logOut();
 }
 
 /**
@@ -324,99 +268,6 @@ function editDetails() {
 }
 
 /**
- * Saves the edited contact details to the backend.
- */
-async function editContact() {
-    await getContacts();
-    let name = document.getElementById("edit-name").value;
-    let email = document.getElementById("edit-email").value;
-    let phone = document.getElementById("edit-phone").value;
-    let color = document.getElementById("edit-color").value;
-    if (!formValidation(name, email, phone, "edit")) {
-        return;
-    }
-    await putData(
-        (path = `/contacts/${contacts[contactIndex].key}`),
-        (data = {
-            color: color,
-            name: name,
-            email: email,
-            phone: phone,
-        })
-    );
-    await getContacts();
-    showEditedContact(contacts, name, email, phone);
-}
-
-
-function formValidation(name, email, phone, mode) {
-    let isValid = true;
-    let nameError = document.getElementById(`name_error_${mode}`);
-    let emailError = document.getElementById(`email_error_${mode}`);
-    let phoneError = document.getElementById(`phone_error_${mode}`);
-    nameError.innerHTML = "";
-    emailError.innerHTML = "";
-    phoneError.innerHTML = "";
-    let nameCheck = checkName(name, nameError)
-    let emailCheck = checkEmail(email, emailError)
-    let phoneCheck = checkPhone(phone, phoneError)
-    if (true == nameCheck && emailCheck && phoneCheck) {
-        return isValid;
-    }
-    addErrorClasses(nameError, emailError, phoneError)
-    return false;
-}
-
-function addErrorClasses(nameError, emailError, phoneError) {
-    nameError.classList.add("error-message");
-    emailError.classList.add("error-message");
-    phoneError.classList.add("error-message");
-}
-
-function check() {
-    checkName(name, nameError)
-    checkEmail(email, emailError)
-    checkPhone(phone, phoneError)
-}
-
-
-function checkName(name, nameError) {
-    let isValid = true;
-    if (!name || name.trim() === "") {
-        nameError.innerHTML = "Name is required";
-        isValid = false;
-    } else if (name[0] !== name[0].toUpperCase()) {
-        nameError.innerHTML = "Name should start with a capital letter";
-        isValid = false;
-    }
-    return isValid
-}
-
-function checkEmail(email, emailError) {
-    let isValid = true;
-    if (!email || email.trim() === "") {
-        emailError.innerHTML = "Email is required";
-        isValid = false;
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        emailError.innerHTML = "Please enter a valid email";
-        isValid = false;
-    }
-    return isValid
-}
-
-function checkPhone(phone, phoneError) {
-    let isValid = true;
-    if (!phone || phone.trim() === "") {
-        phoneError.innerHTML = "Phone number is required";
-        isValid = false;
-    } else if (!/^\d+$/.test(phone)) {
-        phoneError.innerHTML = "Phone number should contain only numbers";
-        isValid = false;
-    }
-    return isValid
-}
-
-/**
  * Displays the edited contact's details.
  *
  * @param {Array} contacts - The array of contact objects.
@@ -435,52 +286,6 @@ async function showEditedContact(contacts, name, email, phone) {
     }
 }
 
-/**
- * Deletes the selected contact and removes it from the backend.
- */
-async function deleteContact() {
-    await getContacts();
-    await deleteTaskContact(contacts[contactIndex].key);
-    await deleteData((path = `/contacts/${contacts[contactIndex].key}`), (data = {}));
-    if (screenMode == "mobile") {
-        window.location.href = "contact.html";
-    } else if (screenMode == "desktop") {
-        document.getElementById("current-contact").innerHTML = "";
-        await initContacts();
-    }
-}
 
-/**
- * Deletes a contact from all tasks where it has been assigned.
- *
- * This function fetches all tasks from the server, iterates over each task,
- * and checks if the contact is assigned to that task. If the contact is found,
- * it is removed from the task's assigned contacts. The updated task is then
- * sent back to the server.
- *
- * @param {string} deleteKey - The unique key of the contact to be deleted from the assigned tasks.
- * @returns {Promise<void>} - A promise that resolves once the contact has been removed from all relevant tasks.
- */
-async function deleteTaskContact(deleteKey) {
-    let response = await getData("/tasks"); // Warten auf das Auflösen der Daten
-    let keyOfTask = Object.keys(response); // Extrahiere die Keys aus den Tasks
 
-    for (let i = 0; i < keyOfTask.length; i++) {
-        const key = keyOfTask[i];
-        let task = response[key];
-        if (task.assignedTo) {
-            let assignedKey = Object.keys(task.assignedTo);
 
-            let assignedTo = [];
-            for (let j = 0; j < assignedKey.length; j++) {
-                const assignKey = assignedKey[j];
-                let assignContact = task.assignedTo[assignKey];
-
-                if (assignContact.key !== deleteKey) {
-                    assignedTo.push(assignContact);
-                }
-            }
-            await putData((path = `/tasks/${key}/assignedTo`), assignedTo);
-        }
-    }
-}

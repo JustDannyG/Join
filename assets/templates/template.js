@@ -316,20 +316,17 @@ function editBoardTaskHTML(currentTask) {
                 <span id="category-text" class="task-overlay-category"" style="background-color:powderblue;">${currentTask.categoryText}</span>
                 <img class="task-overlay-close-icon" src="./assets/icons/close-icon-dark.png"
                     onclick="classChangeAction('overlaver','overlaver-active','remove')">
-
             </div>
               <div>
                   <label for="title">Title</label>
                 <input id="edit-title-input" class="edit-title-input" type="text" required value="${currentTask.title}">
               </div>
               <div class="task-overlay-scroll-container">
-
                 <div>
                     <label for="description">Description</label>
                     <textarea id="edit-textarea" class="edit-textarea" name="description"
                         placeholder="Enter a Description">${currentTask.description}</textarea>
                 </div>
-
                 <table class="task-overlay-prio-date-table">
                     <tr>
                         <td>Due date:</td>
@@ -340,7 +337,6 @@ function editBoardTaskHTML(currentTask) {
                         <td id="prio"></td>
                     </tr>
                 </table>
-
                 <div class="d-flex row">
                     <button id="urgent-btn" class=" btn prio-btn" type="button"
                         onclick="editPrio('urgent'), stopEventBubbling(event)">Urgent<img id="prio-icon-urgent"
@@ -350,7 +346,6 @@ function editBoardTaskHTML(currentTask) {
                     <button id="low-btn" class="btn prio-btn" type="button" onclick="editPrio('low')">Low<img
                             id="prio-icon-low" src="./assets/icons/prio-low-icon.png"></button>
                 </div>
-
                 <div class="task-overlay-assigned position-relative">
                     Assigned To:
                     <div id="dropdown" class="drop-down d-flex">
@@ -363,7 +358,6 @@ function editBoardTaskHTML(currentTask) {
                     <ul id="assign-to-dropdown-contacts" class="dropdown-options edit-dropdown"></ul>
                     <div id="selected-contacts-container" class="d-flex selectet-contacts-container"></div>
                 </div>
-
                 <div class="task-overlay-subtasks-container position-relative" >
                     Subtasks
                     <div class="add-task-input">
@@ -376,10 +370,7 @@ function editBoardTaskHTML(currentTask) {
                 <div id="subtasks-container" class="subtasks-container"></div>
                 </div>
             </div>
-
             <button class="btn submit submit-btn" >Ok <img src="./assets/icons/check.png"></button>
-            
         </form>
-        
     </div>`;
 }

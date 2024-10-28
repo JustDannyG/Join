@@ -132,10 +132,6 @@ function sortByAlphabet(arr) {
     return arr;
 }
 
-/////////////////////////////////////////////////
-///   LocalStorage - Save / Load Functions   ////
-/////////////////////////////////////////////////
-
 /**
  * Saves a value to the browser's local storage.
  *
@@ -284,7 +280,6 @@ function checkScreenWidth() {
         header.innerHTML = currentHeader;
         sidebar.innerHTML = currentSidebar;
     } catch {
-        
     }
 }
 

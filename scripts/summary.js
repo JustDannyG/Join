@@ -104,7 +104,6 @@ function findEarliestDate(task) {
     upcomingDeadlineScroll = earliestDate.id;
     return earliestDate;
 } catch {
-    
 }
 
 }
