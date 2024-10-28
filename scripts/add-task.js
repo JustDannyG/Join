@@ -449,6 +449,15 @@ function showSuccesMsg() {
     }, 2000);
 }
 
+/**
+ * Returns today's date in the format YYYY-MM-DD.
+ *
+ * This function creates a Date object for the current date
+ * and formats it in ISO format (year-month-day), which is suitable for 
+ * the `min` attribute in <input type="date"> fields.
+ *
+ * @returns {string} Today's date in the format "YYYY-MM-DD".
+ */
 function currentDate() {
     const date = new Date();
     let currentDay = String(date.getDate()).padStart(2, '0');
@@ -459,5 +468,12 @@ function currentDate() {
     return currentDate;
 }
 
-document.querySelector('#date').min = currentDate();
-
+/**
+ * Sets the minimum selectable date for the date input field to today's date.
+ * 
+ * This code executes after the DOM is fully loaded to ensure that the `#date`
+ * input field is present in the document before setting its `min` attribute.
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('#date').min = currentDate();
+});
