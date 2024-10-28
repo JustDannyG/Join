@@ -11,6 +11,8 @@
 
     <script src="./script.js" defer></script>
     <script src="./scripts/fetch.js"></script>
+    <script src="./scripts/data.js"></script>
+    <script src="./scripts/validation.js"></script>
     <script src="./scripts/contact.js"></script>
     <script src="./assets/templates/template.js"></script>
 
@@ -60,7 +62,6 @@
 
     <section id="join-sidebar"></section>
 
-    <!-- Start overlay -->
 
     <Section id="edit-overlay-bg" class="edit-overlay-bg hide-overlay">
         <form class="edit-overlay-form" onsubmit="editContact(); return false">
@@ -78,16 +79,19 @@
                 <div class="edit-input">
                     <input type="text" id="edit-name">
                     <img src="./assets/icons/person.png" />
+                    <span class="form-error" id="name_error_edit"></span>
                 </div>
 
                 <div class="edit-input">
                     <input type="text" id="edit-email">
                     <img src="./assets/icons/mail.png" />
+                    <span class="form-error" id="email_error_edit"></span>
                 </div>
 
                 <div class="edit-input">
                     <input type="text" id="edit-phone">
                     <img src="./assets/icons/phone.png" />
+                    <span class="form-error" id="phone_error_edit"></span>
                 </div>
             </div>
 
@@ -96,7 +100,8 @@
                 <button class="edit-save-btn center">Save <img src="./assets/icons/check.png" alt=""></button>
             </div>
 
-            <div id="delete-user-popup" class="delete-user-popup-bg d-none" onclick="deletePopUp(); stopEventBubbling(event)">
+            <div id="delete-user-popup" class="delete-user-popup-bg d-none"
+                onclick="deletePopUp(); stopEventBubbling(event)">
                 <div class="delete-user-popup" onclick="stopEventBubbling(event)">
                     <h3>Delete User?</h3>
                     <p>Are you sure you want to permanently delete this user?</p>

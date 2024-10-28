@@ -1,7 +1,3 @@
-//////////////////////////////////////////////////
-/////       Header and Sidebar  Defaults    //////
-//////////////////////////////////////////////////
-
 function mobileHeader(user) {
     return /*html*/ `<header class="d-flex header-mobile">
       <img class="logo-mobile" src="./assets/icons/logo-dark.svg" alt="Join Logo" />
@@ -68,10 +64,6 @@ function desktopSidebar() {
     </aside>`;
 }
 
-////////////////////////////////////////////
-/////  Board  -  Tasks  Templates     //////
-///////////////////////////////////////////
-
 function generateTaskHTML(task, index, className) {
     return /*html*/ `<div id="${task.id}" draggable="true" ondragstart="startDragging(${task.id})"  onclick="classChangeAction('overlaver','overlaver-active','add'); openTask(${task.id})" class="task-wrapper">
             <div class ="task">
@@ -106,11 +98,6 @@ function generateNoTaskHTML(noTask) {
     return /*html*/ `<div class="no-task"> No task in ${noTask}</div> `;
 }
 
-////////////////////////////////////////////
-/////      Contact - Templates       //////
-///////////////////////////////////////////
-
-//Templates for Contact-Details
 function contactCirleHTML(detail) {
     return /*html*/ `
     <div class="detail-container">
@@ -144,7 +131,6 @@ function contactOwnCirleHTML(detail) {
                 ${detail.name}
                 <div class="edit-details-btns">
                     <button onclick="toggleOwnOverlayDisplay()"><img src="./assets/icons/edit.png"/>Edit</button>
-                    <!-- <button onclick="deleteContact()"><img src="./assets/icons/delete.png" />Delete</button> -->
                 </div>
             </div>
         </div>
@@ -159,9 +145,6 @@ function contactOwnCirleHTML(detail) {
     `;
 }
 
-
-
-//Templates for Contact List
 function firstLetterHtml(firstLetter) {
     return /*html*/ `<div class="contacts-first-letter">${firstLetter}</div>`;
 }
@@ -177,7 +160,7 @@ function contactListHtml(contact, i) {
 }
 
 function ownContactListHtml(contact) {
-    return /*html*/ `<div onclick="openOwnContact()" class="contact-list d-flex">
+    return /*html*/ `<div onclick="openOwnContact()" id="ownContact" class="contact-list d-flex">
       <span class="contact-initials center" style="background:${contact.color}">${createInititals(contact.name)}</span>
       <div>
         <p>${contact.name}</p>
@@ -186,7 +169,6 @@ function ownContactListHtml(contact) {
     </div>`;
 }
 
-//Templates for Add Task
 
 function contactInDropDownHTML(contact, initials) {
     return /*html*/ `
@@ -224,9 +206,6 @@ function contactSelectionCircleHTML(contact) {
     return /*html*/ `<div class="contact center " style="background-color:${contact.color}">${createInititals(contact.name)}</div>`;
 }
 
-////////////////////////////////////////////////////
-/////       Add-Task - Subtask Templates      /////
-//////////////////////////////////////////////////
 
 function subtaskBtnHTML() {
     return /*html*/ `
@@ -277,9 +256,6 @@ function editIconsHTML(i) {
             </div>`;
 }
 
-//////////////////////////////////////////////////
-/////          Board Task Overlays          //////
-//////////////////////////////////////////////////
 
 function taskBoardOverlay(currentTask) {
     return /*html*/ ` <div class="task-overlay-bg" >
@@ -310,7 +286,7 @@ function taskBoardOverlay(currentTask) {
               </div>
               <div class="task-overlay-subtasks-container">
                   Subtasks
-                  <div id="subtask-overlay"></div>
+                  <div class="subtask-overlay" id="subtask-overlay"></div>
               </div>
             </div>
 
@@ -332,10 +308,6 @@ function generateAssignedToOerlayLiHTML(contact) {
                         </li>`;
 }
 
-//////////////////////////////////////////////////
-/////         Board Task Overlays Edit      //////
-//////////////////////////////////////////////////
-
 function editBoardTaskHTML(currentTask) {
     return /*html*/ `
     <div class="task-overlay-bg">
@@ -344,20 +316,17 @@ function editBoardTaskHTML(currentTask) {
                 <span id="category-text" class="task-overlay-category"" style="background-color:powderblue;">${currentTask.categoryText}</span>
                 <img class="task-overlay-close-icon" src="./assets/icons/close-icon-dark.png"
                     onclick="classChangeAction('overlaver','overlaver-active','remove')">
-
             </div>
               <div>
                   <label for="title">Title</label>
                 <input id="edit-title-input" class="edit-title-input" type="text" required value="${currentTask.title}">
               </div>
               <div class="task-overlay-scroll-container">
-
                 <div>
                     <label for="description">Description</label>
                     <textarea id="edit-textarea" class="edit-textarea" name="description"
                         placeholder="Enter a Description">${currentTask.description}</textarea>
                 </div>
-
                 <table class="task-overlay-prio-date-table">
                     <tr>
                         <td>Due date:</td>
@@ -368,7 +337,6 @@ function editBoardTaskHTML(currentTask) {
                         <td id="prio"></td>
                     </tr>
                 </table>
-
                 <div class="d-flex row">
                     <button id="urgent-btn" class=" btn prio-btn" type="button"
                         onclick="editPrio('urgent'), stopEventBubbling(event)">Urgent<img id="prio-icon-urgent"
@@ -378,7 +346,6 @@ function editBoardTaskHTML(currentTask) {
                     <button id="low-btn" class="btn prio-btn" type="button" onclick="editPrio('low')">Low<img
                             id="prio-icon-low" src="./assets/icons/prio-low-icon.png"></button>
                 </div>
-
                 <div class="task-overlay-assigned position-relative">
                     Assigned To:
                     <div id="dropdown" class="drop-down d-flex">
@@ -391,7 +358,6 @@ function editBoardTaskHTML(currentTask) {
                     <ul id="assign-to-dropdown-contacts" class="dropdown-options edit-dropdown"></ul>
                     <div id="selected-contacts-container" class="d-flex selectet-contacts-container"></div>
                 </div>
-
                 <div class="task-overlay-subtasks-container position-relative" >
                     Subtasks
                     <div class="add-task-input">
@@ -401,13 +367,10 @@ function editBoardTaskHTML(currentTask) {
                             <img src="./assets/icons/add -subtasks.png" alt="" onclick="setInputFocus()" />
                         </div>
                     </div>
-                <div id="subtasks-container" class="subtasks-container overflow-unset"></div>
+                <div id="subtasks-container" class="subtasks-container"></div>
                 </div>
             </div>
-
             <button class="btn submit submit-btn" >Ok <img src="./assets/icons/check.png"></button>
-            
         </form>
-        
     </div>`;
 }

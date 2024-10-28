@@ -30,10 +30,6 @@
     overflow-y: auto;
 }
 
-/* =========================
-        Help - Content
-   ========================= */
-
 .text-blue {
     color: var(--light-blue);
 }
@@ -61,15 +57,6 @@
     justify-content: space-between;
 }
 
-/* .headline img {
-    width: 18px;
-    height: 18px;
-} */
-
-/* =========================
-   Privacy Police - Content
-   ========================= */
-
 .privacy-police-content {
     display: flex;
     flex-direction: column;
@@ -86,15 +73,6 @@
 .headline {
     justify-content: space-between;
 }
-
-/* .headline img {
-    width: 18px;
-    height: 18px;
-} */
-
-/* =========================
-   Legal-Notice - Content
-   ========================= */
 
 h2 {
     margin-top: 24px;

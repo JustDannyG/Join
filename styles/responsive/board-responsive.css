@@ -1,5 +1,3 @@
-/* Mobile Design Adjustment */
-
 @media (max-width: 392px) {
     .task-overlay {
         padding: 33px 25px;
@@ -63,7 +61,6 @@
 
 }
 
-/* Desktop Design Adjustment */
 
 @media (min-width: 1024px) {
 

@@ -3,10 +3,6 @@ let tasksArray = [];
 let currentTask;
 let taskCounter = 0;
 
-////////////////////
-///    Start   ////
-///////////////////
-
 /**
  * Initializes the board by fetching the necessary data and updating the UI.
  *
@@ -31,37 +27,6 @@ async function resetBoard() {
     updateHtml();
 }
 
-////////////////////////////////////////
-///    Get and Show Tasks on Board   ///
-////////////////////////////////////////
-
-/**
- * Fetches tasks from the server, processes them, and updates the `tasksArray`.
- */
-async function getTasks() {
-    let response = await getData((path = "/tasks"));
-    if (response) {
-        let taskKeys = Object.keys(response);
-        tasksArray = [];
-        for (let index = 0; index < taskKeys.length; index++) {
-            const key = taskKeys[index];
-            let task = response[key];
-            tasksArray.push({
-                title: task.title,
-                description: task.description,
-                id: index,
-                date: task.date,
-                assignedTo: task.assignedTo,
-                category: task.category,
-                prio: task.prio,
-                categoryText: task.categoryText,
-                subtask: task.subtask,
-                taskKey: taskKeys[index],
-            });
-        }
-    }
-}
-
 /**
  * Updates the HTML by rendering tasks into their respective columns
  */
@@ -70,7 +35,6 @@ function updateHtml() {
     let progressById = document.getElementById("in-progress-container");
     let feedbackById = document.getElementById("await-feedback-container");
     let doneById = document.getElementById("done-container");
-
     renderTasks(filterTasks("todo"), todoById, "To do");
     renderTasks(filterTasks("progress"), progressById, "Progress");
     renderTasks(filterTasks("feedback"), feedbackById, "Feedback");
@@ -170,10 +134,6 @@ function renderPrio(task, index) {
     }
 }
 
-////////////////////////////////////////
-///  Board Drag and Drop Functions   ///
-///////////////////////////////////////
-
 /**
  * Moves the currently dragged task to a specified category.
  * Updates the task in the array and refreshes the database and HTML accordingly.
@@ -205,18 +165,6 @@ function allowDrop(ev) {
 }
 
 /**
- * Moves the dragged task to update the database. Fetches the current tasks,
- * identifies the task key for the dragged element, and updates the database.
- *
- * @returns {Promise<void>} A promise that resolves when the task is updated.
- */
-async function moveToUpdateDatabase() {
-    let getTasks = await getData("/tasks");
-    let taskKey = Object.keys(getTasks);
-    await putData(`/tasks/${taskKey[currentDraggedElement]}`, tasksArray[currentDraggedElement]);
-}
-
-/**
  * Highlights a drag area by adding a specific CSS class.
  *
  * @param {string} id - The ID of the HTML element to highlight.
@@ -243,10 +191,6 @@ function animationOndrag(id) {
     document.getElementById(id).classList.add("animation-ondrag");
 }
 
-/////////////////////////////////////////////
-///  Task Overlay - Show Task Functions   ///
-////////////////////////////////////////////
-
 /**
  * Opens a task, displays its overlay, and triggers related functions.
  *
@@ -255,7 +199,6 @@ function animationOndrag(id) {
 function openTask(id) {
     currentTask = tasksArray[id];
     document.getElementById("overlaver").innerHTML = taskBoardOverlay(currentTask);
-
     taskPrioText();
     renderTasksArrays();
 }
@@ -274,10 +217,6 @@ function renderTasksArrays() {
     setCheck();
 }
 
-/////////////////////////////////////////////////////
-///   Task Overlay - Check Subtasks Functions    ///
-///////////////////////////////////////////////////
-
 /**
  * Renders the checklist for subtasks within the task overlay.
  */
@@ -292,29 +231,6 @@ function setCheck() {
         });
     }
 }
-
-/**
- * Toggles the subtask's checked status and updates the backend data.
- *
- * @param {number} subIndex - The index of the subtask to toggle.
- */
-async function checkAndPushToFirebase(subIndex) {
-    currentTask.subtask[subIndex].checked = !currentTask.subtask[subIndex].checked;
-    setCheck();
-    await putData(
-        (path = `/tasks/${currentTask.taskKey}/subtask/${subIndex}`),
-        (data = {
-            checked: currentTask.subtask[subIndex].checked,
-            sub: currentTask.subtask[subIndex].sub,
-        })
-    );
-    await getTasks();
-    await resetBoard();
-}
-
-////////////////////////////////////////
-//    Edit Task Overlay Functions   ///
-///////////////////////////////////////
 
 /**
  * Displays the editable values for the selected task.
@@ -380,10 +296,6 @@ function findCheckedContacts(currentTask) {
     });
 }
 
-///////////////////////////////////////////////
-///   Edit Task Overlay - Edit Subtasks    ///
-//////////////////////////////////////////////
-
 /**
  * Renders the subtasks for editing.
  */
@@ -429,50 +341,6 @@ function deleteSubtask(i) {
     classChangeAction("overlaver", "overlaver-active", "remove");
 }
 
-///////////////////////////////////////////////////////
-///   Edit Task Overlay - PUT  Firebase / Board    ///
-/////////////////////////////////////////////////////
-
-/**
- * Saves the edited task to the database.
- */
-async function editTask() {
-    await putData(
-        (path = `/tasks/${currentTask.taskKey}`),
-        (data = {
-            id: currentTask.id,
-            category: currentTask.category,
-            categoryText: currentTask.categoryText,
-            title: document.getElementById("edit-title-input").value,
-            description: document.getElementById("edit-textarea").value,
-            date: document.getElementById("edit-date-input").value,
-            prio: currentTask.prio,
-            assignedTo: filterCheckedAssignedTo(),
-            subtask: currentSubtasks,
-            taskKey: currentTask.taskKey,
-        })
-    );
-    await resetBoard();
-    openTask(currentTask.id);
-}
-
-//////////////////////////////////////////////////////
-///  Edit Task Overlay - Delete  Firebase Board   ///
-/////////////////////////////////////////////////////
-
-/**
- * Deletes the task from the backend.
- */
-async function deleteTask() {
-    classChangeAction("overlaver", "overlaver-active", "remove");
-    await deleteData((path = `/tasks/${currentTask.taskKey}`), (data = {}));
-    resetBoard();
-}
-
-//////////////////////////////////////////////////
-///     Mobile  Drag and Drop  Button Version  ///
-/////////////////////////////////////////////////
-
 /**
  * Toggles the display of task move options.
  *
@@ -481,35 +349,6 @@ async function deleteTask() {
 function openTaskMoveOptions(taskId) {
     document.getElementById(`task-move-list${taskId}`).classList.toggle("show-drop-list");
 }
-
-/**
- * Moves a task to a different category and updates it in the databse.
- *
- * @param {number} taskId - The ID of the task.
- * @param {string} category - The new category to move the task to.
- */
-async function moveTaskTo(taskId, category) {
-    await putData(
-        (path = `/tasks/${tasksArray[taskId].taskKey}/`),
-        (data = {
-            id: taskId,
-            category: category,
-            categoryText: tasksArray[taskId].categoryText,
-            title: tasksArray[taskId].title,
-            description: tasksArray[taskId].description,
-            date: tasksArray[taskId].date,
-            prio: tasksArray[taskId].prio,
-            assignedTo: tasksArray[taskId].assignedTo,
-            subtask: tasksArray[taskId].subtask,
-            taskKey: tasksArray[taskId].taskKey,
-        })
-    );
-    await resetBoard();
-}
-
-//////////////////////////////////////////
-///     Board Search Task Function     ///
-/////////////////////////////////////////
 
 /**
  * Filters and renders tasks across different categories based on the search input.
@@ -565,10 +404,6 @@ function filterSearchTasks(task, search) {
     return filterTasks;
 }
 
-//////////////////////////////////////////
-///    Scroll to Section Function     ///
-/////////////////////////////////////////
-
 /**
  * Automatically scrolls to a section of the page when loaded, based on the URL hash.
  */
@@ -597,3 +432,4 @@ function scrollToSection(section) {
         });
     }
 }
+
