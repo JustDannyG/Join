@@ -3,6 +3,7 @@ let users;
 let currentUser;
 let remeberMe;
 let remeberMeUser;
+let userIds = [];
 
 
 /**
@@ -10,8 +11,8 @@ let remeberMeUser;
  * If the "Remember Me" option is enabled, it auto-fills the form and triggers the login.
  */
 async function loginInit() {
-    users = await getData("users");
-    userIds = Object.keys(users);
+    users = (await getData("users")) || {};
+    userIds = Object.keys(users || {});
     remeberMe = getFromLocalStorage("rememberMe");
     remeberMeUser = getFromLocalStorage("rememberMeUser");
     if (remeberMe) {

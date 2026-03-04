@@ -1,4 +1,41 @@
-const BASE_URL = "https://join--projekt-default-rtdb.europe-west1.firebasedatabase.app/";
+function getJoinConfig() {
+    return window.JOIN_CONFIG || {};
+}
+
+function normalizeBaseUrl(url) {
+    if (!url || typeof url !== "string") return "";
+    let normalized = url.trim();
+    if (!normalized) return "";
+    if (!normalized.endsWith("/")) normalized += "/";
+    return normalized;
+}
+
+function buildFirebaseUrl(path = "") {
+    const { BASE_URL } = getJoinConfig();
+    const baseUrl = normalizeBaseUrl(BASE_URL);
+    if (!baseUrl) {
+        console.error("JOIN_CONFIG.BASE_URL is not set. Check scripts/config.js (or localStorage JOIN_BASE_URL).");
+        return "";
+    }
+
+    const cleanPath = String(path || "").replace(/^\//, "");
+    return `${baseUrl}${cleanPath}.json`;
+}
+
+function withAuth(url) {
+    const { AUTH_TOKEN } = getJoinConfig();
+    if (!AUTH_TOKEN) return url;
+    const sep = url.includes("?") ? "&" : "?";
+    return `${url}${sep}auth=${encodeURIComponent(AUTH_TOKEN)}`;
+}
+
+async function parseJsonSafe(response) {
+    try {
+        return await response.json();
+    } catch (error) {
+        return null;
+    }
+}
 
 /**
  * Fetches data asynchronously from the specified API endpoint.
@@ -9,8 +46,21 @@ const BASE_URL = "https://join--projekt-default-rtdb.europe-west1.firebasedataba
  */
 async function getData(path = "") {
     try {
-        let response = await fetch(BASE_URL + path + ".json");
-        let responseAsJson = await response.json();
+        const url = withAuth(buildFirebaseUrl(path));
+        if (!url) return null;
+
+        let response = await fetch(url);
+        if (!response.ok) {
+            const body = await parseJsonSafe(response);
+            console.error("getData failed:", response.status, response.statusText, body);
+            return null;
+        }
+
+        let responseAsJson = await parseJsonSafe(response);
+        if (responseAsJson && typeof responseAsJson === "object" && "error" in responseAsJson) {
+            console.error("getData returned error:", responseAsJson);
+            return null;
+        }
         return responseAsJson;
     } catch (error) {
         console.error("Error", error);
@@ -25,15 +75,22 @@ async function getData(path = "") {
  * @returns {Promise<Object>} - A promise that resolves to the JSON response from the server.
  */
 async function postData(path = "", data = {}) {
-    let response = await fetch(BASE_URL + path + ".json", {
+    const url = withAuth(buildFirebaseUrl(path));
+    if (!url) return null;
+
+    let response = await fetch(url, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
     });
-    let responseToJson = await response.json();
-    return responseToJson;
+    if (!response.ok) {
+        const body = await parseJsonSafe(response);
+        console.error("postData failed:", response.status, response.statusText, body);
+        return null;
+    }
+    return await parseJsonSafe(response);
 }
 
 /**
@@ -44,15 +101,22 @@ async function postData(path = "", data = {}) {
  * @returns {Promise<Object>} - A promise that resolves to the JSON response from the server.
  */
 async function putData(path = "", data = {}) {
-    let response = await fetch(BASE_URL + path + ".json", {
+    const url = withAuth(buildFirebaseUrl(path));
+    if (!url) return null;
+
+    let response = await fetch(url, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
     });
-    let responseToJson = await response.json();
-    return responseToJson;
+    if (!response.ok) {
+        const body = await parseJsonSafe(response);
+        console.error("putData failed:", response.status, response.statusText, body);
+        return null;
+    }
+    return await parseJsonSafe(response);
 }
 
 /**
@@ -62,12 +126,19 @@ async function putData(path = "", data = {}) {
  * @returns {Promise<Object>} - A promise that resolves to the JSON response from the server.
  */
 async function deleteData(path = "", data = {}) {
-    let response = await fetch(BASE_URL + path + ".json", {
+    const url = withAuth(buildFirebaseUrl(path));
+    if (!url) return null;
+
+    let response = await fetch(url, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
         },
     });
-    let responseToJson = await response.json();
-    return responseToJson;
+    if (!response.ok) {
+        const body = await parseJsonSafe(response);
+        console.error("deleteData failed:", response.status, response.statusText, body);
+        return null;
+    }
+    return await parseJsonSafe(response);
 }

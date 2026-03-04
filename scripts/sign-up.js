@@ -307,8 +307,8 @@ function checkNameExist(user, userNameInput, nameExists) {
     if (user.name.toLowerCase() === userNameInput.toLowerCase()) {
         nameExists = true;
         userAlreadyExistsMsg("name-error", "Name");
-    } else {
-    return nameExists;}
+    }
+    return nameExists;
 }
 
 /**
@@ -322,8 +322,8 @@ function checkEmailExist(user, userEmailInput, emailExists) {
     if (user.email == userEmailInput) {
         emailExists = true;
         userAlreadyExistsMsg("email-error", "Email");
-    } else {
-    return emailExists;}
+    }
+    return emailExists;
 }
 
 /**

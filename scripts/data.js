@@ -59,6 +59,7 @@ async function getTasks() {
  */
 async function moveToUpdateDatabase() {
     let getTasks = await getData("/tasks");
+    if (!getTasks) return;
     let taskKey = Object.keys(getTasks);
     await putData(`/tasks/${taskKey[currentDraggedElement]}`, tasksArray[currentDraggedElement]);
 }
@@ -249,6 +250,7 @@ async function deleteContact() {
  */
 async function deleteTaskContact(deleteKey) {
     let response = await getData("/tasks"); // Warten auf das Auflösen der Daten
+    if (!response || typeof response !== "object") return;
     let keyOfTask = Object.keys(response); // Extrahiere die Keys aus den Tasks
 
     for (let i = 0; i < keyOfTask.length; i++) {
