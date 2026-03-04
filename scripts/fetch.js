@@ -33,7 +33,7 @@ async function parseJsonSafe(response) {
     try {
         return await response.json();
     } catch (error) {
-        return null;
+        return undefined;
     }
 }
 
@@ -47,24 +47,28 @@ async function parseJsonSafe(response) {
 async function getData(path = "") {
     try {
         const url = withAuth(buildFirebaseUrl(path));
-        if (!url) return null;
+        if (!url) return undefined;
 
         let response = await fetch(url);
         if (!response.ok) {
             const body = await parseJsonSafe(response);
             console.error("getData failed:", response.status, response.statusText, body);
-            return null;
+            return undefined;
         }
 
         let responseAsJson = await parseJsonSafe(response);
+        if (typeof responseAsJson === "undefined") {
+            console.error("getData failed: could not parse JSON response");
+            return undefined;
+        }
         if (responseAsJson && typeof responseAsJson === "object" && "error" in responseAsJson) {
             console.error("getData returned error:", responseAsJson);
-            return null;
+            return undefined;
         }
         return responseAsJson;
     } catch (error) {
         console.error("Error", error);
-        return null;
+        return undefined;
     }
 }
 /**
@@ -76,7 +80,7 @@ async function getData(path = "") {
  */
 async function postData(path = "", data = {}) {
     const url = withAuth(buildFirebaseUrl(path));
-    if (!url) return null;
+    if (!url) return undefined;
 
     let response = await fetch(url, {
         method: "POST",
@@ -88,9 +92,14 @@ async function postData(path = "", data = {}) {
     if (!response.ok) {
         const body = await parseJsonSafe(response);
         console.error("postData failed:", response.status, response.statusText, body);
-        return null;
+        return undefined;
     }
-    return await parseJsonSafe(response);
+    const json = await parseJsonSafe(response);
+    if (typeof json === "undefined") {
+        console.error("postData failed: could not parse JSON response");
+        return undefined;
+    }
+    return json;
 }
 
 /**
@@ -102,7 +111,7 @@ async function postData(path = "", data = {}) {
  */
 async function putData(path = "", data = {}) {
     const url = withAuth(buildFirebaseUrl(path));
-    if (!url) return null;
+    if (!url) return undefined;
 
     let response = await fetch(url, {
         method: "PUT",
@@ -114,9 +123,14 @@ async function putData(path = "", data = {}) {
     if (!response.ok) {
         const body = await parseJsonSafe(response);
         console.error("putData failed:", response.status, response.statusText, body);
-        return null;
+        return undefined;
     }
-    return await parseJsonSafe(response);
+    const json = await parseJsonSafe(response);
+    if (typeof json === "undefined") {
+        console.error("putData failed: could not parse JSON response");
+        return undefined;
+    }
+    return json;
 }
 
 /**
@@ -127,7 +141,7 @@ async function putData(path = "", data = {}) {
  */
 async function deleteData(path = "", data = {}) {
     const url = withAuth(buildFirebaseUrl(path));
-    if (!url) return null;
+    if (!url) return undefined;
 
     let response = await fetch(url, {
         method: "DELETE",
@@ -138,7 +152,12 @@ async function deleteData(path = "", data = {}) {
     if (!response.ok) {
         const body = await parseJsonSafe(response);
         console.error("deleteData failed:", response.status, response.statusText, body);
-        return null;
+        return undefined;
     }
-    return await parseJsonSafe(response);
+    const json = await parseJsonSafe(response);
+    if (typeof json === "undefined") {
+        console.error("deleteData failed: could not parse JSON response");
+        return undefined;
+    }
+    return json;
 }

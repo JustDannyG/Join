@@ -270,11 +270,17 @@ function errorStyles(userNameInput, userEmailInput, userPwd, userConfPwd) {
  * @param {HTMLElement} checkbox - The terms and conditions checkbox element.
  */
 async function checkIfUserAllreadyExists(userNameInput, userEmailInput, userPwd, userConfPwd, checkbox) {
-    let users = await getData("users");
+    const usersResponse = await getData("users");
+    if (typeof usersResponse === "undefined") {
+        backendUnavailableMsg();
+        return;
+    }
+
+    let users = usersResponse || {};
     let nameExists = false;
     let emailExists = false;
-    if (users) {
-        let userIds = Object.keys(users);
+    if (users && typeof users === "object") {
+        let userIds = Object.keys(users || {});
         hideErrorMsg("name-error");
         hideErrorMsg("email-error");
        ({ nameExists, emailExists } = checkUserNameAndEmail(users, userIds, userNameInput, userEmailInput, nameExists, emailExists, userPwd, userConfPwd));
@@ -283,7 +289,6 @@ async function checkIfUserAllreadyExists(userNameInput, userEmailInput, userPwd,
             await capitalizeFirstLetter(userEmailInput, userPwd);
         }
     }
-    else {await capitalizeFirstLetter(userEmailInput, userPwd);}
 }
 
 function checkUserNameAndEmail(users, userIds, userNameInput, userEmailInput, nameExists, emailExists, userPwd, userConfPwd) {
@@ -304,6 +309,9 @@ function checkUserNameAndEmail(users, userIds, userNameInput, userEmailInput, na
  * @param {boolean} nameExists - Whether the name already exists.
  */
 function checkNameExist(user, userNameInput, nameExists) {
+    if (!user || typeof user !== "object") return nameExists;
+    if (typeof user.name !== "string") return nameExists;
+    if (typeof userNameInput !== "string") return nameExists;
     if (user.name.toLowerCase() === userNameInput.toLowerCase()) {
         nameExists = true;
         userAlreadyExistsMsg("name-error", "Name");
@@ -319,11 +327,25 @@ function checkNameExist(user, userNameInput, nameExists) {
  * @param {boolean} emailExists - Whether the email already exists.
  */
 function checkEmailExist(user, userEmailInput, emailExists) {
-    if (user.email == userEmailInput) {
+    if (!user || typeof user !== "object") return emailExists;
+    if (typeof user.email !== "string") return emailExists;
+    if (typeof userEmailInput !== "string") return emailExists;
+    if (user.email.toLowerCase() === userEmailInput.toLowerCase()) {
         emailExists = true;
         userAlreadyExistsMsg("email-error", "Email");
     }
     return emailExists;
+}
+
+function backendUnavailableMsg() {
+    const errorRef = document.getElementById("email-error");
+    const containerRef = document.getElementById("email-input-container");
+    if (!errorRef || !containerRef) return;
+
+    errorRef.textContent = "Backend nicht erreichbar. Prüfe die Firebase-URL in scripts/config.js.";
+    errorRef.classList.add("visible");
+    containerRef.classList.add("red-border");
+    shake(errorRef);
 }
 
 /**
