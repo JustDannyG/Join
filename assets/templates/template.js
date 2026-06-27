@@ -4,8 +4,8 @@ function mobileHeader(user) {
       <div onclick="classChangeAction('menu', 'menu-active', 'toggle'), stopEventBubbling(event)" id="current-user-header" class="current-user-header center">${user}</div>
       <div id="menu" class="column menu">
         <a href="./help.html">Help</a>
-        <a href="./legal-notice.html">Legal Notice</a>
-        <a href="./privacy-policy.html">Privacy Policy</a>
+        <a href="./legal-notice.html">Impressum</a>
+        <a href="./privacy-policy.html">Datenschutz</a>
         <a onclick="logOut()" href="#">Log out</a>
       </div>
     </header>`;
@@ -23,8 +23,8 @@ function desktopHeader(user) {
         </div>
         
        <nav id="user-menu" class="user-menu d-none">
-        <a href="legal-notice.html">Legal Notice</a>
-        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="legal-notice.html">Impressum</a>
+        <a href="privacy-policy.html">Datenschutz</a>
         <a onclick="logOut()" href="#">Log out</a>
        </nav>
 
@@ -58,8 +58,8 @@ function desktopSidebar() {
             <a class="nav-link-desktop" id="contact-link"  href="contact.html"><img src="./assets/icons/contacts-icon.png" > Contacts</a>
         </nav>
         <div class="sidebar-info">
-            <a href="privacy-policy.html">Privacy Policy</a>
-            <a href="legal-notice.html">Legal notice</a>
+            <a href="privacy-policy.html">Datenschutz</a>
+            <a href="legal-notice.html">Impressum</a>
         </div>
     </aside>`;
 }
