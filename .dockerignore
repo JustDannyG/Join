@@ -1,0 +1,7 @@
+.git
+.github
+.vscode
+.claude
+.DS_Store
+README.md
+*.log
